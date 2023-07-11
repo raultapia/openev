@@ -1,0 +1,4 @@
+<map id="ev::EventBuffer" name="ev::EventBuffer">
+<area shape="rect" id="node1" title="This class extends std::queue&lt;Event&gt; to implement event buffers. For more information,..." alt="" coords="19,80,133,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,147,32"/>
+</map>

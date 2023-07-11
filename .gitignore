@@ -1,0 +1,7 @@
+.clang-format
+build/
+cmake/
+examples/*
+!examples/*.cpp
+icon/
+tests/
