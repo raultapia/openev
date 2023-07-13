@@ -6,8 +6,8 @@ This is an example of how to use the Event_<T> class.
 #include <openev/openev.hpp>
 
 int main(int argc, const char *argv[]) {
-  ev::Event e1(1.23, 20, 30, ev::POSITIVE);
-  ev::Event e2(5.67, 40, 30, ev::NEGATIVE);
+  ev::Event e1(20, 30, 1.23, ev::POSITIVE);
+  ev::Event e2(40, 30, 5.67, ev::NEGATIVE);
   ev::Rect rect(0, 0, 35, 35);
 
   std::cout << "e1: " << e1 << std::endl;

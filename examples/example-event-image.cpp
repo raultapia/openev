@@ -25,7 +25,7 @@ int main(int argc, const char *argv[]) {
 
   while(offset < 0.55 * eimage.cols) {
     t += rand() % 10;
-    eimage.insert(ev::Event(t, col, row, (rand() % 2) ? ev::POSITIVE : ev::NEGATIVE));
+    eimage.insert(ev::Event(col, row, t, (rand() % 2) ? ev::POSITIVE : ev::NEGATIVE));
     switch(direction) {
     case 0:
       col++;
