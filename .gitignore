@@ -1,4 +1,5 @@
 build/
 cmake
-icon/
+images/
+!images/*.png
 tests/
