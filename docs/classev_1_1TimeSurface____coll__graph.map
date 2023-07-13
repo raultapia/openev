@@ -1,7 +1,0 @@
-<map id="ev::TimeSurface_&lt; T &gt;" name="ev::TimeSurface_&lt; T &gt;">
-<area shape="rect" id="node1" title="This class extends ev::EventImage_&lt;T&gt; for event images." alt="" coords="98,276,255,303"/>
-<area shape="rect" id="node2" href="$classev_1_1EventImage__.html" title="This class extends cv::Mat_&lt;T&gt; for event images. For more information, please refer here." alt="" coords="5,172,159,199"/>
-<area shape="rect" id="node3" href="$classev_1_1AbstractRepresentation__.html" title="This is an auxiliary class. This class cannot be instanced." alt="" coords="86,81,267,123"/>
-<area shape="rect" id="node5" href="$classev_1_1EventImage__.html" title=" " alt="" coords="183,172,365,199"/>
-<area shape="rect" id="node4" title=" " alt="" coords="124,5,229,32"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classev_1_1EventImage__.html" title=" " alt="" coords="5,13,188,39"/>
-<area shape="rect" id="node2" href="$classev_1_1AbstractRepresentation__.html" title="This is an auxiliary class. This class cannot be instanced." alt="" coords="236,5,417,47"/>
-<area shape="rect" id="node3" href="$classev_1_1EventImage__.html" title="This class extends cv::Mat_&lt;T&gt; for event images. For more information, please refer here." alt="" coords="465,13,619,39"/>
-<area shape="rect" id="node4" href="$classev_1_1TimeSurface__.html" title="This class extends ev::EventImage_&lt;T&gt; for event images." alt="" coords="667,13,824,39"/>
-</map>

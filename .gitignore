@@ -3,5 +3,6 @@ build/
 cmake/
 examples/*
 !examples/*.cpp
-icon/
+images/
+!images/*.png
 tests/

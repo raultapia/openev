@@ -1,0 +1,9 @@
+PROJECT_NAME           = OpenEV
+PROJECT_BRIEF          = "Extending OpenCV to event-based vision"
+PROJECT_LOGO           = ./images/logo.png
+EXAMPLE_PATH           = ./examples
+USE_MDFILE_AS_MAINPAGE = ./README.md
+GENERATE_HTML          = YES
+USE_MATHJAX            = YES
+RECURSIVE              = YES
+OUTPUT_DIRECTORY       = ./docs/

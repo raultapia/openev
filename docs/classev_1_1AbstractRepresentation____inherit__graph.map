@@ -1,7 +1,0 @@
-<map id="ev::AbstractRepresentation_&lt; T &gt;" name="ev::AbstractRepresentation_&lt; T &gt;">
-<area shape="rect" id="node1" title="This is an auxiliary class. This class cannot be instanced." alt="" coords="102,80,283,121"/>
-<area shape="rect" id="node3" href="$classev_1_1EventImage__.html" title=" " alt="" coords="5,169,188,196"/>
-<area shape="rect" id="node4" href="$classev_1_1EventImage__.html" title="This class extends cv::Mat_&lt;T&gt; for event images. For more information, please refer here." alt="" coords="212,169,365,196"/>
-<area shape="rect" id="node2" title=" " alt="" coords="140,5,245,32"/>
-<area shape="rect" id="node5" href="$classev_1_1TimeSurface__.html" title="This class extends ev::EventImage_&lt;T&gt; for event images." alt="" coords="210,244,367,271"/>
-</map>

@@ -3,7 +3,7 @@
 -->
 <div align="center" style="margin-bottom: 10px;">
 <a href="https://github.com/raultapia/openev">
-<img src="docs/logo.png" alt="logo">
+<img src="images/logo.png" alt="logo">
 </a>
 <p style="font-size: 30px" class="name">OpenEV</p>
 </div>
