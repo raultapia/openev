@@ -65,20 +65,20 @@ public:
 
   /*!
   Contructor using timestamp, event coordinates, and polarity.
-  \param t Timestamp
   \param x Spatial coordinate x
   \param y Spatial coordinate y
+  \param t Timestamp
   \param p Polarity
   */
-  Event_(const double t, const T x, const T y, const bool p) : cv::Point_<T>(x, y), t{t}, p{p} {};
+  Event_(const T x, const T y, const double t, const bool p) : cv::Point_<T>(x, y), t{t}, p{p} {};
 
   /*!
   Contructor using timestamp, event coordinates as cv::Point, and polarity.
-  \param t Timestamp
   \param pt Spatial coordinate (x,y) as point
+  \param t Timestamp
   \param p Polarity
   */
-  Event_(const double t, const cv::Point_<T> &pt, const bool p) : cv::Point_<T>(pt), t{t}, p{p} {};
+  Event_(const cv::Point_<T> &pt, const double t, const bool p) : cv::Point_<T>(pt), t{t}, p{p} {};
 
   /*!
   Copy assignment operator
@@ -117,7 +117,7 @@ public:
   \return Output stream
   */
   [[nodiscard]] friend std::ostream &operator<<(std::ostream &os, const Event_ &e) {
-    os << std::string(std::to_string(e.t) + " (" + std::to_string(e.x) + "," + std::to_string(e.y) + ") " + (e.p ? "[+]" : "[-]"));
+    os << std::string(" (" + std::to_string(e.x) + "," + std::to_string(e.y) + ") " + std::to_string(e.t) + (e.p ? " [+]" : " [-]"));
     return os;
   }
 };
