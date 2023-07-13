@@ -106,7 +106,7 @@ $(function() {
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">while</span>(offset &lt; 0.55 * eimage.cols) {</div>
 <div class="line">    t += rand() % 10;</div>
-<div class="line">    eimage.insert(<a id="_a2" name="_a2"></a><a class="code hl_class" href="classev_1_1Event__.html">ev::Event</a>(t, col, row, (rand() % 2) ? <a id="a3" name="a3"></a>ev::POSITIVE : ev::NEGATIVE));</div>
+<div class="line">    eimage.insert(<a id="_a2" name="_a2"></a><a class="code hl_class" href="classev_1_1Event__.html">ev::Event</a>(col, row, t, (rand() % 2) ? <a id="a3" name="a3"></a>ev::POSITIVE : ev::NEGATIVE));</div>
 <div class="line">    <span class="keywordflow">switch</span>(direction) {</div>
 <div class="line">    <span class="keywordflow">case</span> 0:</div>
 <div class="line">      col++;</div>
