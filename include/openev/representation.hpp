@@ -309,7 +309,85 @@ using EventImage3 = EventImage3b;            /*!< Alias for EventImage_ using cv
 using EventImage = EventImage1;              /*!< Alias for EventImage_ using uchar */
 
 /*!
-\brief This class extends ev::EventImage_<T> for event images.
+\brief This class extends ev::EventImage_<T> for event 2D histograms.
+
+Analogously to OpenCV library, the following aliases are defined for convenience:
+\code{.cpp}
+using EventHistogram1b = EventHistogram_<uchar>;
+using EventHistogram2b = EventHistogram_<cv::Vec2b>;
+using EventHistogram3b = EventHistogram_<cv::Vec3b>;
+using EventHistogram4b = EventHistogram_<cv::Vec4b>;
+using EventHistogram1s = EventHistogram_<short>;
+using EventHistogram2s = EventHistogram_<cv::Vec2s>;
+using EventHistogram3s = EventHistogram_<cv::Vec3s>;
+using EventHistogram4s = EventHistogram_<cv::Vec4s>;
+using EventHistogram1w = EventHistogram_<ushort>;
+using EventHistogram2w = EventHistogram_<cv::Vec2w>;
+using EventHistogram3w = EventHistogram_<cv::Vec3w>;
+using EventHistogram4w = EventHistogram_<cv::Vec4w>;
+using EventHistogram1i = EventHistogram_<int>;
+using EventHistogram2i = EventHistogram_<cv::Vec2i>;
+using EventHistogram3i = EventHistogram_<cv::Vec3i>;
+using EventHistogram4i = EventHistogram_<cv::Vec4i>;
+using EventHistogram1f = EventHistogram_<float>;
+using EventHistogram2f = EventHistogram_<cv::Vec2f>;
+using EventHistogram3f = EventHistogram_<cv::Vec3f>;
+using EventHistogram4f = EventHistogram_<cv::Vec4f>;
+using EventHistogram1d = EventHistogram_<double>;
+using EventHistogram2d = EventHistogram_<cv::Vec2d>;
+using EventHistogram3d = EventHistogram_<cv::Vec3d>;
+using EventHistogram4d = EventHistogram_<cv::Vec4d>;
+using EventHistogram1 = EventHistogram1b;
+using EventHistogram3 = EventHistogram3b;
+using EventHistogram = EventHistogram1;
+\endcode
+*/
+template <typename T>
+class EventHistogram_ : public EventImage_<T> {
+  using EventImage_<T>::EventImage_;
+
+public:
+  /*!
+  Event histogram matrix is generated from counter matrix.
+  \brief Render event histogram matrix.
+  */
+  void render();
+
+private:
+  EventImage1d counter_{this->size()};
+  void clear_() override;
+  bool insert_(const Event &e) override;
+};
+using EventHistogram1b = EventHistogram_<uchar>;     /*!< Alias for EventHistogram_ using uchar */
+using EventHistogram2b = EventHistogram_<cv::Vec2b>; /*!< Alias for EventHistogram_ using cv::Vec2b */
+using EventHistogram3b = EventHistogram_<cv::Vec3b>; /*!< Alias for EventHistogram_ using cv::Vec3b */
+using EventHistogram4b = EventHistogram_<cv::Vec4b>; /*!< Alias for EventHistogram_ using cv::Vec4b */
+using EventHistogram1s = EventHistogram_<short>;     /*!< Alias for EventHistogram_ using short */
+using EventHistogram2s = EventHistogram_<cv::Vec2s>; /*!< Alias for EventHistogram_ using cv::Vec2s */
+using EventHistogram3s = EventHistogram_<cv::Vec3s>; /*!< Alias for EventHistogram_ using cv::Vec3s */
+using EventHistogram4s = EventHistogram_<cv::Vec4s>; /*!< Alias for EventHistogram_ using cv::Vec4s */
+using EventHistogram1w = EventHistogram_<ushort>;    /*!< Alias for EventHistogram_ using ushort */
+using EventHistogram2w = EventHistogram_<cv::Vec2w>; /*!< Alias for EventHistogram_ using cv::Vec2w */
+using EventHistogram3w = EventHistogram_<cv::Vec3w>; /*!< Alias for EventHistogram_ using cv::Vec3w */
+using EventHistogram4w = EventHistogram_<cv::Vec4w>; /*!< Alias for EventHistogram_ using cv::Vec4w */
+using EventHistogram1i = EventHistogram_<int>;       /*!< Alias for EventHistogram_ using int */
+using EventHistogram2i = EventHistogram_<cv::Vec2i>; /*!< Alias for EventHistogram_ using cv::Vec2i */
+using EventHistogram3i = EventHistogram_<cv::Vec3i>; /*!< Alias for EventHistogram_ using cv::Vec3i */
+using EventHistogram4i = EventHistogram_<cv::Vec4i>; /*!< Alias for EventHistogram_ using cv::Vec4i */
+using EventHistogram1f = EventHistogram_<float>;     /*!< Alias for EventHistogram_ using float */
+using EventHistogram2f = EventHistogram_<cv::Vec2f>; /*!< Alias for EventHistogram_ using cv::Vec2f */
+using EventHistogram3f = EventHistogram_<cv::Vec3f>; /*!< Alias for EventHistogram_ using cv::Vec3f */
+using EventHistogram4f = EventHistogram_<cv::Vec4f>; /*!< Alias for EventHistogram_ using cv::Vec4f */
+using EventHistogram1d = EventHistogram_<double>;    /*!< Alias for EventHistogram_ using double */
+using EventHistogram2d = EventHistogram_<cv::Vec2d>; /*!< Alias for EventHistogram_ using cv::Vec2d */
+using EventHistogram3d = EventHistogram_<cv::Vec3d>; /*!< Alias for EventHistogram_ using cv::Vec3d */
+using EventHistogram4d = EventHistogram_<cv::Vec4d>; /*!< Alias for EventHistogram_ using cv::Vec4d */
+using EventHistogram1 = EventHistogram1b;            /*!< Alias for EventHistogram_ using uchar */
+using EventHistogram3 = EventHistogram3b;            /*!< Alias for EventHistogram_ using cv::Vec3b */
+using EventHistogram = EventHistogram1;              /*!< Alias for EventHistogram_ using uchar */
+
+/*!
+\brief This class extends ev::EventImage_<T> for time surfaces.
 
 Analogously to OpenCV library, the following aliases are defined for convenience:
 \code{.cpp}
@@ -353,7 +431,6 @@ public:
   /*!
   Time-surface matrices are generated from timestamp and polarity matrices.
   \brief Render Time-surface matrix.
-  \return Array with values for, respectively, ON, OFF, and non-activated pixels
   */
   void render();
 
@@ -506,6 +583,7 @@ using PointCloud = PointCloud1;              /*!< Alias for PointCloud_ using uc
 
 /*! \cond INTERNAL */
 #include "openev/abstract-representation.tpp"
+#include "openev/event-histogram.tpp"
 #include "openev/event-image.tpp"
 #include "openev/point-cloud.tpp"
 #include "openev/time-surface.tpp"
