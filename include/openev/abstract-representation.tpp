@@ -14,14 +14,14 @@ void AbstractRepresentation_<T>::clear() {
 
 template <typename T>
 bool AbstractRepresentation_<T>::insert(const Event &e) {
-  if(!e.inside(cv::Rect(0, 0, this->cols, this->rows))) {
+  if(insert_(e)) {
+    tLimits_[MIN] = std::min(tLimits_[MIN], e.t);
+    tLimits_[MAX] = std::max(tLimits_[MAX], e.t);
+    count_++;
+    return true;
+  } else {
     return false;
   }
-  tLimits_[MIN] = std::min(tLimits_[MIN], e.t);
-  tLimits_[MAX] = std::max(tLimits_[MAX], e.t);
-  count_++;
-  insert_(e);
-  return true;
 }
 
 template <typename T>
