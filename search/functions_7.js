@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['setcolors_0',['setColors',['../classev_1_1EventImage__.html#a39936fadf37b1cc9638a45590746ee4e',1,'ev::EventImage_']]],
-  ['setvalues_1',['setValues',['../classev_1_1EventImage__.html#a9c1535fc936ce989aff913fc8fd3f7e0',1,'ev::EventImage_::setValues(const Value &amp;positive, const Value &amp;negative, const Value &amp;reset)'],['../classev_1_1EventImage__.html#a68737cdabfd03ab12fb545be396a6f0d',1,'ev::EventImage_::setValues(const ValueArray &amp;pnr)']]],
-  ['size_2',['size',['../classev_1_1Rect3__.html#a4e05b496eed825b98c3663cd65b074ee',1,'ev::Rect3_']]],
-  ['size3_5f_3',['Size3_',['../classev_1_1Size3__.html#a9022d8414c3ab5c7cbf5bea98e8f60d1',1,'ev::Size3_']]],
-  ['spacedistance_4',['spaceDistance',['../classev_1_1Event__.html#a84ca84fa32d531c28cae6172d9f54075',1,'ev::Event_']]]
+  ['rect3_5f_0',['Rect3_',['../classev_1_1Rect3__.html#ad032da839930712403dffd07f602ecc5',1,'ev::Rect3_::Rect3_()'],['../classev_1_1Rect3__.html#ab624f6b566d8c5a7214aae35a6832007',1,'ev::Rect3_::Rect3_(const Rect3_&lt; T &gt; &amp;)=default'],['../classev_1_1Rect3__.html#a9b30f776aed56bd7d5bee3fddb0345c4',1,'ev::Rect3_::Rect3_(Rect3_&lt; T &gt; &amp;&amp;) noexcept=default'],['../classev_1_1Rect3__.html#a0496d8895ea1a40bcb6f5c43b187a6f1',1,'ev::Rect3_::Rect3_(const T x, const T y, const T t, const T w, const T h, const T l)'],['../classev_1_1Rect3__.html#a47ab3f2b243fbefeac90a4b95ff34552',1,'ev::Rect3_::Rect3_(const Rect2_&lt; T &gt; &amp;rect, const T t, const T l)'],['../classev_1_1Rect3__.html#a6f7c0fec6b9103e97d6e5ce336260e95',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt, const Size3_&lt; T &gt; sz)'],['../classev_1_1Rect3__.html#a6aaf7d688888a305be6d8f352c9274d2',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt1, const cv::Point3_&lt; T &gt; &amp;pt2)']]],
+  ['render_1',['render',['../classev_1_1TimeSurface__.html#a341ff837ee4e2049afdf48f9c81a24e1',1,'ev::TimeSurface_']]]
 ];

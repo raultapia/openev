@@ -92,6 +92,7 @@ $(function() {
 <p>Event representations.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="types_8hpp_source.html">openev/types.hpp</a>&quot;</code><br />
+<code>#include &lt;opencv2/viz.hpp&gt;</code><br />
 <code>#include &lt;opencv2/viz/types.hpp&gt;</code><br />
 </div>
 <p><a href="representation_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -106,6 +107,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1TimeSurface__.html">ev::TimeSurface_&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class extends ev::EventImage_&lt;T&gt; for event images.  <a href="classev_1_1TimeSurface__.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html">ev::PointCloud_&lt; T &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -218,6 +221,36 @@ Typedefs</h2></td></tr>
 <tr class="separator:a1f214ded8d86431e1e22a1c87f506636"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb68b8160e78206093eb04e4b9dabe64"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#aeb68b8160e78206093eb04e4b9dabe64">ev::TimeSurface</a> = <a class="el" href="representation_8hpp.html#a63407be07e3d4e7f8e980b1053cdc763">TimeSurface1</a></td></tr>
 <tr class="separator:aeb68b8160e78206093eb04e4b9dabe64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc93e18985c39f7f0698a6e49cd8f38"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a1dc93e18985c39f7f0698a6e49cd8f38">ev::PointCloud1b</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; uchar &gt;</td></tr>
+<tr class="separator:a1dc93e18985c39f7f0698a6e49cd8f38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4547b7266b9bf34350ef3094807569d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#aa4547b7266b9bf34350ef3094807569d">ev::PointCloud3b</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; cv::Vec3b &gt;</td></tr>
+<tr class="separator:aa4547b7266b9bf34350ef3094807569d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7128b1ebf27d2fc0ceacf9db668e34d1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a7128b1ebf27d2fc0ceacf9db668e34d1">ev::PointCloud1s</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; short &gt;</td></tr>
+<tr class="separator:a7128b1ebf27d2fc0ceacf9db668e34d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af41b97319a317b2434953fa2743370a5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#af41b97319a317b2434953fa2743370a5">ev::PointCloud3s</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; cv::Vec3s &gt;</td></tr>
+<tr class="separator:af41b97319a317b2434953fa2743370a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd12e9f7496812fc838c981a4131cee5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#afd12e9f7496812fc838c981a4131cee5">ev::PointCloud1w</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; ushort &gt;</td></tr>
+<tr class="separator:afd12e9f7496812fc838c981a4131cee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa699119716bb88aeaeba63489093ec79"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#aa699119716bb88aeaeba63489093ec79">ev::PointCloud3w</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; cv::Vec3w &gt;</td></tr>
+<tr class="separator:aa699119716bb88aeaeba63489093ec79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e2073fdbe2be2d4a77ea59c49cdaf7b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a6e2073fdbe2be2d4a77ea59c49cdaf7b">ev::PointCloud1i</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; int &gt;</td></tr>
+<tr class="separator:a6e2073fdbe2be2d4a77ea59c49cdaf7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41fb333eb25012b6f8a5357b864d07fc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a41fb333eb25012b6f8a5357b864d07fc">ev::PointCloud3i</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; cv::Vec3i &gt;</td></tr>
+<tr class="separator:a41fb333eb25012b6f8a5357b864d07fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa06b6e3333be58f468f7b87b7c9dd746"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#aa06b6e3333be58f468f7b87b7c9dd746">ev::PointCloud1f</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; float &gt;</td></tr>
+<tr class="separator:aa06b6e3333be58f468f7b87b7c9dd746"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b68571f0299e79eda072c3f5455aa0e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a0b68571f0299e79eda072c3f5455aa0e">ev::PointCloud3f</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; cv::Vec3f &gt;</td></tr>
+<tr class="separator:a0b68571f0299e79eda072c3f5455aa0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38fd358722d6e73190c8aa3e6b353215"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a38fd358722d6e73190c8aa3e6b353215">ev::PointCloud1d</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; double &gt;</td></tr>
+<tr class="separator:a38fd358722d6e73190c8aa3e6b353215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acddac1ee730e5d15a827036e502db15c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#acddac1ee730e5d15a827036e502db15c">ev::PointCloud3d</a> = <a class="el" href="classev_1_1PointCloud__.html">PointCloud_</a>&lt; cv::Vec3d &gt;</td></tr>
+<tr class="separator:acddac1ee730e5d15a827036e502db15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a344448f2bbc7c5467b03687eba5e9f48"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a344448f2bbc7c5467b03687eba5e9f48">ev::PointCloud1</a> = <a class="el" href="representation_8hpp.html#a38fd358722d6e73190c8aa3e6b353215">PointCloud1d</a></td></tr>
+<tr class="separator:a344448f2bbc7c5467b03687eba5e9f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17fea45285088d8be49d0fb5f5425fdd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a17fea45285088d8be49d0fb5f5425fdd">ev::PointCloud3</a> = <a class="el" href="representation_8hpp.html#acddac1ee730e5d15a827036e502db15c">PointCloud3d</a></td></tr>
+<tr class="separator:a17fea45285088d8be49d0fb5f5425fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eaf4809e840581fdd6efdab95926d7b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a4eaf4809e840581fdd6efdab95926d7b">ev::PointCloud</a> = <a class="el" href="representation_8hpp.html#a344448f2bbc7c5467b03687eba5e9f48">PointCloud1</a></td></tr>
+<tr class="separator:a4eaf4809e840581fdd6efdab95926d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Event representations. </p>
@@ -625,6 +658,231 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Alias for EventImage_ using cv::Vec4w </p>
+
+</div>
+</div>
+<a id="a4eaf4809e840581fdd6efdab95926d7b" name="a4eaf4809e840581fdd6efdab95926d7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eaf4809e840581fdd6efdab95926d7b">&#9670;&#160;</a></span>PointCloud</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a4eaf4809e840581fdd6efdab95926d7b">ev::PointCloud</a> = typedef PointCloud1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using double </p>
+
+</div>
+</div>
+<a id="a344448f2bbc7c5467b03687eba5e9f48" name="a344448f2bbc7c5467b03687eba5e9f48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a344448f2bbc7c5467b03687eba5e9f48">&#9670;&#160;</a></span>PointCloud1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a344448f2bbc7c5467b03687eba5e9f48">ev::PointCloud1</a> = typedef PointCloud1d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using double </p>
+
+</div>
+</div>
+<a id="a1dc93e18985c39f7f0698a6e49cd8f38" name="a1dc93e18985c39f7f0698a6e49cd8f38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc93e18985c39f7f0698a6e49cd8f38">&#9670;&#160;</a></span>PointCloud1b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a1dc93e18985c39f7f0698a6e49cd8f38">ev::PointCloud1b</a> = typedef PointCloud_&lt;uchar&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using uchar </p>
+
+</div>
+</div>
+<a id="a38fd358722d6e73190c8aa3e6b353215" name="a38fd358722d6e73190c8aa3e6b353215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38fd358722d6e73190c8aa3e6b353215">&#9670;&#160;</a></span>PointCloud1d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a38fd358722d6e73190c8aa3e6b353215">ev::PointCloud1d</a> = typedef PointCloud_&lt;double&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using double </p>
+
+</div>
+</div>
+<a id="aa06b6e3333be58f468f7b87b7c9dd746" name="aa06b6e3333be58f468f7b87b7c9dd746"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa06b6e3333be58f468f7b87b7c9dd746">&#9670;&#160;</a></span>PointCloud1f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#aa06b6e3333be58f468f7b87b7c9dd746">ev::PointCloud1f</a> = typedef PointCloud_&lt;float&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using float </p>
+
+</div>
+</div>
+<a id="a6e2073fdbe2be2d4a77ea59c49cdaf7b" name="a6e2073fdbe2be2d4a77ea59c49cdaf7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e2073fdbe2be2d4a77ea59c49cdaf7b">&#9670;&#160;</a></span>PointCloud1i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a6e2073fdbe2be2d4a77ea59c49cdaf7b">ev::PointCloud1i</a> = typedef PointCloud_&lt;int&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using int </p>
+
+</div>
+</div>
+<a id="a7128b1ebf27d2fc0ceacf9db668e34d1" name="a7128b1ebf27d2fc0ceacf9db668e34d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7128b1ebf27d2fc0ceacf9db668e34d1">&#9670;&#160;</a></span>PointCloud1s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a7128b1ebf27d2fc0ceacf9db668e34d1">ev::PointCloud1s</a> = typedef PointCloud_&lt;short&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using short </p>
+
+</div>
+</div>
+<a id="afd12e9f7496812fc838c981a4131cee5" name="afd12e9f7496812fc838c981a4131cee5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd12e9f7496812fc838c981a4131cee5">&#9670;&#160;</a></span>PointCloud1w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#afd12e9f7496812fc838c981a4131cee5">ev::PointCloud1w</a> = typedef PointCloud_&lt;ushort&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using ushort </p>
+
+</div>
+</div>
+<a id="a17fea45285088d8be49d0fb5f5425fdd" name="a17fea45285088d8be49d0fb5f5425fdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17fea45285088d8be49d0fb5f5425fdd">&#9670;&#160;</a></span>PointCloud3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a17fea45285088d8be49d0fb5f5425fdd">ev::PointCloud3</a> = typedef PointCloud3d</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using cv::Vec3d </p>
+
+</div>
+</div>
+<a id="aa4547b7266b9bf34350ef3094807569d" name="aa4547b7266b9bf34350ef3094807569d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4547b7266b9bf34350ef3094807569d">&#9670;&#160;</a></span>PointCloud3b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#aa4547b7266b9bf34350ef3094807569d">ev::PointCloud3b</a> = typedef PointCloud_&lt;cv::Vec3b&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using cv::Vec3b </p>
+
+</div>
+</div>
+<a id="acddac1ee730e5d15a827036e502db15c" name="acddac1ee730e5d15a827036e502db15c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acddac1ee730e5d15a827036e502db15c">&#9670;&#160;</a></span>PointCloud3d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#acddac1ee730e5d15a827036e502db15c">ev::PointCloud3d</a> = typedef PointCloud_&lt;cv::Vec3d&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using cv::Vec3d </p>
+
+</div>
+</div>
+<a id="a0b68571f0299e79eda072c3f5455aa0e" name="a0b68571f0299e79eda072c3f5455aa0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b68571f0299e79eda072c3f5455aa0e">&#9670;&#160;</a></span>PointCloud3f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a0b68571f0299e79eda072c3f5455aa0e">ev::PointCloud3f</a> = typedef PointCloud_&lt;cv::Vec3f&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using cv::Vec3f </p>
+
+</div>
+</div>
+<a id="a41fb333eb25012b6f8a5357b864d07fc" name="a41fb333eb25012b6f8a5357b864d07fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41fb333eb25012b6f8a5357b864d07fc">&#9670;&#160;</a></span>PointCloud3i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a41fb333eb25012b6f8a5357b864d07fc">ev::PointCloud3i</a> = typedef PointCloud_&lt;cv::Vec3i&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using cv::Vec3i </p>
+
+</div>
+</div>
+<a id="af41b97319a317b2434953fa2743370a5" name="af41b97319a317b2434953fa2743370a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af41b97319a317b2434953fa2743370a5">&#9670;&#160;</a></span>PointCloud3s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#af41b97319a317b2434953fa2743370a5">ev::PointCloud3s</a> = typedef PointCloud_&lt;cv::Vec3s&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using cv::Vec3s </p>
+
+</div>
+</div>
+<a id="aa699119716bb88aeaeba63489093ec79" name="aa699119716bb88aeaeba63489093ec79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa699119716bb88aeaeba63489093ec79">&#9670;&#160;</a></span>PointCloud3w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#aa699119716bb88aeaeba63489093ec79">ev::PointCloud3w</a> = typedef PointCloud_&lt;cv::Vec3w&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for PointCloud_ using cv::Vec3w </p>
 
 </div>
 </div>

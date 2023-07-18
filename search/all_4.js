@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getvalues_0',['getValues',['../classev_1_1EventImage__.html#a18e2b88e1df7dcfe1117dcbd78e2ca59',1,'ev::EventImage_']]]
+  ['frame_0',['frame',['../classev_1_1PointCloud__.html#ae7d1af20ed7929815098b90bd743ed0d',1,'ev::PointCloud_']]]
 ];

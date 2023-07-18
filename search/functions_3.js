@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['getvalues_0',['getValues',['../classev_1_1EventImage__.html#a18e2b88e1df7dcfe1117dcbd78e2ca59',1,'ev::EventImage_']]]
+  ['getsize_0',['getSize',['../classev_1_1PointCloud__.html#a2991f413499f79a5898ab57087e77adf',1,'ev::PointCloud_']]],
+  ['getvalues_1',['getValues',['../classev_1_1AbstractRepresentation__.html#aac935f6d45e1963fdf0e570e91b1adac',1,'ev::AbstractRepresentation_']]]
 ];

@@ -83,6 +83,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classev_1_1AbstractRepresentation__-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ev::AbstractRepresentation_&lt; T &gt; Class Template Reference</div></div>
@@ -99,12 +100,20 @@ Inheritance diagram for ev::AbstractRepresentation_&lt; T &gt;:</div>
  <div class="center">
   <img src="classev_1_1AbstractRepresentation__.png" usemap="#ev::AbstractRepresentation_5F_3C_20T_20_3E_map" alt=""/>
   <map id="ev::AbstractRepresentation_5F_3C_20T_20_3E_map" name="ev::AbstractRepresentation_5F_3C_20T_20_3E_map">
-<area href="classev_1_1EventImage__.html" alt="ev::EventImage_&lt; double &gt;" shape="rect" coords="0,112,201,136"/>
-<area href="classev_1_1EventImage__.html" title="This class extends cv::Mat_&lt;T&gt; for event images. For more information, please refer here." alt="ev::EventImage_&lt; T &gt;" shape="rect" coords="211,112,412,136"/>
-<area href="classev_1_1TimeSurface__.html" title="This class extends ev::EventImage_&lt;T&gt; for event images." alt="ev::TimeSurface_&lt; T &gt;" shape="rect" coords="211,168,412,192"/>
+<area href="classev_1_1EventImage__.html" alt="ev::EventImage_&lt; double &gt;" shape="rect" coords="0,56,201,80"/>
+<area href="classev_1_1EventImage__.html" title="This class extends cv::Mat_&lt;T&gt; for event images. For more information, please refer here." alt="ev::EventImage_&lt; T &gt;" shape="rect" coords="211,56,412,80"/>
+<area href="classev_1_1PointCloud__.html" alt="ev::PointCloud_&lt; T &gt;" shape="rect" coords="422,56,623,80"/>
+<area href="classev_1_1TimeSurface__.html" title="This class extends ev::EventImage_&lt;T&gt; for event images." alt="ev::TimeSurface_&lt; T &gt;" shape="rect" coords="211,112,412,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a8abba3a1c37dd7eab49697be17eadc00"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractRepresentation__.html#a8abba3a1c37dd7eab49697be17eadc00">Value</a> = typename ColorHelper&lt; T &gt;::Value</td></tr>
+<tr class="separator:a8abba3a1c37dd7eab49697be17eadc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d6e2401641a7de2e52eb4095a151738"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractRepresentation__.html#a6d6e2401641a7de2e52eb4095a151738">ValueArray</a> = typename ColorHelper&lt; T &gt;::ValueArray</td></tr>
+<tr class="separator:a6d6e2401641a7de2e52eb4095a151738"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad9bd795898202cd26407cac23b67f9cc"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractRepresentation__.html#ad9bd795898202cd26407cac23b67f9cc">count</a> () const</td></tr>
@@ -125,11 +134,58 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae9bcc3d8362554d9f197d2bae3d5a089"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractRepresentation__.html#ae9bcc3d8362554d9f197d2bae3d5a089">insert</a> (<a class="el" href="classev_1_1EventBuffer.html">EventBuffer</a> &amp;buffer)</td></tr>
 <tr class="memdesc:ae9bcc3d8362554d9f197d2bae3d5a089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a buffer of events in the representation.  <br /></td></tr>
 <tr class="separator:ae9bcc3d8362554d9f197d2bae3d5a089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ec42a61db5a2645b2923f3954a0184e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractRepresentation__.html#a0ec42a61db5a2645b2923f3954a0184e">setColors</a> (const cv::viz::Color &amp;positive, const cv::viz::Color &amp;negative, const cv::viz::Color &amp;reset)</td></tr>
+<tr class="memdesc:a0ec42a61db5a2645b2923f3954a0184e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set colors for ON, OFF, and non-activated pixels. For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>.  <br /></td></tr>
+<tr class="separator:a0ec42a61db5a2645b2923f3954a0184e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac64618e40a41ea77a4306c1cf19819ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractRepresentation__.html#ac64618e40a41ea77a4306c1cf19819ac">setValues</a> (const <a class="el" href="classev_1_1AbstractRepresentation__.html#a8abba3a1c37dd7eab49697be17eadc00">Value</a> &amp;positive, const <a class="el" href="classev_1_1AbstractRepresentation__.html#a8abba3a1c37dd7eab49697be17eadc00">Value</a> &amp;negative, const <a class="el" href="classev_1_1AbstractRepresentation__.html#a8abba3a1c37dd7eab49697be17eadc00">Value</a> &amp;reset)</td></tr>
+<tr class="memdesc:ac64618e40a41ea77a4306c1cf19819ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set values for ON, OFF, and non-activated pixels.  <br /></td></tr>
+<tr class="separator:ac64618e40a41ea77a4306c1cf19819ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ec1594bf0b4ed615efb0b8de22c42ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractRepresentation__.html#a3ec1594bf0b4ed615efb0b8de22c42ba">setValues</a> (const <a class="el" href="classev_1_1AbstractRepresentation__.html#a6d6e2401641a7de2e52eb4095a151738">ValueArray</a> &amp;pnr)</td></tr>
+<tr class="memdesc:a3ec1594bf0b4ed615efb0b8de22c42ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set values for ON, OFF, and non-activated pixels.  <br /></td></tr>
+<tr class="separator:a3ec1594bf0b4ed615efb0b8de22c42ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac935f6d45e1963fdf0e570e91b1adac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classev_1_1AbstractRepresentation__.html#a6d6e2401641a7de2e52eb4095a151738">ValueArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractRepresentation__.html#aac935f6d45e1963fdf0e570e91b1adac">getValues</a> () const</td></tr>
+<tr class="memdesc:aac935f6d45e1963fdf0e570e91b1adac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current values for ON, OFF, and non-activated pixels.  <br /></td></tr>
+<tr class="separator:aac935f6d45e1963fdf0e570e91b1adac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class ev::AbstractRepresentation_&lt; T &gt;</div><p>This is an auxiliary class. This class cannot be instanced. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a8abba3a1c37dd7eab49697be17eadc00" name="a8abba3a1c37dd7eab49697be17eadc00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8abba3a1c37dd7eab49697be17eadc00">&#9670;&#160;</a></span>Value</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T &gt;::Value =  typename ColorHelper&lt;T&gt;::Value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Value type </p>
+
+</div>
+</div>
+<a id="a6d6e2401641a7de2e52eb4095a151738" name="a6d6e2401641a7de2e52eb4095a151738"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d6e2401641a7de2e52eb4095a151738">&#9670;&#160;</a></span>ValueArray</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T &gt;::ValueArray =  typename ColorHelper&lt;T&gt;::ValueArray</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Array of value types </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a94f8875effd09b476d1ee402b698759e" name="a94f8875effd09b476d1ee402b698759e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94f8875effd09b476d1ee402b698759e">&#9670;&#160;</a></span>clear()</h2>
 
@@ -209,6 +265,36 @@ template&lt;typename T &gt; </div>
 
 <p>Time difference between the oldest and the newest event integrated in the representation. </p>
 <dl class="section return"><dt>Returns</dt><dd>Time difference </dd></dl>
+
+</div>
+</div>
+<a id="aac935f6d45e1963fdf0e570e91b1adac" name="aac935f6d45e1963fdf0e570e91b1adac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac935f6d45e1963fdf0e570e91b1adac">&#9670;&#160;</a></span>getValues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classev_1_1AbstractRepresentation__.html#a6d6e2401641a7de2e52eb4095a151738">ValueArray</a> <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T &gt;::getValues </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get current values for ON, OFF, and non-activated pixels. </p>
+<dl class="section return"><dt>Returns</dt><dd>Array with values for, respectively, ON, OFF, and non-activated pixels </dd></dl>
 
 </div>
 </div>
@@ -297,6 +383,151 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if all the events have been inserted </dd></dl>
+
+</div>
+</div>
+<a id="a0ec42a61db5a2645b2923f3954a0184e" name="a0ec42a61db5a2645b2923f3954a0184e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ec42a61db5a2645b2923f3954a0184e">&#9670;&#160;</a></span>setColors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T &gt;::setColors </td>
+          <td>(</td>
+          <td class="paramtype">const cv::viz::Color &amp;&#160;</td>
+          <td class="paramname"><em>positive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::viz::Color &amp;&#160;</td>
+          <td class="paramname"><em>negative</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::viz::Color &amp;&#160;</td>
+          <td class="paramname"><em>reset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set colors for ON, OFF, and non-activated pixels. For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positive</td><td>Color for ON pixels </td></tr>
+    <tr><td class="paramname">negative</td><td>Color for OFF pixels </td></tr>
+    <tr><td class="paramname">reset</td><td>Color for non-activated pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>cv::viz::Color inherits from cv::Scalar_&lt;double&gt;. Color are defined as BGR with values between 0 and 255. </dd></dl>
+
+</div>
+</div>
+<a id="ac64618e40a41ea77a4306c1cf19819ac" name="ac64618e40a41ea77a4306c1cf19819ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac64618e40a41ea77a4306c1cf19819ac">&#9670;&#160;</a></span>setValues() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T &gt;::setValues </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classev_1_1AbstractRepresentation__.html#a8abba3a1c37dd7eab49697be17eadc00">Value</a> &amp;&#160;</td>
+          <td class="paramname"><em>positive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classev_1_1AbstractRepresentation__.html#a8abba3a1c37dd7eab49697be17eadc00">Value</a> &amp;&#160;</td>
+          <td class="paramname"><em>negative</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classev_1_1AbstractRepresentation__.html#a8abba3a1c37dd7eab49697be17eadc00">Value</a> &amp;&#160;</td>
+          <td class="paramname"><em>reset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set values for ON, OFF, and non-activated pixels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positive</td><td>Value for ON pixels </td></tr>
+    <tr><td class="paramname">negative</td><td>Value for OFF pixels </td></tr>
+    <tr><td class="paramname">reset</td><td>Value for non-activated pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3ec1594bf0b4ed615efb0b8de22c42ba" name="a3ec1594bf0b4ed615efb0b8de22c42ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ec1594bf0b4ed615efb0b8de22c42ba">&#9670;&#160;</a></span>setValues() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T &gt;::setValues </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classev_1_1AbstractRepresentation__.html#a6d6e2401641a7de2e52eb4095a151738">ValueArray</a> &amp;&#160;</td>
+          <td class="paramname"><em>pnr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set values for ON, OFF, and non-activated pixels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pnr</td><td>Array with values for, respectively, ON, OFF, and non-activated pixels </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
