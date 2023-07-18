@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: example-time-surface.cpp</title>
+<title>OpenEV: example-event-histogram.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,63 +78,65 @@ $(function() {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">example-time-surface.cpp</div></div>
+  <div class="headertitle"><div class="title">example-event-histogram.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<p>This is an example of how to use the TimeSurface_&lt;T&gt; class.</p>
+<p>This is an example of how to use the EventHistogram_&lt;T&gt; class.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;opencv2/highgui.hpp&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;opencv2/imgproc.hpp&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="openev_8hpp.html">openev/openev.hpp</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">inline</span> <span class="keywordtype">void</span> show(<span class="keyword">const</span> <a id="_a0" name="_a0"></a><a class="code hl_class" href="classev_1_1TimeSurface__.html">ev::TimeSurface3b</a> &amp;ts) {</div>
-<div class="line">  <a class="code hl_class" href="classev_1_1TimeSurface__.html">ev::TimeSurface3b</a> resized;</div>
-<div class="line">  cv::resize(ts, resized, <a id="_a1" name="_a1"></a><a class="code hl_class" href="classev_1_1Size2__.html">ev::Size</a>(500, 500), 0, 0, cv::INTER_NEAREST);</div>
+<div class="line"><span class="keyword">inline</span> <span class="keywordtype">void</span> show(<span class="keyword">const</span> <a id="_a0" name="_a0"></a><a class="code hl_class" href="classev_1_1EventHistogram__.html">ev::EventHistogram3b</a> &amp;h) {</div>
+<div class="line">  <a class="code hl_class" href="classev_1_1EventHistogram__.html">ev::EventHistogram3b</a> resized;</div>
+<div class="line">  cv::resize(h, resized, <a id="_a1" name="_a1"></a><a class="code hl_class" href="classev_1_1Size2__.html">ev::Size</a>(500, 500), 0, 0, cv::INTER_NEAREST);</div>
 <div class="line">  cv::imshow(<span class="stringliteral">&quot;example-event-image&quot;</span>, resized);</div>
 <div class="line">  cv::waitKey(5);</div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keyword">const</span> <span class="keywordtype">char</span> *argv[]) {</div>
-<div class="line">  <a class="code hl_class" href="classev_1_1TimeSurface__.html">ev::TimeSurface3b</a> timesurface(30, 30);</div>
-<div class="line">  timesurface.setColors(cv::viz::Color::bluberry(), cv::viz::Color::cherry(), cv::viz::Color::black());</div>
+<div class="line">  <a class="code hl_class" href="classev_1_1EventHistogram__.html">ev::EventHistogram3b</a> histogram(30, 30);</div>
+<div class="line">  histogram.setColors(cv::viz::Color::bluberry(), cv::viz::Color::cherry(), cv::viz::Color::black());</div>
 <div class="line"> </div>
-<div class="line">  <span class="keywordtype">int</span> row = 0;</div>
-<div class="line">  <span class="keywordtype">int</span> col = 0;</div>
-<div class="line">  <span class="keywordtype">int</span> direction = 0;</div>
-<div class="line">  <span class="keywordtype">int</span> offset = 0;</div>
-<div class="line">  <span class="keywordtype">double</span> t = 0;</div>
+<div class="line">  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> k = 1; k &lt; 5; k++) {</div>
+<div class="line">    <span class="keywordtype">int</span> row = 0;</div>
+<div class="line">    <span class="keywordtype">int</span> col = 0;</div>
+<div class="line">    <span class="keywordtype">int</span> direction = 0;</div>
+<div class="line">    <span class="keywordtype">int</span> offset = 0;</div>
+<div class="line">    <span class="keywordtype">double</span> t = 0;</div>
 <div class="line"> </div>
-<div class="line">  <span class="keywordflow">while</span>(offset &lt; 0.55 * timesurface.cols) {</div>
-<div class="line">    t += rand() % 10;</div>
-<div class="line">    timesurface.insert(<a id="_a2" name="_a2"></a><a class="code hl_class" href="classev_1_1Event__.html">ev::Event</a>(col, row, t, (rand() % 2) ? <a id="a3" name="a3"></a>ev::POSITIVE : ev::NEGATIVE));</div>
-<div class="line">    <span class="keywordflow">switch</span>(direction) {</div>
-<div class="line">    <span class="keywordflow">case</span> 0:</div>
-<div class="line">      col++;</div>
-<div class="line">      <span class="keywordflow">if</span>(col &gt;= timesurface.cols - 1 - offset) direction++;</div>
-<div class="line">      <span class="keywordflow">break</span>;</div>
-<div class="line">    <span class="keywordflow">case</span> 1:</div>
-<div class="line">      row++;</div>
-<div class="line">      <span class="keywordflow">if</span>(row &gt;= timesurface.rows - 1 - offset) direction++;</div>
-<div class="line">      <span class="keywordflow">break</span>;</div>
-<div class="line">    <span class="keywordflow">case</span> 2:</div>
-<div class="line">      col--;</div>
-<div class="line">      <span class="keywordflow">if</span>(col &lt;= offset) {</div>
-<div class="line">        direction++;</div>
-<div class="line">        offset++;</div>
+<div class="line">    <span class="keywordflow">while</span>(offset &lt; 0.1 * k * histogram.cols) {</div>
+<div class="line">      t += rand() % 10;</div>
+<div class="line">      histogram.insert(<a id="_a2" name="_a2"></a><a class="code hl_class" href="classev_1_1Event__.html">ev::Event</a>(col, row, t, <a id="a3" name="a3"></a>ev::POSITIVE));</div>
+<div class="line">      <span class="keywordflow">switch</span>(direction) {</div>
+<div class="line">      <span class="keywordflow">case</span> 0:</div>
+<div class="line">        col++;</div>
+<div class="line">        <span class="keywordflow">if</span>(col &gt;= histogram.cols - 1 - offset) direction++;</div>
+<div class="line">        <span class="keywordflow">break</span>;</div>
+<div class="line">      <span class="keywordflow">case</span> 1:</div>
+<div class="line">        row++;</div>
+<div class="line">        <span class="keywordflow">if</span>(row &gt;= histogram.rows - 1 - offset) direction++;</div>
+<div class="line">        <span class="keywordflow">break</span>;</div>
+<div class="line">      <span class="keywordflow">case</span> 2:</div>
+<div class="line">        col--;</div>
+<div class="line">        <span class="keywordflow">if</span>(col &lt;= offset) {</div>
+<div class="line">          direction++;</div>
+<div class="line">          offset++;</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">break</span>;</div>
+<div class="line">      <span class="keywordflow">case</span> 3:</div>
+<div class="line">        row--;</div>
+<div class="line">        <span class="keywordflow">if</span>(row &lt;= offset) direction = 0;</div>
 <div class="line">      }</div>
-<div class="line">      <span class="keywordflow">break</span>;</div>
-<div class="line">    <span class="keywordflow">case</span> 3:</div>
-<div class="line">      row--;</div>
-<div class="line">      <span class="keywordflow">if</span>(row &lt;= offset) direction = 0;</div>
+<div class="line">      histogram.render();</div>
+<div class="line">      show(histogram);</div>
 <div class="line">    }</div>
-<div class="line">    timesurface.render();</div>
-<div class="line">    show(timesurface);</div>
 <div class="line">  }</div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
+<div class="ttc" id="aclassev_1_1EventHistogram___html"><div class="ttname"><a href="classev_1_1EventHistogram__.html">ev::EventHistogram_</a></div><div class="ttdoc">This class extends ev::EventImage_&lt;T&gt; for event 2D histograms.</div><div class="ttdef"><b>Definition</b> representation.hpp:291</div></div>
 <div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:29</div></div>
 <div class="ttc" id="aclassev_1_1Size2___html"><div class="ttname"><a href="classev_1_1Size2__.html">ev::Size2_</a></div><div class="ttdoc">This class extends cv::Size_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:144</div></div>
-<div class="ttc" id="aclassev_1_1TimeSurface___html"><div class="ttname"><a href="classev_1_1TimeSurface__.html">ev::TimeSurface_</a></div><div class="ttdoc">This class extends ev::EventImage_&lt;T&gt; for time surfaces.</div><div class="ttdef"><b>Definition</b> representation.hpp:369</div></div>
 <div class="ttc" id="aopenev_8hpp_html"><div class="ttname"><a href="openev_8hpp.html">openev.hpp</a></div><div class="ttdoc">Include all the OpenEV modules.</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->

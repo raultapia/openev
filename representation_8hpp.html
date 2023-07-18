@@ -105,8 +105,11 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1EventImage__.html">ev::EventImage_&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class extends cv::Mat_&lt;T&gt; for event images. For more information, please refer <a href="https://docs.opencv.org/master/d3/d63/classcv_1_1Mat.html">here</a>.  <a href="classev_1_1EventImage__.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1EventHistogram__.html">ev::EventHistogram_&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class extends ev::EventImage_&lt;T&gt; for event 2D histograms.  <a href="classev_1_1EventHistogram__.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1TimeSurface__.html">ev::TimeSurface_&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class extends ev::EventImage_&lt;T&gt; for event images.  <a href="classev_1_1TimeSurface__.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class extends ev::EventImage_&lt;T&gt; for time surfaces.  <a href="classev_1_1TimeSurface__.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html">ev::PointCloud_&lt; T &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is used to represent events as point clouds.  <a href="classev_1_1PointCloud__.html#details">More...</a><br /></td></tr>
@@ -168,6 +171,60 @@ Typedefs</h2></td></tr>
 <tr class="separator:ace22c21ff75e0a0063fb62d6c0423ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a6927bc6c75c98d1b45aaff4035b980"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a6a6927bc6c75c98d1b45aaff4035b980">ev::EventImage</a> = <a class="el" href="representation_8hpp.html#a8b1cc88ade49a4eba6b3963dd1029fa6">EventImage1</a></td></tr>
 <tr class="separator:a6a6927bc6c75c98d1b45aaff4035b980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a21b12df445f788bcda97ace3a5cc59"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a6a21b12df445f788bcda97ace3a5cc59">ev::EventHistogram1b</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; uchar &gt;</td></tr>
+<tr class="separator:a6a21b12df445f788bcda97ace3a5cc59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0171eeaa26465fdbecf28a0b9a211d5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#af0171eeaa26465fdbecf28a0b9a211d5">ev::EventHistogram2b</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec2b &gt;</td></tr>
+<tr class="separator:af0171eeaa26465fdbecf28a0b9a211d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0987442509c4f3fa6670f3a4d09bffc1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a0987442509c4f3fa6670f3a4d09bffc1">ev::EventHistogram3b</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec3b &gt;</td></tr>
+<tr class="separator:a0987442509c4f3fa6670f3a4d09bffc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56d72703aa1763191fe3503ade8e0df4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a56d72703aa1763191fe3503ade8e0df4">ev::EventHistogram4b</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec4b &gt;</td></tr>
+<tr class="separator:a56d72703aa1763191fe3503ade8e0df4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31447133de8e0466fb8c2c4c9ba1d6c1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a31447133de8e0466fb8c2c4c9ba1d6c1">ev::EventHistogram1s</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; short &gt;</td></tr>
+<tr class="separator:a31447133de8e0466fb8c2c4c9ba1d6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea9b5870f382bdda4978101330cc7d67"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#aea9b5870f382bdda4978101330cc7d67">ev::EventHistogram2s</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec2s &gt;</td></tr>
+<tr class="separator:aea9b5870f382bdda4978101330cc7d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a544f3ac657c6eaaada2a5d77568c8035"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a544f3ac657c6eaaada2a5d77568c8035">ev::EventHistogram3s</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec3s &gt;</td></tr>
+<tr class="separator:a544f3ac657c6eaaada2a5d77568c8035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad58abc57bfc955dfb625a9a0a370efc0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#ad58abc57bfc955dfb625a9a0a370efc0">ev::EventHistogram4s</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec4s &gt;</td></tr>
+<tr class="separator:ad58abc57bfc955dfb625a9a0a370efc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42756c3b9aaf16455db85a825d840bbf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a42756c3b9aaf16455db85a825d840bbf">ev::EventHistogram1w</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; ushort &gt;</td></tr>
+<tr class="separator:a42756c3b9aaf16455db85a825d840bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac77605db45f31024b7299ee95a3f4edb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#ac77605db45f31024b7299ee95a3f4edb">ev::EventHistogram2w</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec2w &gt;</td></tr>
+<tr class="separator:ac77605db45f31024b7299ee95a3f4edb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f656b76d5843143737bad2f89f1e6a7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a1f656b76d5843143737bad2f89f1e6a7">ev::EventHistogram3w</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec3w &gt;</td></tr>
+<tr class="separator:a1f656b76d5843143737bad2f89f1e6a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98db65f23dcd80d348c2c9d1dcbf61b5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a98db65f23dcd80d348c2c9d1dcbf61b5">ev::EventHistogram4w</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec4w &gt;</td></tr>
+<tr class="separator:a98db65f23dcd80d348c2c9d1dcbf61b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05b5bd42b991221a51b05fe63bc9d07d"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a05b5bd42b991221a51b05fe63bc9d07d">ev::EventHistogram1i</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; int &gt;</td></tr>
+<tr class="separator:a05b5bd42b991221a51b05fe63bc9d07d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3809c5c2fcac1c151ef522a386ea9570"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a3809c5c2fcac1c151ef522a386ea9570">ev::EventHistogram2i</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec2i &gt;</td></tr>
+<tr class="separator:a3809c5c2fcac1c151ef522a386ea9570"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8bd8c96a4804a1a01f1d09e19d1703f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#ae8bd8c96a4804a1a01f1d09e19d1703f">ev::EventHistogram3i</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec3i &gt;</td></tr>
+<tr class="separator:ae8bd8c96a4804a1a01f1d09e19d1703f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68f6d9721716a80935f17a76022f60a7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a68f6d9721716a80935f17a76022f60a7">ev::EventHistogram4i</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec4i &gt;</td></tr>
+<tr class="separator:a68f6d9721716a80935f17a76022f60a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3a0b0a945917957f63391cce61dcdfc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#ae3a0b0a945917957f63391cce61dcdfc">ev::EventHistogram1f</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; float &gt;</td></tr>
+<tr class="separator:ae3a0b0a945917957f63391cce61dcdfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a3c556e7d165a24179fbe53c0aed72c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a6a3c556e7d165a24179fbe53c0aed72c">ev::EventHistogram2f</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec2f &gt;</td></tr>
+<tr class="separator:a6a3c556e7d165a24179fbe53c0aed72c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3cefeffdff8913eb558121fa128b8cb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#ac3cefeffdff8913eb558121fa128b8cb">ev::EventHistogram3f</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec3f &gt;</td></tr>
+<tr class="separator:ac3cefeffdff8913eb558121fa128b8cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfcbe23806e45436bd26036ea9d8e1bb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#adfcbe23806e45436bd26036ea9d8e1bb">ev::EventHistogram4f</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec4f &gt;</td></tr>
+<tr class="separator:adfcbe23806e45436bd26036ea9d8e1bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41a01295eb66c32da4f8c74eca836fab"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a41a01295eb66c32da4f8c74eca836fab">ev::EventHistogram1d</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; double &gt;</td></tr>
+<tr class="separator:a41a01295eb66c32da4f8c74eca836fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affee66260e0d5bc5ddc6658c06b9b0bf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#affee66260e0d5bc5ddc6658c06b9b0bf">ev::EventHistogram2d</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec2d &gt;</td></tr>
+<tr class="separator:affee66260e0d5bc5ddc6658c06b9b0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad86441d05917cf7437e67a511726dff3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#ad86441d05917cf7437e67a511726dff3">ev::EventHistogram3d</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec3d &gt;</td></tr>
+<tr class="separator:ad86441d05917cf7437e67a511726dff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c010254c8bbde9a5a75e649bf045abf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a8c010254c8bbde9a5a75e649bf045abf">ev::EventHistogram4d</a> = <a class="el" href="classev_1_1EventHistogram__.html">EventHistogram_</a>&lt; cv::Vec4d &gt;</td></tr>
+<tr class="separator:a8c010254c8bbde9a5a75e649bf045abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d690a5d2910407b0103b3764b226ac1"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a4d690a5d2910407b0103b3764b226ac1">ev::EventHistogram1</a> = <a class="el" href="representation_8hpp.html#a6a21b12df445f788bcda97ace3a5cc59">EventHistogram1b</a></td></tr>
+<tr class="separator:a4d690a5d2910407b0103b3764b226ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad00138f8dd8fa0e751f6f302d871d4ee"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#ad00138f8dd8fa0e751f6f302d871d4ee">ev::EventHistogram3</a> = <a class="el" href="representation_8hpp.html#a0987442509c4f3fa6670f3a4d09bffc1">EventHistogram3b</a></td></tr>
+<tr class="separator:ad00138f8dd8fa0e751f6f302d871d4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3b4632373c182b44fe4e345f38ca2c7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#aa3b4632373c182b44fe4e345f38ca2c7">ev::EventHistogram</a> = <a class="el" href="representation_8hpp.html#a4d690a5d2910407b0103b3764b226ac1">EventHistogram1</a></td></tr>
+<tr class="separator:aa3b4632373c182b44fe4e345f38ca2c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c7aece977e78bf9644d8c29bf0b4aff"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a6c7aece977e78bf9644d8c29bf0b4aff">ev::TimeSurface1b</a> = <a class="el" href="classev_1_1TimeSurface__.html">TimeSurface_</a>&lt; uchar &gt;</td></tr>
 <tr class="separator:a6c7aece977e78bf9644d8c29bf0b4aff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a121bb3d71b8df9e93213b35eb67c8662"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="representation_8hpp.html#a121bb3d71b8df9e93213b35eb67c8662">ev::TimeSurface2b</a> = <a class="el" href="classev_1_1TimeSurface__.html">TimeSurface_</a>&lt; cv::Vec2b &gt;</td></tr>
@@ -257,6 +314,411 @@ Typedefs</h2></td></tr>
 <div class="textblock"><p>Event representations. </p>
 <dl class="section author"><dt>Author</dt><dd>Raul Tapia </dd></dl>
 </div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="aa3b4632373c182b44fe4e345f38ca2c7" name="aa3b4632373c182b44fe4e345f38ca2c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3b4632373c182b44fe4e345f38ca2c7">&#9670;&#160;</a></span>EventHistogram</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#aa3b4632373c182b44fe4e345f38ca2c7">ev::EventHistogram</a> = typedef EventHistogram1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using uchar </p>
+
+</div>
+</div>
+<a id="a4d690a5d2910407b0103b3764b226ac1" name="a4d690a5d2910407b0103b3764b226ac1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d690a5d2910407b0103b3764b226ac1">&#9670;&#160;</a></span>EventHistogram1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a4d690a5d2910407b0103b3764b226ac1">ev::EventHistogram1</a> = typedef EventHistogram1b</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using uchar </p>
+
+</div>
+</div>
+<a id="a6a21b12df445f788bcda97ace3a5cc59" name="a6a21b12df445f788bcda97ace3a5cc59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a21b12df445f788bcda97ace3a5cc59">&#9670;&#160;</a></span>EventHistogram1b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a6a21b12df445f788bcda97ace3a5cc59">ev::EventHistogram1b</a> = typedef EventHistogram_&lt;uchar&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using uchar </p>
+
+</div>
+</div>
+<a id="a41a01295eb66c32da4f8c74eca836fab" name="a41a01295eb66c32da4f8c74eca836fab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41a01295eb66c32da4f8c74eca836fab">&#9670;&#160;</a></span>EventHistogram1d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a41a01295eb66c32da4f8c74eca836fab">ev::EventHistogram1d</a> = typedef EventHistogram_&lt;double&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using double </p>
+
+</div>
+</div>
+<a id="ae3a0b0a945917957f63391cce61dcdfc" name="ae3a0b0a945917957f63391cce61dcdfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3a0b0a945917957f63391cce61dcdfc">&#9670;&#160;</a></span>EventHistogram1f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#ae3a0b0a945917957f63391cce61dcdfc">ev::EventHistogram1f</a> = typedef EventHistogram_&lt;float&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using float </p>
+
+</div>
+</div>
+<a id="a05b5bd42b991221a51b05fe63bc9d07d" name="a05b5bd42b991221a51b05fe63bc9d07d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05b5bd42b991221a51b05fe63bc9d07d">&#9670;&#160;</a></span>EventHistogram1i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a05b5bd42b991221a51b05fe63bc9d07d">ev::EventHistogram1i</a> = typedef EventHistogram_&lt;int&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using int </p>
+
+</div>
+</div>
+<a id="a31447133de8e0466fb8c2c4c9ba1d6c1" name="a31447133de8e0466fb8c2c4c9ba1d6c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31447133de8e0466fb8c2c4c9ba1d6c1">&#9670;&#160;</a></span>EventHistogram1s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a31447133de8e0466fb8c2c4c9ba1d6c1">ev::EventHistogram1s</a> = typedef EventHistogram_&lt;short&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using short </p>
+
+</div>
+</div>
+<a id="a42756c3b9aaf16455db85a825d840bbf" name="a42756c3b9aaf16455db85a825d840bbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42756c3b9aaf16455db85a825d840bbf">&#9670;&#160;</a></span>EventHistogram1w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a42756c3b9aaf16455db85a825d840bbf">ev::EventHistogram1w</a> = typedef EventHistogram_&lt;ushort&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using ushort </p>
+
+</div>
+</div>
+<a id="af0171eeaa26465fdbecf28a0b9a211d5" name="af0171eeaa26465fdbecf28a0b9a211d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0171eeaa26465fdbecf28a0b9a211d5">&#9670;&#160;</a></span>EventHistogram2b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#af0171eeaa26465fdbecf28a0b9a211d5">ev::EventHistogram2b</a> = typedef EventHistogram_&lt;cv::Vec2b&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec2b </p>
+
+</div>
+</div>
+<a id="affee66260e0d5bc5ddc6658c06b9b0bf" name="affee66260e0d5bc5ddc6658c06b9b0bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affee66260e0d5bc5ddc6658c06b9b0bf">&#9670;&#160;</a></span>EventHistogram2d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#affee66260e0d5bc5ddc6658c06b9b0bf">ev::EventHistogram2d</a> = typedef EventHistogram_&lt;cv::Vec2d&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec2d </p>
+
+</div>
+</div>
+<a id="a6a3c556e7d165a24179fbe53c0aed72c" name="a6a3c556e7d165a24179fbe53c0aed72c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a3c556e7d165a24179fbe53c0aed72c">&#9670;&#160;</a></span>EventHistogram2f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a6a3c556e7d165a24179fbe53c0aed72c">ev::EventHistogram2f</a> = typedef EventHistogram_&lt;cv::Vec2f&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec2f </p>
+
+</div>
+</div>
+<a id="a3809c5c2fcac1c151ef522a386ea9570" name="a3809c5c2fcac1c151ef522a386ea9570"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3809c5c2fcac1c151ef522a386ea9570">&#9670;&#160;</a></span>EventHistogram2i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a3809c5c2fcac1c151ef522a386ea9570">ev::EventHistogram2i</a> = typedef EventHistogram_&lt;cv::Vec2i&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec2i </p>
+
+</div>
+</div>
+<a id="aea9b5870f382bdda4978101330cc7d67" name="aea9b5870f382bdda4978101330cc7d67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea9b5870f382bdda4978101330cc7d67">&#9670;&#160;</a></span>EventHistogram2s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#aea9b5870f382bdda4978101330cc7d67">ev::EventHistogram2s</a> = typedef EventHistogram_&lt;cv::Vec2s&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec2s </p>
+
+</div>
+</div>
+<a id="ac77605db45f31024b7299ee95a3f4edb" name="ac77605db45f31024b7299ee95a3f4edb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac77605db45f31024b7299ee95a3f4edb">&#9670;&#160;</a></span>EventHistogram2w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#ac77605db45f31024b7299ee95a3f4edb">ev::EventHistogram2w</a> = typedef EventHistogram_&lt;cv::Vec2w&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec2w </p>
+
+</div>
+</div>
+<a id="ad00138f8dd8fa0e751f6f302d871d4ee" name="ad00138f8dd8fa0e751f6f302d871d4ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad00138f8dd8fa0e751f6f302d871d4ee">&#9670;&#160;</a></span>EventHistogram3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#ad00138f8dd8fa0e751f6f302d871d4ee">ev::EventHistogram3</a> = typedef EventHistogram3b</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using uchar </p>
+
+</div>
+</div>
+<a id="a0987442509c4f3fa6670f3a4d09bffc1" name="a0987442509c4f3fa6670f3a4d09bffc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0987442509c4f3fa6670f3a4d09bffc1">&#9670;&#160;</a></span>EventHistogram3b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a0987442509c4f3fa6670f3a4d09bffc1">ev::EventHistogram3b</a> = typedef EventHistogram_&lt;cv::Vec3b&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec3b </p>
+
+</div>
+</div>
+<a id="ad86441d05917cf7437e67a511726dff3" name="ad86441d05917cf7437e67a511726dff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad86441d05917cf7437e67a511726dff3">&#9670;&#160;</a></span>EventHistogram3d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#ad86441d05917cf7437e67a511726dff3">ev::EventHistogram3d</a> = typedef EventHistogram_&lt;cv::Vec3d&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec3d </p>
+
+</div>
+</div>
+<a id="ac3cefeffdff8913eb558121fa128b8cb" name="ac3cefeffdff8913eb558121fa128b8cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3cefeffdff8913eb558121fa128b8cb">&#9670;&#160;</a></span>EventHistogram3f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#ac3cefeffdff8913eb558121fa128b8cb">ev::EventHistogram3f</a> = typedef EventHistogram_&lt;cv::Vec3f&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec3f </p>
+
+</div>
+</div>
+<a id="ae8bd8c96a4804a1a01f1d09e19d1703f" name="ae8bd8c96a4804a1a01f1d09e19d1703f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8bd8c96a4804a1a01f1d09e19d1703f">&#9670;&#160;</a></span>EventHistogram3i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#ae8bd8c96a4804a1a01f1d09e19d1703f">ev::EventHistogram3i</a> = typedef EventHistogram_&lt;cv::Vec3i&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec3i </p>
+
+</div>
+</div>
+<a id="a544f3ac657c6eaaada2a5d77568c8035" name="a544f3ac657c6eaaada2a5d77568c8035"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a544f3ac657c6eaaada2a5d77568c8035">&#9670;&#160;</a></span>EventHistogram3s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a544f3ac657c6eaaada2a5d77568c8035">ev::EventHistogram3s</a> = typedef EventHistogram_&lt;cv::Vec3s&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec3s </p>
+
+</div>
+</div>
+<a id="a1f656b76d5843143737bad2f89f1e6a7" name="a1f656b76d5843143737bad2f89f1e6a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f656b76d5843143737bad2f89f1e6a7">&#9670;&#160;</a></span>EventHistogram3w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a1f656b76d5843143737bad2f89f1e6a7">ev::EventHistogram3w</a> = typedef EventHistogram_&lt;cv::Vec3w&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec3w </p>
+
+</div>
+</div>
+<a id="a56d72703aa1763191fe3503ade8e0df4" name="a56d72703aa1763191fe3503ade8e0df4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56d72703aa1763191fe3503ade8e0df4">&#9670;&#160;</a></span>EventHistogram4b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a56d72703aa1763191fe3503ade8e0df4">ev::EventHistogram4b</a> = typedef EventHistogram_&lt;cv::Vec4b&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec4b </p>
+
+</div>
+</div>
+<a id="a8c010254c8bbde9a5a75e649bf045abf" name="a8c010254c8bbde9a5a75e649bf045abf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c010254c8bbde9a5a75e649bf045abf">&#9670;&#160;</a></span>EventHistogram4d</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a8c010254c8bbde9a5a75e649bf045abf">ev::EventHistogram4d</a> = typedef EventHistogram_&lt;cv::Vec4d&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec4d </p>
+
+</div>
+</div>
+<a id="adfcbe23806e45436bd26036ea9d8e1bb" name="adfcbe23806e45436bd26036ea9d8e1bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfcbe23806e45436bd26036ea9d8e1bb">&#9670;&#160;</a></span>EventHistogram4f</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#adfcbe23806e45436bd26036ea9d8e1bb">ev::EventHistogram4f</a> = typedef EventHistogram_&lt;cv::Vec4f&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec4f </p>
+
+</div>
+</div>
+<a id="a68f6d9721716a80935f17a76022f60a7" name="a68f6d9721716a80935f17a76022f60a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68f6d9721716a80935f17a76022f60a7">&#9670;&#160;</a></span>EventHistogram4i</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a68f6d9721716a80935f17a76022f60a7">ev::EventHistogram4i</a> = typedef EventHistogram_&lt;cv::Vec4i&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec4i </p>
+
+</div>
+</div>
+<a id="ad58abc57bfc955dfb625a9a0a370efc0" name="ad58abc57bfc955dfb625a9a0a370efc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad58abc57bfc955dfb625a9a0a370efc0">&#9670;&#160;</a></span>EventHistogram4s</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#ad58abc57bfc955dfb625a9a0a370efc0">ev::EventHistogram4s</a> = typedef EventHistogram_&lt;cv::Vec4s&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec4s </p>
+
+</div>
+</div>
+<a id="a98db65f23dcd80d348c2c9d1dcbf61b5" name="a98db65f23dcd80d348c2c9d1dcbf61b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98db65f23dcd80d348c2c9d1dcbf61b5">&#9670;&#160;</a></span>EventHistogram4w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="representation_8hpp.html#a98db65f23dcd80d348c2c9d1dcbf61b5">ev::EventHistogram4w</a> = typedef EventHistogram_&lt;cv::Vec4w&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Alias for EventHistogram_ using cv::Vec4w </p>
+
+</div>
+</div>
 <a id="a6a6927bc6c75c98d1b45aaff4035b980" name="a6a6927bc6c75c98d1b45aaff4035b980"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a6927bc6c75c98d1b45aaff4035b980">&#9670;&#160;</a></span>EventImage</h2>
 

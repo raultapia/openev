@@ -13,6 +13,6 @@ var searchData=
   ['rect3f_10',['Rect3f',['../types_8hpp.html#a04358ab307a3f94b35987d0173cac710',1,'ev']]],
   ['rect3i_11',['Rect3i',['../types_8hpp.html#a3e6a833c0fe6c2625d26a8c1c50aa895',1,'ev']]],
   ['rect3l_12',['Rect3l',['../types_8hpp.html#af7da1a1fba5c3e96adaeecd688bc528c',1,'ev']]],
-  ['render_13',['render',['../classev_1_1TimeSurface__.html#a341ff837ee4e2049afdf48f9c81a24e1',1,'ev::TimeSurface_']]],
+  ['render_13',['render',['../classev_1_1TimeSurface__.html#a341ff837ee4e2049afdf48f9c81a24e1',1,'ev::TimeSurface_::render()'],['../classev_1_1EventHistogram__.html#a825192e611034aae499ffd0668027cac',1,'ev::EventHistogram_::render()']]],
   ['representation_2ehpp_14',['representation.hpp',['../representation_8hpp.html',1,'']]]
 ];
