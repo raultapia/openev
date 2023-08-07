@@ -91,6 +91,13 @@ public:
   Event_<T> &operator=(Event_<T> &&) noexcept = default;
 
   /*!
+  Equality operator
+  */
+  [[nodiscard]] bool inline operator==(const Event_<T> &e) {
+    return (this->x == e.x) && (this->y == e.y) && (t == e.t) && (p == e.p);
+  }
+
+  /*!
   Given an event \f$ e_2 = (t_2, x_2, y_2, p_2) \f$, this function returns \f$ \sqrt{(x-x_2)^2 + (y-y_2)^2} \f$.
   \brief Euclidean distance in spatial domain w.r.t. other event.
   \param e The other event, i.e., \f$ e_2 \f$
