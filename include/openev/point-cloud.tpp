@@ -40,7 +40,7 @@ void PointCloud_<T>::clear_() {
 template <typename T>
 bool PointCloud_<T>::insert_(const Event &e) {
   if(frame.empty() || e.inside(ev::Rect({0, 0}, frame))) {
-    points_[e.p].push_back(cv::Point3_<BasicDataType<T>>(e.x, e.y, e.t));
+    points_[e.p].push_back(cv::Point3_<BasicDataType<T>>(e.x, e.y, scaleFactor_ * e.t));
     return true;
   } else {
     return false;

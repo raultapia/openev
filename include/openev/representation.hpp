@@ -496,25 +496,42 @@ public:
   /*!
   Contructor using frame size.
   \note If no size selected, frame bounds are not checked when inserting
-  \param width Width of the frame
   \param height Height of the frame
+  \param width Width of the frame
+  \param scale_factor Scale factor for time axis
   */
-  PointCloud_(const int width, const int height) : frame(width, height){};
+  PointCloud_(const int height, const int width, const double scale_factor) : frame(width, height), scaleFactor_(scale_factor){};
+
+  /*!
+  Contructor using frame size.
+  \note If no size selected, frame bounds are not checked when inserting
+  \param height Height of the frame
+  \param width Width of the frame
+  */
+  PointCloud_(const int height, const int width) : PointCloud_(width, height, 1.0){};
+
+  /*!
+  Contructor using frame size.
+  \note If no size selected, frame bounds are not checked when inserting
+  \param size Frame size
+  \param scale_factor Scale factor for time axis
+  */
+  explicit PointCloud_(const Size size, const double scale_factor) : frame(size), scaleFactor_(scale_factor){};
 
   /*!
   Contructor using frame size.
   \note If no size selected, frame bounds are not checked when inserting
   \param size Frame size
   */
-  explicit PointCloud_(const Size size) : frame(size){};
+  explicit PointCloud_(const Size size) : PointCloud_(size, 1.0){};
 
   /*!
   \brief Set frame size.
   \note If no size selected, frame bounds are not checked when inserting
-  \param width Width of the frame
   \param height Height of the frame
+  \param width Width of the frame
   */
-  inline void setSize(const int width, const int height) {
+  inline void setSize(const int height, const int width) {
     frame = {width, height};
   }
 
@@ -556,6 +573,7 @@ public:
 private:
   std::array<std::vector<cv::Point3_<BasicDataType<T>>>, 2> points_;
   cv::viz::Viz3d window_{"OpenEV"};
+  const double scaleFactor_;
 
   void clear_() override;
   bool insert_(const Event &e) override;

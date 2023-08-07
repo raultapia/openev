@@ -1,5 +1,5 @@
 /*!
-\example example-pointcloud.cpp
+\example example-point-cloud.cpp
 This is an example of how to use the PointCloud_<T> class.
 */
 #include <openev/openev.hpp>
