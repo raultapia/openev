@@ -106,13 +106,17 @@ Inheritance diagram for ev::PointCloud_&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae2c47fbb2bc5aa2d443c98b06f527b8e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html#ae2c47fbb2bc5aa2d443c98b06f527b8e">PointCloud_</a> (const int width, const int height)</td></tr>
-<tr class="separator:ae2c47fbb2bc5aa2d443c98b06f527b8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f454398e2abde3f279de69d2e3e1733"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html#a3f454398e2abde3f279de69d2e3e1733">PointCloud_</a> (const int height, const int width, const double scale_factor)</td></tr>
+<tr class="separator:a3f454398e2abde3f279de69d2e3e1733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5e4dc6c8094c3cdaa723acf31fd9d2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html#ab5e4dc6c8094c3cdaa723acf31fd9d2e">PointCloud_</a> (const int height, const int width)</td></tr>
+<tr class="separator:ab5e4dc6c8094c3cdaa723acf31fd9d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbb604b4ed51e6801cd29b26195b793d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html#afbb604b4ed51e6801cd29b26195b793d">PointCloud_</a> (const <a class="el" href="types_8hpp.html#adaf399e41f25d621faf1d2dc03e14b5e">Size</a> size, const double scale_factor)</td></tr>
+<tr class="separator:afbb604b4ed51e6801cd29b26195b793d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1887b1a560c898b12babe3f84ba9ba71"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html#a1887b1a560c898b12babe3f84ba9ba71">PointCloud_</a> (const <a class="el" href="types_8hpp.html#adaf399e41f25d621faf1d2dc03e14b5e">Size</a> size)</td></tr>
 <tr class="separator:a1887b1a560c898b12babe3f84ba9ba71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8beb36239a56ab37482ba85f2e2604b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html#a8beb36239a56ab37482ba85f2e2604b4">setSize</a> (const int width, const int height)</td></tr>
-<tr class="memdesc:a8beb36239a56ab37482ba85f2e2604b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set frame size.  <br /></td></tr>
-<tr class="separator:a8beb36239a56ab37482ba85f2e2604b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a551764ac8e60fdf1be24c4568cfb9b30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html#a551764ac8e60fdf1be24c4568cfb9b30">setSize</a> (const int height, const int width)</td></tr>
+<tr class="memdesc:a551764ac8e60fdf1be24c4568cfb9b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set frame size.  <br /></td></tr>
+<tr class="separator:a551764ac8e60fdf1be24c4568cfb9b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b70db93175c302c6f52d23142392d7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PointCloud__.html#a1b70db93175c302c6f52d23142392d7b">setSize</a> (const <a class="el" href="types_8hpp.html#adaf399e41f25d621faf1d2dc03e14b5e">Size</a> size)</td></tr>
 <tr class="memdesc:a1b70db93175c302c6f52d23142392d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set frame size.  <br /></td></tr>
 <tr class="separator:a1b70db93175c302c6f52d23142392d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,9 +198,11 @@ class ev::PointCloud_&lt; T &gt;</div><p>This class is used to represent events 
 <div class="line"><span class="keyword">using </span><a class="code hl_class" href="classev_1_1PointCloud__.html">PointCloud3</a> = <a class="code hl_class" href="classev_1_1PointCloud__.html">PointCloud3d</a>;</div>
 <div class="line"><span class="keyword">using </span><a class="code hl_class" href="classev_1_1PointCloud__.html">PointCloud</a> = <a class="code hl_class" href="classev_1_1PointCloud__.html">PointCloud1</a>;</div>
 <div class="ttc" id="aclassev_1_1PointCloud___html"><div class="ttname"><a href="classev_1_1PointCloud__.html">ev::PointCloud_</a></div><div class="ttdoc">This class is used to represent events as point clouds.</div><div class="ttdef"><b>Definition</b> representation.hpp:437</div></div>
-</div><!-- fragment --> </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae2c47fbb2bc5aa2d443c98b06f527b8e" name="ae2c47fbb2bc5aa2d443c98b06f527b8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2c47fbb2bc5aa2d443c98b06f527b8e">&#9670;&#160;</a></span>PointCloud_() <span class="overload">[1/2]</span></h2>
+</div><!-- fragment --> <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-point-cloud_8cpp-example.html#_a0">example-point-cloud.cpp</a>.</dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3f454398e2abde3f279de69d2e3e1733" name="a3f454398e2abde3f279de69d2e3e1733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f454398e2abde3f279de69d2e3e1733">&#9670;&#160;</a></span>PointCloud_() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -210,13 +216,19 @@ template&lt;typename T &gt; </div>
           <td class="memname"><a class="el" href="classev_1_1PointCloud__.html">ev::PointCloud_</a>&lt; T &gt;::PointCloud_ </td>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
+          <td class="paramname"><em>height</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>scale_factor</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -233,8 +245,101 @@ template&lt;typename T &gt; </div>
 <p>Contructor using frame size. </p><dl class="section note"><dt>Note</dt><dd>If no size selected, frame bounds are not checked when inserting </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">width</td><td>Width of the frame </td></tr>
     <tr><td class="paramname">height</td><td>Height of the frame </td></tr>
+    <tr><td class="paramname">width</td><td>Width of the frame </td></tr>
+    <tr><td class="paramname">scale_factor</td><td>Scale factor for time axis </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab5e4dc6c8094c3cdaa723acf31fd9d2e" name="ab5e4dc6c8094c3cdaa723acf31fd9d2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5e4dc6c8094c3cdaa723acf31fd9d2e">&#9670;&#160;</a></span>PointCloud_() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classev_1_1PointCloud__.html">ev::PointCloud_</a>&lt; T &gt;::PointCloud_ </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>width</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Contructor using frame size. </p><dl class="section note"><dt>Note</dt><dd>If no size selected, frame bounds are not checked when inserting </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">height</td><td>Height of the frame </td></tr>
+    <tr><td class="paramname">width</td><td>Width of the frame </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afbb604b4ed51e6801cd29b26195b793d" name="afbb604b4ed51e6801cd29b26195b793d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbb604b4ed51e6801cd29b26195b793d">&#9670;&#160;</a></span>PointCloud_() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classev_1_1PointCloud__.html">ev::PointCloud_</a>&lt; T &gt;::PointCloud_ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="types_8hpp.html#adaf399e41f25d621faf1d2dc03e14b5e">Size</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>scale_factor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Contructor using frame size. </p><dl class="section note"><dt>Note</dt><dd>If no size selected, frame bounds are not checked when inserting </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Frame size </td></tr>
+    <tr><td class="paramname">scale_factor</td><td>Scale factor for time axis </td></tr>
   </table>
   </dd>
 </dl>
@@ -242,7 +347,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <a id="a1887b1a560c898b12babe3f84ba9ba71" name="a1887b1a560c898b12babe3f84ba9ba71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1887b1a560c898b12babe3f84ba9ba71">&#9670;&#160;</a></span>PointCloud_() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1887b1a560c898b12babe3f84ba9ba71">&#9670;&#160;</a></span>PointCloud_() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -343,8 +448,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a8beb36239a56ab37482ba85f2e2604b4" name="a8beb36239a56ab37482ba85f2e2604b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8beb36239a56ab37482ba85f2e2604b4">&#9670;&#160;</a></span>setSize() <span class="overload">[1/2]</span></h2>
+<a id="a551764ac8e60fdf1be24c4568cfb9b30" name="a551764ac8e60fdf1be24c4568cfb9b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a551764ac8e60fdf1be24c4568cfb9b30">&#9670;&#160;</a></span>setSize() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -358,13 +463,13 @@ template&lt;typename T &gt; </div>
           <td class="memname">void <a class="el" href="classev_1_1PointCloud__.html">ev::PointCloud_</a>&lt; T &gt;::setSize </td>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>width</em>, </td>
+          <td class="paramname"><em>height</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
+          <td class="paramname"><em>width</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -383,8 +488,8 @@ template&lt;typename T &gt; </div>
 <dl class="section note"><dt>Note</dt><dd>If no size selected, frame bounds are not checked when inserting </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">width</td><td>Width of the frame </td></tr>
     <tr><td class="paramname">height</td><td>Height of the frame </td></tr>
+    <tr><td class="paramname">width</td><td>Width of the frame </td></tr>
   </table>
   </dd>
 </dl>
@@ -443,6 +548,8 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Frame size </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-point-cloud_8cpp-example.html#a1">example-point-cloud.cpp</a>.</dd>
+</dl>
 
 </div>
 </div>

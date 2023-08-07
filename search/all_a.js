@@ -16,7 +16,7 @@ var searchData=
   ['pointcloud3i_13',['PointCloud3i',['../representation_8hpp.html#a41fb333eb25012b6f8a5357b864d07fc',1,'ev']]],
   ['pointcloud3s_14',['PointCloud3s',['../representation_8hpp.html#af41b97319a317b2434953fa2743370a5',1,'ev']]],
   ['pointcloud3w_15',['PointCloud3w',['../representation_8hpp.html#aa699119716bb88aeaeba63489093ec79',1,'ev']]],
-  ['pointcloud_5f_16',['PointCloud_',['../classev_1_1PointCloud__.html',1,'ev::PointCloud_&lt; T &gt;'],['../classev_1_1PointCloud__.html#a1887b1a560c898b12babe3f84ba9ba71',1,'ev::PointCloud_::PointCloud_(const Size size)'],['../classev_1_1PointCloud__.html#ae2c47fbb2bc5aa2d443c98b06f527b8e',1,'ev::PointCloud_::PointCloud_(const int width, const int height)']]],
+  ['pointcloud_5f_16',['PointCloud_',['../classev_1_1PointCloud__.html',1,'ev::PointCloud_&lt; T &gt;'],['../classev_1_1PointCloud__.html#a1887b1a560c898b12babe3f84ba9ba71',1,'ev::PointCloud_::PointCloud_(const Size size)'],['../classev_1_1PointCloud__.html#a3f454398e2abde3f279de69d2e3e1733',1,'ev::PointCloud_::PointCloud_(const int height, const int width, const double scale_factor)'],['../classev_1_1PointCloud__.html#ab5e4dc6c8094c3cdaa723acf31fd9d2e',1,'ev::PointCloud_::PointCloud_(const int height, const int width)'],['../classev_1_1PointCloud__.html#afbb604b4ed51e6801cd29b26195b793d',1,'ev::PointCloud_::PointCloud_(const Size size, const double scale_factor)']]],
   ['polarity_17',['polarity',['../classev_1_1TimeSurface__.html#ad84dd1f184e8d0321131d8d69692d191',1,'ev::TimeSurface_']]],
   ['positive_18',['POSITIVE',['../types_8hpp.html#a20fde2a7fa1be910a10a635a76b810d5',1,'ev']]]
 ];

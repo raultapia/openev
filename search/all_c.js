@@ -1,7 +1,7 @@
 var searchData=
 [
   ['setcolors_0',['setColors',['../classev_1_1AbstractRepresentation__.html#a0ec42a61db5a2645b2923f3954a0184e',1,'ev::AbstractRepresentation_']]],
-  ['setsize_1',['setSize',['../classev_1_1PointCloud__.html#a8beb36239a56ab37482ba85f2e2604b4',1,'ev::PointCloud_::setSize(const int width, const int height)'],['../classev_1_1PointCloud__.html#a1b70db93175c302c6f52d23142392d7b',1,'ev::PointCloud_::setSize(const Size size)']]],
+  ['setsize_1',['setSize',['../classev_1_1PointCloud__.html#a551764ac8e60fdf1be24c4568cfb9b30',1,'ev::PointCloud_::setSize(const int height, const int width)'],['../classev_1_1PointCloud__.html#a1b70db93175c302c6f52d23142392d7b',1,'ev::PointCloud_::setSize(const Size size)']]],
   ['setvalues_2',['setValues',['../classev_1_1AbstractRepresentation__.html#ac64618e40a41ea77a4306c1cf19819ac',1,'ev::AbstractRepresentation_::setValues(const Value &amp;positive, const Value &amp;negative, const Value &amp;reset)'],['../classev_1_1AbstractRepresentation__.html#a3ec1594bf0b4ed615efb0b8de22c42ba',1,'ev::AbstractRepresentation_::setValues(const ValueArray &amp;pnr)']]],
   ['size_3',['size',['../classev_1_1Rect3__.html#a4e05b496eed825b98c3663cd65b074ee',1,'ev::Rect3_']]],
   ['size_4',['Size',['../types_8hpp.html#adaf399e41f25d621faf1d2dc03e14b5e',1,'ev']]],

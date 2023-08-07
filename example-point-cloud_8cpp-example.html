@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: example-event-image.cpp</title>
+<title>OpenEV: example-point-cloud.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,25 +78,15 @@ $(function() {
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">example-event-image.cpp</div></div>
+  <div class="headertitle"><div class="title">example-point-cloud.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<p>This is an example of how to use the EventImage_&lt;T&gt; class.</p>
+<p>This is an example of how to use the PointCloud_&lt;T&gt; class.</p>
 <div class="fragment"><div class="line"> </div>
-<div class="line"><span class="preprocessor">#include &lt;opencv2/highgui.hpp&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;opencv2/imgproc.hpp&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;<a class="code" href="openev_8hpp.html">openev/openev.hpp</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">inline</span> <span class="keywordtype">void</span> show(<span class="keyword">const</span> <a id="_a0" name="_a0"></a><a class="code hl_class" href="classev_1_1EventImage__.html">ev::EventImage3b</a> &amp;img) {</div>
-<div class="line">  <a class="code hl_class" href="classev_1_1EventImage__.html">ev::EventImage3b</a> resized;</div>
-<div class="line">  cv::resize(img, resized, <a id="_a1" name="_a1"></a><a class="code hl_class" href="classev_1_1Size2__.html">ev::Size</a>(500, 500), 0, 0, cv::INTER_NEAREST);</div>
-<div class="line">  cv::imshow(<span class="stringliteral">&quot;example-event-image&quot;</span>, resized);</div>
-<div class="line">  cv::waitKey(5);</div>
-<div class="line">}</div>
-<div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keyword">const</span> <span class="keywordtype">char</span> *argv[]) {</div>
-<div class="line">  <a class="code hl_class" href="classev_1_1EventImage__.html">ev::EventImage3b</a> eimage(30, 30);</div>
-<div class="line">  eimage.setColors(cv::viz::Color::bluberry(), cv::viz::Color::cherry(), cv::viz::Color::black());</div>
+<div class="line">  <a id="_a0" name="_a0"></a><a class="code hl_class" href="classev_1_1PointCloud__.html">ev::PointCloud</a> pointcloud(50, 50);</div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordtype">int</span> row = 0;</div>
 <div class="line">  <span class="keywordtype">int</span> col = 0;</div>
@@ -104,17 +94,17 @@ $(function() {
 <div class="line">  <span class="keywordtype">int</span> offset = 0;</div>
 <div class="line">  <span class="keywordtype">double</span> t = 0;</div>
 <div class="line"> </div>
-<div class="line">  <span class="keywordflow">while</span>(offset &lt; 0.55 * eimage.cols) {</div>
-<div class="line">    t += rand() % 10;</div>
-<div class="line">    eimage.insert(<a id="_a2" name="_a2"></a><a class="code hl_class" href="classev_1_1Event__.html">ev::Event</a>(col, row, t, (rand() % 2) ? <a id="a3" name="a3"></a>ev::POSITIVE : ev::NEGATIVE));</div>
+<div class="line">  <span class="keywordflow">while</span>(offset &lt; 0.55 * pointcloud.<a id="a1" name="a1"></a><a class="code hl_variable" href="classev_1_1PointCloud__.html#ae7d1af20ed7929815098b90bd743ed0d">frame</a>.width) {</div>
+<div class="line">    t += 0.1;</div>
+<div class="line">    pointcloud.<a id="a2" name="a2"></a><a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#a8e7c9a33035e29410d4256e3ebef46f1">insert</a>(<a id="_a3" name="_a3"></a><a class="code hl_class" href="classev_1_1Event__.html">ev::Event</a>(col, row, t, (rand() % 2) ? <a id="a4" name="a4"></a>ev::POSITIVE : <a id="a5" name="a5"></a>ev::NEGATIVE));</div>
 <div class="line">    <span class="keywordflow">switch</span>(direction) {</div>
 <div class="line">    <span class="keywordflow">case</span> 0:</div>
 <div class="line">      col++;</div>
-<div class="line">      <span class="keywordflow">if</span>(col &gt;= eimage.cols - 1 - offset) direction++;</div>
+<div class="line">      <span class="keywordflow">if</span>(col &gt;= pointcloud.<a class="code hl_variable" href="classev_1_1PointCloud__.html#ae7d1af20ed7929815098b90bd743ed0d">frame</a>.height - 1 - offset) direction++;</div>
 <div class="line">      <span class="keywordflow">break</span>;</div>
 <div class="line">    <span class="keywordflow">case</span> 1:</div>
 <div class="line">      row++;</div>
-<div class="line">      <span class="keywordflow">if</span>(row &gt;= eimage.rows - 1 - offset) direction++;</div>
+<div class="line">      <span class="keywordflow">if</span>(row &gt;= pointcloud.<a class="code hl_variable" href="classev_1_1PointCloud__.html#ae7d1af20ed7929815098b90bd743ed0d">frame</a>.width - 1 - offset) direction++;</div>
 <div class="line">      <span class="keywordflow">break</span>;</div>
 <div class="line">    <span class="keywordflow">case</span> 2:</div>
 <div class="line">      col--;</div>
@@ -127,13 +117,18 @@ $(function() {
 <div class="line">      row--;</div>
 <div class="line">      <span class="keywordflow">if</span>(row &lt;= offset) direction = 0;</div>
 <div class="line">    }</div>
-<div class="line">    show(eimage);</div>
+<div class="line">    <span class="keywordflow">if</span>(!(pointcloud.<a id="a6" name="a6"></a><a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#ad9bd795898202cd26407cac23b67f9cc">count</a>() % 10)) {</div>
+<div class="line">      pointcloud.<a id="a7" name="a7"></a><a class="code hl_function" href="classev_1_1PointCloud__.html#a826f022c3d8d9ab6c5d9937e3ab17d8f">visualizeOnce</a>();</div>
+<div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassev_1_1EventImage___html"><div class="ttname"><a href="classev_1_1EventImage__.html">ev::EventImage_</a></div><div class="ttdoc">This class extends cv::Mat_&lt;T&gt; for event images. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> representation.hpp:216</div></div>
+<div class="ttc" id="aclassev_1_1AbstractRepresentation___html_a8e7c9a33035e29410d4256e3ebef46f1"><div class="ttname"><a href="classev_1_1AbstractRepresentation__.html#a8e7c9a33035e29410d4256e3ebef46f1">ev::AbstractRepresentation_::insert</a></div><div class="ttdeci">bool insert(const Event &amp;e)</div><div class="ttdoc">Insert one event in the representation.</div></div>
+<div class="ttc" id="aclassev_1_1AbstractRepresentation___html_ad9bd795898202cd26407cac23b67f9cc"><div class="ttname"><a href="classev_1_1AbstractRepresentation__.html#ad9bd795898202cd26407cac23b67f9cc">ev::AbstractRepresentation_::count</a></div><div class="ttdeci">std::size_t count() const</div><div class="ttdoc">Number of events integrated in the representation.</div><div class="ttdef"><b>Definition</b> representation.hpp:85</div></div>
 <div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:29</div></div>
-<div class="ttc" id="aclassev_1_1Size2___html"><div class="ttname"><a href="classev_1_1Size2__.html">ev::Size2_</a></div><div class="ttdoc">This class extends cv::Size_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:151</div></div>
+<div class="ttc" id="aclassev_1_1PointCloud___html"><div class="ttname"><a href="classev_1_1PointCloud__.html">ev::PointCloud_</a></div><div class="ttdoc">This class is used to represent events as point clouds.</div><div class="ttdef"><b>Definition</b> representation.hpp:437</div></div>
+<div class="ttc" id="aclassev_1_1PointCloud___html_a826f022c3d8d9ab6c5d9937e3ab17d8f"><div class="ttname"><a href="classev_1_1PointCloud__.html#a826f022c3d8d9ab6c5d9937e3ab17d8f">ev::PointCloud_::visualizeOnce</a></div><div class="ttdeci">void visualizeOnce()</div><div class="ttdoc">Visualize point cloud.</div></div>
+<div class="ttc" id="aclassev_1_1PointCloud___html_ae7d1af20ed7929815098b90bd743ed0d"><div class="ttname"><a href="classev_1_1PointCloud__.html#ae7d1af20ed7929815098b90bd743ed0d">ev::PointCloud_::frame</a></div><div class="ttdeci">ev::Size frame</div><div class="ttdef"><b>Definition</b> representation.hpp:439</div></div>
 <div class="ttc" id="aopenev_8hpp_html"><div class="ttname"><a href="openev_8hpp.html">openev.hpp</a></div><div class="ttdoc">Include all the OpenEV modules.</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 <!-- start footer part -->
