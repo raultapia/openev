@@ -14,7 +14,7 @@ void TimeSurface_<T>::render() {
   const T RESET = this->values_[TimeSurface_<T>::value::RESET];
 
   EventImage1d aux;
-  cv::normalize(timestamp, aux, 0, 1, cv::NORM_MINMAX, -1, cv::noArray());
+  cv::normalize(timestamp, aux, 0, 1, cv::NORM_MINMAX, -1, timestamp > 0);
 
   if constexpr(cv::DataType<T>::channels == 1) {
     EventImage_<T>(polarity.mul(aux * (ON - RESET)) + (1 - polarity).mul(aux * (OFF - RESET)) + RESET).copyTo(*this);
