@@ -13,17 +13,17 @@ int main(int argc, const char *argv[]) {
   int offset = 0;
   double t = 0;
 
-  while(offset < 0.55 * pointcloud.frame.width) {
+  while(offset < 0.55 * pointcloud.getFrameSize().width) {
     t += 0.1;
     pointcloud.insert(ev::Event(col, row, t, (rand() % 2) ? ev::POSITIVE : ev::NEGATIVE));
     switch(direction) {
     case 0:
       col++;
-      if(col >= pointcloud.frame.height - 1 - offset) direction++;
+      if(col >= pointcloud.getFrameSize().height - 1 - offset) direction++;
       break;
     case 1:
       row++;
-      if(row >= pointcloud.frame.width - 1 - offset) direction++;
+      if(row >= pointcloud.getFrameSize().width - 1 - offset) direction++;
       break;
     case 2:
       col--;
