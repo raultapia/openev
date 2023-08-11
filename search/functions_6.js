@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['pointcloud_5f_0',['PointCloud_',['../classev_1_1PointCloud__.html#a3f454398e2abde3f279de69d2e3e1733',1,'ev::PointCloud_::PointCloud_(const int height, const int width, const double scale_factor)'],['../classev_1_1PointCloud__.html#ab5e4dc6c8094c3cdaa723acf31fd9d2e',1,'ev::PointCloud_::PointCloud_(const int height, const int width)'],['../classev_1_1PointCloud__.html#afbb604b4ed51e6801cd29b26195b793d',1,'ev::PointCloud_::PointCloud_(const Size size, const double scale_factor)'],['../classev_1_1PointCloud__.html#a1887b1a560c898b12babe3f84ba9ba71',1,'ev::PointCloud_::PointCloud_(const Size size)']]]
+  ['operator_3d_0',['operator=',['../classev_1_1Event__.html#ac45f96a0247d571050d56a9731e6976d',1,'ev::Event_::operator=(const Event_&lt; T &gt; &amp;)=default'],['../classev_1_1Event__.html#a6ba6b9e56bb5fc6e475c952f0057059b',1,'ev::Event_::operator=(Event_&lt; T &gt; &amp;&amp;) noexcept=default'],['../classev_1_1Rect3__.html#adfdbe577a14441c88c8da3dfa13a28b2',1,'ev::Rect3_::operator=(const Rect3_&lt; T &gt; &amp;)=default'],['../classev_1_1Rect3__.html#af9cbb3b54bedbeed185a2b97a037ff03',1,'ev::Rect3_::operator=(Rect3_&lt; T &gt; &amp;&amp;) noexcept=default']]],
+  ['operator_3d_3d_1',['operator==',['../classev_1_1Event__.html#ad5e6dec4fdc30bac2aea92e75521825c',1,'ev::Event_']]]
 ];
