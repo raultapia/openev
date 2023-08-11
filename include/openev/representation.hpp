@@ -436,7 +436,10 @@ using PointCloud = PointCloud1;
 template <typename T>
 class PointCloud_ : public AbstractRepresentation_<T> {
 public:
-  ev::Size frame; /*!< Frame size */
+  /*!
+  Default contructor.
+  */
+  PointCloud_() : frame_{0, 0}, scaleFactor_{1.0} {};
 
   /*!
   Contructor using frame size.
@@ -445,7 +448,7 @@ public:
   \param width Width of the frame
   \param scale_factor Scale factor for time axis
   */
-  PointCloud_(const int height, const int width, const double scale_factor) : frame(width, height), scaleFactor_(scale_factor){};
+  PointCloud_(const int height, const int width, const double scale_factor) : frame_{width, height}, scaleFactor_{scale_factor} {};
 
   /*!
   Contructor using frame size.
@@ -453,7 +456,7 @@ public:
   \param height Height of the frame
   \param width Width of the frame
   */
-  PointCloud_(const int height, const int width) : PointCloud_(width, height, 1.0){};
+  PointCloud_(const int height, const int width) : frame_{width, height}, scaleFactor_{1.0} {};
 
   /*!
   Contructor using frame size.
@@ -461,14 +464,14 @@ public:
   \param size Frame size
   \param scale_factor Scale factor for time axis
   */
-  explicit PointCloud_(const Size size, const double scale_factor) : frame(size), scaleFactor_(scale_factor){};
+  explicit PointCloud_(const Size size, const double scale_factor) : frame_{size}, scaleFactor_{scale_factor} {};
 
   /*!
   Contructor using frame size.
   \note If no size selected, frame bounds are not checked when inserting
   \param size Frame size
   */
-  explicit PointCloud_(const Size size) : PointCloud_(size, 1.0){};
+  explicit PointCloud_(const Size size) : frame_{size}, scaleFactor_{1.0} {};
 
   /*!
   \brief Set frame size.
@@ -476,8 +479,8 @@ public:
   \param height Height of the frame
   \param width Width of the frame
   */
-  inline void setSize(const int height, const int width) {
-    frame = {width, height};
+  inline void setFrameSize(const int height, const int width) {
+    frame_ = {width, height};
   }
 
   /*!
@@ -485,16 +488,16 @@ public:
   \note If no size selected, frame bounds are not checked when inserting
   \param size Frame size
   */
-  inline void setSize(const Size size) {
-    frame = size;
+  inline void setFrameSize(const Size size) {
+    frame_ = size;
   }
 
   /*!
   \brief Get frame size.
   \return Frame size
   */
-  [[nodiscard]] inline Size getSize() const {
-    return frame;
+  [[nodiscard]] inline Size getFrameSize() const {
+    return frame_;
   }
 
   /*!
@@ -518,6 +521,7 @@ public:
 private:
   std::array<std::vector<cv::Point3_<BasicDataType<T>>>, 2> points_;
   cv::viz::Viz3d window_{"OpenEV"};
+  ev::Size frame_;
   const double scaleFactor_;
 
   void clear_() override;
