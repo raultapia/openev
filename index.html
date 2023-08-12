@@ -87,7 +87,11 @@ $(function() {
 </blockquote>
 <h2><a class="anchor" id="autotoc_md0"></a>
 ⚙️ Installation</h2>
-<div class="fragment"><div class="line">git clone https://github.com/raultapia/openev</div>
+<p>OpenEV uses <code>libcaer</code> library by <a href="https://inivation.com/">iniVation</a> to configure and get data from event cameras. Click <a href="https://gitlab.com/inivation/dv/libcaer">here</a> for more information.</p>
+<p>Hence, installation of <code>libcaer</code> is required: </p><div class="fragment"><div class="line">sudo add-apt-repository ppa:inivation-ppa/inivation</div>
+<div class="line">sudo apt update</div>
+<div class="line">sudo apt-get install libcaer-dev</div>
+</div><!-- fragment --><p>Then, <code>openev</code> can be installed: </p><div class="fragment"><div class="line">git clone https://github.com/raultapia/openev</div>
 <div class="line">mkdir -p openev/build</div>
 <div class="line">cd openev/build</div>
 <div class="line">cmake ..</div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['plain_2dtext_2dreader_2ecpp_0',['plain-text-reader.cpp',['../plain-text-reader_8cpp.html',1,'']]]
+  ['logger_2ehpp_0',['logger.hpp',['../logger_8hpp.html',1,'']]]
 ];
