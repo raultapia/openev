@@ -18,6 +18,16 @@ Extending OpenCV to event-based vision
 
 ## ⚙️ Installation
 
+OpenEV uses `libcaer` library by [iniVation](https://inivation.com/) to configure and get data from event cameras. Click [here](https://gitlab.com/inivation/dv/libcaer) for more information.
+
+Hence, installation of `libcaer` is required:
+```bash
+sudo add-apt-repository ppa:inivation-ppa/inivation
+sudo apt update
+sudo apt-get install libcaer-dev
+```
+
+Then, `openev` can be installed:
 ```bash
 git clone https://github.com/raultapia/openev
 mkdir -p openev/build
