@@ -8,6 +8,7 @@
 
 #include "openev/camera.hpp"
 #include "openev/logger.hpp"
+#include "openev/reader.hpp"
 #include "openev/representation.hpp"
 #include "openev/types.hpp"
 
