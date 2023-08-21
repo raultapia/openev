@@ -75,9 +75,9 @@ using StampedMatBuffer = std::queue<StampedMat>;
 \brief This struct is used to store linear acceleration and angular velocity.
 */
 struct xyz_t {
-  double x;
-  double y;
-  double z;
+  double x{0};
+  double y{0};
+  double z{0};
 
   [[nodiscard]] bool empty() const {
     return x == 0 && y == 0 && z == 0;
@@ -103,7 +103,7 @@ using ImuBuffer = std::queue<Imu>;
 \endcode
 */
 struct Imu {
-  double t;
+  double t{0};
   xyz_t linear_acceleration;
   xyz_t angular_velocity;
 
