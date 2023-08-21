@@ -172,7 +172,7 @@ inline std::unique_ptr<libcaer::events::EventPacketContainer> get_data_from_hand
       cContainer = caerDeviceDataGet(h);
     } else {
       std::unique_ptr<libcaer::events::EventPacketContainer> cppContainer = std::make_unique<libcaer::events::EventPacketContainer>(cContainer);
-      caerEventPacketContainerFree(cContainer);
+      free(cContainer);
       return cppContainer;
     }
   }
