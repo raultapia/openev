@@ -6,6 +6,7 @@
 #ifndef OPENEV_CAMERA_HPP
 #define OPENEV_CAMERA_HPP
 
+#include "openev/containers.hpp"
 #include "openev/types.hpp"
 #include <atomic>
 #include <chrono>
@@ -60,16 +61,16 @@ enum class device {
 
 The following aliases are defined for convenience:
 \code{.cpp}
-using StampedMatPacket = std::vector<StampedMat>;
-using StampedMatBuffer = std::queue<StampedMat>;
+using StampedMatVector = std::vector<StampedMat>;
+using StampedMatQueue = std::queue<StampedMat>;
 \endcode
 */
 class StampedMat : public cv::Mat {
 public:
   double t;
 };
-using StampedMatPacket = std::vector<StampedMat>;
-using StampedMatBuffer = std::queue<StampedMat>;
+using StampedMatVector = std::vector<StampedMat>;
+using StampedMatQueue = std::queue<StampedMat>;
 
 /*!
 \brief This struct is used to store linear acceleration and angular velocity.
@@ -98,8 +99,8 @@ struct xyz_t {
 
 The following aliases are defined for convenience:
 \code{.cpp}
-using ImuPacket = std::vector<Imu>;
-using ImuBuffer = std::queue<Imu>;
+using ImuVector = std::vector<Imu>;
+using ImuQueue = std::queue<Imu>;
 \endcode
 */
 struct Imu {
@@ -122,8 +123,8 @@ struct Imu {
     return os;
   }
 } __attribute__((aligned(IMU_ALIGNEMENT)));
-using ImuPacket = std::vector<Imu>;
-using ImuBuffer = std::queue<Imu>;
+using ImuVector = std::vector<Imu>;
+using ImuQueue = std::queue<Imu>;
 
 /*!
 \brief This is an auxiliary class. This class cannot be instanced.
@@ -184,17 +185,17 @@ public:
 
   /*!
   \brief Get data.
-  \param events Event packet to which events will be added
-  \return True if packet not empty
+  \param events Event vector to which events will be added
+  \return True if vector not empty
   */
-  virtual bool getData(EventPacket &events) = 0;
+  virtual bool getData(EventVector &events) = 0;
 
   /*!
   \brief Get data.
-  \param events Event buffer to which events will be added.
-  \return True if buffer not empty
+  \param events Event queue to which events will be added.
+  \return True if queue not empty
   */
-  virtual bool getData(EventBuffer &events) = 0;
+  virtual bool getData(EventQueue &events) = 0;
 
 protected:
   /*! \cond INTERNAL */
@@ -270,17 +271,17 @@ public:
 
   /*!
   \brief Get DVS data.
-  \param events Event packet to which events will be added
-  \return True if packet not empty
+  \param events Event vector to which events will be added
+  \return True if vector not empty
   */
-  bool getData(EventPacket &events) override;
+  bool getData(EventVector &events) override;
 
   /*!
   \brief Get DVS data.
-  \param events Event buffer to which events will be added.
-  \return True if buffer not empty
+  \param events Event queue to which events will be added.
+  \return True if queue not empty
   */
-  bool getData(EventBuffer &events) override;
+  bool getData(EventQueue &events) override;
 
   /*!
   \brief Get APS data.
@@ -291,17 +292,17 @@ public:
 
   /*!
   \brief Get APS data.
-  \param frames Frame packet to which frame will be added
-  \return True if packet not empty
+  \param frames Frame vector to which frame will be added
+  \return True if vector not empty
   */
-  bool getData(StampedMatPacket &frames);
+  bool getData(StampedMatVector &frames);
 
   /*!
   \brief Get APS data.
-  \param frames Frame buffer to which frame will be added
-  \return True if buffer not empty
+  \param frames Frame queue to which frame will be added
+  \return True if queue not empty
   */
-  bool getData(StampedMatBuffer &frames);
+  bool getData(StampedMatQueue &frames);
 
   /*!
   \brief Get IMU data.
@@ -312,92 +313,92 @@ public:
 
   /*!
   \brief Get IMU data.
-  \param imu Imu data packet to which imu data will be added
-  \return True if packet not empty
+  \param imu Imu data vector to which imu data will be added
+  \return True if vector not empty
   */
-  bool getData(ImuPacket &imu);
+  bool getData(ImuVector &imu);
 
   /*!
   \brief Get IMU data.
-  \param imu Imu data buffer to which imu data will be added
-  \return True if buffer not empty
+  \param imu Imu data queue to which imu data will be added
+  \return True if queue not empty
   */
-  bool getData(ImuBuffer &imu);
+  bool getData(ImuQueue &imu);
 
   /*!
   \brief Get DVS+APS data.
-  \param events Event packet to which events will be added
+  \param events Event vector to which events will be added
   \param frame Frame destination
-  \return True if event packet or frame not empty
+  \return True if event vector or frame not empty
   */
-  bool getData(EventPacket &events, StampedMat &frame);
+  bool getData(EventVector &events, StampedMat &frame);
 
   /*!
   \brief Get DVS+APS data.
-  \param events Event packet to which events will be added
-  \param frames Frame packet to which frame will be added
-  \return True if event packet or frame packet not empty
+  \param events Event vector to which events will be added
+  \param frames Frame vector to which frame will be added
+  \return True if event vector or frame vector not empty
   */
-  bool getData(EventPacket &events, StampedMatPacket &frames);
+  bool getData(EventVector &events, StampedMatVector &frames);
 
   /*!
   \brief Get DVS+APS data.
-  \param events Event buffer to which events will be added
-  \param frames Frame buffer to which frame will be added
-  \return True if event buffer or frame buffer not empty
+  \param events Event queue to which events will be added
+  \param frames Frame queue to which frame will be added
+  \return True if event queue or frame queue not empty
   */
-  bool getData(EventBuffer &events, StampedMatBuffer &frames);
+  bool getData(EventQueue &events, StampedMatQueue &frames);
 
   /*!
   \brief Get DVS+IMU data.
-  \param events Event packet to which events will be added
+  \param events Event vector to which events will be added
   \param imu Imu data destination
-  \return True if event packet or imu data not empty
+  \return True if event vector or imu data not empty
   */
-  bool getData(EventPacket &events, Imu &imu);
+  bool getData(EventVector &events, Imu &imu);
 
   /*!
   \brief Get DVS+IMU data.
-  \param events Event packet to which events will be added
-  \param imu Imu data packet to which imu data will be added
-  \return True if event packet or imu data packet not empty
+  \param events Event vector to which events will be added
+  \param imu Imu data vector to which imu data will be added
+  \return True if event vector or imu data vector not empty
   */
-  bool getData(EventPacket &events, ImuPacket &imu);
+  bool getData(EventVector &events, ImuVector &imu);
 
   /*!
   \brief Get DVS+IMU data.
-  \param events Event buffer to which events will be added
-  \param imu Imu data buffer to which imu data will be added
-  \return True if event buffer or imu data buffer not empty
+  \param events Event queue to which events will be added
+  \param imu Imu data queue to which imu data will be added
+  \return True if event queue or imu data queue not empty
   */
-  bool getData(EventBuffer &events, ImuBuffer &imu);
+  bool getData(EventQueue &events, ImuQueue &imu);
 
   /*!
   \brief Get DVS+APS+IMU data.
-  \param events Event packet to which events will be added
+  \param events Event vector to which events will be added
   \param frame Frame destination
   \param imu Imu data destination
-  \return True if event packet, frame, or imu data not empty
+  \return True if event vector, frame, or imu data not empty
   */
-  bool getData(EventPacket &events, StampedMat &frame, Imu &imu);
+  bool getData(EventVector &events, StampedMat &frame, Imu &imu);
 
   /*!
   \brief Get DVS+APS+IMU data.
-  \param events Event packet to which events will be added
-  \param frames Frame packet to which frame will be added
-  \param imu Imu data packet to which imu data will be added
-  \return True if event packet, frame packet, or imu data packet not empty
+  \param events Event vector to which events will be added
+  \param frames Frame vector to which frame will be added
+  \param imu Imu data vector to which imu data will be added
+  \return True if event vector, frame vector, or imu data vector not empty
   */
-  bool getData(EventPacket &events, StampedMatPacket &frame, ImuPacket &imu);
+  bool getData(EventVector &events, StampedMatVector &frame, ImuVector &imu);
 
   /*!
   \brief Get DVS+APS+IMU data.
-  \param events Event buffer to which events will be added
-  \param frames Frame buffer to which frame will be added
-  \param imu Imu data buffer to which imu data will be added
-  \return True if event buffer, frame buffer, or imu data buffer not empty
+  \param events Event queue to which events will be added
+  \param frames Frame queue to which frame will be added
+  \param imu Imu data queue to which imu data will be added
+  \return True if event queue, frame queue, or imu data queue not empty
   */
-  bool getData(EventBuffer &events, StampedMatBuffer &frame, ImuBuffer &imu);
+  bool getData(EventQueue &events, StampedMatQueue &frame, ImuQueue &imu);
 
 private:
   template <typename T1, typename T2, typename T3>

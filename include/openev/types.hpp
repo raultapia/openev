@@ -7,7 +7,6 @@
 #define OPENEV_TYPES_HPP
 
 #include <opencv2/core/core.hpp>
-#include <queue>
 
 namespace ev {
 constexpr bool POSITIVE = true;  /*!< Positive polarity */
@@ -361,71 +360,6 @@ using Rect3l = Rect3_<long>;   /*!< Alias for Rect3_ using long */
 using Rect3f = Rect3_<float>;  /*!< Alias for Rect3_ using float */
 using Rect3d = Rect3_<double>; /*!< Alias for Rect3_ using double */
 using Rect3 = Rect3i;          /*!< Alias for Rect3_ using int */
-
-/*! \cond INTERNAL */
-class EventPacket;
-class EventBuffer;
-/*! \endcond */
-
-/*!
-\brief This class extends std::vector<Event> to implement event packets. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/vector">here</a>.
-
-Event packets inherit all the properties from standard C++ vectors. Events in the packet are stored contiguously.
-*/
-class EventPacket : public std::vector<Event> {
-  using std::vector<Event>::vector;
-
-public:
-  /*!
-  \brief Insert elements from a buffer of events.
-  \param eb Event buffer to insert
-  */
-  inline void insert(EventBuffer &eb);
-
-  /*!
-  \brief Time difference between the last and the first event in the packet.
-  \return Time difference
-  */
-  [[nodiscard]] inline double duration() const {
-    return (this->back()).t - (this->front()).t;
-  }
-};
-
-/*!
-\brief This class extends std::queue<Event> to implement event buffers. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/queue">here</a>.
-
-Event buffers inherit all the properties from standard C++ queues. Events buffers are FIFO data structures not intended to be directly iterated.
-*/
-class EventBuffer : public std::queue<Event> {
-  using std::queue<Event>::queue;
-
-public:
-  /*!
-  \brief Insert elements from a packet of events.
-  \param ep Event packet to insert
-  */
-  inline void insert(const EventPacket &ep);
-
-  /*!
-  \brief Time difference between the last and the first event in the buffer.
-  \return Time difference
-  */
-  [[nodiscard]] inline double duration() const {
-    return (this->back()).t - (this->front()).t;
-  }
-};
-
-inline void EventPacket::insert(EventBuffer &eb) {
-  reserve(size() + eb.size());
-  while(!eb.empty()) {
-    push_back(eb.front());
-    eb.pop();
-  }
-}
-
-inline void EventBuffer::insert(const EventPacket &ep) {
-  for(const Event &e : ep) push(e);
-}
 
 } // namespace ev
 

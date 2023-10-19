@@ -6,6 +6,7 @@
 #ifndef OPENEV_READER_HPP
 #define OPENEV_READER_HPP
 
+#include "openev/containers.hpp"
 #include "openev/types.hpp"
 #include <fstream>
 
@@ -40,16 +41,16 @@ public:
   /*!
   \brief Get next n event from the dataset.
   \param n Number of events to get
-  \param ep Event packet
-  \return True if ep populated with n new events
+  \param vector Event vector
+  \return True if vector populated with n new events
   */
-  bool next(std::size_t n, EventPacket &ep);
+  bool next(std::size_t n, EventVector &vector);
 
   /*!
   \brief Get next n event from the dataset.
   \param n Number of events to get
-  \param eb Event buffer
-  \return True if eb populated with n new events
+  \param queue Event queue
+  \return True if queue populated with n new events
   */
   bool next(std::size_t n, EventBuffer &eb);
 };

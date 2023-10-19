@@ -6,18 +6,18 @@
 #include "openev/logger.hpp"
 #include "openev/reader.hpp"
 
-bool ev::AbstractReader_::next(std::size_t n, ev::EventPacket &ep) {
+bool ev::AbstractReader_::next(std::size_t n, ev::EventVector &vector) {
   ev::Event e;
   while(n-- > 0 && next(e)) {
-    ep.push_back(e);
+    vector.push_back(e);
   }
   return (n == 0);
 }
 
-bool ev::AbstractReader_::next(std::size_t n, ev::EventBuffer &eb) {
+bool ev::AbstractReader_::next(std::size_t n, ev::EventQueue &queue) {
   ev::Event e;
   while(n-- > 0 && next(e)) {
-    eb.push(e);
+    queue.push(e);
   }
   return (n == 0);
 }

@@ -71,13 +71,13 @@ void ev::Davis::enableImu(const bool state) {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, static_cast<uint32_t>(state));
 }
 
-bool ev::Davis::getData(ev::EventPacket &events) {
-  getData_<ev::EventPacket, std::nullptr_t, std::nullptr_t>(&events, nullptr, nullptr);
+bool ev::Davis::getData(ev::EventVector &events) {
+  getData_<ev::EventVector, std::nullptr_t, std::nullptr_t>(&events, nullptr, nullptr);
   return !events.empty();
 }
 
-bool ev::Davis::getData(ev::EventBuffer &events) {
-  getData_<ev::EventBuffer, std::nullptr_t, std::nullptr_t>(&events, nullptr, nullptr);
+bool ev::Davis::getData(ev::EventQueue &events) {
+  getData_<ev::EventQueue, std::nullptr_t, std::nullptr_t>(&events, nullptr, nullptr);
   return !events.empty();
 }
 
@@ -87,13 +87,13 @@ bool ev::Davis::getData(StampedMat &frame) {
   return !frame.empty();
 }
 
-bool ev::Davis::getData(StampedMatPacket &frames) {
-  getData_<std::nullptr_t, ev::StampedMatPacket, std::nullptr_t>(nullptr, &frames, nullptr);
+bool ev::Davis::getData(StampedMatVector &frames) {
+  getData_<std::nullptr_t, ev::StampedMatVector, std::nullptr_t>(nullptr, &frames, nullptr);
   return !frames.empty();
 }
 
-bool ev::Davis::getData(StampedMatBuffer &frames) {
-  getData_<std::nullptr_t, ev::StampedMatBuffer, std::nullptr_t>(nullptr, &frames, nullptr);
+bool ev::Davis::getData(StampedMatQueue &frames) {
+  getData_<std::nullptr_t, ev::StampedMatQueue, std::nullptr_t>(nullptr, &frames, nullptr);
   return !frames.empty();
 }
 
@@ -103,62 +103,62 @@ bool ev::Davis::getData(Imu &imu) {
   return !imu.empty();
 }
 
-bool ev::Davis::getData(ImuPacket &imu) {
-  getData_<std::nullptr_t, ev::ImuPacket, std::nullptr_t>(nullptr, &imu, nullptr);
+bool ev::Davis::getData(ImuVector &imu) {
+  getData_<std::nullptr_t, ev::ImuVector, std::nullptr_t>(nullptr, &imu, nullptr);
   return !imu.empty();
 }
 
-bool ev::Davis::getData(ImuBuffer &imu) {
-  getData_<std::nullptr_t, ev::ImuBuffer, std::nullptr_t>(nullptr, &imu, nullptr);
+bool ev::Davis::getData(ImuQueue &imu) {
+  getData_<std::nullptr_t, ev::ImuQueue, std::nullptr_t>(nullptr, &imu, nullptr);
   return !imu.empty();
 }
 
-bool ev::Davis::getData(ev::EventPacket &events, ev::StampedMat &frame) {
+bool ev::Davis::getData(ev::EventVector &events, ev::StampedMat &frame) {
   frame.release();
-  getData_<ev::EventPacket, ev::StampedMat, std::nullptr_t>(&events, &frame, nullptr);
+  getData_<ev::EventVector, ev::StampedMat, std::nullptr_t>(&events, &frame, nullptr);
   return (!events.empty() || !frame.empty());
 }
 
-bool ev::Davis::getData(ev::EventPacket &events, ev::StampedMatPacket &frames) {
-  getData_<ev::EventPacket, ev::StampedMatPacket, std::nullptr_t>(&events, &frames, nullptr);
+bool ev::Davis::getData(ev::EventVector &events, ev::StampedMatVector &frames) {
+  getData_<ev::EventVector, ev::StampedMatVector, std::nullptr_t>(&events, &frames, nullptr);
   return (!events.empty() || !frames.empty());
 }
 
-bool ev::Davis::getData(ev::EventBuffer &events, ev::StampedMatBuffer &frames) {
-  getData_<ev::EventBuffer, ev::StampedMatBuffer, std::nullptr_t>(&events, &frames, nullptr);
+bool ev::Davis::getData(ev::EventQueue &events, ev::StampedMatQueue &frames) {
+  getData_<ev::EventQueue, ev::StampedMatQueue, std::nullptr_t>(&events, &frames, nullptr);
   return (!events.empty() || !frames.empty());
 }
 
-bool ev::Davis::getData(ev::EventPacket &events, ev::Imu &imu) {
+bool ev::Davis::getData(ev::EventVector &events, ev::Imu &imu) {
   imu.release();
-  getData_<ev::EventPacket, std::nullptr_t, ev::Imu>(&events, nullptr, &imu);
+  getData_<ev::EventVector, std::nullptr_t, ev::Imu>(&events, nullptr, &imu);
   return (!events.empty() || !imu.empty());
 }
 
-bool ev::Davis::getData(ev::EventPacket &events, ev::ImuPacket &imu) {
-  getData_<ev::EventPacket, std::nullptr_t, ev::ImuPacket>(&events, nullptr, &imu);
+bool ev::Davis::getData(ev::EventVector &events, ev::ImuVector &imu) {
+  getData_<ev::EventVector, std::nullptr_t, ev::ImuVector>(&events, nullptr, &imu);
   return (!events.empty() || !imu.empty());
 }
 
-bool ev::Davis::getData(ev::EventBuffer &events, ev::ImuBuffer &imu) {
-  getData_<ev::EventBuffer, std::nullptr_t, ev::ImuBuffer>(&events, nullptr, &imu);
+bool ev::Davis::getData(ev::EventQueue &events, ev::ImuQueue &imu) {
+  getData_<ev::EventQueue, std::nullptr_t, ev::ImuQueue>(&events, nullptr, &imu);
   return (!events.empty() || !imu.empty());
 }
 
-bool ev::Davis::getData(ev::EventPacket &events, ev::StampedMat &frame, ev::Imu &imu) {
+bool ev::Davis::getData(ev::EventVector &events, ev::StampedMat &frame, ev::Imu &imu) {
   frame.release();
   imu.release();
-  getData_<ev::EventPacket, ev::StampedMat, ev::Imu>(&events, &frame, &imu);
+  getData_<ev::EventVector, ev::StampedMat, ev::Imu>(&events, &frame, &imu);
   return (!events.empty() || !frame.empty() || !imu.empty());
 }
 
-bool ev::Davis::getData(ev::EventPacket &events, ev::StampedMatPacket &frames, ev::ImuPacket &imu) {
-  getData_<ev::EventPacket, ev::StampedMatPacket, ev::ImuPacket>(&events, &frames, &imu);
+bool ev::Davis::getData(ev::EventVector &events, ev::StampedMatVector &frames, ev::ImuVector &imu) {
+  getData_<ev::EventVector, ev::StampedMatVector, ev::ImuVector>(&events, &frames, &imu);
   return (!events.empty() || !frames.empty() || !imu.empty());
 }
 
-bool ev::Davis::getData(ev::EventBuffer &events, ev::StampedMatBuffer &frames, ev::ImuBuffer &imu) {
-  getData_<ev::EventBuffer, ev::StampedMatBuffer, ev::ImuBuffer>(&events, &frames, &imu);
+bool ev::Davis::getData(ev::EventQueue &events, ev::StampedMatQueue &frames, ev::ImuQueue &imu) {
+  getData_<ev::EventQueue, ev::StampedMatQueue, ev::ImuQueue>(&events, &frames, &imu);
   return (!events.empty() || !frames.empty() || !imu.empty());
 }
 
@@ -192,7 +192,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
         break;
       } else {
         std::shared_ptr<const libcaer::events::PolarityEventPacket> ptr = std::static_pointer_cast<libcaer::events::PolarityEventPacket>(packet);
-        if constexpr(std::is_same_v<T1, ev::EventPacket>) {
+        if constexpr(std::is_same_v<T1, ev::EventVector>) {
           dvs->reserve(dvs->size() + ptr->size());
           for(const auto &p : *ptr) {
             if(roi_.empty() || roi_.contains(cv::Point(p.getX(), p.getY()))) {
@@ -200,7 +200,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
             }
           }
         }
-        if constexpr(std::is_same_v<T1, ev::EventBuffer>) {
+        if constexpr(std::is_same_v<T1, ev::EventQueue>) {
           for(const auto &p : *ptr) {
             if(roi_.empty() || roi_.contains(cv::Point(p.getX(), p.getY()))) {
               dvs->emplace(p.getX(), p.getY(), p.getTimestamp() + timeOffset_, p.getPolarity());
@@ -226,10 +226,10 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
           if constexpr(std::is_same_v<T2, ev::StampedMat>) {
             mat.copyTo(*aps);
           }
-          if constexpr(std::is_same_v<T2, ev::StampedMatPacket>) {
+          if constexpr(std::is_same_v<T2, ev::StampedMatVector>) {
             aps->push_back(mat);
           }
-          if constexpr(std::is_same_v<T2, ev::StampedMatBuffer>) {
+          if constexpr(std::is_same_v<T2, ev::StampedMatQueue>) {
             aps->push(mat);
           }
         }
@@ -254,10 +254,10 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
           if constexpr(std::is_same_v<T3, ev::Imu>) {
             *imu = data;
           }
-          if constexpr(std::is_same_v<T3, ev::ImuPacket>) {
+          if constexpr(std::is_same_v<T3, ev::ImuVector>) {
             imu->push_back(data);
           }
-          if constexpr(std::is_same_v<T3, ev::ImuBuffer>) {
+          if constexpr(std::is_same_v<T3, ev::ImuQueue>) {
             imu->push(data);
           }
         }

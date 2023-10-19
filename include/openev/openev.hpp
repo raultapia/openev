@@ -7,6 +7,7 @@
 #define OPENEV_OPENEV_HPP
 
 #include "openev/camera.hpp"
+#include "openev/containers.hpp"
 #include "openev/logger.hpp"
 #include "openev/reader.hpp"
 #include "openev/representation.hpp"

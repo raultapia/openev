@@ -32,21 +32,21 @@ int main(int argc, const char *argv[]) {
   camera.setDvsTimeInterval(33333.333); // 30Hz
   camera.setDvsEventsPerPacket(0);      // No limit
 
-  ev::EventPacket packet;
+  ev::EventVector events;
   ev::StampedMat img;
   ev::Imu imu;
   ev::EventHistogram3b evhist(camera.getSensorSize());
 
   camera.start();
   while(1) {
-    packet.clear();
+    events.clear();
     evhist.clear();
 
-    camera.getData(packet, img, imu);
-    std::cout << packet.size() << ", " << !img.empty() << ", " << !imu.empty() << std::endl;
+    camera.getData(events, img, imu);
+    std::cout << events.size() << ", " << !img.empty() << ", " << !imu.empty() << '\n';
 
-    if(!packet.empty()) {
-      evhist.insert(packet);
+    if(!events.empty()) {
+      evhist.insert(events);
       show1(evhist);
     }
     if(!img.empty()) {

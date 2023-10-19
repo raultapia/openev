@@ -6,6 +6,7 @@
 #ifndef OPENEV_REPRESENTATION_HPP
 #define OPENEV_REPRESENTATION_HPP
 
+#include "openev/containers.hpp"
 #include "openev/types.hpp"
 #include <opencv2/viz.hpp>
 #include <opencv2/viz/types.hpp>
@@ -111,18 +112,26 @@ public:
   bool insert(const Event &e);
 
   /*!
-  \brief Insert a packet of events in the representation.
-  \param packet Event packet to insert
+  \brief Insert an array of events in the representation.
+  \param array Event array to insert
   \return True if all the events have been inserted
   */
-  bool insert(const EventPacket &packet);
+  template <std::size_t N>
+  bool insert(const EventArray<N> &array);
 
   /*!
-  \brief Insert a buffer of events in the representation.
-  \param buffer Event buffer to insert
+  \brief Insert a vector of events in the representation.
+  \param vector Event vector to insert
   \return True if all the events have been inserted
   */
-  bool insert(EventBuffer &buffer);
+  bool insert(const EventVector &vector);
+
+  /*!
+  \brief Insert a queue of events in the representation.
+  \param queue Event queue to insert
+  \return True if all the events have been inserted
+  */
+  bool insert(EventQueue &queue);
 
   /*!
   \brief Set time offset.

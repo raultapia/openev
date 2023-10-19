@@ -26,16 +26,22 @@ bool AbstractRepresentation_<T>::insert(const Event &e) {
 }
 
 template <typename T>
-bool AbstractRepresentation_<T>::insert(const EventPacket &packet) {
-  return std::all_of(packet.begin(), packet.end(), [this](const Event &e) { return this->insert(e); });
+template <std::size_t N>
+bool AbstractRepresentation_<T>::insert(const EventArray<N> &array) {
+  return std::all_of(array.begin(), array.end(), [this](const Event &e) { return this->insert(e); });
 }
 
 template <typename T>
-bool AbstractRepresentation_<T>::insert(EventBuffer &buffer) {
+bool AbstractRepresentation_<T>::insert(const EventVector &vector) {
+  return std::all_of(vector.begin(), vector.end(), [this](const Event &e) { return this->insert(e); });
+}
+
+template <typename T>
+bool AbstractRepresentation_<T>::insert(EventQueue &queue) {
   bool ret = true;
-  while(!buffer.empty()) {
-    ret = ret && insert(buffer.front());
-    buffer.pop();
+  while(!queue.empty()) {
+    ret = ret && insert(queue.front());
+    queue.pop();
   }
   return ret;
 }
