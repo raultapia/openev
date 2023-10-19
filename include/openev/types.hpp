@@ -93,22 +93,22 @@ public:
   /*!
   Equality operator
   */
-  [[nodiscard]] bool inline operator==(const Event_<T> &e) {
-    return (this->x == e.x) && (this->y == e.y) && (t == e.t) && (p == e.p);
+  [[nodiscard]] inline bool operator==(const Event_<T> &e) {
+    return (Event_<T>::x == e.x) && (Event_<T>::y == e.y) && (t == e.t) && (p == e.p);
   }
 
   /*!
-  Given an event \f$ e_2 = (t_2, x_2, y_2, p_2) \f$, this function returns \f$ \sqrt{(x-x_2)^2 + (y-y_2)^2} \f$.
+  Given an event \f$ e_2 = (t_2, x_2, y_2, p_2) \f$, returns \f$ \sqrt{(x-x_2)^2 + (y-y_2)^2} \f$.
   \brief Euclidean distance in spatial domain w.r.t. other event.
   \param e The other event, i.e., \f$ e_2 \f$
   \return Euclidean distance
   */
   [[nodiscard]] inline double spaceDistance(const Event_<T> &e) const {
-    return sqrt(pow(this->x - e.x, 2) + pow(this->y - e.y, 2));
+    return sqrt(pow(Event_<T>::x - e.x, 2) + pow(Event_<T>::y - e.y, 2));
   }
 
   /*!
-  Given an event \f$ e_2 = (t_2, x_2, y_2, p_2) \f$, this function returns \f$ t - t_2 \f$.
+  Given an event \f$ e_2 = (t_2, x_2, y_2, p_2) \f$, returns \f$ t - t_2 \f$.
   \brief Temporal difference w.r.t. other event.
   \param e The other event, i.e., \f$ e_2 \f$
   \return Temporal difference
@@ -190,7 +190,7 @@ public:
   \return True if empty
   */
   [[nodiscard]] inline bool empty() const {
-    return this->width && this->height && length;
+    return Size3_<T>::width && Size3_<T>::height && length;
   }
 
   /*!
@@ -199,7 +199,7 @@ public:
   \return Volume
   */
   [[nodiscard]] inline T volume() const {
-    return this->width * this->height * length;
+    return Size3_<T>::width * Size3_<T>::height * length;
   }
 };
 using Size3i = Size3_<int>;    /*!< Alias for Size3_ using int */
@@ -327,7 +327,7 @@ public:
   \return True if empty
   */
   [[nodiscard]] inline bool empty() const {
-    return this->width && this->height && length;
+    return Rect3_<T>::width && Rect3_<T>::height && length;
   }
 
   /*!
@@ -344,7 +344,7 @@ public:
   \return Size
   */
   [[nodiscard]] inline Size3_<T> size() const {
-    return Size3_<T>(this->width, this->height, length);
+    return Size3_<T>(Rect3_<T>::width, Rect3_<T>::height, length);
   }
 
   /*!
@@ -353,7 +353,7 @@ public:
   \return Volume
   */
   [[nodiscard]] inline T volume() const {
-    return this->width * this->height * length;
+    return Rect3_<T>::width * Rect3_<T>::height * length;
   }
 };
 using Rect3i = Rect3_<int>;    /*!< Alias for Rect3_ using int */
