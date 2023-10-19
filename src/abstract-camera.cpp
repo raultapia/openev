@@ -32,7 +32,7 @@ bool ev::AbstractCamera_::setRoi(const cv::Rect &roi) {
   cv::Rect full(0, 0, info.dvsSizeX, info.dvsSizeY);
 
   if(!roi.empty() && full.contains(roi.tl()) && full.contains(roi.br())) {
-    if(caerDavisROIConfigure(deviceHandler_, roi.tl().x, roi.tl().y, roi.br().x, roi.br().y)) {
+    if(caerDavisROIConfigure(deviceHandler_, roi.tl().x, roi.tl().y, roi.br().x - 1, roi.br().y - 1)) {
       roi_ = roi;
       return true;
     }
