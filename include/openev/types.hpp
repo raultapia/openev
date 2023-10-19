@@ -336,7 +336,7 @@ public:
   \return True if the event is inside
   */
   [[nodiscard]] inline bool contains(const Event_<T> &e) const {
-    return e.inside(*this) && e.t >= t && e.t <= t + length;
+    return cv::Rect_<T>::contains(e) && e.t >= t && e.t <= t + length;
   };
 
   /*!
