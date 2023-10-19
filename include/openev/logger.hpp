@@ -16,7 +16,7 @@ namespace ev::logger {
 \param message Message
 */
 inline void info(const char *message) {
-  std::cout << "INFO. openev: " << message << std::endl;
+  std::cout << "INFO. openev: " << message << '\n';
 }
 
 /*!
@@ -24,7 +24,7 @@ inline void info(const char *message) {
 \param message Message
 */
 inline void warning(const char *message) {
-  std::cout << "WARNING. openev: " << message << std::endl;
+  std::cout << "WARNING. openev: " << message << '\n';
 }
 
 /*!
