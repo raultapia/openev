@@ -138,7 +138,7 @@ public:
   \return Output stream
   */
   [[nodiscard]] friend std::ostream &operator<<(std::ostream &os, const Event_ &e) {
-    os << std::string(" (" + std::to_string(e.x) + "," + std::to_string(e.y) + ") " + std::to_string(e.t) + (e.p ? " [+]" : " [-]"));
+    os << std::string("(" + std::to_string(e.x) + "," + std::to_string(e.y) + ") " + std::to_string(e.t) + (e.p ? " [+]" : " [-]"));
     return os;
   }
 };
