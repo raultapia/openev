@@ -234,19 +234,7 @@ using Rect = Rect2;
 \endcode
 */
 template <typename T>
-class Rect2_ : public cv::Rect_<T> {
-  using cv::Rect_<T>::Rect_;
-
-public:
-  /*!
-  \brief Check if the rectangle contains an event.
-  \param e Event to check
-  \return True if the event is inside
-  */
-  [[nodiscard]] inline bool contains(const Event_<T> &e) const {
-    return e.inside(*this);
-  };
-};
+using Rect2_ = cv::Rect_<T>;
 using Rect2i = Rect2_<int>;    /*!< Alias for Rect2_ using int */
 using Rect2l = Rect2_<long>;   /*!< Alias for Rect2_ using long */
 using Rect2f = Rect2_<float>;  /*!< Alias for Rect2_ using float */
