@@ -162,9 +162,7 @@ using Size = Size2;
 \endcode
 */
 template <typename T>
-class Size2_ : public cv::Size_<T> {
-  using cv::Size_<T>::Size_;
-};
+using Size2_ = cv::Size_<T>;
 using Size2i = Size2_<int>;    /*!< Alias for Size2_ using int */
 using Size2l = Size2_<long>;   /*!< Alias for Size2_ using long */
 using Size2f = Size2_<float>;  /*!< Alias for Size2_ using float */
