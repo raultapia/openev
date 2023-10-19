@@ -33,16 +33,32 @@ using BasicDataType = typename BasicDataTypeTrait<T>::type;
   \private
   */
 template <typename T>
-class ColorHelper {
+class ValueHelper {
 public:
   using Value = std::conditional_t<cv::DataType<T>::channels == 1, double, cv::Vec<double, cv::DataType<T>::channels>>;
   using ValueArray = std::array<Value, 3>;
 
   static constexpr ValueArray initialize() {
-    if constexpr(cv::DataType<T>::channels == 1) {
-      return ValueArray{convert(cv::viz::Color::white()), convert(cv::viz::Color::black()), convert(cv::viz::Color::gray())};
+    if constexpr(std::is_floating_point_v<BasicDataType<T>>) {
+      return ValueArray{repeat(1.0), repeat(-1.0), repeat(0.0)};
     } else {
-      return ValueArray{convert(cv::viz::Color::blue()), convert(cv::viz::Color::red()), convert(cv::viz::Color::black())};
+      if constexpr(cv::DataType<T>::channels == 1) {
+        return ValueArray{convert(cv::viz::Color::white()), convert(cv::viz::Color::black()), convert(cv::viz::Color::gray())};
+      } else {
+        return ValueArray{convert(cv::viz::Color::blue()), convert(cv::viz::Color::red()), convert(cv::viz::Color::black())};
+      }
+    }
+  }
+
+  static constexpr Value repeat(const double &value) {
+    if constexpr(cv::DataType<T>::channels == 1) {
+      return value;
+    } else {
+      Value ret;
+      for(int i = 0; i < cv::DataType<T>::channels; i++) {
+        ret[i] = value;
+      }
+      return ret;
     }
   }
 
@@ -77,8 +93,8 @@ public:
 template <typename T>
 class AbstractRepresentation_ {
 public:
-  using Value = typename ColorHelper<T>::Value;           /*!< Value type */
-  using ValueArray = typename ColorHelper<T>::ValueArray; /*!< Array of value types */
+  using Value = typename ValueHelper<T>::Value;           /*!< Value type */
+  using ValueArray = typename ValueHelper<T>::ValueArray; /*!< Array of value types */
 
   /*!
   \brief Number of events integrated in the representation.

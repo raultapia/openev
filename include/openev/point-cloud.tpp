@@ -14,10 +14,10 @@ void PointCloud_<T>::visualizeOnce() {
 
   cloud[ev::POSITIVE].setRenderingProperty(cv::viz::POINT_SIZE, 4.0);
   cloud[ev::NEGATIVE].setRenderingProperty(cv::viz::POINT_SIZE, 4.0);
-  cloud[ev::POSITIVE].setColor(ColorHelper<T>::convert(this->values_[PointCloud_<T>::value::ON]));
-  cloud[ev::NEGATIVE].setColor(ColorHelper<T>::convert(this->values_[PointCloud_<T>::value::OFF]));
+  cloud[ev::POSITIVE].setColor(ValueHelper<T>::convert(this->values_[PointCloud_<T>::value::ON]));
+  cloud[ev::NEGATIVE].setColor(ValueHelper<T>::convert(this->values_[PointCloud_<T>::value::OFF]));
 
-  window_.setBackgroundColor(ColorHelper<T>::convert(this->values_[PointCloud_<T>::value::RESET]));
+  window_.setBackgroundColor(ValueHelper<T>::convert(this->values_[PointCloud_<T>::value::RESET]));
   window_.showWidget("Positive events", cloud[ev::POSITIVE]);
   window_.showWidget("Negative events", cloud[ev::NEGATIVE]);
   window_.showWidget("Coordinate System", coord_sys_widget);
