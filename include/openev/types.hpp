@@ -98,6 +98,20 @@ public:
   }
 
   /*!
+  cv::Point cast operator
+  */
+  [[nodiscard]] operator cv::Point_<T>() const {
+    return {Event_<T>::x, Event_<T>::y};
+  }
+
+  /*!
+  Get coordinates as cv::Point
+  */
+  [[nodiscard]] inline cv::Point_<T> pt() const {
+    return {Event_<T>::x, Event_<T>::y};
+  }
+
+  /*!
   Given an event \f$ e_2 = (t_2, x_2, y_2, p_2) \f$, returns \f$ \sqrt{(x-x_2)^2 + (y-y_2)^2} \f$.
   \brief Euclidean distance in spatial domain w.r.t. other event.
   \param e The other event, i.e., \f$ e_2 \f$
