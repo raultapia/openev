@@ -40,7 +40,7 @@ template <typename T>
 bool AbstractRepresentation_<T>::insert(EventQueue &queue) {
   bool ret = true;
   while(!queue.empty()) {
-    ret = ret && insert(queue.front());
+    ret = insert(queue.front()) && ret;
     queue.pop();
   }
   return ret;
