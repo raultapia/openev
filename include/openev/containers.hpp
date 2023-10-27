@@ -39,7 +39,7 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return (std::vector<Event_<T>>::back()).t - (std::vector<Event_<T>>::front()).t;
+    return (std::array<Event_<T>, N>::back()).t - (std::array<Event_<T>, N>::front()).t;
   }
 };
 template <std::size_t N>
