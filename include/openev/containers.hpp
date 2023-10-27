@@ -41,6 +41,14 @@ public:
   [[nodiscard]] inline double duration() const {
     return (std::array<Event_<T>, N>::back()).t - (std::array<Event_<T>, N>::front()).t;
   }
+
+  /*!
+  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event in the array.
+  \return Event rate
+  */
+  [[nodiscard]] inline double rate() const {
+    return std::array<Event_<T>, N>::size() / EventArray_<T, N>::duration();
+  }
 };
 template <std::size_t N>
 using EventArrayi = EventArray_<int, N>; /*!< Alias for EventArray_ using int */
@@ -103,6 +111,14 @@ public:
   [[nodiscard]] inline double duration() const {
     return (std::vector<Event_<T>>::back()).t - (std::vector<Event_<T>>::front()).t;
   }
+
+  /*!
+  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event in the vector.
+  \return Event rate
+  */
+  [[nodiscard]] inline double rate() const {
+    return std::vector<Event_<T>>::size() / EventVector_<T>::duration();
+  }
 };
 using EventVectori = EventVector_<int>;    /*!< Alias for EventVector_ using int */
 using EventVectorl = EventVector_<long>;   /*!< Alias for EventVector_ using long */
@@ -160,6 +176,14 @@ public:
   */
   [[nodiscard]] inline double duration() const {
     return (std::queue<Event_<T>>::back()).t - (std::queue<Event_<T>>::front()).t;
+  }
+
+  /*!
+  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event in the queue.
+  \return Event rate
+  */
+  [[nodiscard]] inline double rate() const {
+    return std::queue<Event_<T>>::size() / EventQueue_<T>::duration();
   }
 };
 using EventQueuei = EventQueue_<int>;    /*!< Alias for EventQueue_ using int */
