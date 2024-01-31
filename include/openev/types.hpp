@@ -21,6 +21,11 @@ namespace ev {
 constexpr bool POSITIVE = true;  /*!< Positive polarity */
 constexpr bool NEGATIVE = false; /*!< Negative polarity */
 
+enum class Stereo : char {
+  LEFT = 'L',
+  RIGHT = 'R'
+};
+
 enum DistanceTypes : uint8_t {
   DISTANCE_NORM_INF = cv::NORM_INF,
   DISTANCE_NORM_L1 = cv::NORM_L1,
@@ -194,6 +199,52 @@ using Eventl = Event_<long>;   /*!< Alias for Event_ using long */
 using Eventf = Event_<float>;  /*!< Alias for Event_ using float */
 using Eventd = Event_<double>; /*!< Alias for Event_ using double */
 using Event = Eventi;          /*!< Alias for Event_ using int */
+
+/*!
+\brief This class extends Event to include: weigth, depth, and stereo.
+
+Analogously to OpenCV library, the following aliases are defined for convenience:
+\code{.cpp}
+using AugmentedEventi = AugmentedEvent_<int>;
+using AugmentedEventl = AugmentedEvent_<long>;
+using AugmentedEventf = AugmentedEvent_<float>;
+using AugmentedEventd = AugmentedEvent_<double>;
+using AugmentedEvent = AugmentedEventi;
+\endcode
+*/
+template <typename T>
+class AugmentedEvent_ : public Event_<T> {
+  using Event_<T>::Event_;
+
+public:
+  double weight; /*!< Event weight */
+  double depth;  /*!< Event depth */
+  Stereo stereo; /*!< Left/right */
+
+  /*!
+  Default constructor.
+  */
+  AugmentedEvent_() : Event_<T>(), weight{1}, depth{0}, stereo{Stereo::LEFT} {};
+
+  /*!
+  \brief Overload of << operator.
+  \param os Output stream
+  \param e Event to print
+  \return Output stream
+  */
+  [[nodiscard]] friend std::ostream &operator<<(std::ostream &os, const AugmentedEvent_<T> &e) {
+    os << std::string("(" + std::to_string(e.x) + "," + std::to_string(e.y) + ") " + std::to_string(e.t) + (e.p ? " [+]" : " [-]"));
+    os << " w=" + std::to_string(e.weight);
+    os << " d=" + std::to_string(e.depth);
+    os << " s=" + (e.stereo == Stereo::LEFT ? std::string("LEFT") : std::string("RIGHT"));
+    return os;
+  }
+};
+using AugmentedEventi = AugmentedEvent_<int>;    /*!< Alias for AugmentedEvent_ using int */
+using AugmentedEventl = AugmentedEvent_<long>;   /*!< Alias for AugmentedEvent_ using long */
+using AugmentedEventf = AugmentedEvent_<float>;  /*!< Alias for AugmentedEvent_ using float */
+using AugmentedEventd = AugmentedEvent_<double>; /*!< Alias for AugmentedEvent_ using double */
+using AugmentedEvent = AugmentedEventi;          /*!< Alias for AugmentedEvent_ using int */
 
 /*!
 \brief This class extends cv::Size_<T> for event data. For more information, please refer <a href="https://docs.opencv.org/master/d6/d50/classcv_1_1Size__.html">here</a>.
