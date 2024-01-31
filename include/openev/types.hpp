@@ -364,21 +364,7 @@ public:
   /*!
   Default constructor.
   */
-  Rect3_() : cv::Rect_<T>(){};
-
-  /*! \cond INTERNAL */
-  ~Rect3_() = default;
-  /*! \endcond */
-
-  /*!
-  Copy constructor.
-  */
-  Rect3_(const Rect3_<T> &) = default;
-
-  /*!
-  Move constructor.
-  */
-  Rect3_(Rect3_<T> &&) noexcept = default;
+  Rect3_() : cv::Rect_<T>(), t{0}, length{0} {};
 
   /*!
   Contructor using x, y, t, width, height, and length.
@@ -412,16 +398,6 @@ public:
   \param pt2 Farthest point
   */
   Rect3_(const cv::Point3_<T> &pt1, const cv::Point3_<T> &pt2) : cv::Rect_<T>(cv::Point_<T>(pt1.x, pt1.y), cv::Size_<T>(pt2.x - pt1.x, pt2.y - pt1.y)), t{pt1.z}, length{pt2.z - pt1.z} {};
-
-  /*!
-  Copy assignment operator
-  */
-  Rect3_<T> &operator=(const Rect3_<T> &) = default;
-
-  /*!
-  Move assignment operator
-  */
-  Rect3_<T> &operator=(Rect3_<T> &&) noexcept = default;
 
   /*!
   \brief Check if empty.
