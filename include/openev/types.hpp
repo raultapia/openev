@@ -21,6 +21,20 @@ namespace ev {
 constexpr bool POSITIVE = true;  /*!< Positive polarity */
 constexpr bool NEGATIVE = false; /*!< Negative polarity */
 
+enum DistanceTypes : uint8_t {
+  DISTANCE_NORM_INF = cv::NORM_INF,
+  DISTANCE_NORM_L1 = cv::NORM_L1,
+  DISTANCE_NORM_L2 = cv::NORM_L2,
+  DISTANCE_NORM_L2SQR = cv::NORM_L2SQR,
+  DISTANCE_NORM_MANHATTAN = DISTANCE_NORM_L1,
+  DISTANCE_NORM_EUCLIDEAN = DISTANCE_NORM_L2,
+  DISTANCE_FLAG_SPATIAL = 0b00010000,
+  DISTANCE_FLAG_TEMPORAL = 0b00100000,
+  DISTANCE_FLAG_SPATIOTEMPORAL = 0b01000000,
+  DISTANCE_FLAG_3D = DISTANCE_FLAG_SPATIOTEMPORAL,
+  DISTANCE_FLAG_2D = DISTANCE_FLAG_SPATIAL,
+};
+
 /*!
 \brief This class extends cv::Point_<T> for event data. For more information, please refer <a href="https://docs.opencv.org/master/db/d4e/classcv_1_1Point__.html">here</a>.
 
@@ -129,23 +143,39 @@ public:
   }
 
   /*!
-  Given an event \f$ e_2 = (t_2, x_2, y_2, p_2) \f$, returns \f$ \sqrt{(x-x_2)^2 + (y-y_2)^2} \f$.
-  \brief Euclidean distance in spatial domain w.r.t. other event.
-  \param e The other event, i.e., \f$ e_2 \f$
-  \return Euclidean distance
+  Compute distance between events.
+  \param e Other event
+  \param type Distance type
+  \return Distance
+  \see Distance
   */
-  [[nodiscard]] inline double spaceDistance(const Event_<T> &e) const {
-    return sqrt(pow(Event_<T>::x - e.x, 2) + pow(Event_<T>::y - e.y, 2));
+  [[nodiscard]] inline double distance(const Event_<T> &e, const uint8_t type = DISTANCE_NORM_L2 | DISTANCE_FLAG_SPATIAL) const {
+    if(static_cast<bool>(type & DISTANCE_FLAG_SPATIOTEMPORAL)) {
+      return cv::norm(cv::Matx<T, 3, 1>(Event_<T>::x - e.x, Event_<T>::y - e.y, Event_<T>::t - e.t), type & 0x0F);
+    }
+    if(static_cast<bool>(type & DISTANCE_FLAG_SPATIAL) || !static_cast<bool>(type & 0xF0)) {
+      return cv::norm(cv::Matx<T, 2, 1>(Event_<T>::x - e.x, Event_<T>::y - e.y), type & 0x0F);
+    }
+    if(static_cast<bool>(type & DISTANCE_FLAG_TEMPORAL)) {
+      return Event_<T>::t - e.t;
+    }
+    logger::error("Bad distance option");
+    return 0.0;
   }
 
   /*!
-  Given an event \f$ e_2 = (t_2, x_2, y_2, p_2) \f$, returns \f$ t - t_2 \f$.
-  \brief Temporal difference w.r.t. other event.
-  \param e The other event, i.e., \f$ e_2 \f$
-  \return Temporal difference
+  Undistort event using undistortion map
+  \param map Undistortion map
+  \return True if the new coordinates lie on the frame
+  \see UndistortMap
   */
-  [[nodiscard]] inline double timeDifference(const Event_<T> &e) const {
-    return t - e.t;
+  inline bool undistort(const UndistortMap &map) {
+    if(cv::Point_<T>::inside(map.frame)) {
+      Event_<T>::operator=(static_cast<cv::Point_<T>>(map[static_cast<int>(cv::Point_<T>::y)][static_cast<int>(cv::Point_<T>::x)]));
+      return cv::Point_<T>::inside(map.frame);
+    }
+    logger::error("Bad undistortion map");
+    return false;
   }
 
   /*!
