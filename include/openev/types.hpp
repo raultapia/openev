@@ -441,6 +441,68 @@ using Rect3f = Rect3_<float>;  /*!< Alias for Rect3_ using float */
 using Rect3d = Rect3_<double>; /*!< Alias for Rect3_ using double */
 using Rect3 = Rect3i;          /*!< Alias for Rect3_ using int */
 
+/*!
+\brief This class defines a circle given its center and radius.
+
+Analogously to OpenCV library, the following aliases are defined for convenience:
+\code{.cpp}
+using Circi = Circ_<int>;
+using Circl = Circ_<long>;
+using Circf = Circ_<float>;
+using Circd = Circ_<double>;
+using Circ = Circi;
+\endcode
+*/
+template <typename T>
+struct Circ_ {
+  cv::Point_<T> center;
+  T radius;
+
+  /*!
+  Default constructor.
+  */
+  Circ_() : center{0, 0}, radius{0} {};
+
+  /*!
+  Constructor using center and radius.
+  \param center Center
+  \param radius Radius
+  */
+  Circ_(const cv::Point_<T> center, const T radius) : center{center}, radius{radius} {}
+
+  /*!
+  \brief Check if empty.
+  \return True if empty
+  */
+  [[nodiscard]] inline bool empty() const {
+    return !radius;
+  }
+
+  /*!
+  \brief Check if the circle contains an event.
+  \param e Event to check
+  \return True if the event is inside
+  \warning This function assumes that the boundary of the circle is inclusive.
+  */
+  template <typename Te>
+  [[nodiscard]] inline bool contains(const Event_<Te> &e) const {
+    return pow(center.x - e.x, 2) + pow(center.y - e.y, 2) <= radius * radius;
+  }
+
+  [[nodiscard]] inline cv::Size size() const {
+    return {radius, radius};
+  }
+
+  [[nodiscard]] inline double area() const {
+    return M_PI * radius * radius;
+  }
+};
+using Circi = Circ_<int>;    /*!< Alias for Circ_ using int */
+using Circl = Circ_<long>;   /*!< Alias for Circ_ using long */
+using Circf = Circ_<float>;  /*!< Alias for Circ_ using float */
+using Circd = Circ_<double>; /*!< Alias for Circ_ using double */
+using Circ = Circi;          /*!< Alias for Circ_ using int */
+
 } // namespace ev
 
 #endif // OPENEV_TYPES_HPP
