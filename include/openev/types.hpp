@@ -404,17 +404,19 @@ public:
   \return True if empty
   */
   [[nodiscard]] inline bool empty() const {
-    return Rect3_<T>::width && Rect3_<T>::height && length;
+    return !(Rect3_<T>::width && Rect3_<T>::height && length);
   }
 
   /*!
   \brief Check if the rectangular cuboid contains an event.
   \param e Event to check
   \return True if the event is inside
+  \warning OpenCV typically assumes that the top and left boundary of the rectangle are inclusive, while the right and bottom are not.
   */
-  [[nodiscard]] inline bool contains(const Event_<T> &e) const {
-    return cv::Rect_<T>::contains(e) && e.t >= t && e.t <= t + length;
-  };
+  template <typename Te>
+  [[nodiscard]] inline bool contains(const Event_<Te> &e) const {
+    return cv::Rect_<T>::contains(e) && e.t >= t && e.t < t + length;
+  }
 
   /*!
   \brief Size of the rectangular cuboid.
