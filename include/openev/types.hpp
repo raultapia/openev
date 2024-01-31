@@ -303,7 +303,7 @@ public:
   \return True if empty
   */
   [[nodiscard]] inline bool empty() const {
-    return Size3_<T>::width && Size3_<T>::height && length;
+    return !(cv::Size_<T>::width || cv::Size_<T>::height || length);
   }
 
   /*!
@@ -312,7 +312,7 @@ public:
   \return Volume
   */
   [[nodiscard]] inline T volume() const {
-    return Size3_<T>::width * Size3_<T>::height * length;
+    return cv::Size_<T>::width * cv::Size_<T>::height * length;
   }
 };
 using Size3i = Size3_<int>;    /*!< Alias for Size3_ using int */
