@@ -6,7 +6,16 @@
 #ifndef OPENEV_TYPES_HPP
 #define OPENEV_TYPES_HPP
 
-#include <opencv2/core/core.hpp>
+#include "openev/logger.hpp"
+#include "openev/undistortion.hpp"
+#include <cmath>
+#include <cstdint>
+#include <iosfwd>
+#include <opencv2/core/base.hpp>
+#include <opencv2/core/matx.hpp>
+#include <opencv2/core/types.hpp>
+#include <string>
+#include <vector>
 
 namespace ev {
 constexpr bool POSITIVE = true;  /*!< Positive polarity */
