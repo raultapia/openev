@@ -282,10 +282,13 @@ using Size3 = Size3i;
 */
 template <typename T>
 class Size3_ : public cv::Size_<T> {
-  using cv::Size_<T>::Size_;
-
 public:
   T length; /*!< Temporal dimension */
+
+  /*!
+  Default constructor.
+  */
+  Size3_() : cv::Size_<T>(), length{0} {};
 
   /*!
   Contructor using width, height, and length.
