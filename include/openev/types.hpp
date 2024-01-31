@@ -94,6 +94,15 @@ public:
   Event_<T> &operator=(const Event_<T> &) = default;
 
   /*!
+  Copy assignment operator
+  */
+  Event_<T> &operator=(const cv::Point_<T> &p) {
+    Event_<T>::x = p.x;
+    Event_<T>::y = p.y;
+    return *this;
+  }
+
+  /*!
   Move assignment operator
   */
   Event_<T> &operator=(Event_<T> &&) noexcept = default;
@@ -106,16 +115,16 @@ public:
   }
 
   /*!
-  cv::Point cast operator
+  Equality operator
   */
-  [[nodiscard]] operator cv::Point_<T>() const {
-    return {Event_<T>::x, Event_<T>::y};
+  [[nodiscard]] inline bool operator==(const cv::Point_<T> &pt) {
+    return (Event_<T>::x == pt.x) && (Event_<T>::y == pt.y);
   }
 
   /*!
-  Get coordinates as cv::Point
+  cv::Point cast operator
   */
-  [[nodiscard]] inline cv::Point_<T> pt() const {
+  [[nodiscard]] inline explicit operator cv::Point_<T>() const {
     return {Event_<T>::x, Event_<T>::y};
   }
 
