@@ -129,14 +129,14 @@ public:
   /*!
   Equality operator
   */
-  [[nodiscard]] inline bool operator==(const Event_<T> &e) {
+  [[nodiscard]] inline bool operator==(const Event_<T> &e) const {
     return (Event_<T>::x == e.x) && (Event_<T>::y == e.y) && (t == e.t) && (p == e.p);
   }
 
   /*!
   Equality operator
   */
-  [[nodiscard]] inline bool operator==(const cv::Point_<T> &pt) {
+  [[nodiscard]] inline bool operator==(const cv::Point_<T> &pt) const {
     return (Event_<T>::x == pt.x) && (Event_<T>::y == pt.y);
   }
 
