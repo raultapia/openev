@@ -141,6 +141,13 @@ public:
   }
 
   /*!
+  Comparison operator
+  */
+  [[nodiscard]] inline bool operator<(const Event_<T> &e) const {
+    return Event_<T>::t < e.t;
+  }
+
+  /*!
   cv::Point cast operator
   */
   [[nodiscard]] inline explicit operator cv::Point_<T>() const {
