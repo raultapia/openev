@@ -224,14 +224,9 @@ class AugmentedEvent_ : public Event_<T> {
   using Event_<T>::Event_;
 
 public:
-  double weight; /*!< Event weight */
-  double depth;  /*!< Event depth */
-  Stereo stereo; /*!< Left/right */
-
-  /*!
-  Default constructor.
-  */
-  AugmentedEvent_() : Event_<T>(), weight{1}, depth{0}, stereo{Stereo::LEFT} {};
+  double weight{1};            /*!< Event weight */
+  double depth{0};             /*!< Event depth */
+  Stereo stereo{Stereo::LEFT}; /*!< Left/right */
 
   /*!
   \brief Overload of << operator.
