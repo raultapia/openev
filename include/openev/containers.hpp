@@ -6,32 +6,34 @@
 #ifndef OPENEV_CONTAINERS_HPP
 #define OPENEV_CONTAINERS_HPP
 
-#include "openev/logger.hpp"
 #include "openev/types.hpp"
-#include <opencv2/core/core.hpp>
-#include <opencv2/imgproc.hpp>
+#include <array>
+#include <cstddef>
 #include <queue>
+#include <set>
+#include <utility>
+#include <vector>
 
 namespace ev {
 /*! \cond INTERNAL */
 template <typename T, std::size_t N>
-class EventArray_;
+class Array_;
 
 template <typename T>
-class EventVector_;
+class Vector_;
 
 template <typename T>
-class EventQueue_;
+class Queue_;
 /*! \endcond */
 
 /*!
-\brief This class extends std::array<Event, N> to implement event arrays. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/array">here</a>.
+\brief This class extends std::array to implement event arrays. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/array">here</a>.
 
 Event arrays inherit all the properties from standard C++ arrays. Events in the array are stored contiguously.
 */
 template <typename T, std::size_t N>
-class EventArray_ : public std::array<Event_<T>, N> {
-  using std::array<Event_<T>, N>::array;
+class Array_ : public std::array<T, N> {
+  using std::array<T, N>::array;
 
 public:
   /*!
@@ -39,7 +41,7 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return (std::array<Event_<T>, N>::back()).t - (std::array<Event_<T>, N>::front()).t;
+    return (std::array<T, N>::back()).t - (std::array<T, N>::front()).t;
   }
 
   /*!
@@ -47,36 +49,46 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
-    return std::array<Event_<T>, N>::size() / EventArray_<T, N>::duration();
+    return std::array<T, N>::size() / duration();
   }
 };
 template <std::size_t N>
-using EventArrayi = EventArray_<int, N>; /*!< Alias for EventArray_ using int */
+using Arrayi = Array_<Eventi, N>; /*!< Alias for Array_ using Eventi */
 template <std::size_t N>
-using EventArrayl = EventArray_<long, N>; /*!< Alias for EventArray_ using long */
+using Arrayl = Array_<Eventl, N>; /*!< Alias for Array_ using Eventl */
 template <std::size_t N>
-using EventArrayf = EventArray_<float, N>; /*!< Alias for EventArray_ using float */
+using Arrayf = Array_<Eventf, N>; /*!< Alias for Array_ using Eventf */
 template <std::size_t N>
-using EventArrayd = EventArray_<double, N>; /*!< Alias for EventArray_ using double */
+using Arrayd = Array_<Eventd, N>; /*!< Alias for Array_ using Eventd */
 template <std::size_t N>
-using EventArray = EventArrayi<N>; /*!< Alias for EventArray_ using int */
+using Array = Array_<Event, N>; /*!< Alias for Array_ using Event */
+template <std::size_t N>
+using AugmentedArrayi = Array_<AugmentedEventi, N>; /*!< Alias for augmented Array_ using AugmentedEventi */
+template <std::size_t N>
+using AugmentedArrayl = Array_<AugmentedEventl, N>; /*!< Alias for augmented Array_ using AugmentedEventl */
+template <std::size_t N>
+using AugmentedArrayf = Array_<AugmentedEventf, N>; /*!< Alias for augmented Array_ using AugmentedEventf */
+template <std::size_t N>
+using AugmentedArrayd = Array_<AugmentedEventd, N>; /*!< Alias for augmented Array_ using AugmentedEventd */
+template <std::size_t N>
+using AugmentedArray = Array_<AugmentedEvent, N>; /*!< Alias for augmented Array_ using AugmentedEvent */
 
 /*!
-\brief This class extends std::vector<Event> to implement event vectors. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/vector">here</a>.
+\brief This class extends std::vector to implement event vectors. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/vector">here</a>.
 
 Event vectors inherit all the properties from standard C++ vectors. Events in the vector are stored contiguously.
 */
 template <typename T>
-class EventVector_ : public std::vector<Event_<T>> {
-  using std::vector<Event_<T>>::vector;
+class Vector_ : public std::vector<T> {
+  using std::vector<T>::vector;
 
 public:
   /*!
   \brief Push back an event.
   \param e Event to push back
   */
-  inline void push_back(const Event_<T> &e) {
-    std::vector<Event_<T>>::push_back(e);
+  inline void push_back(const T &e) {
+    std::vector<T>::push_back(e);
   }
 
   /*!
@@ -85,7 +97,7 @@ public:
   */
   template <typename... Args>
   inline void emplace_back(Args &&...args) {
-    std::vector<Event_<T>>::emplace_back(std::forward<Args>(args)...);
+    std::vector<T>::emplace_back(std::forward<Args>(args)...);
   }
 
   /*!
@@ -93,23 +105,23 @@ public:
   \param array Event array to push back
   */
   template <std::size_t N>
-  inline void push_back(const EventArray_<T, N> &array) {
-    EventVector_<T>::reserve(EventVector_<T>::size() + array.size());
-    EventVector_<T>::insert(EventVector_<T>::end(), array.begin(), array.end());
+  inline void push_back(const Array_<T, N> &array) {
+    std::vector<T>::reserve(std::vector<T>::size() + array.size());
+    std::vector<T>::insert(std::vector<T>::end(), array.begin(), array.end());
   }
 
   /*!
   \brief Push back elements from a queue of events.
   \param queue Event queue to push back
   */
-  inline void push_back(EventQueue_<T> &queue);
+  inline void push_back(Queue_<T> &queue);
 
   /*!
   \brief Time difference between the last and the first event in the vector.
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return (std::vector<Event_<T>>::back()).t - (std::vector<Event_<T>>::front()).t;
+    return (std::vector<T>::back()).t - (std::vector<T>::front()).t;
   }
 
   /*!
@@ -117,31 +129,36 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
-    return std::vector<Event_<T>>::size() / EventVector_<T>::duration();
+    return std::vector<T>::size() / duration();
   }
 };
-using EventVectori = EventVector_<int>;    /*!< Alias for EventVector_ using int */
-using EventVectorl = EventVector_<long>;   /*!< Alias for EventVector_ using long */
-using EventVectorf = EventVector_<float>;  /*!< Alias for EventVector_ using float */
-using EventVectord = EventVector_<double>; /*!< Alias for EventVector_ using double */
-using EventVector = EventVectori;          /*!< Alias for EventVector_ using int */
+using Vectori = Vector_<Eventi>;                   /*!< Alias for Vector_ using Eventi */
+using Vectorl = Vector_<Eventl>;                   /*!< Alias for Vector_ using Eventl */
+using Vectorf = Vector_<Eventf>;                   /*!< Alias for Vector_ using Eventf */
+using Vectord = Vector_<Eventd>;                   /*!< Alias for Vector_ using Eventd */
+using Vector = Vector_<Event>;                     /*!< Alias for Vector_ using Event */
+using AugmentedVectori = Vector_<AugmentedEventi>; /*!< Alias for augmented Vector_ using AugmentedEventi */
+using AugmentedVectorl = Vector_<AugmentedEventl>; /*!< Alias for augmented Vector_ using AugmentedEventl */
+using AugmentedVectorf = Vector_<AugmentedEventf>; /*!< Alias for augmented Vector_ using AugmentedEventf */
+using AugmentedVectord = Vector_<AugmentedEventd>; /*!< Alias for augmented Vector_ using AugmentedEventd */
+using AugmentedVector = Vector_<AugmentedEvent>;   /*!< Alias for augmented Vector_ using AugmentedEvent */
 
 /*!
-\brief This class extends std::queue<Event> to implement event queues. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/queue">here</a>.
+\brief This class extends std::queue to implement event queues. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/queue">here</a>.
 
 Event queues inherit all the properties from standard C++ queues. Events queues are FIFO data structures not intended to be directly iterated.
 */
 template <typename T>
-class EventQueue_ : public std::queue<Event_<T>> {
-  using std::queue<Event_<T>>::queue;
+class Queue_ : public std::queue<T> {
+  using std::queue<T>::queue;
 
 public:
   /*!
   \brief Push an event.
   \param e Event to push
   */
-  inline void push(const Event_<T> &e) {
-    std::queue<Event_<T>>::push(e);
+  inline void push(const T &e) {
+    std::queue<T>::push(e);
   }
 
   /*!
@@ -150,7 +167,7 @@ public:
   */
   template <typename... Args>
   inline void emplace(Args &&...args) {
-    std::queue<Event_<T>>::emplace(std::forward<Args>(args)...);
+    std::queue<T>::emplace(std::forward<Args>(args)...);
   }
 
   /*!
@@ -158,9 +175,9 @@ public:
   \param array Event array to push
   */
   template <std::size_t N>
-  inline void push(const EventArray_<T, N> &array) {
-    for(const Event_<T> &e : array) {
-      std::queue<Event_<T>>::emplace(std::move(e));
+  inline void push(const Array_<T, N> &array) {
+    for(const T &e : array) {
+      std::queue<T>::emplace(std::move(e));
     }
   }
 
@@ -168,14 +185,14 @@ public:
   \brief Push elements from a vector of events.
   \param vector Event vector to push
   */
-  inline void push(const EventVector_<T> &vector);
+  inline void push(const Vector_<T> &vector);
 
   /*!
   \brief Time difference between the last and the first event in the queue.
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return (std::queue<Event_<T>>::back()).t - (std::queue<Event_<T>>::front()).t;
+    return (std::queue<T>::back()).t - (std::queue<T>::front()).t;
   }
 
   /*!
@@ -183,28 +200,33 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
-    return std::queue<Event_<T>>::size() / EventQueue_<T>::duration();
+    return std::queue<T>::size() / duration();
   }
 };
-using EventQueuei = EventQueue_<int>;    /*!< Alias for EventQueue_ using int */
-using EventQueuel = EventQueue_<long>;   /*!< Alias for EventQueue_ using long */
-using EventQueuef = EventQueue_<float>;  /*!< Alias for EventQueue_ using float */
-using EventQueued = EventQueue_<double>; /*!< Alias for EventQueue_ using double */
-using EventQueue = EventQueuei;          /*!< Alias for EventQueue_ using int */
+using Queuei = Queue_<Eventi>;                   /*!< Alias for Queue_ using Eventi */
+using Queuel = Queue_<Eventl>;                   /*!< Alias for Queue_ using Eventl */
+using Queuef = Queue_<Eventf>;                   /*!< Alias for Queue_ using Eventf */
+using Queued = Queue_<Eventd>;                   /*!< Alias for Queue_ using Eventd */
+using Queue = Queue_<Event>;                     /*!< Alias for Queue_ using Event */
+using AugmentedQueuei = Queue_<AugmentedEventi>; /*!< Alias for augmented Queue_ using AugmentedEventi */
+using AugmentedQueuel = Queue_<AugmentedEventl>; /*!< Alias for augmented Queue_ using AugmentedEventl */
+using AugmentedQueuef = Queue_<AugmentedEventf>; /*!< Alias for augmented Queue_ using AugmentedEventf */
+using AugmentedQueued = Queue_<AugmentedEventd>; /*!< Alias for augmented Queue_ using AugmentedEventd */
+using AugmentedQueue = Queue_<AugmentedEvent>;   /*!< Alias for augmented Queue_ using AugmentedEvent */
 
 template <typename T>
-inline void EventVector_<T>::push_back(EventQueue_<T> &queue) {
-  reserve(std::vector<Event_<T>>::size() + queue.size());
+inline void Vector_<T>::push_back(Queue_<T> &queue) {
+  std::vector<T>::reserve(std::vector<T>::size() + queue.size());
   while(!queue.empty()) {
-    std::vector<Event_<T>>::emplace_back(std::move(queue.front()));
+    std::vector<T>::emplace_back(std::move(queue.front()));
     queue.pop();
   }
 }
 
 template <typename T>
-inline void EventQueue_<T>::push(const EventVector_<T> &vector) {
-  for(const Event_<T> &e : vector) {
-    std::queue<Event_<T>>::emplace(std::move(e));
+inline void Queue_<T>::push(const Vector_<T> &vector) {
+  for(const T &e : vector) {
+    std::queue<T>::emplace(std::move(e));
   }
 }
 

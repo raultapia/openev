@@ -133,21 +133,21 @@ public:
   \return True if all the events have been inserted
   */
   template <std::size_t N>
-  bool insert(const EventArray<N> &array);
+  bool insert(const Array<N> &array);
 
   /*!
   \brief Insert a vector of events in the representation.
   \param vector Event vector to insert
   \return True if all the events have been inserted
   */
-  bool insert(const EventVector &vector);
+  bool insert(const Vector &vector);
 
   /*!
   \brief Insert a queue of events in the representation.
   \param queue Event queue to insert
   \return True if all the events have been inserted
   */
-  bool insert(EventQueue &queue);
+  bool insert(Queue &queue);
 
   /*!
   \brief Set time offset.

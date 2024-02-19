@@ -27,17 +27,17 @@ bool AbstractRepresentation_<T>::insert(const Event &e) {
 
 template <typename T>
 template <std::size_t N>
-bool AbstractRepresentation_<T>::insert(const EventArray<N> &array) {
+bool AbstractRepresentation_<T>::insert(const Array<N> &array) {
   return std::all_of(array.begin(), array.end(), [this](const Event &e) { return this->insert(e); });
 }
 
 template <typename T>
-bool AbstractRepresentation_<T>::insert(const EventVector &vector) {
+bool AbstractRepresentation_<T>::insert(const Vector &vector) {
   return std::all_of(vector.begin(), vector.end(), [this](const Event &e) { return this->insert(e); });
 }
 
 template <typename T>
-bool AbstractRepresentation_<T>::insert(EventQueue &queue) {
+bool AbstractRepresentation_<T>::insert(Queue &queue) {
   bool ret = true;
   while(!queue.empty()) {
     ret = insert(queue.front()) && ret;
