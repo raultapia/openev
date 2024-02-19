@@ -12,5 +12,6 @@
 #include "openev/reader.hpp"
 #include "openev/representation.hpp"
 #include "openev/types.hpp"
+#include "openev/undistortion.hpp"
 
 #endif // OPENEV_OPENEV_HPP

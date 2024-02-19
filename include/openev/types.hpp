@@ -182,12 +182,7 @@ public:
   \see UndistortMap
   */
   inline bool undistort(const UndistortMap &map) {
-    if(cv::Point_<T>::inside(map.frame)) {
-      Event_<T>::operator=(static_cast<cv::Point_<T>>(map[static_cast<int>(cv::Point_<T>::y)][static_cast<int>(cv::Point_<T>::x)]));
-      return cv::Point_<T>::inside(map.frame);
-    }
-    logger::error("Bad undistortion map");
-    return false;
+    return map(*this);
   }
 
   /*!
