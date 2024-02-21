@@ -26,76 +26,74 @@ constexpr bool REPRESENTATION_OPTION_CHECK(const uint8_t a, const ev::Representa
 
 /*! \cond INTERNAL */
 template <typename T, typename = void>
-struct BasicDataTypeTrait {
+struct DataTypeTrait {
   using type = T;
 };
 
 template <typename T>
-struct BasicDataTypeTrait<T, std::void_t<typename T::value_type>> {
+struct DataTypeTrait<T, std::void_t<typename T::value_type>> {
   using type = typename T::value_type;
 };
 
 template <typename T>
-using BasicDataType = typename BasicDataTypeTrait<T>::type;
-/*! \endcond */
-
-/*!
-  \private
-  */
-template <typename T>
-class ValueHelper {
+class TypeHelper {
 public:
-  using Value = std::conditional_t<cv::DataType<T>::channels == 1, double, cv::Vec<double, cv::DataType<T>::channels>>;
-  using ValueArray = std::array<Value, 3>;
+  using Type = T;
+  using TypeArray = std::array<T, 3>;
+  using PrimitiveDataType = typename DataTypeTrait<T>::type;
+  using FloatingPointType = typename std::conditional<std::is_same<T, double>::value, double, float>::type;
+  using ChannelType = typename cv::Mat_<PrimitiveDataType>;
+  static constexpr int NumChannels = cv::DataType<T>::channels;
 
-  static constexpr ValueArray initialize() {
-    if constexpr(std::is_floating_point_v<BasicDataType<T>>) {
-      return ValueArray{repeat(1.0), repeat(-1.0), repeat(0.0)};
+  static constexpr TypeArray initialize() {
+    if constexpr(std::is_floating_point_v<PrimitiveDataType>) {
+      return TypeArray{repeat(1.0), repeat(-1.0), repeat(0.0)};
     } else {
-      if constexpr(cv::DataType<T>::channels == 1) {
-        return ValueArray{convert(cv::viz::Color::white()), convert(cv::viz::Color::black()), convert(cv::viz::Color::gray())};
+      if constexpr(NumChannels == 1) {
+        return TypeArray{convert(cv::viz::Color::white()), convert(cv::viz::Color::black()), convert(cv::viz::Color::gray())};
       } else {
-        return ValueArray{convert(cv::viz::Color::blue()), convert(cv::viz::Color::red()), convert(cv::viz::Color::black())};
+        return TypeArray{convert(cv::viz::Color::blue()), convert(cv::viz::Color::red()), convert(cv::viz::Color::black())};
       }
     }
   }
 
-  static constexpr Value repeat(const double &value) {
-    if constexpr(cv::DataType<T>::channels == 1) {
-      return value;
+  static constexpr Type repeat(const double &value) {
+    if constexpr(NumChannels == 1) {
+      return static_cast<Type>(value);
     } else {
-      Value ret;
-      for(int i = 0; i < cv::DataType<T>::channels; i++) {
+      Type ret;
+      for(int i = 0; i < NumChannels; i++) {
         ret[i] = value;
       }
       return ret;
     }
   }
 
-  static constexpr Value convert(const cv::viz::Color &color) {
-    if constexpr(cv::DataType<T>::channels == 1) {
+  static constexpr Type convert(const cv::viz::Color &color) {
+    if constexpr(NumChannels == 1) {
       return color[0];
     } else {
-      Value ret;
-      for(int i = 0; i < cv::DataType<T>::channels; i++) {
+      Type ret;
+      for(int i = 0; i < NumChannels; i++) {
         ret[i] = color[i];
       }
       return ret;
     }
   }
 
-  static constexpr cv::viz::Color convert(const Value &noncolor) {
-    if constexpr(cv::DataType<T>::channels == 1) {
+  static cv::viz::Color convert(const Type &noncolor) {
+    if constexpr(NumChannels == 1) {
       return cv::viz::Color(noncolor);
     } else {
       cv::viz::Color ret;
-      for(int i = 0; i < cv::DataType<T>::channels; i++) {
+      for(int i = 0; i < NumChannels; i++) {
         ret[i] = noncolor[i];
       }
       return ret;
     }
   }
 };
+/*! \endcond */
 
 /*!
 \brief This is an auxiliary class. This class cannot be instanced.
@@ -103,8 +101,7 @@ public:
 template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
 class AbstractRepresentation_ {
 public:
-  using Value = typename ValueHelper<T>::Value;           /*!< Value type */
-  using ValueArray = typename ValueHelper<T>::ValueArray; /*!< Array of value types */
+  using Type = typename TypeHelper<T>::Type; /*!< Type */
 
   /*!
   \brief Number of events integrated in the representation.
@@ -250,10 +247,9 @@ public:
 
 protected:
   /*! \cond INTERNAL */
-  enum : uint8_t { ON,
-                   OFF,
-                   RESET };
-  ValueArray values_{ColorHelper<T>::initialize()};
+  Type ON = TypeHelper<T>::initialize()[0];
+  Type OFF = TypeHelper<T>::initialize()[1];
+  Type RESET = TypeHelper<T>::initialize()[2];
 
   virtual void clear_() = 0;
   virtual bool insert_(const Event &e) = 0;
