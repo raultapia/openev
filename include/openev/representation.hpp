@@ -14,6 +14,16 @@
 
 namespace ev {
 
+enum RepresentationOptions : uint8_t {
+  NONE = 0b00000000,
+  IGNORE_POLARITY = 0b00000001,
+  ONLY_IF_POSITIVE = 0b00000010,
+  ONLY_IF_NEGATIVE = 0b00000100
+};
+constexpr bool REPRESENTATION_OPTION_CHECK(const uint8_t a, const ev::RepresentationOptions b) {
+  return static_cast<bool>(a & static_cast<uint8_t>(b));
+}
+
 /*! \cond INTERNAL */
 template <typename T, typename = void>
 struct BasicDataTypeTrait {
@@ -90,7 +100,7 @@ public:
 /*!
 \brief This is an auxiliary class. This class cannot be instanced.
 */
-template <typename T>
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
 class AbstractRepresentation_ {
 public:
   using Value = typename ValueHelper<T>::Value;           /*!< Value type */
@@ -291,15 +301,9 @@ using EventImage3 = EventImage3b;
 using EventImage = EventImage1;
 \endcode
 */
-template <typename T>
-class EventImage_ : public cv::Mat_<T>, public AbstractRepresentation_<T> {
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
+class EventImage_ : public cv::Mat_<T>, public AbstractRepresentation_<T, Options> {
   using cv::Mat_<T>::Mat_;
-
-public:
-  /*! \cond INTERNAL */
-  template <typename... Args>
-  explicit EventImage_(Args &&... args) : cv::Mat_<T>(std::forward<Args>(args)...), AbstractRepresentation_<T>() {}
-  /*! \endcond */
 
 private:
   void clear_() override;
@@ -367,11 +371,18 @@ using EventHistogram3 = EventHistogram3b;
 using EventHistogram = EventHistogram1;
 \endcode
 */
-template <typename T>
-class EventHistogram_ : public EventImage_<T> {
-  using EventImage_<T>::EventImage_;
-
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
+class EventHistogram_ : public EventImage_<T, Options> {
 public:
+  template <typename... Args>
+  explicit EventHistogram_(Args &&...args) : EventImage_<T, Options>(std::forward<Args>(args)...) {
+    EventImage_<T, Options>::clear();
+  }
+
+  std::array<cv::Mat_<int>, 2> counter{
+      cv::Mat_<int>(EventImage_<T, Options>::size()),
+      cv::Mat_<int>(EventImage_<T, Options>::size())}; /*!< Event counter */
+
   /*!
   Event histogram matrix is generated from counter matrix.
   \brief Render event histogram matrix.
@@ -379,7 +390,6 @@ public:
   void render();
 
 private:
-  EventImage1d counter_{this->size()};
   void clear_() override;
   bool insert_(const Event &e) override;
 };
@@ -445,23 +455,33 @@ using TimeSurface3 = TimeSurface3b;
 using TimeSurface = TimeSurface1;
 \endcode
 */
-template <typename T>
-class TimeSurface_ : public EventImage_<T> {
-  using EventImage_<T>::EventImage_;
-
+enum class Kernel { NONE,
+                    LINEAR,
+                    EXPONENTIAL };
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
+class TimeSurface_ : public EventImage_<T, Options> {
 public:
-  EventImage1d timestamp{this->size()}; /*!< Timestamps */
-  EventImage1d polarity{this->size()};  /*!< Polarities */
+  template <typename... Args>
+  explicit TimeSurface_(Args &&...args) : EventImage_<T, Options>(std::forward<Args>(args)...) {
+    EventImage_<T, Options>::clear();
+  }
+
+  cv::Mat_<double> time{this->size()};   /*!< Time matrix */
+  cv::Mat_<bool> polarity{this->size()}; /*!< Polarity matrix */
 
   /*!
-  Time-surface matrices are generated from timestamp and polarity matrices.
-  \brief Render Time-surface matrix.
+  Timesurface matrix is generated from timestamp and polarity matrices.
+  \brief Render timesurface matrix.
+  \param kernel Kernel type
+  \param tau Time constant
+  \see TimeSurface_::Kernel
   */
-  void render();
+  void render(const Kernel kernel = Kernel::NONE, const double tau = 0);
 
 private:
   void clear_() override;
   bool insert_(const Event &e) override;
+  double maxTime_{-1};
 };
 using TimeSurface1b = TimeSurface_<uchar>;     /*!< Alias for TimeSurface_ using uchar */
 using TimeSurface2b = TimeSurface_<cv::Vec2b>; /*!< Alias for TimeSurface_ using cv::Vec2b */
@@ -513,8 +533,8 @@ using PointCloud3 = PointCloud3b;
 using PointCloud = PointCloud1;
 \endcode
 */
-template <typename T>
-class PointCloud_ : public AbstractRepresentation_<T> {
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
+class PointCloud_ : public AbstractRepresentation_<T, Options> {
 public:
   /*!
   Default contructor.

@@ -7,15 +7,15 @@
 
 namespace ev {
 
-template <typename T>
-void EventImage_<T>::clear_() {
-  this->setTo(this->values_[EventImage_<T>::RESET]);
+template <typename T, const RepresentationOptions Options>
+void EventImage_<T, Options>::clear_() {
+  cv::Mat_<T>::setTo(EventImage_<T, Options>::RESET);
 }
 
-template <typename T>
-bool EventImage_<T>::insert_(const Event &e) {
-  if(e.inside(cv::Rect(0, 0, this->cols, this->rows))) {
-    this->operator()(e.y, e.x) = e.p ? this->values_[EventImage_<T>::ON] : this->values_[EventImage_<T>::OFF];
+template <typename T, const RepresentationOptions Options>
+bool EventImage_<T, Options>::insert_(const Event &e) {
+  if(e.inside(cv::Rect(0, 0, cv::Mat_<T>::cols, cv::Mat_<T>::rows))) {
+    cv::Mat_<T>::operator()(e.y, e.x) = e.p ? EventImage_<T, Options>::ON : EventImage_<T, Options>::OFF;
     return true;
   }
   return false;
