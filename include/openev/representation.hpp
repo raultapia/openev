@@ -299,7 +299,11 @@ using EventImage = EventImage1;
 */
 template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
 class EventImage_ : public cv::Mat_<T>, public AbstractRepresentation_<T, Options> {
-  using cv::Mat_<T>::Mat_;
+public:
+  template <typename... Args>
+  explicit EventImage_(Args &&...args) : cv::Mat_<T>(std::forward<Args>(args)...) {
+    AbstractRepresentation_<T, Options>::clear();
+  }
 
 private:
   void clear_() override;
