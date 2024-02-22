@@ -247,20 +247,20 @@ public:
 
 protected:
   /*! \cond INTERNAL */
+  enum : uint8_t { MIN,
+                   MAX };
+
   Type ON = TypeHelper<T>::initialize()[0];
   Type OFF = TypeHelper<T>::initialize()[1];
   Type RESET = TypeHelper<T>::initialize()[2];
 
-  virtual void clear_() = 0;
-  virtual bool insert_(const Event &e) = 0;
   double timeOffset_{0};
-  /*! \endcond */
-
-private:
-  enum : uint8_t { MIN,
-                   MAX };
   std::array<double, 2> tLimits_{DBL_MAX, DBL_MIN};
   std::size_t count_{0};
+
+  virtual void clear_() = 0;
+  virtual bool insert_(const Event &e) = 0;
+  /*! \endcond */
 };
 
 /*!
@@ -481,7 +481,6 @@ public:
 private:
   void clear_() override;
   bool insert_(const Event &e) override;
-  double maxTime_{-1};
 };
 using TimeSurface1b = TimeSurface_<uchar>;     /*!< Alias for TimeSurface_ using uchar */
 using TimeSurface2b = TimeSurface_<cv::Vec2b>; /*!< Alias for TimeSurface_ using cv::Vec2b */

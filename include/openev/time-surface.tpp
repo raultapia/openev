@@ -7,40 +7,56 @@
 
 namespace ev {
 
-template <typename T>
-void TimeSurface_<T>::render() {
-  const T ON = this->values_[TimeSurface_<T>::value::ON];
-  const T OFF = this->values_[TimeSurface_<T>::value::OFF];
-  const T RESET = this->values_[TimeSurface_<T>::value::RESET];
+template <typename T, const RepresentationOptions Options>
+void TimeSurface_<T, Options>::render(const Kernel kernel /*= Kernel::NONE*/, const double tau /*= 0*/) {
+  logger::error("TimeSurface::applyKernel: tau value must be greater that zero", kernel == Kernel::NONE || tau > 0);
+  if(TimeSurface_<T, Options>::tLimits_[TimeSurface_<T, Options>::MAX] < 0) {
+    return;
+  }
 
-  EventImage1d aux;
-  cv::normalize(timestamp, aux, 0, 1, cv::NORM_MINMAX, -1, timestamp > 0);
+  cv::Mat_<double> ts;
+  switch(kernel) {
+  case Kernel::NONE:
+    cv::normalize(time, ts, 0, 1, cv::NORM_MINMAX, -1, time > 0);
+    break;
+  case Kernel::LINEAR:
+    ts = cv::Mat_<double>(1.0 + (time - TimeSurface_<T, Options>::tLimits_[TimeSurface_<T, Options>::MAX]) / tau);
+    ts.setTo(0, ts < 0);
+    break;
+  case Kernel::EXPONENTIAL:
+    cv::exp((time - TimeSurface_<T, Options>::tLimits_[TimeSurface_<T, Options>::MAX]) / tau, ts);
+    break;
+  }
 
-  if constexpr(cv::DataType<T>::channels == 1) {
-    EventImage_<T>(polarity.mul(aux * (ON - RESET)) + (1 - polarity).mul(aux * (OFF - RESET)) + RESET).copyTo(*this);
+  if constexpr(TypeHelper<T>::NumChannels == 1) {
+    cv::Mat_<T>(ts * (TimeSurface_<T, Options>::ON - TimeSurface_<T, Options>::RESET) + TimeSurface_<T, Options>::RESET).copyTo(*this, polarity == 1);
+    cv::Mat_<T>(ts * (TimeSurface_<T, Options>::OFF - TimeSurface_<T, Options>::RESET) + TimeSurface_<T, Options>::RESET).copyTo(*this, polarity == 0);
   } else {
-    std::vector<cv::Mat_<typename T::value_type>> v(cv::DataType<T>::channels);
-    cv::parallel_for_(cv::Range(0, cv::DataType<T>::channels), [&](const cv::Range &range) {
-      for(int i = range.start; i < range.end; i++) {
-        v[i] = polarity.mul(aux.mul(ON[i] - RESET[i])) + (1 - polarity).mul(aux.mul(OFF[i] - RESET[i])) + RESET[i];
+    std::vector<typename TypeHelper<T>::ChannelType> v(TypeHelper<T>::NumChannels);
+    cv::parallel_for_(cv::Range(0, TypeHelper<T>::NumChannels), [&](const cv::Range &range) {
+      const int start = range.start;
+      const int end = range.end;
+      for(int i = start; i < end; i++) {
+        typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options>::ON[i] - TimeSurface_<T, Options>::RESET[i]) + TimeSurface_<T, Options>::RESET[i]).copyTo(v[i], polarity == 1);
+        typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options>::OFF[i] - TimeSurface_<T, Options>::RESET[i]) + TimeSurface_<T, Options>::RESET[i]).copyTo(v[i], polarity == 0);
       }
     });
     cv::merge(v, *this);
   }
 }
 
-template <typename T>
-void TimeSurface_<T>::clear_() {
-  this->setTo(this->values_[TimeSurface_<T>::value::RESET]);
-  timestamp.setTo(0, cv::noArray());
-  polarity.setTo(0, cv::noArray());
+template <typename T, const RepresentationOptions Options>
+void TimeSurface_<T, Options>::clear_() {
+  this->setTo(TimeSurface_<T, Options>::RESET);
+  time.setTo(0);
+  polarity.setTo(0);
 }
 
-template <typename T>
-bool TimeSurface_<T>::insert_(const Event &e) {
+template <typename T, const RepresentationOptions Options>
+bool TimeSurface_<T, Options>::insert_(const Event &e) {
   if(e.inside(cv::Rect(0, 0, this->cols, this->rows))) {
-    timestamp(e.y, e.x) = e.t;
-    polarity(e.y, e.x) = static_cast<double>(e.p);
+    time(e.y, e.x) = e.t;
+    polarity(e.y, e.x) = static_cast<unsigned char>(e.p);
     return true;
   }
   return false;
