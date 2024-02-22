@@ -536,92 +536,25 @@ template <typename T, const RepresentationOptions Options = RepresentationOption
 class PointCloud_ : public AbstractRepresentation_<T, Options> {
 public:
   /*!
-  Default contructor.
-  */
-  PointCloud_() : frame_{0, 0}, scaleFactor_{1.0} {};
-
-  /*!
-  Contructor using frame size.
-  \note If no size selected, frame bounds are not checked when inserting
-  \param height Height of the frame
-  \param width Width of the frame
-  \param scale_factor Scale factor for time axis
-  */
-  PointCloud_(const int height, const int width, const double scale_factor) : frame_{width, height}, scaleFactor_{scale_factor} {};
-
-  /*!
-  Contructor using frame size.
-  \note If no size selected, frame bounds are not checked when inserting
-  \param height Height of the frame
-  \param width Width of the frame
-  */
-  PointCloud_(const int height, const int width) : frame_{width, height}, scaleFactor_{1.0} {};
-
-  /*!
-  Contructor using frame size.
-  \note If no size selected, frame bounds are not checked when inserting
-  \param size Frame size
-  \param scale_factor Scale factor for time axis
-  */
-  explicit PointCloud_(const Size size, const double scale_factor) : frame_{size}, scaleFactor_{scale_factor} {};
-
-  /*!
-  Contructor using frame size.
-  \note If no size selected, frame bounds are not checked when inserting
-  \param size Frame size
-  */
-  explicit PointCloud_(const Size size) : frame_{size}, scaleFactor_{1.0} {};
-
-  /*!
-  \brief Set frame size.
-  \note If no size selected, frame bounds are not checked when inserting
-  \param height Height of the frame
-  \param width Width of the frame
-  */
-  inline void setFrameSize(const int height, const int width) {
-    frame_ = {width, height};
-  }
-
-  /*!
-  \brief Set frame size.
-  \note If no size selected, frame bounds are not checked when inserting
-  \param size Frame size
-  */
-  inline void setFrameSize(const Size size) {
-    frame_ = size;
-  }
-
-  /*!
-  \brief Get frame size.
-  \return Frame size
-  */
-  [[nodiscard]] inline Size getFrameSize() const {
-    return frame_;
-  }
-
-  /*!
   \brief Check if an event is included in the point cloud.
   \param e Event to check
   */
   [[nodiscard]] inline bool contains(const Event &e) const {
-    return std::find(points_[e.p].begin(), points_[e.p].end(), cv::Point3_<BasicDataType<T>>(e.x, e.y, e.t)) != points_[e.p].end();
+    return std::find(points_[e.p].begin(), points_[e.p].end(), cv::Point3f(e.x, e.y, e.t)) != points_[e.p].end();
   }
 
   /*!
   \brief Visualize point cloud
+  \param t Amount of time in milliseconds for the event loop to keep running. Zero means "forever"
+  \param time_scale Events will be represented as (x, y, time_scale * t).
+  \param axis_size Size of the 3D axis in the representation
+  \param point_size Size of each point representing an event
   */
-  void visualizeOnce();
-
-  /*!
-  \brief Visualize point cloud
-  */
-  void visualize();
+  void visualize(const int t, const double time_scale = 1.0, const double axis_size = 1.0, const double point_size = 2.0);
 
 private:
-  std::array<std::vector<cv::Point3_<BasicDataType<T>>>, 2> points_;
+  std::array<std::vector<cv::Point3_<typename TypeHelper<T>::FloatingPointType>>, 2> points_;
   cv::viz::Viz3d window_{"OpenEV"};
-  ev::Size frame_;
-  const double scaleFactor_;
 
   void clear_() override;
   bool insert_(const Event &e) override;
