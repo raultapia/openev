@@ -23,7 +23,10 @@ inline void info(const char *message) {
 \brief Log message at warning level.
 \param message Message
 */
-inline void warning(const char *message) {
+inline void warning(const char *message, const bool assert_condition = false) {
+  if(assert_condition) {
+    return;
+  }
   std::cout << "WARNING. openev: " << message << '\n';
 }
 
@@ -31,7 +34,10 @@ inline void warning(const char *message) {
 \brief Log message at error level.
 \param message Message
 */
-inline void error(const char *message) {
+inline void error(const char *message, const bool assert_condition = false) {
+  if(assert_condition) {
+    return;
+  }
   throw std::runtime_error("ERROR. openev: " + std::string(message, std::allocator<char>()));
 }
 
