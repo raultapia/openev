@@ -134,10 +134,17 @@ public:
   }
 
   /*!
-  Equality operator
+  cv::Point equality operator
   */
   [[nodiscard]] inline bool operator==(const cv::Point_<T> &pt) const {
     return (Event_<T>::x == pt.x) && (Event_<T>::y == pt.y);
+  }
+
+  /*!
+  cv::Point3 equality operator
+  */
+  [[nodiscard]] inline bool operator==(const cv::Point3_<T> &pt) const {
+    return (Event_<T>::x == pt.x) && (Event_<T>::y == pt.y) && (Event_<T>::t == pt.z);
   }
 
   /*!
@@ -150,8 +157,17 @@ public:
   /*!
   cv::Point cast operator
   */
-  [[nodiscard]] inline explicit operator cv::Point_<T>() const {
-    return {Event_<T>::x, Event_<T>::y};
+  template <typename U>
+  [[nodiscard]] inline operator cv::Point_<U>() const {
+    return {static_cast<U>(Event_<T>::x), static_cast<U>(Event_<T>::y)};
+  }
+
+  /*!
+  cv::Point3 cast operator
+  */
+  template <typename U>
+  [[nodiscard]] inline operator cv::Point3_<U>() const {
+    return {static_cast<U>(Event_<T>::x), static_cast<U>(Event_<T>::y), static_cast<U>(Event_<T>::t)};
   }
 
   /*!
