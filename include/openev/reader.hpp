@@ -9,6 +9,7 @@
 #include "openev/containers.hpp"
 #include "openev/types.hpp"
 #include <fstream>
+#include <sstream>
 
 namespace ev {
 
@@ -28,31 +29,63 @@ public:
 
   /*!
   \brief Start reading from the first event in the dataset.
+  \note The behaviour of reset should be implemented in the derived classes.
   */
-  virtual void reset() = 0;
+  inline void reset() {
+    return reset_();
+  }
 
   /*!
   \brief Get next event from the dataset.
   \param e Event
   \return True if new event available
+  \note The behaviour of next should be implemented in the derived classes.
   */
-  virtual bool next(Event &e) = 0;
+  inline bool next(Event &e) {
+    return next_(e);
+  }
 
   /*!
-  \brief Get next n event from the dataset.
+  \brief Get next events from the dataset.
+  \param arrat Event array
+  \return True if array fully populated events
+  */
+  template <std::size_t N>
+  bool next(Array<N> &array) {
+    if constexpr(N < 1) {
+      return true;
+    }
+
+    ev::Event e;
+    for(std::size_t i = 0; i < N; i++) {
+      if(!next_(e)) {
+        return false;
+      }
+      array[i] = e;
+    }
+    return true;
+  }
+
+  /*!
+  \brief Get next n events from the dataset.
   \param n Number of events to get
   \param vector Event vector
   \return True if vector populated with n new events
   */
-  bool next(std::size_t n, EventVector &vector);
+  bool next(int n, Vector &vector);
 
   /*!
-  \brief Get next n event from the dataset.
+  \brief Get next n events from the dataset.
   \param n Number of events to get
   \param queue Event queue
+  \param keep_same_size Pop one event for each insertion
   \return True if queue populated with n new events
   */
-  bool next(std::size_t n, EventBuffer &eb);
+  bool next(int n, Queue &queue, const bool keep_same_size = false);
+
+protected:
+  virtual void reset_() = 0;
+  virtual bool next_(Event &e) = 0;
 };
 
 /*!
@@ -74,20 +107,10 @@ public:
   PlainTextReader &operator=(PlainTextReader &&) noexcept = delete;
   /*! \endcond */
 
-  /*!
-  \brief Start reading from the first event in the dataset.
-  */
-  void reset() override;
-
-  /*!
-  \brief Get next event from the dataset.
-  \param e Event
-  \return True if new event available
-  */
-  bool next(Event &e) override;
-
 private:
   std::fstream file_;
+  void reset_() override;
+  bool next_(Event &e) override;
 };
 
 } // namespace ev
