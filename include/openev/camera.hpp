@@ -9,52 +9,27 @@
 #include "openev/containers.hpp"
 #include "openev/types.hpp"
 #include <atomic>
-#include <chrono>
 #include <libcaercpp/devices/davis.hpp>
 
 namespace ev {
 
-constexpr int XYZ_ALIGNEMENT = 32;
-constexpr int IMU_ALIGNEMENT = 128;
+namespace unit {
+template <typename T>
+constexpr double us(const T x) { return static_cast<double>(x) * 1e-6; }
+} // namespace unit
+
 constexpr double EARTH_GRAVITY = 9.80665;
 constexpr double DEG2RAD = M_PI / 180.0;
 constexpr double SCALE_16B_8B = 1.0 / 256.0;
-constexpr uint32_t DEFAULT_INTERVAL = 20000;
-constexpr uint32_t DEFAULT_EXPOSURE = 6500;
 
-using bias = struct caer_bias_coarsefine;
-constexpr int DAVIS346_COARSE_VALUE_1 = 2;
-constexpr int DAVIS346_FINE_VALUE_1 = 116;
-constexpr int DAVIS346_COARSE_VALUE_2 = 1;
-constexpr int DAVIS346_FINE_VALUE_2 = 33;
-constexpr bias GET_DAVIS_346_BIAS_1() {
-  struct caer_bias_coarsefine ret {};
-  ret.coarseValue = DAVIS346_COARSE_VALUE_1;
-  ret.fineValue = DAVIS346_FINE_VALUE_1;
-  ret.enabled = true;
-  ret.sexN = false;
-  ret.typeNormal = true;
-  ret.currentLevelNormal = true;
-  return ret;
-}
-constexpr bias GET_DAVIS_346_BIAS_2() {
-  struct caer_bias_coarsefine ret {};
-  ret.coarseValue = DAVIS346_COARSE_VALUE_2;
-  ret.fineValue = DAVIS346_FINE_VALUE_2;
-  ret.enabled = true;
-  ret.sexN = false;
-  ret.typeNormal = true;
-  ret.currentLevelNormal = true;
-  return ret;
-}
-
-/*!
-\brief Event camera models implemented
-*/
-enum class device {
-  NONE,
-  DAVIS346
-};
+struct BiasValue {
+  uint8_t coarse;
+  uint8_t fine;
+  [[nodiscard]] friend std::ostream &operator<<(std::ostream &os, const struct BiasValue &value) {
+    os << "Coarse: " << static_cast<int>(value.coarse) << ", Fine: " << static_cast<int>(value.fine);
+    return os;
+  }
+} __attribute__((aligned(2)));
 
 /*!
 \brief This class extends cv::Mat to include timestamp.
@@ -92,7 +67,7 @@ struct xyz_t {
     os << "(" << xyz.x << ", " << xyz.y << ", " << xyz.z << ")";
     return os;
   }
-} __attribute__((aligned(XYZ_ALIGNEMENT)));
+} __attribute__((aligned(32)));
 
 /*!
 \brief This struct is used to store IMU data from a DAVIS event camera.
@@ -122,7 +97,7 @@ struct Imu {
     os << "t: " << imu.t << ", acc: " << imu.linear_acceleration << ", gyr: " << imu.angular_velocity;
     return os;
   }
-} __attribute__((aligned(IMU_ALIGNEMENT)));
+} __attribute__((aligned(128)));
 using ImuVector = std::vector<Imu>;
 using ImuQueue = std::queue<Imu>;
 
@@ -177,6 +152,23 @@ public:
   */
   bool setRoi(const cv::Rect &roi);
 
+  template <int8_t ABSTRACT_CONFIG_BIAS>
+  BiasValue getBias(const uint8_t name) const {
+    uint32_t param{0};
+    caerDeviceConfigGet(deviceHandler_, ABSTRACT_CONFIG_BIAS, name, &param);
+    return {caerBiasCoarseFineParse(param).coarseValue, caerBiasCoarseFineParse(param).fineValue};
+  }
+
+  template <int8_t ABSTRACT_CONFIG_BIAS>
+  bool setBias(const uint8_t name, const BiasValue &value) {
+    uint32_t param{0};
+    caerDeviceConfigGet(deviceHandler_, ABSTRACT_CONFIG_BIAS, name, &param);
+    struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(param);
+    cf.coarseValue = value.coarse;
+    cf.fineValue = value.fine;
+    return caerDeviceConfigSet(deviceHandler_, ABSTRACT_CONFIG_BIAS, name, caerBiasCoarseFineGenerate(cf));
+  }
+
   /*!
   \brief Discard data during an interval of time.
   \param msec Time interval in milliseconds
@@ -188,17 +180,18 @@ public:
   \param events Event vector to which events will be added
   \return True if vector not empty
   */
-  virtual bool getData(EventVector &events) = 0;
+  virtual bool getData(Vector &events) = 0;
 
   /*!
   \brief Get data.
   \param events Event queue to which events will be added.
   \return True if queue not empty
   */
-  virtual bool getData(EventQueue &events) = 0;
+  virtual bool getData(Queue &events) = 0;
 
 protected:
   /*! \cond INTERNAL */
+  std::atomic<bool> running_{false};
   caerDeviceHandle deviceHandler_{nullptr};
   double timeOffset_{0};
   cv::Rect roi_;
@@ -208,22 +201,27 @@ protected:
 /*!
 \brief This class extends AbstractCamera_ to operate with DAVIS event cameras. DAVIS cameras offer events (DVS), framed images (APS), and IMU data.
 */
-class Davis : public AbstractCamera_ {
+class Davis_ : public AbstractCamera_ {
 public:
-  /*!
-  Contructor using device model.
-  \note Currently, the following devices are implemented: DAVIS346.
-  \param mode Device model
-  */
-  explicit Davis(device model);
+  constexpr static uint32_t DEFAULT_INTERVAL = 20000;
+  constexpr static uint32_t DEFAULT_EXPOSURE = 6500;
 
   /*! \cond INTERNAL */
-  ~Davis() override;
-  Davis(const Davis &) = delete;
-  Davis(Davis &&) noexcept = delete;
-  Davis &operator=(const Davis &) = delete;
-  Davis &operator=(Davis &&) noexcept = delete;
+  Davis_();
+  ~Davis_() override;
+  Davis_(const Davis_ &) = delete;
+  Davis_(Davis_ &&) noexcept = delete;
+  Davis_ &operator=(const Davis_ &) = delete;
+  Davis_ &operator=(Davis_ &&) noexcept = delete;
   /*! \endcond */
+
+  inline BiasValue getBias(const uint8_t name) const {
+    return AbstractCamera_::getBias<DAVIS_CONFIG_BIAS>(name);
+  }
+
+  inline bool setBias(const uint8_t name, const BiasValue &value) {
+    return AbstractCamera_::setBias<DAVIS_CONFIG_BIAS>(name, value);
+  }
 
   /*!
   \brief Enable DVS
@@ -233,7 +231,7 @@ public:
 
   /*!
   \brief Set DVS maximum time interval between subsequent transmissions.
-  \warning It must be at least 1.
+  \warning Set to zero to disable.
   \param usec Maximum time interval in microseconds
   */
   void setDvsTimeInterval(uint32_t usec);
@@ -274,14 +272,14 @@ public:
   \param events Event vector to which events will be added
   \return True if vector not empty
   */
-  bool getData(EventVector &events) override;
+  bool getData(Vector &events) override;
 
   /*!
   \brief Get DVS data.
   \param events Event queue to which events will be added.
   \return True if queue not empty
   */
-  bool getData(EventQueue &events) override;
+  bool getData(Queue &events) override;
 
   /*!
   \brief Get APS data.
@@ -331,7 +329,7 @@ public:
   \param frame Frame destination
   \return True if event vector or frame not empty
   */
-  bool getData(EventVector &events, StampedMat &frame);
+  bool getData(Vector &events, StampedMat &frame);
 
   /*!
   \brief Get DVS+APS data.
@@ -339,7 +337,7 @@ public:
   \param frames Frame vector to which frame will be added
   \return True if event vector or frame vector not empty
   */
-  bool getData(EventVector &events, StampedMatVector &frames);
+  bool getData(Vector &events, StampedMatVector &frames);
 
   /*!
   \brief Get DVS+APS data.
@@ -347,7 +345,7 @@ public:
   \param frames Frame queue to which frame will be added
   \return True if event queue or frame queue not empty
   */
-  bool getData(EventQueue &events, StampedMatQueue &frames);
+  bool getData(Queue &events, StampedMatQueue &frames);
 
   /*!
   \brief Get DVS+IMU data.
@@ -355,7 +353,7 @@ public:
   \param imu Imu data destination
   \return True if event vector or imu data not empty
   */
-  bool getData(EventVector &events, Imu &imu);
+  bool getData(Vector &events, Imu &imu);
 
   /*!
   \brief Get DVS+IMU data.
@@ -363,7 +361,7 @@ public:
   \param imu Imu data vector to which imu data will be added
   \return True if event vector or imu data vector not empty
   */
-  bool getData(EventVector &events, ImuVector &imu);
+  bool getData(Vector &events, ImuVector &imu);
 
   /*!
   \brief Get DVS+IMU data.
@@ -371,7 +369,7 @@ public:
   \param imu Imu data queue to which imu data will be added
   \return True if event queue or imu data queue not empty
   */
-  bool getData(EventQueue &events, ImuQueue &imu);
+  bool getData(Queue &events, ImuQueue &imu);
 
   /*!
   \brief Get DVS+APS+IMU data.
@@ -380,7 +378,7 @@ public:
   \param imu Imu data destination
   \return True if event vector, frame, or imu data not empty
   */
-  bool getData(EventVector &events, StampedMat &frame, Imu &imu);
+  bool getData(Vector &events, StampedMat &frame, Imu &imu);
 
   /*!
   \brief Get DVS+APS+IMU data.
@@ -389,7 +387,7 @@ public:
   \param imu Imu data vector to which imu data will be added
   \return True if event vector, frame vector, or imu data vector not empty
   */
-  bool getData(EventVector &events, StampedMatVector &frame, ImuVector &imu);
+  bool getData(Vector &events, StampedMatVector &frame, ImuVector &imu);
 
   /*!
   \brief Get DVS+APS+IMU data.
@@ -398,11 +396,49 @@ public:
   \param imu Imu data queue to which imu data will be added
   \return True if event queue, frame queue, or imu data queue not empty
   */
-  bool getData(EventQueue &events, StampedMatQueue &frame, ImuQueue &imu);
+  bool getData(Queue &events, StampedMatQueue &frame, ImuQueue &imu);
 
 private:
+  bool dvsEnabled_{true};
+  bool apsEnabled_{true};
+  bool imuEnabled_{false};
   template <typename T1, typename T2, typename T3>
-  void getData_(T1 *dvs, T2 *aps, T3 *imu);
+  void getData_([[maybe_unused]] T1 *dvs, [[maybe_unused]] T2 *aps, [[maybe_unused]] T3 *imu);
+};
+
+class Davis346 final : public Davis_ {
+public:
+  struct Bias {
+    constexpr static uint8_t REFR = DAVIS346_CONFIG_BIAS_REFRBP; /*!< Refractory period bias */
+    constexpr static uint8_t PR = DAVIS346_CONFIG_BIAS_PRBP;     /*!< Photoreceptor bias */
+    constexpr static uint8_t PRSF = DAVIS346_CONFIG_BIAS_PRSFBP; /*!< Source-follower bias */
+    constexpr static uint8_t DIFF = DAVIS346_CONFIG_BIAS_DIFFBN; /*!< Differencing amp bias */
+    constexpr static uint8_t ON = DAVIS346_CONFIG_BIAS_ONBN;     /*!< ON comparator bias */
+    constexpr static uint8_t OFF = DAVIS346_CONFIG_BIAS_OFFBN;   /*!< OFF comparator bias */
+    constexpr static int DEFAULT_COARSE_VALUE_1 = 2;
+    constexpr static int DEFAULT_FINE_VALUE_1 = 116;
+    constexpr static int DEFAULT_COARSE_VALUE_2 = 1;
+    constexpr static int DEFAULT_FINE_VALUE_2 = 33;
+  };
+
+  Davis346() {
+    struct caer_bias_coarsefine b;
+    b.coarseValue = Bias::DEFAULT_COARSE_VALUE_1;
+    b.fineValue = Bias::DEFAULT_FINE_VALUE_1;
+    b.enabled = true;
+    b.sexN = false;
+    b.typeNormal = true;
+    b.currentLevelNormal = true;
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_BIAS, DAVIS346_CONFIG_BIAS_PRBP, caerBiasCoarseFineGenerate(b));
+    b.coarseValue = Bias::DEFAULT_COARSE_VALUE_2;
+    b.fineValue = Bias::DEFAULT_FINE_VALUE_2;
+    b.enabled = true;
+    b.sexN = false;
+    b.typeNormal = true;
+    b.currentLevelNormal = true;
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_BIAS, DAVIS346_CONFIG_BIAS_PRSFBP, caerBiasCoarseFineGenerate(b));
+    ev::logger::info("DAVIS346 device configured.");
+  }
 };
 
 } // namespace ev
