@@ -5,9 +5,8 @@
 <a href="https://github.com/raultapia/openev">
 <img src="images/logo.png" alt="logo">
 </a>
-<p style="font-size: 30px" class="name">OpenEV</p>
 </div>
-<p align="center" class="brief">
+<p align="center">
 Extending OpenCV to event-based vision
 </p>
 <!--
@@ -44,9 +43,7 @@ The OpenEV documentation can be found [here](https://raultapia.github.io/openev)
 See [`examples`](https://github.com/raultapia/openev/tree/main/examples) folder.
 
 ## 📝 License
-
 Distributed under the GPLv3 License. See [`LICENSE`](https://github.com/raultapia/openev/tree/main/LICENSE) for more information.
 
 ## 📬 Contact
-
 [Raul Tapia](https://raultapia.com) - raultapia@us.es

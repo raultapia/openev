@@ -6,12 +6,10 @@
 #ifndef OPENEV_OPENEV_HPP
 #define OPENEV_OPENEV_HPP
 
-#include "openev/camera.hpp"
 #include "openev/containers.hpp"
-#include "openev/logger.hpp"
-#include "openev/reader.hpp"
-#include "openev/representation.hpp"
-#include "openev/types.hpp"
-#include "openev/undistortion.hpp"
+#include "openev/core.hpp"
+#include "openev/readers.hpp"
+#include "openev/representations.hpp"
+#include "openev/utils.hpp"
 
 #endif // OPENEV_OPENEV_HPP
