@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['length_0',['length',['../classev_1_1Size3__.html#aadcd1e8587079bcc8e65a0cd36e4d64c',1,'ev::Size3_::length'],['../classev_1_1Rect3__.html#af0e2cd626c409dcba3ef4edcdb7feab1',1,'ev::Rect3_::length']]],
-  ['license_1',['📝 License',['../index.html#autotoc_md3',1,'']]],
-  ['logger_2ehpp_2',['logger.hpp',['../logger_8hpp.html',1,'']]]
+  ['imu_0',['Imu',['../structev_1_1Imu.html',1,'ev']]],
+  ['info_1',['info',['../logger_8hpp.html#a18ea51a4bdb4d7b41246c713fe50326a',1,'ev::logger']]],
+  ['insert_2',['insert',['../classev_1_1AbstractRepresentation__.html#aadb64f8a9718b63b30540b31279a3cb9',1,'ev::AbstractRepresentation_::insert(const Event &amp;e)'],['../classev_1_1AbstractRepresentation__.html#a3305026140feb17d3eb6bceb1a616c1d',1,'ev::AbstractRepresentation_::insert(const Array&lt; N &gt; &amp;array)'],['../classev_1_1AbstractRepresentation__.html#aeb0c1949101566c87e65bf94fe7ecc03',1,'ev::AbstractRepresentation_::insert(const Vector &amp;vector)'],['../classev_1_1AbstractRepresentation__.html#a806ea18459a721406d679dce6b872809',1,'ev::AbstractRepresentation_::insert(Queue &amp;queue)']]],
+  ['installation_3',['⚙️ Installation',['../index.html#autotoc_md0',1,'']]]
 ];

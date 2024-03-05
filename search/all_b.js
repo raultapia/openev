@@ -1,20 +1,13 @@
 var searchData=
 [
-  ['reader_2ehpp_0',['reader.hpp',['../reader_8hpp.html',1,'']]],
-  ['rect_1',['Rect',['../types_8hpp.html#accc3f78d20bf0ec306ae1eccec576d5a',1,'ev']]],
-  ['rect2_2',['Rect2',['../types_8hpp.html#adf6de03f3b47254fbd2f034f05d58bd2',1,'ev']]],
-  ['rect2_5f_3',['Rect2_',['../classev_1_1Rect2__.html',1,'ev']]],
-  ['rect2d_4',['Rect2d',['../types_8hpp.html#adb51e41f149ba84a762aa7d8c8f48ed1',1,'ev']]],
-  ['rect2f_5',['Rect2f',['../types_8hpp.html#a349691093c263939458ccd2c699c37cf',1,'ev']]],
-  ['rect2i_6',['Rect2i',['../types_8hpp.html#a99e6482a2293296e42db9dce3f497457',1,'ev']]],
-  ['rect2l_7',['Rect2l',['../types_8hpp.html#abdfcf4f9afc536a8bf043fb952afa00c',1,'ev']]],
-  ['rect3_8',['Rect3',['../types_8hpp.html#a37908371a85a69a265c72208fc3e6fbc',1,'ev']]],
-  ['rect3_5f_9',['rect3_',['../classev_1_1Rect3__.html#a6aaf7d688888a305be6d8f352c9274d2',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt1, const cv::Point3_&lt; T &gt; &amp;pt2)'],['../classev_1_1Rect3__.html#a6f7c0fec6b9103e97d6e5ce336260e95',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt, const Size3_&lt; T &gt; sz)'],['../classev_1_1Rect3__.html#a47ab3f2b243fbefeac90a4b95ff34552',1,'ev::Rect3_::Rect3_(const Rect2_&lt; T &gt; &amp;rect, const T t, const T l)'],['../classev_1_1Rect3__.html#a0496d8895ea1a40bcb6f5c43b187a6f1',1,'ev::Rect3_::Rect3_(const T x, const T y, const T t, const T w, const T h, const T l)'],['../classev_1_1Rect3__.html#a9b30f776aed56bd7d5bee3fddb0345c4',1,'ev::Rect3_::Rect3_(Rect3_&lt; T &gt; &amp;&amp;) noexcept=default'],['../classev_1_1Rect3__.html#ab624f6b566d8c5a7214aae35a6832007',1,'ev::Rect3_::Rect3_(const Rect3_&lt; T &gt; &amp;)=default'],['../classev_1_1Rect3__.html#ad032da839930712403dffd07f602ecc5',1,'ev::Rect3_::Rect3_()'],['../classev_1_1Rect3__.html',1,'ev::Rect3_&lt; T &gt;']]],
-  ['rect3d_10',['Rect3d',['../types_8hpp.html#afaae47c52be679a925055f26c860a1bd',1,'ev']]],
-  ['rect3f_11',['Rect3f',['../types_8hpp.html#a04358ab307a3f94b35987d0173cac710',1,'ev']]],
-  ['rect3i_12',['Rect3i',['../types_8hpp.html#a3e6a833c0fe6c2625d26a8c1c50aa895',1,'ev']]],
-  ['rect3l_13',['Rect3l',['../types_8hpp.html#af7da1a1fba5c3e96adaeecd688bc528c',1,'ev']]],
-  ['render_14',['render',['../classev_1_1TimeSurface__.html#a341ff837ee4e2049afdf48f9c81a24e1',1,'ev::TimeSurface_::render()'],['../classev_1_1EventHistogram__.html#a825192e611034aae499ffd0668027cac',1,'ev::EventHistogram_::render()']]],
-  ['representation_2ehpp_15',['representation.hpp',['../representation_8hpp.html',1,'']]],
-  ['reset_16',['reset',['../classev_1_1PlainTextReader.html#a9acf94294934404dac3f1b7254ca971a',1,'ev::PlainTextReader::reset()'],['../classev_1_1AbstractReader__.html#a18a8781322984eacba7bcb3fde3afdae',1,'ev::AbstractReader_::reset()']]]
+  ['off_0',['OFF',['../structev_1_1Davis346_1_1Bias.html#a628d6283fb3b750b46c6b0991344ff2e',1,'ev::Davis346::Bias']]],
+  ['on_1',['ON',['../structev_1_1Davis346_1_1Bias.html#ac2c0ca351f69429cdde93d923e924531',1,'ev::Davis346::Bias']]],
+  ['openev_2',['OpenEV',['../index.html',1,'']]],
+  ['openev_2ehpp_3',['openev.hpp',['../openev_8hpp.html',1,'']]],
+  ['operator_20cv_3a_3apoint3_5f_3c_20u_20_3e_4',['Point3_&lt; U &gt;',['../classev_1_1Event__.html#a2dcebb5b85799611d185457ce5bc1844',1,'ev::Event_']]],
+  ['operator_20cv_3a_3apoint_5f_3c_20u_20_3e_5',['Point_&lt; U &gt;',['../classev_1_1Event__.html#aac5b5f290a4ddfbcd5355a4afafc0998',1,'ev::Event_']]],
+  ['operator_3c_6',['operator&lt;',['../classev_1_1Event__.html#a0e70bb583180d13b7de2c2340062e452',1,'ev::Event_']]],
+  ['operator_3c_3c_7',['operator&lt;&lt;',['../classev_1_1Event__.html#aede2c993af39d16417abc83793412565',1,'ev::Event_::operator&lt;&lt;'],['../classev_1_1AugmentedEvent__.html#ad57d7fbc133a04b910fbbbadbea0b691',1,'ev::AugmentedEvent_::operator&lt;&lt;']]],
+  ['operator_3d_8',['operator=',['../classev_1_1Event__.html#ac45f96a0247d571050d56a9731e6976d',1,'ev::Event_::operator=(const Event_&lt; T &gt; &amp;)=default'],['../classev_1_1Event__.html#a1d3c04b776897df465aca99c96b22bbb',1,'ev::Event_::operator=(const cv::Point_&lt; T &gt; &amp;p)'],['../classev_1_1Event__.html#a6ba6b9e56bb5fc6e475c952f0057059b',1,'ev::Event_::operator=(Event_&lt; T &gt; &amp;&amp;) noexcept=default']]],
+  ['operator_3d_3d_9',['operator==',['../classev_1_1Event__.html#a739ba6e2e35906778582a0f4d161f495',1,'ev::Event_::operator==(const Event_&lt; T &gt; &amp;e) const'],['../classev_1_1Event__.html#a8270105da74273108e0a2118f0e6b0c2',1,'ev::Event_::operator==(const cv::Point_&lt; T &gt; &amp;pt) const'],['../classev_1_1Event__.html#a2f5d0be0a33d45dec3a1e8e7c8a51f1d',1,'ev::Event_::operator==(const cv::Point3_&lt; T &gt; &amp;pt) const']]]
 ];

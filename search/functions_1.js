@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['davis_0',['Davis',['../classev_1_1Davis.html#af7038b8a2b7839bc1ae77eff864a3b6c',1,'ev::Davis']]],
-  ['duration_1',['duration',['../classev_1_1AbstractRepresentation__.html#af95f8e62b3ae9d76d6eb2bc8965093af',1,'ev::AbstractRepresentation_::duration()'],['../classev_1_1EventPacket.html#adf8c723cb6750bca072c635e791456a7',1,'ev::EventPacket::duration()'],['../classev_1_1EventBuffer.html#ae0bdf7dcf1b00903f45f8abdd6e4f633',1,'ev::EventBuffer::duration()']]]
+  ['distance_0',['distance',['../classev_1_1Event__.html#ada122d3ce351ad2aa14b4d39b98ae1d7',1,'ev::Event_']]],
+  ['duration_1',['duration',['../classev_1_1Array__.html#a57dbd3eb85ec4cc10be24242660864ca',1,'ev::Array_::duration()'],['../classev_1_1Queue__.html#afdb2e86a3e554cbfb6565f4cd0c09423',1,'ev::Queue_::duration()'],['../classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff',1,'ev::Vector_::duration()'],['../classev_1_1AbstractRepresentation__.html#afb8862de5e883a17c41ce83f974d1f95',1,'ev::AbstractRepresentation_::duration()']]]
 ];

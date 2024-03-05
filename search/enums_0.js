@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['device_0',['device',['../camera_8hpp.html#a4e492cc6c781ae54994f0fc90a23eacc',1,'ev']]]
+  ['kernel_0',['Kernel',['../time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566e',1,'ev']]]
 ];
