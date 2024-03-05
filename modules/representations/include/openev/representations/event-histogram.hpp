@@ -56,9 +56,7 @@ public:
     EventImage_<T, Options>::clear();
   }
 
-  std::array<cv::Mat_<int>, 2> counter{
-      cv::Mat_<int>(EventImage_<T, Options>::size()),
-      cv::Mat_<int>(EventImage_<T, Options>::size())}; /*!< Event counter */
+  cv::Mat_<int> counter{cv::Mat_<int>(EventImage_<T, Options>::size())}; /*!< Event counter */
 
   /*!
   Event histogram matrix is generated from counter matrix.
@@ -69,6 +67,7 @@ public:
 private:
   void clear_() override;
   bool insert_(const Event &e) override;
+  int peak_{0};
 };
 using EventHistogram1b = EventHistogram_<uchar>;     /*!< Alias for EventHistogram_ using uchar */
 using EventHistogram2b = EventHistogram_<cv::Vec2b>; /*!< Alias for EventHistogram_ using cv::Vec2b */
