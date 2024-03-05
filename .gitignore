@@ -2,4 +2,4 @@ build/
 cmake
 images/
 !images/*.png
-tests/
+**/tests/
