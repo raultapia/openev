@@ -1,21 +1,20 @@
 <!--
-\cond INTERNAL
+\internal
 -->
 <div align="center" style="margin-bottom: 10px;">
 <a href="https://github.com/raultapia/openev">
-<img src="images/logo.png" alt="logo">
+<img src="https://github.com/raultapia/openev/blob/main/.github/assets/logo.png?raw=true" alt="openev">
 </a>
 </div>
 <p align="center">
 Extending OpenCV to event-based vision
 </p>
 <!--
-\endcond
+\endinternal
 -->
 
-> **Disclaimer** *Hi there! This library is currently under construction. I will be releasing new features as soon as they are ready.*
-
 ## ⚙️ Installation
+> **Disclaimer** *Hi there! This library is currently under construction. I will be releasing new features as soon as they are ready.*
 
 OpenEV uses `libcaer` library by [iniVation](https://inivation.com/) to configure and get data from event cameras. Click [here](https://gitlab.com/inivation/dv/libcaer) for more information.
 

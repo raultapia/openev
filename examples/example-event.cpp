@@ -12,8 +12,7 @@ int main(int argc, const char *argv[]) {
 
   std::cout << "e1: " << e1 << std::endl;
   std::cout << "e2: " << e2 << std::endl;
-  std::cout << "Distance: " << e1.spaceDistance(e2) << std::endl;
-  std::cout << "Difference: " << e1.timeDifference(e2) << std::endl;
+  std::cout << "Distance between e1 and e2 = " << e1.distance(e2) << std::endl;
   std::cout << "e1 is inside rect?: " << (rect.contains(e1) ? "yes" : "no") << std::endl;
   std::cout << "e2 is inside rect?: " << (rect.contains(e2) ? "yes" : "no") << std::endl;
   return 0;

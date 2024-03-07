@@ -5,7 +5,7 @@ This is an example of how to use the PointCloud_<T> class.
 #include <openev/openev.hpp>
 
 int main(int argc, const char *argv[]) {
-  ev::PointCloud pointcloud(50, 50);
+  ev::PointCloud pointcloud;
 
   int row = 0;
   int col = 0;
@@ -13,17 +13,17 @@ int main(int argc, const char *argv[]) {
   int offset = 0;
   double t = 0;
 
-  while(offset < 0.55 * pointcloud.getFrameSize().width) {
+  while(offset < 30) {
     t += 0.1;
     pointcloud.insert(ev::Event(col, row, t, (rand() % 2) ? ev::POSITIVE : ev::NEGATIVE));
     switch(direction) {
     case 0:
       col++;
-      if(col >= pointcloud.getFrameSize().height - 1 - offset) direction++;
+      if(col >= 50 - offset) direction++;
       break;
     case 1:
       row++;
-      if(row >= pointcloud.getFrameSize().width - 1 - offset) direction++;
+      if(row >= 50 - offset) direction++;
       break;
     case 2:
       col--;
@@ -36,9 +36,7 @@ int main(int argc, const char *argv[]) {
       row--;
       if(row <= offset) direction = 0;
     }
-    if(!(pointcloud.count() % 10)) {
-      pointcloud.visualizeOnce();
-    }
   }
+  pointcloud.visualize(0, 0.4);
   return 0;
 }

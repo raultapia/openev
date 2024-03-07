@@ -1,6 +1,7 @@
 PROJECT_NAME           = OpenEV
 PROJECT_BRIEF          = "Extending OpenCV to event-based vision"
-PROJECT_LOGO           = ./images/logo.png
+PROJECT_LOGO           = ./.github/assets/logo_no_text.png
+PROJECT_ICON           = ./.github/assets/icon.png
 EXAMPLE_PATH           = ./examples
 USE_MDFILE_AS_MAINPAGE = ./README.md
 GENERATE_HTML          = YES

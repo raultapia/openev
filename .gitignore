@@ -1,5 +1,4 @@
 build/
 cmake
-images/
-!images/*.png
+.github/assets/*.svg
 **/tests/
