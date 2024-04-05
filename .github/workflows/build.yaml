@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Dependencies
+        run: |
+              sudo add-apt-repository ppa:inivation-ppa/inivation
+              sudo apt update
+              sudo apt install libcaer-dev
+
+      - name: Build
+        run: |
+              git clone https://github.com/raultapia/openev
+              mkdir -p openev/build
+              cd openev/build
+              cmake ..
+              make
+              sudo make install
