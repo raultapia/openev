@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['off_0',['OFF',['../structev_1_1Davis346_1_1Bias.html#a628d6283fb3b750b46c6b0991344ff2e',1,'ev::Davis346::Bias']]],
-  ['on_1',['ON',['../structev_1_1Davis346_1_1Bias.html#ac2c0ca351f69429cdde93d923e924531',1,'ev::Davis346::Bias']]]
+  ['off_0',['OFF',['../structBias.html#ac8f94b1242aea8e9cedb24fb31e8a6d8',1,'Bias']]],
+  ['on_1',['ON',['../structBias.html#a07a19a48f6e9dcba493d33345e792361',1,'Bias']]]
 ];

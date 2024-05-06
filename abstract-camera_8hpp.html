@@ -96,14 +96,24 @@ $(function() {
 
 <p>Abstract camera device driver.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="containers_8hpp_source.html">openev/containers.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;openev/containers/queue.hpp&quot;</code><br />
+<code>#include &quot;openev/containers/vector.hpp&quot;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
-<code>#include &lt;libcaercpp/devices/davis.hpp&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;opencv2/core/mat.hpp&gt;</code><br />
+<code>#include &lt;opencv2/core/mat.inl.hpp&gt;</code><br />
+<code>#include &lt;opencv2/core/types.hpp&gt;</code><br />
+<code>#include &lt;ostream&gt;</code><br />
+<code>#include &lt;queue&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
 </div>
 <p><a href="abstract-camera_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcaer__device__handle.html">caer_device_handle</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structev_1_1BiasValue.html">ev::BiasValue</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1StampedMat.html">ev::StampedMat</a></td></tr>
@@ -121,6 +131,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:a190cf49740093e753fea419efd667782" id="r_a190cf49740093e753fea419efd667782"><td class="memItemLeft" align="right" valign="top"><a id="a190cf49740093e753fea419efd667782" name="a190cf49740093e753fea419efd667782"></a>
+typedef struct <a class="el" href="structcaer__device__handle.html">caer_device_handle</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>caerDeviceHandle</b></td></tr>
+<tr class="separator:a190cf49740093e753fea419efd667782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8bcd10ca4ec4aad27e2ebf2f7120c3c" id="r_ac8bcd10ca4ec4aad27e2ebf2f7120c3c"><td class="memItemLeft" align="right" valign="top"><a id="ac8bcd10ca4ec4aad27e2ebf2f7120c3c" name="ac8bcd10ca4ec4aad27e2ebf2f7120c3c"></a>
 <a class="el" href="classev_1_1Array__.html">using</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ev::StampedMatVector</b> = std::vector&lt;<a class="el" href="classev_1_1StampedMat.html">StampedMat</a>&gt;</td></tr>
 <tr class="separator:ac8bcd10ca4ec4aad27e2ebf2f7120c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>

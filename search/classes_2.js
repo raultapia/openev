@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['circ_5f_0',['Circ_',['../structev_1_1Circ__.html',1,'ev']]]
+  ['caer_5fdevice_5fhandle_0',['caer_device_handle',['../structcaer__device__handle.html',1,'']]],
+  ['circ_5f_1',['Circ_',['../structev_1_1Circ__.html',1,'ev']]]
 ];

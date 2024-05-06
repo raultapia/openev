@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['off_0',['OFF',['../structev_1_1Davis346_1_1Bias.html#a628d6283fb3b750b46c6b0991344ff2e',1,'ev::Davis346::Bias']]],
-  ['on_1',['ON',['../structev_1_1Davis346_1_1Bias.html#ac2c0ca351f69429cdde93d923e924531',1,'ev::Davis346::Bias']]],
+  ['off_0',['OFF',['../structBias.html#ac8f94b1242aea8e9cedb24fb31e8a6d8',1,'Bias']]],
+  ['on_1',['ON',['../structBias.html#a07a19a48f6e9dcba493d33345e792361',1,'Bias']]],
   ['openev_2',['OpenEV',['../index.html',1,'']]],
   ['openev_2ehpp_3',['openev.hpp',['../openev_8hpp.html',1,'']]],
   ['operator_20cv_3a_3apoint3_5f_3c_20u_20_3e_4',['Point3_&lt; U &gt;',['../classev_1_1Event__.html#a2dcebb5b85799611d185457ce5bc1844',1,'ev::Event_']]],

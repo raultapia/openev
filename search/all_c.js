@@ -22,8 +22,8 @@ var searchData=
   ['pointcloud_5f_19',['PointCloud_',['../classev_1_1PointCloud__.html',1,'ev']]],
   ['polarity_20',['polarity',['../classev_1_1TimeSurface__.html#aeba8aec6dcd5f69f1a72757d7ff9cda9',1,'ev::TimeSurface_']]],
   ['positive_21',['POSITIVE',['../types_8hpp.html#a20fde2a7fa1be910a10a635a76b810d5',1,'ev']]],
-  ['pr_22',['PR',['../structev_1_1Davis346_1_1Bias.html#a963fb28850d44046c0364949738b07d5',1,'ev::Davis346::Bias']]],
-  ['prsf_23',['PRSF',['../structev_1_1Davis346_1_1Bias.html#a418ce5766aef197b1394fda4de567473',1,'ev::Davis346::Bias']]],
+  ['pr_22',['PR',['../structBias.html#a1020b4bba6a88c0d6ce9a1217e2b88a2',1,'Bias']]],
+  ['prsf_23',['PRSF',['../structBias.html#a05cebf95887a5329c3a5f95ac1242bc0',1,'Bias']]],
   ['push_24',['push',['../classev_1_1Queue__.html#a2eebfb04ce1aecd49d7c7f9780f30a28',1,'ev::Queue_::push(const T &amp;e)'],['../classev_1_1Queue__.html#a2ec6aa510b79d1f2ae4743530c88b9da',1,'ev::Queue_::push(const Array_&lt; T, N &gt; &amp;array)'],['../classev_1_1Queue__.html#a85799c5ef98d6e8d7cb3096c1bfcb801',1,'ev::Queue_::push(const Vector_&lt; T &gt; &amp;vector)']]],
   ['push_5fback_25',['push_back',['../classev_1_1Vector__.html#ab18bea7b48cf202b483722e4a0b65e9b',1,'ev::Vector_::push_back(const T &amp;e)'],['../classev_1_1Vector__.html#aa3c532c17501158430384014d4b7a24a',1,'ev::Vector_::push_back(const Array_&lt; T, N &gt; &amp;array)'],['../classev_1_1Vector__.html#a145bf87789749f49f2ac094004ab37fa',1,'ev::Vector_::push_back(Queue_&lt; T &gt; &amp;queue)']]]
 ];
