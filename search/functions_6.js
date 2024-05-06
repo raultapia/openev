@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['next_0',['next',['../classev_1_1AbstractReader__.html#ad28b28cee4e6426b5f141f624f54c755',1,'ev::AbstractReader_::next(Event &amp;e)'],['../classev_1_1AbstractReader__.html#a5c1c0853802fd45e4bbea6c40680f0f4',1,'ev::AbstractReader_::next(Array&lt; N &gt; &amp;array)'],['../classev_1_1AbstractReader__.html#a3abc7490a0df69458b0b31971513adee',1,'ev::AbstractReader_::next(int n, Vector &amp;vector)'],['../classev_1_1AbstractReader__.html#a70a53001151a62a851b642c78b4e61b6',1,'ev::AbstractReader_::next(int n, Queue &amp;queue, const bool keep_same_size=false)']]]
+  ['info_0',['info',['../logger_8hpp.html#a18ea51a4bdb4d7b41246c713fe50326a',1,'ev::logger']]],
+  ['insert_1',['insert',['../classev_1_1AbstractRepresentation__.html#aadb64f8a9718b63b30540b31279a3cb9',1,'ev::AbstractRepresentation_::insert(const Event &amp;e)'],['../classev_1_1AbstractRepresentation__.html#a3305026140feb17d3eb6bceb1a616c1d',1,'ev::AbstractRepresentation_::insert(const Array&lt; N &gt; &amp;array)'],['../classev_1_1AbstractRepresentation__.html#aeb0c1949101566c87e65bf94fe7ecc03',1,'ev::AbstractRepresentation_::insert(const Vector &amp;vector)'],['../classev_1_1AbstractRepresentation__.html#a806ea18459a721406d679dce6b872809',1,'ev::AbstractRepresentation_::insert(Queue &amp;queue)']]]
 ];
