@@ -6,9 +6,21 @@
 #ifndef OPENEV_DEVICES_ABSTRACT_CAMERA_HPP
 #define OPENEV_DEVICES_ABSTRACT_CAMERA_HPP
 
-#include "openev/containers.hpp"
+#include "openev/containers/queue.hpp"
+#include "openev/containers/vector.hpp"
 #include <atomic>
-#include <libcaercpp/devices/davis.hpp>
+#include <math.h>
+#include <opencv2/core/mat.hpp>
+#include <opencv2/core/mat.inl.hpp>
+#include <opencv2/core/types.hpp>
+#include <ostream>
+#include <queue>
+#include <stdint.h>
+#include <vector>
+
+typedef struct caer_device_handle {
+  uint16_t deviceType;
+} *caerDeviceHandle;
 
 namespace ev {
 
@@ -151,22 +163,9 @@ public:
   */
   bool setRoi(const cv::Rect &roi);
 
-  template <int8_t ABSTRACT_CONFIG_BIAS>
-  BiasValue getBias(const uint8_t name) const {
-    uint32_t param{0};
-    caerDeviceConfigGet(deviceHandler_, ABSTRACT_CONFIG_BIAS, name, &param);
-    return {caerBiasCoarseFineParse(param).coarseValue, caerBiasCoarseFineParse(param).fineValue};
-  }
+  BiasValue getBias(const int8_t config_bias, const uint8_t name) const;
 
-  template <int8_t ABSTRACT_CONFIG_BIAS>
-  bool setBias(const uint8_t name, const BiasValue &value) {
-    uint32_t param{0};
-    caerDeviceConfigGet(deviceHandler_, ABSTRACT_CONFIG_BIAS, name, &param);
-    struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(param);
-    cf.coarseValue = value.coarse;
-    cf.fineValue = value.fine;
-    return caerDeviceConfigSet(deviceHandler_, ABSTRACT_CONFIG_BIAS, name, caerBiasCoarseFineGenerate(cf));
-  }
+  bool setBias(const int8_t config_bias, const uint8_t name, const BiasValue &value);
 
   /*!
   \brief Discard data during an interval of time.

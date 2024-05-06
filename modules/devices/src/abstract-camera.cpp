@@ -4,6 +4,9 @@
 \author Raul Tapia
 */
 #include "openev/devices/abstract-camera.hpp"
+#include "libcaer/devices/davis.h"
+#include "libcaer/devices/device.h"
+#include <chrono>
 
 void ev::AbstractCamera_::start() {
   caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
@@ -40,11 +43,24 @@ bool ev::AbstractCamera_::setRoi(const cv::Rect &roi) {
   return false;
 }
 
+ev::BiasValue ev::AbstractCamera_::getBias(const int8_t config_bias, const uint8_t name) const {
+  uint32_t param{0};
+  caerDeviceConfigGet(deviceHandler_, config_bias, name, &param);
+  return {caerBiasCoarseFineParse(param).coarseValue, caerBiasCoarseFineParse(param).fineValue};
+}
+
+bool ev::AbstractCamera_::setBias(const int8_t config_bias, const uint8_t name, const BiasValue &value) {
+  uint32_t param{0};
+  caerDeviceConfigGet(deviceHandler_, config_bias, name, &param);
+  struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(param);
+  cf.coarseValue = value.coarse;
+  cf.fineValue = value.fine;
+  return caerDeviceConfigSet(deviceHandler_, config_bias, name, caerBiasCoarseFineGenerate(cf));
+}
+
 void ev::AbstractCamera_::flush(double msec) const {
-  auto t0 = std::chrono::system_clock::now();
-  auto tn = std::chrono::system_clock::now();
+  const std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
   do {
     caerDeviceDataGet(deviceHandler_);
-    tn = std::chrono::system_clock::now();
-  } while(static_cast<double>(std::chrono::duration_cast<std::chrono::milliseconds>(tn - t0).count()) < msec);
+  } while(static_cast<double>(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t0).count()) < msec);
 }

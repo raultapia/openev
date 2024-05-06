@@ -1,6 +1,29 @@
 set(MODULE_NAME "devices")
 message(STATUS "Module ${MODULE_NAME} included")
 
+include(FindPkgConfig)
+pkg_check_modules(libusb REQUIRED IMPORTED_TARGET libusb-1.0>=1.0.17)
+configure_file("${PROJECT_SOURCE_DIR}/third-party/libcaer/include/libcaer/libcaer.h.in" "${PROJECT_SOURCE_DIR}/third-party/libcaer/include/libcaer/libcaer.h" @ONLY)
+
+add_library(
+  caer SHARED
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/davis.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/device.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/dvs128.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/dvs132s.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/dvxplorer.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/dynapse.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/filters_dvs_noise.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/autoexposure.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/frame_utils.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/log.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/ringbuffer.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/samsung_evk.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/usb_utils.c")
+target_link_libraries(caer PRIVATE PkgConfig::libusb)
+target_include_directories(caer PRIVATE "${PROJECT_SOURCE_DIR}/third-party/libcaer/include")
+target_compile_options(caer PRIVATE "-w")
+
 file(GLOB_RECURSE SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*")
 file(GLOB_RECURSE INC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/openev/${MODULE_NAME}/*")
 
@@ -11,10 +34,11 @@ target_include_directories(oe_${MODULE_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_C
 target_include_directories(oe_${MODULE_NAME} PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/modules/utils/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 target_include_directories(oe_${MODULE_NAME} PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/modules/core/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 target_include_directories(oe_${MODULE_NAME} PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/modules/containers/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
+target_include_directories(oe_${MODULE_NAME} SYSTEM PRIVATE "${PROJECT_SOURCE_DIR}/third-party/libcaer/include")
 set_target_properties(oe_${MODULE_NAME} PROPERTIES PUBLIC_HEADER "${INC_FILES}")
 
 install(
-  TARGETS oe_${MODULE_NAME}
+  TARGETS oe_${MODULE_NAME} caer
   EXPORT OpenEVTargets
   LIBRARY DESTINATION lib/openev
   PUBLIC_HEADER DESTINATION include/openev/${MODULE_NAME})
