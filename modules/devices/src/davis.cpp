@@ -3,7 +3,30 @@
 \brief Implementation of davis.
 \author Raul Tapia
 */
+#include "libcaer/devices/davis.h"
+#include "openev/containers/queue.hpp"
+#include "openev/containers/vector.hpp"
+#include "openev/devices/abstract-camera.hpp"
 #include "openev/devices/davis.hpp"
+#include "openev/utils/logger.hpp"
+#include <cstring>
+#include <iosfwd>
+#include <libcaer/devices/device.h>
+#include <libcaer/devices/usb.h>
+#include <libcaer/events/common.h>
+#include <libcaer/events/packetContainer.h>
+#include <libcaercpp/events/common.hpp>
+#include <libcaercpp/events/frame.hpp>
+#include <libcaercpp/events/imu6.hpp>
+#include <libcaercpp/events/packetContainer.hpp>
+#include <libcaercpp/events/polarity.hpp>
+#include <memory>
+#include <opencv2/core/hal/interface.h>
+#include <opencv2/core/mat.hpp>
+#include <opencv2/core/mat.inl.hpp>
+#include <opencv2/core/types.hpp>
+#include <stdint.h>
+#include <stdlib.h>
 
 ev::Davis_::Davis_() {
   deviceHandler_ = caerDeviceOpen(0, CAER_DEVICE_DAVIS, 0, 0, "");
@@ -31,15 +54,25 @@ ev::Davis_::~Davis_() {
   caerDeviceClose(&deviceHandler_);
 }
 
+ev::BiasValue ev::Davis_::getBias(const uint8_t name) const {
+  return AbstractCamera_::getBias(DAVIS_CONFIG_BIAS, name);
+}
+
+bool ev::Davis_::setBias(const uint8_t name, const ev::BiasValue &value) {
+  return AbstractCamera_::setBias(DAVIS_CONFIG_BIAS, name, value);
+}
+
 void ev::Davis_::enableDvs(const bool state) {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, static_cast<uint32_t>(state));
 }
 
 void ev::Davis_::setDvsTimeInterval(const uint32_t usec) {
-  caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, usec);
+  // NOTE (libcaer): Must be at least 1 microsecond
+  caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, (usec < 1 || usec > 600000000) ? 600000000 : usec);
 }
 
 void ev::Davis_::setDvsEventsPerPacket(const uint32_t n) {
+  // NOTE (libcaer): Set to zero to disable
   caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_PACKET_SIZE, n);
 }
 

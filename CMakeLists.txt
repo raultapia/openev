@@ -5,9 +5,19 @@ project(
   HOMEPAGE_URL https://github.com/raultapia/openev)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-find_package(OpenCV REQUIRED)
+
+# Git submodules
+execute_process(
+  COMMAND id -u
+  OUTPUT_VARIABLE USER_ID
+  OUTPUT_STRIP_TRAILING_WHITESPACE)
+if(NOT "${USER_ID}" STREQUAL "0")
+  find_package(Git REQUIRED)
+  execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive WORKING_DIRECTORY ${PROJECT_SOURCE_DIR} COMMAND_ERROR_IS_FATAL ANY)
+endif()
 
 # Add modules
+find_package(OpenCV REQUIRED)
 add_subdirectory(modules/containers)
 add_subdirectory(modules/core)
 add_subdirectory(modules/devices)
@@ -40,8 +50,3 @@ install(
   FILE OpenEVTargets.cmake
   DESTINATION lib/cmake/openev)
 
-include(CMakePackageConfigHelpers)
-set(OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev")
-set(OpenEV_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include/openev")
-configure_package_config_file("OpenEVConfig.cmake.in" "${PROJECT_BINARY_DIR}/OpenEVConfig.cmake" INSTALL_DESTINATION "lib/cmake/openev")
-install(FILES "${PROJECT_BINARY_DIR}/OpenEVConfig.cmake" DESTINATION lib/cmake/openev)

@@ -14,9 +14,8 @@ jobs:
 
       - name: Dependencies
         run: |
-              sudo add-apt-repository ppa:inivation-ppa/inivation
-              sudo apt update
-              sudo apt install libcaer-dev
+          sudo apt install libusb-1.0-0-dev
+          sudo apt install libopencv-dev
 
       - name: Build
         run: |

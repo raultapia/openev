@@ -6,10 +6,10 @@
 #ifndef OPENEV_DEVICES_DAVIS_HPP
 #define OPENEV_DEVICES_DAVIS_HPP
 
-#include "openev/containers.hpp"
+#include "openev/containers/queue.hpp"
+#include "openev/containers/vector.hpp"
 #include "openev/devices/abstract-camera.hpp"
-#include <atomic>
-#include <libcaercpp/devices/davis.hpp>
+#include <stdint.h>
 
 namespace ev {
 /*!
@@ -29,13 +29,9 @@ public:
   Davis_ &operator=(Davis_ &&) noexcept = delete;
   /*! \endcond */
 
-  inline BiasValue getBias(const uint8_t name) const {
-    return AbstractCamera_::getBias<DAVIS_CONFIG_BIAS>(name);
-  }
+  BiasValue getBias(const uint8_t name) const;
 
-  inline bool setBias(const uint8_t name, const BiasValue &value) {
-    return AbstractCamera_::setBias<DAVIS_CONFIG_BIAS>(name, value);
-  }
+  bool setBias(const uint8_t name, const BiasValue &value);
 
   /*!
   \brief Enable DVS
