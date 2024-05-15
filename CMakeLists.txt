@@ -17,7 +17,13 @@ if(NOT "${USER_ID}" STREQUAL "0")
 endif()
 
 # Add modules
-find_package(OpenCV REQUIRED)
+find_package(
+  OpenCV REQUIRED
+  COMPONENTS core highgui calib3d
+  OPTIONAL_COMPONENTS viz)
+if(OpenCV_viz_FOUND)
+  add_compile_definitions(HAVE_VIZ)
+endif()
 add_subdirectory(modules/containers)
 add_subdirectory(modules/core)
 add_subdirectory(modules/devices)
@@ -37,7 +43,9 @@ target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_
 set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/openev.hpp")
 
 # Compile examples
-add_subdirectory(examples)
+if(OpenCV_viz_FOUND)
+  add_subdirectory(examples)
+endif()
 
 # Install
 install(

@@ -14,14 +14,22 @@ jobs:
 
       - name: Dependencies
         run: |
-          sudo apt install libusb-1.0-0-dev
-          sudo apt install libopencv-dev
+              sudo apt install libusb-1.0-0-dev
+              sudo apt install libopencv-dev
 
       - name: Build
         run: |
               git clone https://github.com/raultapia/openev
               mkdir -p openev/build
               cd openev/build
+              cmake ..
+              make
+              sudo make install
+
+      - name: Build with no viz
+        run: |
+              cd openev/build
+              sed -i 's/set(HAVE_VIZ 1)/set(HAVE_VIZ 0)/g' ../CMakeLists.txt
               cmake ..
               make
               sudo make install

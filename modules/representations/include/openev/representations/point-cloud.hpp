@@ -6,11 +6,17 @@
 #ifndef OPENEV_REPRESENTATIONS_POINT_CLOUD_HPP
 #define OPENEV_REPRESENTATIONS_POINT_CLOUD_HPP
 
-#include "openev/containers.hpp"
-#include "openev/core.hpp"
-#include <opencv2/viz.hpp>
-#include <opencv2/viz/types.hpp>
-#include <utility>
+#include "openev/core/types.hpp"
+#include "openev/representations/abstract-representation.hpp"
+#include <array>
+#include <opencv2/core/hal/interface.h>
+#include <opencv2/core/matx.hpp>
+#include <opencv2/core/types.hpp>
+#include <vector>
+
+#ifdef HAVE_VIZ
+#include <opencv2/viz/viz3d.hpp>
+#endif
 
 namespace ev {
 /*!
@@ -46,6 +52,7 @@ public:
     return std::find(points_[e.p].begin(), points_[e.p].end(), cv::Point3f(e.x, e.y, e.t)) != points_[e.p].end();
   }
 
+#ifdef HAVE_VIZ
   /*!
   \brief Visualize point cloud
   \param t Amount of time in milliseconds for the event loop to keep running. Zero means "forever"
@@ -54,10 +61,13 @@ public:
   \param point_size Size of each point representing an event
   */
   void visualize(const int t, const double time_scale = 1.0, const double axis_size = 1.0, const double point_size = 2.0);
+#endif
 
 private:
   std::array<std::vector<cv::Point3_<typename TypeHelper<T>::FloatingPointType>>, 2> points_;
+#ifdef HAVE_VIZ
   cv::viz::Viz3d window_{"OpenEV"};
+#endif
 
   void clear_() override;
   bool insert_(const Event &e) override;
