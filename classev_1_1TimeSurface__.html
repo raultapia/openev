@@ -109,14 +109,17 @@ Public Member Functions</h2></td></tr>
 template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:aff344e6e7767b7a61ad88b715aaa755a"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>TimeSurface_</b> (<a class="el" href="classev_1_1Array__.html">Args</a> &amp;&amp;...<a class="el" href="classev_1_1Array__.html">args</a>)</td></tr>
 <tr class="separator:aff344e6e7767b7a61ad88b715aaa755a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a570b24b16617dd9c28e6a9040af18c6a" id="r_a570b24b16617dd9c28e6a9040af18c6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classev_1_1Array__.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a570b24b16617dd9c28e6a9040af18c6a">render</a> (<a class="el" href="classev_1_1Array__.html">const</a> <a class="el" href="time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566e">Kernel</a> <a class="el" href="classev_1_1Array__.html">kernel</a>=Kernel::NONE, <a class="el" href="classev_1_1Array__.html">const</a> <a class="el" href="classev_1_1Array__.html">double</a> tau=0)</td></tr>
-<tr class="memdesc:a570b24b16617dd9c28e6a9040af18c6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render timesurface matrix.  <br /></td></tr>
-<tr class="separator:a570b24b16617dd9c28e6a9040af18c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0c9aa09782179de5cc789976220e527" id="r_ad0c9aa09782179de5cc789976220e527"><td class="memItemLeft" align="right" valign="top">cv::Mat &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0c9aa09782179de5cc789976220e527">render</a> (<a class="el" href="classev_1_1Array__.html">const</a> <a class="el" href="time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566e">Kernel</a> <a class="el" href="classev_1_1Array__.html">kernel</a>=Kernel::NONE, <a class="el" href="classev_1_1Array__.html">const</a> <a class="el" href="classev_1_1Array__.html">double</a> tau=0)</td></tr>
+<tr class="memdesc:ad0c9aa09782179de5cc789976220e527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render timesurface matrix.  <br /></td></tr>
+<tr class="separator:ad0c9aa09782179de5cc789976220e527"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classev_1_1EventImage__"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classev_1_1EventImage__')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classev_1_1EventImage__.html">ev::EventImage_&lt; T, Options &gt;</a></td></tr>
 <tr class="memitem:a21fa15163364bfab3f16ff44be63001b inherit pub_methods_classev_1_1EventImage__" id="r_a21fa15163364bfab3f16ff44be63001b"><td class="memTemplParams" colspan="2">
 template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a21fa15163364bfab3f16ff44be63001b inherit pub_methods_classev_1_1EventImage__"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>EventImage_</b> (<a class="el" href="classev_1_1Array__.html">Args</a> &amp;&amp;...<a class="el" href="classev_1_1Array__.html">args</a>)</td></tr>
 <tr class="separator:a21fa15163364bfab3f16ff44be63001b inherit pub_methods_classev_1_1EventImage__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1990ef31fdbb794f3e095836a7b13df7 inherit pub_methods_classev_1_1EventImage__" id="r_a1990ef31fdbb794f3e095836a7b13df7"><td class="memItemLeft" align="right" valign="top">
+cv::Mat &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>render</b> ()</td></tr>
+<tr class="separator:a1990ef31fdbb794f3e095836a7b13df7 inherit pub_methods_classev_1_1EventImage__"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classev_1_1AbstractRepresentation__"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classev_1_1AbstractRepresentation__')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_&lt; T, Options &gt;</a></td></tr>
 <tr class="memitem:af8063db8133182a4e6986d4dbe0ff5c5 inherit pub_methods_classev_1_1AbstractRepresentation__" id="r_af8063db8133182a4e6986d4dbe0ff5c5"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractRepresentation__.html#af8063db8133182a4e6986d4dbe0ff5c5">count</a> () <a class="el" href="classev_1_1Array__.html">const</a></td></tr>
 <tr class="memdesc:af8063db8133182a4e6986d4dbe0ff5c5 inherit pub_methods_classev_1_1AbstractRepresentation__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of events integrated in the representation.  <br /></td></tr>
@@ -177,8 +180,8 @@ Additional Inherited Members</h2></td></tr>
 class ev::TimeSurface_&lt; T, Options &gt;</div><dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-time-surface_8cpp-example.html#_a0">example-time-surface.cpp</a>.</dd>
 </dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a570b24b16617dd9c28e6a9040af18c6a" name="a570b24b16617dd9c28e6a9040af18c6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a570b24b16617dd9c28e6a9040af18c6a">&#9670;&#160;</a></span>render()</h2>
+<a id="ad0c9aa09782179de5cc789976220e527" name="ad0c9aa09782179de5cc789976220e527"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0c9aa09782179de5cc789976220e527">&#9670;&#160;</a></span>render()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,7 +189,7 @@ class ev::TimeSurface_&lt; T, Options &gt;</div><dl class="section examples"><dt
 template&lt;<a class="el" href="classev_1_1Array__.html">typename</a> <a class="el" href="classev_1_1Array__.html">T</a> , <a class="el" href="classev_1_1Array__.html">const</a> RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classev_1_1Array__.html">void</a> <a class="el" href="classev_1_1TimeSurface__.html">ev::TimeSurface_</a>&lt; <a class="el" href="classev_1_1Array__.html">T</a>, <a class="el" href="classev_1_1Array__.html">Options</a> &gt;::render </td>
+          <td class="memname">cv::Mat &amp; <a class="el" href="classev_1_1TimeSurface__.html">ev::TimeSurface_</a>&lt; <a class="el" href="classev_1_1Array__.html">T</a>, <a class="el" href="classev_1_1Array__.html">Options</a> &gt;::render </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classev_1_1Array__.html">const</a> <a class="el" href="time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566e">Kernel</a></td>          <td class="paramname"><span class="paramname"><em>kernel</em><span class="paramdefsep"> = </span><span class="paramdefval">Kernel::NONE</span>, </span></td>
         </tr>
@@ -207,6 +210,8 @@ template&lt;<a class="el" href="classev_1_1Array__.html">typename</a> <a class="
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>TimeSurface_::Kernel </dd></dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-time-surface_8cpp-example.html#a1">example-time-surface.cpp</a>.</dd>
+</dl>
 
 </div>
 </div>

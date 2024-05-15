@@ -16,7 +16,7 @@ var searchData=
   ['rect3i_13',['Rect3i',['../types_8hpp.html#a3ed225e738af68b647714a5c25298437',1,'ev']]],
   ['rect3l_14',['Rect3l',['../types_8hpp.html#af5a7fd07db1f9f76dedb9af8023edb53',1,'ev']]],
   ['refr_15',['REFR',['../structBias.html#a1eb08ae5b44f1461278b9f28ff9fab3a',1,'Bias']]],
-  ['render_16',['render',['../classev_1_1EventHistogram__.html#a2c331bbadb46187a5b7f68c3316c623a',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#a570b24b16617dd9c28e6a9040af18c6a',1,'ev::TimeSurface_::render()']]],
+  ['render_16',['render',['../classev_1_1EventHistogram__.html#af39f814545d19d56cf092710282be2ad',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#ad0c9aa09782179de5cc789976220e527',1,'ev::TimeSurface_::render()']]],
   ['representations_2ehpp_17',['representations.hpp',['../representations_8hpp.html',1,'']]],
   ['reset_18',['reset',['../classev_1_1AbstractReader__.html#a29982bb0dde6ca0e1b43fc15e2dce769',1,'ev::AbstractReader_']]]
 ];
