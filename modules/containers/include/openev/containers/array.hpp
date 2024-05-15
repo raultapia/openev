@@ -9,24 +9,8 @@
 #include "openev/core/types.hpp"
 #include <array>
 #include <cstddef>
-#include <queue>
-#include <set>
-#include <utility>
-#include <vector>
 
 namespace ev {
-/*! \cond INTERNAL */
-#ifndef OPENEV_VECTOR_HPP
-template <typename T>
-class Vector_;
-#endif
-
-#ifndef OPENEV_QUEUE_HPP
-template <typename T>
-class Queue_;
-#endif
-/*! \endcond */
-
 /*!
 \brief This class extends std::array to implement event arrays. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/array">here</a>.
 

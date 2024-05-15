@@ -7,10 +7,7 @@
 #define OPENEV_CONTAINERS_VECTOR_HPP
 
 #include "openev/core/types.hpp"
-#include <array>
 #include <cstddef>
-#include <queue>
-#include <set>
 #include <utility>
 #include <vector>
 
