@@ -6,9 +6,9 @@ This is an example of how to use the TimeSurface_<T> class.
 #include <opencv2/imgproc.hpp>
 #include <openev/openev.hpp>
 
-inline void show(const ev::TimeSurface3b &ts) {
+inline void show(ev::TimeSurface3b &ts) {
   ev::TimeSurface3b resized;
-  cv::resize(ts, resized, ev::Size(500, 500), 0, 0, cv::INTER_NEAREST);
+  cv::resize(ts.render(), resized, ev::Size(500, 500), 0, 0, cv::INTER_NEAREST);
   cv::imshow("example-event-image", resized);
   cv::waitKey(5);
 }
@@ -46,7 +46,6 @@ int main(int argc, const char *argv[]) {
       row--;
       if(row <= offset) direction = 0;
     }
-    timesurface.render();
     show(timesurface);
   }
   return 0;

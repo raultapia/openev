@@ -56,6 +56,8 @@ public:
     AbstractRepresentation_<T, Options>::clear();
   }
 
+  cv::Mat &render() { return *this; }
+
 private:
   void clear_() override;
   bool insert_(const Event &e) override;

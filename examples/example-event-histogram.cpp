@@ -6,9 +6,9 @@ This is an example of how to use the EventHistogram_<T> class.
 #include <opencv2/imgproc.hpp>
 #include <openev/openev.hpp>
 
-inline void show(const ev::EventHistogram3b &h) {
+inline void show(ev::EventHistogram3b &h) {
   ev::EventHistogram3b resized;
-  cv::resize(h, resized, ev::Size(500, 500), 0, 0, cv::INTER_NEAREST);
+  cv::resize(h.render(), resized, ev::Size(500, 500), 0, 0, cv::INTER_NEAREST);
   cv::imshow("example-event-image", resized);
   cv::waitKey(5);
 }
@@ -47,7 +47,6 @@ int main(int argc, const char *argv[]) {
         row--;
         if(row <= offset) direction = 0;
       }
-      histogram.render();
       show(histogram);
     }
   }
