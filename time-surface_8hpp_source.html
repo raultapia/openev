@@ -97,10 +97,10 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef OPENEV_REPRESENTATIONS_TIME_SURFACE_HPP</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define OPENEV_REPRESENTATIONS_TIME_SURFACE_HPP</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="containers_8hpp.html">openev/containers.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="core_8hpp.html">openev/core.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;opencv2/viz.hpp&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;opencv2/viz/types.hpp&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">openev/core/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="abstract-representation_8hpp.html">openev/representations/abstract-representation.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="event-image_8hpp.html">openev/representations/event-image.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;opencv2/core.hpp&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span>ev {</div>
@@ -158,17 +158,18 @@ $(function() { codefold.init(0); });
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#include &quot;openev/representations/time-surface.tpp&quot;</span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_REPRESENTATIONS_TIME_SURFACE_HPP</span></div>
+<div class="ttc" id="aabstract-representation_8hpp_html"><div class="ttname"><a href="abstract-representation_8hpp.html">abstract-representation.hpp</a></div><div class="ttdoc">Event abstract representation.</div></div>
 <div class="ttc" id="aclassev_1_1AbstractRepresentation___html_a1529e7c4143e6ebfe7ecde46c65ba9ea"><div class="ttname"><a href="classev_1_1AbstractRepresentation__.html#a1529e7c4143e6ebfe7ecde46c65ba9ea">ev::AbstractRepresentation_::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Remove all events from the representation.</div></div>
 <div class="ttc" id="aclassev_1_1Array___html"><div class="ttname"><a href="classev_1_1Array__.html">ev::Array_</a></div><div class="ttdoc">This class extends std::array to implement event arrays. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> array.hpp:36</div></div>
-<div class="ttc" id="aclassev_1_1EventImage___html"><div class="ttname"><a href="classev_1_1EventImage__.html">ev::EventImage_</a></div><div class="ttdoc">This class extends cv::Mat_&lt;T&gt; for event images. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> event-image.hpp:51</div></div>
+<div class="ttc" id="aclassev_1_1EventImage___html"><div class="ttname"><a href="classev_1_1EventImage__.html">ev::EventImage_</a></div><div class="ttdoc">This class extends cv::Mat_&lt;T&gt; for event images. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> event-image.hpp:52</div></div>
 <div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:56</div></div>
 <div class="ttc" id="aclassev_1_1TimeSurface___html"><div class="ttname"><a href="classev_1_1TimeSurface__.html">ev::TimeSurface_</a></div><div class="ttdef"><b>Definition</b> time-surface.hpp:54</div></div>
 <div class="ttc" id="aclassev_1_1TimeSurface___html_a22f26ba3dabb8de1c5433025027e3ac8"><div class="ttname"><a href="classev_1_1TimeSurface__.html#a22f26ba3dabb8de1c5433025027e3ac8">ev::TimeSurface_::time</a></div><div class="ttdeci">cv::Mat_&lt; double &gt; time</div><div class="ttdef"><b>Definition</b> time-surface.hpp:61</div></div>
 <div class="ttc" id="aclassev_1_1TimeSurface___html_a570b24b16617dd9c28e6a9040af18c6a"><div class="ttname"><a href="classev_1_1TimeSurface__.html#a570b24b16617dd9c28e6a9040af18c6a">ev::TimeSurface_::render</a></div><div class="ttdeci">void render(const Kernel kernel=Kernel::NONE, const double tau=0)</div><div class="ttdoc">Render timesurface matrix.</div></div>
 <div class="ttc" id="aclassev_1_1TimeSurface___html_aeba8aec6dcd5f69f1a72757d7ff9cda9"><div class="ttname"><a href="classev_1_1TimeSurface__.html#aeba8aec6dcd5f69f1a72757d7ff9cda9">ev::TimeSurface_::polarity</a></div><div class="ttdeci">cv::Mat_&lt; bool &gt; polarity</div><div class="ttdef"><b>Definition</b> time-surface.hpp:62</div></div>
-<div class="ttc" id="acontainers_8hpp_html"><div class="ttname"><a href="containers_8hpp.html">containers.hpp</a></div><div class="ttdoc">Include all the OpenEV containers module.</div></div>
-<div class="ttc" id="acore_8hpp_html"><div class="ttname"><a href="core_8hpp.html">core.hpp</a></div><div class="ttdoc">Include all the OpenEV core module.</div></div>
+<div class="ttc" id="aevent-image_8hpp_html"><div class="ttname"><a href="event-image_8hpp.html">event-image.hpp</a></div><div class="ttdoc">Event images.</div></div>
 <div class="ttc" id="atime-surface_8hpp_html_ae160d2a586ec3aa4b0e696221ad2566e"><div class="ttname"><a href="time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566e">ev::Kernel</a></div><div class="ttdeci">Kernel</div><div class="ttdoc">This class extends ev::EventImage_&lt;T&gt; for time surfaces.</div><div class="ttdef"><b>Definition</b> time-surface.hpp:50</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
