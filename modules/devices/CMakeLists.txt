@@ -1,8 +1,6 @@
 set(MODULE_NAME "devices")
 message(STATUS "Module ${MODULE_NAME} included")
 
-include(FindPkgConfig)
-pkg_check_modules(libusb REQUIRED IMPORTED_TARGET libusb-1.0>=1.0.17)
 configure_file("${PROJECT_SOURCE_DIR}/third-party/libcaer/include/libcaer/libcaer.h.in" "${PROJECT_SOURCE_DIR}/third-party/libcaer/include/libcaer/libcaer.h" @ONLY)
 
 add_library(
@@ -19,9 +17,20 @@ add_library(
   "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/log.c"
   "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/ringbuffer.c"
   "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/samsung_evk.c"
-  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/usb_utils.c")
-target_link_libraries(caer PRIVATE PkgConfig::libusb)
+  "${PROJECT_SOURCE_DIR}/third-party/libcaer/src/usb_utils.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/core.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/descriptor.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/hotplug.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/io.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/os/events_posix.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/os/linux_udev.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/os/linux_usbfs.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/os/threads_posix.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/strerror.c"
+  "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/sync.c")
+target_link_libraries(caer PRIVATE udev)
 target_include_directories(caer PRIVATE "${PROJECT_SOURCE_DIR}/third-party/libcaer/include")
+target_include_directories(caer PRIVATE "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb" "${PROJECT_SOURCE_DIR}/third-party/libusb")
 target_compile_options(caer PRIVATE "-w")
 
 file(GLOB_RECURSE SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*")

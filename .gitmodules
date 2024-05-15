@@ -1,3 +1,6 @@
 [submodule "third-party/libcaer"]
 	path = third-party/libcaer
 	url = https://gitlab.com/inivation/dv/libcaer
+[submodule "third-party/libusb"]
+	path = third-party/libusb
+	url = https://github.com/libusb/libusb
