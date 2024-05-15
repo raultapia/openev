@@ -8,10 +8,10 @@
 namespace ev {
 
 template <typename T, const RepresentationOptions Options>
-void TimeSurface_<T, Options>::render(const Kernel kernel /*= Kernel::NONE*/, const double tau /*= 0*/) {
+cv::Mat &TimeSurface_<T, Options>::render(const Kernel kernel /*= Kernel::NONE*/, const double tau /*= 0*/) {
   logger::error("TimeSurface::applyKernel: tau value must be greater that zero", kernel == Kernel::NONE || tau > 0);
   if(TimeSurface_<T, Options>::tLimits_[TimeSurface_<T, Options>::MAX] < 0) {
-    return;
+    return *this;
   }
 
   cv::Mat_<double> ts;
@@ -43,6 +43,8 @@ void TimeSurface_<T, Options>::render(const Kernel kernel /*= Kernel::NONE*/, co
     });
     cv::merge(v, *this);
   }
+
+  return *this;
 }
 
 template <typename T, const RepresentationOptions Options>

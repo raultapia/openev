@@ -68,7 +68,7 @@ public:
   \param tau Time constant
   \see TimeSurface_::Kernel
   */
-  void render(const Kernel kernel = Kernel::NONE, const double tau = 0);
+  cv::Mat &render(const Kernel kernel = Kernel::NONE, const double tau = 0);
 
 private:
   void clear_() override;

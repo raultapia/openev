@@ -8,9 +8,8 @@ This is an example of how to use the Davis class.
 #include <openev/openev.hpp>
 
 inline void show1(ev::EventHistogram3b &evhist) {
-  evhist.render();
   ev::EventHistogram3b resized;
-  cv::resize(evhist, resized, ev::Size(), 2, 2, cv::INTER_NEAREST);
+  cv::resize(evhist.render(), resized, ev::Size(), 2, 2, cv::INTER_NEAREST);
   cv::imshow("example-davis: dvs", resized);
   cv::waitKey(1);
 }

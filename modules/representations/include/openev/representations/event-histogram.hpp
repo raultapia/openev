@@ -65,7 +65,7 @@ public:
   Event histogram matrix is generated from counter matrix.
   \brief Render event histogram matrix.
   */
-  void render();
+  cv::Mat &render();
 
 private:
   void clear_() override;

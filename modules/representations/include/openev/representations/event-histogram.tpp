@@ -8,13 +8,13 @@
 namespace ev {
 
 template <typename T, const RepresentationOptions Options>
-void EventHistogram_<T, Options>::render() {
+cv::Mat &EventHistogram_<T, Options>::render() {
   if(!peak_) {
-    return;
+    return *this;
   }
 
   cv::Mat_<double> normalized(counter);
-  normalized /= peak_;
+  normalized = normalized / peak_;
 
   if constexpr(TypeHelper<T>::NumChannels == 1) {
     cv::Mat_<T>(
@@ -39,6 +39,8 @@ void EventHistogram_<T, Options>::render() {
     });
     cv::merge(v, *this);
   }
+
+  return *this;
 }
 
 template <typename T, const RepresentationOptions Options>
