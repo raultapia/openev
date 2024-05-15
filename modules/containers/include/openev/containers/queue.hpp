@@ -7,12 +7,9 @@
 #define OPENEV_CONTAINERS_QUEUE_HPP
 
 #include "openev/core/types.hpp"
-#include <array>
 #include <cstddef>
 #include <queue>
-#include <set>
 #include <utility>
-#include <vector>
 
 namespace ev {
 /*! \cond INTERNAL */
