@@ -6,11 +6,22 @@
 #ifndef OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 #define OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 
-#include "openev/containers.hpp"
-#include "openev/core.hpp"
-#include <opencv2/viz.hpp>
+#include "openev/containers/array.hpp"
+#include "openev/containers/queue.hpp"
+#include "openev/containers/vector.hpp"
+#include "openev/core/types.hpp"
+#include <array>
+#include <cstddef>
+#include <float.h>
+#include <opencv2/core/mat.hpp>
+#include <opencv2/core/matx.hpp>
+#include <opencv2/core/traits.hpp>
+#include <stdint.h>
+#include <type_traits>
+
+#ifdef HAVE_VIZ
 #include <opencv2/viz/types.hpp>
-#include <utility>
+#endif
 
 namespace ev {
 
@@ -50,9 +61,12 @@ public:
       return TypeArray{repeat(1.0), repeat(-1.0), repeat(0.0)};
     } else {
       if constexpr(NumChannels == 1) {
-        return TypeArray{convert(cv::viz::Color::white()), convert(cv::viz::Color::black()), convert(cv::viz::Color::gray())};
+        constexpr Type white = 255;
+        constexpr Type black = 0;
+        constexpr Type gray = 128;
+        return TypeArray{white, black, gray};
       } else {
-        return TypeArray{convert(cv::viz::Color::blue()), convert(cv::viz::Color::red()), convert(cv::viz::Color::black())};
+        return TypeArray{Type(255, 0, 0), Type(0, 0, 255), Type(0, 0, 0)};
       }
     }
   }
@@ -69,6 +83,7 @@ public:
     }
   }
 
+#ifdef HAVE_VIZ
   static constexpr Type convert(const cv::viz::Color &color) {
     if constexpr(NumChannels == 1) {
       return color[0];
@@ -92,6 +107,7 @@ public:
       return ret;
     }
   }
+#endif
 };
 /*! \endcond */
 
@@ -198,6 +214,7 @@ public:
     RESET = reset;
   }
 
+#ifdef HAVE_VIZ
   /*!
   \brief Set colors for ON and OFF pixels. For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>.
   \param polarity Positive (ON) or negative (OFF)
@@ -227,6 +244,7 @@ public:
   inline void setColors(const cv::viz::Color &positive, const cv::viz::Color &negative, const cv::viz::Color &reset) {
     setValues(TypeHelper<T>::convert(positive), TypeHelper<T>::convert(negative), TypeHelper<T>::convert(reset));
   }
+#endif
 
   /*!
   \brief Get current values for ON and OFF pixels.

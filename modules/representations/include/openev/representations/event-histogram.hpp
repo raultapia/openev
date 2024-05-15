@@ -6,11 +6,14 @@
 #ifndef OPENEV_REPRESENTATIONS_EVENT_HISTOGRAM_HPP
 #define OPENEV_REPRESENTATIONS_EVENT_HISTOGRAM_HPP
 
-#include "openev/containers.hpp"
-#include "openev/core.hpp"
+#include "openev/core/types.hpp"
+#include "openev/representations/abstract-representation.hpp"
 #include "openev/representations/event-image.hpp"
-#include <opencv2/viz.hpp>
-#include <opencv2/viz/types.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/core/hal/interface.h>
+#include <opencv2/core/mat.hpp>
+#include <opencv2/core/matx.hpp>
+#include <opencv2/core/utility.hpp>
 #include <utility>
 
 namespace ev {

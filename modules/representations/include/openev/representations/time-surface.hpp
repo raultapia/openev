@@ -6,10 +6,10 @@
 #ifndef OPENEV_REPRESENTATIONS_TIME_SURFACE_HPP
 #define OPENEV_REPRESENTATIONS_TIME_SURFACE_HPP
 
-#include "openev/containers.hpp"
-#include "openev/core.hpp"
-#include <opencv2/viz.hpp>
-#include <opencv2/viz/types.hpp>
+#include "openev/core/types.hpp"
+#include "openev/representations/abstract-representation.hpp"
+#include "openev/representations/event-image.hpp"
+#include <opencv2/core.hpp>
 #include <utility>
 
 namespace ev {
