@@ -7,6 +7,7 @@
 #define OPENEV_REPRESENTATIONS_POINT_CLOUD_HPP
 
 #include "openev/core/types.hpp"
+#include "openev/options.hpp"
 #include "openev/representations/abstract-representation.hpp"
 #include <array>
 #include <opencv2/core/hal/interface.h>
@@ -14,7 +15,7 @@
 #include <opencv2/core/types.hpp>
 #include <vector>
 
-#ifdef HAVE_VIZ
+#if OE_HAVE_VIZ
 #include <opencv2/viz/viz3d.hpp>
 #endif
 
@@ -52,7 +53,7 @@ public:
     return std::find(points_[e.p].begin(), points_[e.p].end(), cv::Point3f(e.x, e.y, e.t)) != points_[e.p].end();
   }
 
-#ifdef HAVE_VIZ
+#if OE_HAVE_VIZ
   /*!
   \brief Visualize point cloud
   \param t Amount of time in milliseconds for the event loop to keep running. Zero means "forever"
@@ -65,7 +66,7 @@ public:
 
 private:
   std::array<std::vector<cv::Point3_<typename TypeHelper<T>::FloatingPointType>>, 2> points_;
-#ifdef HAVE_VIZ
+#if OE_HAVE_VIZ
   cv::viz::Viz3d window_{"OpenEV"};
 #endif
 
