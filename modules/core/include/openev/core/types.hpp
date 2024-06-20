@@ -8,6 +8,7 @@
 
 #include "openev/core/undistortion.hpp"
 #include "openev/utils/logger.hpp"
+#include <array>
 #include <cmath>
 #include <cstdint>
 #include <iosfwd>
@@ -205,7 +206,7 @@ public:
   \brief Bilinear voting.
   \return Vector of weights
   */
-  std::array<double, 4> bilinearVoting() {
+  std::array<double, 4> bilinearVoting() const {
     const double dx = this->x - static_cast<int>(this->x);
     const double dy = this->y - static_cast<int>(this->y);
     if(dx == 0 && dy == 0) {
@@ -262,7 +263,7 @@ public:
   \brief Bilinear voting.
   \return Vector of events after integer casting
   */
-  std::vector<AugmentedEvent_<int>> bilinearVoting() {
+  std::vector<AugmentedEvent_<int>> bilinearVoting() const {
     const double dx = this->x - static_cast<int>(this->x);
     const double dy = this->y - static_cast<int>(this->y);
     if(dx == 0 && dy == 0) {
