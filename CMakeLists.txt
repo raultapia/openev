@@ -24,9 +24,13 @@ find_package(
   OpenCV REQUIRED
   COMPONENTS core highgui calib3d
   OPTIONAL_COMPONENTS viz)
-if(OpenCV_viz_FOUND)
-  add_compile_definitions(HAVE_VIZ)
+if(${OpenCV_viz_FOUND})
+  set(HAVE_VIZ 1)
+else()
+  set(HAVE_VIZ 0)
 endif()
+configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_SOURCE_DIR}/include/openev/options.hpp" @ONLY)
+
 add_subdirectory(modules/containers)
 add_subdirectory(modules/core)
 add_subdirectory(modules/devices)
@@ -43,10 +47,12 @@ target_link_libraries(openev INTERFACE oe_readers)
 target_link_libraries(openev INTERFACE oe_representations)
 target_link_libraries(openev INTERFACE oe_utils)
 target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
+target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${OpenCV_INCLUDE_DIRS}>" "$<INSTALL_INTERFACE:${OpenCV_INCLUDE_DIRS}>")
 set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/openev.hpp")
+set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/options.hpp")
 
 # Compile examples
-if(OpenCV_viz_FOUND)
+if(HAVE_VIZ)
   add_subdirectory(examples)
 endif()
 

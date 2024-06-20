@@ -7,7 +7,7 @@
 
 namespace ev {
 
-#ifdef HAVE_VIZ
+#if OE_HAVE_VIZ
 template <typename T, const RepresentationOptions Options>
 void PointCloud_<T, Options>::visualize(const int t, const double time_scale /*= 1.0*/, const double axis_size /*= 1.0*/, const double point_size /*= 2.0*/) {
   if(points_[static_cast<std::size_t>(ev::POSITIVE)].empty() || points_[static_cast<std::size_t>(ev::NEGATIVE)].empty()) { // FIXME: This should be able to display only positive/negative events
