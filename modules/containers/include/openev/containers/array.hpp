@@ -9,6 +9,7 @@
 #include "openev/core/types.hpp"
 #include <array>
 #include <cstddef>
+#include <numeric>
 
 namespace ev {
 /*!
@@ -35,6 +36,34 @@ public:
   */
   [[nodiscard]] inline double rate() const {
     return std::array<T, N>::size() / duration();
+  }
+
+  /*!
+  \brief Compute the mean of the events in the array.
+  \return An Eventd object containing the mean values of x, y, t, and p attributes.
+  */
+  [[nodiscard]] Eventd mean() const {
+    double x = 0.0;
+    double y = 0.0;
+    double t = 0.0;
+    double p = 0.0;
+
+    for(const T &e : *this) {
+      x += static_cast<double>(e.x);
+      y += static_cast<double>(e.y);
+      t += static_cast<double>(e.t);
+      p += static_cast<double>(e.p);
+    }
+
+    return {x / N, y / N, t / N, p / N >= 0.5};
+  }
+
+  /*!
+  \brief Compute the mean time of the events in the array.
+  \return Mean time
+  */
+  [[nodiscard]] inline double meanTime() const {
+    return std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / N;
   }
 };
 template <std::size_t N>

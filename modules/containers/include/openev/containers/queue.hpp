@@ -87,6 +87,14 @@ public:
   [[nodiscard]] inline double rate() const {
     return std::queue<T>::size() / duration();
   }
+
+  /*!
+  \brief Calculate the midpoint time between the oldest and the newest event.
+  \return Midpoint time.
+  */
+  [[nodiscard]] inline double midTime() const {
+    return 0.5 * (std::queue<T>::front().t + std::queue<T>::back().t);
+  }
 };
 using Queuei = Queue_<Eventi>;                   /*!< Alias for Queue_ using Eventi */
 using Queuel = Queue_<Eventl>;                   /*!< Alias for Queue_ using Eventl */
