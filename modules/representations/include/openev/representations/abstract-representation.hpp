@@ -138,6 +138,17 @@ public:
   }
 
   /*!
+  \brief Calculate the midpoint time between the oldest and the newest event.
+  \return Midpoint time. Returns -1 if time limits are not properly set.
+  */
+  [[nodiscard]] inline double midTime() const {
+    if(tLimits_[MIN] == DBL_MAX || tLimits_[MAX] == DBL_MIN) {
+      return -1;
+    }
+    return 0.5 * (tLimits_[MAX] + tLimits_[MIN]);
+  }
+
+  /*!
   \brief Remove all events from the representation.
   \note The way in which the events are removed should be implemented in the derived classes.
   */
