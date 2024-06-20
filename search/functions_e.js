@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['warning_0',['warning',['../logger_8hpp.html#a8a8bb4eb05ace397cbc3e43d1d5f700a',1,'ev::logger']]]
+  ['volume_0',['volume',['../classev_1_1Size3__.html#a8d16b018e520cba3d870741153c43c00',1,'ev::Size3_::volume()'],['../classev_1_1Rect3__.html#a5fba21f2e46bff7267492cddf3540519',1,'ev::Rect3_::volume()']]]
 ];

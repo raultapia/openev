@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stereo_0',['stereo',['../classev_1_1AugmentedEvent__.html#aba7434b9a783ec014e6227e4b5eead7d',1,'ev::AugmentedEvent_']]]
+  ['weight_0',['weight',['../classev_1_1AugmentedEvent__.html#af1fc5a1d7be320e7d45fce43b6e43ec7',1,'ev::AugmentedEvent_']]]
 ];

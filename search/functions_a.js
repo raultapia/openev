@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['rate_0',['rate',['../classev_1_1Array__.html#afbe773482f7863bc60bb4d22a654b610',1,'ev::Array_::rate()'],['../classev_1_1Queue__.html#a20b2ce250578c2885712c183083a600b',1,'ev::Queue_::rate()'],['../classev_1_1Vector__.html#a362f3b032869325112671753a3d9b848',1,'ev::Vector_::rate()']]],
-  ['rect3_5f_1',['Rect3_',['../classev_1_1Rect3__.html#ad032da839930712403dffd07f602ecc5',1,'ev::Rect3_::Rect3_()'],['../classev_1_1Rect3__.html#a0496d8895ea1a40bcb6f5c43b187a6f1',1,'ev::Rect3_::Rect3_(const T x, const T y, const T t, const T w, const T h, const T l)'],['../classev_1_1Rect3__.html#a47ab3f2b243fbefeac90a4b95ff34552',1,'ev::Rect3_::Rect3_(const Rect2_&lt; T &gt; &amp;rect, const T t, const T l)'],['../classev_1_1Rect3__.html#a6f7c0fec6b9103e97d6e5ce336260e95',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt, const Size3_&lt; T &gt; sz)'],['../classev_1_1Rect3__.html#a6aaf7d688888a305be6d8f352c9274d2',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt1, const cv::Point3_&lt; T &gt; &amp;pt2)']]],
-  ['render_2',['render',['../classev_1_1EventHistogram__.html#af39f814545d19d56cf092710282be2ad',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#ad0c9aa09782179de5cc789976220e527',1,'ev::TimeSurface_::render()']]],
-  ['reset_3',['reset',['../classev_1_1AbstractReader__.html#a29982bb0dde6ca0e1b43fc15e2dce769',1,'ev::AbstractReader_']]]
+  ['plaintextreader_0',['PlainTextReader',['../classev_1_1PlainTextReader.html#a4f616c50df68b75d51918ed9a8d02de9',1,'ev::PlainTextReader']]],
+  ['push_1',['push',['../classev_1_1Queue__.html#a2ec6aa510b79d1f2ae4743530c88b9da',1,'ev::Queue_::push(const Array_&lt; T, N &gt; &amp;array)'],['../classev_1_1Queue__.html#a85799c5ef98d6e8d7cb3096c1bfcb801',1,'ev::Queue_::push(const Vector_&lt; T &gt; &amp;vector)']]],
+  ['push_5fback_2',['push_back',['../classev_1_1Vector__.html#aa3c532c17501158430384014d4b7a24a',1,'ev::Vector_::push_back(const Array_&lt; T, N &gt; &amp;array)'],['../classev_1_1Vector__.html#adfea201b228717194f10874c19138373',1,'ev::Vector_::push_back(Queue_&lt; T &gt; &amp;queue, const bool keep_events_in_queue=false)']]]
 ];
