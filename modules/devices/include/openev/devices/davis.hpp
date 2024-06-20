@@ -225,6 +225,17 @@ public:
   */
   bool getData(Queue &events, StampedMatQueue &frame, ImuQueue &imu);
 
+  /*!
+  \brief Retrieve raw event data.
+  \param data A vector to which the raw event data will be added.
+  \note Events are encoded as follows:
+  Mask for x: 11111111111111100000000000000000 00000000000000000000000000000000
+  Mask for y: 00000000000000011111111111111100 00000000000000000000000000000000
+  Mask for p: 00000000000000000000000000000010 00000000000000000000000000000000
+  Mask for t: 00000000000000000000000000000000 11111111111111111111111111111111
+  */
+  void getEventRaw(std::vector<uint64_t> &data);
+
 private:
   bool dvsEnabled_{true};
   bool apsEnabled_{true};
