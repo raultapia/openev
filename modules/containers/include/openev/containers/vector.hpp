@@ -6,6 +6,8 @@
 #ifndef OPENEV_CONTAINERS_VECTOR_HPP
 #define OPENEV_CONTAINERS_VECTOR_HPP
 
+#include "openev/containers/array.hpp"
+#include "openev/containers/queue.hpp"
 #include "openev/core/types.hpp"
 #include <cstddef>
 #include <numeric>
@@ -35,22 +37,11 @@ class Vector_ : public std::vector<T> {
   using std::vector<T>::vector;
 
 public:
-  /*!
-  \brief Push back an event.
-  \param e Event to push back
-  */
+  /*! \cond INTERNAL */
   inline void push_back(const T &e) {
     std::vector<T>::push_back(e);
   }
-
-  /*!
-  \brief Emplace back an event.
-  \param args Constructor arguments
-  */
-  template <typename... Args>
-  inline void emplace_back(Args &&...args) {
-    std::vector<T>::emplace_back(std::forward<Args>(args)...);
-  }
+  /*! \endcond */
 
   /*!
   \brief Push back elements from an array of events.
@@ -65,12 +56,22 @@ public:
   /*!
   \brief Push back elements from a queue of events.
   \param queue Event queue to push back
+  \param keep_events_in_queue If true, events are reinserted in the queue
   */
-  inline void push_back(Queue_<T> &queue) {
+  inline void push_back(Queue_<T> &queue, const bool keep_events_in_queue = false) {
     std::vector<T>::reserve(std::vector<T>::size() + queue.size());
-    while(!queue.empty()) {
-      std::vector<T>::emplace_back(std::move(queue.front()));
-      queue.pop();
+    if(keep_events_in_queue) {
+      const std::size_t size = queue.size();
+      for(std::size_t i = 0; i < size; i++) {
+        std::vector<T>::emplace_back(std::move(queue.front()));
+        queue.emplace(queue.front());
+        queue.pop();
+      }
+    } else {
+      while(!queue.empty()) {
+        std::vector<T>::emplace_back(std::move(queue.front()));
+        queue.pop();
+      }
     }
   }
 

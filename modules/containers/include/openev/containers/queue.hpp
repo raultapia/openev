@@ -6,6 +6,8 @@
 #ifndef OPENEV_CONTAINERS_QUEUE_HPP
 #define OPENEV_CONTAINERS_QUEUE_HPP
 
+#include "openev/containers/array.hpp"
+#include "openev/containers/vector.hpp"
 #include "openev/core/types.hpp"
 #include <cstddef>
 #include <queue>
@@ -34,22 +36,11 @@ class Queue_ : public std::queue<T> {
   using std::queue<T>::queue;
 
 public:
-  /*!
-  \brief Push an event.
-  \param e Event to push
-  */
+  /*! \cond INTERNAL */
   inline void push(const T &e) {
     std::queue<T>::push(e);
   }
-
-  /*!
-  \brief Emplace back an event.
-  \param args Constructor arguments
-  */
-  template <typename... Args>
-  inline void emplace(Args &&...args) {
-    std::queue<T>::emplace(std::forward<Args>(args)...);
-  }
+  /*! \endcond */
 
   /*!
   \brief Push elements from an array of events.
