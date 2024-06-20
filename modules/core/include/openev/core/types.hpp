@@ -17,6 +17,9 @@
 #include <opencv2/core/types.hpp>
 #include <string>
 #include <vector>
+namespace ev {
+class UndistortMap;
+}
 
 namespace ev {
 constexpr bool POSITIVE = true;  /*!< Positive polarity */
