@@ -32,7 +32,7 @@ enum RepresentationOptions : uint8_t {
   ONLY_IF_POSITIVE = 0b00000010,
   ONLY_IF_NEGATIVE = 0b00000100
 };
-constexpr bool REPRESENTATION_OPTION_CHECK(const uint8_t a, const ev::RepresentationOptions b) {
+constexpr bool REPRESENTATION_OPTION_CHECK(const uint8_t a, const RepresentationOptions b) {
   return static_cast<bool>(a & static_cast<uint8_t>(b));
 }
 
@@ -128,11 +128,11 @@ public:
 
   /*!
   \brief Time difference between the oldest and the newest event integrated in the representation.
-  \return Time difference
+  \return Time difference. Returns -1 if time limits are not properly set.
   */
   [[nodiscard]] inline double duration() const {
     if(tLimits_[MIN] == DBL_MAX || tLimits_[MAX] == DBL_MIN) {
-      return 0;
+      return -1;
     }
     return tLimits_[MAX] - tLimits_[MIN];
   }
@@ -169,9 +169,10 @@ public:
   /*!
   \brief Insert a queue of events in the representation.
   \param queue Event queue to insert
+  \param keep_events_in_queue If true, events are reinserted in the queue
   \return True if all the events have been inserted
   */
-  bool insert(Queue &queue);
+  bool insert(Queue &queue, const bool keep_events_in_queue = false);
 
   /*!
   \brief Set time offset.

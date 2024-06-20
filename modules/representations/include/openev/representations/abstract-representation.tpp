@@ -59,11 +59,24 @@ bool AbstractRepresentation_<T, Options>::insert(const Vector &vector) {
 }
 
 template <typename T, const RepresentationOptions Options>
-bool AbstractRepresentation_<T, Options>::insert(Queue &queue) {
+bool AbstractRepresentation_<T, Options>::insert(Queue &queue, const bool keep_events_in_queue /*= false*/) {
   bool ret = true;
-  while(!queue.empty()) {
-    ret = insert(queue.front()) && ret;
-    queue.pop();
+  if(keep_events_in_queue) {
+    const std::size_t size = queue.size();
+    for(std::size_t i = 0; i < size; i++) {
+      if(!insert(queue.front())) {
+        ret = false;
+      }
+      queue.emplace(queue.front());
+      queue.pop();
+    }
+  } else {
+    while(!queue.empty()) {
+      if(!insert(queue.front())) {
+        ret = false;
+      }
+      queue.pop();
+    }
   }
   return ret;
 }
