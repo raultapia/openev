@@ -8,6 +8,7 @@
 
 #include "openev/core/types.hpp"
 #include <cstddef>
+#include <numeric>
 #include <utility>
 #include <vector>
 
@@ -87,6 +88,35 @@ public:
   */
   [[nodiscard]] inline double rate() const {
     return std::vector<T>::size() / duration();
+  }
+
+  /*!
+  \brief Compute the mean of the events in the vector.
+  \return An Eventd object containing the mean values of x, y, t, and p attributes.
+  */
+  [[nodiscard]] Eventd mean() const {
+    double x = 0.0;
+    double y = 0.0;
+    double t = 0.0;
+    double p = 0.0;
+
+    for(const T &e : *this) {
+      x += static_cast<double>(e.x);
+      y += static_cast<double>(e.y);
+      t += static_cast<double>(e.t);
+      p += static_cast<double>(e.p);
+    }
+
+    const std::size_t size = std::vector<T>::size();
+    return {x / size, y / size, t / size, p / size >= 0.5};
+  }
+
+  /*!
+  \brief Compute the mean time of the events in the vector.
+  \return Mean time
+  */
+  [[nodiscard]] inline double meanTime() const {
+    return std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::vector<T>::size();
   }
 };
 using Vectori = Vector_<Eventi>;                   /*!< Alias for Vector_ using Eventi */
