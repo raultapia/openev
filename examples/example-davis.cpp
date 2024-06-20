@@ -22,7 +22,7 @@ inline void show2(cv::Mat &img) {
 }
 
 int main(int argc, const char *argv[]) {
-  ev::Davis346 camera;
+  ev::Davis camera;
   camera.setRoi(cv::Rect(20, 20, 250, 200));
   std::cout << camera.getRoi() << std::endl;
   camera.enableDvs(true);

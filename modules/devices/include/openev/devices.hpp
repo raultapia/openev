@@ -8,6 +8,5 @@
 #define OPENEV_DEVICES_HPP
 
 #include "openev/devices/davis.hpp"
-#include "openev/devices/davis346.hpp"
 
 #endif // OPENEV_DEVICES_HPP
