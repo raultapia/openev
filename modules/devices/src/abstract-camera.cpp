@@ -8,11 +8,6 @@
 #include "libcaer/devices/device.h"
 #include <chrono>
 
-void ev::AbstractCamera_::start() {
-  caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
-  flush(1);
-}
-
 void ev::AbstractCamera_::stop() {
   caerDeviceDataStop(deviceHandler_);
 }

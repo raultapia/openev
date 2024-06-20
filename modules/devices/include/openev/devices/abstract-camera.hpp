@@ -11,7 +11,6 @@
 #include <atomic>
 #include <math.h>
 #include <opencv2/core/mat.hpp>
-#include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/types.hpp>
 #include <ostream>
 #include <queue>
@@ -135,12 +134,12 @@ public:
   }
 
   /*!
-  \brief Start reading events.
+  \brief Start reading data.
   */
-  void start();
+  virtual void start() = 0;
 
   /*!
-  \brief Stop reading events.
+  \brief Stop reading data.
   */
   void stop();
 
@@ -163,8 +162,21 @@ public:
   */
   bool setRoi(const cv::Rect &roi);
 
+  /*!
+  \brief Retrieve the bias value associated with a specific configuration and name.
+  \param config_bias The configuration identifier for the bias.
+  \param name The identifier for the bias value to retrieve.
+  \return The bias value corresponding to the given configuration and name.
+  */
   BiasValue getBias(const int8_t config_bias, const uint8_t name) const;
 
+  /*!
+  \brief Set the bias value associated with a specific configuration and name.
+  \param config_bias The configuration identifier for the bias.
+  \param name The identifier for the bias value to set.
+  \param value The new bias value to set.
+  \return True if the bias value was successfully set.
+  */
   bool setBias(const int8_t config_bias, const uint8_t name, const BiasValue &value);
 
   /*!

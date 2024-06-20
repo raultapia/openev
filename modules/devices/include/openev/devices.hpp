@@ -9,6 +9,5 @@
 
 #include "openev/devices/abstract-camera.hpp"
 #include "openev/devices/davis.hpp"
-#include "openev/devices/davis346.hpp"
 
 #endif // OPENEV_DEVICES_HPP

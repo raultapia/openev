@@ -30,7 +30,8 @@ add_library(
   "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb/sync.c")
 target_link_libraries(caer PRIVATE udev)
 target_include_directories(caer PRIVATE "${PROJECT_SOURCE_DIR}/third-party/libcaer/include")
-target_include_directories(caer PRIVATE "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb" "${PROJECT_SOURCE_DIR}/third-party/libusb")
+target_include_directories(caer PRIVATE "${PROJECT_SOURCE_DIR}/third-party/libusb/libusb")
+target_include_directories(caer PRIVATE "${PROJECT_SOURCE_DIR}/third-party/libusb")
 target_compile_options(caer PRIVATE "-w")
 
 file(GLOB_RECURSE SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*")

@@ -10,27 +10,44 @@
 #include "openev/containers/vector.hpp"
 #include "openev/devices/abstract-camera.hpp"
 #include <stdint.h>
+#include <vector>
 
 namespace ev {
 /*!
 \brief This class extends AbstractCamera_ to operate with DAVIS event cameras. DAVIS cameras offer events (DVS), framed images (APS), and IMU data.
 */
-class Davis_ : public AbstractCamera_ {
+class Davis : public AbstractCamera_ {
 public:
   constexpr static uint32_t DEFAULT_INTERVAL = 20000;
   constexpr static uint32_t DEFAULT_EXPOSURE = 6500;
 
   /*! \cond INTERNAL */
-  Davis_();
-  ~Davis_() override;
-  Davis_(const Davis_ &) = delete;
-  Davis_(Davis_ &&) noexcept = delete;
-  Davis_ &operator=(const Davis_ &) = delete;
-  Davis_ &operator=(Davis_ &&) noexcept = delete;
+  Davis();
+  ~Davis() override;
+  Davis(const Davis &) = delete;
+  Davis(Davis &&) noexcept = delete;
+  Davis &operator=(const Davis &) = delete;
+  Davis &operator=(Davis &&) noexcept = delete;
   /*! \endcond */
 
+  /*!
+  \brief Starts device.
+  */
+  void start(void) override;
+
+  /*!
+  \brief Retrieve the bias value associated with the given name.
+  \param name The identifier for the bias value to retrieve.
+  \return The bias value corresponding to the given name.
+  */
   BiasValue getBias(const uint8_t name) const;
 
+  /*!
+  \brief Set the bias value associated with the given name.
+  \param name The identifier for the bias value to set.
+  \param value The new bias value to set.
+  \return True if the bias value was successfully set, false otherwise.
+  */
   bool setBias(const uint8_t name, const BiasValue &value);
 
   /*!
