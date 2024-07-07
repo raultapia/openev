@@ -7,16 +7,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Git submodules
-execute_process(
-  COMMAND id -u
-  OUTPUT_VARIABLE USER_ID
-  OUTPUT_STRIP_TRAILING_WHITESPACE)
-if(NOT "${USER_ID}" STREQUAL "0")
+if(NOT EXISTS "${PROJECT_SOURCE_DIR}/third-party/libusb/config.h")
   find_package(Git REQUIRED)
-  execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive WORKING_DIRECTORY ${PROJECT_SOURCE_DIR} COMMAND_ERROR_IS_FATAL ANY)
-  if(NOT EXISTS "${PROJECT_SOURCE_DIR}/third-party/libusb/config.h")
-    execute_process(COMMAND ${PROJECT_SOURCE_DIR}/third-party/libusb/autogen.sh WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/third-party/libusb COMMAND_ERROR_IS_FATAL ANY)
-  endif()
+  execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+  execute_process(COMMAND ${PROJECT_SOURCE_DIR}/third-party/libusb/autogen.sh WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/third-party/libusb)
 endif()
 
 # Add modules
