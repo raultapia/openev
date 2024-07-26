@@ -206,6 +206,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abcab1d9da49a96ab62c69e83f494ee81" id="r_abcab1d9da49a96ab62c69e83f494ee81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abcab1d9da49a96ab62c69e83f494ee81">getEventRaw</a> (std::vector&lt; uint64_t &gt; &amp;data)</td></tr>
 <tr class="memdesc:abcab1d9da49a96ab62c69e83f494ee81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve raw event data.  <br /></td></tr>
 <tr class="separator:abcab1d9da49a96ab62c69e83f494ee81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6eaf4530009a9df226e90a0067fb67c" id="r_af6eaf4530009a9df226e90a0067fb67c"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6eaf4530009a9df226e90a0067fb67c">getEventRaw</a> (uint64_t *data)</td></tr>
+<tr class="memdesc:af6eaf4530009a9df226e90a0067fb67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve raw event data.  <br /></td></tr>
+<tr class="separator:af6eaf4530009a9df226e90a0067fb67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classev_1_1AbstractCamera__"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classev_1_1AbstractCamera__')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classev_1_1AbstractCamera__.html">ev::AbstractCamera_</a></td></tr>
 <tr class="memitem:a10da848c9b274afd76ba44f76e35a3bd inherit pub_methods_classev_1_1AbstractCamera__" id="r_a10da848c9b274afd76ba44f76e35a3bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractCamera__.html#a10da848c9b274afd76ba44f76e35a3bd">setTimeOffset</a> (const double offset)</td></tr>
 <tr class="memdesc:a10da848c9b274afd76ba44f76e35a3bd inherit pub_methods_classev_1_1AbstractCamera__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set offset to add after receiving events.  <br /></td></tr>
@@ -882,7 +885,7 @@ static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>
 </div>
 </div>
 <a id="abcab1d9da49a96ab62c69e83f494ee81" name="abcab1d9da49a96ab62c69e83f494ee81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcab1d9da49a96ab62c69e83f494ee81">&#9670;&#160;</a></span>getEventRaw()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abcab1d9da49a96ab62c69e83f494ee81">&#9670;&#160;</a></span>getEventRaw() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -903,6 +906,33 @@ static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>Events are encoded as follows: Mask for x: 11111111111111100000000000000000 00000000000000000000000000000000 Mask for y: 00000000000000011111111111111100 00000000000000000000000000000000 Mask for p: 00000000000000000000000000000010 00000000000000000000000000000000 Mask for t: 00000000000000000000000000000000 11111111111111111111111111111111 </dd></dl>
+
+</div>
+</div>
+<a id="af6eaf4530009a9df226e90a0067fb67c" name="af6eaf4530009a9df226e90a0067fb67c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6eaf4530009a9df226e90a0067fb67c">&#9670;&#160;</a></span>getEventRaw() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ev::Davis::getEventRaw </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieve raw event data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>A vector to which the raw event data will be added. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Size of the vector </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>Events are encoded as follows: Mask for x: 11111111111111100000000000000000 00000000000000000000000000000000 Mask for y: 00000000000000011111111111111100 00000000000000000000000000000000 Mask for p: 00000000000000000000000000000010 00000000000000000000000000000000 Mask for t: 00000000000000000000000000000000 11111111111111111111111111111111 </dd></dl>
 
 </div>
