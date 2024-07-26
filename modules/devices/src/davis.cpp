@@ -323,3 +323,35 @@ void ev::Davis::getEventRaw(std::vector<uint64_t> &data) {
     }
   }
 }
+
+std::size_t ev::Davis::getEventRaw(uint64_t *data, const bool allow_realloc /*= true*/) {
+  std::size_t idx = 0;
+  std::size_t size = 0;
+
+  caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
+  while(container == nullptr) {
+    ev::logger::warning("Connection with camera lost, retrying.");
+    caerDeviceDataStop(deviceHandler_);
+    caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
+    container = caerDeviceDataGet(deviceHandler_);
+  }
+
+  const int32_t containter_size = caerEventPacketContainerGetEventPacketsNumber(container);
+  for(int32_t i = 0; i < containter_size; i++) {
+    const caerEventPacketHeaderConst packet = caerEventPacketContainerGetEventPacketConst(container, i);
+    if(packet == nullptr || caerEventPacketHeaderGetEventType(packet) != POLARITY_EVENT) {
+      continue;
+    }
+    const int32_t packet_size = caerEventPacketHeaderGetEventNumber(packet);
+    size += caerEventPacketHeaderGetEventNumber(packet);
+    if(allow_realloc) {
+      data = (uint64_t *)realloc(data, size * sizeof(uint64_t));
+    }
+    for(int32_t k = 0; k < packet_size; k++) {
+      const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
+      data[idx++] = (static_cast<uint64_t>(p->data) << 32) | static_cast<uint64_t>(p->timestamp);
+    }
+  }
+
+  return size;
+}

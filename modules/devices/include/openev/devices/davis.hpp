@@ -236,6 +236,19 @@ public:
   */
   void getEventRaw(std::vector<uint64_t> &data);
 
+  /*!
+  \brief Retrieve raw event data.
+  \param data A vector to which the raw event data will be added.
+  \param allow_realloc If true, this function will assume data is empty and automatically manage its size (reallocating if needed).
+  \return The size of the vector.
+  \note Events are encoded as follows:
+  Mask for x: 11111111111111100000000000000000 00000000000000000000000000000000
+  Mask for y: 00000000000000011111111111111100 00000000000000000000000000000000
+  Mask for p: 00000000000000000000000000000010 00000000000000000000000000000000
+  Mask for t: 00000000000000000000000000000000 11111111111111111111111111111111
+  */
+  std::size_t getEventRaw(uint64_t *data, const bool allow_realloc = true);
+
 private:
   bool dvsEnabled_{true};
   bool apsEnabled_{true};
