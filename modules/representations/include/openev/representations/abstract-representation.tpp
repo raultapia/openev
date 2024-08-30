@@ -15,6 +15,13 @@ void AbstractRepresentation_<T, Options>::clear() {
 }
 
 template <typename T, const RepresentationOptions Options>
+void AbstractRepresentation_<T, Options>::clear(const cv::Mat &background) {
+  count_ = 0;
+  tLimits_ = {DBL_MAX, DBL_MIN};
+  clear_(background);
+}
+
+template <typename T, const RepresentationOptions Options>
 bool AbstractRepresentation_<T, Options>::insert(const Event &e) {
   if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::ONLY_IF_POSITIVE)) {
     if(e.p == ev::NEGATIVE) {

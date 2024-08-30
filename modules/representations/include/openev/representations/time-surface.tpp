@@ -55,6 +55,13 @@ void TimeSurface_<T, Options>::clear_() {
 }
 
 template <typename T, const RepresentationOptions Options>
+void TimeSurface_<T, Options>::clear_(const cv::Mat &background) {
+  background.copyTo(*this);
+  time.setTo(0);
+  polarity.setTo(0);
+}
+
+template <typename T, const RepresentationOptions Options>
 bool TimeSurface_<T, Options>::insert_(const Event &e) {
   if(e.inside(cv::Rect(0, 0, this->cols, this->rows))) {
     time(e.y, e.x) = e.t;

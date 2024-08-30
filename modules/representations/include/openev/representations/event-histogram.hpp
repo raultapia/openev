@@ -69,6 +69,7 @@ public:
 
 private:
   void clear_() override;
+  void clear_(const cv::Mat &background) override;
   bool insert_(const Event &e) override;
   int peak_{0};
 };

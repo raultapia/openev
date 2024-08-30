@@ -71,6 +71,7 @@ private:
 #endif
 
   void clear_() override;
+  void clear_(const cv::Mat &background) override;
   bool insert_(const Event &e) override;
 };
 using PointCloud1b = PointCloud_<uchar>;     /*!< Alias for PointCloud_ using uchar */

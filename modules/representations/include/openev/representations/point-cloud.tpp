@@ -45,6 +45,17 @@ void PointCloud_<T, Options>::clear_() {
 }
 
 template <typename T, const RepresentationOptions Options>
+void PointCloud_<T, Options>::clear_(const cv::Mat &background) {
+  points_[0].clear();
+  points_[1].clear();
+
+#if OE_HAVE_VIZ
+  cv::viz::WImage3D image_widget(background, background.size());
+  window_.showWidget("Image Plane", image_widget, cv::Affine3d(cv::Matx33d::eye(), cv::Vec3d(background.cols / 2.0, background.rows / 2.0, 0)));
+#endif
+}
+
+template <typename T, const RepresentationOptions Options>
 bool PointCloud_<T, Options>::insert_(const Event &e) {
   return (points_[e.p].emplace_back(e), true);
 }

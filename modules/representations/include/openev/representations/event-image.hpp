@@ -60,6 +60,7 @@ public:
 
 private:
   void clear_() override;
+  void clear_(const cv::Mat &background) override;
   bool insert_(const Event &e) override;
 };
 using EventImage1b = EventImage_<uchar>;     /*!< Alias for EventImage_ using uchar */

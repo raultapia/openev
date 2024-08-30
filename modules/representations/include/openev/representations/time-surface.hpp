@@ -72,6 +72,7 @@ public:
 
 private:
   void clear_() override;
+  void clear_(const cv::Mat &background) override;
   bool insert_(const Event &e) override;
 };
 using TimeSurface1b = TimeSurface_<uchar>;     /*!< Alias for TimeSurface_ using uchar */

@@ -155,6 +155,12 @@ public:
   void clear();
 
   /*!
+  \brief Remove all events from the representation and add a background image.
+  \note The way in which the events are removed should be implemented in the derived classes.
+  */
+  void clear(const cv::Mat &background);
+
+  /*!
   \brief Insert one event in the representation.
   \param e Event to insert
   \return True if the event has been inserted
@@ -290,6 +296,7 @@ protected:
   std::size_t count_{0};
 
   virtual void clear_() = 0;
+  virtual void clear_(const cv::Mat &background) = 0;
   virtual bool insert_(const Event &e) = 0;
   /*! \endcond */
 };
