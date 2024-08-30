@@ -130,6 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1529e7c4143e6ebfe7ecde46c65ba9ea" id="r_a1529e7c4143e6ebfe7ecde46c65ba9ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1529e7c4143e6ebfe7ecde46c65ba9ea">clear</a> ()</td></tr>
 <tr class="memdesc:a1529e7c4143e6ebfe7ecde46c65ba9ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all events from the representation.  <br /></td></tr>
 <tr class="separator:a1529e7c4143e6ebfe7ecde46c65ba9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b915d253af03d50af0f91d1007a4f95" id="r_a5b915d253af03d50af0f91d1007a4f95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b915d253af03d50af0f91d1007a4f95">clear</a> (const cv::Mat &amp;background)</td></tr>
+<tr class="memdesc:a5b915d253af03d50af0f91d1007a4f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all events from the representation and add a background image.  <br /></td></tr>
+<tr class="separator:a5b915d253af03d50af0f91d1007a4f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadb64f8a9718b63b30540b31279a3cb9" id="r_aadb64f8a9718b63b30540b31279a3cb9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadb64f8a9718b63b30540b31279a3cb9">insert</a> (const <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> &amp;e)</td></tr>
 <tr class="memdesc:aadb64f8a9718b63b30540b31279a3cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert one event in the representation.  <br /></td></tr>
 <tr class="separator:aadb64f8a9718b63b30540b31279a3cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,7 +188,7 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a1529e7c4143e6ebfe7ecde46c65ba9ea" name="a1529e7c4143e6ebfe7ecde46c65ba9ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1529e7c4143e6ebfe7ecde46c65ba9ea">&#9670;&#160;</a></span>clear()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1529e7c4143e6ebfe7ecde46c65ba9ea">&#9670;&#160;</a></span>clear() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,6 +205,28 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 </div><div class="memdoc">
 
 <p>Remove all events from the representation. </p>
+<dl class="section note"><dt>Note</dt><dd>The way in which the events are removed should be implemented in the derived classes. </dd></dl>
+
+</div>
+</div>
+<a id="a5b915d253af03d50af0f91d1007a4f95" name="a5b915d253af03d50af0f91d1007a4f95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b915d253af03d50af0f91d1007a4f95">&#9670;&#160;</a></span>clear() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::clear </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Mat &amp;</td>          <td class="paramname"><span class="paramname"><em>background</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Remove all events from the representation and add a background image. </p>
 <dl class="section note"><dt>Note</dt><dd>The way in which the events are removed should be implemented in the derived classes. </dd></dl>
 
 </div>
