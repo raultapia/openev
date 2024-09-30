@@ -4,3 +4,33 @@
 [submodule "third-party/libusb"]
 	path = third-party/libusb
 	url = https://github.com/libusb/libusb
+[submodule "third-party/circular_buffer"]
+	path = third-party/circular_buffer
+	url = https://github.com/boostorg/circular_buffer
+[submodule "third-party/config"]
+	path = third-party/config
+	url = https://github.com/boostorg/config
+[submodule "third-party/core"]
+	path = third-party/core
+	url = https://github.com/boostorg/core
+[submodule "third-party/static_assert"]
+	path = third-party/static_assert
+	url = https://github.com/boostorg/static_assert
+[submodule "third-party/type_traits"]
+	path = third-party/type_traits
+	url = https://github.com/boostorg/type_traits
+[submodule "third-party/throw_exception"]
+	path = third-party/throw_exception
+	url = https://github.com/boostorg/throw_exception
+[submodule "third-party/assert"]
+	path = third-party/assert
+	url = https://github.com/boostorg/assert
+[submodule "third-party/move"]
+	path = third-party/move
+	url = https://github.com/boostorg/move
+[submodule "third-party/concept_check"]
+	path = third-party/concept_check
+	url = https://github.com/boostorg/concept_check
+[submodule "third-party/preprocessor"]
+	path = third-party/preprocessor
+	url = https://github.com/boostorg/preprocessor
