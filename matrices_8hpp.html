@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: Class Members - Variables</title>
+<title>OpenEV: modules/core/include/openev/core/matrices.hpp File Reference</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -65,8 +65,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="doc-content">
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function(){ initResizable(false); });
@@ -93,19 +91,39 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_e05d7e2b1ecd646af5bb94391405f3b5.html">modules</a></li><li class="navelem"><a class="el" href="dir_6d4da112a1331882b0b6514a341190a0.html">core</a></li><li class="navelem"><a class="el" href="dir_a9796c9e39ac7e13d6bbfc7502720b2e.html">include</a></li><li class="navelem"><a class="el" href="dir_6cfd0fb35cc7e047e7e0c87abb0220a7.html">openev</a></li><li class="navelem"><a class="el" href="dir_afffdc8b92bf52e5ab23c218bdea6d5a.html">core</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a>  </div>
+  <div class="headertitle"><div class="title">matrices.hpp File Reference</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all documented variables with links to the class documentation for each member:</div><ul>
-<li>counter&#160;:&#160;<a class="el" href="classev_1_1EventHistogram__.html#ae22333b3f40ad1c0ce7656c47d088d28">ev::EventHistogram_&lt; T, Options &gt;</a></li>
-<li>depth&#160;:&#160;<a class="el" href="classev_1_1AugmentedEvent__.html#ace52acee441be03d32adafce2fedeed5">ev::AugmentedEvent_&lt; T &gt;</a></li>
-<li>length&#160;:&#160;<a class="el" href="classev_1_1Rect3__.html#af0e2cd626c409dcba3ef4edcdb7feab1">ev::Rect3_&lt; T &gt;</a>, <a class="el" href="classev_1_1Size3__.html#aadcd1e8587079bcc8e65a0cd36e4d64c">ev::Size3_&lt; T &gt;</a></li>
-<li>p&#160;:&#160;<a class="el" href="classev_1_1Event__.html#a2a0bf1127a8699d50fbffcafc545381a">ev::Event_&lt; T &gt;</a></li>
-<li>polarity&#160;:&#160;<a class="el" href="classev_1_1TimeSurface__.html#a248759717e790bb2b471217dc93d91f8">ev::TimeSurface_&lt; T, Options &gt;</a></li>
-<li>stereo&#160;:&#160;<a class="el" href="classev_1_1AugmentedEvent__.html#aba7434b9a783ec014e6227e4b5eead7d">ev::AugmentedEvent_&lt; T &gt;</a></li>
-<li>t&#160;:&#160;<a class="el" href="classev_1_1Event__.html#afdb69c87797e8da1e08fa3844db759c3">ev::Event_&lt; T &gt;</a>, <a class="el" href="classev_1_1Rect3__.html#a8150233193593477f17f0c7acb84452d">ev::Rect3_&lt; T &gt;</a></li>
-<li>time&#160;:&#160;<a class="el" href="classev_1_1TimeSurface__.html#a949659138a9e70ada63a5b0c679108c0">ev::TimeSurface_&lt; T, Options &gt;</a></li>
-<li>weight&#160;:&#160;<a class="el" href="classev_1_1AugmentedEvent__.html#af1fc5a1d7be320e7d45fce43b6e43ec7">ev::AugmentedEvent_&lt; T &gt;</a></li>
-</ul>
-</div><!-- contents -->
+
+<p>Basic event-based vision structures based on OpenCV components.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="types_8hpp_source.html">openev/core/types.hpp</a>&quot;</code><br />
+</div>
+<p><a href="matrices_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1TimeMat.html">ev::TimeMat</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1PolarityMat.html">ev::PolarityMat</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1CounterMat.html">ev::CounterMat</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Basic event-based vision structures based on OpenCV components. </p>
+<p>Implementation of matrices.</p>
+<dl class="section author"><dt>Author</dt><dd>Raul Tapia </dd></dl>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0

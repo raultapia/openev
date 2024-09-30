@@ -21,5 +21,6 @@ var searchData=
   ['contains_18',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a025d618422c0e4ff20f4cd86268e482c',1,'ev::PointCloud_::contains()']]],
   ['core_2ehpp_19',['core.hpp',['../core_8hpp.html',1,'']]],
   ['count_20',['count',['../classev_1_1AbstractReader__.html#ab0ff8f66fecf9da41984df80e85ac49a',1,'ev::AbstractReader_::count()'],['../classev_1_1AbstractRepresentation__.html#af8063db8133182a4e6986d4dbe0ff5c5',1,'ev::AbstractRepresentation_::count()']]],
-  ['counter_21',['counter',['../classev_1_1EventHistogram__.html#a1dfa934046298ab472ae5262ef6fc3ed',1,'ev::EventHistogram_']]]
+  ['counter_21',['counter',['../classev_1_1EventHistogram__.html#ae22333b3f40ad1c0ce7656c47d088d28',1,'ev::EventHistogram_']]],
+  ['countermat_22',['CounterMat',['../classev_1_1CounterMat.html',1,'ev']]]
 ];
