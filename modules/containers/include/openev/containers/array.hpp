@@ -23,15 +23,15 @@ class Array_ : public std::array<T, N> {
 
 public:
   /*!
-  \brief Time difference between the last and the first event in the array.
+  \brief Time difference between the last and the first event.
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return (std::array<T, N>::back()).t - (std::array<T, N>::front()).t;
+    return std::array<T, N>::back().t - std::array<T, N>::front().t;
   }
 
   /*!
-  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event in the array.
+  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event.
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
@@ -39,31 +39,41 @@ public:
   }
 
   /*!
-  \brief Compute the mean of the events in the array.
+  \brief Compute the mean of the events.
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] Eventd mean() const {
-    double x = 0.0;
-    double y = 0.0;
-    double t = 0.0;
-    double p = 0.0;
-
-    for(const T &e : *this) {
-      x += static_cast<double>(e.x);
-      y += static_cast<double>(e.y);
-      t += static_cast<double>(e.t);
-      p += static_cast<double>(e.p);
-    }
-
-    return {x / N, y / N, t / N, p / N >= 0.5};
+    const double x = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / N;
+    const double y = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / N;
+    const double t = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / N;
+    const double p = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / N;
+    return {x, y, t, p > 0.5};
   }
 
   /*!
-  \brief Compute the mean time of the events in the array.
+  \brief Compute the mean x,y point of the events.
+  \return Mean point
+  */
+  [[nodiscard]] inline cv::Point2d meanPoint() const {
+    const double x = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / N;
+    const double y = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / N;
+    return {x, y};
+  }
+
+  /*!
+  \brief Compute the mean time of the events.
   \return Mean time
   */
   [[nodiscard]] inline double meanTime() const {
     return std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / N;
+  }
+
+  /*!
+  \brief Calculate the midpoint time between the oldest and the newest event.
+  \return Midpoint time.
+  */
+  [[nodiscard]] inline double midTime() const {
+    return 0.5 * (std::array<T, N>::front().t + std::array<T, N>::back().t);
   }
 };
 template <std::size_t N>

@@ -54,37 +54,15 @@ public:
   }
 
   /*!
-  \brief Push back elements from a queue of events.
-  \param queue Event queue to push back
-  \param keep_events_in_queue If true, events are reinserted in the queue
-  */
-  inline void push_back(Queue_<T> &queue, const bool keep_events_in_queue = false) {
-    std::vector<T>::reserve(std::vector<T>::size() + queue.size());
-    if(keep_events_in_queue) {
-      const std::size_t size = queue.size();
-      for(std::size_t i = 0; i < size; i++) {
-        std::vector<T>::emplace_back(std::move(queue.front()));
-        queue.emplace(queue.front());
-        queue.pop();
-      }
-    } else {
-      while(!queue.empty()) {
-        std::vector<T>::emplace_back(std::move(queue.front()));
-        queue.pop();
-      }
-    }
-  }
-
-  /*!
-  \brief Time difference between the last and the first event in the vector.
+  \brief Time difference between the last and the first event.
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return (std::vector<T>::back()).t - (std::vector<T>::front()).t;
+    return std::vector<T>::back().t - std::vector<T>::front().t;
   }
 
   /*!
-  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event in the vector.
+  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event.
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
@@ -92,32 +70,41 @@ public:
   }
 
   /*!
-  \brief Compute the mean of the events in the vector.
+  \brief Compute the mean of the events.
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] Eventd mean() const {
-    double x = 0.0;
-    double y = 0.0;
-    double t = 0.0;
-    double p = 0.0;
-
-    for(const T &e : *this) {
-      x += static_cast<double>(e.x);
-      y += static_cast<double>(e.y);
-      t += static_cast<double>(e.t);
-      p += static_cast<double>(e.p);
-    }
-
-    const std::size_t size = std::vector<T>::size();
-    return {x / size, y / size, t / size, p / size >= 0.5};
+    const double x = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::vector<T>::size();
+    const double y = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::vector<T>::size();
+    const double t = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::vector<T>::size();
+    const double p = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / std::vector<T>::size();
+    return {x, y, t, p > 0.5};
   }
 
   /*!
-  \brief Compute the mean time of the events in the vector.
+  \brief Compute the mean x,y point of the events.
+  \return Mean point
+  */
+  [[nodiscard]] inline cv::Point2d meanPoint() const {
+    const double x = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::vector<T>::size();
+    const double y = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::vector<T>::size();
+    return {x, y};
+  }
+
+  /*!
+  \brief Compute the mean time of the events.
   \return Mean time
   */
   [[nodiscard]] inline double meanTime() const {
     return std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::vector<T>::size();
+  }
+
+  /*!
+  \brief Calculate the midpoint time between the oldest and the newest event.
+  \return Midpoint time.
+  */
+  [[nodiscard]] inline double midTime() const {
+    return 0.5 * (std::vector<T>::front().t + std::vector<T>::back().t);
   }
 };
 using Vectori = Vector_<Eventi>;                   /*!< Alias for Vector_ using Eventi */

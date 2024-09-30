@@ -1,5 +1,5 @@
 /*!
-\file containers.hpp
+\file queue.hpp
 \brief Queue container for basic event structures.
 \author Raul Tapia
 */
@@ -64,19 +64,77 @@ public:
   }
 
   /*!
-  \brief Time difference between the last and the first event in the queue.
+  \brief Time difference between the last and the first event.
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return (std::queue<T>::back()).t - (std::queue<T>::front()).t;
+    return std::queue<T>::back().t - std::queue<T>::front().t;
   }
 
   /*!
-  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event in the queue.
+  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event.
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
     return std::queue<T>::size() / duration();
+  }
+
+  /*!
+  \brief Compute the mean of the events.
+  \return An Eventd object containing the mean values of x, y, t, and p attributes.
+  */
+  [[nodiscard]] Eventd mean() {
+    const std::size_t n = std::queue<T>::size();
+    double x{0};
+    double y{0};
+    double t{0};
+    double p{0};
+
+    while(!std::queue<T>::empty()) {
+      const T &e = std::queue<T>::front();
+      x += e.x;
+      y += e.y;
+      t += e.t;
+      p += e.p;
+      std::queue<T>::pop();
+    }
+
+    return {x / n, y / n, t / n, p / n > 0.5};
+  }
+
+  /*!
+  \brief Compute the mean x,y point of the events.
+  \return Mean point
+  */
+  [[nodiscard]] inline cv::Point2d meanPoint() {
+    const std::size_t n = std::queue<T>::size();
+    double x{0};
+    double y{0};
+
+    while(!std::queue<T>::empty()) {
+      const T &e = std::queue<T>::front();
+      x += e.x;
+      y += e.y;
+      std::queue<T>::pop();
+    }
+
+    return {x / n, y / n};
+  }
+
+  /*!
+  \brief Compute the mean time of the events.
+  \return Mean time
+  */
+  [[nodiscard]] inline double meanTime() {
+    const std::size_t n = std::queue<T>::size();
+    double t{0};
+
+    while(!std::queue<T>::empty()) {
+      t += std::queue<T>::front().t;
+      std::queue<T>::pop();
+    }
+
+    return t / n;
   }
 
   /*!
