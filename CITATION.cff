@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: OpenEV
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Raul
+    family-names: Tapia
+    email: raultapia@us.es
+repository-code: 'https://github.com/raultapia/openev'
+url: 'https://raultapia.github.io/openev'
+abstract: Extending OpenCV to event-based vision
+license: GPL-3.0
