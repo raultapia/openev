@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rate_0',['rate',['../classev_1_1Array__.html#afbe773482f7863bc60bb4d22a654b610',1,'ev::Array_::rate()'],['../classev_1_1Queue__.html#a20b2ce250578c2885712c183083a600b',1,'ev::Queue_::rate()'],['../classev_1_1Vector__.html#a362f3b032869325112671753a3d9b848',1,'ev::Vector_::rate()']]],
+  ['rate_0',['rate',['../classev_1_1Array__.html#afbe773482f7863bc60bb4d22a654b610',1,'ev::Array_::rate()'],['../classev_1_1CircularBuffer__.html#a24ea44ed8747ce40d6481b6a14ea2eb4',1,'ev::CircularBuffer_::rate()'],['../classev_1_1Deque__.html#aa1e77ad10dd60f5ed310739593f6cd58',1,'ev::Deque_::rate()'],['../classev_1_1Queue__.html#a20b2ce250578c2885712c183083a600b',1,'ev::Queue_::rate()'],['../classev_1_1Vector__.html#a362f3b032869325112671753a3d9b848',1,'ev::Vector_::rate()']]],
   ['readers_2ehpp_1',['readers.hpp',['../readers_8hpp.html',1,'']]],
   ['rect_2',['Rect',['../types_8hpp.html#a327c3a081012a07c80b8dce54e993169',1,'ev']]],
   ['rect2_3',['Rect2',['../types_8hpp.html#a2e2cd8422e57fa6a7261cf6ec4254c4b',1,'ev']]],

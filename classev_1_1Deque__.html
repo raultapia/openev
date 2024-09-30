@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: ev::Queue_&lt; T &gt; Class Template Reference</title>
+<title>OpenEV: ev::Deque_&lt; T &gt; Class Template Reference</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -93,64 +93,64 @@ $(function(){ initResizable(false); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ev</b></li><li class="navelem"><a class="el" href="classev_1_1Queue__.html">Queue_</a></li>  </ul>
+<li class="navelem"><b>ev</b></li><li class="navelem"><a class="el" href="classev_1_1Deque__.html">Deque_</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classev_1_1Queue__-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">ev::Queue_&lt; T &gt; Class Template Reference</div></div>
+<a href="classev_1_1Deque__-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ev::Deque_&lt; T &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>This class extends std::queue to implement event queues. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/queue">here</a>.  
+<p>This class extends std::deque to implement event deques. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/deque">here</a>.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="queue_8hpp_source.html">queue.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="deque_8hpp_source.html">deque.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for ev::Queue_&lt; T &gt;:</div>
+Inheritance diagram for ev::Deque_&lt; T &gt;:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classev_1_1Queue__.png" alt=""/>
+  <img src="classev_1_1Deque__.png" alt=""/>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2ec6aa510b79d1f2ae4743530c88b9da" id="r_a2ec6aa510b79d1f2ae4743530c88b9da"><td class="memTemplParams" colspan="2">template&lt;std::size_t N&gt; </td></tr>
-<tr class="memitem:a2ec6aa510b79d1f2ae4743530c88b9da"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a2ec6aa510b79d1f2ae4743530c88b9da">push</a> (const <a class="el" href="classev_1_1Array__.html">Array_</a>&lt; T, N &gt; &amp;array)</td></tr>
-<tr class="memdesc:a2ec6aa510b79d1f2ae4743530c88b9da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push elements from an array of events.  <br /></td></tr>
-<tr class="separator:a2ec6aa510b79d1f2ae4743530c88b9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85799c5ef98d6e8d7cb3096c1bfcb801" id="r_a85799c5ef98d6e8d7cb3096c1bfcb801"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85799c5ef98d6e8d7cb3096c1bfcb801">push</a> (const <a class="el" href="classev_1_1Vector__.html">Vector_</a>&lt; T &gt; &amp;vector)</td></tr>
-<tr class="memdesc:a85799c5ef98d6e8d7cb3096c1bfcb801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push elements from a vector of events.  <br /></td></tr>
-<tr class="separator:a85799c5ef98d6e8d7cb3096c1bfcb801"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdb2e86a3e554cbfb6565f4cd0c09423" id="r_afdb2e86a3e554cbfb6565f4cd0c09423"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdb2e86a3e554cbfb6565f4cd0c09423">duration</a> () const</td></tr>
-<tr class="memdesc:afdb2e86a3e554cbfb6565f4cd0c09423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
-<tr class="separator:afdb2e86a3e554cbfb6565f4cd0c09423"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20b2ce250578c2885712c183083a600b" id="r_a20b2ce250578c2885712c183083a600b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20b2ce250578c2885712c183083a600b">rate</a> () const</td></tr>
-<tr class="memdesc:a20b2ce250578c2885712c183083a600b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
-<tr class="separator:a20b2ce250578c2885712c183083a600b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1abc28055cdc301e7b295278f90d6f3" id="r_af1abc28055cdc301e7b295278f90d6f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1abc28055cdc301e7b295278f90d6f3">mean</a> ()</td></tr>
-<tr class="memdesc:af1abc28055cdc301e7b295278f90d6f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
-<tr class="separator:af1abc28055cdc301e7b295278f90d6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a428e3a2d001f08936754cff577b3c6" id="r_a4a428e3a2d001f08936754cff577b3c6"><td class="memItemLeft" align="right" valign="top">cv::Point2d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a428e3a2d001f08936754cff577b3c6">meanPoint</a> ()</td></tr>
-<tr class="memdesc:a4a428e3a2d001f08936754cff577b3c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
-<tr class="separator:a4a428e3a2d001f08936754cff577b3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73b0450aad63d74462deb448099a0ad0" id="r_a73b0450aad63d74462deb448099a0ad0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73b0450aad63d74462deb448099a0ad0">meanTime</a> ()</td></tr>
-<tr class="memdesc:a73b0450aad63d74462deb448099a0ad0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
-<tr class="separator:a73b0450aad63d74462deb448099a0ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afda55f78319da5d8aaf246f315f941fc" id="r_afda55f78319da5d8aaf246f315f941fc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afda55f78319da5d8aaf246f315f941fc">midTime</a> () const</td></tr>
-<tr class="memdesc:afda55f78319da5d8aaf246f315f941fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
-<tr class="separator:afda55f78319da5d8aaf246f315f941fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cc789cc65f0365387ec0b5840a5de36" id="r_a9cc789cc65f0365387ec0b5840a5de36"><td class="memTemplParams" colspan="2">template&lt;std::size_t N&gt; </td></tr>
+<tr class="memitem:a9cc789cc65f0365387ec0b5840a5de36"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a9cc789cc65f0365387ec0b5840a5de36">push_back</a> (const <a class="el" href="classev_1_1Array__.html">Array_</a>&lt; T, N &gt; &amp;array)</td></tr>
+<tr class="memdesc:a9cc789cc65f0365387ec0b5840a5de36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push elements from an array of events.  <br /></td></tr>
+<tr class="separator:a9cc789cc65f0365387ec0b5840a5de36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36191384c956efe1c2d0a22b4401a370" id="r_a36191384c956efe1c2d0a22b4401a370"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36191384c956efe1c2d0a22b4401a370">push_back</a> (const <a class="el" href="classev_1_1Vector__.html">Vector_</a>&lt; T &gt; &amp;vector)</td></tr>
+<tr class="memdesc:a36191384c956efe1c2d0a22b4401a370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push elements from a vector of events.  <br /></td></tr>
+<tr class="separator:a36191384c956efe1c2d0a22b4401a370"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9e458d64656aac00bf41f241f8c34b8" id="r_ab9e458d64656aac00bf41f241f8c34b8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9e458d64656aac00bf41f241f8c34b8">duration</a> () const</td></tr>
+<tr class="memdesc:ab9e458d64656aac00bf41f241f8c34b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
+<tr class="separator:ab9e458d64656aac00bf41f241f8c34b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1e77ad10dd60f5ed310739593f6cd58" id="r_aa1e77ad10dd60f5ed310739593f6cd58"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1e77ad10dd60f5ed310739593f6cd58">rate</a> () const</td></tr>
+<tr class="memdesc:aa1e77ad10dd60f5ed310739593f6cd58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
+<tr class="separator:aa1e77ad10dd60f5ed310739593f6cd58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae0069755fa5c545ca9c909c031283b7" id="r_aae0069755fa5c545ca9c909c031283b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae0069755fa5c545ca9c909c031283b7">mean</a> ()</td></tr>
+<tr class="memdesc:aae0069755fa5c545ca9c909c031283b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
+<tr class="separator:aae0069755fa5c545ca9c909c031283b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55d1d93855ec17e3f945aefae85de5d6" id="r_a55d1d93855ec17e3f945aefae85de5d6"><td class="memItemLeft" align="right" valign="top">cv::Point2d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55d1d93855ec17e3f945aefae85de5d6">meanPoint</a> ()</td></tr>
+<tr class="memdesc:a55d1d93855ec17e3f945aefae85de5d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
+<tr class="separator:a55d1d93855ec17e3f945aefae85de5d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad65f54b38fe4eb660e0a7d374cde738c" id="r_ad65f54b38fe4eb660e0a7d374cde738c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad65f54b38fe4eb660e0a7d374cde738c">meanTime</a> ()</td></tr>
+<tr class="memdesc:ad65f54b38fe4eb660e0a7d374cde738c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
+<tr class="separator:ad65f54b38fe4eb660e0a7d374cde738c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe5e48db1a9f2acc9dc25fda8092b531" id="r_afe5e48db1a9f2acc9dc25fda8092b531"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe5e48db1a9f2acc9dc25fda8092b531">midTime</a> () const</td></tr>
+<tr class="memdesc:afe5e48db1a9f2acc9dc25fda8092b531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
+<tr class="separator:afe5e48db1a9f2acc9dc25fda8092b531"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
-class ev::Queue_&lt; T &gt;</div><p>This class extends std::queue to implement event queues. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/queue">here</a>. </p>
-<p>Event queues inherit all the properties from standard C++ queues. Events queues are FIFO data structures not intended to be directly iterated. </p>
+class ev::Deque_&lt; T &gt;</div><p>This class extends std::deque to implement event deques. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/deque">here</a>. </p>
+<p>Event deques inherit all the properties from standard C++ deques. Events dequeu are double-ended queues that allows fast insertion and deletion at both its beginning and its end. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="afdb2e86a3e554cbfb6565f4cd0c09423" name="afdb2e86a3e554cbfb6565f4cd0c09423"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afdb2e86a3e554cbfb6565f4cd0c09423">&#9670;&#160;</a></span>duration()</h2>
+<a id="ab9e458d64656aac00bf41f241f8c34b8" name="ab9e458d64656aac00bf41f241f8c34b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9e458d64656aac00bf41f241f8c34b8">&#9670;&#160;</a></span>duration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -161,7 +161,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::duration </td>
+          <td class="memname">double <a class="el" href="classev_1_1Deque__.html">ev::Deque_</a>&lt; T &gt;::duration </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -179,8 +179,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="af1abc28055cdc301e7b295278f90d6f3" name="af1abc28055cdc301e7b295278f90d6f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1abc28055cdc301e7b295278f90d6f3">&#9670;&#160;</a></span>mean()</h2>
+<a id="aae0069755fa5c545ca9c909c031283b7" name="aae0069755fa5c545ca9c909c031283b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae0069755fa5c545ca9c909c031283b7">&#9670;&#160;</a></span>mean()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,7 +191,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a> <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::mean </td>
+          <td class="memname"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a> <a class="el" href="classev_1_1Deque__.html">ev::Deque_</a>&lt; T &gt;::mean </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -209,8 +209,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4a428e3a2d001f08936754cff577b3c6" name="a4a428e3a2d001f08936754cff577b3c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a428e3a2d001f08936754cff577b3c6">&#9670;&#160;</a></span>meanPoint()</h2>
+<a id="a55d1d93855ec17e3f945aefae85de5d6" name="a55d1d93855ec17e3f945aefae85de5d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55d1d93855ec17e3f945aefae85de5d6">&#9670;&#160;</a></span>meanPoint()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,7 +221,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">cv::Point2d <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::meanPoint </td>
+          <td class="memname">cv::Point2d <a class="el" href="classev_1_1Deque__.html">ev::Deque_</a>&lt; T &gt;::meanPoint </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -239,8 +239,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a73b0450aad63d74462deb448099a0ad0" name="a73b0450aad63d74462deb448099a0ad0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73b0450aad63d74462deb448099a0ad0">&#9670;&#160;</a></span>meanTime()</h2>
+<a id="ad65f54b38fe4eb660e0a7d374cde738c" name="ad65f54b38fe4eb660e0a7d374cde738c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad65f54b38fe4eb660e0a7d374cde738c">&#9670;&#160;</a></span>meanTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,7 +251,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::meanTime </td>
+          <td class="memname">double <a class="el" href="classev_1_1Deque__.html">ev::Deque_</a>&lt; T &gt;::meanTime </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -269,8 +269,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="afda55f78319da5d8aaf246f315f941fc" name="afda55f78319da5d8aaf246f315f941fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afda55f78319da5d8aaf246f315f941fc">&#9670;&#160;</a></span>midTime()</h2>
+<a id="afe5e48db1a9f2acc9dc25fda8092b531" name="afe5e48db1a9f2acc9dc25fda8092b531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe5e48db1a9f2acc9dc25fda8092b531">&#9670;&#160;</a></span>midTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +281,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::midTime </td>
+          <td class="memname">double <a class="el" href="classev_1_1Deque__.html">ev::Deque_</a>&lt; T &gt;::midTime </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -299,8 +299,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a2ec6aa510b79d1f2ae4743530c88b9da" name="a2ec6aa510b79d1f2ae4743530c88b9da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ec6aa510b79d1f2ae4743530c88b9da">&#9670;&#160;</a></span>push() <span class="overload">[1/2]</span></h2>
+<a id="a9cc789cc65f0365387ec0b5840a5de36" name="a9cc789cc65f0365387ec0b5840a5de36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cc789cc65f0365387ec0b5840a5de36">&#9670;&#160;</a></span>push_back() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -313,7 +313,7 @@ template&lt;std::size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::push </td>
+          <td class="memname">void <a class="el" href="classev_1_1Deque__.html">ev::Deque_</a>&lt; T &gt;::push_back </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classev_1_1Array__.html">Array_</a>&lt; T, N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>array</em></span></td><td>)</td>
           <td></td>
@@ -336,8 +336,8 @@ template&lt;std::size_t N&gt; </div>
 
 </div>
 </div>
-<a id="a85799c5ef98d6e8d7cb3096c1bfcb801" name="a85799c5ef98d6e8d7cb3096c1bfcb801"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85799c5ef98d6e8d7cb3096c1bfcb801">&#9670;&#160;</a></span>push() <span class="overload">[2/2]</span></h2>
+<a id="a36191384c956efe1c2d0a22b4401a370" name="a36191384c956efe1c2d0a22b4401a370"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36191384c956efe1c2d0a22b4401a370">&#9670;&#160;</a></span>push_back() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +348,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::push </td>
+          <td class="memname">void <a class="el" href="classev_1_1Deque__.html">ev::Deque_</a>&lt; T &gt;::push_back </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classev_1_1Vector__.html">Vector_</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vector</em></span></td><td>)</td>
           <td></td>
@@ -371,8 +371,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a20b2ce250578c2885712c183083a600b" name="a20b2ce250578c2885712c183083a600b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20b2ce250578c2885712c183083a600b">&#9670;&#160;</a></span>rate()</h2>
+<a id="aa1e77ad10dd60f5ed310739593f6cd58" name="aa1e77ad10dd60f5ed310739593f6cd58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1e77ad10dd60f5ed310739593f6cd58">&#9670;&#160;</a></span>rate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -383,7 +383,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::rate </td>
+          <td class="memname">double <a class="el" href="classev_1_1Deque__.html">ev::Deque_</a>&lt; T &gt;::rate </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -402,7 +402,7 @@ template&lt;typename T &gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>modules/containers/include/openev/containers/<a class="el" href="queue_8hpp_source.html">queue.hpp</a></li>
+<li>modules/containers/include/openev/containers/<a class="el" href="deque_8hpp_source.html">deque.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

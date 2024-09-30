@@ -1,8 +1,23 @@
 var searchData=
 [
-  ['augmentedevent_0',['AugmentedEvent',['../types_8hpp.html#a82f45c8c44bfad03f5f3922b0cabab71',1,'ev']]],
-  ['augmentedeventd_1',['AugmentedEventd',['../types_8hpp.html#addb1b08008035ef9e4b0c0f9ba06078a',1,'ev']]],
-  ['augmentedeventf_2',['AugmentedEventf',['../types_8hpp.html#a7ffe2489b15e2769f48580d48275eedf',1,'ev']]],
-  ['augmentedeventi_3',['AugmentedEventi',['../types_8hpp.html#ab68f6452b49904f1006c847d9d0ffe99',1,'ev']]],
-  ['augmentedeventl_4',['AugmentedEventl',['../types_8hpp.html#a8fde999e469d4291d25cf0cc41d2bcfe',1,'ev']]]
+  ['augmentedcircularbuffer_0',['AugmentedCircularBuffer',['../circular_8hpp.html#ad386740cfbb95154726faf2877e5e455',1,'ev']]],
+  ['augmentedcircularbufferd_1',['AugmentedCircularBufferd',['../circular_8hpp.html#a64730f42d6a1977cad20d344c2ee5365',1,'ev']]],
+  ['augmentedcircularbufferf_2',['AugmentedCircularBufferf',['../circular_8hpp.html#a90d1df92c8d7a3e587bd5ea30e3d250c',1,'ev']]],
+  ['augmentedcircularbufferi_3',['AugmentedCircularBufferi',['../circular_8hpp.html#ab838d364368088822d7c272d0b4fe654',1,'ev']]],
+  ['augmentedcircularbufferl_4',['AugmentedCircularBufferl',['../circular_8hpp.html#af6466b766d11b73a6d3a3ce4e78f834c',1,'ev']]],
+  ['augmenteddeque_5',['AugmentedDeque',['../deque_8hpp.html#a815ce16e532bbc546a5ed8e8349423d3',1,'ev']]],
+  ['augmenteddequed_6',['AugmentedDequed',['../deque_8hpp.html#a09f799324a7de093776d00d651a3db12',1,'ev']]],
+  ['augmenteddequef_7',['AugmentedDequef',['../deque_8hpp.html#a45da0af42d3e294318e5426bf50345e0',1,'ev']]],
+  ['augmenteddequei_8',['AugmentedDequei',['../deque_8hpp.html#ab6db0a4c7014c79e12357e9d88b6ad15',1,'ev']]],
+  ['augmenteddequel_9',['AugmentedDequel',['../deque_8hpp.html#a20194d5bbb34fe6c66b4161f7482d452',1,'ev']]],
+  ['augmentedevent_10',['AugmentedEvent',['../types_8hpp.html#a82f45c8c44bfad03f5f3922b0cabab71',1,'ev']]],
+  ['augmentedeventd_11',['AugmentedEventd',['../types_8hpp.html#addb1b08008035ef9e4b0c0f9ba06078a',1,'ev']]],
+  ['augmentedeventf_12',['AugmentedEventf',['../types_8hpp.html#a7ffe2489b15e2769f48580d48275eedf',1,'ev']]],
+  ['augmentedeventi_13',['AugmentedEventi',['../types_8hpp.html#ab68f6452b49904f1006c847d9d0ffe99',1,'ev']]],
+  ['augmentedeventl_14',['AugmentedEventl',['../types_8hpp.html#a8fde999e469d4291d25cf0cc41d2bcfe',1,'ev']]],
+  ['augmentedqueue_15',['AugmentedQueue',['../queue_8hpp.html#a772a0ecc808b76ef09494e361a750d2a',1,'ev']]],
+  ['augmentedqueued_16',['AugmentedQueued',['../queue_8hpp.html#aad5b794b376236e6550c9a76532fab6d',1,'ev']]],
+  ['augmentedqueuef_17',['AugmentedQueuef',['../queue_8hpp.html#a8dc216f5525b912c051ffe9f390f4537',1,'ev']]],
+  ['augmentedqueuei_18',['AugmentedQueuei',['../queue_8hpp.html#a5f6b390d227f5496632136fcf4967808',1,'ev']]],
+  ['augmentedqueuel_19',['AugmentedQueuel',['../queue_8hpp.html#ad365d653d59cc72ece5dcef414bb313c',1,'ev']]]
 ];

@@ -106,7 +106,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define OPENEV_CONTAINERS_VECTOR_HPP</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;openev/containers/array.hpp&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;openev/containers/queue.hpp&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="queue_8hpp.html">openev/containers/queue.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">openev/core/types.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;numeric&gt;</span></div>
@@ -140,86 +140,73 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
 </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#adfea201b228717194f10874c19138373">   61</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classev_1_1Vector__.html#adfea201b228717194f10874c19138373">push_back</a>(<a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;</a> &amp;queue, <span class="keyword">const</span> <span class="keywordtype">bool</span> keep_events_in_queue = <span class="keyword">false</span>) {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    std::vector&lt;T&gt;::reserve(std::vector&lt;T&gt;::size() + queue.size());</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">if</span>(keep_events_in_queue) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keyword">const</span> std::size_t size = queue.size();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordflow">for</span>(std::size_t i = 0; i &lt; size; i++) {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        std::vector&lt;T&gt;::emplace_back(std::move(queue.front()));</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        queue.emplace(queue.front());</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        queue.pop();</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <span class="keywordflow">while</span>(!queue.empty()) {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        std::vector&lt;T&gt;::emplace_back(std::move(queue.front()));</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        queue.pop();</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      }</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  }</div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff">   60</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff">duration</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> std::vector&lt;T&gt;::back().t - std::vector&lt;T&gt;::front().t;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  }</div>
 </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="foldopen" id="foldopen00082" data-start="{" data-end="}">
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff">   82</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff">duration</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">return</span> (std::vector&lt;T&gt;::back()).t - (std::vector&lt;T&gt;::front()).t;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="}">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#a362f3b032869325112671753a3d9b848">   68</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classev_1_1Vector__.html#a362f3b032869325112671753a3d9b848">rate</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span> std::vector&lt;T&gt;::size() / <a class="code hl_function" href="classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff">duration</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
 </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="foldopen" id="foldopen00090" data-start="{" data-end="}">
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#a362f3b032869325112671753a3d9b848">   90</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classev_1_1Vector__.html#a362f3b032869325112671753a3d9b848">rate</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> std::vector&lt;T&gt;::size() / <a class="code hl_function" href="classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff">duration</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="foldopen" id="foldopen00076" data-start="{" data-end="}">
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#a77b0f59b2992e55603b520691b96a10f">   76</a></span>  [[nodiscard]] <a class="code hl_class" href="classev_1_1Event__.html">Eventd</a> <a class="code hl_function" href="classev_1_1Vector__.html#a77b0f59b2992e55603b520691b96a10f">mean</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> x = std::accumulate(std::vector&lt;T&gt;::begin(), std::vector&lt;T&gt;::end(), 0.0, [](<span class="keywordtype">double</span> sum, <span class="keyword">const</span> T &amp;e) { <span class="keywordflow">return</span> sum + e.x; }) / std::vector&lt;T&gt;::size();</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> y = std::accumulate(std::vector&lt;T&gt;::begin(), std::vector&lt;T&gt;::end(), 0.0, [](<span class="keywordtype">double</span> sum, <span class="keyword">const</span> T &amp;e) { <span class="keywordflow">return</span> sum + e.y; }) / std::vector&lt;T&gt;::size();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> t = std::accumulate(std::vector&lt;T&gt;::begin(), std::vector&lt;T&gt;::end(), 0.0, [](<span class="keywordtype">double</span> sum, <span class="keyword">const</span> T &amp;e) { <span class="keywordflow">return</span> sum + e.t; }) / std::vector&lt;T&gt;::size();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> p = std::accumulate(std::vector&lt;T&gt;::begin(), std::vector&lt;T&gt;::end(), 0.0, [](<span class="keywordtype">double</span> sum, <span class="keyword">const</span> T &amp;e) { <span class="keywordflow">return</span> sum + e.p; }) / std::vector&lt;T&gt;::size();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">return</span> {x, y, t, p &gt; 0.5};</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  }</div>
+</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#ade4388910fc79fd8e665d4e62acee377">   88</a></span>  [[nodiscard]] <span class="keyword">inline</span> cv::Point2d <a class="code hl_function" href="classev_1_1Vector__.html#ade4388910fc79fd8e665d4e62acee377">meanPoint</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> x = std::accumulate(std::vector&lt;T&gt;::begin(), std::vector&lt;T&gt;::end(), 0.0, [](<span class="keywordtype">double</span> sum, <span class="keyword">const</span> T &amp;e) { <span class="keywordflow">return</span> sum + e.x; }) / std::vector&lt;T&gt;::size();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> y = std::accumulate(std::vector&lt;T&gt;::begin(), std::vector&lt;T&gt;::end(), 0.0, [](<span class="keywordtype">double</span> sum, <span class="keyword">const</span> T &amp;e) { <span class="keywordflow">return</span> sum + e.y; }) / std::vector&lt;T&gt;::size();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> {x, y};</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
 </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#a77b0f59b2992e55603b520691b96a10f">   98</a></span>  [[nodiscard]] <a class="code hl_class" href="classev_1_1Event__.html">Eventd</a> <a class="code hl_function" href="classev_1_1Vector__.html#a77b0f59b2992e55603b520691b96a10f">mean</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">double</span> x = 0.0;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">double</span> y = 0.0;</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">double</span> t = 0.0;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordtype">double</span> p = 0.0;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> T &amp;e : *<span class="keyword">this</span>) {</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      x += <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(e.x);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>      y += <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(e.y);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      t += <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(e.t);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      p += <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(e.p);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    }</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keyword">const</span> std::size_t size = std::vector&lt;T&gt;::size();</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span> {x / size, y / size, t / size, p / size &gt;= 0.5};</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  }</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#a6457929303bc30f718daafd40834489d">   98</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classev_1_1Vector__.html#a6457929303bc30f718daafd40834489d">meanTime</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordflow">return</span> std::accumulate(std::vector&lt;T&gt;::begin(), std::vector&lt;T&gt;::end(), 0.0, [](<span class="keywordtype">double</span> sum, <span class="keyword">const</span> T &amp;e) { <span class="keywordflow">return</span> sum + e.t; }) / std::vector&lt;T&gt;::size();</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  }</div>
 </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="foldopen" id="foldopen00119" data-start="{" data-end="}">
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#a6457929303bc30f718daafd40834489d">  119</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classev_1_1Vector__.html#a6457929303bc30f718daafd40834489d">meanTime</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordflow">return</span> std::accumulate(std::vector&lt;T&gt;::begin(), std::vector&lt;T&gt;::end(), 0.0, [](<span class="keywordtype">double</span> sum, <span class="keyword">const</span> T &amp;e) { <span class="keywordflow">return</span> sum + e.t; }) / std::vector&lt;T&gt;::size();</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classev_1_1Vector__.html#a24613755f2949742144f4204f877ec23">  106</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classev_1_1Vector__.html#a24613755f2949742144f4204f877ec23">midTime</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">return</span> 0.5 * (std::vector&lt;T&gt;::front().t + std::vector&lt;T&gt;::back().t);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  }</div>
 </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>};</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>};</div>
 </div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="keyword">using </span>Vectori = Vector_&lt;Eventi&gt;;                   </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keyword">using </span>Vectorl = Vector_&lt;Eventl&gt;;                   </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">using </span>Vectorf = Vector_&lt;Eventf&gt;;                   </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="keyword">using </span>Vectord = Vector_&lt;Eventd&gt;;                   </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">using </span>Vector = Vector_&lt;Event&gt;;                     </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">using </span>AugmentedVectori = Vector_&lt;AugmentedEventi&gt;; </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="keyword">using </span>AugmentedVectorl = Vector_&lt;AugmentedEventl&gt;; </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="keyword">using </span>AugmentedVectorf = Vector_&lt;AugmentedEventf&gt;; </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">using </span>AugmentedVectord = Vector_&lt;AugmentedEventd&gt;; </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="keyword">using </span>AugmentedVector = Vector_&lt;AugmentedEvent&gt;;   </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>} <span class="comment">// namespace ev</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CONTAINERS_VECTOR_HPP</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">using </span>Vectori = Vector_&lt;Eventi&gt;;                   </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keyword">using </span>Vectorl = Vector_&lt;Eventl&gt;;                   </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">using </span>Vectorf = Vector_&lt;Eventf&gt;;                   </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="keyword">using </span>Vectord = Vector_&lt;Eventd&gt;;                   </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">using </span>Vector = Vector_&lt;Event&gt;;                     </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">using </span>AugmentedVectori = Vector_&lt;AugmentedEventi&gt;; </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">using </span>AugmentedVectorl = Vector_&lt;AugmentedEventl&gt;; </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="keyword">using </span>AugmentedVectorf = Vector_&lt;AugmentedEventf&gt;; </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keyword">using </span>AugmentedVectord = Vector_&lt;AugmentedEventd&gt;; </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="keyword">using </span>AugmentedVector = Vector_&lt;AugmentedEvent&gt;;   </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>} <span class="comment">// namespace ev</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CONTAINERS_VECTOR_HPP</span></div>
 <div class="ttc" id="aclassev_1_1Array___html"><div class="ttname"><a href="classev_1_1Array__.html">ev::Array_</a></div><div class="ttdoc">This class extends std::array to implement event arrays. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> array.hpp:21</div></div>
 <div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:60</div></div>
-<div class="ttc" id="aclassev_1_1Queue___html"><div class="ttname"><a href="classev_1_1Queue__.html">ev::Queue_</a></div><div class="ttdoc">This class extends std::queue to implement event queues. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> queue.hpp:35</div></div>
 <div class="ttc" id="aclassev_1_1Vector___html"><div class="ttname"><a href="classev_1_1Vector__.html">ev::Vector_</a></div><div class="ttdoc">This class extends std::vector to implement event vectors. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> vector.hpp:36</div></div>
-<div class="ttc" id="aclassev_1_1Vector___html_a362f3b032869325112671753a3d9b848"><div class="ttname"><a href="classev_1_1Vector__.html#a362f3b032869325112671753a3d9b848">ev::Vector_::rate</a></div><div class="ttdeci">double rate() const</div><div class="ttdoc">Compute event rate as the ratio between the number of events and the time difference between the last...</div><div class="ttdef"><b>Definition</b> vector.hpp:90</div></div>
-<div class="ttc" id="aclassev_1_1Vector___html_a4fd5ed417e1eeeb27b6bc86c741cb5ff"><div class="ttname"><a href="classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff">ev::Vector_::duration</a></div><div class="ttdeci">double duration() const</div><div class="ttdoc">Time difference between the last and the first event in the vector.</div><div class="ttdef"><b>Definition</b> vector.hpp:82</div></div>
-<div class="ttc" id="aclassev_1_1Vector___html_a6457929303bc30f718daafd40834489d"><div class="ttname"><a href="classev_1_1Vector__.html#a6457929303bc30f718daafd40834489d">ev::Vector_::meanTime</a></div><div class="ttdeci">double meanTime() const</div><div class="ttdoc">Compute the mean time of the events in the vector.</div><div class="ttdef"><b>Definition</b> vector.hpp:119</div></div>
-<div class="ttc" id="aclassev_1_1Vector___html_a77b0f59b2992e55603b520691b96a10f"><div class="ttname"><a href="classev_1_1Vector__.html#a77b0f59b2992e55603b520691b96a10f">ev::Vector_::mean</a></div><div class="ttdeci">Eventd mean() const</div><div class="ttdoc">Compute the mean of the events in the vector.</div><div class="ttdef"><b>Definition</b> vector.hpp:98</div></div>
+<div class="ttc" id="aclassev_1_1Vector___html_a24613755f2949742144f4204f877ec23"><div class="ttname"><a href="classev_1_1Vector__.html#a24613755f2949742144f4204f877ec23">ev::Vector_::midTime</a></div><div class="ttdeci">double midTime() const</div><div class="ttdoc">Calculate the midpoint time between the oldest and the newest event.</div><div class="ttdef"><b>Definition</b> vector.hpp:106</div></div>
+<div class="ttc" id="aclassev_1_1Vector___html_a362f3b032869325112671753a3d9b848"><div class="ttname"><a href="classev_1_1Vector__.html#a362f3b032869325112671753a3d9b848">ev::Vector_::rate</a></div><div class="ttdeci">double rate() const</div><div class="ttdoc">Compute event rate as the ratio between the number of events and the time difference between the last...</div><div class="ttdef"><b>Definition</b> vector.hpp:68</div></div>
+<div class="ttc" id="aclassev_1_1Vector___html_a4fd5ed417e1eeeb27b6bc86c741cb5ff"><div class="ttname"><a href="classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff">ev::Vector_::duration</a></div><div class="ttdeci">double duration() const</div><div class="ttdoc">Time difference between the last and the first event.</div><div class="ttdef"><b>Definition</b> vector.hpp:60</div></div>
+<div class="ttc" id="aclassev_1_1Vector___html_a6457929303bc30f718daafd40834489d"><div class="ttname"><a href="classev_1_1Vector__.html#a6457929303bc30f718daafd40834489d">ev::Vector_::meanTime</a></div><div class="ttdeci">double meanTime() const</div><div class="ttdoc">Compute the mean time of the events.</div><div class="ttdef"><b>Definition</b> vector.hpp:98</div></div>
+<div class="ttc" id="aclassev_1_1Vector___html_a77b0f59b2992e55603b520691b96a10f"><div class="ttname"><a href="classev_1_1Vector__.html#a77b0f59b2992e55603b520691b96a10f">ev::Vector_::mean</a></div><div class="ttdeci">Eventd mean() const</div><div class="ttdoc">Compute the mean of the events.</div><div class="ttdef"><b>Definition</b> vector.hpp:76</div></div>
 <div class="ttc" id="aclassev_1_1Vector___html_aa3c532c17501158430384014d4b7a24a"><div class="ttname"><a href="classev_1_1Vector__.html#aa3c532c17501158430384014d4b7a24a">ev::Vector_::push_back</a></div><div class="ttdeci">void push_back(const Array_&lt; T, N &gt; &amp;array)</div><div class="ttdoc">Push back elements from an array of events.</div><div class="ttdef"><b>Definition</b> vector.hpp:51</div></div>
-<div class="ttc" id="aclassev_1_1Vector___html_adfea201b228717194f10874c19138373"><div class="ttname"><a href="classev_1_1Vector__.html#adfea201b228717194f10874c19138373">ev::Vector_::push_back</a></div><div class="ttdeci">void push_back(Queue_&lt; T &gt; &amp;queue, const bool keep_events_in_queue=false)</div><div class="ttdoc">Push back elements from a queue of events.</div><div class="ttdef"><b>Definition</b> vector.hpp:61</div></div>
+<div class="ttc" id="aclassev_1_1Vector___html_ade4388910fc79fd8e665d4e62acee377"><div class="ttname"><a href="classev_1_1Vector__.html#ade4388910fc79fd8e665d4e62acee377">ev::Vector_::meanPoint</a></div><div class="ttdeci">cv::Point2d meanPoint() const</div><div class="ttdoc">Compute the mean x,y point of the events.</div><div class="ttdef"><b>Definition</b> vector.hpp:88</div></div>
+<div class="ttc" id="aqueue_8hpp_html"><div class="ttname"><a href="queue_8hpp.html">queue.hpp</a></div><div class="ttdoc">Queue container for basic event structures.</div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
