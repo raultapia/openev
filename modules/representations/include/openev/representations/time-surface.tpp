@@ -50,22 +50,22 @@ cv::Mat &TimeSurface_<T, Options>::render(const Kernel kernel /*= Kernel::NONE*/
 template <typename T, const RepresentationOptions Options>
 void TimeSurface_<T, Options>::clear_() {
   this->setTo(TimeSurface_<T, Options>::RESET);
-  time.setTo(0);
-  polarity.setTo(0);
+  time.clear();
+  polarity.clear();
 }
 
 template <typename T, const RepresentationOptions Options>
 void TimeSurface_<T, Options>::clear_(const cv::Mat &background) {
   background.copyTo(*this);
-  time.setTo(0);
-  polarity.setTo(0);
+  time.clear();
+  polarity.clear();
 }
 
 template <typename T, const RepresentationOptions Options>
 bool TimeSurface_<T, Options>::insert_(const Event &e) {
   if(e.inside(cv::Rect(0, 0, this->cols, this->rows))) {
-    time(e.y, e.x) = e.t;
-    polarity(e.y, e.x) = static_cast<unsigned char>(e.p);
+    time.insert(e);
+    polarity.insert(e);
     return true;
   }
   return false;

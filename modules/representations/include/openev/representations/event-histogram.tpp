@@ -46,22 +46,22 @@ cv::Mat &EventHistogram_<T, Options>::render() {
 template <typename T, const RepresentationOptions Options>
 void EventHistogram_<T, Options>::clear_() {
   EventImage_<T, Options>::setTo(EventHistogram_<T, Options>::RESET);
-  counter.setTo(0);
+  counter.clear();
   peak_ = 0;
 }
 
 template <typename T, const RepresentationOptions Options>
 void EventHistogram_<T, Options>::clear_(const cv::Mat &background) {
   background.copyTo(*this);
-  counter.setTo(0);
+  counter.clear();
   peak_ = 0;
 }
 
 template <typename T, const RepresentationOptions Options>
 bool EventHistogram_<T, Options>::insert_(const Event &e) {
   if(e.inside(cv::Rect(0, 0, EventImage_<T, Options>::cols, EventImage_<T, Options>::rows))) {
-    if(abs(counter(e.y, e.x) += (e.p ? +1 : -1)) > peak_) {
-      peak_ = abs(counter(e.y, e.x));
+    if(abs(counter.insert(e)) > peak_) {
+      peak_ = abs(counter(e));
     }
     return true;
   }

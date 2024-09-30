@@ -6,10 +6,13 @@
 #ifndef OPENEV_REPRESENTATIONS_TIME_SURFACE_HPP
 #define OPENEV_REPRESENTATIONS_TIME_SURFACE_HPP
 
+#include "openev/core/matrices.hpp"
 #include "openev/core/types.hpp"
 #include "openev/representations/abstract-representation.hpp"
 #include "openev/representations/event-image.hpp"
-#include <opencv2/core.hpp>
+#include <opencv2/core/hal/interface.h>
+#include <opencv2/core/mat.hpp>
+#include <opencv2/core/matx.hpp>
 #include <utility>
 
 namespace ev {
@@ -58,8 +61,8 @@ public:
     EventImage_<T, Options>::clear();
   }
 
-  cv::Mat_<double> time{this->size()};   /*!< Time matrix */
-  cv::Mat_<bool> polarity{this->size()}; /*!< Polarity matrix */
+  TimeMat time{this->size()};         /*!< Time matrix */
+  PolarityMat polarity{this->size()}; /*!< Polarity matrix */
 
   /*!
   Timesurface matrix is generated from timestamp and polarity matrices.

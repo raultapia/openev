@@ -6,14 +6,13 @@
 #ifndef OPENEV_REPRESENTATIONS_EVENT_HISTOGRAM_HPP
 #define OPENEV_REPRESENTATIONS_EVENT_HISTOGRAM_HPP
 
+#include "openev/core/matrices.hpp"
 #include "openev/core/types.hpp"
 #include "openev/representations/abstract-representation.hpp"
 #include "openev/representations/event-image.hpp"
-#include <opencv2/core.hpp>
 #include <opencv2/core/hal/interface.h>
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/matx.hpp>
-#include <opencv2/core/utility.hpp>
 #include <utility>
 
 namespace ev {
@@ -59,7 +58,7 @@ public:
     EventImage_<T, Options>::clear();
   }
 
-  cv::Mat_<int> counter{cv::Mat_<int>(EventImage_<T, Options>::size())}; /*!< Event counter */
+  CounterMat counter{cv::Mat_<int>(EventImage_<T, Options>::size())}; /*!< Event counter */
 
   /*!
   Event histogram matrix is generated from counter matrix.
