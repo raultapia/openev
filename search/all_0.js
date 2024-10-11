@@ -4,7 +4,7 @@ var searchData=
   ['abstract_2dcamera_2ehpp_1',['abstract-camera.hpp',['../abstract-camera_8hpp.html',1,'']]],
   ['abstract_2dreader_2ecpp_2',['abstract-reader.cpp',['../abstract-reader_8cpp.html',1,'']]],
   ['abstract_2drepresentation_2ehpp_3',['abstract-representation.hpp',['../abstract-representation_8hpp.html',1,'']]],
-  ['abstractcamera_5f_4',['AbstractCamera_',['../classev_1_1AbstractCamera__.html',1,'ev']]],
+  ['abstractcamera_4',['AbstractCamera',['../classev_1_1AbstractCamera.html',1,'ev']]],
   ['abstractreader_5f_5',['AbstractReader_',['../classev_1_1AbstractReader__.html',1,'ev']]],
   ['abstractrepresentation_5f_6',['AbstractRepresentation_',['../classev_1_1AbstractRepresentation__.html',1,'ev']]],
   ['abstractrepresentation_5f_3c_20t_2c_20options_20_3e_7',['AbstractRepresentation_&lt; T, Options &gt;',['../classev_1_1AbstractRepresentation__.html',1,'ev']]],

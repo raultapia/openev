@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: ev::AbstractCamera_ Class Reference</title>
+<title>OpenEV: ev::AbstractCamera Class Reference</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -93,15 +93,16 @@ $(function(){ initResizable(false); });
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>ev</b></li><li class="navelem"><a class="el" href="classev_1_1AbstractCamera__.html">AbstractCamera_</a></li>  </ul>
+<li class="navelem"><b>ev</b></li><li class="navelem"><a class="el" href="classev_1_1AbstractCamera.html">AbstractCamera</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div id="doc-content">
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classev_1_1AbstractCamera__-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">ev::AbstractCamera_ Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="classev_1_1AbstractCamera-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">ev::AbstractCamera Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -110,65 +111,72 @@ $(function(){ initResizable(false); });
 
 <p><code>#include &lt;<a class="el" href="abstract-camera_8hpp_source.html">abstract-camera.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for ev::AbstractCamera_:</div>
+Inheritance diagram for ev::AbstractCamera:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classev_1_1AbstractCamera__.png" usemap="#ev::AbstractCamera_5F_map" alt=""/>
-  <map id="ev::AbstractCamera_5F_map" name="ev::AbstractCamera_5F_map">
-<area href="classev_1_1Davis.html" title="This class extends AbstractCamera_ to operate with DAVIS event cameras. DAVIS cameras offer events (D..." alt="ev::Davis" shape="rect" coords="0,56,130,80"/>
+  <img src="classev_1_1AbstractCamera.png" usemap="#ev::AbstractCamera_map" alt=""/>
+  <map id="ev::AbstractCamera_map" name="ev::AbstractCamera_map">
+<area href="classev_1_1Davis.html" title="This class extends AbstractCamera to operate with DAVIS event cameras. DAVIS cameras offer events (DV..." alt="ev::Davis" shape="rect" coords="0,56,123,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a10da848c9b274afd76ba44f76e35a3bd" id="r_a10da848c9b274afd76ba44f76e35a3bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10da848c9b274afd76ba44f76e35a3bd">setTimeOffset</a> (const double offset)</td></tr>
-<tr class="memdesc:a10da848c9b274afd76ba44f76e35a3bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set offset to add after receiving events.  <br /></td></tr>
-<tr class="separator:a10da848c9b274afd76ba44f76e35a3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb6b09f1686f7c4d0f9895ec63ae99f5" id="r_aeb6b09f1686f7c4d0f9895ec63ae99f5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb6b09f1686f7c4d0f9895ec63ae99f5">start</a> ()=0</td></tr>
-<tr class="memdesc:aeb6b09f1686f7c4d0f9895ec63ae99f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start reading data.  <br /></td></tr>
-<tr class="separator:aeb6b09f1686f7c4d0f9895ec63ae99f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae26e98a69d92c38cdcae410fa3096fee" id="r_ae26e98a69d92c38cdcae410fa3096fee"><td class="memItemLeft" align="right" valign="top"><a id="ae26e98a69d92c38cdcae410fa3096fee" name="ae26e98a69d92c38cdcae410fa3096fee"></a>
+<tr class="memitem:abb4deb2bf57885b4e5847f613c67c538" id="r_abb4deb2bf57885b4e5847f613c67c538"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb4deb2bf57885b4e5847f613c67c538">setTimeOffset</a> (const double offset)</td></tr>
+<tr class="memdesc:abb4deb2bf57885b4e5847f613c67c538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set offset to add after receiving events.  <br /></td></tr>
+<tr class="separator:abb4deb2bf57885b4e5847f613c67c538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a772cbc6ed1b40c183fdc5423abd6ade0" id="r_a772cbc6ed1b40c183fdc5423abd6ade0"><td class="memItemLeft" align="right" valign="top"><a id="a772cbc6ed1b40c183fdc5423abd6ade0" name="a772cbc6ed1b40c183fdc5423abd6ade0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> ()</td></tr>
+<tr class="memdesc:a772cbc6ed1b40c183fdc5423abd6ade0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start reading data. <br /></td></tr>
+<tr class="separator:a772cbc6ed1b40c183fdc5423abd6ade0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad53b72c2d823eb43d6770660eb8c5296" id="r_ad53b72c2d823eb43d6770660eb8c5296"><td class="memItemLeft" align="right" valign="top"><a id="ad53b72c2d823eb43d6770660eb8c5296" name="ad53b72c2d823eb43d6770660eb8c5296"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
-<tr class="memdesc:ae26e98a69d92c38cdcae410fa3096fee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop reading data. <br /></td></tr>
-<tr class="separator:ae26e98a69d92c38cdcae410fa3096fee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2bef9088eee40a54336cca21080380d" id="r_ae2bef9088eee40a54336cca21080380d"><td class="memItemLeft" align="right" valign="top">cv::Size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2bef9088eee40a54336cca21080380d">getSensorSize</a> () const</td></tr>
-<tr class="memdesc:ae2bef9088eee40a54336cca21080380d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device sensor size.  <br /></td></tr>
-<tr class="separator:ae2bef9088eee40a54336cca21080380d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05adcdb68076329ff9d8679baea9edd3" id="r_a05adcdb68076329ff9d8679baea9edd3"><td class="memItemLeft" align="right" valign="top">cv::Rect&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05adcdb68076329ff9d8679baea9edd3">getRoi</a> () const</td></tr>
-<tr class="memdesc:a05adcdb68076329ff9d8679baea9edd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current ROI.  <br /></td></tr>
-<tr class="separator:a05adcdb68076329ff9d8679baea9edd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1a2609dab7a09e97759a355fbde5924" id="r_ad1a2609dab7a09e97759a355fbde5924"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1a2609dab7a09e97759a355fbde5924">setRoi</a> (const cv::Rect &amp;roi)</td></tr>
-<tr class="memdesc:ad1a2609dab7a09e97759a355fbde5924"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current ROI. Events outside the ROI are not considered. Images are cropped according to the ROI.  <br /></td></tr>
-<tr class="separator:ad1a2609dab7a09e97759a355fbde5924"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fcad7d220297636c420489064a7844a" id="r_a2fcad7d220297636c420489064a7844a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structev_1_1BiasValue.html">BiasValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fcad7d220297636c420489064a7844a">getBias</a> (const int8_t config_bias, const uint8_t name) const</td></tr>
-<tr class="memdesc:a2fcad7d220297636c420489064a7844a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the bias value associated with a specific configuration and name.  <br /></td></tr>
-<tr class="separator:a2fcad7d220297636c420489064a7844a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa44054fb4f8d7520a6998d15021fbc1f" id="r_aa44054fb4f8d7520a6998d15021fbc1f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa44054fb4f8d7520a6998d15021fbc1f">setBias</a> (const int8_t config_bias, const uint8_t name, const <a class="el" href="structev_1_1BiasValue.html">BiasValue</a> &amp;value)</td></tr>
-<tr class="memdesc:aa44054fb4f8d7520a6998d15021fbc1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bias value associated with a specific configuration and name.  <br /></td></tr>
-<tr class="separator:aa44054fb4f8d7520a6998d15021fbc1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a769b784989865ff07614f7595f9ab12f" id="r_a769b784989865ff07614f7595f9ab12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a769b784989865ff07614f7595f9ab12f">flush</a> (double msec) const</td></tr>
-<tr class="memdesc:a769b784989865ff07614f7595f9ab12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discard data during an interval of time.  <br /></td></tr>
-<tr class="separator:a769b784989865ff07614f7595f9ab12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8e4c4565a165762afa6e2e182eb5b60" id="r_ab8e4c4565a165762afa6e2e182eb5b60"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8e4c4565a165762afa6e2e182eb5b60">getData</a> (<a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;events)=0</td></tr>
-<tr class="memdesc:ab8e4c4565a165762afa6e2e182eb5b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data.  <br /></td></tr>
-<tr class="separator:ab8e4c4565a165762afa6e2e182eb5b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37a3fabc91c231b22b131085e35417c1" id="r_a37a3fabc91c231b22b131085e35417c1"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37a3fabc91c231b22b131085e35417c1">getData</a> (<a class="el" href="queue_8hpp.html#a0ffebe17d2e722cf3a1093c5eab6892b">Queue</a> &amp;events)=0</td></tr>
-<tr class="memdesc:a37a3fabc91c231b22b131085e35417c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data.  <br /></td></tr>
-<tr class="separator:a37a3fabc91c231b22b131085e35417c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ad53b72c2d823eb43d6770660eb8c5296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop reading data. <br /></td></tr>
+<tr class="separator:ad53b72c2d823eb43d6770660eb8c5296"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a63eca45e88264202f7d7a8679f4826" id="r_a1a63eca45e88264202f7d7a8679f4826"><td class="memItemLeft" align="right" valign="top">cv::Size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a63eca45e88264202f7d7a8679f4826">getSensorSize</a> () const</td></tr>
+<tr class="memdesc:a1a63eca45e88264202f7d7a8679f4826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device sensor size.  <br /></td></tr>
+<tr class="separator:a1a63eca45e88264202f7d7a8679f4826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa697b4c5c361499f2b5767c6ef1acadf" id="r_aa697b4c5c361499f2b5767c6ef1acadf"><td class="memItemLeft" align="right" valign="top">cv::Rect_&lt; uint16_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa697b4c5c361499f2b5767c6ef1acadf">getRoi</a> () const</td></tr>
+<tr class="memdesc:aa697b4c5c361499f2b5767c6ef1acadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current ROI.  <br /></td></tr>
+<tr class="separator:aa697b4c5c361499f2b5767c6ef1acadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d9fc3efdb25bb166b2aa685e40b197a" id="r_a6d9fc3efdb25bb166b2aa685e40b197a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d9fc3efdb25bb166b2aa685e40b197a">setRoi</a> (const cv::Rect_&lt; uint16_t &gt; &amp;roi)</td></tr>
+<tr class="memdesc:a6d9fc3efdb25bb166b2aa685e40b197a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current ROI. Events outside the ROI are not considered. Images are cropped according to the ROI.  <br /></td></tr>
+<tr class="separator:a6d9fc3efdb25bb166b2aa685e40b197a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae18b9c49046695f339dea026aa53bfe5" id="r_ae18b9c49046695f339dea026aa53bfe5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structev_1_1BiasValue.html">BiasValue</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae18b9c49046695f339dea026aa53bfe5">getBias</a> (const int8_t config_bias, const uint8_t name) const</td></tr>
+<tr class="memdesc:ae18b9c49046695f339dea026aa53bfe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the bias value associated with a specific configuration and name.  <br /></td></tr>
+<tr class="separator:ae18b9c49046695f339dea026aa53bfe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eea396e8cc99d7074ec6ae377f9223a" id="r_a7eea396e8cc99d7074ec6ae377f9223a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7eea396e8cc99d7074ec6ae377f9223a">setBias</a> (const int8_t config_bias, const uint8_t name, const <a class="el" href="structev_1_1BiasValue.html">BiasValue</a> &amp;value)</td></tr>
+<tr class="memdesc:a7eea396e8cc99d7074ec6ae377f9223a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bias value associated with a specific configuration and name.  <br /></td></tr>
+<tr class="separator:a7eea396e8cc99d7074ec6ae377f9223a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f81aa6d40adbac4488794fdaa905006" id="r_a3f81aa6d40adbac4488794fdaa905006"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f81aa6d40adbac4488794fdaa905006">flush</a> (const double msec) const</td></tr>
+<tr class="memdesc:a3f81aa6d40adbac4488794fdaa905006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discard data during an interval of time.  <br /></td></tr>
+<tr class="separator:a3f81aa6d40adbac4488794fdaa905006"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6858f5256715a27d0077636f964b4be" id="r_ac6858f5256715a27d0077636f964b4be"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6858f5256715a27d0077636f964b4be">getData</a> (<a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;events)=0</td></tr>
+<tr class="memdesc:ac6858f5256715a27d0077636f964b4be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data.  <br /></td></tr>
+<tr class="separator:ac6858f5256715a27d0077636f964b4be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cba73cbd2080f685789d53c743c863e" id="r_a5cba73cbd2080f685789d53c743c863e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cba73cbd2080f685789d53c743c863e">getData</a> (<a class="el" href="queue_8hpp.html#a0ffebe17d2e722cf3a1093c5eab6892b">Queue</a> &amp;events)=0</td></tr>
+<tr class="memdesc:a5cba73cbd2080f685789d53c743c863e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data.  <br /></td></tr>
+<tr class="separator:a5cba73cbd2080f685789d53c743c863e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a014333faea188c3112ee3ab06f78de21" id="r_a014333faea188c3112ee3ab06f78de21"><td class="memItemLeft" align="right" valign="top"><a id="a014333faea188c3112ee3ab06f78de21" name="a014333faea188c3112ee3ab06f78de21"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()=0</td></tr>
+<tr class="separator:a014333faea188c3112ee3ab06f78de21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an auxiliary class. This class cannot be instanced. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a769b784989865ff07614f7595f9ab12f" name="a769b784989865ff07614f7595f9ab12f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a769b784989865ff07614f7595f9ab12f">&#9670;&#160;</a></span>flush()</h2>
+<a id="a3f81aa6d40adbac4488794fdaa905006" name="a3f81aa6d40adbac4488794fdaa905006"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f81aa6d40adbac4488794fdaa905006">&#9670;&#160;</a></span>flush()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ev::AbstractCamera_::flush </td>
+          <td class="memname">void ev::AbstractCamera::flush </td>
           <td>(</td>
-          <td class="paramtype">double</td>          <td class="paramname"><span class="paramname"><em>msec</em></span></td><td>)</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>msec</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -184,14 +192,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
-<a id="a2fcad7d220297636c420489064a7844a" name="a2fcad7d220297636c420489064a7844a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fcad7d220297636c420489064a7844a">&#9670;&#160;</a></span>getBias()</h2>
+<a id="ae18b9c49046695f339dea026aa53bfe5" name="ae18b9c49046695f339dea026aa53bfe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae18b9c49046695f339dea026aa53bfe5">&#9670;&#160;</a></span>getBias()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structev_1_1BiasValue.html">ev::BiasValue</a> ev::AbstractCamera_::getBias </td>
+          <td class="memname"><a class="el" href="structev_1_1BiasValue.html">ev::BiasValue</a> ev::AbstractCamera::getBias </td>
           <td>(</td>
           <td class="paramtype">const int8_t</td>          <td class="paramname"><span class="paramname"><em>config_bias</em></span>, </td>
         </tr>
@@ -215,8 +223,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
-<a id="a37a3fabc91c231b22b131085e35417c1" name="a37a3fabc91c231b22b131085e35417c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37a3fabc91c231b22b131085e35417c1">&#9670;&#160;</a></span>getData() <span class="overload">[1/2]</span></h2>
+<a id="a5cba73cbd2080f685789d53c743c863e" name="a5cba73cbd2080f685789d53c743c863e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cba73cbd2080f685789d53c743c863e">&#9670;&#160;</a></span>getData() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,7 +233,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool ev::AbstractCamera_::getData </td>
+          <td class="memname">virtual bool ev::AbstractCamera::getData </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="queue_8hpp.html#a0ffebe17d2e722cf3a1093c5eab6892b">Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span></td><td>)</td>
           <td></td>
@@ -251,8 +259,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
-<a id="ab8e4c4565a165762afa6e2e182eb5b60" name="ab8e4c4565a165762afa6e2e182eb5b60"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8e4c4565a165762afa6e2e182eb5b60">&#9670;&#160;</a></span>getData() <span class="overload">[2/2]</span></h2>
+<a id="ac6858f5256715a27d0077636f964b4be" name="ac6858f5256715a27d0077636f964b4be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6858f5256715a27d0077636f964b4be">&#9670;&#160;</a></span>getData() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,7 +269,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool ev::AbstractCamera_::getData </td>
+          <td class="memname">virtual bool ev::AbstractCamera::getData </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span></td><td>)</td>
           <td></td>
@@ -287,8 +295,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
-<a id="a05adcdb68076329ff9d8679baea9edd3" name="a05adcdb68076329ff9d8679baea9edd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a05adcdb68076329ff9d8679baea9edd3">&#9670;&#160;</a></span>getRoi()</h2>
+<a id="aa697b4c5c361499f2b5767c6ef1acadf" name="aa697b4c5c361499f2b5767c6ef1acadf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa697b4c5c361499f2b5767c6ef1acadf">&#9670;&#160;</a></span>getRoi()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -297,7 +305,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">cv::Rect ev::AbstractCamera_::getRoi </td>
+          <td class="memname">cv::Rect_&lt; uint16_t &gt; ev::AbstractCamera::getRoi </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -317,8 +325,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
-<a id="ae2bef9088eee40a54336cca21080380d" name="ae2bef9088eee40a54336cca21080380d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2bef9088eee40a54336cca21080380d">&#9670;&#160;</a></span>getSensorSize()</h2>
+<a id="a1a63eca45e88264202f7d7a8679f4826" name="a1a63eca45e88264202f7d7a8679f4826"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a63eca45e88264202f7d7a8679f4826">&#9670;&#160;</a></span>getSensorSize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -327,7 +335,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">cv::Size ev::AbstractCamera_::getSensorSize </td>
+          <td class="memname">cv::Size ev::AbstractCamera::getSensorSize </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -347,14 +355,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
-<a id="aa44054fb4f8d7520a6998d15021fbc1f" name="aa44054fb4f8d7520a6998d15021fbc1f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa44054fb4f8d7520a6998d15021fbc1f">&#9670;&#160;</a></span>setBias()</h2>
+<a id="a7eea396e8cc99d7074ec6ae377f9223a" name="a7eea396e8cc99d7074ec6ae377f9223a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eea396e8cc99d7074ec6ae377f9223a">&#9670;&#160;</a></span>setBias()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ev::AbstractCamera_::setBias </td>
+          <td class="memname">bool ev::AbstractCamera::setBias </td>
           <td>(</td>
           <td class="paramtype">const int8_t</td>          <td class="paramname"><span class="paramname"><em>config_bias</em></span>, </td>
         </tr>
@@ -384,16 +392,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
-<a id="ad1a2609dab7a09e97759a355fbde5924" name="ad1a2609dab7a09e97759a355fbde5924"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1a2609dab7a09e97759a355fbde5924">&#9670;&#160;</a></span>setRoi()</h2>
+<a id="a6d9fc3efdb25bb166b2aa685e40b197a" name="a6d9fc3efdb25bb166b2aa685e40b197a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d9fc3efdb25bb166b2aa685e40b197a">&#9670;&#160;</a></span>setRoi()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ev::AbstractCamera_::setRoi </td>
+          <td class="memname">bool ev::AbstractCamera::setRoi </td>
           <td>(</td>
-          <td class="paramtype">const cv::Rect &amp;</td>          <td class="paramname"><span class="paramname"><em>roi</em></span></td><td>)</td>
+          <td class="paramtype">const cv::Rect_&lt; uint16_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>roi</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -412,8 +420,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
-<a id="a10da848c9b274afd76ba44f76e35a3bd" name="a10da848c9b274afd76ba44f76e35a3bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10da848c9b274afd76ba44f76e35a3bd">&#9670;&#160;</a></span>setTimeOffset()</h2>
+<a id="abb4deb2bf57885b4e5847f613c67c538" name="abb4deb2bf57885b4e5847f613c67c538"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb4deb2bf57885b4e5847f613c67c538">&#9670;&#160;</a></span>setTimeOffset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -422,7 +430,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ev::AbstractCamera_::setTimeOffset </td>
+          <td class="memname">void ev::AbstractCamera::setTimeOffset </td>
           <td>(</td>
           <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>offset</em></span></td><td>)</td>
           <td></td>
@@ -442,35 +450,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a id="aeb6b09f1686f7c4d0f9895ec63ae99f5" name="aeb6b09f1686f7c4d0f9895ec63ae99f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb6b09f1686f7c4d0f9895ec63ae99f5">&#9670;&#160;</a></span>start()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void ev::AbstractCamera_::start </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Start reading data. </p>
-
-<p>Implemented in <a class="el" href="classev_1_1Davis.html#af18ab18203fa7cbf8e5499684b07b8bc">ev::Davis</a>.</p>
 
 </div>
 </div>
