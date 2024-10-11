@@ -14,26 +14,20 @@
 
 namespace ev {
 /*!
-\brief This class extends AbstractCamera_ to operate with DAVIS event cameras. DAVIS cameras offer events (DVS), framed images (APS), and IMU data.
+\brief This class extends AbstractCamera to operate with DAVIS event cameras. DAVIS cameras offer events (DVS), framed images (APS), and IMU data.
 */
-class Davis : public AbstractCamera_ {
+class Davis : public AbstractCamera {
 public:
   constexpr static uint32_t DEFAULT_INTERVAL = 20000;
   constexpr static uint32_t DEFAULT_EXPOSURE = 6500;
 
   /*! \cond INTERNAL */
   Davis();
-  ~Davis() override;
   Davis(const Davis &) = delete;
   Davis(Davis &&) noexcept = delete;
   Davis &operator=(const Davis &) = delete;
   Davis &operator=(Davis &&) noexcept = delete;
   /*! \endcond */
-
-  /*!
-  \brief Starts device.
-  */
-  void start(void) override;
 
   /*!
   \brief Retrieve the bias value associated with the given name.
@@ -250,11 +244,10 @@ public:
   std::size_t getEventRaw(uint64_t *data, const bool allow_realloc = true);
 
 private:
-  bool dvsEnabled_{true};
-  bool apsEnabled_{true};
-  bool imuEnabled_{false};
   template <typename T1, typename T2, typename T3>
   void getData_([[maybe_unused]] T1 *dvs, [[maybe_unused]] T2 *aps, [[maybe_unused]] T3 *imu);
+
+  void init() override;
 };
 
 } // namespace ev

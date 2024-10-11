@@ -36,7 +36,7 @@ ev::Davis::Davis() {
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_RUN, 1U);
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_ACCELEROMETER, 1U);
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, 1U);
-    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, 0U);
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, 1U);
 
     caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, ev::Davis::DEFAULT_INTERVAL); // 50Hz == 20000us
     caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_PACKET_SIZE, 0U);                       // Set to zero to disable
@@ -45,18 +45,14 @@ ev::Davis::Davis() {
   }
 }
 
-ev::Davis::~Davis() {
-  caerDeviceDataStop(deviceHandler_);
-  caerDeviceClose(&deviceHandler_);
-}
-
-void ev::Davis::start() {
+void ev::Davis::init() {
   std::array<uint32_t, 5> enable;
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, &enable[0]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_RUN, &enable[1]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_ACCELEROMETER, &enable[2]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, &enable[3]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, &enable[4]);
+  enable[2] = enable[2] && enable[3] && enable[4];
 
   caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
   caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_DATAEXCHANGE, CAER_HOST_CONFIG_DATAEXCHANGE_BLOCKING, 1U);
@@ -64,18 +60,16 @@ void ev::Davis::start() {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, enable[0]);
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_RUN, enable[1]);
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_ACCELEROMETER, enable[2]);
-  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, enable[3]);
-  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, enable[4]);
-
-  flush(1);
+  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, enable[2]);
+  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, enable[2]);
 }
 
 ev::BiasValue ev::Davis::getBias(const uint8_t name) const {
-  return AbstractCamera_::getBias(DAVIS_CONFIG_BIAS, name);
+  return AbstractCamera::getBias(DAVIS_CONFIG_BIAS, name);
 }
 
 bool ev::Davis::setBias(const uint8_t name, const ev::BiasValue &value) {
-  return AbstractCamera_::setBias(DAVIS_CONFIG_BIAS, name, value);
+  return AbstractCamera::setBias(DAVIS_CONFIG_BIAS, name, value);
 }
 
 void ev::Davis::enableDvs(const bool state) {
@@ -107,6 +101,7 @@ void ev::Davis::setExposure(const uint32_t exposure) {
 void ev::Davis::enableImu(const bool state) {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_ACCELEROMETER, static_cast<uint32_t>(state));
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, static_cast<uint32_t>(state));
+  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, static_cast<uint32_t>(state));
 }
 
 bool ev::Davis::getData(ev::Vector &events) {
@@ -206,7 +201,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
   while(container == nullptr) {
     ev::logger::warning("Connection with camera lost, retrying.");
     caerDeviceDataStop(deviceHandler_);
-    caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
+    init();
     container = caerDeviceDataGet(deviceHandler_);
   }
 
@@ -224,7 +219,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
         break;
       } else {
         if constexpr(std::is_same_v<T1, ev::Vector>) {
-          dvs->reserve(dvs->size() + packet_size);
+          dvs->reserve(dvs->size() + static_cast<std::size_t>(packet_size));
         }
         for(int32_t k = 0; k < packet_size; k++) {
           const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
@@ -305,7 +300,7 @@ void ev::Davis::getEventRaw(std::vector<uint64_t> &data) {
   while(container == nullptr) {
     ev::logger::warning("Connection with camera lost, retrying.");
     caerDeviceDataStop(deviceHandler_);
-    caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
+    init();
     container = caerDeviceDataGet(deviceHandler_);
   }
 
@@ -316,7 +311,7 @@ void ev::Davis::getEventRaw(std::vector<uint64_t> &data) {
       continue;
     }
     const int32_t packet_size = caerEventPacketHeaderGetEventNumber(packet);
-    data.reserve(data.size() + packet_size);
+    data.reserve(data.size() + static_cast<std::size_t>(packet_size));
     for(int32_t k = 0; k < packet_size; k++) {
       const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
       data.emplace_back((static_cast<uint64_t>(p->data) << 32) | static_cast<uint64_t>(p->timestamp));
@@ -332,7 +327,7 @@ std::size_t ev::Davis::getEventRaw(uint64_t *data, const bool allow_realloc /*= 
   while(container == nullptr) {
     ev::logger::warning("Connection with camera lost, retrying.");
     caerDeviceDataStop(deviceHandler_);
-    caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
+    init();
     container = caerDeviceDataGet(deviceHandler_);
   }
 
@@ -343,7 +338,7 @@ std::size_t ev::Davis::getEventRaw(uint64_t *data, const bool allow_realloc /*= 
       continue;
     }
     const int32_t packet_size = caerEventPacketHeaderGetEventNumber(packet);
-    size += caerEventPacketHeaderGetEventNumber(packet);
+    size += static_cast<std::size_t>(caerEventPacketHeaderGetEventNumber(packet));
     if(allow_realloc) {
       data = (uint64_t *)realloc(data, size * sizeof(uint64_t));
     }

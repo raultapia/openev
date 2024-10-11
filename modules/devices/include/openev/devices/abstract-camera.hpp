@@ -114,15 +114,15 @@ using ImuQueue = std::queue<Imu>;
 /*!
 \brief This is an auxiliary class. This class cannot be instanced.
 */
-class AbstractCamera_ {
+class AbstractCamera {
 public:
   /*! \cond INTERNAL */
-  AbstractCamera_() = default;
-  virtual ~AbstractCamera_() = default;
-  AbstractCamera_(const AbstractCamera_ &) = delete;
-  AbstractCamera_(AbstractCamera_ &&) noexcept = delete;
-  AbstractCamera_ &operator=(const AbstractCamera_ &) = delete;
-  AbstractCamera_ &operator=(AbstractCamera_ &&) noexcept = delete;
+  AbstractCamera() = default;
+  ~AbstractCamera();
+  AbstractCamera(const AbstractCamera &) = delete;
+  AbstractCamera(AbstractCamera &&) noexcept = delete;
+  AbstractCamera &operator=(const AbstractCamera &) = delete;
+  AbstractCamera &operator=(AbstractCamera &&) noexcept = delete;
   /*! \endcond */
 
   /*!
@@ -136,7 +136,7 @@ public:
   /*!
   \brief Start reading data.
   */
-  virtual void start() = 0;
+  void start();
 
   /*!
   \brief Stop reading data.
@@ -153,14 +153,14 @@ public:
   \brief Get current ROI.
   \return ROI
   */
-  [[nodiscard]] cv::Rect getRoi() const;
+  [[nodiscard]] cv::Rect_<uint16_t> getRoi() const;
 
   /*!
   \brief Set current ROI. Events outside the ROI are not considered. Images are cropped according to the ROI.
   \param roi ROI
   \return True if valid ROI
   */
-  bool setRoi(const cv::Rect &roi);
+  bool setRoi(const cv::Rect_<uint16_t> &roi);
 
   /*!
   \brief Retrieve the bias value associated with a specific configuration and name.
@@ -183,7 +183,7 @@ public:
   \brief Discard data during an interval of time.
   \param msec Time interval in milliseconds
   */
-  void flush(double msec) const;
+  void flush(const double msec) const;
 
   /*!
   \brief Get data.
@@ -204,8 +204,10 @@ protected:
   std::atomic<bool> running_{false};
   caerDeviceHandle deviceHandler_{nullptr};
   double timeOffset_{0};
-  cv::Rect roi_;
+  cv::Rect_<uint16_t> roi_;
   /*! \endcond */
+
+  virtual void init() = 0;
 };
 
 } // namespace ev
