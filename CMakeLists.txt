@@ -66,5 +66,6 @@ set(OpenEV_LIBRARIES
     "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_containers.so;${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_core.so;${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_devices.so;${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_readers.so;${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_representations.so;${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_utils.so"
 )
 set(OpenEV_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
+set(OpenEV_LIBRARY_DIRS "${CMAKE_INSTALL_PREFIX}/lib/openev")
 configure_package_config_file("OpenEVConfig.cmake.in" "${PROJECT_BINARY_DIR}/OpenEVConfig.cmake" INSTALL_DESTINATION "lib/cmake/openev")
 install(FILES "${PROJECT_BINARY_DIR}/OpenEVConfig.cmake" DESTINATION lib/cmake/openev)
