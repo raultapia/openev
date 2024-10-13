@@ -374,7 +374,7 @@ public:
   \return True if empty
   */
   [[nodiscard]] inline bool empty() const {
-    return !(cv::Size_<T>::width || cv::Size_<T>::height || length);
+    return cv::Size_<T>::width <= 0 || cv::Size_<T>::height <= 0 || length <= 0;
   }
 
   /*!
@@ -475,7 +475,7 @@ public:
   \return True if empty
   */
   [[nodiscard]] inline bool empty() const {
-    return !(Rect3_<T>::width && Rect3_<T>::height && length);
+    return Rect3_<T>::width <= 0 || Rect3_<T>::height <= 0 || length <= 0;
   }
 
   /*!
@@ -546,7 +546,7 @@ struct Circ_ {
   \return True if empty
   */
   [[nodiscard]] inline bool empty() const {
-    return !radius;
+    return radius <= 0;
   }
 
   /*!
