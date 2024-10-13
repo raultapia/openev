@@ -342,7 +342,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
 <div class="foldopen" id="foldopen00376" data-start="{" data-end="}">
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno"><a class="line" href="classev_1_1Size3__.html#a70359507128f45da9d9f239a1ddb7a86">  376</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classev_1_1Size3__.html#a70359507128f45da9d9f239a1ddb7a86">empty</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keywordflow">return</span> !(cv::Size_&lt;T&gt;::width || cv::Size_&lt;T&gt;::height || <a class="code hl_variable" href="classev_1_1Size3__.html#aadcd1e8587079bcc8e65a0cd36e4d64c">length</a>);</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    <span class="keywordflow">return</span> cv::Size_&lt;T&gt;::width &lt;= 0 || cv::Size_&lt;T&gt;::height &lt;= 0 || <a class="code hl_variable" href="classev_1_1Size3__.html#aadcd1e8587079bcc8e65a0cd36e4d64c">length</a> &lt;= 0;</div>
 <div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>  }</div>
 </div>
 <div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
@@ -384,7 +384,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span> </div>
 <div class="foldopen" id="foldopen00477" data-start="{" data-end="}">
 <div class="line"><a id="l00477" name="l00477"></a><span class="lineno"><a class="line" href="classev_1_1Rect3__.html#a67025cac2778f069c27a21d16dba76ad">  477</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classev_1_1Rect3__.html#a67025cac2778f069c27a21d16dba76ad">empty</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>    <span class="keywordflow">return</span> !(<a class="code hl_class" href="classev_1_1Rect3__.html">Rect3_&lt;T&gt;::width</a> &amp;&amp; <a class="code hl_class" href="classev_1_1Rect3__.html">Rect3_&lt;T&gt;::height</a> &amp;&amp; <a class="code hl_variable" href="classev_1_1Rect3__.html#af0e2cd626c409dcba3ef4edcdb7feab1">length</a>);</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classev_1_1Rect3__.html">Rect3_&lt;T&gt;::width</a> &lt;= 0 || <a class="code hl_class" href="classev_1_1Rect3__.html">Rect3_&lt;T&gt;::height</a> &lt;= 0 || <a class="code hl_variable" href="classev_1_1Rect3__.html#af0e2cd626c409dcba3ef4edcdb7feab1">length</a> &lt;= 0;</div>
 <div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span>  }</div>
 </div>
 <div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span> </div>
@@ -425,7 +425,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
 <div class="foldopen" id="foldopen00548" data-start="{" data-end="}">
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno"><a class="line" href="structev_1_1Circ__.html#a683dd14abb80cd94a4de7606e45fc4cc">  548</a></span>  [[nodiscard]] <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="structev_1_1Circ__.html#a683dd14abb80cd94a4de7606e45fc4cc">empty</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>    <span class="keywordflow">return</span> !radius;</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>    <span class="keywordflow">return</span> radius &lt;= 0;</div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>  }</div>
 </div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
