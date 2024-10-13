@@ -14,17 +14,6 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/third-party/libusb/config.h")
 endif()
 
 # Add modules
-find_package(
-  OpenCV REQUIRED
-  COMPONENTS core highgui calib3d
-  OPTIONAL_COMPONENTS viz)
-if(${OpenCV_viz_FOUND})
-  set(HAVE_VIZ 1)
-else()
-  set(HAVE_VIZ 0)
-endif()
-configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_SOURCE_DIR}/include/openev/options.hpp" @ONLY)
-
 option(BUILD_MODULE_CONTAINERS "Build the containers module" ON)
 option(BUILD_MODULE_CORE "Build the core module" ON)
 option(BUILD_MODULE_DEVICES "Build the devices module" ON)
@@ -32,6 +21,22 @@ option(BUILD_MODULE_READERS "Build the readers module" ON)
 option(BUILD_MODULE_REPRESENTATIONS "Build the representations module" ON)
 option(BUILD_MODULE_UTILS "Build the utils module" ON)
 option(BUILD_EXAMPLES "Build examples" ON)
+
+if(BUILD_MODULE_REPRESENTATIONS)
+  find_package(
+    OpenCV REQUIRED
+    COMPONENTS core highgui calib3d
+    OPTIONAL_COMPONENTS viz)
+  if(${OpenCV_viz_FOUND})
+    set(HAVE_VIZ 1)
+  else()
+    set(HAVE_VIZ 0)
+  endif()
+else()
+  find_package(OpenCV REQUIRED COMPONENTS core highgui calib3d)
+  set(HAVE_VIZ 0)
+endif()
+configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_SOURCE_DIR}/include/openev/options.hpp" @ONLY)
 
 if(BUILD_MODULE_CONTAINERS)
   add_subdirectory(modules/containers)
