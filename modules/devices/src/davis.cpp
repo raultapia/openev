@@ -225,7 +225,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
           const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
           const uint16_t x = caerPolarityEventGetX(p);
           const uint16_t y = caerPolarityEventGetY(p);
-          if(roi_.empty() || roi_.contains(cv::Point(x, y))) {
+          if(roi_.width <= 0 || roi_.height <= 0 || roi_.contains(cv::Point(x, y))) {
             if constexpr(std::is_same_v<T1, ev::Vector>) {
               dvs->emplace_back(x, y, caerPolarityEventGetTimestamp(p) + timeOffset_, caerPolarityEventGetPolarity(p));
             } else if constexpr(std::is_same_v<T1, ev::Queue>) {

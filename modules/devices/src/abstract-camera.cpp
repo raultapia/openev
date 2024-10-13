@@ -28,7 +28,7 @@ cv::Size ev::AbstractCamera::getSensorSize() const {
 }
 
 cv::Rect_<uint16_t> ev::AbstractCamera::getRoi() const {
-  if(roi_.empty()) {
+  if(roi_.width <= 0 || roi_.height <= 0) {
     struct caer_davis_info info = caerDavisInfoGet(deviceHandler_);
     return {0, 0, static_cast<uint16_t>(info.dvsSizeX), static_cast<uint16_t>(info.dvsSizeY)};
   }
@@ -39,7 +39,7 @@ bool ev::AbstractCamera::setRoi(const cv::Rect_<uint16_t> &roi) {
   struct caer_davis_info info = caerDavisInfoGet(deviceHandler_);
   cv::Rect_<uint16_t> full(0, 0, static_cast<uint16_t>(info.dvsSizeX), static_cast<uint16_t>(info.dvsSizeY));
 
-  if(!roi.empty() && full.contains(roi.tl()) && full.contains(roi.br())) {
+  if(!(roi.width <= 0 || roi.height <= 0) && full.contains(roi.tl()) && full.contains(roi.br())) {
     if(caerDavisROIConfigure(deviceHandler_, roi.tl().x, roi.tl().y, static_cast<uint16_t>(roi.br().x - 1), static_cast<uint16_t>(roi.br().y - 1))) {
       roi_ = roi;
       return true;
