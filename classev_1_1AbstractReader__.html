@@ -132,13 +132,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a81713e57602276a719c39b083a0b920b" id="r_a81713e57602276a719c39b083a0b920b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81713e57602276a719c39b083a0b920b">next_n</a> (<a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;vector, const int n)</td></tr>
 <tr class="memdesc:a81713e57602276a719c39b083a0b920b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next n events from the dataset.  <br /></td></tr>
 <tr class="separator:a81713e57602276a719c39b083a0b920b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaa8acea516353c8a8b017927aefdc42" id="r_aaaa8acea516353c8a8b017927aefdc42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaa8acea516353c8a8b017927aefdc42">next_n</a> (<a class="el" href="queue_8hpp.html#a0ffebe17d2e722cf3a1093c5eab6892b">Queue</a> &amp;queue, const int n, const bool keep_size=false)</td></tr>
+<tr class="memitem:aaaa8acea516353c8a8b017927aefdc42" id="r_aaaa8acea516353c8a8b017927aefdc42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaa8acea516353c8a8b017927aefdc42">next_n</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;queue, const int n, const bool keep_size=false)</td></tr>
 <tr class="memdesc:aaaa8acea516353c8a8b017927aefdc42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next n events from the dataset.  <br /></td></tr>
 <tr class="separator:aaaa8acea516353c8a8b017927aefdc42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadc15085cac6222fc9e05b32fb3577aa" id="r_aadc15085cac6222fc9e05b32fb3577aa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadc15085cac6222fc9e05b32fb3577aa">next_t</a> (<a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;vector, const double t)</td></tr>
 <tr class="memdesc:aadc15085cac6222fc9e05b32fb3577aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next events until the specified duration is reached.  <br /></td></tr>
 <tr class="separator:aadc15085cac6222fc9e05b32fb3577aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2896189d879c653786c471bb78c7202" id="r_ac2896189d879c653786c471bb78c7202"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2896189d879c653786c471bb78c7202">next_t</a> (<a class="el" href="queue_8hpp.html#a0ffebe17d2e722cf3a1093c5eab6892b">Queue</a> &amp;queue, const double t, const bool keep_size=false)</td></tr>
+<tr class="memitem:ac2896189d879c653786c471bb78c7202" id="r_ac2896189d879c653786c471bb78c7202"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2896189d879c653786c471bb78c7202">next_t</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;queue, const double t, const bool keep_size=false)</td></tr>
 <tr class="memdesc:ac2896189d879c653786c471bb78c7202"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next events until the specified duration is reached and store them in a queue.  <br /></td></tr>
 <tr class="separator:ac2896189d879c653786c471bb78c7202"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a6740830a4b7e132aa83ab3ed96689a" id="r_a9a6740830a4b7e132aa83ab3ed96689a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a6740830a4b7e132aa83ab3ed96689a">skip_n</a> (int n)</td></tr>
@@ -271,7 +271,7 @@ template&lt;std::size_t N&gt; </div>
         <tr>
           <td class="memname">bool ev::AbstractReader_::next_n </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="queue_8hpp.html#a0ffebe17d2e722cf3a1093c5eab6892b">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>queue</em></span>, </td>
+          <td class="paramtype"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>queue</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -339,7 +339,7 @@ template&lt;std::size_t N&gt; </div>
         <tr>
           <td class="memname">bool ev::AbstractReader_::next_t </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="queue_8hpp.html#a0ffebe17d2e722cf3a1093c5eab6892b">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>queue</em></span>, </td>
+          <td class="paramtype"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>queue</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

@@ -255,24 +255,24 @@ $(function(){ initResizable(false); });
 <div class="foldopen" id="foldopen00208" data-start="{" data-end="}">
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="classev_1_1AbstractRepresentation__.html#a1ab8c12165248f7cedcf68569262272d">  208</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#a1ab8c12165248f7cedcf68569262272d">setValue</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> polarity, <span class="keyword">const</span> <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;value) {</div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">if</span>(polarity) {</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      ON = value;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      V_ON = value;</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      OFF = value;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      V_OFF = value;</div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    }</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  }</div>
 </div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
 <div class="foldopen" id="foldopen00220" data-start="{" data-end="}">
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno"><a class="line" href="classev_1_1AbstractRepresentation__.html#a56fcc2c8d89b9a1047e7458ba264cdbd">  220</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#a56fcc2c8d89b9a1047e7458ba264cdbd">setValue</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;value) {</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    RESET = value;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    V_RESET = value;</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>  }</div>
 </div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
 <div class="foldopen" id="foldopen00230" data-start="{" data-end="}">
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno"><a class="line" href="classev_1_1AbstractRepresentation__.html#a85b5300b9f6b9f2d8415d2f0181760c5">  230</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#a85b5300b9f6b9f2d8415d2f0181760c5">setValues</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;positive, <span class="keyword">const</span> <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;negative, <span class="keyword">const</span> <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;reset) {</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    ON = positive;</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    OFF = negative;</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    RESET = reset;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    V_ON = positive;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    V_OFF = negative;</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    V_RESET = reset;</div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  }</div>
 </div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
@@ -292,13 +292,13 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
 <div class="foldopen" id="foldopen00273" data-start="{" data-end="}">
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="classev_1_1AbstractRepresentation__.html#a08dc3a4b711c16bb3b859fcccd803865">  273</a></span>  [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> <a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#a08dc3a4b711c16bb3b859fcccd803865">getValue</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> polarity)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordflow">return</span> polarity ? ON : OFF;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    <span class="keywordflow">return</span> polarity ? V_ON : V_OFF;</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  }</div>
 </div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
 <div class="foldopen" id="foldopen00281" data-start="{" data-end="}">
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno"><a class="line" href="classev_1_1AbstractRepresentation__.html#ab97f9177cf4aa34138cb60795ce3d52f">  281</a></span>  [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> <a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#ab97f9177cf4aa34138cb60795ce3d52f">getValue</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keywordflow">return</span> RESET;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    <span class="keywordflow">return</span> V_RESET;</div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  }</div>
 </div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
@@ -306,9 +306,9 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>  enum : uint8_t { MIN,</div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                   MAX };</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>  <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> ON = TypeHelper&lt;T&gt;::initialize()[0];</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> OFF = TypeHelper&lt;T&gt;::initialize()[1];</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>  <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> RESET = TypeHelper&lt;T&gt;::initialize()[2];</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>  <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> V_ON = TypeHelper&lt;T&gt;::initialize()[0];</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>  <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> V_OFF = TypeHelper&lt;T&gt;::initialize()[1];</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>  <a class="code hl_typedef" href="classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77">Type</a> V_RESET = TypeHelper&lt;T&gt;::initialize()[2];</div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>  <span class="keywordtype">double</span> timeOffset_{0};</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  std::array&lt;double, 2&gt; tLimits_{DBL_MAX, DBL_MIN};</div>
