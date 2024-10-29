@@ -33,13 +33,13 @@ class Queue_;
 Event vectors inherit all the properties from standard C++ vectors. Events in the vector are stored contiguously.
 */
 template <typename T>
-class Vector_ : public std::vector<T> {
-  using std::vector<T>::vector;
+class Vector_ : public std::vector<Event_<T>> {
+  using std::vector<Event_<T>>::vector;
 
 public:
   /*! \cond INTERNAL */
   inline void push_back(const T &e) {
-    std::vector<T>::push_back(e);
+    std::vector<Event_<T>>::push_back(e);
   }
   /*! \endcond */
 
@@ -49,8 +49,8 @@ public:
   */
   template <std::size_t N>
   inline void push_back(const Array_<T, N> &array) {
-    std::vector<T>::reserve(std::vector<T>::size() + array.size());
-    std::vector<T>::insert(std::vector<T>::end(), array.begin(), array.end());
+    std::vector<Event_<T>>::reserve(std::vector<Event_<T>>::size() + array.size());
+    std::vector<Event_<T>>::insert(std::vector<Event_<T>>::end(), array.begin(), array.end());
   }
 
   /*!
@@ -58,7 +58,7 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return std::vector<T>::back().t - std::vector<T>::front().t;
+    return std::vector<Event_<T>>::back().t - std::vector<Event_<T>>::front().t;
   }
 
   /*!
@@ -66,7 +66,7 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
-    return std::vector<T>::size() / duration();
+    return std::vector<Event_<T>>::size() / duration();
   }
 
   /*!
@@ -74,10 +74,10 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] Eventd mean() const {
-    const double x = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::vector<T>::size();
-    const double y = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::vector<T>::size();
-    const double t = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::vector<T>::size();
-    const double p = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / std::vector<T>::size();
+    const double x = std::accumulate(std::vector<Event_<T>>::begin(), std::vector<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::vector<Event_<T>>::size();
+    const double y = std::accumulate(std::vector<Event_<T>>::begin(), std::vector<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::vector<Event_<T>>::size();
+    const double t = std::accumulate(std::vector<Event_<T>>::begin(), std::vector<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::vector<Event_<T>>::size();
+    const double p = std::accumulate(std::vector<Event_<T>>::begin(), std::vector<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / std::vector<Event_<T>>::size();
     return {x, y, t, p > 0.5};
   }
 
@@ -86,8 +86,8 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point2d meanPoint() const {
-    const double x = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::vector<T>::size();
-    const double y = std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::vector<T>::size();
+    const double x = std::accumulate(std::vector<Event_<T>>::begin(), std::vector<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::vector<Event_<T>>::size();
+    const double y = std::accumulate(std::vector<Event_<T>>::begin(), std::vector<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::vector<Event_<T>>::size();
     return {x, y};
   }
 
@@ -96,7 +96,7 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline double meanTime() const {
-    return std::accumulate(std::vector<T>::begin(), std::vector<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::vector<T>::size();
+    return std::accumulate(std::vector<Event_<T>>::begin(), std::vector<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::vector<Event_<T>>::size();
   }
 
   /*!
@@ -104,19 +104,14 @@ public:
   \return Midpoint time.
   */
   [[nodiscard]] inline double midTime() const {
-    return 0.5 * (std::vector<T>::front().t + std::vector<T>::back().t);
+    return 0.5 * (std::vector<Event_<T>>::front().t + std::vector<Event_<T>>::back().t);
   }
 };
-using Vectori = Vector_<Eventi>;                   /*!< Alias for Vector_ using Eventi */
-using Vectorl = Vector_<Eventl>;                   /*!< Alias for Vector_ using Eventl */
-using Vectorf = Vector_<Eventf>;                   /*!< Alias for Vector_ using Eventf */
-using Vectord = Vector_<Eventd>;                   /*!< Alias for Vector_ using Eventd */
-using Vector = Vector_<Event>;                     /*!< Alias for Vector_ using Event */
-using AugmentedVectori = Vector_<AugmentedEventi>; /*!< Alias for augmented Vector_ using AugmentedEventi */
-using AugmentedVectorl = Vector_<AugmentedEventl>; /*!< Alias for augmented Vector_ using AugmentedEventl */
-using AugmentedVectorf = Vector_<AugmentedEventf>; /*!< Alias for augmented Vector_ using AugmentedEventf */
-using AugmentedVectord = Vector_<AugmentedEventd>; /*!< Alias for augmented Vector_ using AugmentedEventd */
-using AugmentedVector = Vector_<AugmentedEvent>;   /*!< Alias for augmented Vector_ using AugmentedEvent */
+using Vectori = Vector_<int>;    /*!< Alias for Vector_ using int */
+using Vectorl = Vector_<long>;   /*!< Alias for Vector_ using long */
+using Vectorf = Vector_<float>;  /*!< Alias for Vector_ using float */
+using Vectord = Vector_<double>; /*!< Alias for Vector_ using double */
+using Vector = Vectori;          /*!< Alias for Vector_ using Event */
 } // namespace ev
 
 #endif // OPENEV_CONTAINERS_VECTOR_HPP

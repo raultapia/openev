@@ -32,13 +32,13 @@ class Vector_;
 Event deques inherit all the properties from standard C++ deques. Events dequeu are double-ended queues that allows fast insertion and deletion at both its beginning and its end.
 */
 template <typename T>
-class Deque_ : public std::deque<T> {
-  using std::deque<T>::deque;
+class Deque_ : public std::deque<Event_<T>> {
+  using std::deque<Event_<T>>::deque;
 
 public:
   /*! \cond INTERNAL */
   inline void push_back(const T &e) {
-    std::deque<T>::push_back(e);
+    std::deque<Event_<T>>::push_back(e);
   }
   /*! \endcond */
 
@@ -48,7 +48,7 @@ public:
   */
   template <std::size_t N>
   inline void push_back(const Array_<T, N> &array) {
-    std::deque<T>::insert(std::deque<T>::end(), array.begin(), array.end());
+    std::deque<Event_<T>>::insert(std::deque<Event_<T>>::end(), array.begin(), array.end());
   }
 
   /*!
@@ -56,7 +56,7 @@ public:
   \param vector Event vector to push
   */
   inline void push_back(const Vector_<T> &vector) {
-    std::deque<T>::insert(std::deque<T>::end(), vector.begin(), vector.end());
+    std::deque<Event_<T>>::insert(std::deque<Event_<T>>::end(), vector.begin(), vector.end());
   }
 
   /*!
@@ -64,7 +64,7 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return std::deque<T>::back().t - std::deque<T>::front().t;
+    return std::deque<Event_<T>>::back().t - std::deque<Event_<T>>::front().t;
   }
 
   /*!
@@ -72,7 +72,7 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
-    return std::deque<T>::size() / duration();
+    return std::deque<Event_<T>>::size() / duration();
   }
 
   /*!
@@ -80,10 +80,10 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] Eventd mean() {
-    const double x = std::accumulate(std::deque<T>::begin(), std::deque<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::deque<T>::size();
-    const double y = std::accumulate(std::deque<T>::begin(), std::deque<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::deque<T>::size();
-    const double t = std::accumulate(std::deque<T>::begin(), std::deque<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::deque<T>::size();
-    const double p = std::accumulate(std::deque<T>::begin(), std::deque<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / std::deque<T>::size();
+    const double x = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::deque<Event_<T>>::size();
+    const double y = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::deque<Event_<T>>::size();
+    const double t = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::deque<Event_<T>>::size();
+    const double p = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / std::deque<Event_<T>>::size();
     return {x, y, t, p > 0.5};
   }
 
@@ -92,8 +92,8 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point2d meanPoint() {
-    const double x = std::accumulate(std::deque<T>::begin(), std::deque<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::deque<T>::size();
-    const double y = std::accumulate(std::deque<T>::begin(), std::deque<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::deque<T>::size();
+    const double x = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::deque<Event_<T>>::size();
+    const double y = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::deque<Event_<T>>::size();
     return {x, y};
   }
 
@@ -102,7 +102,7 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline double meanTime() {
-    return std::accumulate(std::deque<T>::begin(), std::deque<T>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::deque<T>::size();
+    return std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::deque<Event_<T>>::size();
   }
 
   /*!
@@ -110,19 +110,14 @@ public:
   \return Midpoint time.
   */
   [[nodiscard]] inline double midTime() const {
-    return 0.5 * (std::deque<T>::front().t + std::deque<T>::back().t);
+    return 0.5 * (std::deque<Event_<T>>::front().t + std::deque<Event_<T>>::back().t);
   }
 };
-using Dequei = Deque_<Eventi>;                   /*!< Alias for Deque_ using Eventi */
-using Dequel = Deque_<Eventl>;                   /*!< Alias for Deque_ using Eventl */
-using Dequef = Deque_<Eventf>;                   /*!< Alias for Deque_ using Eventf */
-using Dequed = Deque_<Eventd>;                   /*!< Alias for Deque_ using Eventd */
-using Deque = Deque_<Event>;                     /*!< Alias for Deque_ using Event */
-using AugmentedDequei = Deque_<AugmentedEventi>; /*!< Alias for augmented Deque_ using AugmentedEventi */
-using AugmentedDequel = Deque_<AugmentedEventl>; /*!< Alias for augmented Deque_ using AugmentedEventl */
-using AugmentedDequef = Deque_<AugmentedEventf>; /*!< Alias for augmented Deque_ using AugmentedEventf */
-using AugmentedDequed = Deque_<AugmentedEventd>; /*!< Alias for augmented Deque_ using AugmentedEventd */
-using AugmentedDeque = Deque_<AugmentedEvent>;   /*!< Alias for augmented Deque_ using AugmentedEvent */
+using Dequei = Deque_<int>;    /*!< Alias for Deque_ using int */
+using Dequel = Deque_<long>;   /*!< Alias for Deque_ using long */
+using Dequef = Deque_<float>;  /*!< Alias for Deque_ using float */
+using Dequed = Deque_<double>; /*!< Alias for Deque_ using double */
+using Deque = Dequei;          /*!< Alias for Deque_ using int */
 } // namespace ev
 
 #endif // OPENEV_CONTAINERS_DEQUE_HPP

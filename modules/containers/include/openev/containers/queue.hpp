@@ -32,13 +32,13 @@ class Vector_;
 Event queues inherit all the properties from standard C++ queues. Events queues are FIFO data structures not intended to be directly iterated.
 */
 template <typename T>
-class Queue_ : public std::queue<T> {
-  using std::queue<T>::queue;
+class Queue_ : public std::queue<Event_<T>> {
+  using std::queue<Event_<T>>::queue;
 
 public:
   /*! \cond INTERNAL */
   inline void push(const T &e) {
-    std::queue<T>::push(e);
+    std::queue<Event_<T>>::push(e);
   }
   /*! \endcond */
 
@@ -49,7 +49,7 @@ public:
   template <std::size_t N>
   inline void push(const Array_<T, N> &array) {
     for(const T &e : array) {
-      std::queue<T>::emplace(std::move(e));
+      std::queue<Event_<T>>::emplace(std::move(e));
     }
   }
 
@@ -59,7 +59,7 @@ public:
   */
   inline void push(const Vector_<T> &vector) {
     for(const T &e : vector) {
-      std::queue<T>::emplace(std::move(e));
+      std::queue<Event_<T>>::emplace(std::move(e));
     }
   }
 
@@ -68,7 +68,7 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return std::queue<T>::back().t - std::queue<T>::front().t;
+    return std::queue<Event_<T>>::back().t - std::queue<Event_<T>>::front().t;
   }
 
   /*!
@@ -76,7 +76,7 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
-    return std::queue<T>::size() / duration();
+    return std::queue<Event_<T>>::size() / duration();
   }
 
   /*!
@@ -84,19 +84,19 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] Eventd mean() {
-    const std::size_t n = std::queue<T>::size();
+    const std::size_t n = std::queue<Event_<T>>::size();
     double x{0};
     double y{0};
     double t{0};
     double p{0};
 
-    while(!std::queue<T>::empty()) {
-      const T &e = std::queue<T>::front();
+    while(!std::queue<Event_<T>>::empty()) {
+      const T &e = std::queue<Event_<T>>::front();
       x += e.x;
       y += e.y;
       t += e.t;
       p += e.p;
-      std::queue<T>::pop();
+      std::queue<Event_<T>>::pop();
     }
 
     return {x / n, y / n, t / n, p / n > 0.5};
@@ -107,15 +107,15 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point2d meanPoint() {
-    const std::size_t n = std::queue<T>::size();
+    const std::size_t n = std::queue<Event_<T>>::size();
     double x{0};
     double y{0};
 
-    while(!std::queue<T>::empty()) {
-      const T &e = std::queue<T>::front();
+    while(!std::queue<Event_<T>>::empty()) {
+      const T &e = std::queue<Event_<T>>::front();
       x += e.x;
       y += e.y;
-      std::queue<T>::pop();
+      std::queue<Event_<T>>::pop();
     }
 
     return {x / n, y / n};
@@ -126,12 +126,12 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline double meanTime() {
-    const std::size_t n = std::queue<T>::size();
+    const std::size_t n = std::queue<Event_<T>>::size();
     double t{0};
 
-    while(!std::queue<T>::empty()) {
-      t += std::queue<T>::front().t;
-      std::queue<T>::pop();
+    while(!std::queue<Event_<T>>::empty()) {
+      t += std::queue<Event_<T>>::front().t;
+      std::queue<Event_<T>>::pop();
     }
 
     return t / n;
@@ -142,19 +142,14 @@ public:
   \return Midpoint time.
   */
   [[nodiscard]] inline double midTime() const {
-    return 0.5 * (std::queue<T>::front().t + std::queue<T>::back().t);
+    return 0.5 * (std::queue<Event_<T>>::front().t + std::queue<Event_<T>>::back().t);
   }
 };
-using Queuei = Queue_<Eventi>;                   /*!< Alias for Queue_ using Eventi */
-using Queuel = Queue_<Eventl>;                   /*!< Alias for Queue_ using Eventl */
-using Queuef = Queue_<Eventf>;                   /*!< Alias for Queue_ using Eventf */
-using Queued = Queue_<Eventd>;                   /*!< Alias for Queue_ using Eventd */
-using Queue = Queue_<Event>;                     /*!< Alias for Queue_ using Event */
-using AugmentedQueuei = Queue_<AugmentedEventi>; /*!< Alias for augmented Queue_ using AugmentedEventi */
-using AugmentedQueuel = Queue_<AugmentedEventl>; /*!< Alias for augmented Queue_ using AugmentedEventl */
-using AugmentedQueuef = Queue_<AugmentedEventf>; /*!< Alias for augmented Queue_ using AugmentedEventf */
-using AugmentedQueued = Queue_<AugmentedEventd>; /*!< Alias for augmented Queue_ using AugmentedEventd */
-using AugmentedQueue = Queue_<AugmentedEvent>;   /*!< Alias for augmented Queue_ using AugmentedEvent */
+using Queuei = Queue_<int>;    /*!< Alias for Queue_ using int */
+using Queuel = Queue_<long>;   /*!< Alias for Queue_ using long */
+using Queuef = Queue_<float>;  /*!< Alias for Queue_ using float */
+using Queued = Queue_<double>; /*!< Alias for Queue_ using double */
+using Queue = Queuei;          /*!< Alias for Queue_ using Event */
 } // namespace ev
 
 #endif // OPENEV_CONTAINERS_QUEUE_HPP

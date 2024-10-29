@@ -18,8 +18,8 @@ namespace ev {
 Event arrays inherit all the properties from standard C++ arrays. Events in the array are stored contiguously.
 */
 template <typename T, std::size_t N>
-class Array_ : public std::array<T, N> {
-  using std::array<T, N>::array;
+class Array_ : public std::array<Event_<T>, N> {
+  using std::array<Event_<T>, N>::array;
 
 public:
   /*!
@@ -27,7 +27,7 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline double duration() const {
-    return std::array<T, N>::back().t - std::array<T, N>::front().t;
+    return std::array<Event_<T>, N>::back().t - std::array<Event_<T>, N>::front().t;
   }
 
   /*!
@@ -35,7 +35,7 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline double rate() const {
-    return std::array<T, N>::size() / duration();
+    return std::array<Event_<T>, N>::size() / duration();
   }
 
   /*!
@@ -43,10 +43,10 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] Eventd mean() const {
-    const double x = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / N;
-    const double y = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / N;
-    const double t = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / N;
-    const double p = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / N;
+    const double x = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / N;
+    const double y = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / N;
+    const double t = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / N;
+    const double p = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / N;
     return {x, y, t, p > 0.5};
   }
 
@@ -55,8 +55,8 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point2d meanPoint() const {
-    const double x = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / N;
-    const double y = std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / N;
+    const double x = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / N;
+    const double y = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / N;
     return {x, y};
   }
 
@@ -65,7 +65,7 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline double meanTime() const {
-    return std::accumulate(std::array<T, N>::begin(), std::array<T, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / N;
+    return std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / N;
   }
 
   /*!
@@ -73,29 +73,19 @@ public:
   \return Midpoint time.
   */
   [[nodiscard]] inline double midTime() const {
-    return 0.5 * (std::array<T, N>::front().t + std::array<T, N>::back().t);
+    return 0.5 * (std::array<Event_<T>, N>::front().t + std::array<Event_<T>, N>::back().t);
   }
 };
 template <std::size_t N>
-using Arrayi = Array_<Eventi, N>; /*!< Alias for Array_ using Eventi */
+using Arrayi = Array_<int, N>; /*!< Alias for Array_ using int */
 template <std::size_t N>
-using Arrayl = Array_<Eventl, N>; /*!< Alias for Array_ using Eventl */
+using Arrayl = Array_<long, N>; /*!< Alias for Array_ using long */
 template <std::size_t N>
-using Arrayf = Array_<Eventf, N>; /*!< Alias for Array_ using Eventf */
+using Arrayf = Array_<float, N>; /*!< Alias for Array_ using float */
 template <std::size_t N>
-using Arrayd = Array_<Eventd, N>; /*!< Alias for Array_ using Eventd */
+using Arrayd = Array_<double, N>; /*!< Alias for Array_ using double */
 template <std::size_t N>
-using Array = Array_<Event, N>; /*!< Alias for Array_ using Event */
-template <std::size_t N>
-using AugmentedArrayi = Array_<AugmentedEventi, N>; /*!< Alias for augmented Array_ using AugmentedEventi */
-template <std::size_t N>
-using AugmentedArrayl = Array_<AugmentedEventl, N>; /*!< Alias for augmented Array_ using AugmentedEventl */
-template <std::size_t N>
-using AugmentedArrayf = Array_<AugmentedEventf, N>; /*!< Alias for augmented Array_ using AugmentedEventf */
-template <std::size_t N>
-using AugmentedArrayd = Array_<AugmentedEventd, N>; /*!< Alias for augmented Array_ using AugmentedEventd */
-template <std::size_t N>
-using AugmentedArray = Array_<AugmentedEvent, N>; /*!< Alias for augmented Array_ using AugmentedEvent */
+using Array = Arrayi<N>; /*!< Alias for Array_ using int */
 } // namespace ev
 
 #endif // OPENEV_CONTAINERS_ARRAY_HPP
