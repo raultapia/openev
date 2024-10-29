@@ -18,9 +18,9 @@ cv::Mat &EventHistogram_<T, Options>::render() {
 
   if constexpr(TypeHelper<T>::NumChannels == 1) {
     cv::Mat_<T>(
-        (EventHistogram_<T, Options>::ON - EventHistogram_<T, Options>::RESET) * normalized.mul(cv::Mat_<double>(normalized > 0) / 255) +
-        (EventHistogram_<T, Options>::RESET - EventHistogram_<T, Options>::OFF) * normalized.mul(cv::Mat_<double>(normalized < 0) / 255) +
-        EventHistogram_<T, Options>::RESET)
+        (EventHistogram_<T, Options>::V_ON - EventHistogram_<T, Options>::V_RESET) * normalized.mul(cv::Mat_<double>(normalized > 0) / 255) +
+        (EventHistogram_<T, Options>::V_RESET - EventHistogram_<T, Options>::V_OFF) * normalized.mul(cv::Mat_<double>(normalized < 0) / 255) +
+        EventHistogram_<T, Options>::V_RESET)
         .copyTo(*this);
   } else {
     const cv::Mat_<double> a(normalized.mul(cv::Mat_<double>(normalized > 0) / 255));
@@ -31,9 +31,9 @@ cv::Mat &EventHistogram_<T, Options>::render() {
       const int end = range.end;
       for(int i = start; i < end; i++) {
         typename TypeHelper<T>::ChannelType(
-            (EventHistogram_<T, Options>::ON[i] - EventHistogram_<T, Options>::RESET[i]) * a +
-            (EventHistogram_<T, Options>::RESET[i] - EventHistogram_<T, Options>::OFF[i]) * b +
-            EventHistogram_<T, Options>::RESET[i])
+            (EventHistogram_<T, Options>::V_ON[i] - EventHistogram_<T, Options>::V_RESET[i]) * a +
+            (EventHistogram_<T, Options>::V_RESET[i] - EventHistogram_<T, Options>::V_OFF[i]) * b +
+            EventHistogram_<T, Options>::V_RESET[i])
             .copyTo(v[i]);
       }
     });
@@ -45,7 +45,7 @@ cv::Mat &EventHistogram_<T, Options>::render() {
 
 template <typename T, const RepresentationOptions Options>
 void EventHistogram_<T, Options>::clear_() {
-  EventImage_<T, Options>::setTo(EventHistogram_<T, Options>::RESET);
+  EventImage_<T, Options>::setTo(EventHistogram_<T, Options>::V_RESET);
   counter.clear();
   peak_ = 0;
 }

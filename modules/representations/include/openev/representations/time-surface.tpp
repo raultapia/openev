@@ -29,16 +29,16 @@ cv::Mat &TimeSurface_<T, Options>::render(const Kernel kernel /*= Kernel::NONE*/
   }
 
   if constexpr(TypeHelper<T>::NumChannels == 1) {
-    cv::Mat_<T>(ts * (TimeSurface_<T, Options>::ON - TimeSurface_<T, Options>::RESET) + TimeSurface_<T, Options>::RESET).copyTo(*this, polarity == 1);
-    cv::Mat_<T>(ts * (TimeSurface_<T, Options>::OFF - TimeSurface_<T, Options>::RESET) + TimeSurface_<T, Options>::RESET).copyTo(*this, polarity == 0);
+    cv::Mat_<T>(ts * (TimeSurface_<T, Options>::V_ON - TimeSurface_<T, Options>::V_RESET) + TimeSurface_<T, Options>::V_RESET).copyTo(*this, polarity == 1);
+    cv::Mat_<T>(ts * (TimeSurface_<T, Options>::V_OFF - TimeSurface_<T, Options>::V_RESET) + TimeSurface_<T, Options>::V_RESET).copyTo(*this, polarity == 0);
   } else {
     std::vector<typename TypeHelper<T>::ChannelType> v(TypeHelper<T>::NumChannels);
     cv::parallel_for_(cv::Range(0, TypeHelper<T>::NumChannels), [&](const cv::Range &range) {
       const int start = range.start;
       const int end = range.end;
       for(int i = start; i < end; i++) {
-        typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options>::ON[i] - TimeSurface_<T, Options>::RESET[i]) + TimeSurface_<T, Options>::RESET[i]).copyTo(v[i], polarity == 1);
-        typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options>::OFF[i] - TimeSurface_<T, Options>::RESET[i]) + TimeSurface_<T, Options>::RESET[i]).copyTo(v[i], polarity == 0);
+        typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options>::V_ON[i] - TimeSurface_<T, Options>::V_RESET[i]) + TimeSurface_<T, Options>::V_RESET[i]).copyTo(v[i], polarity == 1);
+        typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options>::V_OFF[i] - TimeSurface_<T, Options>::V_RESET[i]) + TimeSurface_<T, Options>::V_RESET[i]).copyTo(v[i], polarity == 0);
       }
     });
     cv::merge(v, *this);
@@ -49,7 +49,7 @@ cv::Mat &TimeSurface_<T, Options>::render(const Kernel kernel /*= Kernel::NONE*/
 
 template <typename T, const RepresentationOptions Options>
 void TimeSurface_<T, Options>::clear_() {
-  this->setTo(TimeSurface_<T, Options>::RESET);
+  this->setTo(TimeSurface_<T, Options>::V_RESET);
   time.clear();
   polarity.clear();
 }

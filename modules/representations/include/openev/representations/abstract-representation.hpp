@@ -207,9 +207,9 @@ public:
   */
   inline void setValue(const bool polarity, const Type &value) {
     if(polarity) {
-      ON = value;
+      V_ON = value;
     } else {
-      OFF = value;
+      V_OFF = value;
     }
   }
 
@@ -218,7 +218,7 @@ public:
   \param value Value for non-activated pixels
   */
   inline void setValue(const Type &value) {
-    RESET = value;
+    V_RESET = value;
   }
 
   /*!
@@ -228,9 +228,9 @@ public:
   \param reset Value for non-activated pixels
   */
   inline void setValues(const Type &positive, const Type &negative, const Type &reset) {
-    ON = positive;
-    OFF = negative;
-    RESET = reset;
+    V_ON = positive;
+    V_OFF = negative;
+    V_RESET = reset;
   }
 
 #if OE_HAVE_VIZ
@@ -271,7 +271,7 @@ public:
   \return Values for ON/OFF pixels
   */
   [[nodiscard]] inline Type getValue(const bool polarity) const {
-    return polarity ? ON : OFF;
+    return polarity ? V_ON : V_OFF;
   }
 
   /*!
@@ -279,7 +279,7 @@ public:
   \return Values for non-activated pixels
   */
   [[nodiscard]] inline Type getValue() const {
-    return RESET;
+    return V_RESET;
   }
 
 protected:
@@ -287,9 +287,9 @@ protected:
   enum : uint8_t { MIN,
                    MAX };
 
-  Type ON = TypeHelper<T>::initialize()[0];
-  Type OFF = TypeHelper<T>::initialize()[1];
-  Type RESET = TypeHelper<T>::initialize()[2];
+  Type V_ON = TypeHelper<T>::initialize()[0];
+  Type V_OFF = TypeHelper<T>::initialize()[1];
+  Type V_RESET = TypeHelper<T>::initialize()[2];
 
   double timeOffset_{0};
   std::array<double, 2> tLimits_{DBL_MAX, DBL_MIN};

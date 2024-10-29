@@ -18,15 +18,15 @@ void PointCloud_<T, Options>::visualize(const int t, const double time_scale /*=
 
   cloud[static_cast<std::size_t>(ev::POSITIVE)].setRenderingProperty(cv::viz::POINT_SIZE, point_size);
   cloud[static_cast<std::size_t>(ev::NEGATIVE)].setRenderingProperty(cv::viz::POINT_SIZE, point_size);
-  cloud[static_cast<std::size_t>(ev::POSITIVE)].setColor(TypeHelper<T>::convert(PointCloud_<T, Options>::ON));
-  cloud[static_cast<std::size_t>(ev::NEGATIVE)].setColor(TypeHelper<T>::convert(PointCloud_<T, Options>::OFF));
+  cloud[static_cast<std::size_t>(ev::POSITIVE)].setColor(TypeHelper<T>::convert(PointCloud_<T, Options>::V_ON));
+  cloud[static_cast<std::size_t>(ev::NEGATIVE)].setColor(TypeHelper<T>::convert(PointCloud_<T, Options>::V_OFF));
   if(time_scale != 1.0) {
     const cv::Affine3d scaleTransform(cv::Matx44d(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, time_scale, 0.0, 0.0, 0.0, 0.0, 1.0));
     cloud[static_cast<std::size_t>(ev::POSITIVE)].applyTransform(scaleTransform);
     cloud[static_cast<std::size_t>(ev::NEGATIVE)].applyTransform(scaleTransform);
   }
 
-  window_.setBackgroundColor(TypeHelper<T>::convert(PointCloud_<T, Options>::RESET));
+  window_.setBackgroundColor(TypeHelper<T>::convert(PointCloud_<T, Options>::V_RESET));
   window_.showWidget("Positive events", cloud[static_cast<std::size_t>(ev::POSITIVE)]);
   window_.showWidget("Negative events", cloud[static_cast<std::size_t>(ev::NEGATIVE)]);
   window_.showWidget("Coordinate System", coord_sys_widget);
