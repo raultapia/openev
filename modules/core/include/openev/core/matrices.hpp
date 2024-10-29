@@ -56,11 +56,11 @@ public:
   }
 
   template <typename T>
-  inline const double &emplace(const T x, const T y, const bool p) {
+  inline const bool &emplace(const T x, const T y, const bool p) {
     if constexpr(std::is_floating_point<T>::value) {
-      return cv::Mat_<double>::operator()(std::round(y), std::round(x)) = p;
+      return cv::Mat_<bool>::operator()(std::round(y), std::round(x)) = p;
     } else {
-      return cv::Mat_<double>::operator()(y, x) = p;
+      return cv::Mat_<bool>::operator()(y, x) = p;
     }
   }
 
@@ -86,11 +86,11 @@ public:
   }
 
   template <typename T>
-  inline const double &emplace(const T x, const T y, const bool p) {
+  inline const int &emplace(const T x, const T y, const bool p) {
     if constexpr(std::is_floating_point<T>::value) {
-      return cv::Mat_<double>::operator()(std::round(y), std::round(x)) += (p ? +1 : -1);
+      return cv::Mat_<int>::operator()(std::round(y), std::round(x)) += (p ? +1 : -1);
     } else {
-      return cv::Mat_<double>::operator()(y, x) += (p ? +1 : -1);
+      return cv::Mat_<int>::operator()(y, x) += (p ? +1 : -1);
     }
   }
 
