@@ -158,11 +158,11 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  }</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;emplace(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;emplace(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point&lt;T&gt;::value) {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keywordflow">return</span> cv::Mat_&lt;double&gt;::operator()(std::round(y), std::round(x)) = p;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keywordflow">return</span> cv::Mat_&lt;bool&gt;::operator()(std::round(y), std::round(x)) = p;</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="keywordflow">return</span> cv::Mat_&lt;double&gt;::operator()(y, x) = p;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      <span class="keywordflow">return</span> cv::Mat_&lt;bool&gt;::operator()(y, x) = p;</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  }</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
@@ -190,11 +190,11 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  }</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;emplace(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keyword">inline</span> <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;emplace(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point&lt;T&gt;::value) {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">return</span> cv::Mat_&lt;double&gt;::operator()(std::round(y), std::round(x)) += (p ? +1 : -1);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keywordflow">return</span> cv::Mat_&lt;int&gt;::operator()(std::round(y), std::round(x)) += (p ? +1 : -1);</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="keywordflow">return</span> cv::Mat_&lt;double&gt;::operator()(y, x) += (p ? +1 : -1);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      <span class="keywordflow">return</span> cv::Mat_&lt;int&gt;::operator()(y, x) += (p ? +1 : -1);</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  }</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
