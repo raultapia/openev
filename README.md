@@ -13,6 +13,9 @@ Extending OpenCV to event-based vision
 
 ## ⚙️ Installation
 
+> [!CAUTION]
+> `libudev` should be installed manually before installing openev (`sudo apt install libudev-dev`)
+
 ```bash
 git clone https://github.com/raultapia/openev
 mkdir -p openev/build
