@@ -51,7 +51,7 @@ public:
     if constexpr(std::is_floating_point<T>::value) {
       return cv::Mat_<bool>::operator()(std::round(e.y), std::round(e.x)) = e.p;
     } else {
-      return cv::Mat_<bool>::operator()(e) = e.t;
+      return cv::Mat_<bool>::operator()(e) = e.p;
     }
   }
 
