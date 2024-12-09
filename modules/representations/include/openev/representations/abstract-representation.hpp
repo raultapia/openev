@@ -115,7 +115,7 @@ public:
 /*!
 \brief This is an auxiliary class. This class cannot be instanced.
 */
-template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int>
 class AbstractRepresentation_ {
 public:
   using Type = typename TypeHelper<T>::Type; /*!< Type */
@@ -166,7 +166,7 @@ public:
   \return True if the event has been inserted
   \note The way in which the event is inserted should be implemented in the derived classes.
   */
-  bool insert(const Event &e);
+  bool insert(const Event_<E> &e);
 
   /*!
   \brief Insert an array of events in the representation.
@@ -174,14 +174,14 @@ public:
   \return True if all the events have been inserted
   */
   template <std::size_t N>
-  bool insert(const Array<N> &array);
+  bool insert(const Array_<E, N> &array);
 
   /*!
   \brief Insert a vector of events in the representation.
   \param vector Event vector to insert
   \return True if all the events have been inserted
   */
-  bool insert(const Vector &vector);
+  bool insert(const Vector_<E> &vector);
 
   /*!
   \brief Insert a queue of events in the representation.
@@ -189,14 +189,14 @@ public:
   \param keep_events_in_queue If true, events are reinserted in the queue
   \return True if all the events have been inserted
   */
-  bool insert(Queue &queue, const bool keep_events_in_queue = false);
+  bool insert(Queue_<E> &queue, const bool keep_events_in_queue = false);
 
   /*!
   \brief Set time offset.
   \param e Event
   \warning Offset is set to match the event timestamp, i.e., \f$\tau + t = 0\f$ (where \f$ \tau \f$ is the offset and \f$ t \f$ is the timestamp of the event).
   */
-  void setTimeOffset(const Event &e) {
+  void setTimeOffset(const Event_<E> &e) {
     timeOffset_ = -e.t;
   }
 
@@ -297,7 +297,7 @@ protected:
 
   virtual void clear_() = 0;
   virtual void clear_(const cv::Mat &background) = 0;
-  virtual bool insert_(const Event &e) = 0;
+  virtual bool insert_(const Event_<E> &e) = 0;
   /*! \endcond */
 };
 

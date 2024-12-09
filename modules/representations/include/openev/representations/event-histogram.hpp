@@ -50,15 +50,15 @@ using EventHistogram3 = EventHistogram3b;
 using EventHistogram = EventHistogram1;
 \endcode
 */
-template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
-class EventHistogram_ : public EventImage_<T, Options> {
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int>
+class EventHistogram_ : public EventImage_<T, Options, E> {
 public:
   template <typename... Args>
-  explicit EventHistogram_(Args &&...args) : EventImage_<T, Options>(std::forward<Args>(args)...) {
-    EventImage_<T, Options>::clear();
+  explicit EventHistogram_(Args &&...args) : EventImage_<T, Options, E>(std::forward<Args>(args)...) {
+    EventImage_<T, Options, E>::clear();
   }
 
-  CounterMat counter{cv::Mat_<int>(EventImage_<T, Options>::size())}; /*!< Event counter */
+  CounterMat counter{cv::Mat_<int>(EventImage_<T, Options, E>::size())}; /*!< Event counter */
 
   /*!
   Event histogram matrix is generated from counter matrix.
@@ -69,7 +69,7 @@ public:
 private:
   void clear_() override;
   void clear_(const cv::Mat &background) override;
-  bool insert_(const Event &e) override;
+  bool insert_(const Event_<E> &e) override;
   int peak_{0};
 };
 using EventHistogram1b = EventHistogram_<uchar>;     /*!< Alias for EventHistogram_ using uchar */

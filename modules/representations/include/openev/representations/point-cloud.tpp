@@ -8,8 +8,8 @@
 namespace ev {
 
 #if OE_HAVE_VIZ
-template <typename T, const RepresentationOptions Options>
-void PointCloud_<T, Options>::visualize(const int t, const double time_scale /*= 1.0*/, const double axis_size /*= 1.0*/, const double point_size /*= 2.0*/) {
+template <typename T, const RepresentationOptions Options, typename E>
+void PointCloud_<T, Options, E>::visualize(const int t, const double time_scale /*= 1.0*/, const double axis_size /*= 1.0*/, const double point_size /*= 2.0*/) {
   if(points_[static_cast<std::size_t>(ev::POSITIVE)].empty() || points_[static_cast<std::size_t>(ev::NEGATIVE)].empty()) { // FIXME: This should be able to display only positive/negative events
     return;
   }
@@ -18,15 +18,15 @@ void PointCloud_<T, Options>::visualize(const int t, const double time_scale /*=
 
   cloud[static_cast<std::size_t>(ev::POSITIVE)].setRenderingProperty(cv::viz::POINT_SIZE, point_size);
   cloud[static_cast<std::size_t>(ev::NEGATIVE)].setRenderingProperty(cv::viz::POINT_SIZE, point_size);
-  cloud[static_cast<std::size_t>(ev::POSITIVE)].setColor(TypeHelper<T>::convert(PointCloud_<T, Options>::V_ON));
-  cloud[static_cast<std::size_t>(ev::NEGATIVE)].setColor(TypeHelper<T>::convert(PointCloud_<T, Options>::V_OFF));
+  cloud[static_cast<std::size_t>(ev::POSITIVE)].setColor(TypeHelper<T>::convert(PointCloud_<T, Options, E>::V_ON));
+  cloud[static_cast<std::size_t>(ev::NEGATIVE)].setColor(TypeHelper<T>::convert(PointCloud_<T, Options, E>::V_OFF));
   if(time_scale != 1.0) {
     const cv::Affine3d scaleTransform(cv::Matx44d(1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, time_scale, 0.0, 0.0, 0.0, 0.0, 1.0));
     cloud[static_cast<std::size_t>(ev::POSITIVE)].applyTransform(scaleTransform);
     cloud[static_cast<std::size_t>(ev::NEGATIVE)].applyTransform(scaleTransform);
   }
 
-  window_.setBackgroundColor(TypeHelper<T>::convert(PointCloud_<T, Options>::V_RESET));
+  window_.setBackgroundColor(TypeHelper<T>::convert(PointCloud_<T, Options, E>::V_RESET));
   window_.showWidget("Positive events", cloud[static_cast<std::size_t>(ev::POSITIVE)]);
   window_.showWidget("Negative events", cloud[static_cast<std::size_t>(ev::NEGATIVE)]);
   window_.showWidget("Coordinate System", coord_sys_widget);
@@ -38,14 +38,14 @@ void PointCloud_<T, Options>::visualize(const int t, const double time_scale /*=
 }
 #endif
 
-template <typename T, const RepresentationOptions Options>
-void PointCloud_<T, Options>::clear_() {
+template <typename T, const RepresentationOptions Options, typename E>
+void PointCloud_<T, Options, E>::clear_() {
   points_[0].clear();
   points_[1].clear();
 }
 
-template <typename T, const RepresentationOptions Options>
-void PointCloud_<T, Options>::clear_(const cv::Mat &background) {
+template <typename T, const RepresentationOptions Options, typename E>
+void PointCloud_<T, Options, E>::clear_(const cv::Mat &background) {
   points_[0].clear();
   points_[1].clear();
 
@@ -55,8 +55,8 @@ void PointCloud_<T, Options>::clear_(const cv::Mat &background) {
 #endif
 }
 
-template <typename T, const RepresentationOptions Options>
-bool PointCloud_<T, Options>::insert_(const Event &e) {
+template <typename T, const RepresentationOptions Options, typename E>
+bool PointCloud_<T, Options, E>::insert_(const Event_<E> &e) {
   return (points_[e.p].emplace_back(e), true);
 }
 

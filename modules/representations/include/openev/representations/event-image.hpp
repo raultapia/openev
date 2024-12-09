@@ -48,12 +48,12 @@ using EventImage3 = EventImage3b;
 using EventImage = EventImage1;
 \endcode
 */
-template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
-class EventImage_ : public cv::Mat_<T>, public AbstractRepresentation_<T, Options> {
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int>
+class EventImage_ : public cv::Mat_<T>, public AbstractRepresentation_<T, Options, E> {
 public:
   template <typename... Args>
   explicit EventImage_(Args &&...args) : cv::Mat_<T>(std::forward<Args>(args)...) {
-    AbstractRepresentation_<T, Options>::clear();
+    AbstractRepresentation_<T, Options, E>::clear();
   }
 
   cv::Mat &render() { return *this; }
@@ -61,7 +61,7 @@ public:
 private:
   void clear_() override;
   void clear_(const cv::Mat &background) override;
-  bool insert_(const Event &e) override;
+  bool insert_(const Event_<E> &e) override;
 };
 using EventImage1b = EventImage_<uchar>;     /*!< Alias for EventImage_ using uchar */
 using EventImage2b = EventImage_<cv::Vec2b>; /*!< Alias for EventImage_ using cv::Vec2b */

@@ -53,12 +53,12 @@ using TimeSurface = TimeSurface1;
 enum class Kernel { NONE,
                     LINEAR,
                     EXPONENTIAL };
-template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
-class TimeSurface_ : public EventImage_<T, Options> {
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int>
+class TimeSurface_ : public EventImage_<T, Options, E> {
 public:
   template <typename... Args>
-  explicit TimeSurface_(Args &&...args) : EventImage_<T, Options>(std::forward<Args>(args)...) {
-    EventImage_<T, Options>::clear();
+  explicit TimeSurface_(Args &&...args) : EventImage_<T, Options, E>(std::forward<Args>(args)...) {
+    EventImage_<T, Options, E>::clear();
   }
 
   TimeMat time{this->size()};         /*!< Time matrix */
@@ -76,7 +76,7 @@ public:
 private:
   void clear_() override;
   void clear_(const cv::Mat &background) override;
-  bool insert_(const Event &e) override;
+  bool insert_(const Event_<E> &e) override;
 };
 using TimeSurface1b = TimeSurface_<uchar>;     /*!< Alias for TimeSurface_ using uchar */
 using TimeSurface2b = TimeSurface_<cv::Vec2b>; /*!< Alias for TimeSurface_ using cv::Vec2b */

@@ -7,22 +7,22 @@
 
 namespace ev {
 
-template <typename T, const RepresentationOptions Options>
-void AbstractRepresentation_<T, Options>::clear() {
+template <typename T, const RepresentationOptions Options, typename E>
+void AbstractRepresentation_<T, Options, E>::clear() {
   count_ = 0;
   tLimits_ = {DBL_MAX, DBL_MIN};
   clear_();
 }
 
-template <typename T, const RepresentationOptions Options>
-void AbstractRepresentation_<T, Options>::clear(const cv::Mat &background) {
+template <typename T, const RepresentationOptions Options, typename E>
+void AbstractRepresentation_<T, Options, E>::clear(const cv::Mat &background) {
   count_ = 0;
   tLimits_ = {DBL_MAX, DBL_MIN};
   clear_(background);
 }
 
-template <typename T, const RepresentationOptions Options>
-bool AbstractRepresentation_<T, Options>::insert(const Event &e) {
+template <typename T, const RepresentationOptions Options, typename E>
+bool AbstractRepresentation_<T, Options, E>::insert(const Event_<E> &e) {
   if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::ONLY_IF_POSITIVE)) {
     if(e.p == ev::NEGATIVE) {
       return false;
@@ -36,37 +36,57 @@ bool AbstractRepresentation_<T, Options>::insert(const Event &e) {
   }
 
   if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::IGNORE_POLARITY)) {
-    if(insert_({e.x, e.y, e.t + timeOffset_, ev::POSITIVE})) {
-      tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
-      tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
-      count_++;
-      return true;
+    if constexpr(std::is_floating_point<E>::value) {
+      if(insert_({std::round(e.x), std::round(e.y), e.t + timeOffset_, POSITIVE})) {
+        tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
+        tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
+        count_++;
+        return true;
+      }
+      return false;
+    } else {
+      if(insert_({e.x, e.y, e.t + timeOffset_, POSITIVE})) {
+        tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
+        tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
+        count_++;
+        return true;
+      }
+      return false;
     }
-    return false;
   } else {
-    if(insert_({e.x, e.y, e.t + timeOffset_, e.p})) {
-      tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
-      tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
-      count_++;
-      return true;
+    if constexpr(std::is_floating_point<E>::value) {
+      if(insert_({std::round(e.x), std::round(e.y), e.t + timeOffset_, e.p})) {
+        tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
+        tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
+        count_++;
+        return true;
+      }
+      return false;
+    } else {
+      if(insert_({e.x, e.y, e.t + timeOffset_, e.p})) {
+        tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
+        tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
+        count_++;
+        return true;
+      }
+      return false;
     }
-    return false;
   }
 }
 
-template <typename T, const RepresentationOptions Options>
+template <typename T, const RepresentationOptions Options, typename E>
 template <std::size_t N>
-bool AbstractRepresentation_<T, Options>::insert(const Array<N> &array) {
-  return std::all_of(array.begin(), array.end(), [this](const Event &e) { return this->insert(e); });
+bool AbstractRepresentation_<T, Options, E>::insert(const Array_<E, N> &array) {
+  return std::all_of(array.begin(), array.end(), [this](const Event_<E> &e) { return this->insert(e); });
 }
 
-template <typename T, const RepresentationOptions Options>
-bool AbstractRepresentation_<T, Options>::insert(const Vector &vector) {
-  return std::all_of(vector.begin(), vector.end(), [this](const Event &e) { return this->insert(e); });
+template <typename T, const RepresentationOptions Options, typename E>
+bool AbstractRepresentation_<T, Options, E>::insert(const Vector_<E> &vector) {
+  return std::all_of(vector.begin(), vector.end(), [this](const Event_<E> &e) { return this->insert(e); });
 }
 
-template <typename T, const RepresentationOptions Options>
-bool AbstractRepresentation_<T, Options>::insert(Queue &queue, const bool keep_events_in_queue /*= false*/) {
+template <typename T, const RepresentationOptions Options, typename E>
+bool AbstractRepresentation_<T, Options, E>::insert(Queue_<E> &queue, const bool keep_events_in_queue /*= false*/) {
   bool ret = true;
   if(keep_events_in_queue) {
     const std::size_t size = queue.size();

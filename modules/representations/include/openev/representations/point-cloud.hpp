@@ -42,14 +42,14 @@ using PointCloud3 = PointCloud3b;
 using PointCloud = PointCloud1;
 \endcode
 */
-template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE>
-class PointCloud_ : public AbstractRepresentation_<T, Options> {
+template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int>
+class PointCloud_ : public AbstractRepresentation_<T, Options, E> {
 public:
   /*!
   \brief Check if an event is included in the point cloud.
   \param e Event to check
   */
-  [[nodiscard]] inline bool contains(const Event &e) const {
+  [[nodiscard]] inline bool contains(const Event_<E> &e) const {
     return std::find(points_[e.p].begin(), points_[e.p].end(), cv::Point3f(e.x, e.y, e.t)) != points_[e.p].end();
   }
 
@@ -72,7 +72,7 @@ private:
 
   void clear_() override;
   void clear_(const cv::Mat &background) override;
-  bool insert_(const Event &e) override;
+  bool insert_(const Event_<E> &e) override;
 };
 using PointCloud1b = PointCloud_<uchar>;     /*!< Alias for PointCloud_ using uchar */
 using PointCloud3b = PointCloud_<cv::Vec3b>; /*!< Alias for PointCloud_ using cv::Vec3b */
