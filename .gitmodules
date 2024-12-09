@@ -34,3 +34,6 @@
 [submodule "third-party/boost/preprocessor"]
 	path = third-party/boost/preprocessor
 	url = https://github.com/boostorg/preprocessor
+[submodule "third-party/efft"]
+	path = third-party/efft
+	url = https://github.com/raultapia/efft

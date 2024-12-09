@@ -16,6 +16,7 @@ jobs:
         run: |
               sudo apt install libudev-dev
               sudo apt install libopencv-dev
+              sudo apt install libeigen3-dev
 
       - name: Build
         run: |

@@ -14,6 +14,7 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/third-party/libusb/config.h")
 endif()
 
 # Add modules
+option(BUILD_MODULE_ALGORITHMS "Build the algorithms module" ON)
 option(BUILD_MODULE_CONTAINERS "Build the containers module" ON)
 option(BUILD_MODULE_CORE "Build the core module" ON)
 option(BUILD_MODULE_DEVICES "Build the devices module" ON)
@@ -38,6 +39,9 @@ else()
 endif()
 configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_SOURCE_DIR}/include/openev/options.hpp" @ONLY)
 
+if(BUILD_MODULE_ALGORITHMS)
+  add_subdirectory(modules/algorithms)
+endif()
 if(BUILD_MODULE_CONTAINERS)
   add_subdirectory(modules/containers)
 endif()
@@ -59,6 +63,9 @@ endif()
 
 # Compile
 add_library(openev INTERFACE)
+if(BUILD_MODULE_ALGORITHMS)
+  target_link_libraries(openev INTERFACE oe_algorithms)
+endif()
 if(BUILD_MODULE_CONTAINERS)
   target_link_libraries(openev INTERFACE oe_containers)
 endif()
@@ -98,6 +105,9 @@ install(
 
 include(CMakePackageConfigHelpers)
 set(OpenEV_LIBRARIES "")
+if(BUILD_MODULE_ALGORITHMS)
+  list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_algorithms.so")
+endif()
 if(BUILD_MODULE_CONTAINERS)
   list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_containers.so")
 endif()
