@@ -54,10 +54,10 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] Eventd mean() const {
-    const double x = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / boost::circular_buffer<Event_<T>>::size();
-    const double y = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / boost::circular_buffer<Event_<T>>::size();
-    const double t = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / boost::circular_buffer<Event_<T>>::size();
-    const double p = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / boost::circular_buffer<Event_<T>>::size();
+    const double x = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.x; }) / boost::circular_buffer<Event_<T>>::size();
+    const double y = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.y; }) / boost::circular_buffer<Event_<T>>::size();
+    const double t = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.t; }) / boost::circular_buffer<Event_<T>>::size();
+    const double p = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.p; }) / boost::circular_buffer<Event_<T>>::size();
     return {x, y, t, p > 0.5};
   }
 
@@ -66,8 +66,8 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point2d meanPoint() const {
-    const double x = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / boost::circular_buffer<Event_<T>>::size();
-    const double y = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / boost::circular_buffer<Event_<T>>::size();
+    const double x = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.x; }) / boost::circular_buffer<Event_<T>>::size();
+    const double y = std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.y; }) / boost::circular_buffer<Event_<T>>::size();
     return {x, y};
   }
 
@@ -76,7 +76,7 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline double meanTime() const {
-    return std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / boost::circular_buffer<Event_<T>>::size();
+    return std::accumulate(boost::circular_buffer<Event_<T>>::begin(), boost::circular_buffer<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.t; }) / boost::circular_buffer<Event_<T>>::size();
   }
 
   /*!

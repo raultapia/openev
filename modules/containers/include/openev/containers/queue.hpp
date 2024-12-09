@@ -37,7 +37,7 @@ class Queue_ : public std::queue<Event_<T>> {
 
 public:
   /*! \cond INTERNAL */
-  inline void push(const T &e) {
+  inline void push(const Event_<T> &e) {
     std::queue<Event_<T>>::push(e);
   }
   /*! \endcond */
@@ -48,7 +48,7 @@ public:
   */
   template <std::size_t N>
   inline void push(const Array_<T, N> &array) {
-    for(const T &e : array) {
+    for(const Event_<T> &e : array) {
       std::queue<Event_<T>>::emplace(std::move(e));
     }
   }
@@ -58,7 +58,7 @@ public:
   \param vector Event vector to push
   */
   inline void push(const Vector_<T> &vector) {
-    for(const T &e : vector) {
+    for(const Event_<T> &e : vector) {
       std::queue<Event_<T>>::emplace(std::move(e));
     }
   }
@@ -91,7 +91,7 @@ public:
     double p{0};
 
     while(!std::queue<Event_<T>>::empty()) {
-      const T &e = std::queue<Event_<T>>::front();
+      const Event_<T> &e = std::queue<Event_<T>>::front();
       x += e.x;
       y += e.y;
       t += e.t;
@@ -112,7 +112,7 @@ public:
     double y{0};
 
     while(!std::queue<Event_<T>>::empty()) {
-      const T &e = std::queue<Event_<T>>::front();
+      const Event_<T> &e = std::queue<Event_<T>>::front();
       x += e.x;
       y += e.y;
       std::queue<Event_<T>>::pop();

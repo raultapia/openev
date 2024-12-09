@@ -37,7 +37,7 @@ class Deque_ : public std::deque<Event_<T>> {
 
 public:
   /*! \cond INTERNAL */
-  inline void push_back(const T &e) {
+  inline void push_back(const Event_<T> &e) {
     std::deque<Event_<T>>::push_back(e);
   }
   /*! \endcond */
@@ -80,10 +80,10 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] Eventd mean() {
-    const double x = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::deque<Event_<T>>::size();
-    const double y = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::deque<Event_<T>>::size();
-    const double t = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::deque<Event_<T>>::size();
-    const double p = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / std::deque<Event_<T>>::size();
+    const double x = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.x; }) / std::deque<Event_<T>>::size();
+    const double y = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.y; }) / std::deque<Event_<T>>::size();
+    const double t = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.t; }) / std::deque<Event_<T>>::size();
+    const double p = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.p; }) / std::deque<Event_<T>>::size();
     return {x, y, t, p > 0.5};
   }
 
@@ -92,8 +92,8 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point2d meanPoint() {
-    const double x = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / std::deque<Event_<T>>::size();
-    const double y = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / std::deque<Event_<T>>::size();
+    const double x = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.x; }) / std::deque<Event_<T>>::size();
+    const double y = std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.y; }) / std::deque<Event_<T>>::size();
     return {x, y};
   }
 
@@ -102,7 +102,7 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline double meanTime() {
-    return std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / std::deque<Event_<T>>::size();
+    return std::accumulate(std::deque<Event_<T>>::begin(), std::deque<Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.t; }) / std::deque<Event_<T>>::size();
   }
 
   /*!

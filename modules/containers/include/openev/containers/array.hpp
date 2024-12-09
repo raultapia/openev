@@ -43,10 +43,10 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] Eventd mean() const {
-    const double x = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / N;
-    const double y = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / N;
-    const double t = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / N;
-    const double p = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.p; }) / N;
+    const double x = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.x; }) / N;
+    const double y = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.y; }) / N;
+    const double t = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.t; }) / N;
+    const double p = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.p; }) / N;
     return {x, y, t, p > 0.5};
   }
 
@@ -55,8 +55,8 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point2d meanPoint() const {
-    const double x = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.x; }) / N;
-    const double y = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.y; }) / N;
+    const double x = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.x; }) / N;
+    const double y = std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.y; }) / N;
     return {x, y};
   }
 
@@ -65,7 +65,7 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline double meanTime() const {
-    return std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const T &e) { return sum + e.t; }) / N;
+    return std::accumulate(std::array<Event_<T>, N>::begin(), std::array<Event_<T>, N>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.t; }) / N;
   }
 
   /*!
