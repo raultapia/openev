@@ -27,5 +27,5 @@ var searchData=
   ['timesurface4i_24',['TimeSurface4i',['../time-surface_8hpp.html#a29386f9ee1a06cd691c6c493f3a21368',1,'ev']]],
   ['timesurface4s_25',['TimeSurface4s',['../time-surface_8hpp.html#a6e29a7c4f3c9ae46282449530d5c437c',1,'ev']]],
   ['timesurface4w_26',['TimeSurface4w',['../time-surface_8hpp.html#a7aa6b810c38c26d350a8ab669c6ad61a',1,'ev']]],
-  ['type_27',['Type',['../classev_1_1AbstractRepresentation__.html#a3e308db0fc435fbf9d17960a0b45db77',1,'ev::AbstractRepresentation_']]]
+  ['type_27',['Type',['../classev_1_1AbstractRepresentation__.html#a384860c1165acab0d5319cbbbc98b638',1,'ev::AbstractRepresentation_']]]
 ];

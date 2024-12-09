@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: ev::AbstractRepresentation_&lt; T, Options &gt; Class Template Reference</title>
+<title>OpenEV: ev::AbstractRepresentation_&lt; T, Options, E &gt; Class Template Reference</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -102,7 +102,7 @@ $(function(){ initResizable(false); });
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classev_1_1AbstractRepresentation__-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">ev::AbstractRepresentation_&lt; T, Options &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">ev::AbstractRepresentation_&lt; T, Options, E &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -113,72 +113,72 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a3e308db0fc435fbf9d17960a0b45db77" id="r_a3e308db0fc435fbf9d17960a0b45db77"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> = typename TypeHelper&lt;T&gt;::Type</td></tr>
-<tr class="separator:a3e308db0fc435fbf9d17960a0b45db77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384860c1165acab0d5319cbbbc98b638" id="r_a384860c1165acab0d5319cbbbc98b638"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> = typename TypeHelper&lt;T&gt;::Type</td></tr>
+<tr class="separator:a384860c1165acab0d5319cbbbc98b638"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af8063db8133182a4e6986d4dbe0ff5c5" id="r_af8063db8133182a4e6986d4dbe0ff5c5"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8063db8133182a4e6986d4dbe0ff5c5">count</a> () const</td></tr>
-<tr class="memdesc:af8063db8133182a4e6986d4dbe0ff5c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of events integrated in the representation.  <br /></td></tr>
-<tr class="separator:af8063db8133182a4e6986d4dbe0ff5c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb8862de5e883a17c41ce83f974d1f95" id="r_afb8862de5e883a17c41ce83f974d1f95"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb8862de5e883a17c41ce83f974d1f95">duration</a> () const</td></tr>
-<tr class="memdesc:afb8862de5e883a17c41ce83f974d1f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the oldest and the newest event integrated in the representation.  <br /></td></tr>
-<tr class="separator:afb8862de5e883a17c41ce83f974d1f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3e68a8f9e7610cbe6615719380a6c7c" id="r_ae3e68a8f9e7610cbe6615719380a6c7c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3e68a8f9e7610cbe6615719380a6c7c">midTime</a> () const</td></tr>
-<tr class="memdesc:ae3e68a8f9e7610cbe6615719380a6c7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
-<tr class="separator:ae3e68a8f9e7610cbe6615719380a6c7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1529e7c4143e6ebfe7ecde46c65ba9ea" id="r_a1529e7c4143e6ebfe7ecde46c65ba9ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1529e7c4143e6ebfe7ecde46c65ba9ea">clear</a> ()</td></tr>
-<tr class="memdesc:a1529e7c4143e6ebfe7ecde46c65ba9ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all events from the representation.  <br /></td></tr>
-<tr class="separator:a1529e7c4143e6ebfe7ecde46c65ba9ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b915d253af03d50af0f91d1007a4f95" id="r_a5b915d253af03d50af0f91d1007a4f95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b915d253af03d50af0f91d1007a4f95">clear</a> (const cv::Mat &amp;background)</td></tr>
-<tr class="memdesc:a5b915d253af03d50af0f91d1007a4f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all events from the representation and add a background image.  <br /></td></tr>
-<tr class="separator:a5b915d253af03d50af0f91d1007a4f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadb64f8a9718b63b30540b31279a3cb9" id="r_aadb64f8a9718b63b30540b31279a3cb9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadb64f8a9718b63b30540b31279a3cb9">insert</a> (const <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> &amp;e)</td></tr>
-<tr class="memdesc:aadb64f8a9718b63b30540b31279a3cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert one event in the representation.  <br /></td></tr>
-<tr class="separator:aadb64f8a9718b63b30540b31279a3cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3305026140feb17d3eb6bceb1a616c1d" id="r_a3305026140feb17d3eb6bceb1a616c1d"><td class="memTemplParams" colspan="2">template&lt;std::size_t N&gt; </td></tr>
-<tr class="memitem:a3305026140feb17d3eb6bceb1a616c1d"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a3305026140feb17d3eb6bceb1a616c1d">insert</a> (const <a class="el" href="classev_1_1Array__.html">Array</a>&lt; N &gt; &amp;array)</td></tr>
-<tr class="memdesc:a3305026140feb17d3eb6bceb1a616c1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an array of events in the representation.  <br /></td></tr>
-<tr class="separator:a3305026140feb17d3eb6bceb1a616c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb0c1949101566c87e65bf94fe7ecc03" id="r_aeb0c1949101566c87e65bf94fe7ecc03"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb0c1949101566c87e65bf94fe7ecc03">insert</a> (const <a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;vector)</td></tr>
-<tr class="memdesc:aeb0c1949101566c87e65bf94fe7ecc03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a vector of events in the representation.  <br /></td></tr>
-<tr class="separator:aeb0c1949101566c87e65bf94fe7ecc03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d599203da680d5e0badedbfc987efd9" id="r_a7d599203da680d5e0badedbfc987efd9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d599203da680d5e0badedbfc987efd9">insert</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;queue, const bool keep_events_in_queue=false)</td></tr>
-<tr class="memdesc:a7d599203da680d5e0badedbfc987efd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a queue of events in the representation.  <br /></td></tr>
-<tr class="separator:a7d599203da680d5e0badedbfc987efd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24b85fcefd2f8a2cdb9633831d5f0bf9" id="r_a24b85fcefd2f8a2cdb9633831d5f0bf9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24b85fcefd2f8a2cdb9633831d5f0bf9">setTimeOffset</a> (const <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> &amp;e)</td></tr>
-<tr class="memdesc:a24b85fcefd2f8a2cdb9633831d5f0bf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set time offset.  <br /></td></tr>
-<tr class="separator:a24b85fcefd2f8a2cdb9633831d5f0bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ab8c12165248f7cedcf68569262272d" id="r_a1ab8c12165248f7cedcf68569262272d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ab8c12165248f7cedcf68569262272d">setValue</a> (const bool polarity, const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;value)</td></tr>
-<tr class="memdesc:a1ab8c12165248f7cedcf68569262272d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set values for ON and OFF pixels.  <br /></td></tr>
-<tr class="separator:a1ab8c12165248f7cedcf68569262272d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56fcc2c8d89b9a1047e7458ba264cdbd" id="r_a56fcc2c8d89b9a1047e7458ba264cdbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56fcc2c8d89b9a1047e7458ba264cdbd">setValue</a> (const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;value)</td></tr>
-<tr class="memdesc:a56fcc2c8d89b9a1047e7458ba264cdbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set value for non-activated pixels (background).  <br /></td></tr>
-<tr class="separator:a56fcc2c8d89b9a1047e7458ba264cdbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85b5300b9f6b9f2d8415d2f0181760c5" id="r_a85b5300b9f6b9f2d8415d2f0181760c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85b5300b9f6b9f2d8415d2f0181760c5">setValues</a> (const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;positive, const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;negative, const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;reset)</td></tr>
-<tr class="memdesc:a85b5300b9f6b9f2d8415d2f0181760c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set values for ON, OFF, and non-activated pixels.  <br /></td></tr>
-<tr class="separator:a85b5300b9f6b9f2d8415d2f0181760c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08dc3a4b711c16bb3b859fcccd803865" id="r_a08dc3a4b711c16bb3b859fcccd803865"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08dc3a4b711c16bb3b859fcccd803865">getValue</a> (const bool polarity) const</td></tr>
-<tr class="memdesc:a08dc3a4b711c16bb3b859fcccd803865"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current values for ON and OFF pixels.  <br /></td></tr>
-<tr class="separator:a08dc3a4b711c16bb3b859fcccd803865"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab97f9177cf4aa34138cb60795ce3d52f" id="r_ab97f9177cf4aa34138cb60795ce3d52f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab97f9177cf4aa34138cb60795ce3d52f">getValue</a> () const</td></tr>
-<tr class="memdesc:ab97f9177cf4aa34138cb60795ce3d52f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current values for non-activated pixels (background).  <br /></td></tr>
-<tr class="separator:ab97f9177cf4aa34138cb60795ce3d52f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93119c056d90291f301d6aa7ba549a83" id="r_a93119c056d90291f301d6aa7ba549a83"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93119c056d90291f301d6aa7ba549a83">count</a> () const</td></tr>
+<tr class="memdesc:a93119c056d90291f301d6aa7ba549a83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of events integrated in the representation.  <br /></td></tr>
+<tr class="separator:a93119c056d90291f301d6aa7ba549a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81921f180ef8e7ce1f1b542ae7c6dfc9" id="r_a81921f180ef8e7ce1f1b542ae7c6dfc9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81921f180ef8e7ce1f1b542ae7c6dfc9">duration</a> () const</td></tr>
+<tr class="memdesc:a81921f180ef8e7ce1f1b542ae7c6dfc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the oldest and the newest event integrated in the representation.  <br /></td></tr>
+<tr class="separator:a81921f180ef8e7ce1f1b542ae7c6dfc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04ca0e4f6723c652843a23d99a970674" id="r_a04ca0e4f6723c652843a23d99a970674"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04ca0e4f6723c652843a23d99a970674">midTime</a> () const</td></tr>
+<tr class="memdesc:a04ca0e4f6723c652843a23d99a970674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
+<tr class="separator:a04ca0e4f6723c652843a23d99a970674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16486a8b4a053dc72407e303c35423a4" id="r_a16486a8b4a053dc72407e303c35423a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16486a8b4a053dc72407e303c35423a4">clear</a> ()</td></tr>
+<tr class="memdesc:a16486a8b4a053dc72407e303c35423a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all events from the representation.  <br /></td></tr>
+<tr class="separator:a16486a8b4a053dc72407e303c35423a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9b12fb1d244ce29c140f35ae4a539f1" id="r_ad9b12fb1d244ce29c140f35ae4a539f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9b12fb1d244ce29c140f35ae4a539f1">clear</a> (const cv::Mat &amp;background)</td></tr>
+<tr class="memdesc:ad9b12fb1d244ce29c140f35ae4a539f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all events from the representation and add a background image.  <br /></td></tr>
+<tr class="separator:ad9b12fb1d244ce29c140f35ae4a539f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f690000c92b20731f0013282b8767d9" id="r_a4f690000c92b20731f0013282b8767d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f690000c92b20731f0013282b8767d9">insert</a> (const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; E &gt; &amp;e)</td></tr>
+<tr class="memdesc:a4f690000c92b20731f0013282b8767d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert one event in the representation.  <br /></td></tr>
+<tr class="separator:a4f690000c92b20731f0013282b8767d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae257ab6e4c80c1f6c82a5145461e9c9" id="r_aae257ab6e4c80c1f6c82a5145461e9c9"><td class="memTemplParams" colspan="2">template&lt;std::size_t N&gt; </td></tr>
+<tr class="memitem:aae257ab6e4c80c1f6c82a5145461e9c9"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aae257ab6e4c80c1f6c82a5145461e9c9">insert</a> (const <a class="el" href="classev_1_1Array__.html">Array_</a>&lt; E, N &gt; &amp;array)</td></tr>
+<tr class="memdesc:aae257ab6e4c80c1f6c82a5145461e9c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an array of events in the representation.  <br /></td></tr>
+<tr class="separator:aae257ab6e4c80c1f6c82a5145461e9c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1943ed779ca69a7dc12189f21965c0ec" id="r_a1943ed779ca69a7dc12189f21965c0ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1943ed779ca69a7dc12189f21965c0ec">insert</a> (const <a class="el" href="classev_1_1Vector__.html">Vector_</a>&lt; E &gt; &amp;vector)</td></tr>
+<tr class="memdesc:a1943ed779ca69a7dc12189f21965c0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a vector of events in the representation.  <br /></td></tr>
+<tr class="separator:a1943ed779ca69a7dc12189f21965c0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb96c189c99c33e65ebcc7980066e511" id="r_abb96c189c99c33e65ebcc7980066e511"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb96c189c99c33e65ebcc7980066e511">insert</a> (<a class="el" href="classev_1_1Queue__.html">Queue_</a>&lt; E &gt; &amp;queue, const bool keep_events_in_queue=false)</td></tr>
+<tr class="memdesc:abb96c189c99c33e65ebcc7980066e511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert a queue of events in the representation.  <br /></td></tr>
+<tr class="separator:abb96c189c99c33e65ebcc7980066e511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad04186804acb170ece2da3d625d4461b" id="r_ad04186804acb170ece2da3d625d4461b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad04186804acb170ece2da3d625d4461b">setTimeOffset</a> (const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; E &gt; &amp;e)</td></tr>
+<tr class="memdesc:ad04186804acb170ece2da3d625d4461b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set time offset.  <br /></td></tr>
+<tr class="separator:ad04186804acb170ece2da3d625d4461b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965b12576ace99d7dcabc261ec1adf2e" id="r_a965b12576ace99d7dcabc261ec1adf2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a965b12576ace99d7dcabc261ec1adf2e">setValue</a> (const bool polarity, const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;value)</td></tr>
+<tr class="memdesc:a965b12576ace99d7dcabc261ec1adf2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set values for ON and OFF pixels.  <br /></td></tr>
+<tr class="separator:a965b12576ace99d7dcabc261ec1adf2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5d5697792a2ad033a67b42ec63b3aea" id="r_ae5d5697792a2ad033a67b42ec63b3aea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5d5697792a2ad033a67b42ec63b3aea">setValue</a> (const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;value)</td></tr>
+<tr class="memdesc:ae5d5697792a2ad033a67b42ec63b3aea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set value for non-activated pixels (background).  <br /></td></tr>
+<tr class="separator:ae5d5697792a2ad033a67b42ec63b3aea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c17c53eae945fa6ff350b913e920de" id="r_ac3c17c53eae945fa6ff350b913e920de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3c17c53eae945fa6ff350b913e920de">setValues</a> (const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;positive, const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;negative, const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;reset)</td></tr>
+<tr class="memdesc:ac3c17c53eae945fa6ff350b913e920de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set values for ON, OFF, and non-activated pixels.  <br /></td></tr>
+<tr class="separator:ac3c17c53eae945fa6ff350b913e920de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e511eab3524b1777ff2317e4c579eca" id="r_a8e511eab3524b1777ff2317e4c579eca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e511eab3524b1777ff2317e4c579eca">getValue</a> (const bool polarity) const</td></tr>
+<tr class="memdesc:a8e511eab3524b1777ff2317e4c579eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current values for ON and OFF pixels.  <br /></td></tr>
+<tr class="separator:a8e511eab3524b1777ff2317e4c579eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c16a85f07941725ba7aa467819b1081" id="r_a4c16a85f07941725ba7aa467819b1081"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c16a85f07941725ba7aa467819b1081">getValue</a> () const</td></tr>
+<tr class="memdesc:a4c16a85f07941725ba7aa467819b1081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current values for non-activated pixels (background).  <br /></td></tr>
+<tr class="separator:a4c16a85f07941725ba7aa467819b1081"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename T, const RepresentationOptions Options = RepresentationOptions::NONE&gt;<br />
-class ev::AbstractRepresentation_&lt; T, Options &gt;</div><p>This is an auxiliary class. This class cannot be instanced. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int&gt;<br />
+class ev::AbstractRepresentation_&lt; T, Options, E &gt;</div><p>This is an auxiliary class. This class cannot be instanced. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a3e308db0fc435fbf9d17960a0b45db77" name="a3e308db0fc435fbf9d17960a0b45db77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e308db0fc435fbf9d17960a0b45db77">&#9670;&#160;</a></span>Type</h2>
+<a id="a384860c1165acab0d5319cbbbc98b638" name="a384860c1165acab0d5319cbbbc98b638"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a384860c1165acab0d5319cbbbc98b638">&#9670;&#160;</a></span>Type</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::Type = typename TypeHelper&lt;T&gt;::Type</td>
+          <td class="memname">using <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::Type = typename TypeHelper&lt;T&gt;::Type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -187,16 +187,16 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1529e7c4143e6ebfe7ecde46c65ba9ea" name="a1529e7c4143e6ebfe7ecde46c65ba9ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1529e7c4143e6ebfe7ecde46c65ba9ea">&#9670;&#160;</a></span>clear() <span class="overload">[1/2]</span></h2>
+<a id="a16486a8b4a053dc72407e303c35423a4" name="a16486a8b4a053dc72407e303c35423a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16486a8b4a053dc72407e303c35423a4">&#9670;&#160;</a></span>clear() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::clear </td>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::clear </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -209,16 +209,16 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="a5b915d253af03d50af0f91d1007a4f95" name="a5b915d253af03d50af0f91d1007a4f95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b915d253af03d50af0f91d1007a4f95">&#9670;&#160;</a></span>clear() <span class="overload">[2/2]</span></h2>
+<a id="ad9b12fb1d244ce29c140f35ae4a539f1" name="ad9b12fb1d244ce29c140f35ae4a539f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9b12fb1d244ce29c140f35ae4a539f1">&#9670;&#160;</a></span>clear() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::clear </td>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::clear </td>
           <td>(</td>
           <td class="paramtype">const cv::Mat &amp;</td>          <td class="paramname"><span class="paramname"><em>background</em></span></td><td>)</td>
           <td></td>
@@ -231,19 +231,19 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="af8063db8133182a4e6986d4dbe0ff5c5" name="af8063db8133182a4e6986d4dbe0ff5c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8063db8133182a4e6986d4dbe0ff5c5">&#9670;&#160;</a></span>count()</h2>
+<a id="a93119c056d90291f301d6aa7ba549a83" name="a93119c056d90291f301d6aa7ba549a83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93119c056d90291f301d6aa7ba549a83">&#9670;&#160;</a></span>count()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::count </td>
+          <td class="memname">std::size_t <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::count </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -261,19 +261,19 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="afb8862de5e883a17c41ce83f974d1f95" name="afb8862de5e883a17c41ce83f974d1f95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb8862de5e883a17c41ce83f974d1f95">&#9670;&#160;</a></span>duration()</h2>
+<a id="a81921f180ef8e7ce1f1b542ae7c6dfc9" name="a81921f180ef8e7ce1f1b542ae7c6dfc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81921f180ef8e7ce1f1b542ae7c6dfc9">&#9670;&#160;</a></span>duration()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::duration </td>
+          <td class="memname">double <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::duration </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -291,19 +291,19 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="ab97f9177cf4aa34138cb60795ce3d52f" name="ab97f9177cf4aa34138cb60795ce3d52f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab97f9177cf4aa34138cb60795ce3d52f">&#9670;&#160;</a></span>getValue() <span class="overload">[1/2]</span></h2>
+<a id="a4c16a85f07941725ba7aa467819b1081" name="a4c16a85f07941725ba7aa467819b1081"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c16a85f07941725ba7aa467819b1081">&#9670;&#160;</a></span>getValue() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::getValue </td>
+          <td class="memname"><a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::getValue </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -321,19 +321,19 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="a08dc3a4b711c16bb3b859fcccd803865" name="a08dc3a4b711c16bb3b859fcccd803865"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a08dc3a4b711c16bb3b859fcccd803865">&#9670;&#160;</a></span>getValue() <span class="overload">[2/2]</span></h2>
+<a id="a8e511eab3524b1777ff2317e4c579eca" name="a8e511eab3524b1777ff2317e4c579eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e511eab3524b1777ff2317e4c579eca">&#9670;&#160;</a></span>getValue() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::getValue </td>
+          <td class="memname"><a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::getValue </td>
           <td>(</td>
           <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>polarity</em></span></td><td>)</td>
           <td> const</td>
@@ -357,20 +357,20 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="a3305026140feb17d3eb6bceb1a616c1d" name="a3305026140feb17d3eb6bceb1a616c1d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3305026140feb17d3eb6bceb1a616c1d">&#9670;&#160;</a></span>insert() <span class="overload">[1/4]</span></h2>
+<a id="aae257ab6e4c80c1f6c82a5145461e9c9" name="aae257ab6e4c80c1f6c82a5145461e9c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae257ab6e4c80c1f6c82a5145461e9c9">&#9670;&#160;</a></span>insert() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <div class="memtemplate">
 template&lt;std::size_t N&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::insert </td>
+          <td class="memname">bool <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::insert </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classev_1_1Array__.html">Array</a>&lt; N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>array</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classev_1_1Array__.html">Array_</a>&lt; E, N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>array</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -387,18 +387,18 @@ template&lt;std::size_t N&gt; </div>
 
 </div>
 </div>
-<a id="aadb64f8a9718b63b30540b31279a3cb9" name="aadb64f8a9718b63b30540b31279a3cb9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadb64f8a9718b63b30540b31279a3cb9">&#9670;&#160;</a></span>insert() <span class="overload">[2/4]</span></h2>
+<a id="a4f690000c92b20731f0013282b8767d9" name="a4f690000c92b20731f0013282b8767d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f690000c92b20731f0013282b8767d9">&#9670;&#160;</a></span>insert() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::insert </td>
+          <td class="memname">bool <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::insert </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; E &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -416,18 +416,18 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="aeb0c1949101566c87e65bf94fe7ecc03" name="aeb0c1949101566c87e65bf94fe7ecc03"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb0c1949101566c87e65bf94fe7ecc03">&#9670;&#160;</a></span>insert() <span class="overload">[3/4]</span></h2>
+<a id="a1943ed779ca69a7dc12189f21965c0ec" name="a1943ed779ca69a7dc12189f21965c0ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1943ed779ca69a7dc12189f21965c0ec">&#9670;&#160;</a></span>insert() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::insert </td>
+          <td class="memname">bool <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::insert </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vector</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classev_1_1Vector__.html">Vector_</a>&lt; E &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vector</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -444,18 +444,18 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="a7d599203da680d5e0badedbfc987efd9" name="a7d599203da680d5e0badedbfc987efd9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d599203da680d5e0badedbfc987efd9">&#9670;&#160;</a></span>insert() <span class="overload">[4/4]</span></h2>
+<a id="abb96c189c99c33e65ebcc7980066e511" name="abb96c189c99c33e65ebcc7980066e511"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb96c189c99c33e65ebcc7980066e511">&#9670;&#160;</a></span>insert() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::insert </td>
+          <td class="memname">bool <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::insert </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>queue</em></span>, </td>
+          <td class="paramtype"><a class="el" href="classev_1_1Queue__.html">Queue_</a>&lt; E &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>queue</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -477,19 +477,19 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="ae3e68a8f9e7610cbe6615719380a6c7c" name="ae3e68a8f9e7610cbe6615719380a6c7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3e68a8f9e7610cbe6615719380a6c7c">&#9670;&#160;</a></span>midTime()</h2>
+<a id="a04ca0e4f6723c652843a23d99a970674" name="a04ca0e4f6723c652843a23d99a970674"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04ca0e4f6723c652843a23d99a970674">&#9670;&#160;</a></span>midTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::midTime </td>
+          <td class="memname">double <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::midTime </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -507,21 +507,21 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="a24b85fcefd2f8a2cdb9633831d5f0bf9" name="a24b85fcefd2f8a2cdb9633831d5f0bf9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24b85fcefd2f8a2cdb9633831d5f0bf9">&#9670;&#160;</a></span>setTimeOffset()</h2>
+<a id="ad04186804acb170ece2da3d625d4461b" name="ad04186804acb170ece2da3d625d4461b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad04186804acb170ece2da3d625d4461b">&#9670;&#160;</a></span>setTimeOffset()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::setTimeOffset </td>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::setTimeOffset </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; E &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -543,26 +543,26 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="a1ab8c12165248f7cedcf68569262272d" name="a1ab8c12165248f7cedcf68569262272d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ab8c12165248f7cedcf68569262272d">&#9670;&#160;</a></span>setValue() <span class="overload">[1/2]</span></h2>
+<a id="a965b12576ace99d7dcabc261ec1adf2e" name="a965b12576ace99d7dcabc261ec1adf2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a965b12576ace99d7dcabc261ec1adf2e">&#9670;&#160;</a></span>setValue() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::setValue </td>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::setValue </td>
           <td>(</td>
           <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>polarity</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -583,21 +583,21 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="a56fcc2c8d89b9a1047e7458ba264cdbd" name="a56fcc2c8d89b9a1047e7458ba264cdbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56fcc2c8d89b9a1047e7458ba264cdbd">&#9670;&#160;</a></span>setValue() <span class="overload">[2/2]</span></h2>
+<a id="ae5d5697792a2ad033a67b42ec63b3aea" name="ae5d5697792a2ad033a67b42ec63b3aea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5d5697792a2ad033a67b42ec63b3aea">&#9670;&#160;</a></span>setValue() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::setValue </td>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::setValue </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -618,31 +618,31 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 </div>
 </div>
-<a id="a85b5300b9f6b9f2d8415d2f0181760c5" name="a85b5300b9f6b9f2d8415d2f0181760c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85b5300b9f6b9f2d8415d2f0181760c5">&#9670;&#160;</a></span>setValues()</h2>
+<a id="ac3c17c53eae945fa6ff350b913e920de" name="ac3c17c53eae945fa6ff350b913e920de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c17c53eae945fa6ff350b913e920de">&#9670;&#160;</a></span>setValues()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE&gt; </div>
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options &gt;::setValues </td>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::setValues </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>positive</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>positive</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>negative</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>negative</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="#a3e308db0fc435fbf9d17960a0b45db77">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>reset</em></span>&#160;)</td>
+          <td class="paramtype">const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>reset</em></span>&#160;)</td>
         </tr>
       </table>
   </td>

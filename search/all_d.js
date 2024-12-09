@@ -21,7 +21,7 @@ var searchData=
   ['pointcloud3s_18',['PointCloud3s',['../point-cloud_8hpp.html#a033c0807dd188b23bd6d09a2171d5d75',1,'ev']]],
   ['pointcloud3w_19',['PointCloud3w',['../point-cloud_8hpp.html#aacde16bb8af3ec9643e44219fc241e41',1,'ev']]],
   ['pointcloud_5f_20',['PointCloud_',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['polarity_21',['polarity',['../classev_1_1TimeSurface__.html#a248759717e790bb2b471217dc93d91f8',1,'ev::TimeSurface_']]],
+  ['polarity_21',['polarity',['../classev_1_1TimeSurface__.html#ab20bd45c080c45a41ab39b7d44434027',1,'ev::TimeSurface_']]],
   ['polaritymat_22',['PolarityMat',['../classev_1_1PolarityMat.html',1,'ev']]],
   ['positive_23',['POSITIVE',['../types_8hpp.html#a20fde2a7fa1be910a10a635a76b810d5',1,'ev']]],
   ['push_24',['push',['../classev_1_1Queue__.html#a2ec6aa510b79d1f2ae4743530c88b9da',1,'ev::Queue_::push(const Array_&lt; T, N &gt; &amp;array)'],['../classev_1_1Queue__.html#a85799c5ef98d6e8d7cb3096c1bfcb801',1,'ev::Queue_::push(const Vector_&lt; T &gt; &amp;vector)']]],

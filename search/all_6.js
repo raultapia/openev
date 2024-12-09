@@ -5,5 +5,5 @@ var searchData=
   ['geteventraw_2',['getEventRaw',['../classev_1_1Davis.html#abcab1d9da49a96ab62c69e83f494ee81',1,'ev::Davis::getEventRaw(std::vector&lt; uint64_t &gt; &amp;data)'],['../classev_1_1Davis.html#a9b1fc0eb37788690c70b8f299c2d80ad',1,'ev::Davis::getEventRaw(uint64_t *data, const bool allow_realloc=true)']]],
   ['getroi_3',['getRoi',['../classev_1_1AbstractCamera.html#aa697b4c5c361499f2b5767c6ef1acadf',1,'ev::AbstractCamera']]],
   ['getsensorsize_4',['getSensorSize',['../classev_1_1AbstractCamera.html#a1a63eca45e88264202f7d7a8679f4826',1,'ev::AbstractCamera']]],
-  ['getvalue_5',['getValue',['../classev_1_1AbstractRepresentation__.html#a08dc3a4b711c16bb3b859fcccd803865',1,'ev::AbstractRepresentation_::getValue(const bool polarity) const'],['../classev_1_1AbstractRepresentation__.html#ab97f9177cf4aa34138cb60795ce3d52f',1,'ev::AbstractRepresentation_::getValue() const']]]
+  ['getvalue_5',['getValue',['../classev_1_1AbstractRepresentation__.html#a8e511eab3524b1777ff2317e4c579eca',1,'ev::AbstractRepresentation_::getValue(const bool polarity) const'],['../classev_1_1AbstractRepresentation__.html#a4c16a85f07941725ba7aa467819b1081',1,'ev::AbstractRepresentation_::getValue() const']]]
 ];

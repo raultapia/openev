@@ -15,7 +15,7 @@ var searchData=
   ['rect3f_12',['Rect3f',['../types_8hpp.html#a8fb8fbc5852620a2d4dfaa0ad32207e5',1,'ev']]],
   ['rect3i_13',['Rect3i',['../types_8hpp.html#a3ed225e738af68b647714a5c25298437',1,'ev']]],
   ['rect3l_14',['Rect3l',['../types_8hpp.html#af5a7fd07db1f9f76dedb9af8023edb53',1,'ev']]],
-  ['render_15',['render',['../classev_1_1EventHistogram__.html#af39f814545d19d56cf092710282be2ad',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#ad0c9aa09782179de5cc789976220e527',1,'ev::TimeSurface_::render()']]],
+  ['render_15',['render',['../classev_1_1EventHistogram__.html#a42d57d6b67fe596a387dd49ca64b1e5a',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b',1,'ev::TimeSurface_::render()']]],
   ['representations_2ehpp_16',['representations.hpp',['../representations_8hpp.html',1,'']]],
   ['reset_17',['reset',['../classev_1_1AbstractReader__.html#a29982bb0dde6ca0e1b43fc15e2dce769',1,'ev::AbstractReader_']]]
 ];

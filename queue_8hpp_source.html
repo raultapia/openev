@@ -128,13 +128,13 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keyword">using </span>std::queue&lt;<a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a>&gt;::queue;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classev_1_1Queue__.html#a2ec6aa510b79d1f2ae4743530c88b9da">push</a>(<span class="keyword">const</span> T &amp;e) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classev_1_1Queue__.html#a2ec6aa510b79d1f2ae4743530c88b9da">push</a>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e) {</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::queue&lt;Event_&lt;T&gt;&gt;<a class="code hl_function" href="classev_1_1Queue__.html#a2ec6aa510b79d1f2ae4743530c88b9da">::push</a>(e);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  }</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">template</span> &lt;std::<span class="keywordtype">size_t</span> N&gt;</div>
 <div class="foldopen" id="foldopen00050" data-start="{" data-end="}">
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classev_1_1Queue__.html#a2ec6aa510b79d1f2ae4743530c88b9da">   50</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classev_1_1Queue__.html#a2ec6aa510b79d1f2ae4743530c88b9da">push</a>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Array__.html">Array_&lt;T, N&gt;</a> &amp;array) {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> T &amp;e : array) {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e : array) {</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      std::queue&lt;Event_&lt;T&gt;&gt;::emplace(std::move(e));</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
@@ -142,7 +142,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classev_1_1Queue__.html#a85799c5ef98d6e8d7cb3096c1bfcb801">   60</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classev_1_1Queue__.html#a85799c5ef98d6e8d7cb3096c1bfcb801">push</a>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Vector__.html">Vector_&lt;T&gt;</a> &amp;vector) {</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> T &amp;e : vector) {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">for</span>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e : vector) {</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      std::queue&lt;Event_&lt;T&gt;&gt;::emplace(std::move(e));</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    }</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  }</div>
@@ -169,11 +169,11 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">double</span> p{0};</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">while</span>(!std::queue&lt;<a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a>&gt;::empty()) {</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <span class="keyword">const</span> T &amp;e = std::queue&lt;Event_&lt;T&gt;&gt;::front();</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e = std::queue&lt;Event_&lt;T&gt;&gt;::front();</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      x += e.x;</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      y += e.y;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      t += e.t;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      p += e.p;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      t += e.<a class="code hl_variable" href="classev_1_1Event__.html#afdb69c87797e8da1e08fa3844db759c3">t</a>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      p += e.<a class="code hl_variable" href="classev_1_1Event__.html#a2a0bf1127a8699d50fbffcafc545381a">p</a>;</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      std::queue&lt;Event_&lt;T&gt;&gt;::pop();</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
@@ -188,7 +188,7 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">double</span> y{0};</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordflow">while</span>(!std::queue&lt;<a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a>&gt;::empty()) {</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keyword">const</span> T &amp;e = std::queue&lt;Event_&lt;T&gt;&gt;::front();</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>      <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e = std::queue&lt;Event_&lt;T&gt;&gt;::front();</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>      x += e.x;</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>      y += e.y;</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      std::queue&lt;Event_&lt;T&gt;&gt;::pop();</div>
@@ -229,6 +229,8 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CONTAINERS_QUEUE_HPP</span></div>
 <div class="ttc" id="aclassev_1_1Array___html"><div class="ttname"><a href="classev_1_1Array__.html">ev::Array_</a></div><div class="ttdoc">This class extends std::array to implement event arrays. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> array.hpp:21</div></div>
 <div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:60</div></div>
+<div class="ttc" id="aclassev_1_1Event___html_a2a0bf1127a8699d50fbffcafc545381a"><div class="ttname"><a href="classev_1_1Event__.html#a2a0bf1127a8699d50fbffcafc545381a">ev::Event_::p</a></div><div class="ttdeci">bool p</div><div class="ttdef"><b>Definition</b> types.hpp:63</div></div>
+<div class="ttc" id="aclassev_1_1Event___html_afdb69c87797e8da1e08fa3844db759c3"><div class="ttname"><a href="classev_1_1Event__.html#afdb69c87797e8da1e08fa3844db759c3">ev::Event_::t</a></div><div class="ttdeci">double t</div><div class="ttdef"><b>Definition</b> types.hpp:62</div></div>
 <div class="ttc" id="aclassev_1_1Queue___html"><div class="ttname"><a href="classev_1_1Queue__.html">ev::Queue_</a></div><div class="ttdoc">This class extends std::queue to implement event queues. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> queue.hpp:35</div></div>
 <div class="ttc" id="aclassev_1_1Queue___html_a20b2ce250578c2885712c183083a600b"><div class="ttname"><a href="classev_1_1Queue__.html#a20b2ce250578c2885712c183083a600b">ev::Queue_::rate</a></div><div class="ttdeci">double rate() const</div><div class="ttdoc">Compute event rate as the ratio between the number of events and the time difference between the last...</div><div class="ttdef"><b>Definition</b> queue.hpp:78</div></div>
 <div class="ttc" id="aclassev_1_1Queue___html_a2ec6aa510b79d1f2ae4743530c88b9da"><div class="ttname"><a href="classev_1_1Queue__.html#a2ec6aa510b79d1f2ae4743530c88b9da">ev::Queue_::push</a></div><div class="ttdeci">void push(const Array_&lt; T, N &gt; &amp;array)</div><div class="ttdoc">Push elements from an array of events.</div><div class="ttdef"><b>Definition</b> queue.hpp:50</div></div>

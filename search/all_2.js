@@ -15,12 +15,12 @@ var searchData=
   ['circularbufferf_12',['CircularBufferf',['../circular_8hpp.html#a2177fa7266e809ebd4b9985811ad2cd0',1,'ev']]],
   ['circularbufferi_13',['CircularBufferi',['../circular_8hpp.html#a3e8f3efa8053d80fd57d37a15e38948d',1,'ev']]],
   ['circularbufferl_14',['CircularBufferl',['../circular_8hpp.html#a2c230919453eccc9d8db72633beaa19d',1,'ev']]],
-  ['clear_15',['clear',['../classev_1_1AbstractRepresentation__.html#a1529e7c4143e6ebfe7ecde46c65ba9ea',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#a5b915d253af03d50af0f91d1007a4f95',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background)']]],
+  ['clear_15',['clear',['../classev_1_1AbstractRepresentation__.html#a16486a8b4a053dc72407e303c35423a4',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#ad9b12fb1d244ce29c140f35ae4a539f1',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background)']]],
   ['contact_16',['📬 Contact',['../index.html#autotoc_md4',1,'']]],
   ['containers_2ehpp_17',['containers.hpp',['../containers_8hpp.html',1,'']]],
-  ['contains_18',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a025d618422c0e4ff20f4cd86268e482c',1,'ev::PointCloud_::contains()']]],
+  ['contains_18',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a4d2384e4c8a2a7972566ed2f32181acb',1,'ev::PointCloud_::contains()']]],
   ['core_2ehpp_19',['core.hpp',['../core_8hpp.html',1,'']]],
-  ['count_20',['count',['../classev_1_1AbstractReader__.html#ab0ff8f66fecf9da41984df80e85ac49a',1,'ev::AbstractReader_::count()'],['../classev_1_1AbstractRepresentation__.html#af8063db8133182a4e6986d4dbe0ff5c5',1,'ev::AbstractRepresentation_::count()']]],
-  ['counter_21',['counter',['../classev_1_1EventHistogram__.html#ae22333b3f40ad1c0ce7656c47d088d28',1,'ev::EventHistogram_']]],
+  ['count_20',['count',['../classev_1_1AbstractReader__.html#ab0ff8f66fecf9da41984df80e85ac49a',1,'ev::AbstractReader_::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
+  ['counter_21',['counter',['../classev_1_1EventHistogram__.html#ab8e03eb146b04ef50bff8eaf827687a5',1,'ev::EventHistogram_']]],
   ['countermat_22',['CounterMat',['../classev_1_1CounterMat.html',1,'ev']]]
 ];

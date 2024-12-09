@@ -68,6 +68,6 @@ var searchData=
   ['eventimage4s_65',['EventImage4s',['../event-image_8hpp.html#a1c15fd4dcd8e6d6b78663a0150d41420',1,'ev']]],
   ['eventimage4w_66',['EventImage4w',['../event-image_8hpp.html#ac47e59b6760928371841b84be58791cc',1,'ev']]],
   ['eventimage_5f_67',['EventImage_',['../classev_1_1EventImage__.html',1,'ev']]],
-  ['eventimage_5f_3c_20t_2c_20representationoptions_3a_3anone_20_3e_68',['EventImage_&lt; T, RepresentationOptions::NONE &gt;',['../classev_1_1EventImage__.html',1,'ev']]],
+  ['eventimage_5f_3c_20t_2c_20representationoptions_3a_3anone_2c_20int_20_3e_68',['EventImage_&lt; T, RepresentationOptions::NONE, int &gt;',['../classev_1_1EventImage__.html',1,'ev']]],
   ['eventl_69',['Eventl',['../types_8hpp.html#a0d3ac796a5ff950436d60e549423f57f',1,'ev']]]
 ];
