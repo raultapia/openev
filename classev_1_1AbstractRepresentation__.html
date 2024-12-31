@@ -158,12 +158,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac3c17c53eae945fa6ff350b913e920de" id="r_ac3c17c53eae945fa6ff350b913e920de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3c17c53eae945fa6ff350b913e920de">setValues</a> (const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;positive, const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;negative, const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;reset)</td></tr>
 <tr class="memdesc:ac3c17c53eae945fa6ff350b913e920de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set values for ON, OFF, and non-activated pixels.  <br /></td></tr>
 <tr class="separator:ac3c17c53eae945fa6ff350b913e920de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e511eab3524b1777ff2317e4c579eca" id="r_a8e511eab3524b1777ff2317e4c579eca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e511eab3524b1777ff2317e4c579eca">getValue</a> (const bool polarity) const</td></tr>
-<tr class="memdesc:a8e511eab3524b1777ff2317e4c579eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current values for ON and OFF pixels.  <br /></td></tr>
-<tr class="separator:a8e511eab3524b1777ff2317e4c579eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c16a85f07941725ba7aa467819b1081" id="r_a4c16a85f07941725ba7aa467819b1081"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c16a85f07941725ba7aa467819b1081">getValue</a> () const</td></tr>
-<tr class="memdesc:a4c16a85f07941725ba7aa467819b1081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current values for non-activated pixels (background).  <br /></td></tr>
-<tr class="separator:a4c16a85f07941725ba7aa467819b1081"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c04ab1aacaec2b1567760c3100ecd91" id="r_a6c04ab1aacaec2b1567760c3100ecd91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c04ab1aacaec2b1567760c3100ecd91">setColormap</a> (const cv::ColormapTypes cm)</td></tr>
+<tr class="memdesc:a6c04ab1aacaec2b1567760c3100ecd91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set colormap for the representation.  <br /></td></tr>
+<tr class="separator:a6c04ab1aacaec2b1567760c3100ecd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int&gt;<br />
@@ -288,72 +285,6 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 <p>Time difference between the oldest and the newest event integrated in the representation. </p>
 <dl class="section return"><dt>Returns</dt><dd>Time difference. Returns -1 if time limits are not properly set. </dd></dl>
-
-</div>
-</div>
-<a id="a4c16a85f07941725ba7aa467819b1081" name="a4c16a85f07941725ba7aa467819b1081"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c16a85f07941725ba7aa467819b1081">&#9670;&#160;</a></span>getValue() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::getValue </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">nodiscard</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get current values for non-activated pixels (background). </p>
-<dl class="section return"><dt>Returns</dt><dd>Values for non-activated pixels </dd></dl>
-
-</div>
-</div>
-<a id="a8e511eab3524b1777ff2317e4c579eca" name="a8e511eab3524b1777ff2317e4c579eca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e511eab3524b1777ff2317e4c579eca">&#9670;&#160;</a></span>getValue() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::getValue </td>
-          <td>(</td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>polarity</em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">nodiscard</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get current values for ON and OFF pixels. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">polarity</td><td>Positive (ON) or negative (OFF) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Values for ON/OFF pixels </dd></dl>
 
 </div>
 </div>
@@ -504,6 +435,42 @@ template&lt;typename T , const RepresentationOptions Options = RepresentationOpt
 
 <p>Calculate the midpoint time between the oldest and the newest event. </p>
 <dl class="section return"><dt>Returns</dt><dd>Midpoint time. Returns -1 if time limits are not properly set. </dd></dl>
+
+</div>
+</div>
+<a id="a6c04ab1aacaec2b1567760c3100ecd91" name="a6c04ab1aacaec2b1567760c3100ecd91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c04ab1aacaec2b1567760c3100ecd91">&#9670;&#160;</a></span>setColormap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , const RepresentationOptions Options = RepresentationOptions::NONE, typename E  = int&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::setColormap </td>
+          <td>(</td>
+          <td class="paramtype">const cv::ColormapTypes</td>          <td class="paramname"><span class="paramname"><em>cm</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set colormap for the representation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cm</td><td>Colormap type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Colormap can only be used with 3-channel representations. </dd></dl>
 
 </div>
 </div>
