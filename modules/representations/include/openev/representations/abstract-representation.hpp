@@ -211,6 +211,8 @@ public:
     } else {
       V_OFF = value;
     }
+    colormap_ = nullptr;
+    this->clear();
   }
 
   /*!
@@ -219,6 +221,8 @@ public:
   */
   inline void setValue(const Type &value) {
     V_RESET = value;
+    colormap_ = nullptr;
+    this->clear();
   }
 
   /*!
@@ -231,6 +235,8 @@ public:
     V_ON = positive;
     V_OFF = negative;
     V_RESET = reset;
+    colormap_ = nullptr;
+    this->clear();
   }
 
 #if OE_HAVE_VIZ
@@ -266,20 +272,30 @@ public:
 #endif
 
   /*!
-  \brief Get current values for ON and OFF pixels.
-  \param polarity Positive (ON) or negative (OFF)
-  \return Values for ON/OFF pixels
+  \brief Set colormap for the representation.
+  \param cm Colormap type
+  \note Colormap can only be used with 3-channel representations.
   */
-  [[nodiscard]] inline Type getValue(const bool polarity) const {
-    return polarity ? V_ON : V_OFF;
-  }
+  inline void setColormap(const cv::ColormapTypes cm) {
+    if constexpr(TypeHelper<T>::NumChannels == 1) {
+      ev::logger::error("setColorMap: Colormap can only be used with 3-channel representations");
+    } else {
+      colormap_ = std::make_unique<cv::ColormapTypes>(cm);
 
-  /*!
-  \brief Get current values for non-activated pixels (background).
-  \return Values for non-activated pixels
-  */
-  [[nodiscard]] inline Type getValue() const {
-    return V_RESET;
+      cv::Mat aux1 = (cv::Mat_<uchar>(1, 3) << 0, 128, 255);
+      cv::Mat aux3;
+      cv::applyColorMap(aux1, aux3, *colormap_);
+
+      if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::IGNORE_POLARITY)) {
+        V_ON = aux3.at<cv::Vec3b>(0, 2);
+        V_RESET = aux3.at<cv::Vec3b>(0, 0);
+      } else {
+        V_ON = aux3.at<cv::Vec3b>(0, 2);
+        V_OFF = aux3.at<cv::Vec3b>(0, 0);
+        V_RESET = aux3.at<cv::Vec3b>(0, 1);
+      }
+      this->clear();
+    }
   }
 
 protected:
@@ -294,6 +310,7 @@ protected:
   double timeOffset_{0};
   std::array<double, 2> tLimits_{DBL_MAX, DBL_MIN};
   std::size_t count_{0};
+  std::unique_ptr<cv::ColormapTypes> colormap_;
 
   virtual void clear_() = 0;
   virtual void clear_(const cv::Mat &background) = 0;

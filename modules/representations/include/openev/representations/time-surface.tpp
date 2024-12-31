@@ -32,16 +32,30 @@ cv::Mat &TimeSurface_<T, Options, E>::render(const Kernel kernel /*= Kernel::NON
     cv::Mat_<T>(ts * (TimeSurface_<T, Options, E>::V_ON - TimeSurface_<T, Options, E>::V_RESET) + TimeSurface_<T, Options, E>::V_RESET).copyTo(*this, polarity == 1);
     cv::Mat_<T>(ts * (TimeSurface_<T, Options, E>::V_OFF - TimeSurface_<T, Options, E>::V_RESET) + TimeSurface_<T, Options, E>::V_RESET).copyTo(*this, polarity == 0);
   } else {
-    std::vector<typename TypeHelper<T>::ChannelType> v(TypeHelper<T>::NumChannels);
-    cv::parallel_for_(cv::Range(0, TypeHelper<T>::NumChannels), [&](const cv::Range &range) {
-      const int start = range.start;
-      const int end = range.end;
-      for(int i = start; i < end; i++) {
-        typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options, E>::V_ON[i] - TimeSurface_<T, Options, E>::V_RESET[i]) + TimeSurface_<T, Options, E>::V_RESET[i]).copyTo(v[i], polarity == 1);
-        typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options, E>::V_OFF[i] - TimeSurface_<T, Options, E>::V_RESET[i]) + TimeSurface_<T, Options, E>::V_RESET[i]).copyTo(v[i], polarity == 0);
+    if(TimeSurface_<T, Options, E>::colormap_ != nullptr) {
+      if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::IGNORE_POLARITY)) {
+        cv::Mat aux(255 * ts);
+        aux.convertTo(aux, CV_8UC1);
+        cv::applyColorMap(aux, *this, *TimeSurface_<T, Options, E>::colormap_);
+      } else {
+        cv::Mat aux;
+        cv::Mat(128 + ts * 127).copyTo(aux, polarity == 1);
+        cv::Mat(128 - ts * 128).copyTo(aux, polarity == 0);
+        aux.convertTo(aux, CV_8UC1);
+        cv::applyColorMap(aux, *this, *TimeSurface_<T, Options, E>::colormap_);
       }
-    });
-    cv::merge(v, *this);
+    } else {
+      std::vector<typename TypeHelper<T>::ChannelType> v(TypeHelper<T>::NumChannels);
+      cv::parallel_for_(cv::Range(0, TypeHelper<T>::NumChannels), [&](const cv::Range &range) {
+        const int start = range.start;
+        const int end = range.end;
+        for(int i = start; i < end; i++) {
+          typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options, E>::V_ON[i] - TimeSurface_<T, Options, E>::V_RESET[i]) + TimeSurface_<T, Options, E>::V_RESET[i]).copyTo(v[i], polarity == 1);
+          typename TypeHelper<T>::ChannelType(ts * (TimeSurface_<T, Options, E>::V_OFF[i] - TimeSurface_<T, Options, E>::V_RESET[i]) + TimeSurface_<T, Options, E>::V_RESET[i]).copyTo(v[i], polarity == 0);
+        }
+      });
+      cv::merge(v, *this);
+    }
   }
 
   return *this;

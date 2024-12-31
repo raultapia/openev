@@ -23,21 +23,33 @@ cv::Mat &EventHistogram_<T, Options, E>::render() {
         EventHistogram_<T, Options, E>::V_RESET)
         .copyTo(*this);
   } else {
-    const cv::Mat_<double> a(normalized.mul(cv::Mat_<double>(normalized > 0) / 255));
-    const cv::Mat_<double> b(normalized.mul(cv::Mat_<double>(normalized < 0) / 255));
-    std::vector<typename TypeHelper<T>::ChannelType> v(TypeHelper<T>::NumChannels);
-    cv::parallel_for_(cv::Range(0, TypeHelper<T>::NumChannels), [&](const cv::Range &range) {
-      const int start = range.start;
-      const int end = range.end;
-      for(int i = start; i < end; i++) {
-        typename TypeHelper<T>::ChannelType(
-            (EventHistogram_<T, Options, E>::V_ON[i] - EventHistogram_<T, Options, E>::V_RESET[i]) * a +
-            (EventHistogram_<T, Options, E>::V_RESET[i] - EventHistogram_<T, Options, E>::V_OFF[i]) * b +
-            EventHistogram_<T, Options, E>::V_RESET[i])
-            .copyTo(v[i]);
+    if(EventHistogram_<T, Options, E>::colormap_ != nullptr) {
+      if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::IGNORE_POLARITY)) {
+        cv::Mat aux(255 * normalized);
+        aux.convertTo(aux, CV_8UC1);
+        cv::applyColorMap(aux, *this, *EventHistogram_<T, Options, E>::colormap_);
+      } else {
+        cv::Mat aux((1 + normalized) * 128);
+        aux.convertTo(aux, CV_8UC1);
+        cv::applyColorMap(aux, *this, *EventHistogram_<T, Options, E>::colormap_);
       }
-    });
-    cv::merge(v, *this);
+    } else {
+      const cv::Mat_<double> a(normalized.mul(cv::Mat_<double>(normalized > 0) / 255));
+      const cv::Mat_<double> b(normalized.mul(cv::Mat_<double>(normalized < 0) / 255));
+      std::vector<typename TypeHelper<T>::ChannelType> v(TypeHelper<T>::NumChannels);
+      cv::parallel_for_(cv::Range(0, TypeHelper<T>::NumChannels), [&](const cv::Range &range) {
+        const int start = range.start;
+        const int end = range.end;
+        for(int i = start; i < end; i++) {
+          typename TypeHelper<T>::ChannelType(
+              (EventHistogram_<T, Options, E>::V_ON[i] - EventHistogram_<T, Options, E>::V_RESET[i]) * a +
+              (EventHistogram_<T, Options, E>::V_RESET[i] - EventHistogram_<T, Options, E>::V_OFF[i]) * b +
+              EventHistogram_<T, Options, E>::V_RESET[i])
+              .copyTo(v[i]);
+        }
+      });
+      cv::merge(v, *this);
+    }
   }
 
   return *this;
