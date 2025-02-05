@@ -11,11 +11,15 @@ var searchData=
   ['rect2l_8',['Rect2l',['../types_8hpp.html#a88655be84a53655555d5f174a25e91e3',1,'ev']]],
   ['rect3_9',['Rect3',['../types_8hpp.html#a4f9c769f7c5bbfa15db3dfaee0702a1c',1,'ev']]],
   ['rect3_5f_10',['Rect3_',['../classev_1_1Rect3__.html',1,'ev::Rect3_&lt; T &gt;'],['../classev_1_1Rect3__.html#ad032da839930712403dffd07f602ecc5',1,'ev::Rect3_::Rect3_()'],['../classev_1_1Rect3__.html#a0496d8895ea1a40bcb6f5c43b187a6f1',1,'ev::Rect3_::Rect3_(const T x, const T y, const T t, const T w, const T h, const T l)'],['../classev_1_1Rect3__.html#a47ab3f2b243fbefeac90a4b95ff34552',1,'ev::Rect3_::Rect3_(const Rect2_&lt; T &gt; &amp;rect, const T t, const T l)'],['../classev_1_1Rect3__.html#a6f7c0fec6b9103e97d6e5ce336260e95',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt, const Size3_&lt; T &gt; sz)'],['../classev_1_1Rect3__.html#a6aaf7d688888a305be6d8f352c9274d2',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt1, const cv::Point3_&lt; T &gt; &amp;pt2)']]],
-  ['rect3d_11',['Rect3d',['../types_8hpp.html#a6194aa76e3ed6866663bf6f355a147ab',1,'ev']]],
-  ['rect3f_12',['Rect3f',['../types_8hpp.html#a8fb8fbc5852620a2d4dfaa0ad32207e5',1,'ev']]],
-  ['rect3i_13',['Rect3i',['../types_8hpp.html#a3ed225e738af68b647714a5c25298437',1,'ev']]],
-  ['rect3l_14',['Rect3l',['../types_8hpp.html#af5a7fd07db1f9f76dedb9af8023edb53',1,'ev']]],
-  ['render_15',['render',['../classev_1_1EventHistogram__.html#a42d57d6b67fe596a387dd49ca64b1e5a',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b',1,'ev::TimeSurface_::render()']]],
-  ['representations_2ehpp_16',['representations.hpp',['../representations_8hpp.html',1,'']]],
-  ['reset_17',['reset',['../classev_1_1AbstractReader__.html#a29982bb0dde6ca0e1b43fc15e2dce769',1,'ev::AbstractReader_']]]
+  ['rect3_5f_3c_20double_20_3e_11',['Rect3_&lt; double &gt;',['../classev_1_1Rect3__.html',1,'ev']]],
+  ['rect3_5f_3c_20float_20_3e_12',['Rect3_&lt; float &gt;',['../classev_1_1Rect3__.html',1,'ev']]],
+  ['rect3_5f_3c_20int_20_3e_13',['Rect3_&lt; int &gt;',['../classev_1_1Rect3__.html',1,'ev']]],
+  ['rect3_5f_3c_20long_20_3e_14',['Rect3_&lt; long &gt;',['../classev_1_1Rect3__.html',1,'ev']]],
+  ['rect3d_15',['Rect3d',['../types_8hpp.html#a6194aa76e3ed6866663bf6f355a147ab',1,'ev']]],
+  ['rect3f_16',['Rect3f',['../types_8hpp.html#a8fb8fbc5852620a2d4dfaa0ad32207e5',1,'ev']]],
+  ['rect3i_17',['Rect3i',['../types_8hpp.html#a3ed225e738af68b647714a5c25298437',1,'ev']]],
+  ['rect3l_18',['Rect3l',['../types_8hpp.html#af5a7fd07db1f9f76dedb9af8023edb53',1,'ev']]],
+  ['render_19',['render',['../classev_1_1EventHistogram__.html#a42d57d6b67fe596a387dd49ca64b1e5a',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b',1,'ev::TimeSurface_::render()']]],
+  ['representations_2ehpp_20',['representations.hpp',['../representations_8hpp.html',1,'']]],
+  ['reset_21',['reset',['../classev_1_1AbstractReader__.html#a29982bb0dde6ca0e1b43fc15e2dce769',1,'ev::AbstractReader_']]]
 ];

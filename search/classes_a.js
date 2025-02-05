@@ -1,5 +1,29 @@
 var searchData=
 [
   ['timemat_0',['TimeMat',['../classev_1_1TimeMat.html',1,'ev']]],
-  ['timesurface_5f_1',['TimeSurface_',['../classev_1_1TimeSurface__.html',1,'ev']]]
+  ['timesurface_5f_1',['TimeSurface_',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec2b_20_3e_2',['TimeSurface_&lt; cv::Vec2b &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec2d_20_3e_3',['TimeSurface_&lt; cv::Vec2d &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec2f_20_3e_4',['TimeSurface_&lt; cv::Vec2f &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec2i_20_3e_5',['TimeSurface_&lt; cv::Vec2i &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec2s_20_3e_6',['TimeSurface_&lt; cv::Vec2s &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec2w_20_3e_7',['TimeSurface_&lt; cv::Vec2w &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec3b_20_3e_8',['TimeSurface_&lt; cv::Vec3b &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec3d_20_3e_9',['TimeSurface_&lt; cv::Vec3d &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec3f_20_3e_10',['TimeSurface_&lt; cv::Vec3f &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec3i_20_3e_11',['TimeSurface_&lt; cv::Vec3i &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec3s_20_3e_12',['TimeSurface_&lt; cv::Vec3s &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec3w_20_3e_13',['TimeSurface_&lt; cv::Vec3w &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec4b_20_3e_14',['TimeSurface_&lt; cv::Vec4b &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec4d_20_3e_15',['TimeSurface_&lt; cv::Vec4d &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec4f_20_3e_16',['TimeSurface_&lt; cv::Vec4f &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec4i_20_3e_17',['TimeSurface_&lt; cv::Vec4i &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec4s_20_3e_18',['TimeSurface_&lt; cv::Vec4s &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20cv_3a_3avec4w_20_3e_19',['TimeSurface_&lt; cv::Vec4w &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20double_20_3e_20',['TimeSurface_&lt; double &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20float_20_3e_21',['TimeSurface_&lt; float &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20int_20_3e_22',['TimeSurface_&lt; int &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20short_20_3e_23',['TimeSurface_&lt; short &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20uchar_20_3e_24',['TimeSurface_&lt; uchar &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
+  ['timesurface_5f_3c_20ushort_20_3e_25',['TimeSurface_&lt; ushort &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]]
 ];
