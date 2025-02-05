@@ -9,6 +9,39 @@
 #include "openev/core/types.hpp"
 
 namespace ev {
+template <typename Tm = std::uint8_t>
+class BinaryMat : public cv::Mat_<Tm> {
+public:
+  template <typename... Args>
+  explicit BinaryMat(Args &&...args) : cv::Mat_<Tm>(std::forward<Args>(args)...) {
+    BinaryMat::clear();
+  }
+
+  template <typename T>
+  inline const Tm &insert(const Event_<T> &e) {
+    if constexpr(std::is_floating_point<T>::value) {
+      return cv::Mat_<Tm>::operator()(std::round(e.y), std::round(e.x)) = value_;
+    } else {
+      return cv::Mat_<Tm>::operator()(e) = value_;
+    }
+  }
+
+  template <typename T>
+  inline const Tm &emplace(const T x, const T y) {
+    if constexpr(std::is_floating_point<T>::value) {
+      return cv::Mat_<Tm>::operator()(std::round(y), std::round(x)) = value_;
+    } else {
+      return cv::Mat_<Tm>::operator()(y, x) = value_;
+    }
+  }
+
+  inline void clear() {
+    cv::Mat_<Tm>::setTo(0);
+  }
+private:
+  static constexpr Tm value_ = std::numeric_limits<Tm>::max();
+};
+
 class TimeMat : public cv::Mat_<double> {
 public:
   template <typename... Args>
