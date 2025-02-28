@@ -1,18 +1,18 @@
 FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt update
-RUN apt upgrade
-RUN apt install -y build-essential
-RUN apt install -y cmake
-RUN apt install -y git
-RUN apt install -y libgtest-dev
+RUN apt -y update
+RUN apt -y upgrade
+RUN apt -y install build-essential
+RUN apt -y install cmake
+RUN apt -y install git
+RUN apt -y install libgtest-dev
 
 # Dependencies
-RUN apt install -y libtool
-RUN apt install -y autoconf
-RUN apt install -y libudev-dev
-RUN apt install -y libopencv-dev
-RUN apt install -y libeigen3-dev
+RUN apt -y install libtool
+RUN apt -y install autoconf
+RUN apt -y install libudev-dev
+RUN apt -y install libopencv-dev
+RUN apt -y install libeigen3-dev
 
 # Build
 COPY . /openev
