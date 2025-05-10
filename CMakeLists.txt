@@ -99,11 +99,6 @@ endif()
 target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/openev.hpp;${PROJECT_SOURCE_DIR}/include/openev/options.hpp")
 
-# Compile examples
-if(BUILD_EXAMPLES AND HAVE_VIZ)
-  add_subdirectory(examples)
-endif()
-
 # Install
 install(
   TARGETS openev
