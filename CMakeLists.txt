@@ -6,6 +6,15 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Macros
+macro(set_flag var condition)
+  if(${condition})
+    set(${var} 1)
+  else()
+    set(${var} 0)
+  endif()
+endmacro()
+
 # Git submodules
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/third-party/libusb/config.h")
   find_package(Git REQUIRED)
@@ -28,15 +37,18 @@ if(BUILD_MODULE_REPRESENTATIONS)
     OpenCV REQUIRED
     COMPONENTS core highgui calib3d
     OPTIONAL_COMPONENTS viz)
-  if(${OpenCV_viz_FOUND})
-    set(HAVE_VIZ 1)
-  else()
-    set(HAVE_VIZ 0)
-  endif()
+  set_flag(HAVE_VIZ OpenCV_viz_FOUND)
 else()
   find_package(OpenCV REQUIRED COMPONENTS core highgui calib3d)
   set(HAVE_VIZ 0)
 endif()
+set_flag(HAVE_MODULE_ALGORITHM BUILD_MODULE_ALGORITHMS)
+set_flag(HAVE_MODULE_CONTAINERS BUILD_MODULE_CONTAINERS)
+set_flag(HAVE_MODULE_CORE BUILD_MODULE_CORE)
+set_flag(HAVE_MODULE_DEVICES BUILD_MODULE_DEVICES)
+set_flag(HAVE_MODULE_READERS BUILD_MODULE_READERS)
+set_flag(HAVE_MODULE_REPRESENTATIONS BUILD_MODULE_REPRESENTATIONS)
+set_flag(HAVE_MODULE_UTILS BUILD_MODULE_UTILS)
 configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_SOURCE_DIR}/include/openev/options.hpp" @ONLY)
 
 if(BUILD_MODULE_ALGORITHMS)

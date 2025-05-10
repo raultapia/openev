@@ -7,11 +7,34 @@
 #ifndef OPENEV_OPENEV_HPP
 #define OPENEV_OPENEV_HPP
 
+#include "openev/options.hpp"
+
+#if OE_HAVE_MODULE_ALGORITHMS
+#include "openev/algorithms.hpp"
+#endif // OE_HAVE_MODULE_ALGORITHMS
+
+#if OE_HAVE_MODULE_CONTAINERS
 #include "openev/containers.hpp"
+#endif // OE_HAVE_MODULE_CONTAINERS
+
+#if OE_HAVE_MODULE_CORE
 #include "openev/core.hpp"
+#endif // OE_HAVE_MODULE_CORE
+
+#if OE_HAVE_MODULE_DEVICES
 #include "openev/devices.hpp"
+#endif // OE_HAVE_MODULE_DEVICES
+
+#if OE_HAVE_MODULE_READERS
 #include "openev/readers.hpp"
+#endif // OE_HAVE_MODULE_READERS
+
+#if OE_HAVE_MODULE_REPRESENTATIONS
 #include "openev/representations.hpp"
+#endif // OE_HAVE_MODULE_REPRESENTATIONS
+
+#if OE_HAVE_MODULE_UTILS
 #include "openev/utils.hpp"
+#endif // OE_HAVE_MODULE_UTILS
 
 #endif // OPENEV_OPENEV_HPP
