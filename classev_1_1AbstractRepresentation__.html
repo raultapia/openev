@@ -216,6 +216,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac3c17c53eae945fa6ff350b913e920de" id="r_ac3c17c53eae945fa6ff350b913e920de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3c17c53eae945fa6ff350b913e920de">setValues</a> (const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;positive, const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;negative, const <a class="el" href="#a384860c1165acab0d5319cbbbc98b638">Type</a> &amp;reset)</td></tr>
 <tr class="memdesc:ac3c17c53eae945fa6ff350b913e920de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set values for ON, OFF, and non-activated pixels.  <br /></td></tr>
 <tr class="separator:ac3c17c53eae945fa6ff350b913e920de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a546a140885cbcae9a487ac05c3562807" id="r_a546a140885cbcae9a487ac05c3562807"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a546a140885cbcae9a487ac05c3562807">setColor</a> (const bool polarity, const cv::viz::Color &amp;color)</td></tr>
+<tr class="memdesc:a546a140885cbcae9a487ac05c3562807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set colors for ON and OFF pixels. For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>.  <br /></td></tr>
+<tr class="separator:a546a140885cbcae9a487ac05c3562807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1aa864e834d79d8af0a0ce44d63fd1ab" id="r_a1aa864e834d79d8af0a0ce44d63fd1ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1aa864e834d79d8af0a0ce44d63fd1ab">setColor</a> (const cv::viz::Color &amp;color)</td></tr>
+<tr class="memdesc:a1aa864e834d79d8af0a0ce44d63fd1ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set colors for non-activated pixels (background). For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>.  <br /></td></tr>
+<tr class="separator:a1aa864e834d79d8af0a0ce44d63fd1ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11fe09f62267349a78247a047c9a714a" id="r_a11fe09f62267349a78247a047c9a714a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a11fe09f62267349a78247a047c9a714a">setColors</a> (const cv::viz::Color &amp;positive, const cv::viz::Color &amp;negative, const cv::viz::Color &amp;reset)</td></tr>
+<tr class="memdesc:a11fe09f62267349a78247a047c9a714a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set colors for ON, OFF, and non-activated pixels. For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>.  <br /></td></tr>
+<tr class="separator:a11fe09f62267349a78247a047c9a714a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c04ab1aacaec2b1567760c3100ecd91" id="r_a6c04ab1aacaec2b1567760c3100ecd91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c04ab1aacaec2b1567760c3100ecd91">setColormap</a> (const cv::ColormapTypes cm)</td></tr>
 <tr class="memdesc:a6c04ab1aacaec2b1567760c3100ecd91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set colormap for the representation.  <br /></td></tr>
 <tr class="separator:a6c04ab1aacaec2b1567760c3100ecd91"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -498,6 +507,83 @@ template&lt;typename T, const RepresentationOptions Options = RepresentationOpti
 
 </div>
 </div>
+<a id="a546a140885cbcae9a487ac05c3562807" name="a546a140885cbcae9a487ac05c3562807"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a546a140885cbcae9a487ac05c3562807">&#9670;&#160;</a></span>setColor() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::setColor </td>
+          <td>(</td>
+          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>polarity</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::viz::Color &amp;</td>          <td class="paramname"><span class="paramname"><em>color</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set colors for ON and OFF pixels. For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">polarity</td><td>Positive (ON) or negative (OFF) </td></tr>
+    <tr><td class="paramname">color</td><td>Color for ON/OFF pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>cv::viz::Color inherits from cv::Scalar_&lt;double&gt;. Color are defined as BGR with values between 0 and 255. </dd></dl>
+
+</div>
+</div>
+<a id="a1aa864e834d79d8af0a0ce44d63fd1ab" name="a1aa864e834d79d8af0a0ce44d63fd1ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1aa864e834d79d8af0a0ce44d63fd1ab">&#9670;&#160;</a></span>setColor() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::setColor </td>
+          <td>(</td>
+          <td class="paramtype">const cv::viz::Color &amp;</td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set colors for non-activated pixels (background). For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">color</td><td>Color for non-activated pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>cv::viz::Color inherits from cv::Scalar_&lt;double&gt;. Color are defined as BGR with values between 0 and 255. </dd></dl>
+
+</div>
+</div>
 <a id="a6c04ab1aacaec2b1567760c3100ecd91" name="a6c04ab1aacaec2b1567760c3100ecd91"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6c04ab1aacaec2b1567760c3100ecd91">&#9670;&#160;</a></span>setColormap()</h2>
 
@@ -531,6 +617,53 @@ template&lt;typename T, const RepresentationOptions Options = RepresentationOpti
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Colormap can only be used with 3-channel representations. </dd></dl>
+
+</div>
+</div>
+<a id="a11fe09f62267349a78247a047c9a714a" name="a11fe09f62267349a78247a047c9a714a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11fe09f62267349a78247a047c9a714a">&#9670;&#160;</a></span>setColors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a>&lt; T, Options, E &gt;::setColors </td>
+          <td>(</td>
+          <td class="paramtype">const cv::viz::Color &amp;</td>          <td class="paramname"><span class="paramname"><em>positive</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::viz::Color &amp;</td>          <td class="paramname"><span class="paramname"><em>negative</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const cv::viz::Color &amp;</td>          <td class="paramname"><span class="paramname"><em>reset</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set colors for ON, OFF, and non-activated pixels. For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">positive</td><td>Color for ON pixels </td></tr>
+    <tr><td class="paramname">negative</td><td>Color for OFF pixels </td></tr>
+    <tr><td class="paramname">reset</td><td>Color for non-activated pixels </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>cv::viz::Color inherits from cv::Scalar_&lt;double&gt;. Color are defined as BGR with values between 0 and 255. </dd></dl>
 
 </div>
 </div>
