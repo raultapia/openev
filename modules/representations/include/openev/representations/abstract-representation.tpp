@@ -21,15 +21,13 @@ void AbstractRepresentation_<T, Options, E>::clear(const cv::Mat &background) {
 
   if(background.channels() != TypeHelper<T>::NumChannels) {
     cv::Mat temp;
-    if (background.channels() == 1 && TypeHelper<T>::NumChannels == 3) {
+    if(background.channels() == 1 && TypeHelper<T>::NumChannels == 3) {
       cv::cvtColor(background, temp, cv::COLOR_GRAY2BGR);
-    }
-    else if (background.channels() == 3 && TypeHelper<T>::NumChannels == 1) {
+    } else if(background.channels() == 3 && TypeHelper<T>::NumChannels == 1) {
       cv::cvtColor(background, temp, cv::COLOR_BGR2GRAY);
     }
     clear_(temp);
-  }
-  else{
+  } else {
     clear_(background);
   }
 }

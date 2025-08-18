@@ -15,7 +15,7 @@ public:
   using cv::Mat_<Tm>::Mat_;
 
   template <typename T>
-  inline Tm insert(const Event_<T>& e) {
+  inline Tm insert(const Event_<T> &e) {
     return set(e.x, e.y);
   }
 
@@ -33,7 +33,7 @@ private:
 
   template <typename T>
   inline Tm set(const T x, const T y) {
-    if constexpr (std::is_floating_point_v<T>) {
+    if constexpr(std::is_floating_point_v<T>) {
       return *(this->template ptr<Tm>(std::lround(y)) + std::lround(x)) = value_;
     } else {
       return *(this->template ptr<Tm>(y) + x) = value_;
@@ -46,7 +46,7 @@ public:
   using cv::Mat_<double>::Mat_;
 
   template <typename T>
-  inline double insert(const Event_<T>& e) {
+  inline double insert(const Event_<T> &e) {
     return set(e.x, e.y, e.t);
   }
 
@@ -62,7 +62,7 @@ public:
 private:
   template <typename T>
   inline double set(const T x, const T y, const double t) {
-    if constexpr (std::is_floating_point_v<T>) {
+    if constexpr(std::is_floating_point_v<T>) {
       return *(this->ptr<double>(std::lround(y)) + std::lround(x)) = t;
     } else {
       return *(this->ptr<double>(y) + x) = t;
@@ -75,7 +75,7 @@ public:
   using cv::Mat_<bool>::Mat_;
 
   template <typename T>
-  inline bool insert(const Event_<T>& e) {
+  inline bool insert(const Event_<T> &e) {
     return set(e.x, e.y, e.p);
   }
 
@@ -91,7 +91,7 @@ public:
 private:
   template <typename T>
   inline bool set(const T x, const T y, const bool p) {
-    if constexpr (std::is_floating_point_v<T>) {
+    if constexpr(std::is_floating_point_v<T>) {
       return *(this->ptr<bool>(std::lround(y)) + std::lround(x)) = p;
     } else {
       return *(this->ptr<bool>(y) + x) = p;
@@ -104,7 +104,7 @@ public:
   using cv::Mat_<int>::Mat_;
 
   template <typename T>
-  inline int insert(const Event_<T>& e) {
+  inline int insert(const Event_<T> &e) {
     return set(e.x, e.y, e.p);
   }
 
@@ -120,7 +120,7 @@ public:
 private:
   template <typename T>
   inline int set(const T x, const T y, const bool p) {
-    if constexpr (std::is_floating_point_v<T>) {
+    if constexpr(std::is_floating_point_v<T>) {
       return *(this->ptr<int>(std::lround(y)) + std::lround(x)) += (p ? +1 : -1);
     } else {
       return *(this->ptr<int>(y) + x) += (p ? +1 : -1);
