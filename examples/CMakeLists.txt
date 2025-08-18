@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.15.0)
 project(openev-examples)
 set(CMAKE_CXX_STANDARD 17)
-find_package(OpenEV QUIET)
 
 add_executable(example-davis example-davis.cpp)
 target_link_libraries(example-davis openev)

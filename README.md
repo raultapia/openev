@@ -9,12 +9,9 @@ Extending OpenCV to event-based vision
 </p>
 <!-- \endinternal -->
 
-> **Disclaimer** *Hi there! This library is currently under construction. I will be releasing new features as soon as they are ready.*
+> **Disclaimer** _Hi there! This library is currently under construction. I will be releasing new features as soon as they are ready._
 
 ## ⚙️ Installation
-
-> [!CAUTION]
-> `libudev` should be installed manually before installing openev (`sudo apt install libudev-dev`)
 
 ```bash
 git clone https://github.com/raultapia/openev
@@ -26,13 +23,17 @@ sudo make install
 ```
 
 ## 📚 Documentation
+
 The OpenEV documentation can be found [here](https://raultapia.github.io/openev).
 
 ## 🖥️ Usage
+
 See [`examples`](https://github.com/raultapia/openev/tree/main/examples) folder.
 
 ## 📝 License
+
 Distributed under the GPLv3 License. See [`LICENSE`](https://github.com/raultapia/openev/tree/main/LICENSE) for more information.
 
 ## 📬 Contact
+
 [Raul Tapia](https://raultapia.com) - raultapia@us.es

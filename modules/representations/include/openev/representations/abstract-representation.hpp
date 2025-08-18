@@ -17,12 +17,9 @@
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/matx.hpp>
 #include <opencv2/core/traits.hpp>
+#include <opencv2/viz/types.hpp>
 #include <stdint.h>
 #include <type_traits>
-
-#if OE_HAVE_VIZ
-#include <opencv2/viz/types.hpp>
-#endif
 
 namespace ev {
 
@@ -84,7 +81,6 @@ public:
     }
   }
 
-#if OE_HAVE_VIZ
   static constexpr Type convert(const cv::viz::Color &color) {
     if constexpr(NumChannels == 1) {
       return color[0];
@@ -108,7 +104,6 @@ public:
       return ret;
     }
   }
-#endif
 };
 /*! \endcond */
 
@@ -239,7 +234,6 @@ public:
     this->clear();
   }
 
-#if OE_HAVE_VIZ
   /*!
   \brief Set colors for ON and OFF pixels. For more information, please refer <a href="https://docs.opencv.org/master/d4/dba/classcv_1_1viz_1_1Color.html">here</a>.
   \param polarity Positive (ON) or negative (OFF)
@@ -269,7 +263,6 @@ public:
   inline void setColors(const cv::viz::Color &positive, const cv::viz::Color &negative, const cv::viz::Color &reset) {
     setValues(TypeHelper<T>::convert(positive), TypeHelper<T>::convert(negative), TypeHelper<T>::convert(reset));
   }
-#endif
 
   /*!
   \brief Set colormap for the representation.

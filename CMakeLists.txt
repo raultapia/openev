@@ -6,134 +6,49 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Macros
-macro(set_flag var condition)
-  if(${condition})
-    set(${var} 1)
-  else()
-    set(${var} 0)
-  endif()
-endmacro()
-
-# Git submodules
-if(NOT EXISTS "${PROJECT_SOURCE_DIR}/third-party/libusb/config.h")
-  find_package(Git REQUIRED)
-  execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
-  execute_process(COMMAND ${PROJECT_SOURCE_DIR}/third-party/libusb/autogen.sh WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/third-party/libusb)
-endif()
-
-# Add modules
-option(BUILD_MODULE_ALGORITHMS "Build the algorithms module" ON)
-option(BUILD_MODULE_CONTAINERS "Build the containers module" ON)
-option(BUILD_MODULE_CORE "Build the core module" ON)
-option(BUILD_MODULE_DEVICES "Build the devices module" ON)
-option(BUILD_MODULE_READERS "Build the readers module" ON)
-option(BUILD_MODULE_REPRESENTATIONS "Build the representations module" ON)
-option(BUILD_MODULE_UTILS "Build the utils module" ON)
-option(BUILD_EXAMPLES "Build examples" ON)
-
-if(BUILD_MODULE_REPRESENTATIONS)
-  find_package(
-    OpenCV REQUIRED
-    COMPONENTS core highgui calib3d
-    OPTIONAL_COMPONENTS viz)
-  set_flag(HAVE_VIZ OpenCV_viz_FOUND)
-else()
-  find_package(OpenCV REQUIRED COMPONENTS core highgui calib3d)
-  set(HAVE_VIZ 0)
-endif()
-set_flag(HAVE_MODULE_ALGORITHM BUILD_MODULE_ALGORITHMS)
-set_flag(HAVE_MODULE_CONTAINERS BUILD_MODULE_CONTAINERS)
-set_flag(HAVE_MODULE_CORE BUILD_MODULE_CORE)
-set_flag(HAVE_MODULE_DEVICES BUILD_MODULE_DEVICES)
-set_flag(HAVE_MODULE_READERS BUILD_MODULE_READERS)
-set_flag(HAVE_MODULE_REPRESENTATIONS BUILD_MODULE_REPRESENTATIONS)
-set_flag(HAVE_MODULE_UTILS BUILD_MODULE_UTILS)
-configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_SOURCE_DIR}/include/openev/options.hpp" @ONLY)
-
-if(BUILD_MODULE_ALGORITHMS)
-  add_subdirectory(modules/algorithms)
-endif()
-if(BUILD_MODULE_CONTAINERS)
-  add_subdirectory(modules/containers)
-endif()
-if(BUILD_MODULE_CORE)
-  add_subdirectory(modules/core)
-endif()
-if(BUILD_MODULE_DEVICES)
-  add_subdirectory(modules/devices)
-endif()
-if(BUILD_MODULE_READERS)
-  add_subdirectory(modules/readers)
-endif()
-if(BUILD_MODULE_REPRESENTATIONS)
-  add_subdirectory(modules/representations)
-endif()
-if(BUILD_MODULE_UTILS)
-  add_subdirectory(modules/utils)
-endif()
-
-# Compile
+# Modules
 add_library(openev INTERFACE)
-if(BUILD_MODULE_ALGORITHMS)
-  target_link_libraries(openev INTERFACE oe_algorithms)
-endif()
-if(BUILD_MODULE_CONTAINERS)
-  target_link_libraries(openev INTERFACE oe_containers)
-endif()
-if(BUILD_MODULE_CORE)
-  target_link_libraries(openev INTERFACE oe_core)
-endif()
-if(BUILD_MODULE_DEVICES)
-  target_link_libraries(openev INTERFACE oe_devices)
-endif()
-if(BUILD_MODULE_READERS)
-  target_link_libraries(openev INTERFACE oe_readers)
-endif()
-if(BUILD_MODULE_REPRESENTATIONS)
-  target_link_libraries(openev INTERFACE oe_representations)
-endif()
-if(BUILD_MODULE_UTILS)
-  target_link_libraries(openev INTERFACE oe_utils)
-endif()
+set(OpenEV_LIBRARIES "")
+foreach(
+  MODULE IN
+  ITEMS ALGORITHMS
+        CONTAINERS
+        CORE
+        DEVICES
+        READERS
+        REPRESENTATIONS
+        UTILS)
+  string(TOLOWER "${MODULE}" module)
+  option(BUILD_MODULE_${MODULE} "Build the ${module} module" ON)
+  if(BUILD_MODULE_${MODULE})
+    add_subdirectory(modules/${module})
+    target_link_libraries(openev INTERFACE oe_${module})
+    list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_${module}.so")
+    set(IS_ENABLED_MODULE_${MODULE} 1)
+  else()
+    set(IS_ENABLED_MODULE_${MODULE} 0)
+  endif()
+endforeach()
+configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_SOURCE_DIR}/include/openev/options.hpp" @ONLY)
 target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/openev.hpp;${PROJECT_SOURCE_DIR}/include/openev/options.hpp")
+
+# Examples
+option(BUILD_EXAMPLES "Build the examples" ON)
+if(BUILD_EXAMPLES)
+  add_subdirectory(examples)
+endif()
 
 # Install
 install(
   TARGETS openev
   EXPORT OpenEVTargets
   PUBLIC_HEADER DESTINATION include/openev)
-
 install(
   EXPORT OpenEVTargets
   FILE OpenEVTargets.cmake
   DESTINATION lib/cmake/openev)
-
 include(CMakePackageConfigHelpers)
-set(OpenEV_LIBRARIES "")
-if(BUILD_MODULE_ALGORITHMS)
-  list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_algorithms.so")
-endif()
-if(BUILD_MODULE_CONTAINERS)
-  list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_containers.so")
-endif()
-if(BUILD_MODULE_CORE)
-  list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_core.so")
-endif()
-if(BUILD_MODULE_DEVICES)
-  list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_devices.so")
-  list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/libcaer.so")
-endif()
-if(BUILD_MODULE_READERS)
-  list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_readers.so")
-endif()
-if(BUILD_MODULE_REPRESENTATIONS)
-  list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_representations.so")
-endif()
-if(BUILD_MODULE_UTILS)
-  list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_utils.so")
-endif()
 set(OpenEV_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
 set(OpenEV_LIBRARY_DIRS "${CMAKE_INSTALL_PREFIX}/lib/openev")
 configure_package_config_file("OpenEVConfig.cmake.in" "${PROJECT_BINARY_DIR}/OpenEVConfig.cmake" INSTALL_DESTINATION "lib/cmake/openev")

@@ -7,7 +7,6 @@
 
 namespace ev {
 
-#if OE_HAVE_VIZ
 template <typename T, const RepresentationOptions Options, typename E>
 void PointCloud_<T, Options, E>::visualize(const int t, const double time_scale /*= 1.0*/, const double axis_size /*= 1.0*/, const double point_size /*= 2.0*/) {
   if(points_[static_cast<std::size_t>(ev::POSITIVE)].empty() || points_[static_cast<std::size_t>(ev::NEGATIVE)].empty()) { // FIXME: This should be able to display only positive/negative events
@@ -36,7 +35,6 @@ void PointCloud_<T, Options, E>::visualize(const int t, const double time_scale 
     window_.spin();
   }
 }
-#endif
 
 template <typename T, const RepresentationOptions Options, typename E>
 void PointCloud_<T, Options, E>::clear_() {
@@ -49,10 +47,8 @@ void PointCloud_<T, Options, E>::clear_(const cv::Mat &background) {
   points_[0].clear();
   points_[1].clear();
 
-#if OE_HAVE_VIZ
   cv::viz::WImage3D image_widget(background, background.size());
   window_.showWidget("Image Plane", image_widget, cv::Affine3d(cv::Matx33d::eye(), cv::Vec3d(background.cols / 2.0, background.rows / 2.0, 0)));
-#endif
 }
 
 template <typename T, const RepresentationOptions Options, typename E>
