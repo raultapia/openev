@@ -61,8 +61,8 @@ public:
     EventImage_<T, Options, E>::clear();
   }
 
-  TimeMat time{this->size()};         /*!< Time matrix */
-  PolarityMat polarity{this->size()}; /*!< Polarity matrix */
+  Mat::Time time{this->size()};         /*!< Time matrix */
+  Mat::Polarity polarity{this->size()}; /*!< Polarity matrix */
 
   /*!
   Timesurface matrix is generated from timestamp and polarity matrices.

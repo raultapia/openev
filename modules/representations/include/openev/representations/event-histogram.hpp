@@ -58,7 +58,7 @@ public:
     EventImage_<T, Options, E>::clear();
   }
 
-  CounterMat counter{cv::Mat_<int>(EventImage_<T, Options, E>::size())}; /*!< Event counter */
+  Mat::Counter counter{cv::Mat_<int>(EventImage_<T, Options, E>::size())}; /*!< Event counter */
 
   /*!
   Event histogram matrix is generated from counter matrix.

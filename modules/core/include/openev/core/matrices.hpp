@@ -9,8 +9,9 @@
 #include "openev/core/types.hpp"
 
 namespace ev {
+namespace Mat {
 template <typename Tm = std::uint8_t>
-class BinaryMat : public cv::Mat_<Tm> {
+class Binary : public cv::Mat_<Tm> {
 public:
   using cv::Mat_<Tm>::Mat_;
 
@@ -41,7 +42,7 @@ private:
   }
 };
 
-class TimeMat : public cv::Mat_<double> {
+class Time : public cv::Mat_<double> {
 public:
   using cv::Mat_<double>::Mat_;
 
@@ -70,7 +71,7 @@ private:
   }
 };
 
-class PolarityMat : public cv::Mat_<bool> {
+class Polarity : public cv::Mat_<bool> {
 public:
   using cv::Mat_<bool>::Mat_;
 
@@ -99,7 +100,7 @@ private:
   }
 };
 
-class CounterMat : public cv::Mat_<int> {
+class Counter : public cv::Mat_<int> {
 public:
   using cv::Mat_<int>::Mat_;
 
@@ -127,7 +128,7 @@ private:
     }
   }
 };
-
+} // namespace Mat
 } // namespace ev
 
 #endif
