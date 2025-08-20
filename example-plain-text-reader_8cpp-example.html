@@ -117,49 +117,53 @@ $(function(){initNavTree('example-plain-text-reader_8cpp-example.html',''); init
 <div class="contents">
 <p>This is an example of how to use the Davis class.</p>
 <div class="fragment"><div class="line"></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">openev/core/types.hpp</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="plain-text-reader_8hpp.html">openev/readers/plain-text-reader.hpp</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="openev_8hpp.html">openev/openev.hpp</a>&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">void</span> create_file(<span class="keyword">const</span> std::string &amp;filename) {</div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> create_file(<span class="keyword">const</span> std::string &amp;filename) {</div>
 <div class="line">  std::ofstream outputFile(filename);</div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">if</span>(!outputFile.is_open()) {</div>
-<div class="line">    std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to open &quot;</span> &lt;&lt; filename &lt;&lt; std::endl;</div>
+<div class="line">    std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to open &quot;</span> &lt;&lt; filename &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line">    <span class="keywordflow">return</span>;</div>
-<div class="line">  } <span class="keywordflow">else</span> {</div>
-<div class="line">    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt;= 9; i++) {</div>
-<div class="line">      outputFile &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i % 2 &lt;&lt; std::endl;</div>
-<div class="line">    }</div>
-<div class="line">    outputFile.close();</div>
-<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;File &quot;</span> &lt;&lt; filename &lt;&lt; <span class="stringliteral">&quot; created successfully.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt;= 9; i++) {</div>
+<div class="line">    outputFile &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; i % 2 &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  outputFile.close();</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;File &quot;</span> &lt;&lt; filename &lt;&lt; <span class="stringliteral">&quot; created successfully.&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">bool</span> delete_file(<span class="keyword">const</span> std::string &amp;filename) {</div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">bool</span> delete_file(<span class="keyword">const</span> std::string &amp;filename) {</div>
 <div class="line">  <span class="keywordflow">if</span>(std::remove(filename.c_str()) != 0) {</div>
-<div class="line">    std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to delete &quot;</span> &lt;&lt; filename &lt;&lt; std::endl;</div>
+<div class="line">    std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to delete &quot;</span> &lt;&lt; filename &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line">    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line">  } <span class="keywordflow">else</span> {</div>
-<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;File &quot;</span> &lt;&lt; filename &lt;&lt; <span class="stringliteral">&quot; deleted successfully.&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line">    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">  }</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;File &quot;</span> &lt;&lt; filename &lt;&lt; <span class="stringliteral">&quot; deleted successfully.&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keyword">const</span> <span class="keywordtype">char</span> *argv[]) {</div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> <span class="comment">/*argc*/</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="comment">/*argv*/</span>[]) {</div>
 <div class="line">  create_file(<span class="stringliteral">&quot;test.txt&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line">  <a id="_a0" name="_a0"></a><a class="code hl_class" href="classev_1_1PlainTextReader.html">ev::PlainTextReader</a> reader(<span class="stringliteral">&quot;test.txt&quot;</span>);</div>
 <div class="line">  <a class="code hl_typedef" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a> e;</div>
 <div class="line">  <span class="keywordflow">while</span>(reader.next(e)) {</div>
-<div class="line">    std::cout &lt;&lt; e &lt;&lt; std::endl;</div>
+<div class="line">    std::cout &lt;&lt; e &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  delete_file(<span class="stringliteral">&quot;test.txt&quot;</span>);</div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassev_1_1PlainTextReader_html"><div class="ttname"><a href="classev_1_1PlainTextReader.html">ev::PlainTextReader</a></div><div class="ttdoc">This class extends AbstractReader_ to read dataset in plain text format.</div><div class="ttdef"><b>Definition</b> plain-text-reader.hpp:27</div></div>
-<div class="ttc" id="aopenev_8hpp_html"><div class="ttname"><a href="openev_8hpp.html">openev.hpp</a></div><div class="ttdoc">Include all the OpenEV modules.</div></div>
-<div class="ttc" id="atypes_8hpp_html_af245e3e3c0d2581ac19f5a39fb34dc3f"><div class="ttname"><a href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a></div><div class="ttdeci">Eventi Event</div><div class="ttdef"><b>Definition</b> types.hpp:242</div></div>
+<div class="ttc" id="aclassev_1_1PlainTextReader_html"><div class="ttname"><a href="classev_1_1PlainTextReader.html">ev::PlainTextReader</a></div><div class="ttdoc">This class extends AbstractReader_ to read dataset in plain text format.</div><div class="ttdef"><b>Definition</b> plain-text-reader.hpp:29</div></div>
+<div class="ttc" id="aplain-text-reader_8hpp_html"><div class="ttname"><a href="plain-text-reader_8hpp.html">plain-text-reader.hpp</a></div><div class="ttdoc">Plain text reader.</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
+<div class="ttc" id="atypes_8hpp_html_af245e3e3c0d2581ac19f5a39fb34dc3f"><div class="ttname"><a href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a></div><div class="ttdeci">Eventi Event</div><div class="ttdef"><b>Definition</b> types.hpp:244</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -29,6 +29,6 @@ var searchData=
   ['contains_26',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a4d2384e4c8a2a7972566ed2f32181acb',1,'ev::PointCloud_::contains()']]],
   ['core_2ehpp_27',['core.hpp',['../core_8hpp.html',1,'']]],
   ['count_28',['count',['../classev_1_1AbstractReader__.html#ab0ff8f66fecf9da41984df80e85ac49a',1,'ev::AbstractReader_::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
-  ['counter_29',['counter',['../classev_1_1EventHistogram__.html#ab8e03eb146b04ef50bff8eaf827687a5',1,'ev::EventHistogram_']]],
-  ['countermat_30',['CounterMat',['../classev_1_1CounterMat.html',1,'ev']]]
+  ['counter_29',['Counter',['../classev_1_1Mat_1_1Counter.html',1,'ev::Mat']]],
+  ['counter_30',['counter',['../classev_1_1EventHistogram__.html#a7023954b751f89fa7466fd5036cedd3a',1,'ev::EventHistogram_']]]
 ];

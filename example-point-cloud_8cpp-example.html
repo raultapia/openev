@@ -117,9 +117,14 @@ $(function(){initNavTree('example-point-cloud_8cpp-example.html',''); initResiza
 <div class="contents">
 <p>This is an example of how to use the PointCloud_&lt;T&gt; class.</p>
 <div class="fragment"><div class="line"></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="openev_8hpp.html">openev/openev.hpp</a>&gt;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keyword">const</span> <span class="keywordtype">char</span> *argv[]) {</div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">openev/core/types.hpp</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="point-cloud_8hpp.html">openev/representations/point-cloud.hpp</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;opencv2/core/mat.inl.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;opencv2/core/traits.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> <span class="comment">/*argc*/</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="comment">/*argv*/</span>[]) {</div>
 <div class="line">  <a class="code hl_typedef" href="point-cloud_8hpp.html#a80f3ab644ff9f5c066c639b0cd3fb52c">ev::PointCloud</a> pointcloud;</div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordtype">int</span> row = 0;</div>
@@ -128,17 +133,26 @@ $(function(){initNavTree('example-point-cloud_8cpp-example.html',''); initResiza
 <div class="line">  <span class="keywordtype">int</span> offset = 0;</div>
 <div class="line">  <span class="keywordtype">double</span> t = 0;</div>
 <div class="line"> </div>
+<div class="line">  <span class="comment">// Initialize random number generator</span></div>
+<div class="line">  std::random_device rd;</div>
+<div class="line">  std::mt19937 gen(rd());</div>
+<div class="line">  std::uniform_int_distribution&lt;int&gt; dist(0, 1);</div>
+<div class="line"> </div>
 <div class="line">  <span class="keywordflow">while</span>(offset &lt; 30) {</div>
 <div class="line">    t += 0.1;</div>
-<div class="line">    pointcloud.<a id="a0" name="a0"></a><a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#a4f690000c92b20731f0013282b8767d9">insert</a>(<a class="code hl_typedef" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a>(col, row, t, (rand() % 2) ? <a class="code hl_variable" href="types_8hpp.html#a20fde2a7fa1be910a10a635a76b810d5">ev::POSITIVE</a> : <a class="code hl_variable" href="types_8hpp.html#ac5f8f340186c5d0047aa4ed573f4e2c6">ev::NEGATIVE</a>));</div>
+<div class="line">    pointcloud.<a id="a0" name="a0"></a><a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#a4f690000c92b20731f0013282b8767d9">insert</a>(<a class="code hl_typedef" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a>(col, row, t, <span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span>(dist(gen)) ? <a class="code hl_variable" href="types_8hpp.html#a20fde2a7fa1be910a10a635a76b810d5">ev::POSITIVE</a> : <a class="code hl_variable" href="types_8hpp.html#ac5f8f340186c5d0047aa4ed573f4e2c6">ev::NEGATIVE</a>));</div>
 <div class="line">    <span class="keywordflow">switch</span>(direction) {</div>
 <div class="line">    <span class="keywordflow">case</span> 0:</div>
 <div class="line">      col++;</div>
-<div class="line">      <span class="keywordflow">if</span>(col &gt;= 50 - offset) direction++;</div>
+<div class="line">      <span class="keywordflow">if</span>(col &gt;= 50 - offset) {</div>
+<div class="line">        direction++;</div>
+<div class="line">      }</div>
 <div class="line">      <span class="keywordflow">break</span>;</div>
 <div class="line">    <span class="keywordflow">case</span> 1:</div>
 <div class="line">      row++;</div>
-<div class="line">      <span class="keywordflow">if</span>(row &gt;= 50 - offset) direction++;</div>
+<div class="line">      <span class="keywordflow">if</span>(row &gt;= 50 - offset) {</div>
+<div class="line">        direction++;</div>
+<div class="line">      }</div>
 <div class="line">      <span class="keywordflow">break</span>;</div>
 <div class="line">    <span class="keywordflow">case</span> 2:</div>
 <div class="line">      col--;</div>
@@ -149,7 +163,11 @@ $(function(){initNavTree('example-point-cloud_8cpp-example.html',''); initResiza
 <div class="line">      <span class="keywordflow">break</span>;</div>
 <div class="line">    <span class="keywordflow">case</span> 3:</div>
 <div class="line">      row--;</div>
-<div class="line">      <span class="keywordflow">if</span>(row &lt;= offset) direction = 0;</div>
+<div class="line">      <span class="keywordflow">if</span>(row &lt;= offset) {</div>
+<div class="line">        direction = 0;</div>
+<div class="line">      }</div>
+<div class="line">    <span class="keywordflow">default</span>:</div>
+<div class="line">      <span class="keywordflow">break</span>;</div>
 <div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line">  pointcloud.<a id="a1" name="a1"></a><a class="code hl_function" href="classev_1_1PointCloud__.html#a1ec133c13e39b21cf2e4958408938838">visualize</a>(0, 0.4);</div>
@@ -157,11 +175,12 @@ $(function(){initNavTree('example-point-cloud_8cpp-example.html',''); initResiza
 <div class="line">}</div>
 <div class="ttc" id="aclassev_1_1AbstractRepresentation___html_a4f690000c92b20731f0013282b8767d9"><div class="ttname"><a href="classev_1_1AbstractRepresentation__.html#a4f690000c92b20731f0013282b8767d9">ev::AbstractRepresentation_::insert</a></div><div class="ttdeci">bool insert(const Event_&lt; E &gt; &amp;e)</div><div class="ttdoc">Insert one event in the representation.</div></div>
 <div class="ttc" id="aclassev_1_1PointCloud___html_a1ec133c13e39b21cf2e4958408938838"><div class="ttname"><a href="classev_1_1PointCloud__.html#a1ec133c13e39b21cf2e4958408938838">ev::PointCloud_::visualize</a></div><div class="ttdeci">void visualize(const int t, const double time_scale=1.0, const double axis_size=1.0, const double point_size=2.0)</div><div class="ttdoc">Visualize point cloud.</div></div>
-<div class="ttc" id="aopenev_8hpp_html"><div class="ttname"><a href="openev_8hpp.html">openev.hpp</a></div><div class="ttdoc">Include all the OpenEV modules.</div></div>
-<div class="ttc" id="apoint-cloud_8hpp_html_a80f3ab644ff9f5c066c639b0cd3fb52c"><div class="ttname"><a href="point-cloud_8hpp.html#a80f3ab644ff9f5c066c639b0cd3fb52c">ev::PointCloud</a></div><div class="ttdeci">PointCloud1 PointCloud</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:84</div></div>
-<div class="ttc" id="atypes_8hpp_html_a20fde2a7fa1be910a10a635a76b810d5"><div class="ttname"><a href="types_8hpp.html#a20fde2a7fa1be910a10a635a76b810d5">ev::POSITIVE</a></div><div class="ttdeci">constexpr bool POSITIVE</div><div class="ttdef"><b>Definition</b> types.hpp:25</div></div>
-<div class="ttc" id="atypes_8hpp_html_ac5f8f340186c5d0047aa4ed573f4e2c6"><div class="ttname"><a href="types_8hpp.html#ac5f8f340186c5d0047aa4ed573f4e2c6">ev::NEGATIVE</a></div><div class="ttdeci">constexpr bool NEGATIVE</div><div class="ttdef"><b>Definition</b> types.hpp:26</div></div>
-<div class="ttc" id="atypes_8hpp_html_af245e3e3c0d2581ac19f5a39fb34dc3f"><div class="ttname"><a href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a></div><div class="ttdeci">Eventi Event</div><div class="ttdef"><b>Definition</b> types.hpp:242</div></div>
+<div class="ttc" id="apoint-cloud_8hpp_html"><div class="ttname"><a href="point-cloud_8hpp.html">point-cloud.hpp</a></div><div class="ttdoc">Point cloud of events.</div></div>
+<div class="ttc" id="apoint-cloud_8hpp_html_a80f3ab644ff9f5c066c639b0cd3fb52c"><div class="ttname"><a href="point-cloud_8hpp.html#a80f3ab644ff9f5c066c639b0cd3fb52c">ev::PointCloud</a></div><div class="ttdeci">PointCloud1 PointCloud</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:93</div></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
+<div class="ttc" id="atypes_8hpp_html_a20fde2a7fa1be910a10a635a76b810d5"><div class="ttname"><a href="types_8hpp.html#a20fde2a7fa1be910a10a635a76b810d5">ev::POSITIVE</a></div><div class="ttdeci">constexpr bool POSITIVE</div><div class="ttdef"><b>Definition</b> types.hpp:27</div></div>
+<div class="ttc" id="atypes_8hpp_html_ac5f8f340186c5d0047aa4ed573f4e2c6"><div class="ttname"><a href="types_8hpp.html#ac5f8f340186c5d0047aa4ed573f4e2c6">ev::NEGATIVE</a></div><div class="ttdeci">constexpr bool NEGATIVE</div><div class="ttdef"><b>Definition</b> types.hpp:28</div></div>
+<div class="ttc" id="atypes_8hpp_html_af245e3e3c0d2581ac19f5a39fb34dc3f"><div class="ttname"><a href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a></div><div class="ttdeci">Eventi Event</div><div class="ttdef"><b>Definition</b> types.hpp:244</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

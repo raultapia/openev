@@ -14,5 +14,5 @@ var searchData=
   ['pointcloud_5f_3c_20short_20_3e_11',['PointCloud_&lt; short &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
   ['pointcloud_5f_3c_20uchar_20_3e_12',['PointCloud_&lt; uchar &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
   ['pointcloud_5f_3c_20ushort_20_3e_13',['PointCloud_&lt; ushort &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['polaritymat_14',['PolarityMat',['../classev_1_1PolarityMat.html',1,'ev']]]
+  ['polarity_14',['Polarity',['../classev_1_1Mat_1_1Polarity.html',1,'ev::Mat']]]
 ];

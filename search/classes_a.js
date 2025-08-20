@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['timemat_0',['TimeMat',['../classev_1_1TimeMat.html',1,'ev']]],
+  ['time_0',['Time',['../classev_1_1Mat_1_1Time.html',1,'ev::Mat']]],
   ['timesurface_5f_1',['TimeSurface_',['../classev_1_1TimeSurface__.html',1,'ev']]],
   ['timesurface_5f_3c_20cv_3a_3avec2b_20_3e_2',['TimeSurface_&lt; cv::Vec2b &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
   ['timesurface_5f_3c_20cv_3a_3avec2d_20_3e_3',['TimeSurface_&lt; cv::Vec2d &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
