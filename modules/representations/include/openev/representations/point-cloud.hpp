@@ -10,13 +10,22 @@
 #include "openev/options.hpp"
 #include "openev/representations/abstract-representation.hpp"
 #include <array>
+#include <iterator>
 #include <opencv2/core/hal/interface.h>
 #include <opencv2/core/matx.hpp>
 #include <opencv2/core/types.hpp>
 #include <opencv2/viz/viz3d.hpp>
+#include <string>
 #include <vector>
 
+namespace cv {
+class Mat;
+} // namespace cv
+
 namespace ev {
+template <typename T>
+class Event_;
+
 /*!
 \brief This class is used to represent events as point clouds.
 

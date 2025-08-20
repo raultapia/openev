@@ -9,8 +9,8 @@
 #include "openev/devices/abstract-camera.hpp"
 #include "openev/utils/logger.hpp"
 #include <array>
+#include <cstdlib>
 #include <cstring>
-#include <iosfwd>
 #include <libcaer/devices/davis.h>
 #include <libcaer/devices/device.h>
 #include <libcaer/devices/usb.h>
@@ -22,8 +22,11 @@
 #include <opencv2/core/hal/interface.h>
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/mat.inl.hpp>
+#include <opencv2/core/saturate.hpp>
 #include <opencv2/core/types.hpp>
-#include <stdint.h>
+#include <queue>
+#include <type_traits>
+#include <version>
 
 ev::Davis::Davis() {
   deviceHandler_ = caerDeviceOpen(0, CAER_DEVICE_DAVIS, 0, 0, "");
@@ -46,13 +49,13 @@ ev::Davis::Davis() {
 }
 
 void ev::Davis::init() {
-  std::array<uint32_t, 5> enable;
-  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, &enable[0]);
+  std::array<uint32_t, 5> enable{};
+  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, enable.data());
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_RUN, &enable[1]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_ACCELEROMETER, &enable[2]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, &enable[3]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, &enable[4]);
-  enable[2] = enable[2] && enable[3] && enable[4];
+  enable[2] = static_cast<uint32_t>(static_cast<bool>(enable[2]) && static_cast<bool>(enable[3]) && static_cast<bool>(enable[4]));
 
   caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
   caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_DATAEXCHANGE, CAER_HOST_CONFIG_DATAEXCHANGE_BLOCKING, 1U);
@@ -247,7 +250,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
 
           const int32_t x = caerFrameEventGetLengthX(p);
           const int32_t y = caerFrameEventGetLengthY(p);
-          cv::Mat m16(y, x, CV_16UC1);
+          const cv::Mat m16(y, x, CV_16UC1);
           std::memcpy(m16.data, p->pixels, sizeof(uint16_t) * y * x);
           m16.convertTo(mat, CV_8UC1, ev::SCALE_16B_8B);
 
@@ -291,6 +294,9 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
         }
         break;
       }
+
+    default:
+      break;
     }
   }
 }

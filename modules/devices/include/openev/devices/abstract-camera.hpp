@@ -11,6 +11,7 @@
 #include <atomic>
 #include <math.h>
 #include <opencv2/core/mat.hpp>
+#include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/types.hpp>
 #include <ostream>
 #include <queue>

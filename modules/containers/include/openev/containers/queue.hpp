@@ -10,6 +10,7 @@
 #include "openev/containers/vector.hpp"
 #include "openev/core/types.hpp"
 #include <cstddef>
+#include <opencv2/core/types.hpp>
 #include <queue>
 #include <utility>
 

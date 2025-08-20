@@ -7,8 +7,18 @@
 #define OPENEV_CORE_MATRICES_HPP
 
 #include "openev/core/types.hpp"
+#include <cmath>
+#include <cstdint>
+#include <limits>
+#include <opencv2/core/mat.hpp>
+#include <opencv2/core/mat.inl.hpp>
+#include <opencv2/core/traits.hpp>
+#include <type_traits>
 
 namespace ev {
+template <typename T>
+class Event_;
+
 namespace Mat {
 template <typename Tm = std::uint8_t>
 class Binary : public cv::Mat_<Tm> {

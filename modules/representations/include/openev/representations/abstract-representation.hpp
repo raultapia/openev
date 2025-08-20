@@ -11,17 +11,30 @@
 #include "openev/containers/vector.hpp"
 #include "openev/core/types.hpp"
 #include "openev/options.hpp"
+#include "openev/utils/logger.hpp"
 #include <array>
 #include <cstddef>
 #include <float.h>
+#include <memory>
+#include <opencv2/core/hal/interface.h>
 #include <opencv2/core/mat.hpp>
+#include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/matx.hpp>
 #include <opencv2/core/traits.hpp>
+#include <opencv2/imgproc.hpp>
 #include <opencv2/viz/types.hpp>
 #include <stdint.h>
 #include <type_traits>
 
 namespace ev {
+template <typename T, std::size_t N>
+class Array_;
+template <typename T>
+class Event_;
+template <typename T>
+class Queue_;
+template <typename T>
+class Vector_;
 
 enum RepresentationOptions : uint8_t {
   NONE = 0b00000000,
@@ -275,7 +288,8 @@ public:
     } else {
       colormap_ = std::make_unique<cv::ColormapTypes>(cm);
 
-      cv::Mat aux1 = (cv::Mat_<uchar>(1, 3) << 0, 128, 255);
+      constexpr std::array<uchar, 3> aux1_data = {0, 128, 255};
+      cv::Mat aux1(1, 3, CV_8UC1, const_cast<uchar *>(aux1_data.data()));
       cv::Mat aux3;
       cv::applyColorMap(aux1, aux3, *colormap_);
 

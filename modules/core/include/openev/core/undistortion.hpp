@@ -7,11 +7,14 @@
 #define OPENEV_CORE_UNDISTORTION_HPP
 
 #include "openev/utils/logger.hpp"
+#include <algorithm>
+#include <array>
 #include <cstddef>
 #include <opencv2/calib3d.hpp>
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/matx.hpp>
+#include <opencv2/core/traits.hpp>
 #include <opencv2/core/types.hpp>
 #include <opencv2/imgproc.hpp>
 #include <stdint.h>

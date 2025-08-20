@@ -12,6 +12,7 @@
 #include <opencv2/core.hpp>
 #include <opencv2/core/hal/interface.h>
 #include <opencv2/core/mat.inl.hpp>
+#include <opencv2/core/saturate.hpp>
 #include <opencv2/core/traits.hpp>
 #include <opencv2/imgproc.hpp>
 #include <utility>
@@ -34,19 +35,19 @@ ev::UndistortMap::UndistortMap(const cv::Mat &cam_matrix, const cv::Mat &dist_co
 
 ev::UndistortMap::UndistortMap(const std::vector<double> &intrinsics, const std::vector<double> &dist_coeff, const cv::Size &sz) {
   ev::logger::error("UndistortMap: Intrinsic parameters size should be 4: fx, fy, cx, cy", intrinsics.size() == 4);
-  ev::logger::error("UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == 4 || dist_coeff.size() == 5 || dist_coeff.size() == 8 || dist_coeff.size() == 12 || dist_coeff.size() == 14 || dist_coeff.size() == 0);
+  ev::logger::error("UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == 4 || dist_coeff.size() == 5 || dist_coeff.size() == 8 || dist_coeff.size() == 12 || dist_coeff.size() == 14 || dist_coeff.empty());
   std::vector<double> d;
   std::copy(dist_coeff.begin(), dist_coeff.end(), std::back_inserter(d));
-  init((cv::Mat_<double>(3, 3) << intrinsics[0], 0.0, intrinsics[2], 0.0, intrinsics[1], intrinsics[3], 0.0, 0.0, 1.0), cv::Mat(cv::Size(1, d.size()), CV_64F, d.data()), sz);
+  init((cv::Mat_<double>(3, 3) << intrinsics[0], 0.0, intrinsics[2], 0.0, intrinsics[1], intrinsics[3], 0.0, 0.0, 1.0), cv::Mat(cv::Size(1, static_cast<int>(d.size())), CV_64F, d.data()), sz);
 }
 
-inline void draw_center(cv::Mat &m) {
-  cv::line(m, cv::Point(0.45 * m.cols, m.rows / 2), cv::Point(0.55 * m.cols, m.rows / 2), {255, 255, 255}, 1);
-  cv::line(m, cv::Point(m.cols / 2, 0.45 * m.rows), cv::Point(m.cols / 2, 0.55 * m.rows), {255, 255, 255}, 1);
+static inline void draw_center(cv::Mat &m) {
+  cv::line(m, cv::Point(static_cast<int>(0.45 * m.cols), m.rows / 2), cv::Point(static_cast<int>(0.55 * m.cols), m.rows / 2), {255, 255, 255}, 1);
+  cv::line(m, cv::Point(m.cols / 2, static_cast<int>(0.45 * m.rows)), cv::Point(m.cols / 2, static_cast<int>(0.55 * m.rows)), {255, 255, 255}, 1);
 }
 
 void ev::UndistortMap::init(const cv::Mat &cam_matrix, const cv::Mat &dist_coeff, const cv::Size &sz) {
-  std::vector<cv::Point_<double>> points_src(sz.width * sz.height);
+  std::vector<cv::Point_<double>> points_src(static_cast<std::size_t>(sz.width * sz.height));
   std::vector<cv::Point_<double>> points_dst;
 
   std::generate(points_src.begin(), points_src.end(), [sz, x = -1.0, y = 0.0]() mutable {
@@ -72,7 +73,7 @@ void ev::UndistortMap::init(const cv::Mat &cam_matrix, const cv::Mat &dist_coeff
 
     for(int r = 0; r < cv::Mat_<cv::Point_<double>>::size().height; r++) {
       for(int c = 0; c < cv::Mat_<cv::Point_<double>>::size().width; c++) {
-        viz32FC1.at<float>(r, c) = pow(cv::norm(cv::Point_<double>(c, r) - cv::Mat_<cv::Point_<double>>::at<cv::Point_<double>>(r, c)), 0.5);
+        viz32FC1.at<float>(r, c) = static_cast<float>(sqrt(cv::norm(cv::Point_<double>(c, r) - cv::Mat_<cv::Point_<double>>::at<cv::Point_<double>>(r, c))));
       }
     }
 
@@ -107,12 +108,12 @@ void ev::UndistortMap::init(const cv::Mat &cam_matrix, const cv::Mat &dist_coeff
 
     for(int r = 3; r < cv::Mat_<cv::Point_<double>>::size().height; r += 25) {
       for(int c = 3; c < cv::Mat_<cv::Point_<double>>::size().width; c += 25) {
-        cv::Point_<double> p1(c, r);
+        const cv::Point_<double> p1(c, r);
         cv::Point_<double> p2 = inverse_map.at<cv::Point_<double>>(r, c);
         std::swap(p2.x, p2.y);
         cv::line(viz8UC3, cv::Point(p1), cv::Point(p2), cv::Scalar(rgb_line[2], rgb_line[1], rgb_line[0]));
-        cv::rectangle(viz8UC3, cv::Point(p1.x - 2, p1.y - 2), cv::Point(p1.x + 2, p1.y + 2), cv::Scalar(rgb_p1[2], rgb_p1[1], rgb_p1[0]));
-        cv::rectangle(viz8UC3, cv::Point(p2.x - 2, p2.y - 2), cv::Point(p2.x + 2, p2.y + 2), cv::Scalar(rgb_p2[2], rgb_p2[1], rgb_p2[0]));
+        cv::rectangle(viz8UC3, cv::Point(static_cast<int>(p1.x) - 2, static_cast<int>(p1.y) - 2), cv::Point(static_cast<int>(p1.x) + 2, static_cast<int>(p1.y) + 2), cv::Scalar(rgb_p1[2], rgb_p1[1], rgb_p1[0]));
+        cv::rectangle(viz8UC3, cv::Point(static_cast<int>(p2.x) - 2, static_cast<int>(p2.y) - 2), cv::Point(static_cast<int>(p2.x) + 2, static_cast<int>(p2.y) + 2), cv::Scalar(rgb_p2[2], rgb_p2[1], rgb_p2[0]));
       }
     }
 

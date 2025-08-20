@@ -15,8 +15,10 @@
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/matx.hpp>
 #include <opencv2/core/types.hpp>
+#include <ostream>
 #include <string>
 #include <vector>
+
 namespace ev {
 class UndistortMap;
 }

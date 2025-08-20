@@ -9,7 +9,9 @@
 #include "openev/core/types.hpp"
 #include "openev/readers/abstract-reader.hpp"
 #include <fstream>
+#include <functional>
 #include <regex>
+#include <stdint.h>
 #include <string>
 
 namespace ev {

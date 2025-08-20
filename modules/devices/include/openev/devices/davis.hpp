@@ -9,6 +9,7 @@
 #include "openev/containers/queue.hpp"
 #include "openev/containers/vector.hpp"
 #include "openev/devices/abstract-camera.hpp"
+#include <cstddef>
 #include <stdint.h>
 #include <vector>
 

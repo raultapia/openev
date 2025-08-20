@@ -4,6 +4,7 @@
 \author Raul Tapia
 */
 #include "openev/readers/abstract-reader.hpp"
+#include <vector>
 
 bool ev::AbstractReader_::next_n(ev::Vector &vector, const int n) {
   const std::size_t current_size = vector.size();
@@ -64,7 +65,9 @@ bool ev::AbstractReader_::next_t(ev::Queue &queue, const double t, const bool ke
 
 bool ev::AbstractReader_::skip_n(int n) {
   ev::Event e;
-  while(n-- > 0 && read_(e));
+  while(n-- > 0 && read_(e)) {
+    ;
+  }
   return n < 0;
 }
 

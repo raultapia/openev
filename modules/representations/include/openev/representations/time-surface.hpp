@@ -15,7 +15,14 @@
 #include <opencv2/core/matx.hpp>
 #include <utility>
 
+namespace cv {
+class Mat;
+} // namespace cv
+
 namespace ev {
+template <typename T>
+class Event_;
+
 /*!
 \brief This class extends ev::EventImage_<T> for time surfaces.
 

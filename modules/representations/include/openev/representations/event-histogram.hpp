@@ -16,6 +16,9 @@
 #include <utility>
 
 namespace ev {
+template <typename T>
+class Event_;
+
 /*!
 \brief This class extends ev::EventImage_<T> for event 2D histograms.
 

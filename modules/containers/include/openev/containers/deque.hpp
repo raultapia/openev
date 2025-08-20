@@ -11,6 +11,8 @@
 #include "openev/core/types.hpp"
 #include <cstddef>
 #include <deque>
+#include <numeric>
+#include <opencv2/core/types.hpp>
 #include <utility>
 
 namespace ev {

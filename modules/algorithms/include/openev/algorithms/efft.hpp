@@ -8,10 +8,16 @@
 
 #include "efft/include/efft.hpp"
 #include "openev/core/types.hpp"
+#include <complex>
+#include <eigen3/Eigen/Core>
+#include <opencv2/core/hal/interface.h>
 #include <opencv2/core/mat.hpp>
+#include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/matx.hpp>
 
 namespace ev {
+template <typename T>
+class Event_;
 
 template <unsigned int N>
 class efft : public eFFT<N> {

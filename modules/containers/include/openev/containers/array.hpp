@@ -10,6 +10,7 @@
 #include <array>
 #include <cstddef>
 #include <numeric>
+#include <opencv2/core/types.hpp>
 
 namespace ev {
 /*!

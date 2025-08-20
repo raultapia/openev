@@ -9,6 +9,8 @@
 #include "openev/core/types.hpp"
 #include <boost/circular_buffer.hpp>
 #include <numeric>
+#include <opencv2/core/types.hpp>
+#include <utility>
 
 namespace ev {
 /*!

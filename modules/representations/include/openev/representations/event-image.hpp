@@ -14,6 +14,9 @@
 #include <utility>
 
 namespace ev {
+template <typename T>
+class Event_;
+
 /*!
 \brief This class extends cv::Mat_<T> for event images. For more information, please refer <a href="https://docs.opencv.org/master/d3/d63/classcv_1_1Mat.html">here</a>.
 
