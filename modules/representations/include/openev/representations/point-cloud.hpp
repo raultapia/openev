@@ -6,8 +6,6 @@
 #ifndef OPENEV_REPRESENTATIONS_POINT_CLOUD_HPP
 #define OPENEV_REPRESENTATIONS_POINT_CLOUD_HPP
 
-#include "openev/core/types.hpp"
-#include "openev/options.hpp"
 #include "openev/representations/abstract-representation.hpp"
 #include <array>
 #include <iterator>
@@ -23,8 +21,10 @@ class Mat;
 } // namespace cv
 
 namespace ev {
+/*! \cond INTERNAL */
 template <typename T>
 class Event_;
+/*! \endcond */
 
 /*!
 \brief This class is used to represent events as point clouds.

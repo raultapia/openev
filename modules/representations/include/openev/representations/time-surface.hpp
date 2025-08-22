@@ -7,21 +7,23 @@
 #define OPENEV_REPRESENTATIONS_TIME_SURFACE_HPP
 
 #include "openev/core/matrices.hpp"
-#include "openev/core/types.hpp"
 #include "openev/representations/abstract-representation.hpp"
 #include "openev/representations/event-image.hpp"
 #include <opencv2/core/hal/interface.h>
-#include <opencv2/core/mat.hpp>
 #include <opencv2/core/matx.hpp>
 #include <utility>
 
 namespace cv {
+/*! \cond INTERNAL */
 class Mat;
+/*! \endcond */
 } // namespace cv
 
 namespace ev {
+/*! \cond INTERNAL */
 template <typename T>
 class Event_;
+/*! \endcond */
 
 /*!
 \brief This class extends ev::EventImage_<T> for time surfaces.

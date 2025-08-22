@@ -6,7 +6,6 @@
 #ifndef OPENEV_CORE_TYPES_HPP
 #define OPENEV_CORE_TYPES_HPP
 
-#include "openev/core/undistortion.hpp"
 #include "openev/utils/logger.hpp"
 #include <array>
 #include <cmath>
@@ -20,10 +19,10 @@
 #include <vector>
 
 namespace ev {
+/*! \cond INTERNAL */
 class UndistortMap;
-}
+/*! \endcond */
 
-namespace ev {
 constexpr bool POSITIVE = true;  /*!< Positive polarity */
 constexpr bool NEGATIVE = false; /*!< Negative polarity */
 

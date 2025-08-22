@@ -6,11 +6,6 @@
 #ifndef OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 #define OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 
-#include "openev/containers/array.hpp"
-#include "openev/containers/queue.hpp"
-#include "openev/containers/vector.hpp"
-#include "openev/core/types.hpp"
-#include "openev/options.hpp"
 #include "openev/utils/logger.hpp"
 #include <array>
 #include <cstddef>
@@ -27,6 +22,7 @@
 #include <type_traits>
 
 namespace ev {
+/*! \cond INTERNAL */
 template <typename T, std::size_t N>
 class Array_;
 template <typename T>
@@ -35,6 +31,7 @@ template <typename T>
 class Queue_;
 template <typename T>
 class Vector_;
+/*! \endcond */
 
 enum RepresentationOptions : uint8_t {
   NONE = 0b00000000,

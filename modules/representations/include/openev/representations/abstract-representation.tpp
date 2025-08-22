@@ -5,6 +5,8 @@
 #include "openev/representation/abstract-representation.hpp"
 #endif
 
+#include "openev/core/types.hpp"
+
 namespace ev {
 
 template <typename T, const RepresentationOptions Options, typename E>
@@ -48,7 +50,7 @@ bool AbstractRepresentation_<T, Options, E>::insert(const Event_<E> &e) {
 
   if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::IGNORE_POLARITY)) {
     if constexpr(std::is_floating_point<E>::value) {
-      if(insert_({std::round(e.x), std::round(e.y), e.t + timeOffset_, POSITIVE})) {
+      if(insert_({std::round(e.x), std::round(e.y), e.t + timeOffset_, ev::POSITIVE})) {
         tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
         tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
         count_++;
@@ -56,7 +58,7 @@ bool AbstractRepresentation_<T, Options, E>::insert(const Event_<E> &e) {
       }
       return false;
     } else {
-      if(insert_({e.x, e.y, e.t + timeOffset_, POSITIVE})) {
+      if(insert_({e.x, e.y, e.t + timeOffset_, ev::POSITIVE})) {
         tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
         tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
         count_++;

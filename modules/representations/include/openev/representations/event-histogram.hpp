@@ -7,7 +7,6 @@
 #define OPENEV_REPRESENTATIONS_EVENT_HISTOGRAM_HPP
 
 #include "openev/core/matrices.hpp"
-#include "openev/core/types.hpp"
 #include "openev/representations/abstract-representation.hpp"
 #include "openev/representations/event-image.hpp"
 #include <opencv2/core/hal/interface.h>
@@ -16,8 +15,10 @@
 #include <utility>
 
 namespace ev {
+/*! \cond INTERNAL */
 template <typename T>
 class Event_;
+/*! \endcond */
 
 /*!
 \brief This class extends ev::EventImage_<T> for event 2D histograms.

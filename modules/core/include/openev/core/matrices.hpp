@@ -6,7 +6,6 @@
 #ifndef OPENEV_CORE_MATRICES_HPP
 #define OPENEV_CORE_MATRICES_HPP
 
-#include "openev/core/types.hpp"
 #include <cmath>
 #include <cstdint>
 #include <limits>
@@ -16,8 +15,10 @@
 #include <type_traits>
 
 namespace ev {
+/*! \cond INTERNAL */
 template <typename T>
 class Event_;
+/*! \endcond */
 
 namespace Mat {
 template <typename Tm = std::uint8_t>

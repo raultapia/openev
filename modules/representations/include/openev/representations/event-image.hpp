@@ -6,7 +6,6 @@
 #ifndef OPENEV_REPRESENTATIONS_EVENT_IMAGES_HPP
 #define OPENEV_REPRESENTATIONS_EVENT_IMAGES_HPP
 
-#include "openev/core/types.hpp"
 #include "openev/representations/abstract-representation.hpp"
 #include <opencv2/core/hal/interface.h>
 #include <opencv2/core/mat.hpp>
@@ -14,8 +13,10 @@
 #include <utility>
 
 namespace ev {
+/*! \cond INTERNAL */
 template <typename T>
 class Event_;
+/*! \endcond */
 
 /*!
 \brief This class extends cv::Mat_<T> for event images. For more information, please refer <a href="https://docs.opencv.org/master/d3/d63/classcv_1_1Mat.html">here</a>.

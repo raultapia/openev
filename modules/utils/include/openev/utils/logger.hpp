@@ -7,7 +7,6 @@
 #define OPENEV_UTILS_LOGGER_HPP
 
 #include <iostream>
-#include <memory>
 #include <stdexcept>
 #include <string>
 
