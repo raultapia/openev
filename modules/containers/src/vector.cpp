@@ -41,3 +41,8 @@ template <typename T>
 [[nodiscard]] inline double ev::Vector_<T>::midTime() const {
   return 0.5 * (std::vector<ev::Event_<T>>::front().t + std::vector<ev::Event_<T>>::back().t);
 }
+
+template class ev::Vector_<int>;
+template class ev::Vector_<long>;
+template class ev::Vector_<float>;
+template class ev::Vector_<double>;

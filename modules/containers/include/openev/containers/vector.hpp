@@ -7,16 +7,10 @@
 #define OPENEV_CONTAINERS_VECTOR_HPP
 
 #include "openev/core/types.hpp"
-#include <cstddef>
 #include <opencv2/core/types.hpp>
 #include <vector>
 
 namespace ev {
-/*! \cond INTERNAL */
-template <typename T, std::size_t N>
-class Array_;
-/*! \endcond */
-
 /*!
 \brief This class extends std::vector to implement event vectors. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/vector">here</a>.
 
@@ -27,18 +21,6 @@ class Vector_ : public std::vector<Event_<T>> {
   using std::vector<Event_<T>>::vector;
 
 public:
-  /*! \cond INTERNAL */
-  inline void push_back(const Event_<T> &e) {
-    std::vector<Event_<T>>::push_back(e);
-  }
-
-  template <std::size_t N>
-  inline void push_back(const Array_<T, N> &array) {
-    std::vector<Event_<T>>::reserve(std::vector<Event_<T>>::size() + array.size());
-    std::vector<Event_<T>>::insert(std::vector<Event_<T>>::end(), array.begin(), array.end());
-  }
-  /*! \endcond */
-
   /*!
   \brief Time difference between the last and the first event.
   \return Time difference

@@ -4,6 +4,7 @@
 \author Raul Tapia
 */
 #include "openev/containers/queue.hpp"
+#include <cstddef>
 
 template <typename T>
 [[nodiscard]] inline double ev::Queue_<T>::duration() const {
@@ -16,7 +17,7 @@ template <typename T>
 }
 
 template <typename T>
-[[nodiscard]] ev::Eventd ev::Queue_<T>::mean() const {
+[[nodiscard]] ev::Eventd ev::Queue_<T>::mean() {
   const std::size_t n = std::queue<ev::Event_<T>>::size();
   double x{0};
   double y{0};
@@ -36,7 +37,7 @@ template <typename T>
 }
 
 template <typename T>
-[[nodiscard]] inline cv::Point2d ev::Queue_<T>::meanPoint() const {
+[[nodiscard]] inline cv::Point2d ev::Queue_<T>::meanPoint() {
   const std::size_t n = std::queue<ev::Event_<T>>::size();
   double x{0};
   double y{0};
@@ -52,7 +53,7 @@ template <typename T>
 }
 
 template <typename T>
-[[nodiscard]] inline double ev::Queue_<T>::meanTime() const {
+[[nodiscard]] inline double ev::Queue_<T>::meanTime() {
   const std::size_t n = std::queue<ev::Event_<T>>::size();
   double t{0};
 
@@ -68,3 +69,8 @@ template <typename T>
 [[nodiscard]] inline double ev::Queue_<T>::midTime() const {
   return 0.5 * (std::queue<ev::Event_<T>>::front().t + std::queue<ev::Event_<T>>::back().t);
 }
+
+template class ev::Queue_<int>;
+template class ev::Queue_<long>;
+template class ev::Queue_<float>;
+template class ev::Queue_<double>;

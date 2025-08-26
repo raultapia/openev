@@ -4,6 +4,7 @@
 \author Raul Tapia
 */
 #include "openev/containers/circular.hpp"
+#include <boost/core/pointer_traits.hpp>
 #include <numeric>
 
 template <typename T>
@@ -41,3 +42,8 @@ template <typename T>
 [[nodiscard]] inline double ev::CircularBuffer_<T>::midTime() const {
   return 0.5 * (boost::circular_buffer<ev::Event_<T>>::front().t + boost::circular_buffer<ev::Event_<T>>::back().t);
 }
+
+template class ev::CircularBuffer_<int>;
+template class ev::CircularBuffer_<long>;
+template class ev::CircularBuffer_<float>;
+template class ev::CircularBuffer_<double>;

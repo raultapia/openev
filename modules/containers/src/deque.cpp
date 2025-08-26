@@ -41,3 +41,8 @@ template <typename T>
 [[nodiscard]] inline double ev::Deque_<T>::midTime() const {
   return 0.5 * (std::deque<ev::Event_<T>>::front().t + std::deque<ev::Event_<T>>::back().t);
 }
+
+template class ev::Deque_<int>;
+template class ev::Deque_<long>;
+template class ev::Deque_<float>;
+template class ev::Deque_<double>;

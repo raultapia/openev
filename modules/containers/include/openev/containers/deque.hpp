@@ -7,18 +7,10 @@
 #define OPENEV_CONTAINERS_DEQUE_HPP
 
 #include "openev/core/types.hpp"
-#include <cstddef>
 #include <deque>
 #include <opencv2/core/types.hpp>
 
 namespace ev {
-/*! \cond INTERNAL */
-template <typename T, std::size_t N>
-class Array_;
-template <typename T>
-class Vector_;
-/*! \endcond */
-
 /*!
 \brief This class extends std::deque to implement event deques. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/deque">here</a>.
 
@@ -29,21 +21,6 @@ class Deque_ : public std::deque<Event_<T>> {
   using std::deque<Event_<T>>::deque;
 
 public:
-  /*! \cond INTERNAL */
-  inline void push_back(const Event_<T> &e) {
-    std::deque<Event_<T>>::push_back(e);
-  }
-
-  template <std::size_t N>
-  inline void push_back(const Array_<T, N> &array) {
-    std::deque<Event_<T>>::insert(std::deque<Event_<T>>::end(), array.begin(), array.end());
-  }
-
-  inline void push_back(const Vector_<T> &vector) {
-    std::deque<Event_<T>>::insert(std::deque<Event_<T>>::end(), vector.begin(), vector.end());
-  }
-  /*! \endcond */
-
   /*!
   \brief Time difference between the last and the first event.
   \return Time difference
