@@ -16,6 +16,7 @@ foreach(
         CONTAINERS
         CORE
         DEVICES
+        EVPROC
         READERS
         REPRESENTATIONS
         UTILS)

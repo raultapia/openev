@@ -207,25 +207,6 @@ public:
   }
 
   /*!
-  \brief Bilinear voting.
-  \return Vector of weights
-  */
-  std::array<double, 4> bilinearVoting() const {
-    const double dx = this->x - static_cast<int>(this->x);
-    const double dy = this->y - static_cast<int>(this->y);
-    if(dx == 0 && dy == 0) {
-      return {1, 0, 0, 0};
-    }
-    if(dx == 0) {
-      return {(1 - dy), 0, dy, 0};
-    }
-    if(dy == 0) {
-      return {(1 - dx), dx, 0, 0};
-    }
-    return {(1 - dx) * (1 - dy), dx * (1 - dy), (1 - dx) * dy, dx * dy};
-  }
-
-  /*!
   \brief Overload of << operator.
   \param os Output stream
   \param e Event to print
@@ -262,41 +243,6 @@ public:
   double weight{1};            /*!< Event weight */
   double depth{0};             /*!< Event depth */
   Stereo stereo{Stereo::LEFT}; /*!< Left/right */
-
-  /*!
-  \brief Bilinear voting.
-  \return Vector of events after integer casting
-  */
-  std::vector<AugmentedEvent_<int>> bilinearVoting() const {
-    const double dx = this->x - static_cast<int>(this->x);
-    const double dy = this->y - static_cast<int>(this->y);
-    if(dx == 0 && dy == 0) {
-      return {static_cast<AugmentedEvent_<int>>(*this)};
-    }
-    if(dx == 0) {
-      AugmentedEvent_<int> e1(static_cast<int>(this->x), static_cast<int>(this->y), this->t, this->p);
-      AugmentedEvent_<int> e3(static_cast<int>(this->x), 1 + static_cast<int>(this->y), this->t, this->p);
-      e1.weight = (1 - dy);
-      e3.weight = dy;
-      return {e1, e3};
-    }
-    if(dy == 0) {
-      AugmentedEvent_<int> e1(static_cast<int>(this->x), static_cast<int>(this->y), this->t, this->p);
-      AugmentedEvent_<int> e2(1 + static_cast<int>(this->x), static_cast<int>(this->y), this->t, this->p);
-      e1.weight = (1 - dx);
-      e2.weight = dx;
-      return {e1, e2};
-    }
-    AugmentedEvent_<int> e1(static_cast<int>(this->x), static_cast<int>(this->y), this->t, this->p);
-    AugmentedEvent_<int> e2(1 + static_cast<int>(this->x), static_cast<int>(this->y), this->t, this->p);
-    AugmentedEvent_<int> e3(static_cast<int>(this->x), 1 + static_cast<int>(this->y), this->t, this->p);
-    AugmentedEvent_<int> e4(1 + static_cast<int>(this->x), 1 + static_cast<int>(this->y), this->t, this->p);
-    e1.weight = (1 - dx) * (1 - dy);
-    e2.weight = dx * (1 - dy);
-    e3.weight = (1 - dx) * dy;
-    e4.weight = dx * dy;
-    return {e1, e2, e3, e4};
-  }
 
   /*!
   \brief Overload of << operator.
