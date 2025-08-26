@@ -35,6 +35,9 @@ configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAK
 target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/openev.hpp;${PROJECT_SOURCE_DIR}/include/openev/options.hpp")
 
+# Tests
+enable_testing()
+
 # Examples
 option(BUILD_EXAMPLES "Build the examples" ON)
 if(BUILD_EXAMPLES)

@@ -1,4 +1,3 @@
 build/
 cmake
 .github/assets/*.svg
-**/tests/
