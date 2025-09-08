@@ -167,6 +167,17 @@ TEST(AugmentedEventTest, ConstructorWithXYTPValues) {
   EXPECT_EQ(e2.stereo, ev::Stereo::LEFT);
 }
 
+TEST(AugmentedEventTest, ModifyWeightDepthStereo) {
+  ev::AugmentedEvent_<double> event(1, 2, 3, true);
+  event.weight = 2.5;
+  event.depth = 10.0;
+  event.stereo = ev::Stereo::RIGHT;
+
+  EXPECT_DOUBLE_EQ(event.weight, 2.5);
+  EXPECT_DOUBLE_EQ(event.depth, 10.0);
+  EXPECT_EQ(event.stereo, ev::Stereo::RIGHT);
+}
+
 // Test Size3_ Class
 TEST(Size3Test, ConstructorDefault) {
   ev::Size3_<int> size;
@@ -183,6 +194,12 @@ TEST(Size3Test, ConstructorWithValues) {
 TEST(Size3Test, EmptyMethod) {
   ev::Size3_<int> size(0, 0, 0);
   EXPECT_TRUE(size.empty());
+}
+
+TEST(Size3Test, NegativeDimensions) {
+  ev::Size3_<int> size(-3, 4, 5);
+  EXPECT_EQ(size.length, 5);
+  EXPECT_EQ(size.volume(), -60);
 }
 
 // Test Rect3_ Class
@@ -204,6 +221,12 @@ TEST(Rect3Test, ContainsMethod) {
   EXPECT_FALSE(rect.contains(ev::Event_<int>(4, 4, 4, true)));
 }
 
+TEST(Rect3Test, ZeroDimensions) {
+  ev::Rect3_<int> rect(1, 1, 1, 0, 0, 0);
+  EXPECT_TRUE(rect.empty());
+  EXPECT_FALSE(rect.contains(ev::Event_<int>(1, 1, 1, true)));
+}
+
 // Test Circ_ Class
 TEST(CircTest, ConstructorDefault) {
   ev::Circ_<int> circ;
@@ -221,4 +244,16 @@ TEST(CircTest, ContainsMethod) {
   ev::Circ_<int> circ(cv::Point_<int>(5, 5), 10);
   EXPECT_TRUE(circ.contains(ev::Event_<int>(7, 7, 7, true)));
   EXPECT_FALSE(circ.contains(ev::Event_<int>(20, 20, 20, true)));
+}
+
+TEST(CircTest, ZeroRadius) {
+  ev::Circ_<int> circ(cv::Point_<int>(5, 5), 0);
+  EXPECT_TRUE(circ.empty());
+  EXPECT_FALSE(circ.contains(ev::Event_<int>(5, 5, 5, true)));
+}
+
+TEST(CircTest, NegativeRadius) {
+  ev::Circ_<int> circ(cv::Point_<int>(5, 5), -10);
+  EXPECT_TRUE(circ.empty());
+  EXPECT_FALSE(circ.contains(ev::Event_<int>(5, 5, 5, true)));
 }
