@@ -3,7 +3,7 @@
 \brief Implementation of undistortion.
 \author Raul Tapia
 */
-#include "openev/core/undistortion.hpp"
+#include "openev/evproc/undistortion.hpp"
 #include <algorithm>
 #include <array>
 #include <cmath>
