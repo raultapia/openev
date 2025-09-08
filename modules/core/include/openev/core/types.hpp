@@ -17,10 +17,6 @@
 #include <string>
 
 namespace ev {
-/*! \cond INTERNAL */
-class UndistortMap;
-/*! \endcond */
-
 constexpr bool POSITIVE = true;  /*!< Positive polarity */
 constexpr bool NEGATIVE = false; /*!< Negative polarity */
 
@@ -192,16 +188,6 @@ public:
     }
     logger::error("Bad distance option");
     return 0.0;
-  }
-
-  /*!
-  Undistort event using undistortion map
-  \param map Undistortion map
-  \return True if the new coordinates lie on the frame
-  \see UndistortMap
-  */
-  inline bool undistort(const UndistortMap &map) {
-    return map(*this);
   }
 
   /*!

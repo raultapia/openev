@@ -8,6 +8,5 @@
 
 #include "openev/core/matrices.hpp"
 #include "openev/core/types.hpp"
-#include "openev/core/undistortion.hpp"
 
 #endif // OPENEV_CORE_HPP

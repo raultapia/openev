@@ -3,8 +3,8 @@
 \brief Undistortion utilities.
 \author Raul Tapia
 */
-#ifndef OPENEV_CORE_UNDISTORTION_HPP
-#define OPENEV_CORE_UNDISTORTION_HPP
+#ifndef OPENEV_EVPROC_UNDISTORTION_HPP
+#define OPENEV_EVPROC_UNDISTORTION_HPP
 
 #include "openev/utils/logger.hpp"
 #include <algorithm>
@@ -73,4 +73,4 @@ private:
 
 } // namespace ev
 
-#endif // OPENEV_CORE_UNDISTORTION_HPP
+#endif // OPENEV_EVPROC_UNDISTORTION_HPP
