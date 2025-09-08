@@ -43,13 +43,8 @@ public:
 
   template <typename T>
   inline bool operator()(cv::Point_<T> &p) const {
-    return (p = static_cast<cv::Point_<T>>(cv::Mat_<cv::Point_<double>>::ptr<cv::Point_<double>>(static_cast<int>(p.y))[static_cast<int>(p.x)])).inside(UndistortMap::operator cv::Rect());
-  }
-
-  inline cv::Mat operator()(const cv::Mat &src) {
-    cv::Mat dst;
-    cv::remap(src, dst, cvUndistortionMap_[0], cvUndistortionMap_[1], cv::INTER_LINEAR);
-    return dst;
+    p = static_cast<cv::Point_<T>>(cv::Mat_<cv::Point_<double>>::ptr<cv::Point_<double>>(static_cast<int>(p.y))[static_cast<int>(p.x)]);
+    return p.inside(UndistortMap::operator cv::Rect());
   }
 
   inline void operator()(const cv::Mat &src, cv::Mat &dst) {
