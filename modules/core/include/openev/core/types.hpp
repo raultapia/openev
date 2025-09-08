@@ -7,7 +7,6 @@
 #define OPENEV_CORE_TYPES_HPP
 
 #include "openev/utils/logger.hpp"
-#include <array>
 #include <cmath>
 #include <cstdint>
 #include <iosfwd>
@@ -16,7 +15,6 @@
 #include <opencv2/core/types.hpp>
 #include <ostream>
 #include <string>
-#include <vector>
 
 namespace ev {
 /*! \cond INTERNAL */
