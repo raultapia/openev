@@ -6,6 +6,8 @@
 #ifndef OPENEV_EVPROC_UNDISTORTION_HPP
 #define OPENEV_EVPROC_UNDISTORTION_HPP
 
+#include "openev/containers/array.hpp"
+#include "openev/containers/vector.hpp"
 #include "openev/utils/logger.hpp"
 #include <algorithm>
 #include <array>
@@ -45,6 +47,20 @@ public:
   inline bool operator()(cv::Point_<T> &p) const {
     p = static_cast<cv::Point_<T>>(cv::Mat_<cv::Point_<double>>::ptr<cv::Point_<double>>(static_cast<int>(p.y))[static_cast<int>(p.x)]);
     return p.inside(UndistortMap::operator cv::Rect());
+  }
+
+  template <typename T, std::size_t N>
+  inline void operator()(Array_<T, N> &array) const {
+    for(std::size_t i = 0; i < N; i++) {
+      array[i] = static_cast<cv::Point_<T>>(cv::Mat_<cv::Point_<double>>::ptr<cv::Point_<double>>(static_cast<int>(array[i].y))[static_cast<int>(array[i].x)]);
+    }
+  }
+
+  template <typename T>
+  inline void operator()(Vector_<T> &vector) const {
+    for(std::size_t i = 0; i < vector.size(); i++) {
+      vector[i] = static_cast<cv::Point_<T>>(cv::Mat_<cv::Point_<double>>::ptr<cv::Point_<double>>(static_cast<int>(vector[i].y))[static_cast<int>(vector[i].x)]);
+    }
   }
 
   inline void operator()(const cv::Mat &src, cv::Mat &dst) {
