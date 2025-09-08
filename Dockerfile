@@ -20,4 +20,4 @@ RUN apt -y install libopencv-dev
 COPY . /openev
 WORKDIR /openev
 RUN git submodule init && git submodule update
-RUN rm -rf build && mkdir build && cd build && cmake .. && make
+RUN rm -rf build && mkdir build && cd build && cmake .. && make && make test
