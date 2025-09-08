@@ -7,7 +7,6 @@
 #define OPENEV_CORE_MATRICES_HPP
 
 #include <cmath>
-#include <cstdint>
 #include <limits>
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/mat.inl.hpp>
@@ -21,37 +20,39 @@ class Event_;
 /*! \endcond */
 
 namespace Mat {
-template <typename Tm = std::uint8_t>
-class Binary : public cv::Mat_<Tm> {
+template <typename Tb>
+class Binary_ : public cv::Mat_<Tb> {
 public:
-  using cv::Mat_<Tm>::Mat_;
+  using cv::Mat_<Tb>::Mat_;
 
   template <typename T>
-  inline Tm insert(const Event_<T> &e) {
+  inline Tb insert(const Event_<T> &e) {
     return set(e.x, e.y);
   }
 
   template <typename T>
-  inline Tm emplace(const T x, const T y) {
+  inline Tb emplace(const T x, const T y) {
     return set(x, y);
   }
 
   inline void clear() {
-    cv::Mat_<Tm>::setTo(0);
+    cv::Mat_<Tb>::setTo(0);
   }
 
-private:
-  static constexpr Tm value_ = std::numeric_limits<Tm>::max();
+  static constexpr Tb ON = std::numeric_limits<Tb>::max();
+  static constexpr Tb OFF = static_cast<Tb>(0);
 
+private:
   template <typename T>
-  inline Tm set(const T x, const T y) {
+  inline Tb set(const T x, const T y) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->template ptr<Tm>(std::lround(y)) + std::lround(x)) = value_;
+      return *(this->template ptr<Tb>(std::lround(y)) + std::lround(x)) = ON;
     } else {
-      return *(this->template ptr<Tm>(y) + x) = value_;
+      return *(this->template ptr<Tb>(y) + x) = ON;
     }
   }
 };
+using Binary = Binary_<uchar>;
 
 class Time : public cv::Mat_<double> {
 public:
