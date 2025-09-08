@@ -484,7 +484,7 @@ struct Circ_ {
   \param center Center
   \param radius Radius
   */
-  Circ_(const cv::Point_<T> center, const T radius) : center{center}, radius{radius} {}
+  Circ_(const cv::Point_<T> center, const T radius) : center{center}, radius{std::max(radius, static_cast<T>(0))} {}
 
   /*!
   \brief Check if empty.
@@ -502,7 +502,7 @@ struct Circ_ {
   */
   template <typename Te>
   [[nodiscard]] inline bool contains(const Event_<Te> &e) const {
-    return pow(center.x - e.x, 2) + pow(center.y - e.y, 2) <= radius * radius;
+    return !empty() && pow(center.x - e.x, 2) + pow(center.y - e.y, 2) <= radius * radius;
   }
 
   [[nodiscard]] inline cv::Size size() const {
