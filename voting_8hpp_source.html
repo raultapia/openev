@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: ev::Mat::Binary&lt; Tm &gt; Class Template Reference</title>
+<title>OpenEV: modules/evproc/include/openev/evproc/voting.hpp Source File</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -86,7 +86,7 @@ $(function() { codefold.init(0); });
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('classev_1_1Mat_1_1Binary.html',''); initResizable(true); });
+$(function(){initNavTree('voting_8hpp_source.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -112,42 +112,30 @@ $(function(){initNavTree('classev_1_1Mat_1_1Binary.html',''); initResizable(true
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classev_1_1Mat_1_1Binary-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">ev::Mat::Binary&lt; Tm &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">voting.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Inheritance diagram for ev::Mat::Binary&lt; Tm &gt;:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="classev_1_1Mat_1_1Binary.png" alt=""/>
- </div></div>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:ada26704f1319f74d88edd30b54c97170" id="r_ada26704f1319f74d88edd30b54c97170"><td class="memTemplParams" colspan="2"><a id="ada26704f1319f74d88edd30b54c97170" name="ada26704f1319f74d88edd30b54c97170"></a>
-template&lt;typename T&gt; </td></tr>
-<tr class="memitem:ada26704f1319f74d88edd30b54c97170"><td class="memTemplItemLeft" align="right" valign="top">Tm&#160;</td><td class="memTemplItemRight" valign="bottom"><b>insert</b> (const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;e)</td></tr>
-<tr class="separator:ada26704f1319f74d88edd30b54c97170"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16d7c5d556bb525d5b8d5759d85a681e" id="r_a16d7c5d556bb525d5b8d5759d85a681e"><td class="memTemplParams" colspan="2"><a id="a16d7c5d556bb525d5b8d5759d85a681e" name="a16d7c5d556bb525d5b8d5759d85a681e"></a>
-template&lt;typename T&gt; </td></tr>
-<tr class="memitem:a16d7c5d556bb525d5b8d5759d85a681e"><td class="memTemplItemLeft" align="right" valign="top">Tm&#160;</td><td class="memTemplItemRight" valign="bottom"><b>emplace</b> (const T x, const T y)</td></tr>
-<tr class="separator:a16d7c5d556bb525d5b8d5759d85a681e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4267cfb463b5fe4db8e0e9935cf69122" id="r_a4267cfb463b5fe4db8e0e9935cf69122"><td class="memItemLeft" align="right" valign="top"><a id="a4267cfb463b5fe4db8e0e9935cf69122" name="a4267cfb463b5fe4db8e0e9935cf69122"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>clear</b> ()</td></tr>
-<tr class="separator:a4267cfb463b5fe4db8e0e9935cf69122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>modules/core/include/openev/core/<a class="el" href="matrices_8hpp_source.html">matrices.hpp</a></li>
-</ul>
-</div><!-- contents -->
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef OPENEV_EVPROC_VOTING_HPP</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define OPENEV_EVPROC_VOTING_HPP</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">openev/core/types.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span>ev {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">inline</span> std::array&lt;double, 4&gt; bilinearVoting(<a class="code hl_typedef" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> event);</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">inline</span> std::array&lt;AugmentedEvent, 4&gt; bilinearVoting(<a class="code hl_typedef" href="types_8hpp.html#a82f45c8c44bfad03f5f3922b0cabab71">AugmentedEvent</a> event);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>} <span class="comment">// namespace ev</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_EVPROC_VOTING_HPP</span></div>
+<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
+<div class="ttc" id="atypes_8hpp_html_a82f45c8c44bfad03f5f3922b0cabab71"><div class="ttname"><a href="types_8hpp.html#a82f45c8c44bfad03f5f3922b0cabab71">ev::AugmentedEvent</a></div><div class="ttdeci">AugmentedEventi AugmentedEvent</div><div class="ttdef"><b>Definition</b> types.hpp:249</div></div>
+<div class="ttc" id="atypes_8hpp_html_af245e3e3c0d2581ac19f5a39fb34dc3f"><div class="ttname"><a href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a></div><div class="ttdeci">Eventi Event</div><div class="ttdef"><b>Definition</b> types.hpp:208</div></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>ev</b></li><li class="navelem"><b>Mat</b></li><li class="navelem"><a class="el" href="classev_1_1Mat_1_1Binary.html">Binary</a></li>
+    <li class="navelem"><a class="el" href="dir_e05d7e2b1ecd646af5bb94391405f3b5.html">modules</a></li><li class="navelem"><a class="el" href="dir_7684322034fc8c9a6812a65666f972ab.html">evproc</a></li><li class="navelem"><a class="el" href="dir_6d779596b2173c466e83acd88c871765.html">include</a></li><li class="navelem"><a class="el" href="dir_a88862ed037ede1e2db0c81b11c25f06.html">openev</a></li><li class="navelem"><a class="el" href="dir_0a4fcce32ab696ee1eb074e3c1347617.html">evproc</a></li><li class="navelem"><b>voting.hpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

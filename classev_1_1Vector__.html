@@ -132,19 +132,15 @@ Inheritance diagram for ev::Vector_&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa3c532c17501158430384014d4b7a24a" id="r_aa3c532c17501158430384014d4b7a24a"><td class="memTemplParams" colspan="2">template&lt;std::size_t N&gt; </td></tr>
-<tr class="memitem:aa3c532c17501158430384014d4b7a24a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#aa3c532c17501158430384014d4b7a24a">push_back</a> (const <a class="el" href="classev_1_1Array__.html">Array_</a>&lt; T, N &gt; &amp;array)</td></tr>
-<tr class="memdesc:aa3c532c17501158430384014d4b7a24a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push back elements from an array of events.  <br /></td></tr>
-<tr class="separator:aa3c532c17501158430384014d4b7a24a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fd5ed417e1eeeb27b6bc86c741cb5ff" id="r_a4fd5ed417e1eeeb27b6bc86c741cb5ff"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fd5ed417e1eeeb27b6bc86c741cb5ff">duration</a> () const</td></tr>
 <tr class="memdesc:a4fd5ed417e1eeeb27b6bc86c741cb5ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
 <tr class="separator:a4fd5ed417e1eeeb27b6bc86c741cb5ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a362f3b032869325112671753a3d9b848" id="r_a362f3b032869325112671753a3d9b848"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a362f3b032869325112671753a3d9b848">rate</a> () const</td></tr>
 <tr class="memdesc:a362f3b032869325112671753a3d9b848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
 <tr class="separator:a362f3b032869325112671753a3d9b848"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77b0f59b2992e55603b520691b96a10f" id="r_a77b0f59b2992e55603b520691b96a10f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77b0f59b2992e55603b520691b96a10f">mean</a> () const</td></tr>
-<tr class="memdesc:a77b0f59b2992e55603b520691b96a10f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
-<tr class="separator:a77b0f59b2992e55603b520691b96a10f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a875b4af0173e319c17fa98e1fab68cf2" id="r_a875b4af0173e319c17fa98e1fab68cf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a875b4af0173e319c17fa98e1fab68cf2">mean</a> () const</td></tr>
+<tr class="memdesc:a875b4af0173e319c17fa98e1fab68cf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
+<tr class="separator:a875b4af0173e319c17fa98e1fab68cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade4388910fc79fd8e665d4e62acee377" id="r_ade4388910fc79fd8e665d4e62acee377"><td class="memItemLeft" align="right" valign="top">cv::Point2d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade4388910fc79fd8e665d4e62acee377">meanPoint</a> () const</td></tr>
 <tr class="memdesc:ade4388910fc79fd8e665d4e62acee377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
 <tr class="separator:ade4388910fc79fd8e665d4e62acee377"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,8 +186,8 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a77b0f59b2992e55603b520691b96a10f" name="a77b0f59b2992e55603b520691b96a10f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77b0f59b2992e55603b520691b96a10f">&#9670;&#160;</a></span>mean()</h2>
+<a id="a875b4af0173e319c17fa98e1fab68cf2" name="a875b4af0173e319c17fa98e1fab68cf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a875b4af0173e319c17fa98e1fab68cf2">&#9670;&#160;</a></span>mean()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,7 +198,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a> <a class="el" href="classev_1_1Vector__.html">ev::Vector_</a>&lt; T &gt;::mean </td>
+          <td class="memname"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">ev::Eventd</a> <a class="el" href="classev_1_1Vector__.html">ev::Vector_</a>&lt; T &gt;::mean </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -210,7 +206,7 @@ template&lt;typename T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -310,43 +306,6 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="aa3c532c17501158430384014d4b7a24a" name="aa3c532c17501158430384014d4b7a24a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3c532c17501158430384014d4b7a24a">&#9670;&#160;</a></span>push_back()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<div class="memtemplate">
-template&lt;std::size_t N&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classev_1_1Vector__.html">ev::Vector_</a>&lt; T &gt;::push_back </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classev_1_1Array__.html">Array_</a>&lt; T, N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>array</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Push back elements from an array of events. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> array to push back </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a362f3b032869325112671753a3d9b848" name="a362f3b032869325112671753a3d9b848"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a362f3b032869325112671753a3d9b848">&#9670;&#160;</a></span>rate()</h2>
 
@@ -377,8 +336,9 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>modules/containers/include/openev/containers/<a class="el" href="vector_8hpp_source.html">vector.hpp</a></li>
+<li>modules/containers/src/<a class="el" href="vector_8cpp.html">vector.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

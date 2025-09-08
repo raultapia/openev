@@ -132,22 +132,15 @@ Inheritance diagram for ev::Queue_&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2ec6aa510b79d1f2ae4743530c88b9da" id="r_a2ec6aa510b79d1f2ae4743530c88b9da"><td class="memTemplParams" colspan="2">template&lt;std::size_t N&gt; </td></tr>
-<tr class="memitem:a2ec6aa510b79d1f2ae4743530c88b9da"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a2ec6aa510b79d1f2ae4743530c88b9da">push</a> (const <a class="el" href="classev_1_1Array__.html">Array_</a>&lt; T, N &gt; &amp;array)</td></tr>
-<tr class="memdesc:a2ec6aa510b79d1f2ae4743530c88b9da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push elements from an array of events.  <br /></td></tr>
-<tr class="separator:a2ec6aa510b79d1f2ae4743530c88b9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85799c5ef98d6e8d7cb3096c1bfcb801" id="r_a85799c5ef98d6e8d7cb3096c1bfcb801"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85799c5ef98d6e8d7cb3096c1bfcb801">push</a> (const <a class="el" href="classev_1_1Vector__.html">Vector_</a>&lt; T &gt; &amp;vector)</td></tr>
-<tr class="memdesc:a85799c5ef98d6e8d7cb3096c1bfcb801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push elements from a vector of events.  <br /></td></tr>
-<tr class="separator:a85799c5ef98d6e8d7cb3096c1bfcb801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdb2e86a3e554cbfb6565f4cd0c09423" id="r_afdb2e86a3e554cbfb6565f4cd0c09423"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdb2e86a3e554cbfb6565f4cd0c09423">duration</a> () const</td></tr>
 <tr class="memdesc:afdb2e86a3e554cbfb6565f4cd0c09423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
 <tr class="separator:afdb2e86a3e554cbfb6565f4cd0c09423"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20b2ce250578c2885712c183083a600b" id="r_a20b2ce250578c2885712c183083a600b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20b2ce250578c2885712c183083a600b">rate</a> () const</td></tr>
 <tr class="memdesc:a20b2ce250578c2885712c183083a600b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
 <tr class="separator:a20b2ce250578c2885712c183083a600b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1abc28055cdc301e7b295278f90d6f3" id="r_af1abc28055cdc301e7b295278f90d6f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1abc28055cdc301e7b295278f90d6f3">mean</a> ()</td></tr>
-<tr class="memdesc:af1abc28055cdc301e7b295278f90d6f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
-<tr class="separator:af1abc28055cdc301e7b295278f90d6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fe1d14a166a727fbabbdf659a49345f" id="r_a2fe1d14a166a727fbabbdf659a49345f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fe1d14a166a727fbabbdf659a49345f">mean</a> ()</td></tr>
+<tr class="memdesc:a2fe1d14a166a727fbabbdf659a49345f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
+<tr class="separator:a2fe1d14a166a727fbabbdf659a49345f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a428e3a2d001f08936754cff577b3c6" id="r_a4a428e3a2d001f08936754cff577b3c6"><td class="memItemLeft" align="right" valign="top">cv::Point2d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a428e3a2d001f08936754cff577b3c6">meanPoint</a> ()</td></tr>
 <tr class="memdesc:a4a428e3a2d001f08936754cff577b3c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
 <tr class="separator:a4a428e3a2d001f08936754cff577b3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,8 +186,8 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="af1abc28055cdc301e7b295278f90d6f3" name="af1abc28055cdc301e7b295278f90d6f3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1abc28055cdc301e7b295278f90d6f3">&#9670;&#160;</a></span>mean()</h2>
+<a id="a2fe1d14a166a727fbabbdf659a49345f" name="a2fe1d14a166a727fbabbdf659a49345f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fe1d14a166a727fbabbdf659a49345f">&#9670;&#160;</a></span>mean()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,7 +198,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a> <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::mean </td>
+          <td class="memname"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">ev::Eventd</a> <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::mean </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -213,7 +206,7 @@ template&lt;typename T&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -313,78 +306,6 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a2ec6aa510b79d1f2ae4743530c88b9da" name="a2ec6aa510b79d1f2ae4743530c88b9da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ec6aa510b79d1f2ae4743530c88b9da">&#9670;&#160;</a></span>push() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<div class="memtemplate">
-template&lt;std::size_t N&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::push </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classev_1_1Array__.html">Array_</a>&lt; T, N &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>array</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Push elements from an array of events. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">array</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> array to push </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a85799c5ef98d6e8d7cb3096c1bfcb801" name="a85799c5ef98d6e8d7cb3096c1bfcb801"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85799c5ef98d6e8d7cb3096c1bfcb801">&#9670;&#160;</a></span>push() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classev_1_1Queue__.html">ev::Queue_</a>&lt; T &gt;::push </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classev_1_1Vector__.html">Vector_</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>vector</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Push elements from a vector of events. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vector</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector to push </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a20b2ce250578c2885712c183083a600b" name="a20b2ce250578c2885712c183083a600b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a20b2ce250578c2885712c183083a600b">&#9670;&#160;</a></span>rate()</h2>
 
@@ -415,8 +336,9 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>modules/containers/include/openev/containers/<a class="el" href="queue_8hpp_source.html">queue.hpp</a></li>
+<li>modules/containers/src/<a class="el" href="queue_8cpp.html">queue.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

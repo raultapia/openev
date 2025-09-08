@@ -119,25 +119,23 @@ $(function(){initNavTree('point-cloud_8hpp_source.html',''); initResizable(true)
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef OPENEV_REPRESENTATIONS_POINT_CLOUD_HPP</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define OPENEV_REPRESENTATIONS_POINT_CLOUD_HPP</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">openev/core/types.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="options_8hpp.html">openev/options.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="abstract-representation_8hpp.html">openev/representations/abstract-representation.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;array&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;iterator&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;opencv2/core/hal/interface.h&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;opencv2/core/matx.hpp&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;opencv2/core/types.hpp&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;opencv2/viz/viz3d.hpp&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span>cv {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">class </span>Mat;</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>} <span class="comment">// namespace cv</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span>ev {</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Event__.html">Event_</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="abstract-representation_8hpp.html">openev/representations/abstract-representation.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;iterator&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;opencv2/core/hal/interface.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;opencv2/core/matx.hpp&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;opencv2/core/types.hpp&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;opencv2/viz/viz3d.hpp&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">namespace </span>cv {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">class </span>Mat;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>} <span class="comment">// namespace cv</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span>ev {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Event__.html">Event_</a>;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, const RepresentationOptions Options = RepresentationOptions::NONE, <span class="keyword">typename</span> E = <span class="keywordtype">int</span>&gt;</div>
 <div class="foldopen" id="foldopen00052" data-start="{" data-end="};">
@@ -181,14 +179,13 @@ $(function(){initNavTree('point-cloud_8hpp_source.html',''); initResizable(true)
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_REPRESENTATIONS_POINT_CLOUD_HPP</span></div>
 <div class="ttc" id="aabstract-representation_8hpp_html"><div class="ttname"><a href="abstract-representation_8hpp.html">abstract-representation.hpp</a></div><div class="ttdoc">Event abstract representation.</div></div>
-<div class="ttc" id="aclassev_1_1AbstractRepresentation___html"><div class="ttname"><a href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a></div><div class="ttdoc">This is an auxiliary class. This class cannot be instanced.</div><div class="ttdef"><b>Definition</b> abstract-representation.hpp:127</div></div>
-<div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:62</div></div>
-<div class="ttc" id="aclassev_1_1Event___html_a2a0bf1127a8699d50fbffcafc545381a"><div class="ttname"><a href="classev_1_1Event__.html#a2a0bf1127a8699d50fbffcafc545381a">ev::Event_::p</a></div><div class="ttdeci">bool p</div><div class="ttdef"><b>Definition</b> types.hpp:65</div></div>
-<div class="ttc" id="aclassev_1_1Event___html_afdb69c87797e8da1e08fa3844db759c3"><div class="ttname"><a href="classev_1_1Event__.html#afdb69c87797e8da1e08fa3844db759c3">ev::Event_::t</a></div><div class="ttdeci">double t</div><div class="ttdef"><b>Definition</b> types.hpp:64</div></div>
+<div class="ttc" id="aclassev_1_1AbstractRepresentation___html"><div class="ttname"><a href="classev_1_1AbstractRepresentation__.html">ev::AbstractRepresentation_</a></div><div class="ttdoc">This is an auxiliary class. This class cannot be instanced.</div><div class="ttdef"><b>Definition</b> abstract-representation.hpp:124</div></div>
+<div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:55</div></div>
+<div class="ttc" id="aclassev_1_1Event___html_a2a0bf1127a8699d50fbffcafc545381a"><div class="ttname"><a href="classev_1_1Event__.html#a2a0bf1127a8699d50fbffcafc545381a">ev::Event_::p</a></div><div class="ttdeci">bool p</div><div class="ttdef"><b>Definition</b> types.hpp:58</div></div>
+<div class="ttc" id="aclassev_1_1Event___html_afdb69c87797e8da1e08fa3844db759c3"><div class="ttname"><a href="classev_1_1Event__.html#afdb69c87797e8da1e08fa3844db759c3">ev::Event_::t</a></div><div class="ttdeci">double t</div><div class="ttdef"><b>Definition</b> types.hpp:57</div></div>
 <div class="ttc" id="aclassev_1_1PointCloud___html"><div class="ttname"><a href="classev_1_1PointCloud__.html">ev::PointCloud_</a></div><div class="ttdoc">This class is used to represent events as point clouds.</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:52</div></div>
 <div class="ttc" id="aclassev_1_1PointCloud___html_a1ec133c13e39b21cf2e4958408938838"><div class="ttname"><a href="classev_1_1PointCloud__.html#a1ec133c13e39b21cf2e4958408938838">ev::PointCloud_::visualize</a></div><div class="ttdeci">void visualize(const int t, const double time_scale=1.0, const double axis_size=1.0, const double point_size=2.0)</div><div class="ttdoc">Visualize point cloud.</div></div>
 <div class="ttc" id="aclassev_1_1PointCloud___html_a4d2384e4c8a2a7972566ed2f32181acb"><div class="ttname"><a href="classev_1_1PointCloud__.html#a4d2384e4c8a2a7972566ed2f32181acb">ev::PointCloud_::contains</a></div><div class="ttdeci">bool contains(const Event_&lt; E &gt; &amp;e) const</div><div class="ttdoc">Check if an event is included in the point cloud.</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:58</div></div>
-<div class="ttc" id="aoptions_8hpp_html"><div class="ttname"><a href="options_8hpp.html">options.hpp</a></div><div class="ttdoc">OpenEV compilation options.</div></div>
 <div class="ttc" id="apoint-cloud_8hpp_html_a033c0807dd188b23bd6d09a2171d5d75"><div class="ttname"><a href="point-cloud_8hpp.html#a033c0807dd188b23bd6d09a2171d5d75">ev::PointCloud3s</a></div><div class="ttdeci">PointCloud_&lt; cv::Vec3s &gt; PointCloud3s</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:82</div></div>
 <div class="ttc" id="apoint-cloud_8hpp_html_a0a5447555be972fa7ac1b52de1900059"><div class="ttname"><a href="point-cloud_8hpp.html#a0a5447555be972fa7ac1b52de1900059">ev::PointCloud1f</a></div><div class="ttdeci">PointCloud_&lt; float &gt; PointCloud1f</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:87</div></div>
 <div class="ttc" id="apoint-cloud_8hpp_html_a1daac2fb98c1ecbe825443c2f2984b3a"><div class="ttname"><a href="point-cloud_8hpp.html#a1daac2fb98c1ecbe825443c2f2984b3a">ev::PointCloud1</a></div><div class="ttdeci">PointCloud1b PointCloud1</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:91</div></div>
@@ -204,7 +201,6 @@ $(function(){initNavTree('point-cloud_8hpp_source.html',''); initResizable(true)
 <div class="ttc" id="apoint-cloud_8hpp_html_ad4b4e1b341f820516af5af6530cfc8a3"><div class="ttname"><a href="point-cloud_8hpp.html#ad4b4e1b341f820516af5af6530cfc8a3">ev::PointCloud1b</a></div><div class="ttdeci">PointCloud_&lt; uchar &gt; PointCloud1b</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:79</div></div>
 <div class="ttc" id="apoint-cloud_8hpp_html_af1b49d62e3848a4fdfeb228d13f65537"><div class="ttname"><a href="point-cloud_8hpp.html#af1b49d62e3848a4fdfeb228d13f65537">ev::PointCloud3i</a></div><div class="ttdeci">PointCloud_&lt; cv::Vec3i &gt; PointCloud3i</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:86</div></div>
 <div class="ttc" id="apoint-cloud_8hpp_html_afbd40991ce8543d634aae858e0638d67"><div class="ttname"><a href="point-cloud_8hpp.html#afbd40991ce8543d634aae858e0638d67">ev::PointCloud1w</a></div><div class="ttdeci">PointCloud_&lt; ushort &gt; PointCloud1w</div><div class="ttdef"><b>Definition</b> point-cloud.hpp:83</div></div>
-<div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

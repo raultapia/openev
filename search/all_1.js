@@ -1,6 +1,6 @@
 var searchData=
 [
   ['biasvalue_0',['BiasValue',['../structev_1_1BiasValue.html',1,'ev']]],
-  ['bilinearvoting_1',['bilinearVoting',['../classev_1_1Event__.html#a6dcfde85772626a229f2858a0981f2d4',1,'ev::Event_::bilinearVoting()'],['../classev_1_1AugmentedEvent__.html#a193c86a44a66f7137e35dca64b0f8fc4',1,'ev::AugmentedEvent_::bilinearVoting()']]],
-  ['binary_2',['Binary',['../classev_1_1Mat_1_1Binary.html',1,'ev::Mat']]]
+  ['binary_5f_1',['Binary_',['../classev_1_1Mat_1_1Binary__.html',1,'ev::Mat']]],
+  ['binary_5f_3c_20uchar_20_3e_2',['Binary_&lt; uchar &gt;',['../classev_1_1Mat_1_1Binary__.html',1,'ev::Mat']]]
 ];

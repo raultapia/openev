@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['circ_5f_0',['Circ_',['../structev_1_1Circ__.html#a07b7b8eec44d781ea87ae1ec9fd83b1d',1,'ev::Circ_::Circ_()'],['../structev_1_1Circ__.html#a19186a425d8487f0e147b34ed00eb831',1,'ev::Circ_::Circ_(const cv::Point_&lt; T &gt; center, const T radius)']]],
-  ['clear_1',['clear',['../classev_1_1AbstractRepresentation__.html#a16486a8b4a053dc72407e303c35423a4',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#ad9b12fb1d244ce29c140f35ae4a539f1',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background)']]],
-  ['contains_2',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a4d2384e4c8a2a7972566ed2f32181acb',1,'ev::PointCloud_::contains()']]],
-  ['count_3',['count',['../classev_1_1AbstractReader__.html#ab0ff8f66fecf9da41984df80e85ac49a',1,'ev::AbstractReader_::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]]
+  ['distance_0',['distance',['../classev_1_1Event__.html#ada122d3ce351ad2aa14b4d39b98ae1d7',1,'ev::Event_']]],
+  ['duration_1',['duration',['../classev_1_1Array__.html#a57dbd3eb85ec4cc10be24242660864ca',1,'ev::Array_::duration()'],['../classev_1_1CircularBuffer__.html#a77e31e79a688a52f561d8dc52f758c1a',1,'ev::CircularBuffer_::duration()'],['../classev_1_1Deque__.html#ab9e458d64656aac00bf41f241f8c34b8',1,'ev::Deque_::duration()'],['../classev_1_1Queue__.html#afdb2e86a3e554cbfb6565f4cd0c09423',1,'ev::Queue_::duration()'],['../classev_1_1Vector__.html#a4fd5ed417e1eeeb27b6bc86c741cb5ff',1,'ev::Vector_::duration()'],['../classev_1_1AbstractRepresentation__.html#a81921f180ef8e7ce1f1b542ae7c6dfc9',1,'ev::AbstractRepresentation_::duration()']]]
 ];

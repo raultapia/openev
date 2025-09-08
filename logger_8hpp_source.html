@@ -120,42 +120,41 @@ $(function(){initNavTree('logger_8hpp_source.html',''); initResizable(true); });
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define OPENEV_UTILS_LOGGER_HPP</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span>ev::logger {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="}">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="logger_8hpp.html#a18ea51a4bdb4d7b41246c713fe50326a">   20</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="logger_8hpp.html#a18ea51a4bdb4d7b41246c713fe50326a">info</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message) {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;INFO. openev: &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span>ev::logger {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="logger_8hpp.html#a18ea51a4bdb4d7b41246c713fe50326a">   19</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="logger_8hpp.html#a18ea51a4bdb4d7b41246c713fe50326a">info</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message) {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;INFO. openev: &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>}</div>
 </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
-<div class="foldopen" id="foldopen00028" data-start="{" data-end="}">
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="logger_8hpp.html#a8a8bb4eb05ace397cbc3e43d1d5f700a">   28</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="logger_8hpp.html#a8a8bb4eb05ace397cbc3e43d1d5f700a">warning</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message, <span class="keyword">const</span> <span class="keywordtype">bool</span> assert_condition = <span class="keyword">false</span>) {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordflow">if</span>(assert_condition) {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  }</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;WARNING. openev: &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span></div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="logger_8hpp.html#a8a8bb4eb05ace397cbc3e43d1d5f700a">   27</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="logger_8hpp.html#a8a8bb4eb05ace397cbc3e43d1d5f700a">warning</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message, <span class="keyword">const</span> <span class="keywordtype">bool</span> assert_condition = <span class="keyword">false</span>) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordflow">if</span>(assert_condition) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;WARNING. openev: &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
 </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span></div>
-<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="logger_8hpp.html#a71684dccfbab0486a93201ae7341e025">   39</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="logger_8hpp.html#a71684dccfbab0486a93201ae7341e025">error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message, <span class="keyword">const</span> <span class="keywordtype">bool</span> assert_condition = <span class="keyword">false</span>) {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordflow">if</span>(assert_condition) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;ERROR. openev: &quot;</span> + std::string(message, std::allocator&lt;char&gt;()));</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="foldopen" id="foldopen00038" data-start="{" data-end="}">
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="logger_8hpp.html#a71684dccfbab0486a93201ae7341e025">   38</a></span><span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="logger_8hpp.html#a71684dccfbab0486a93201ae7341e025">error</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *message, <span class="keyword">const</span> <span class="keywordtype">bool</span> assert_condition = <span class="keyword">false</span>) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">if</span>(assert_condition) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;ERROR. openev: &quot;</span> + std::string(message, std::allocator&lt;char&gt;()));</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
 </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <span class="comment">// namespace ev::logger</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_UTILS_LOGGER_HPP</span></div>
-<div class="ttc" id="alogger_8hpp_html_a18ea51a4bdb4d7b41246c713fe50326a"><div class="ttname"><a href="logger_8hpp.html#a18ea51a4bdb4d7b41246c713fe50326a">ev::logger::info</a></div><div class="ttdeci">void info(const char *message)</div><div class="ttdoc">Log message at info level.</div><div class="ttdef"><b>Definition</b> logger.hpp:20</div></div>
-<div class="ttc" id="alogger_8hpp_html_a71684dccfbab0486a93201ae7341e025"><div class="ttname"><a href="logger_8hpp.html#a71684dccfbab0486a93201ae7341e025">ev::logger::error</a></div><div class="ttdeci">void error(const char *message, const bool assert_condition=false)</div><div class="ttdoc">Log message at error level.</div><div class="ttdef"><b>Definition</b> logger.hpp:39</div></div>
-<div class="ttc" id="alogger_8hpp_html_a8a8bb4eb05ace397cbc3e43d1d5f700a"><div class="ttname"><a href="logger_8hpp.html#a8a8bb4eb05ace397cbc3e43d1d5f700a">ev::logger::warning</a></div><div class="ttdeci">void warning(const char *message, const bool assert_condition=false)</div><div class="ttdoc">Log message at warning level.</div><div class="ttdef"><b>Definition</b> logger.hpp:28</div></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>} <span class="comment">// namespace ev::logger</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_UTILS_LOGGER_HPP</span></div>
+<div class="ttc" id="alogger_8hpp_html_a18ea51a4bdb4d7b41246c713fe50326a"><div class="ttname"><a href="logger_8hpp.html#a18ea51a4bdb4d7b41246c713fe50326a">ev::logger::info</a></div><div class="ttdeci">void info(const char *message)</div><div class="ttdoc">Log message at info level.</div><div class="ttdef"><b>Definition</b> logger.hpp:19</div></div>
+<div class="ttc" id="alogger_8hpp_html_a71684dccfbab0486a93201ae7341e025"><div class="ttname"><a href="logger_8hpp.html#a71684dccfbab0486a93201ae7341e025">ev::logger::error</a></div><div class="ttdeci">void error(const char *message, const bool assert_condition=false)</div><div class="ttdoc">Log message at error level.</div><div class="ttdef"><b>Definition</b> logger.hpp:38</div></div>
+<div class="ttc" id="alogger_8hpp_html_a8a8bb4eb05ace397cbc3e43d1d5f700a"><div class="ttname"><a href="logger_8hpp.html#a8a8bb4eb05ace397cbc3e43d1d5f700a">ev::logger::warning</a></div><div class="ttdeci">void warning(const char *message, const bool assert_condition=false)</div><div class="ttdoc">Log message at warning level.</div><div class="ttdef"><b>Definition</b> logger.hpp:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

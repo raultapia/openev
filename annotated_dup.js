@@ -2,7 +2,7 @@ var annotated_dup =
 [
     [ "ev", null, [
       [ "Mat", null, [
-        [ "Binary", "classev_1_1Mat_1_1Binary.html", null ],
+        [ "Binary_", "classev_1_1Mat_1_1Binary__.html", null ],
         [ "Counter", "classev_1_1Mat_1_1Counter.html", null ],
         [ "Polarity", "classev_1_1Mat_1_1Polarity.html", null ],
         [ "Time", "classev_1_1Mat_1_1Time.html", null ]

@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['next_0',['next',['../classev_1_1AbstractReader__.html#ad28b28cee4e6426b5f141f624f54c755',1,'ev::AbstractReader_::next(Event &amp;e)'],['../classev_1_1AbstractReader__.html#a5c1c0853802fd45e4bbea6c40680f0f4',1,'ev::AbstractReader_::next(Array&lt; N &gt; &amp;array)']]],
-  ['next_5fn_1',['next_n',['../classev_1_1AbstractReader__.html#a81713e57602276a719c39b083a0b920b',1,'ev::AbstractReader_::next_n(Vector &amp;vector, const int n)'],['../classev_1_1AbstractReader__.html#aaaa8acea516353c8a8b017927aefdc42',1,'ev::AbstractReader_::next_n(Queue &amp;queue, const int n, const bool keep_size=false)']]],
-  ['next_5ft_2',['next_t',['../classev_1_1AbstractReader__.html#aadc15085cac6222fc9e05b32fb3577aa',1,'ev::AbstractReader_::next_t(Vector &amp;vector, const double t)'],['../classev_1_1AbstractReader__.html#ac2896189d879c653786c471bb78c7202',1,'ev::AbstractReader_::next_t(Queue &amp;queue, const double t, const bool keep_size=false)']]]
+  ['operator_20cv_3a_3apoint3_5f_3c_20u_20_3e_0',['Point3_&lt; U &gt;',['../classev_1_1Event__.html#a2dcebb5b85799611d185457ce5bc1844',1,'ev::Event_']]],
+  ['operator_20cv_3a_3apoint_5f_3c_20u_20_3e_1',['Point_&lt; U &gt;',['../classev_1_1Event__.html#aac5b5f290a4ddfbcd5355a4afafc0998',1,'ev::Event_']]],
+  ['operator_3c_2',['operator&lt;',['../classev_1_1Event__.html#a0e70bb583180d13b7de2c2340062e452',1,'ev::Event_']]],
+  ['operator_3d_3',['operator=',['../classev_1_1Event__.html#ac45f96a0247d571050d56a9731e6976d',1,'ev::Event_::operator=(const Event_&lt; T &gt; &amp;)=default'],['../classev_1_1Event__.html#a1d3c04b776897df465aca99c96b22bbb',1,'ev::Event_::operator=(const cv::Point_&lt; T &gt; &amp;p)'],['../classev_1_1Event__.html#a6ba6b9e56bb5fc6e475c952f0057059b',1,'ev::Event_::operator=(Event_&lt; T &gt; &amp;&amp;) noexcept=default']]],
+  ['operator_3d_3d_4',['operator==',['../classev_1_1Event__.html#a739ba6e2e35906778582a0f4d161f495',1,'ev::Event_::operator==(const Event_&lt; T &gt; &amp;e) const'],['../classev_1_1Event__.html#a8270105da74273108e0a2118f0e6b0c2',1,'ev::Event_::operator==(const cv::Point_&lt; T &gt; &amp;pt) const'],['../classev_1_1Event__.html#a2f5d0be0a33d45dec3a1e8e7c8a51f1d',1,'ev::Event_::operator==(const cv::Point3_&lt; T &gt; &amp;pt) const']]]
 ];
