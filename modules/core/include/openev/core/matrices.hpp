@@ -8,6 +8,7 @@
 
 #include <cmath>
 #include <limits>
+#include <opencv2/core/hal/interface.h>
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/traits.hpp>
