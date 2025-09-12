@@ -12,6 +12,7 @@
 #include <opencv2/core/mat.hpp>
 #include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/traits.hpp>
+#include <ostream>
 #include <type_traits>
 
 namespace ev {
@@ -43,6 +44,11 @@ public:
   static constexpr Tb ON = std::numeric_limits<Tb>::max();
   static constexpr Tb OFF = static_cast<Tb>(0);
 
+  friend std::ostream &operator<<(std::ostream &os, const Binary_ &binary) {
+    os << "Binary " << binary.cols << "x" << binary.rows;
+    return os;
+  }
+
 private:
   template <typename T>
   inline Tb set(const T x, const T y) {
@@ -71,6 +77,11 @@ public:
 
   inline void clear() {
     cv::Mat_<double>::setTo(0);
+  }
+
+  friend std::ostream &operator<<(std::ostream &os, const Time &time) {
+    os << "Time " << time.cols << "x" << time.rows;
+    return os;
   }
 
 private:
@@ -102,6 +113,11 @@ public:
     cv::Mat_<bool>::setTo(false);
   }
 
+  friend std::ostream &operator<<(std::ostream &os, const Polarity &polarity) {
+    os << "Polarity " << polarity.cols << "x" << polarity.rows;
+    return os;
+  }
+
 private:
   template <typename T>
   inline bool set(const T x, const T y, const bool p) {
@@ -129,6 +145,11 @@ public:
 
   inline void clear() {
     cv::Mat_<int>::setTo(0);
+  }
+
+  friend std::ostream &operator<<(std::ostream &os, const Counter &counter) {
+    os << "Counter " << counter.cols << "x" << counter.rows;
+    return os;
   }
 
 private:
