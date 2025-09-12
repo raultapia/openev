@@ -117,7 +117,7 @@ TEST(EventTest, StreamOperator) {
   const ev::Event_<int> event(1, 2, 3, true);
   std::ostringstream oss;
   [[maybe_unused]] auto &result = oss << event;
-  EXPECT_EQ(oss.str(), "(1,2) 3.000000 [+]");
+  EXPECT_EQ(oss.str(), std::string("(1,2) 3.000000 [+]"));
 }
 
 TEST(EventTest, CastToPoint) {
@@ -161,7 +161,7 @@ TEST(AugmentedEventTest, StreamOperator) {
   event.stereo = ev::Stereo::RIGHT;
   std::ostringstream oss;
   [[maybe_unused]] auto &result = oss << event;
-  EXPECT_EQ(oss.str(), "(1,2) 3.000000 [+] w=2.500000 d=10.000000 s=RIGHT");
+  EXPECT_EQ(oss.str(), std::string("(1,2) 3.000000 [+] w=2.500000 d=10.000000 s=RIGHT"));
 }
 
 TEST(AugmentedEventTest, ConstructorWithXYValues) {
