@@ -7,6 +7,7 @@
 #define OPENEV_CORE_TYPES_HPP
 
 #include "openev/utils/logger.hpp"
+#include <algorithm>
 #include <cmath>
 #include <cstdint>
 #include <iosfwd>
