@@ -1,12 +1,14 @@
 #include "openev/core/matrices.hpp"
 #include "openev/core/types.hpp"
 #include <gtest/gtest.h>
-#include <opencv2/core/mat.hpp>
+#include <opencv2/core/mat.inl.hpp>
+#include <sstream>
+#include <string>
 
 // Test Binary Class
 TEST(BinaryTest, Insert) {
   ev::Mat::Binary binary(10, 10);
-  ev::Event event(3, 4, 1.5, ev::POSITIVE);
+  const ev::Event event(3, 4, 1.5, ev::POSITIVE);
   binary.insert(event);
   EXPECT_EQ(binary(4, 3), ev::Mat::Binary::ON);
 }
@@ -30,10 +32,17 @@ TEST(BinaryTest, LargeMatrixStressTest) {
   EXPECT_EQ(binary(9999, 9999), ev::Mat::Binary::ON);
 }
 
+TEST(BinaryTest, StreamOperator) {
+  const ev::Mat::Binary binary(20, 15);
+  std::ostringstream oss;
+  [[maybe_unused]] auto &result = oss << binary;
+  EXPECT_EQ(oss.str(), std::string("Binary 15x20"));
+}
+
 // Test Time Class
 TEST(TimeTest, Insert) {
   ev::Mat::Time time(10, 10);
-  ev::Event event(3, 4, 1.5, ev::POSITIVE);
+  const ev::Event event(3, 4, 1.5, ev::POSITIVE);
   time.insert(event);
   EXPECT_DOUBLE_EQ(time(4, 3), 1.5);
 }
@@ -57,10 +66,17 @@ TEST(TimeTest, LargeMatrixStressTest) {
   EXPECT_DOUBLE_EQ(time(9999, 9999), 3.14);
 }
 
+TEST(TimeTest, StreamOperator) {
+  const ev::Mat::Time time(20, 15);
+  std::ostringstream oss;
+  [[maybe_unused]] auto &result = oss << time;
+  EXPECT_EQ(oss.str(), std::string("Time 15x20"));
+}
+
 // Test Polarity Class
 TEST(PolarityTest, Insert) {
   ev::Mat::Polarity polarity(10, 10);
-  ev::Event event(3, 4, 1.5, ev::POSITIVE);
+  const ev::Event event(3, 4, 1.5, ev::POSITIVE);
   polarity.insert(event);
   EXPECT_TRUE(polarity(4, 3));
 }
@@ -84,10 +100,17 @@ TEST(PolarityTest, LargeMatrixStressTest) {
   EXPECT_TRUE(polarity(9999, 9999));
 }
 
+TEST(PolarityTest, StreamOperator) {
+  const ev::Mat::Polarity polarity(20, 15);
+  std::ostringstream oss;
+  [[maybe_unused]] auto &result = oss << polarity;
+  EXPECT_EQ(oss.str(), std::string("Polarity 15x20"));
+}
+
 // Test Counter Class
 TEST(CounterTest, Insert) {
   ev::Mat::Counter counter(10, 10);
-  ev::Event event(3, 4, 1.5, ev::POSITIVE);
+  const ev::Event event(3, 4, 1.5, ev::POSITIVE);
   counter.insert(event);
   counter.insert(event);
   counter.insert(event);
@@ -116,4 +139,11 @@ TEST(CounterTest, LargeMatrixStressTest) {
   counter.emplace(9999, 9999, ev::POSITIVE);
   counter.emplace(9999, 9999, ev::POSITIVE);
   EXPECT_EQ(counter(9999, 9999), 2);
+}
+
+TEST(CounterTest, StreamOperator) {
+  const ev::Mat::Counter counter(20, 15);
+  std::ostringstream oss;
+  [[maybe_unused]] auto &result = oss << counter;
+  EXPECT_EQ(oss.str(), std::string("Counter 15x20"));
 }
