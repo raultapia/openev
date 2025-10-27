@@ -116,7 +116,7 @@ TEST(EventTest, LessThanOperator) {
 TEST(EventTest, StreamOperator) {
   const ev::Event_<int> event(1, 2, 3, true);
   std::ostringstream oss;
-  [[maybe_unused]] auto &result = oss << event;
+  [[maybe_unused]] const auto &result = oss << event;
   EXPECT_EQ(oss.str(), std::string("(1,2) 3.000000 [+]"));
 }
 
@@ -160,7 +160,7 @@ TEST(AugmentedEventTest, StreamOperator) {
   event.depth = 10.0;
   event.stereo = ev::Stereo::RIGHT;
   std::ostringstream oss;
-  [[maybe_unused]] auto &result = oss << event;
+  [[maybe_unused]] const auto &result = oss << event;
   EXPECT_EQ(oss.str(), std::string("(1,2) 3.000000 [+] w=2.500000 d=10.000000 s=RIGHT"));
 }
 

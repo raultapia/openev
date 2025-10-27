@@ -119,7 +119,7 @@ class AbstractCamera {
 public:
   /*! \cond INTERNAL */
   AbstractCamera() = default;
-  ~AbstractCamera();
+  virtual ~AbstractCamera();
   AbstractCamera(const AbstractCamera &) = delete;
   AbstractCamera(AbstractCamera &&) noexcept = delete;
   AbstractCamera &operator=(const AbstractCamera &) = delete;

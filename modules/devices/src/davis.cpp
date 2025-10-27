@@ -320,7 +320,9 @@ void ev::Davis::getEventRaw(std::vector<uint64_t> &data) {
     data.reserve(data.size() + static_cast<std::size_t>(packet_size));
     for(int32_t k = 0; k < packet_size; k++) {
       const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
-      data.emplace_back((static_cast<uint64_t>(p->data) << 32) | static_cast<uint64_t>(p->timestamp));
+      if(p != nullptr) {
+        data.emplace_back((static_cast<uint64_t>(p->data) << 32) | static_cast<uint64_t>(p->timestamp));
+      }
     }
   }
 }
@@ -346,11 +348,13 @@ std::size_t ev::Davis::getEventRaw(uint64_t *data, const bool allow_realloc /*= 
     const int32_t packet_size = caerEventPacketHeaderGetEventNumber(packet);
     size += static_cast<std::size_t>(caerEventPacketHeaderGetEventNumber(packet));
     if(allow_realloc) {
-      data = (uint64_t *)realloc(data, size * sizeof(uint64_t));
+      data = static_cast<uint64_t *>(realloc(data, size * sizeof(uint64_t)));
     }
     for(int32_t k = 0; k < packet_size; k++) {
       const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
-      data[idx++] = (static_cast<uint64_t>(p->data) << 32) | static_cast<uint64_t>(p->timestamp);
+      if(p != nullptr) {
+        data[idx++] = (static_cast<uint64_t>(p->data) << 32) | static_cast<uint64_t>(p->timestamp);
+      }
     }
   }
 

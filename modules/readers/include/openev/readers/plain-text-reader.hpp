@@ -8,6 +8,7 @@
 
 #include "openev/core/types.hpp"
 #include "openev/readers/abstract-reader.hpp"
+#include <cstddef>
 #include <fstream>
 #include <functional>
 #include <regex>
@@ -28,9 +29,9 @@ enum PlainTextReaderColumns : uint8_t {
 */
 class PlainTextReader : public AbstractReader_ {
 public:
-  PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns = PlainTextReaderColumns::TXYP, const std::string &separator = " ", const std::size_t buffer_size = 0, const bool use_threading = false);
+  explicit PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns = PlainTextReaderColumns::TXYP, const std::string &separator = " ", const std::size_t buffer_size = 0, const bool use_threading = false);
   ~PlainTextReader();
-  std::size_t count() override;
+  [[nodiscard]] std::size_t count() override;
 
   /*! \cond INTERNAL */
   PlainTextReader(const PlainTextReader &) = delete;

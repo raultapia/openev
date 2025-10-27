@@ -4,15 +4,12 @@
 \author Raul Tapia
 */
 #include "openev/readers/abstract-reader.hpp"
-#include <vector>
+#include <chrono>
 
 ev::AbstractReader_::AbstractReader_(const std::size_t buffer_size, const bool use_threading) : bufferSize_{buffer_size} {
-  if(buffer_size > NO_BUFFER) {
-    loadBuffer();
-    if(use_threading) {
-      threadRunning_.store(true);
-      thread_ = std::thread(&AbstractReader_::threadFunction, this);
-    }
+  if(buffer_size > NO_BUFFER && use_threading) {
+    threadRunning_.store(true);
+    thread_ = std::thread(&AbstractReader_::threadFunction, this);
   }
 }
 
@@ -28,7 +25,7 @@ bool ev::AbstractReader_::read(ev::Event &e) {
     return read_(e);
   }
 
-  std::lock_guard<std::mutex> lock(bufferMutex_);
+  const std::scoped_lock lock(bufferMutex_);
   if(buffer_.empty()) {
     if(!loadBuffer()) {
       return false;
@@ -109,7 +106,9 @@ bool ev::AbstractReader_::read_t(ev::Queue &queue, const double t, const bool ke
 
 bool ev::AbstractReader_::skip(int n) {
   ev::Event e;
-  while(n-- > 0 && read(e));
+  while(n-- > 0 && read(e)) {
+    ;
+  }
   return n < 0;
 }
 
@@ -157,7 +156,7 @@ void ev::AbstractReader_::threadFunction() {
 
 bool ev::AbstractReader_::loadBuffer() {
   ev::Event e;
-  std::lock_guard<std::mutex> lock(bufferMutex_);
+  const std::scoped_lock lock(bufferMutex_);
   while(buffer_.size() < bufferSize_) {
     if(read_(e)) {
       buffer_.push(e);

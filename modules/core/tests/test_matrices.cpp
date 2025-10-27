@@ -35,7 +35,7 @@ TEST(BinaryTest, LargeMatrixStressTest) {
 TEST(BinaryTest, StreamOperator) {
   const ev::Mat::Binary binary(20, 15);
   std::ostringstream oss;
-  [[maybe_unused]] auto &result = oss << binary;
+  [[maybe_unused]] const auto &result = oss << binary;
   EXPECT_EQ(oss.str(), std::string("Binary 15x20"));
 }
 
@@ -69,7 +69,7 @@ TEST(TimeTest, LargeMatrixStressTest) {
 TEST(TimeTest, StreamOperator) {
   const ev::Mat::Time time(20, 15);
   std::ostringstream oss;
-  [[maybe_unused]] auto &result = oss << time;
+  [[maybe_unused]] const auto &result = oss << time;
   EXPECT_EQ(oss.str(), std::string("Time 15x20"));
 }
 
@@ -103,7 +103,7 @@ TEST(PolarityTest, LargeMatrixStressTest) {
 TEST(PolarityTest, StreamOperator) {
   const ev::Mat::Polarity polarity(20, 15);
   std::ostringstream oss;
-  [[maybe_unused]] auto &result = oss << polarity;
+  [[maybe_unused]] const auto &result = oss << polarity;
   EXPECT_EQ(oss.str(), std::string("Polarity 15x20"));
 }
 
@@ -144,6 +144,6 @@ TEST(CounterTest, LargeMatrixStressTest) {
 TEST(CounterTest, StreamOperator) {
   const ev::Mat::Counter counter(20, 15);
   std::ostringstream oss;
-  [[maybe_unused]] auto &result = oss << counter;
+  [[maybe_unused]] const auto &result = oss << counter;
   EXPECT_EQ(oss.str(), std::string("Counter 15x20"));
 }

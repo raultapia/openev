@@ -11,6 +11,7 @@
 #include "openev/core/types.hpp"
 #include <atomic>
 #include <cstddef>
+#include <limits>
 #include <mutex>
 #include <thread>
 
@@ -21,26 +22,22 @@ namespace ev {
 */
 class AbstractReader_ {
 public:
+  static constexpr std::size_t NO_BUFFER = 0;
+  static constexpr std::size_t INF_BUFFER = std::numeric_limits<std::size_t>::max();
+
   /*! \cond INTERNAL */
+  virtual ~AbstractReader_();
   AbstractReader_(const AbstractReader_ &) = delete;
   AbstractReader_(AbstractReader_ &&) noexcept = delete;
   AbstractReader_ &operator=(const AbstractReader_ &) = delete;
   AbstractReader_ &operator=(AbstractReader_ &&) noexcept = delete;
   /*! \endcond */
 
-  static constexpr std::size_t NO_BUFFER = 0;
-  static constexpr std::size_t INF_BUFFER = std::numeric_limits<std::size_t>::max();
-
   /*!
   \brief Constructor for AbstractReader_.
   \param buffer_size The size of the buffer to be used by the reader.
   */
   AbstractReader_(const std::size_t buffer_size, const bool use_threading);
-
-  /*!
-  \brief Destructor for AbstractReader_.
-  */
-  ~AbstractReader_();
 
   /*!
   \brief Read the next event.
@@ -107,14 +104,14 @@ public:
   \brief Count the total number of events available.
   \return The total number of events available.
   */
-  virtual std::size_t count() = 0;
+  [[nodiscard]] virtual std::size_t count() = 0;
 
 protected:
   const std::size_t bufferSize_;
   std::thread thread_;
   Queue buffer_;
   std::mutex bufferMutex_;
-  std::atomic<bool> threadRunning_;
+  std::atomic<bool> threadRunning_{};
 
   virtual bool read_(Event &e) = 0;
   virtual void reset_() = 0;

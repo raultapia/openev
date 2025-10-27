@@ -3,32 +3,26 @@
 \brief Implementation of voting.
 \author Raul Tapia
 */
-#include "openev/core/types.hpp"
 #include "openev/evproc/voting.hpp"
-#include <opencv2/core.hpp>
-#include <opencv2/core/base.hpp>
-#include <opencv2/core/hal/interface.h>
-#include <opencv2/core/mat.hpp>
-#include <opencv2/core/mat.inl.hpp>
-#include <opencv2/core/matx.hpp>
-#include <opencv2/core/saturate.hpp>
-#include <opencv2/core/utility.hpp>
+#include "openev/core/types.hpp"
 
-inline std::array<double, 4> ev::bilinearVoting(ev::Event event) {
-  const double dx = event.x - static_cast<int>(event.x);
-  const double dy = event.y - static_cast<int>(event.y);
-  const double one_minus_dx = 1 - dx;
-  const double one_minus_dy = 1 - dy;
+template <typename T>
+static inline std::array<T, 4> ev::bilinearVoting(ev::Event_<T> event) {
+  const T dx = event.x - static_cast<int>(event.x);
+  const T dy = event.y - static_cast<int>(event.y);
+  const T one_minus_dx = 1 - dx;
+  const T one_minus_dy = 1 - dy;
   return {one_minus_dx * one_minus_dy, dx * one_minus_dy, one_minus_dx * dy, dx * dy};
 }
 
-inline std::array<ev::AugmentedEvent, 4> ev::bilinearVoting(ev::AugmentedEvent event) {
+template <typename T>
+static inline std::array<ev::AugmentedEvent_<T>, 4> bilinearVoting(ev::AugmentedEvent_<T> event) {
   const int int_x = static_cast<int>(event.x);
   const int int_y = static_cast<int>(event.y);
-  const double dx = event.x - int_x;
-  const double dy = event.y - int_y;
-  const double one_minus_dx = 1 - dx;
-  const double one_minus_dy = 1 - dy;
+  const T dx = event.x - int_x;
+  const T dy = event.y - int_y;
+  const T one_minus_dx = 1 - dx;
+  const T one_minus_dy = 1 - dy;
   ev::AugmentedEvent e1 = event;
   ev::AugmentedEvent e2 = event;
   ev::AugmentedEvent e3 = event;

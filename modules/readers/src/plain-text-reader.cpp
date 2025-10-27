@@ -7,7 +7,7 @@
 #include "openev/utils/logger.hpp"
 #include <sstream>
 
-ev::PlainTextReader::PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns /*= PlainTextReaderColumns::TXYP*/, const std::string &separator /*= " "*/, const std::size_t buffer_size /*= 0*/, const bool use_threading /*=false*/) : file_{filename, std::ios::in}, separator_{separator}, AbstractReader_{buffer_size, use_threading} {
+ev::PlainTextReader::PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns /*= PlainTextReaderColumns::TXYP*/, const std::string &separator /*= " "*/, const std::size_t buffer_size /*= 0*/, const bool use_threading /*=false*/) : AbstractReader_{buffer_size, use_threading}, file_{filename, std::ios::in}, separator_{separator} {
   switch(columns) {
   case ev::PlainTextReaderColumns::TXYP:
     parser_ = [](std::stringstream &iss, ev::Event &e) { iss >> e.t >> e.x >> e.y >> e.p; };
@@ -35,7 +35,7 @@ ev::PlainTextReader::~PlainTextReader() {
 }
 
 std::size_t ev::PlainTextReader::count() {
-  std::streampos original_pos = file_.tellg();
+  const std::streampos original_pos = file_.tellg();
   auto original_state = file_.rdstate();
 
   file_.clear(std::ios::goodbit);

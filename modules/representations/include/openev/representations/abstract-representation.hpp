@@ -125,6 +125,15 @@ class AbstractRepresentation_ {
 public:
   using Type = typename TypeHelper<T>::Type; /*!< Type */
 
+  /*! \cond INTERNAL */
+  AbstractRepresentation_() = default;
+  virtual ~AbstractRepresentation_() = default;
+  AbstractRepresentation_(const AbstractRepresentation_ &) = delete;
+  AbstractRepresentation_(AbstractRepresentation_ &&) noexcept = delete;
+  AbstractRepresentation_ &operator=(const AbstractRepresentation_ &) = delete;
+  AbstractRepresentation_ &operator=(AbstractRepresentation_ &&) noexcept = delete;
+  /*! \endcond */
+
   /*!
   \brief Number of events integrated in the representation.
   \return Number of events
