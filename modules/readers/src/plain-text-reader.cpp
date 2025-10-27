@@ -34,6 +34,26 @@ ev::PlainTextReader::~PlainTextReader() {
   }
 }
 
+std::size_t ev::PlainTextReader::count() {
+  std::streampos original_pos = file_.tellg();
+  auto original_state = file_.rdstate();
+
+  file_.clear(std::ios::goodbit);
+  file_.seekg(0, std::ios::beg);
+
+  std::size_t line_count = 0;
+  std::string line;
+  while(std::getline(file_, line)) {
+    line_count++;
+  }
+
+  file_.clear(std::ios::goodbit);
+  file_.seekg(original_pos);
+  file_.setstate(original_state);
+
+  return line_count;
+}
+
 bool ev::PlainTextReader::read_(ev::Event &e) {
   std::string line;
   if(std::getline(file_, line)) {

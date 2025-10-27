@@ -149,16 +149,6 @@ void ev::AbstractReader_::reset() {
   }
 }
 
-std::size_t ev::AbstractReader_::count() {
-  std::size_t cnt = 0;
-  reset();
-  while(skip(1)) {
-    cnt++;
-  }
-  reset();
-  return cnt;
-}
-
 void ev::AbstractReader_::threadFunction() {
   while(threadRunning_.load() && loadBuffer()) {
     std::this_thread::sleep_for(std::chrono::milliseconds(1));

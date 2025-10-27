@@ -108,7 +108,7 @@ public:
   \brief Count the total number of events available.
   \return The total number of events available.
   */
-  std::size_t count();
+  virtual std::size_t count() = 0;
 
 protected:
   const std::size_t bufferSize_;
