@@ -1,4 +1,4 @@
 var classev_1_1PlainTextReader =
 [
-    [ "PlainTextReader", "classev_1_1PlainTextReader.html#a4f616c50df68b75d51918ed9a8d02de9", null ]
+    [ "count", "classev_1_1PlainTextReader.html#ab25fa40ec0533fb6280584c4a6a6ae62", null ]
 ];

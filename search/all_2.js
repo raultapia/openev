@@ -28,7 +28,7 @@ var searchData=
   ['containers_2ehpp_25',['containers.hpp',['../containers_8hpp.html',1,'']]],
   ['contains_26',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a4d2384e4c8a2a7972566ed2f32181acb',1,'ev::PointCloud_::contains()']]],
   ['core_2ehpp_27',['core.hpp',['../core_8hpp.html',1,'']]],
-  ['count_28',['count',['../classev_1_1AbstractReader__.html#ab0ff8f66fecf9da41984df80e85ac49a',1,'ev::AbstractReader_::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
+  ['count_28',['count',['../classev_1_1AbstractReader__.html#aa0510648df2b0c445f659786c3b9bde7',1,'ev::AbstractReader_::count()'],['../classev_1_1PlainTextReader.html#ab25fa40ec0533fb6280584c4a6a6ae62',1,'ev::PlainTextReader::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
   ['counter_29',['Counter',['../classev_1_1Mat_1_1Counter.html',1,'ev::Mat']]],
   ['counter_30',['counter',['../classev_1_1EventHistogram__.html#a7023954b751f89fa7466fd5036cedd3a',1,'ev::EventHistogram_']]]
 ];

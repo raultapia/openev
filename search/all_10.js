@@ -30,7 +30,7 @@ var searchData=
   ['size3f_27',['Size3f',['../types_8hpp.html#a99e62b4a05132e68460a491095b3e817',1,'ev']]],
   ['size3i_28',['Size3i',['../types_8hpp.html#af3568db1ae4bd990435889015f7d91fb',1,'ev']]],
   ['size3l_29',['Size3l',['../types_8hpp.html#ac9a59cbdeffcf0478035eec317fec57a',1,'ev']]],
-  ['skip_5fn_30',['skip_n',['../classev_1_1AbstractReader__.html#a9a6740830a4b7e132aa83ab3ed96689a',1,'ev::AbstractReader_']]],
+  ['skip_30',['skip',['../classev_1_1AbstractReader__.html#ae92df7271be44d9bfcfbef332cb0207f',1,'ev::AbstractReader_']]],
   ['skip_5ft_31',['skip_t',['../classev_1_1AbstractReader__.html#a03abce7946e422c4e3c84adebe8c3ffb',1,'ev::AbstractReader_']]],
   ['stampedmat_32',['StampedMat',['../classev_1_1StampedMat.html',1,'ev']]],
   ['start_33',['start',['../classev_1_1AbstractCamera.html#a772cbc6ed1b40c183fdc5423abd6ade0',1,'ev::AbstractCamera']]],

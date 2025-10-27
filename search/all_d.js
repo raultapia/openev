@@ -3,7 +3,7 @@ var searchData=
   ['p_0',['p',['../classev_1_1Event__.html#a2a0bf1127a8699d50fbffcafc545381a',1,'ev::Event_']]],
   ['plain_2dtext_2dreader_2ecpp_1',['plain-text-reader.cpp',['../plain-text-reader_8cpp.html',1,'']]],
   ['plain_2dtext_2dreader_2ehpp_2',['plain-text-reader.hpp',['../plain-text-reader_8hpp.html',1,'']]],
-  ['plaintextreader_3',['PlainTextReader',['../classev_1_1PlainTextReader.html',1,'ev::PlainTextReader'],['../classev_1_1PlainTextReader.html#a4f616c50df68b75d51918ed9a8d02de9',1,'ev::PlainTextReader::PlainTextReader()']]],
+  ['plaintextreader_3',['PlainTextReader',['../classev_1_1PlainTextReader.html',1,'ev']]],
   ['point_2dcloud_2ehpp_4',['point-cloud.hpp',['../point-cloud_8hpp.html',1,'']]],
   ['pointcloud_5',['PointCloud',['../point-cloud_8hpp.html#a80f3ab644ff9f5c066c639b0cd3fb52c',1,'ev']]],
   ['pointcloud1_6',['PointCloud1',['../point-cloud_8hpp.html#a1daac2fb98c1ecbe825443c2f2984b3a',1,'ev']]],

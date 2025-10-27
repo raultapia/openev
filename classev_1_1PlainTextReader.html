@@ -135,47 +135,74 @@ Inheritance diagram for ev::PlainTextReader:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4f616c50df68b75d51918ed9a8d02de9" id="r_a4f616c50df68b75d51918ed9a8d02de9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f616c50df68b75d51918ed9a8d02de9">PlainTextReader</a> (const std::string &amp;filename, const PlainTextReaderColumns columns=PlainTextReaderColumns::TXYP, const std::string &amp;separator=&quot; &quot;)</td></tr>
-<tr class="separator:a4f616c50df68b75d51918ed9a8d02de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc11362179fd31e1c880928c43fe7aca" id="r_afc11362179fd31e1c880928c43fe7aca"><td class="memItemLeft" align="right" valign="top"><a id="afc11362179fd31e1c880928c43fe7aca" name="afc11362179fd31e1c880928c43fe7aca"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PlainTextReader</b> (const std::string &amp;filename, const PlainTextReaderColumns columns=PlainTextReaderColumns::TXYP, const std::string &amp;separator=&quot; &quot;, const std::size_t buffer_size=0, const bool use_threading=false)</td></tr>
+<tr class="separator:afc11362179fd31e1c880928c43fe7aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab25fa40ec0533fb6280584c4a6a6ae62" id="r_ab25fa40ec0533fb6280584c4a6a6ae62"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab25fa40ec0533fb6280584c4a6a6ae62">count</a> () override</td></tr>
+<tr class="memdesc:ab25fa40ec0533fb6280584c4a6a6ae62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count the total number of events available.  <br /></td></tr>
+<tr class="separator:ab25fa40ec0533fb6280584c4a6a6ae62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classev_1_1AbstractReader__"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classev_1_1AbstractReader__')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classev_1_1AbstractReader__.html">ev::AbstractReader_</a></td></tr>
-<tr class="memitem:ad28b28cee4e6426b5f141f624f54c755 inherit pub_methods_classev_1_1AbstractReader__" id="r_ad28b28cee4e6426b5f141f624f54c755"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#ad28b28cee4e6426b5f141f624f54c755">next</a> (<a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> &amp;e)</td></tr>
-<tr class="memdesc:ad28b28cee4e6426b5f141f624f54c755 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next event from the dataset.  <br /></td></tr>
-<tr class="separator:ad28b28cee4e6426b5f141f624f54c755 inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c1c0853802fd45e4bbea6c40680f0f4 inherit pub_methods_classev_1_1AbstractReader__" id="r_a5c1c0853802fd45e4bbea6c40680f0f4"><td class="memTemplParams" colspan="2">template&lt;std::size_t N&gt; </td></tr>
-<tr class="memitem:a5c1c0853802fd45e4bbea6c40680f0f4 inherit pub_methods_classev_1_1AbstractReader__"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#a5c1c0853802fd45e4bbea6c40680f0f4">next</a> (<a class="el" href="classev_1_1Array__.html">Array</a>&lt; N &gt; &amp;array)</td></tr>
-<tr class="memdesc:a5c1c0853802fd45e4bbea6c40680f0f4 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next events from the dataset.  <br /></td></tr>
-<tr class="separator:a5c1c0853802fd45e4bbea6c40680f0f4 inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81713e57602276a719c39b083a0b920b inherit pub_methods_classev_1_1AbstractReader__" id="r_a81713e57602276a719c39b083a0b920b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#a81713e57602276a719c39b083a0b920b">next_n</a> (<a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;vector, const int n)</td></tr>
-<tr class="memdesc:a81713e57602276a719c39b083a0b920b inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next n events from the dataset.  <br /></td></tr>
-<tr class="separator:a81713e57602276a719c39b083a0b920b inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaa8acea516353c8a8b017927aefdc42 inherit pub_methods_classev_1_1AbstractReader__" id="r_aaaa8acea516353c8a8b017927aefdc42"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#aaaa8acea516353c8a8b017927aefdc42">next_n</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;queue, const int n, const bool keep_size=false)</td></tr>
-<tr class="memdesc:aaaa8acea516353c8a8b017927aefdc42 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next n events from the dataset.  <br /></td></tr>
-<tr class="separator:aaaa8acea516353c8a8b017927aefdc42 inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadc15085cac6222fc9e05b32fb3577aa inherit pub_methods_classev_1_1AbstractReader__" id="r_aadc15085cac6222fc9e05b32fb3577aa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#aadc15085cac6222fc9e05b32fb3577aa">next_t</a> (<a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;vector, const double t)</td></tr>
-<tr class="memdesc:aadc15085cac6222fc9e05b32fb3577aa inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next events until the specified duration is reached.  <br /></td></tr>
-<tr class="separator:aadc15085cac6222fc9e05b32fb3577aa inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2896189d879c653786c471bb78c7202 inherit pub_methods_classev_1_1AbstractReader__" id="r_ac2896189d879c653786c471bb78c7202"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#ac2896189d879c653786c471bb78c7202">next_t</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;queue, const double t, const bool keep_size=false)</td></tr>
-<tr class="memdesc:ac2896189d879c653786c471bb78c7202 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next events until the specified duration is reached and store them in a queue.  <br /></td></tr>
-<tr class="separator:ac2896189d879c653786c471bb78c7202 inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a6740830a4b7e132aa83ab3ed96689a inherit pub_methods_classev_1_1AbstractReader__" id="r_a9a6740830a4b7e132aa83ab3ed96689a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#a9a6740830a4b7e132aa83ab3ed96689a">skip_n</a> (int n)</td></tr>
-<tr class="memdesc:a9a6740830a4b7e132aa83ab3ed96689a inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skip the next n events in the dataset.  <br /></td></tr>
-<tr class="separator:a9a6740830a4b7e132aa83ab3ed96689a inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49c895c468629730172261f1d540651a inherit pub_methods_classev_1_1AbstractReader__" id="r_a49c895c468629730172261f1d540651a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#a49c895c468629730172261f1d540651a">AbstractReader_</a> (const std::size_t buffer_size, const bool use_threading)</td></tr>
+<tr class="memdesc:a49c895c468629730172261f1d540651a inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classev_1_1AbstractReader__.html" title="This is an auxiliary class. This class cannot be instanced.">AbstractReader_</a>.  <br /></td></tr>
+<tr class="separator:a49c895c468629730172261f1d540651a inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a985ae671e4cee0f176e99416286daa6d inherit pub_methods_classev_1_1AbstractReader__" id="r_a985ae671e4cee0f176e99416286daa6d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#a985ae671e4cee0f176e99416286daa6d">read</a> (<a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> &amp;e)</td></tr>
+<tr class="memdesc:a985ae671e4cee0f176e99416286daa6d inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next event.  <br /></td></tr>
+<tr class="separator:a985ae671e4cee0f176e99416286daa6d inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f56e54677cc191613bc2846b77c08f4 inherit pub_methods_classev_1_1AbstractReader__" id="r_a8f56e54677cc191613bc2846b77c08f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#a8f56e54677cc191613bc2846b77c08f4">read</a> (<a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;vector, const int n)</td></tr>
+<tr class="memdesc:a8f56e54677cc191613bc2846b77c08f4 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read next n events.  <br /></td></tr>
+<tr class="separator:a8f56e54677cc191613bc2846b77c08f4 inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4433401f2febdffb4d7ef149eb832d0 inherit pub_methods_classev_1_1AbstractReader__" id="r_ab4433401f2febdffb4d7ef149eb832d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#ab4433401f2febdffb4d7ef149eb832d0">read</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;queue, const int n, const bool keep_size=false)</td></tr>
+<tr class="memdesc:ab4433401f2febdffb4d7ef149eb832d0 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read next n events.  <br /></td></tr>
+<tr class="separator:ab4433401f2febdffb4d7ef149eb832d0 inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad598fa677669062e2e98274da8ea174 inherit pub_methods_classev_1_1AbstractReader__" id="r_aad598fa677669062e2e98274da8ea174"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#aad598fa677669062e2e98274da8ea174">read_t</a> (<a class="el" href="classev_1_1Vector__.html">Vector</a> &amp;vector, const double t)</td></tr>
+<tr class="memdesc:aad598fa677669062e2e98274da8ea174 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next events until the specified duration is reached.  <br /></td></tr>
+<tr class="separator:aad598fa677669062e2e98274da8ea174 inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2d69dd61a74d7c4493213eb0dceb3e0 inherit pub_methods_classev_1_1AbstractReader__" id="r_af2d69dd61a74d7c4493213eb0dceb3e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#af2d69dd61a74d7c4493213eb0dceb3e0">read_t</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;queue, const double t, const bool keep_size=false)</td></tr>
+<tr class="memdesc:af2d69dd61a74d7c4493213eb0dceb3e0 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next events until the specified duration is reached and store them in a queue.  <br /></td></tr>
+<tr class="separator:af2d69dd61a74d7c4493213eb0dceb3e0 inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae92df7271be44d9bfcfbef332cb0207f inherit pub_methods_classev_1_1AbstractReader__" id="r_ae92df7271be44d9bfcfbef332cb0207f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#ae92df7271be44d9bfcfbef332cb0207f">skip</a> (int n)</td></tr>
+<tr class="memdesc:ae92df7271be44d9bfcfbef332cb0207f inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skip the next n events.  <br /></td></tr>
+<tr class="separator:ae92df7271be44d9bfcfbef332cb0207f inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03abce7946e422c4e3c84adebe8c3ffb inherit pub_methods_classev_1_1AbstractReader__" id="r_a03abce7946e422c4e3c84adebe8c3ffb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#a03abce7946e422c4e3c84adebe8c3ffb">skip_t</a> (const double t)</td></tr>
 <tr class="memdesc:a03abce7946e422c4e3c84adebe8c3ffb inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skip events for the specified duration.  <br /></td></tr>
 <tr class="separator:a03abce7946e422c4e3c84adebe8c3ffb inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29982bb0dde6ca0e1b43fc15e2dce769 inherit pub_methods_classev_1_1AbstractReader__" id="r_a29982bb0dde6ca0e1b43fc15e2dce769"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#a29982bb0dde6ca0e1b43fc15e2dce769">reset</a> ()</td></tr>
-<tr class="memdesc:a29982bb0dde6ca0e1b43fc15e2dce769 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start reading from the first event in the dataset.  <br /></td></tr>
+<tr class="memdesc:a29982bb0dde6ca0e1b43fc15e2dce769 inherit pub_methods_classev_1_1AbstractReader__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start reading from the first event.  <br /></td></tr>
 <tr class="separator:a29982bb0dde6ca0e1b43fc15e2dce769 inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0ff8f66fecf9da41984df80e85ac49a inherit pub_methods_classev_1_1AbstractReader__" id="r_ab0ff8f66fecf9da41984df80e85ac49a"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classev_1_1AbstractReader__.html#ab0ff8f66fecf9da41984df80e85ac49a">count</a> ()</td></tr>
-<tr class="separator:ab0ff8f66fecf9da41984df80e85ac49a inherit pub_methods_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_attribs_classev_1_1AbstractReader__"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_static_attribs_classev_1_1AbstractReader__')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classev_1_1AbstractReader__.html">ev::AbstractReader_</a></td></tr>
+<tr class="memitem:a9111316a78bd922e164621bf332d00b1 inherit pub_static_attribs_classev_1_1AbstractReader__" id="r_a9111316a78bd922e164621bf332d00b1"><td class="memItemLeft" align="right" valign="top">
+static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>NO_BUFFER</b> = 0</td></tr>
+<tr class="separator:a9111316a78bd922e164621bf332d00b1 inherit pub_static_attribs_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc7ea21ec059327d4c74dde3e2cc1e79 inherit pub_static_attribs_classev_1_1AbstractReader__" id="r_acc7ea21ec059327d4c74dde3e2cc1e79"><td class="memItemLeft" align="right" valign="top">
+static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>INF_BUFFER</b> = std::numeric_limits&lt;std::size_t&gt;::max()</td></tr>
+<tr class="separator:acc7ea21ec059327d4c74dde3e2cc1e79 inherit pub_static_attribs_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classev_1_1AbstractReader__"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pro_attribs_classev_1_1AbstractReader__')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classev_1_1AbstractReader__.html">ev::AbstractReader_</a></td></tr>
+<tr class="memitem:a36d9c15bba9177f0ed4ac99a23534d23 inherit pro_attribs_classev_1_1AbstractReader__" id="r_a36d9c15bba9177f0ed4ac99a23534d23"><td class="memItemLeft" align="right" valign="top">
+const std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>bufferSize_</b></td></tr>
+<tr class="separator:a36d9c15bba9177f0ed4ac99a23534d23 inherit pro_attribs_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e37ad9c533ed5a09da91a48dcbf9247 inherit pro_attribs_classev_1_1AbstractReader__" id="r_a2e37ad9c533ed5a09da91a48dcbf9247"><td class="memItemLeft" align="right" valign="top">
+std::thread&#160;</td><td class="memItemRight" valign="bottom"><b>thread_</b></td></tr>
+<tr class="separator:a2e37ad9c533ed5a09da91a48dcbf9247 inherit pro_attribs_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe4dcca56d186db3a9b9959dd9ea5f4c inherit pro_attribs_classev_1_1AbstractReader__" id="r_abe4dcca56d186db3a9b9959dd9ea5f4c"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a>&#160;</td><td class="memItemRight" valign="bottom"><b>buffer_</b></td></tr>
+<tr class="separator:abe4dcca56d186db3a9b9959dd9ea5f4c inherit pro_attribs_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0a0ab497944449abd066e6c5d4063a1 inherit pro_attribs_classev_1_1AbstractReader__" id="r_ac0a0ab497944449abd066e6c5d4063a1"><td class="memItemLeft" align="right" valign="top">
+std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>bufferMutex_</b></td></tr>
+<tr class="separator:ac0a0ab497944449abd066e6c5d4063a1 inherit pro_attribs_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a913e3294bb2a33597015c8238f5fd428 inherit pro_attribs_classev_1_1AbstractReader__" id="r_a913e3294bb2a33597015c8238f5fd428"><td class="memItemLeft" align="right" valign="top">
+std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>threadRunning_</b> {}</td></tr>
+<tr class="separator:a913e3294bb2a33597015c8238f5fd428 inherit pro_attribs_classev_1_1AbstractReader__"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class extends <a class="el" href="classev_1_1AbstractReader__.html" title="This is an auxiliary class. This class cannot be instanced.">AbstractReader_</a> to read dataset in plain text format. </p>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-plain-text-reader_8cpp-example.html#_a0">example-plain-text-reader.cpp</a>.</dd>
 </dl>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a4f616c50df68b75d51918ed9a8d02de9" name="a4f616c50df68b75d51918ed9a8d02de9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f616c50df68b75d51918ed9a8d02de9">&#9670;&#160;</a></span>PlainTextReader()</h2>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab25fa40ec0533fb6280584c4a6a6ae62" name="ab25fa40ec0533fb6280584c4a6a6ae62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab25fa40ec0533fb6280584c4a6a6ae62">&#9670;&#160;</a></span>count()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -184,33 +211,23 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">ev::PlainTextReader::PlainTextReader </td>
+          <td class="memname">std::size_t ev::PlainTextReader::count </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>filename</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">const PlainTextReaderColumns</td>          <td class="paramname"><span class="paramname"><em>columns</em></span><span class="paramdefsep"> = </span><span class="paramdefval">PlainTextReaderColumns::TXYP</span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>separator</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&#160;&quot;</span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Contructor using filename. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">filename</td><td>Filename of the dataset TODO </td></tr>
-  </table>
-  </dd>
-</dl>
+
+<p>Count the total number of events available. </p>
+<dl class="section return"><dt>Returns</dt><dd>The total number of events available. </dd></dl>
+
+<p>Implements <a class="el" href="classev_1_1AbstractReader__.html#aa0510648df2b0c445f659786c3b9bde7">ev::AbstractReader_</a>.</p>
 
 </div>
 </div>

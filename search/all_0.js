@@ -5,7 +5,7 @@ var searchData=
   ['abstract_2dreader_2ecpp_2',['abstract-reader.cpp',['../abstract-reader_8cpp.html',1,'']]],
   ['abstract_2drepresentation_2ehpp_3',['abstract-representation.hpp',['../abstract-representation_8hpp.html',1,'']]],
   ['abstractcamera_4',['AbstractCamera',['../classev_1_1AbstractCamera.html',1,'ev']]],
-  ['abstractreader_5f_5',['AbstractReader_',['../classev_1_1AbstractReader__.html',1,'ev']]],
+  ['abstractreader_5f_5',['AbstractReader_',['../classev_1_1AbstractReader__.html',1,'ev::AbstractReader_'],['../classev_1_1AbstractReader__.html#a49c895c468629730172261f1d540651a',1,'ev::AbstractReader_::AbstractReader_()']]],
   ['abstractrepresentation_5f_6',['AbstractRepresentation_',['../classev_1_1AbstractRepresentation__.html',1,'ev']]],
   ['abstractrepresentation_5f_3c_20t_2c_20options_2c_20int_20_3e_7',['AbstractRepresentation_&lt; T, Options, int &gt;',['../classev_1_1AbstractRepresentation__.html',1,'ev']]],
   ['abstractrepresentation_5f_3c_20t_2c_20representationoptions_3a_3anone_2c_20int_20_3e_8',['AbstractRepresentation_&lt; T, RepresentationOptions::NONE, int &gt;',['../classev_1_1AbstractRepresentation__.html',1,'ev']]],
