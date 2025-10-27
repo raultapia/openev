@@ -52,22 +52,6 @@ public:
 
   /*!
   \brief Read next n events.
-  \tparam N The size of the array.
-  \param array Reference to an Array object where the events will be stored.
-  \return True if all events were successfully read, false otherwise.
-  */
-  template <std::size_t N>
-  bool read(Array<N> &array) {
-    for(Event &e : array) {
-      if(!read(e)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  /*!
-  \brief Read next n events.
   \param vector Event vector
   \param n Number of events to get
   \return True if vector populated with n new events

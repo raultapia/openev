@@ -66,9 +66,14 @@ bool ev::AbstractReader_::read(ev::Queue &queue, const int n, const bool keep_si
 
 bool ev::AbstractReader_::read_t(ev::Vector &vector, const double t) {
   ev::Event e;
-  if(vector.empty() && read(e)) {
-    vector.emplace_back(e);
+  if(vector.empty()) {
+    if(read(e)) {
+      vector.emplace_back(e);
+    } else {
+      return false;
+    }
   }
+
   const double t_ref = vector.back().t;
   while(read(e)) {
     if(e.t - t_ref >= t) {
@@ -81,12 +86,17 @@ bool ev::AbstractReader_::read_t(ev::Vector &vector, const double t) {
 
 bool ev::AbstractReader_::read_t(ev::Queue &queue, const double t, const bool keep_size /*= false*/) {
   ev::Event e;
-  if(queue.empty() && read(e)) {
-    queue.emplace(e);
+  if(queue.empty()) {
+    if(read(e)) {
+      queue.emplace(e);
+    } else {
+      return false;
+    }
   }
-  const ev::Event &ref = queue.back();
+
+  const double t_ref = queue.back().t;
   while(read(e)) {
-    if(e.distance(ref, DISTANCE_FLAG_TEMPORAL) >= t) {
+    if(e.t - t_ref >= t) {
       return true;
     }
     queue.emplace(e);
@@ -99,9 +109,7 @@ bool ev::AbstractReader_::read_t(ev::Queue &queue, const double t, const bool ke
 
 bool ev::AbstractReader_::skip(int n) {
   ev::Event e;
-  while(n-- > 0 && read(e)) {
-    ;
-  }
+  while(n-- > 0 && read(e));
   return n < 0;
 }
 
@@ -112,7 +120,7 @@ bool ev::AbstractReader_::skip_t(const double t) {
     return false;
   }
   while(read(e1)) {
-    if(e1.distance(e0, DISTANCE_FLAG_TEMPORAL) >= t) {
+    if(e1.t - e0.t >= t) {
       return true;
     }
   }
