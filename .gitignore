@@ -1,3 +1,4 @@
+.cache
+.github/assets/*.svg
 build/
 cmake
-.github/assets/*.svg
