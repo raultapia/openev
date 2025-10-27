@@ -28,15 +28,10 @@ enum PlainTextReaderColumns : uint8_t {
 */
 class PlainTextReader : public AbstractReader_ {
 public:
-  /*!
-  Contructor using filename.
-  \param filename Filename of the dataset
-  TODO
-  */
-  explicit PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns = PlainTextReaderColumns::TXYP, const std::string &separator = " ");
+  PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns = PlainTextReaderColumns::TXYP, const std::string &separator = " ", const std::size_t buffer_size = 0, const bool use_threading = false);
+  ~PlainTextReader();
 
   /*! \cond INTERNAL */
-  ~PlainTextReader() override;
   PlainTextReader(const PlainTextReader &) = delete;
   PlainTextReader(PlainTextReader &&) noexcept = delete;
   PlainTextReader &operator=(const PlainTextReader &) = delete;
@@ -48,8 +43,9 @@ private:
   std::regex separator_;
   std::function<void(std::stringstream &, ev::Event &)> parser_;
   bool replace_;
-  void reset_() override;
+
   bool read_(Event &e) override;
+  void reset_() override;
 };
 
 } // namespace ev

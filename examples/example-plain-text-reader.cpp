@@ -38,7 +38,7 @@ int main(int /*argc*/, const char * /*argv*/[]) {
 
   ev::PlainTextReader reader("test.txt");
   ev::Event e;
-  while(reader.next(e)) {
+  while(reader.read(e)) {
     std::cout << e << '\n';
   }
 

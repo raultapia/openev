@@ -7,7 +7,7 @@
 #include "openev/utils/logger.hpp"
 #include <sstream>
 
-ev::PlainTextReader::PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns /*= PlainTextReaderColumns::TXYP*/, const std::string &separator /*= " "*/) : file_{filename, std::ios::in}, separator_{separator} {
+ev::PlainTextReader::PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns /*= PlainTextReaderColumns::TXYP*/, const std::string &separator /*= " "*/, const std::size_t buffer_size /*= 0*/, const bool use_threading /*=false*/) : file_{filename, std::ios::in}, separator_{separator}, AbstractReader_{buffer_size, use_threading} {
   switch(columns) {
   case ev::PlainTextReaderColumns::TXYP:
     parser_ = [](std::stringstream &iss, ev::Event &e) { iss >> e.t >> e.x >> e.y >> e.p; };
@@ -34,11 +34,6 @@ ev::PlainTextReader::~PlainTextReader() {
   }
 }
 
-void ev::PlainTextReader::reset_() {
-  file_.clear(std::ios::goodbit);
-  file_.seekg(0, std::ios::beg);
-}
-
 bool ev::PlainTextReader::read_(ev::Event &e) {
   std::string line;
   if(std::getline(file_, line)) {
@@ -50,4 +45,9 @@ bool ev::PlainTextReader::read_(ev::Event &e) {
     return true;
   }
   return false;
+}
+
+void ev::PlainTextReader::reset_() {
+  file_.clear(std::ios::goodbit);
+  file_.seekg(0, std::ios::beg);
 }
