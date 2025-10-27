@@ -6,7 +6,6 @@
 #ifndef OPENEV_READERS_ABSTRACT_READER_HPP
 #define OPENEV_READERS_ABSTRACT_READER_HPP
 
-#include "openev/containers/array.hpp"
 #include "openev/containers/queue.hpp"
 #include "openev/containers/vector.hpp"
 #include "openev/core/types.hpp"
