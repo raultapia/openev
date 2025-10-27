@@ -6,6 +6,40 @@
 #include "openev/readers/abstract-reader.hpp"
 #include <vector>
 
+ev::AbstractReader_::AbstractReader_(const std::size_t buffer_size, const bool use_threading) : bufferSize_{buffer_size} {
+  if(buffer_size > NO_BUFFER) {
+    loadBuffer();
+    if(use_threading) {
+      threadRunning_.store(true);
+      thread_ = std::thread(&AbstractReader_::threadFunction, this);
+    }
+  }
+}
+
+ev::AbstractReader_::~AbstractReader_() {
+  if(thread_.joinable()) {
+    threadRunning_.store(false);
+    thread_.join();
+  }
+}
+
+bool ev::AbstractReader_::read(ev::Event &e) {
+  if(bufferSize_ == NO_BUFFER) {
+    return read_(e);
+  }
+
+  std::lock_guard<std::mutex> lock(bufferMutex_);
+  if(buffer_.empty()) {
+    if(!loadBuffer()) {
+      return false;
+    }
+  }
+
+  e = buffer_.front();
+  buffer_.pop();
+  return true;
+}
+
 bool ev::AbstractReader_::read(ev::Vector &vector, const int n) {
   const std::size_t current_size = vector.size();
   vector.resize(current_size + n);
@@ -85,6 +119,28 @@ bool ev::AbstractReader_::skip_t(const double t) {
   return false;
 }
 
+void ev::AbstractReader_::reset() {
+  bool reset_thread = false;
+  if(thread_.joinable()) {
+    threadRunning_.store(false);
+    thread_.join();
+    reset_thread = true;
+  }
+
+  reset_();
+
+  if(bufferSize_ > NO_BUFFER) {
+    while(!buffer_.empty()) {
+      buffer_.pop();
+    }
+  }
+
+  if(reset_thread) {
+    threadRunning_.store(true);
+    thread_ = std::thread(&AbstractReader_::threadFunction, this);
+  }
+}
+
 std::size_t ev::AbstractReader_::count() {
   std::size_t cnt = 0;
   reset();
@@ -93,4 +149,23 @@ std::size_t ev::AbstractReader_::count() {
   }
   reset();
   return cnt;
+}
+
+void ev::AbstractReader_::threadFunction() {
+  while(threadRunning_.load() && loadBuffer()) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+  }
+}
+
+bool ev::AbstractReader_::loadBuffer() {
+  ev::Event e;
+  std::lock_guard<std::mutex> lock(bufferMutex_);
+  while(buffer_.size() < bufferSize_) {
+    if(read_(e)) {
+      buffer_.push(e);
+    } else {
+      return false;
+    }
+  }
+  return true;
 }

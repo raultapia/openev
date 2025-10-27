@@ -36,47 +36,19 @@ public:
   \brief Constructor for AbstractReader_.
   \param buffer_size The size of the buffer to be used by the reader.
   */
-  AbstractReader_(const std::size_t buffer_size, const bool use_threading) : bufferSize_{buffer_size} {
-    if(buffer_size > NO_BUFFER) {
-      loadBuffer();
-      if(use_threading) {
-        threadRunning_.store(true);
-        thread_ = std::thread(&AbstractReader_::threadFunction, this);
-      }
-    }
-  }
+  AbstractReader_(const std::size_t buffer_size, const bool use_threading);
 
   /*!
   \brief Destructor for AbstractReader_.
   */
-  ~AbstractReader_() {
-    if(thread_.joinable()) {
-      threadRunning_.store(false);
-      thread_.join();
-    }
-  }
+  ~AbstractReader_();
 
   /*!
   \brief Read the next event.
   \param e Reference to an Event object where the next event will be stored.
   \return True if the event was successfully read, false otherwise.
   */
-  bool read(Event &e) {
-    if(bufferSize_ == NO_BUFFER) {
-      return read_(e);
-    }
-
-    std::lock_guard<std::mutex> lock(bufferMutex_);
-    if(buffer_.empty()) {
-      if(!loadBuffer()) {
-        return false;
-      }
-    }
-
-    e = buffer_.front();
-    buffer_.pop();
-    return true;
-  }
+  bool read(Event &e);
 
   /*!
   \brief Read next n events.
@@ -146,27 +118,7 @@ public:
   \brief Start reading from the first event.
   \note The behaviour of reset should be implemented in the derived classes.
   */
-  void reset() {
-    bool reset_thread = false;
-    if(thread_.joinable()) {
-      threadRunning_.store(false);
-      thread_.join();
-      reset_thread = true;
-    }
-
-    reset_();
-
-    if(bufferSize_ > NO_BUFFER) {
-      while(!buffer_.empty()) {
-        buffer_.pop();
-      }
-    }
-
-    if(reset_thread) {
-      threadRunning_.store(true);
-      thread_ = std::thread(&AbstractReader_::threadFunction, this);
-    }
-  }
+  void reset();
 
   /*!
   \brief Count the total number of events available.
@@ -185,24 +137,8 @@ protected:
   virtual void reset_() = 0;
 
 private:
-  void threadFunction() {
-    while(threadRunning_.load() && loadBuffer()) {
-      std::this_thread::sleep_for(std::chrono::milliseconds(1));
-    }
-  }
-
-  bool loadBuffer() {
-    Event e;
-    std::lock_guard<std::mutex> lock(bufferMutex_);
-    while(buffer_.size() < bufferSize_) {
-      if(read_(e)) {
-        buffer_.push(e);
-      } else {
-        return false;
-      }
-    }
-    return true;
-  }
+  void threadFunction();
+  bool loadBuffer();
 };
 
 } // namespace ev
