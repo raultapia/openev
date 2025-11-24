@@ -1,4 +1,2 @@
-.cache
-.github/assets/*.svg
+.cache/
 build/
-cmake
