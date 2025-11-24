@@ -1,6 +1,5 @@
 .cache/
 .dockerignore
-.git/
 .github/
 .gitignore
 .gitmodules
