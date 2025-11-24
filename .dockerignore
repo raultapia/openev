@@ -1,0 +1,9 @@
+.cache/
+.dockerignore
+.git/
+.github/
+.gitignore
+.gitmodules
+build/
+Dockerfile
+third-party/
