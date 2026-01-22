@@ -25,6 +25,10 @@
 #include "openev/devices.hpp"
 #endif // OE_IS_ENABLED_MODULE_DEVICES
 
+#if OE_IS_ENABLED_MODULE_EVPROC
+#include "openev/evproc.hpp"
+#endif // OE_IS_ENABLED_MODULE_EVPROC
+
 #if OE_IS_ENABLED_MODULE_READERS
 #include "openev/readers.hpp"
 #endif // OE_IS_ENABLED_MODULE_READERS
