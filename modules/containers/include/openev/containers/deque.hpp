@@ -8,6 +8,7 @@
 
 #include "openev/core/types.hpp"
 #include <deque>
+#include <numeric> // For std::accumulate
 #include <opencv2/core/types.hpp>
 
 namespace ev {
@@ -25,37 +26,55 @@ public:
   \brief Time difference between the last and the first event.
   \return Time difference
   */
-  [[nodiscard]] inline double duration() const;
+  [[nodiscard]] inline double duration() const {
+    return std::deque<ev::Event_<T>>::back().t - std::deque<ev::Event_<T>>::front().t;
+  }
 
   /*!
   \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event.
   \return Event rate
   */
-  [[nodiscard]] inline double rate() const;
+  [[nodiscard]] inline double rate() const {
+    return std::deque<ev::Event_<T>>::size() / duration();
+  }
 
   /*!
   \brief Compute the mean of the events.
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
-  [[nodiscard]] Eventd mean() const;
+  [[nodiscard]] inline Eventd mean() const {
+    const double x = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.x; }) / std::deque<ev::Event_<T>>::size();
+    const double y = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.y; }) / std::deque<ev::Event_<T>>::size();
+    const double t = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.t; }) / std::deque<ev::Event_<T>>::size();
+    const double p = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.p; }) / std::deque<ev::Event_<T>>::size();
+    return {x, y, t, p > 0.5};
+  }
 
   /*!
   \brief Compute the mean x,y point of the events.
   \return Mean point
   */
-  [[nodiscard]] inline cv::Point2d meanPoint() const;
+  [[nodiscard]] inline cv::Point2d meanPoint() const {
+    const double x = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.x; }) / std::deque<ev::Event_<T>>::size();
+    const double y = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.y; }) / std::deque<ev::Event_<T>>::size();
+    return {x, y};
+  }
 
   /*!
   \brief Compute the mean time of the events.
   \return Mean time
   */
-  [[nodiscard]] inline double meanTime() const;
+  [[nodiscard]] inline double meanTime() const {
+    return std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](double sum, const Event_<T> &e) { return sum + e.t; }) / std::deque<ev::Event_<T>>::size();
+  }
 
   /*!
   \brief Calculate the midpoint time between the oldest and the newest event.
   \return Midpoint time.
   */
-  [[nodiscard]] inline double midTime() const;
+  [[nodiscard]] inline double midTime() const {
+    return 0.5 * (std::deque<ev::Event_<T>>::front().t + std::deque<ev::Event_<T>>::back().t);
+  }
 };
 using Dequei = Deque_<int>;    /*!< Alias for Deque_ using int */
 using Dequel = Deque_<long>;   /*!< Alias for Deque_ using long */
