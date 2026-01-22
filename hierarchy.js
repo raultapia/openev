@@ -120,6 +120,7 @@ var hierarchy =
       [ "ev::CircularBuffer_< double >", "classev_1_1CircularBuffer__.html", null ],
       [ "ev::CircularBuffer_< T >", "classev_1_1CircularBuffer__.html", null ]
     ] ],
+    [ "CoutRedirect", "classCoutRedirect.html", null ],
     [ "std::deque", null, [
       [ "ev::Deque_< int >", "classev_1_1Deque__.html", null ],
       [ "ev::Deque_< long >", "classev_1_1Deque__.html", null ],
@@ -205,6 +206,9 @@ var hierarchy =
       [ "ev::Size3_< float >", "classev_1_1Size3__.html", null ],
       [ "ev::Size3_< double >", "classev_1_1Size3__.html", null ],
       [ "ev::Size3_< T >", "classev_1_1Size3__.html", null ]
+    ] ],
+    [ "testing::Test", null, [
+      [ "ContainerTestFixture< Container >", "classContainerTestFixture.html", null ]
     ] ],
     [ "std::vector", null, [
       [ "ev::Vector_< int >", "classev_1_1Vector__.html", null ],
