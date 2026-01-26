@@ -110,7 +110,7 @@ public:
   }
 
   inline void clear() {
-    cv::Mat_<bool>::setTo(false);
+    cv::Mat_<bool>::setTo(0);
   }
 
   friend std::ostream &operator<<(std::ostream &os, const Polarity &polarity) {
