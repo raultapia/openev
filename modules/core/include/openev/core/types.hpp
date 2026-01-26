@@ -479,7 +479,7 @@ using Circ = Circi;
 \endcode
 */
 template <typename T>
-struct Circ_ {
+struct alignas(16) Circ_ {
   cv::Point_<T> center;
   T radius;
 
