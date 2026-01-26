@@ -3,11 +3,8 @@
 #include "openev/containers/deque.hpp"
 #include "openev/containers/queue.hpp"
 #include "openev/containers/vector.hpp"
-#include "openev/core/types.hpp"
 #include <gtest/gtest.h>
-#include <opencv2/core/types.hpp>
-#include <string>
-#include <type_traits>
+#include <opencv2/opencv.hpp>
 
 template <typename Container>
 class ContainerTestFixture : public ::testing::Test {
@@ -65,4 +62,20 @@ TYPED_TEST(ContainerTestFixture, MeanTime) {
 TYPED_TEST(ContainerTestFixture, MidTime) {
   const double midTime = this->container.midTime();
   EXPECT_DOUBLE_EQ(midTime, (1.2143 + 5.3432) / 2.0);
+}
+
+TEST(CircularBuffer, EmplaceFront) {
+  ev::CircularBuffer buffer(2);
+  buffer.emplace_front(10, 20, 1.0, true);
+  buffer.emplace_front(30, 40, 2.0, false);
+  EXPECT_EQ(buffer[0], ev::Event(30, 40, 2.0, false));
+  EXPECT_EQ(buffer[1], ev::Event(10, 20, 1.0, true));
+}
+
+TEST(CircularBuffer, EmplaceBack) {
+  ev::CircularBuffer buffer(2);
+  buffer.emplace_back(10, 20, 1.0, true);
+  buffer.emplace_back(30, 40, 2.0, false);
+  EXPECT_EQ(buffer[0], ev::Event(10, 20, 1.0, true));
+  EXPECT_EQ(buffer[1], ev::Event(30, 40, 2.0, false));
 }

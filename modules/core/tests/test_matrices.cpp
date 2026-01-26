@@ -1,9 +1,7 @@
 #include "openev/core/matrices.hpp"
 #include "openev/core/types.hpp"
 #include <gtest/gtest.h>
-#include <opencv2/core/mat.inl.hpp>
-#include <sstream>
-#include <string>
+#include <opencv2/opencv.hpp>
 
 // Test Binary Class
 TEST(BinaryTest, Insert) {

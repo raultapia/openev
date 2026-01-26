@@ -1,10 +1,6 @@
 #include "openev/core/types.hpp"
 #include <gtest/gtest.h>
-#include <opencv2/core/base.hpp>
-#include <opencv2/core/matx.hpp>
-#include <opencv2/core/types.hpp>
-#include <sstream>
-#include <string>
+#include <opencv2/opencv.hpp>
 
 // Test Enums
 TEST(EnumsTest, StereoValues) {

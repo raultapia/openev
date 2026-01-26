@@ -1,8 +1,5 @@
 #include "openev/utils/logger.hpp"
 #include <gtest/gtest.h>
-#include <iostream>
-#include <sstream>
-#include <stdexcept>
 
 class CoutRedirect {
 public:
