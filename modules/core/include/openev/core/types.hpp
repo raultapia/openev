@@ -115,9 +115,31 @@ public:
   /*!
   Copy assignment operator
   */
+  template <typename U>
+  Event_<T> &operator=(const Event_<U> &e) {
+    Event_<T>::x = static_cast<T>(e.x);
+    Event_<T>::y = static_cast<T>(e.y);
+    Event_<T>::t = static_cast<double>(e.t);
+    Event_<T>::p = static_cast<bool>(e.p);
+    return *this;
+  }
+
+  /*!
+  Copy assignment operator
+  */
+  Event_<T> &operator=(const cv::Point3_<T> &p) {
+    Event_<T>::x = static_cast<T>(p.x);
+    Event_<T>::y = static_cast<T>(p.y);
+    Event_<T>::t = static_cast<double>(p.z);
+    return *this;
+  }
+
+  /*!
+  Copy assignment operator
+  */
   Event_<T> &operator=(const cv::Point_<T> &p) {
-    Event_<T>::x = p.x;
-    Event_<T>::y = p.y;
+    Event_<T>::x = static_cast<T>(p.x);
+    Event_<T>::y = static_cast<T>(p.y);
     return *this;
   }
 
@@ -158,7 +180,7 @@ public:
   cv::Point cast operator
   */
   template <typename U>
-  [[nodiscard]] inline operator cv::Point_<U>() const {
+  [[nodiscard]] inline explicit operator cv::Point_<U>() const {
     return {static_cast<U>(Event_<T>::x), static_cast<U>(Event_<T>::y)};
   }
 
@@ -166,7 +188,7 @@ public:
   cv::Point3 cast operator
   */
   template <typename U>
-  [[nodiscard]] inline operator cv::Point3_<U>() const {
+  [[nodiscard]] inline explicit operator cv::Point3_<U>() const {
     return {static_cast<U>(Event_<T>::x), static_cast<U>(Event_<T>::y), static_cast<U>(Event_<T>::t)};
   }
 
