@@ -3,12 +3,15 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-#include <string>
 
 class CoutRedirect {
 public:
   explicit CoutRedirect(std::ostream &new_stream) : old(std::cout.rdbuf(new_stream.rdbuf())) {}
   ~CoutRedirect() { std::cout.rdbuf(old); }
+  CoutRedirect(const CoutRedirect &) = delete;
+  CoutRedirect &operator=(const CoutRedirect &) = delete;
+  CoutRedirect(CoutRedirect &&) = delete;
+  CoutRedirect &operator=(CoutRedirect &&) = delete;
 
 private:
   std::streambuf *old;
