@@ -7,6 +7,7 @@
 #define OPENEV_CONTAINERS_QUEUE_HPP
 
 #include "openev/core/types.hpp"
+#include <cstddef>
 #include <opencv2/core/types.hpp>
 #include <queue>
 
