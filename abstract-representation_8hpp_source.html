@@ -119,16 +119,16 @@ $(function(){initNavTree('abstract-representation_8hpp_source.html',''); initRes
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="logger_8hpp.html">openev/utils/logger.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;array&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;float.h&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;opencv2/core/hal/interface.h&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;opencv2/core/mat.hpp&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;opencv2/core/mat.inl.hpp&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;opencv2/core/matx.hpp&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;opencv2/core/traits.hpp&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;float.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;opencv2/core/hal/interface.h&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;opencv2/core/mat.hpp&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;opencv2/core/mat.inl.hpp&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;opencv2/core/matx.hpp&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;opencv2/core/traits.hpp&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;opencv2/core/utils/logger.hpp&gt;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;opencv2/imgproc.hpp&gt;</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;opencv2/viz/types.hpp&gt;</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
@@ -329,7 +329,7 @@ $(function(){initNavTree('abstract-representation_8hpp_source.html',''); initRes
 <div class="foldopen" id="foldopen00291" data-start="{" data-end="}">
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="classev_1_1AbstractRepresentation__.html#a6c04ab1aacaec2b1567760c3100ecd91">  291</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classev_1_1AbstractRepresentation__.html#a6c04ab1aacaec2b1567760c3100ecd91">setColormap</a>(<span class="keyword">const</span> cv::ColormapTypes cm) {</div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(TypeHelper&lt;T&gt;::NumChannels == 1) {</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>      <a class="code hl_function" href="logger_8hpp.html#a71684dccfbab0486a93201ae7341e025">ev::logger::error</a>(<span class="stringliteral">&quot;setColorMap: Colormap can only be used with 3-channel representations&quot;</span>);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>      CV_LOG_ERROR(<span class="keyword">nullptr</span>, <span class="stringliteral">&quot;setColorMap: Colormap can only be used with 3-channel representations&quot;</span>);</div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>    } <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>      colormap_ = std::make_unique&lt;cv::ColormapTypes&gt;(cm);</div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
@@ -397,10 +397,8 @@ $(function(){initNavTree('abstract-representation_8hpp_source.html',''); initRes
 <div class="ttc" id="aclassev_1_1Array___html"><div class="ttname"><a href="classev_1_1Array__.html">ev::Array_</a></div><div class="ttdoc">This class extends std::array to implement event arrays. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> array.hpp:22</div></div>
 <div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:56</div></div>
 <div class="ttc" id="aclassev_1_1Event___html_afdb69c87797e8da1e08fa3844db759c3"><div class="ttname"><a href="classev_1_1Event__.html#afdb69c87797e8da1e08fa3844db759c3">ev::Event_::t</a></div><div class="ttdeci">double t</div><div class="ttdef"><b>Definition</b> types.hpp:58</div></div>
-<div class="ttc" id="aclassev_1_1Queue___html"><div class="ttname"><a href="classev_1_1Queue__.html">ev::Queue_</a></div><div class="ttdoc">This class extends std::queue to implement event queues. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> queue.hpp:20</div></div>
+<div class="ttc" id="aclassev_1_1Queue___html"><div class="ttname"><a href="classev_1_1Queue__.html">ev::Queue_</a></div><div class="ttdoc">This class extends std::queue to implement event queues. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> queue.hpp:21</div></div>
 <div class="ttc" id="aclassev_1_1Vector___html"><div class="ttname"><a href="classev_1_1Vector__.html">ev::Vector_</a></div><div class="ttdoc">This class extends std::vector to implement event vectors. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> vector.hpp:21</div></div>
-<div class="ttc" id="alogger_8hpp_html"><div class="ttname"><a href="logger_8hpp.html">logger.hpp</a></div><div class="ttdoc">Logger utility.</div></div>
-<div class="ttc" id="alogger_8hpp_html_a71684dccfbab0486a93201ae7341e025"><div class="ttname"><a href="logger_8hpp.html#a71684dccfbab0486a93201ae7341e025">ev::logger::error</a></div><div class="ttdeci">void error(const char *message, const bool assert_condition=false)</div><div class="ttdoc">Log message at error level.</div><div class="ttdef"><b>Definition</b> logger.hpp:38</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

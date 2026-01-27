@@ -12,6 +12,5 @@ var searchData=
   ['circularbuffer_5f_3c_20int_20_3e_9',['CircularBuffer_&lt; int &gt;',['../classev_1_1CircularBuffer__.html',1,'ev']]],
   ['circularbuffer_5f_3c_20long_20_3e_10',['CircularBuffer_&lt; long &gt;',['../classev_1_1CircularBuffer__.html',1,'ev']]],
   ['containertestfixture_11',['ContainerTestFixture',['../classContainerTestFixture.html',1,'']]],
-  ['counter_12',['Counter',['../classev_1_1Mat_1_1Counter.html',1,'ev::Mat']]],
-  ['coutredirect_13',['CoutRedirect',['../classCoutRedirect.html',1,'']]]
+  ['counter_12',['Counter',['../classev_1_1Mat_1_1Counter.html',1,'ev::Mat']]]
 ];

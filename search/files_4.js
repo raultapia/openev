@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['logger_2ehpp_0',['logger.hpp',['../logger_8hpp.html',1,'']]]
+  ['matrices_2ehpp_0',['matrices.hpp',['../matrices_8hpp.html',1,'']]]
 ];

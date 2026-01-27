@@ -1,8 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"examples.html":[2],
-"files.html":[1,0],
-"functions.html":[0,8,0],
 "functions_func.html":[0,8,1],
 "functions_rela.html":[0,8,4],
 "functions_type.html":[0,8,3],
@@ -14,8 +11,6 @@ var NAVTREEINDEX1 =
 "index.html#autotoc_md2":[2],
 "index.html#autotoc_md3":[3],
 "index.html#autotoc_md4":[4],
-"logger_8hpp.html":[1,0,1,7,0,0,0,0],
-"logger_8hpp_source.html":[1,0,1,7,0,0,0,0],
 "matrices_8hpp.html":[1,0,1,2,0,0,0,0],
 "matrices_8hpp_source.html":[1,0,1,2,0,0,0,0],
 "openev_8hpp.html":[1,0,0,0,0],
@@ -52,8 +47,6 @@ var NAVTREEINDEX1 =
 "types_8hpp_source.html":[1,0,1,2,0,0,0,1],
 "undistortion_8hpp.html":[1,0,1,4,0,0,0,0],
 "undistortion_8hpp_source.html":[1,0,1,4,0,0,0,0],
-"utils_8hpp.html":[1,0,1,7,0,0,1],
-"utils_8hpp_source.html":[1,0,1,7,0,0,1],
 "vector_8hpp_source.html":[1,0,1,1,0,0,0,4],
 "voting_8cpp.html":[1,0,1,4,1,0],
 "voting_8hpp_source.html":[1,0,1,4,0,0,0,1]

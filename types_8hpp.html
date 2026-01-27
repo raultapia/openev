@@ -123,14 +123,14 @@ $(function(){initNavTree('types_8hpp.html',''); initResizable(true); });
 
 <p>Basic event-based vision structures based on OpenCV components.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="logger_8hpp_source.html">openev/utils/logger.hpp</a>&quot;</code><br />
-<code>#include &lt;algorithm&gt;</code><br />
+<div class="textblock"><code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
 <code>#include &lt;iosfwd&gt;</code><br />
 <code>#include &lt;opencv2/core/base.hpp&gt;</code><br />
 <code>#include &lt;opencv2/core/matx.hpp&gt;</code><br />
 <code>#include &lt;opencv2/core/types.hpp&gt;</code><br />
+<code>#include &lt;opencv2/core/utils/logger.hpp&gt;</code><br />
 <code>#include &lt;ostream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 </div>
@@ -246,17 +246,17 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="separator:aadecfb0ae5329f7e7cfe2173f746ec4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a3cbf6385d956c723270812cebd164a" id="r_a7a3cbf6385d956c723270812cebd164a"><td class="memItemLeft" align="right" valign="top"><a id="a7a3cbf6385d956c723270812cebd164a" name="a7a3cbf6385d956c723270812cebd164a"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>DistanceTypes</b> : uint8_t { <br />
-&#160;&#160;<b>DISTANCE_NORM_INF</b> = cv::NORM_INF
-, <b>DISTANCE_NORM_L1</b> = cv::NORM_L1
-, <b>DISTANCE_NORM_L2</b> = cv::NORM_L2
-, <b>DISTANCE_NORM_L2SQR</b> = cv::NORM_L2SQR
+&#160;&#160;<b>DISTANCE_NORM_INF</b> = static_cast&lt;uint8_t&gt;(cv::NORM_INF)
+, <b>DISTANCE_NORM_L1</b> = static_cast&lt;uint8_t&gt;(cv::NORM_L1)
+, <b>DISTANCE_NORM_L2</b> = static_cast&lt;uint8_t&gt;(cv::NORM_L2)
+, <b>DISTANCE_NORM_L2SQR</b> = static_cast&lt;uint8_t&gt;(cv::NORM_L2SQR)
 , <br />
 &#160;&#160;<b>DISTANCE_NORM_MANHATTAN</b> = DISTANCE_NORM_L1
 , <b>DISTANCE_NORM_EUCLIDEAN</b> = DISTANCE_NORM_L2
-, <b>DISTANCE_FLAG_SPATIAL</b> = 0b00010000
-, <b>DISTANCE_FLAG_TEMPORAL</b> = 0b00100000
+, <b>DISTANCE_FLAG_SPATIAL</b> = static_cast&lt;uint8_t&gt;(0b00010000)
+, <b>DISTANCE_FLAG_TEMPORAL</b> = static_cast&lt;uint8_t&gt;(0b00100000)
 , <br />
-&#160;&#160;<b>DISTANCE_FLAG_SPATIOTEMPORAL</b> = 0b01000000
+&#160;&#160;<b>DISTANCE_FLAG_SPATIOTEMPORAL</b> = static_cast&lt;uint8_t&gt;(0b01000000)
 , <b>DISTANCE_FLAG_3D</b> = DISTANCE_FLAG_SPATIOTEMPORAL
 , <b>DISTANCE_FLAG_2D</b> = DISTANCE_FLAG_SPATIAL
 <br />

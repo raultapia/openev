@@ -34,6 +34,5 @@ var annotated_dup =
       [ "xyz_t", "structev_1_1xyz__t.html", null ]
     ] ],
     [ "caer_device_handle", "structcaer__device__handle.html", null ],
-    [ "ContainerTestFixture", "classContainerTestFixture.html", null ],
-    [ "CoutRedirect", "classCoutRedirect.html", null ]
+    [ "ContainerTestFixture", "classContainerTestFixture.html", null ]
 ];

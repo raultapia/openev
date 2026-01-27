@@ -30,6 +30,5 @@ var searchData=
   ['core_2ehpp_27',['core.hpp',['../core_8hpp.html',1,'']]],
   ['count_28',['count',['../classev_1_1AbstractReader__.html#aa0510648df2b0c445f659786c3b9bde7',1,'ev::AbstractReader_::count()'],['../classev_1_1PlainTextReader.html#ab25fa40ec0533fb6280584c4a6a6ae62',1,'ev::PlainTextReader::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
   ['counter_29',['Counter',['../classev_1_1Mat_1_1Counter.html',1,'ev::Mat']]],
-  ['counter_30',['counter',['../classev_1_1EventHistogram__.html#a7023954b751f89fa7466fd5036cedd3a',1,'ev::EventHistogram_']]],
-  ['coutredirect_31',['CoutRedirect',['../classCoutRedirect.html',1,'']]]
+  ['counter_30',['counter',['../classev_1_1EventHistogram__.html#a7023954b751f89fa7466fd5036cedd3a',1,'ev::EventHistogram_']]]
 ];

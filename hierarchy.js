@@ -120,7 +120,6 @@ var hierarchy =
       [ "ev::CircularBuffer_< double >", "classev_1_1CircularBuffer__.html", null ],
       [ "ev::CircularBuffer_< T >", "classev_1_1CircularBuffer__.html", null ]
     ] ],
-    [ "CoutRedirect", "classCoutRedirect.html", null ],
     [ "std::deque", null, [
       [ "ev::Deque_< int >", "classev_1_1Deque__.html", null ],
       [ "ev::Deque_< long >", "classev_1_1Deque__.html", null ],
