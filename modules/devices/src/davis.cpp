@@ -7,7 +7,6 @@
 #include "openev/containers/queue.hpp"
 #include "openev/containers/vector.hpp"
 #include "openev/devices/abstract-camera.hpp"
-#include "openev/utils/logger.hpp"
 #include <array>
 #include <cstdlib>
 #include <cstring>
@@ -24,6 +23,7 @@
 #include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/saturate.hpp>
 #include <opencv2/core/types.hpp>
+#include <opencv2/core/utils/logger.hpp>
 #include <queue>
 #include <type_traits>
 #include <version>
@@ -31,7 +31,7 @@
 ev::Davis::Davis() {
   deviceHandler_ = caerDeviceOpen(0, CAER_DEVICE_DAVIS, 0, 0, "");
   if(deviceHandler_ == nullptr) {
-    ev::logger::error("ev::Davis: Could not find camera.");
+    CV_LOG_ERROR(nullptr, "ev::Davis: Could not find camera.");
   } else {
     caerDeviceSendDefaultConfig(deviceHandler_);
 
@@ -202,7 +202,7 @@ template <typename T1, typename T2, typename T3>
 void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
   caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
   while(container == nullptr) {
-    ev::logger::warning("Connection with camera lost, retrying.");
+    CV_LOG_WARNING(nullptr, "Connection with camera lost, retrying.");
     caerDeviceDataStop(deviceHandler_);
     init();
     container = caerDeviceDataGet(deviceHandler_);
@@ -304,7 +304,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
 void ev::Davis::getEventRaw(std::vector<uint64_t> &data) {
   caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
   while(container == nullptr) {
-    ev::logger::warning("Connection with camera lost, retrying.");
+    CV_LOG_WARNING(nullptr, "Connection with camera lost, retrying.");
     caerDeviceDataStop(deviceHandler_);
     init();
     container = caerDeviceDataGet(deviceHandler_);
@@ -333,7 +333,7 @@ std::size_t ev::Davis::getEventRaw(uint64_t *data, const bool allow_realloc /*= 
 
   caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
   while(container == nullptr) {
-    ev::logger::warning("Connection with camera lost, retrying.");
+    CV_LOG_WARNING(nullptr, "Connection with camera lost, retrying.");
     caerDeviceDataStop(deviceHandler_);
     init();
     container = caerDeviceDataGet(deviceHandler_);

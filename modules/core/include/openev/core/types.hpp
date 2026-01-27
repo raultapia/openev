@@ -6,7 +6,6 @@
 #ifndef OPENEV_CORE_TYPES_HPP
 #define OPENEV_CORE_TYPES_HPP
 
-#include "openev/utils/logger.hpp"
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
@@ -14,6 +13,7 @@
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/matx.hpp>
 #include <opencv2/core/types.hpp>
+#include <opencv2/core/utils/logger.hpp>
 #include <ostream>
 #include <string>
 
@@ -209,7 +209,7 @@ public:
     if(static_cast<bool>(type & DISTANCE_FLAG_TEMPORAL)) {
       return Event_<T>::t - e.t;
     }
-    logger::error("Bad distance option");
+    CV_LOG_ERROR(nullptr, "Bad distance option");
     return 0.0;
   }
 

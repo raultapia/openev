@@ -9,7 +9,7 @@ namespace ev {
 
 template <typename T, const RepresentationOptions Options, typename E>
 cv::Mat &TimeSurface_<T, Options, E>::render(const Kernel kernel /*= Kernel::NONE*/, const double tau /*= 0*/) {
-  logger::error("TimeSurface::applyKernel: tau value must be greater that zero", kernel == Kernel::NONE || tau > 0);
+  CV_LOG_ERROR(nullptr, "TimeSurface::applyKernel: tau value must be greater that zero", kernel == Kernel::NONE || tau > 0);
   if(TimeSurface_<T, Options, E>::tLimits_[TimeSurface_<T, Options, E>::MAX] < 0) {
     return *this;
   }

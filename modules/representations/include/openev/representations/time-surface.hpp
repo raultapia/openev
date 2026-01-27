@@ -11,6 +11,7 @@
 #include "openev/representations/event-image.hpp"
 #include <opencv2/core/hal/interface.h>
 #include <opencv2/core/matx.hpp>
+#include <opencv2/core/utils/logger.hpp>
 #include <utility>
 
 namespace cv {

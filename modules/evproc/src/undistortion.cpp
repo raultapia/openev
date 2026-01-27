@@ -14,12 +14,13 @@
 #include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/saturate.hpp>
 #include <opencv2/core/traits.hpp>
+#include <opencv2/core/utils/logger.hpp>
 #include <opencv2/imgproc.hpp>
 #include <utility>
 
 ev::UndistortMap::UndistortMap(const cv::Mat &cam_matrix, const cv::Mat &dist_coeff, const cv::Size &sz) {
-  ev::logger::error("UndistortMap: Camera matrix size should be 3x3", cam_matrix.rows == 3 && cam_matrix.cols == 3);
-  ev::logger::error("UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == cv::Size(4, 1) ||
+  CV_LOG_ERROR(nullptr, "UndistortMap: Camera matrix size should be 3x3", cam_matrix.rows == 3 && cam_matrix.cols == 3);
+  CV_LOG_ERROR(nullptr, "UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == cv::Size(4, 1) ||
                                                                                                       dist_coeff.size() == cv::Size(5, 1) ||
                                                                                                       dist_coeff.size() == cv::Size(8, 1) ||
                                                                                                       dist_coeff.size() == cv::Size(12, 1) ||
@@ -34,8 +35,8 @@ ev::UndistortMap::UndistortMap(const cv::Mat &cam_matrix, const cv::Mat &dist_co
 }
 
 ev::UndistortMap::UndistortMap(const std::vector<double> &intrinsics, const std::vector<double> &dist_coeff, const cv::Size &sz) {
-  ev::logger::error("UndistortMap: Intrinsic parameters size should be 4: fx, fy, cx, cy", intrinsics.size() == 4);
-  ev::logger::error("UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == 4 || dist_coeff.size() == 5 || dist_coeff.size() == 8 || dist_coeff.size() == 12 || dist_coeff.size() == 14 || dist_coeff.empty());
+  CV_LOG_ERROR(nullptr, "UndistortMap: Intrinsic parameters size should be 4: fx, fy, cx, cy", intrinsics.size() == 4);
+  CV_LOG_ERROR(nullptr, "UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == 4 || dist_coeff.size() == 5 || dist_coeff.size() == 8 || dist_coeff.size() == 12 || dist_coeff.size() == 14 || dist_coeff.empty());
   std::vector<double> d;
   std::copy(dist_coeff.begin(), dist_coeff.end(), std::back_inserter(d));
   init((cv::Mat_<double>(3, 3) << intrinsics[0], 0.0, intrinsics[2], 0.0, intrinsics[1], intrinsics[3], 0.0, 0.0, 1.0), cv::Mat(cv::Size(1, static_cast<int>(d.size())), CV_64F, d.data()), sz);
@@ -121,7 +122,7 @@ void ev::UndistortMap::init(const cv::Mat &cam_matrix, const cv::Mat &dist_coeff
     return viz8UC3;
   }
   default:
-    ev::logger::error("UndistortMap::visualize: Bad option");
+    CV_LOG_ERROR(nullptr, "UndistortMap::visualize: Bad option");
     return {};
   }
 }

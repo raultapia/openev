@@ -4,7 +4,7 @@
 \author Raul Tapia
 */
 #include "openev/readers/plain-text-reader.hpp"
-#include "openev/utils/logger.hpp"
+#include <opencv2/core/utils/logger.hpp>
 #include <sstream>
 
 ev::PlainTextReader::PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns /*= PlainTextReaderColumns::TXYP*/, const std::string &separator /*= " "*/, const std::size_t buffer_size /*= 0*/, const bool use_threading /*=false*/) : AbstractReader_{buffer_size, use_threading}, file_{filename, std::ios::in}, separator_{separator} {
@@ -22,10 +22,10 @@ ev::PlainTextReader::PlainTextReader(const std::string &filename, const PlainTex
     parser_ = [](std::stringstream &iss, ev::Event &e) { iss >> e.p >> e.x >> e.y >> e.t; };
     break;
   default:
-    ev::logger::error("ev::PlainTextReader: No column order selected.");
+    CV_LOG_ERROR(nullptr, "ev::PlainTextReader: No column order selected.");
   }
   replace_ = (separator != " ");
-  ev::logger::error("ev::PlainTextReader: Could not open file.", file_.is_open());
+  CV_LOG_ERROR(nullptr, "ev::PlainTextReader: Could not open file.", file_.is_open());
 }
 
 ev::PlainTextReader::~PlainTextReader() {

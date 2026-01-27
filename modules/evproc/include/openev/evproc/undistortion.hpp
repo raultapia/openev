@@ -8,7 +8,6 @@
 
 #include "openev/containers/array.hpp"
 #include "openev/containers/vector.hpp"
-#include "openev/utils/logger.hpp"
 #include <algorithm>
 #include <array>
 #include <cstddef>
@@ -17,6 +16,7 @@
 #include <opencv2/core/traits.hpp>
 #include <opencv2/core/types.hpp>
 #include <opencv2/imgproc.hpp>
+#include <opencv2/core/utils/logger.hpp>
 #include <stdint.h>
 #include <vector>
 
@@ -37,7 +37,7 @@ public:
 
   template <typename T>
   UndistortMap(const std::vector<cv::Point_<T>> &data, const cv::Size &sz) {
-    logger::error("UndistortMap: Data size does not match frame size", data.size() == static_cast<std::size_t>(sz.area()));
+    CV_LOG_ERROR(nullptr, "UndistortMap: Data size does not match frame size", data.size() == static_cast<std::size_t>(sz.area()));
     cv::Mat_<cv::Point_<double>>::create(sz);
     cv::Mat_<cv::Point_<double>>::iterator it = cv::Mat_<cv::Point_<double>>::begin();
     std::for_each(data.begin(), data.end(), [&it](const cv::Point_<T> &p) { *it++ = cv::Point_<double>(p.x, p.y); });

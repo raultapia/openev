@@ -19,8 +19,7 @@ foreach(
         DEVICES
         EVPROC
         READERS
-        REPRESENTATIONS
-        UTILS)
+        REPRESENTATIONS)
   string(TOLOWER "${MODULE}" module)
   option(BUILD_MODULE_${MODULE} "Build the ${module} module" ON)
   if(BUILD_MODULE_${MODULE})

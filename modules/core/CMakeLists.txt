@@ -11,14 +11,12 @@ find_package(GTest REQUIRED)
 add_library(oe_${MODULE_NAME} INTERFACE)
 target_link_libraries(oe_${MODULE_NAME} INTERFACE opencv_core opencv_highgui opencv_calib3d)
 target_include_directories(oe_${MODULE_NAME} INTERFACE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
-target_include_directories(oe_${MODULE_NAME} INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/modules/utils/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 target_include_directories(oe_${MODULE_NAME} INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 set_target_properties(oe_${MODULE_NAME} PROPERTIES PUBLIC_HEADER "${INC_FILES}")
 
 add_library(oe_${MODULE_NAME}_lib SHARED ${SRC_FILES})
 target_link_libraries(oe_${MODULE_NAME}_lib PUBLIC opencv_core opencv_highgui opencv_calib3d)
 target_include_directories(oe_${MODULE_NAME}_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
-target_include_directories(oe_${MODULE_NAME}_lib PUBLIC ${PROJECT_SOURCE_DIR}/modules/utils/include)
 
 install(
   TARGETS oe_${MODULE_NAME}

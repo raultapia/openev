@@ -37,8 +37,4 @@
 #include "openev/representations.hpp"
 #endif // OE_IS_ENABLED_MODULE_REPRESENTATIONS
 
-#if OE_IS_ENABLED_MODULE_UTILS
-#include "openev/utils.hpp"
-#endif // OE_IS_ENABLED_MODULE_UTILS
-
 #endif // OPENEV_OPENEV_HPP

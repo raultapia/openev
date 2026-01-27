@@ -6,7 +6,6 @@
 #ifndef OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 #define OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 
-#include "openev/utils/logger.hpp"
 #include <array>
 #include <cstddef>
 #include <float.h>
@@ -16,6 +15,7 @@
 #include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/matx.hpp>
 #include <opencv2/core/traits.hpp>
+#include <opencv2/core/utils/logger.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/viz/types.hpp>
 #include <stdint.h>
@@ -290,7 +290,7 @@ public:
   */
   inline void setColormap(const cv::ColormapTypes cm) {
     if constexpr(TypeHelper<T>::NumChannels == 1) {
-      ev::logger::error("setColorMap: Colormap can only be used with 3-channel representations");
+      CV_LOG_ERROR(nullptr, "setColorMap: Colormap can only be used with 3-channel representations");
     } else {
       colormap_ = std::make_unique<cv::ColormapTypes>(cm);
 
