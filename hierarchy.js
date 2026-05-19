@@ -6,7 +6,7 @@ var hierarchy =
     [ "ev::AbstractReader_", "classev_1_1AbstractReader__.html", [
       [ "ev::PlainTextReader", "classev_1_1PlainTextReader.html", null ]
     ] ],
-    [ "ev::AbstractRepresentation_< T, Options, E >", "classev_1_1AbstractRepresentation__.html", [
+    [ "ev::AbstractRepresentation_&lt; T, Options, E &gt;", "classev_1_1AbstractRepresentation__.html", [
       [ "ev::EventImage_< uchar >", "classev_1_1EventImage__.html", null ],
       [ "ev::EventImage_< cv::Vec2b >", "classev_1_1EventImage__.html", null ],
       [ "ev::EventImage_< cv::Vec3b >", "classev_1_1EventImage__.html", null ],
@@ -44,13 +44,13 @@ var hierarchy =
       [ "ev::PointCloud_< double >", "classev_1_1PointCloud__.html", null ],
       [ "ev::PointCloud_< cv::Vec3d >", "classev_1_1PointCloud__.html", null ]
     ] ],
-    [ "ev::AbstractRepresentation_< T, Options, int >", "classev_1_1AbstractRepresentation__.html", [
+    [ "ev::AbstractRepresentation_&lt; T, Options, int &gt;", "classev_1_1AbstractRepresentation__.html", [
       [ "ev::EventImage_< T, RepresentationOptions::NONE, int >", "classev_1_1EventImage__.html", [
         [ "ev::EventHistogram_< T, Options, E >", "classev_1_1EventHistogram__.html", null ],
         [ "ev::TimeSurface_< T, Options, E >", "classev_1_1TimeSurface__.html", null ]
       ] ]
     ] ],
-    [ "ev::AbstractRepresentation_< T, RepresentationOptions::NONE, int >", "classev_1_1AbstractRepresentation__.html", [
+    [ "ev::AbstractRepresentation_&lt; T, RepresentationOptions::NONE, int &gt;", "classev_1_1AbstractRepresentation__.html", [
       [ "ev::EventImage_< T, Options, E >", "classev_1_1EventImage__.html", [
         [ "ev::EventHistogram_< uchar >", "classev_1_1EventHistogram__.html", null ],
         [ "ev::EventHistogram_< cv::Vec2b >", "classev_1_1EventHistogram__.html", null ],
@@ -112,7 +112,7 @@ var hierarchy =
     ] ],
     [ "ev::BiasValue", "structev_1_1BiasValue.html", null ],
     [ "caer_device_handle", "structcaer__device__handle.html", null ],
-    [ "ev::Circ_< T >", "structev_1_1Circ__.html", null ],
+    [ "ev::Circ_&lt; T &gt;", "structev_1_1Circ__.html", null ],
     [ "boost::circular_buffer", null, [
       [ "ev::CircularBuffer_< int >", "classev_1_1CircularBuffer__.html", null ],
       [ "ev::CircularBuffer_< long >", "classev_1_1CircularBuffer__.html", null ],
@@ -161,10 +161,12 @@ var hierarchy =
       [ "ev::EventImage_< cv::Vec4d >", "classev_1_1EventImage__.html", null ],
       [ "ev::EventImage_< T, RepresentationOptions::NONE, int >", "classev_1_1EventImage__.html", null ],
       [ "ev::Mat::Binary_< uchar >", "classev_1_1Mat_1_1Binary__.html", null ],
+      [ "ev::Mat::Ternary_< char >", "classev_1_1Mat_1_1Ternary__.html", null ],
       [ "ev::EventImage_< T, Options, E >", "classev_1_1EventImage__.html", null ],
       [ "ev::Mat::Binary_< Tb >", "classev_1_1Mat_1_1Binary__.html", null ],
       [ "ev::Mat::Counter", "classev_1_1Mat_1_1Counter.html", null ],
       [ "ev::Mat::Polarity", "classev_1_1Mat_1_1Polarity.html", null ],
+      [ "ev::Mat::Ternary_< Tb >", "classev_1_1Mat_1_1Ternary__.html", null ],
       [ "ev::Mat::Time", "classev_1_1Mat_1_1Time.html", null ],
       [ "ev::UndistortMap", "classev_1_1UndistortMap.html", null ]
     ] ],

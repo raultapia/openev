@@ -1,10 +1,10 @@
 var types_8hpp =
 [
-    [ "ev::Event_< T >", "classev_1_1Event__.html", "classev_1_1Event__" ],
-    [ "ev::AugmentedEvent_< T >", "classev_1_1AugmentedEvent__.html", "classev_1_1AugmentedEvent__" ],
-    [ "ev::Size3_< T >", "classev_1_1Size3__.html", "classev_1_1Size3__" ],
-    [ "ev::Rect3_< T >", "classev_1_1Rect3__.html", "classev_1_1Rect3__" ],
-    [ "ev::Circ_< T >", "structev_1_1Circ__.html", "structev_1_1Circ__" ],
+    [ "ev::Event_&lt; T &gt;", "classev_1_1Event__.html", "classev_1_1Event__" ],
+    [ "ev::AugmentedEvent_&lt; T &gt;", "classev_1_1AugmentedEvent__.html", "classev_1_1AugmentedEvent__" ],
+    [ "ev::Size3_&lt; T &gt;", "classev_1_1Size3__.html", "classev_1_1Size3__" ],
+    [ "ev::Rect3_&lt; T &gt;", "classev_1_1Rect3__.html", "classev_1_1Rect3__" ],
+    [ "ev::Circ_&lt; T &gt;", "structev_1_1Circ__.html", "structev_1_1Circ__" ],
     [ "ev::AugmentedEvent", "types_8hpp.html#a82f45c8c44bfad03f5f3922b0cabab71", null ],
     [ "ev::AugmentedEventd", "types_8hpp.html#addb1b08008035ef9e4b0c0f9ba06078a", null ],
     [ "ev::AugmentedEventf", "types_8hpp.html#a7ffe2489b15e2769f48580d48275eedf", null ],

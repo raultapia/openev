@@ -1,6 +1,6 @@
 var event_image_8hpp =
 [
-    [ "ev::EventImage_< T, Options, E >", "classev_1_1EventImage__.html", null ],
+    [ "ev::EventImage_&lt; T, Options, E &gt;", "classev_1_1EventImage__.html", null ],
     [ "ev::EventImage", "event-image_8hpp.html#a608034034dd1ded60762fb50343c76b3", null ],
     [ "ev::EventImage1", "event-image_8hpp.html#adac02f0cb6f3d4fc1ce4459cdc9d6d1c", null ],
     [ "ev::EventImage1b", "event-image_8hpp.html#ac382dddcbc9df5b6ebf460b8c9c63d48", null ],

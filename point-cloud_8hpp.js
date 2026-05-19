@@ -1,6 +1,6 @@
 var point_cloud_8hpp =
 [
-    [ "ev::PointCloud_< T, Options, E >", "classev_1_1PointCloud__.html", "classev_1_1PointCloud__" ],
+    [ "ev::PointCloud_&lt; T, Options, E &gt;", "classev_1_1PointCloud__.html", "classev_1_1PointCloud__" ],
     [ "ev::PointCloud", "point-cloud_8hpp.html#a80f3ab644ff9f5c066c639b0cd3fb52c", null ],
     [ "ev::PointCloud1", "point-cloud_8hpp.html#a1daac2fb98c1ecbe825443c2f2984b3a", null ],
     [ "ev::PointCloud1b", "point-cloud_8hpp.html#ad4b4e1b341f820516af5af6530cfc8a3", null ],

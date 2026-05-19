@@ -8,7 +8,7 @@ var indexSectionsWithContent =
   5: "acdepqrst",
   6: "k",
   7: "o",
-  8: "o"
+  8: "cdilou⚙📚📝📬🖥"
 };
 
 var indexSectionNames =

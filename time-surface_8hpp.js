@@ -1,6 +1,6 @@
 var time_surface_8hpp =
 [
-    [ "ev::TimeSurface_< T, Options, E >", "classev_1_1TimeSurface__.html", "classev_1_1TimeSurface__" ],
+    [ "ev::TimeSurface_&lt; T, Options, E &gt;", "classev_1_1TimeSurface__.html", "classev_1_1TimeSurface__" ],
     [ "ev::TimeSurface", "time-surface_8hpp.html#af1d185964145f56f4f002ae8a6a323ce", null ],
     [ "ev::TimeSurface1", "time-surface_8hpp.html#ab139120f5726d829af9070404a6981a8", null ],
     [ "ev::TimeSurface1b", "time-surface_8hpp.html#ad35659e58ea4260ccfff8e8557a235d5", null ],
@@ -28,9 +28,5 @@ var time_surface_8hpp =
     [ "ev::TimeSurface4i", "time-surface_8hpp.html#a29386f9ee1a06cd691c6c493f3a21368", null ],
     [ "ev::TimeSurface4s", "time-surface_8hpp.html#a6e29a7c4f3c9ae46282449530d5c437c", null ],
     [ "ev::TimeSurface4w", "time-surface_8hpp.html#a7aa6b810c38c26d350a8ab669c6ad61a", null ],
-    [ "ev::Kernel", "time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566e", [
-      [ "NONE", "time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566eab50339a10e1de285ac99d4c3990b8693", null ],
-      [ "LINEAR", "time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566eaaac544aacc3615aada24897a215f5046", null ],
-      [ "EXPONENTIAL", "time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566eadcd5fc33e211f31cef0cd7cb36518d31", null ]
-    ] ]
+    [ "ev::Kernel", "time-surface_8hpp.html#ae160d2a586ec3aa4b0e696221ad2566e", null ]
 ];

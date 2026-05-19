@@ -1,6 +1,6 @@
 var event_histogram_8hpp =
 [
-    [ "ev::EventHistogram_< T, Options, E >", "classev_1_1EventHistogram__.html", "classev_1_1EventHistogram__" ],
+    [ "ev::EventHistogram_&lt; T, Options, E &gt;", "classev_1_1EventHistogram__.html", "classev_1_1EventHistogram__" ],
     [ "ev::EventHistogram", "event-histogram_8hpp.html#a05a51104c2f85a0f518dbd0badacdd05", null ],
     [ "ev::EventHistogram1", "event-histogram_8hpp.html#a21a8cdc274ef832521b0cca1f995a04d", null ],
     [ "ev::EventHistogram1b", "event-histogram_8hpp.html#a1d1f20b33d954b7919c5e895d217d378", null ],
