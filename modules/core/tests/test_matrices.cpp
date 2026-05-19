@@ -37,6 +37,54 @@ TEST(BinaryTest, StreamOperator) {
   EXPECT_EQ(oss.str(), std::string("Binary 15x20"));
 }
 
+// Test Ternary Class
+TEST(TernaryTest, Insert) {
+  ev::Mat::Ternary ternary(10, 10);
+
+  const ev::Event event1(3, 4, 1.5, ev::POSITIVE);
+  ternary.insert(event1);
+  EXPECT_EQ(ternary(4, 3), ev::Mat::Ternary::POSITIVE);
+
+  const ev::Event event2(3, 4, 1.5, ev::NEGATIVE);
+  ternary.insert(event2);
+  EXPECT_EQ(ternary(4, 3), ev::Mat::Ternary::NEGATIVE);
+}
+
+TEST(TernaryTest, Emplace) {
+  ev::Mat::Ternary ternary(10, 10);
+
+  ternary.emplace(5, 6, ev::POSITIVE);
+  EXPECT_EQ(ternary(6, 5), ev::Mat::Ternary::POSITIVE);
+
+  ternary.emplace(5, 6, ev::NEGATIVE);
+  EXPECT_EQ(ternary(6, 5), ev::Mat::Ternary::NEGATIVE);
+}
+
+TEST(TernaryTest, Clear) {
+  ev::Mat::Ternary ternary(10, 10);
+
+  ternary.emplace(5, 6, ev::POSITIVE);
+  ternary.clear();
+  EXPECT_EQ(ternary(6, 5), ev::Mat::Ternary::ZERO);
+
+  ternary.emplace(5, 6, ev::NEGATIVE);
+  ternary.clear();
+  EXPECT_EQ(ternary(6, 5), ev::Mat::Ternary::ZERO);
+}
+
+TEST(TernaryTest, LargeMatrixStressTest) {
+  ev::Mat::Ternary ternary(10000, 10000);
+  ternary.emplace(9999, 9999, ev::POSITIVE);
+  EXPECT_EQ(ternary(9999, 9999), ev::Mat::Ternary::POSITIVE);
+}
+
+TEST(TernaryTest, StreamOperator) {
+  const ev::Mat::Ternary ternary(20, 15);
+  std::ostringstream oss;
+  [[maybe_unused]] const auto &result = oss << ternary;
+  EXPECT_EQ(oss.str(), std::string("Ternary 15x20"));
+}
+
 // Test Time Class
 TEST(TimeTest, Insert) {
   ev::Mat::Time time(10, 10);

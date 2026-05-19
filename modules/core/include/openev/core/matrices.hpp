@@ -61,6 +61,46 @@ private:
 };
 using Binary = Binary_<uchar>;
 
+template <typename Tb>
+class Ternary_ : public cv::Mat_<Tb> {
+public:
+  using cv::Mat_<Tb>::Mat_;
+
+  template <typename T>
+  inline Tb insert(const Event_<T> &e) {
+    return set(e.x, e.y, e.p);
+  }
+
+  template <typename T>
+  inline Tb emplace(const T x, const T y, const bool p) {
+    return set(x, y, p);
+  }
+
+  inline void clear() {
+    cv::Mat_<Tb>::setTo(ZERO);
+  }
+
+  static constexpr Tb POSITIVE = std::numeric_limits<Tb>::max();
+  static constexpr Tb ZERO = static_cast<Tb>(0);
+  static constexpr Tb NEGATIVE = std::numeric_limits<Tb>::min();
+
+  friend std::ostream &operator<<(std::ostream &os, const Ternary_ &ternary) {
+    os << "Ternary " << ternary.cols << "x" << ternary.rows;
+    return os;
+  }
+
+private:
+  template <typename T>
+  inline Tb set(const T x, const T y, const bool p) {
+    if constexpr(std::is_floating_point_v<T>) {
+      return *(this->template ptr<Tb>(std::lround(y)) + std::lround(x)) = (p ? POSITIVE : NEGATIVE);
+    } else {
+      return *(this->template ptr<Tb>(y) + x) = (p ? POSITIVE : NEGATIVE);
+    }
+  }
+};
+using Ternary = Ternary_<char>;
+
 class Time : public cv::Mat_<double> {
 public:
   using cv::Mat_<double>::Mat_;
