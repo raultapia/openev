@@ -210,8 +210,8 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a20fde2a7fa1be910a10a635a76b810d5" id="r_a20fde2a7fa1be910a10a635a76b810d5"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#a20fde2a7fa1be910a10a635a76b810d5">ev::POSITIVE</a> = true</td></tr>
-<tr class="memitem:ac5f8f340186c5d0047aa4ed573f4e2c6" id="r_ac5f8f340186c5d0047aa4ed573f4e2c6"><td class="memItemLeft">constexpr bool&#160;</td><td class="memItemRight"><a class="el" href="#ac5f8f340186c5d0047aa4ed573f4e2c6">ev::NEGATIVE</a> = false</td></tr>
+<tr class="memitem:a157d217734129e5ce5aba5651f589647" id="r_a157d217734129e5ce5aba5651f589647"><td class="memItemLeft">constexpr PolarityType&#160;</td><td class="memItemRight"><a class="el" href="#a157d217734129e5ce5aba5651f589647">ev::POSITIVE</a> = static_cast&lt;PolarityType&gt;(true)</td></tr>
+<tr class="memitem:afa153d4807e396ab09f324321a6896a5" id="r_afa153d4807e396ab09f324321a6896a5"><td class="memItemLeft">constexpr PolarityType&#160;</td><td class="memItemRight"><a class="el" href="#afa153d4807e396ab09f324321a6896a5">ev::NEGATIVE</a> = static_cast&lt;PolarityType&gt;(false)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Basic event-based vision structures based on OpenCV components. </p>
@@ -827,8 +827,8 @@ template&lt;typename T&gt; </div>
 </div>
 </div>
 <a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
-<a id="ac5f8f340186c5d0047aa4ed573f4e2c6" name="ac5f8f340186c5d0047aa4ed573f4e2c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5f8f340186c5d0047aa4ed573f4e2c6">&#9670;&#160;</a></span>NEGATIVE</h2>
+<a id="afa153d4807e396ab09f324321a6896a5" name="afa153d4807e396ab09f324321a6896a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa153d4807e396ab09f324321a6896a5">&#9670;&#160;</a></span>NEGATIVE</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -837,7 +837,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ev::NEGATIVE = false</td>
+          <td class="memname">PolarityType ev::NEGATIVE = static_cast&lt;PolarityType&gt;(false)</td>
         </tr>
       </table>
   </td>
@@ -852,8 +852,8 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
-<a id="a20fde2a7fa1be910a10a635a76b810d5" name="a20fde2a7fa1be910a10a635a76b810d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20fde2a7fa1be910a10a635a76b810d5">&#9670;&#160;</a></span>POSITIVE</h2>
+<a id="a157d217734129e5ce5aba5651f589647" name="a157d217734129e5ce5aba5651f589647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a157d217734129e5ce5aba5651f589647">&#9670;&#160;</a></span>POSITIVE</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -862,7 +862,7 @@ template&lt;typename T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ev::POSITIVE = true</td>
+          <td class="memname">PolarityType ev::POSITIVE = static_cast&lt;PolarityType&gt;(true)</td>
         </tr>
       </table>
   </td>

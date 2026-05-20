@@ -35,5 +35,5 @@ var searchData=
   ['pointcloud_5f_3c_20ushort_20_3e_32',['PointCloud_&lt; ushort &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
   ['polarity_33',['Polarity',['../classev_1_1Mat_1_1Polarity.html',1,'ev::Mat']]],
   ['polarity_34',['polarity',['../classev_1_1TimeSurface__.html#a77fcfc6179d0b59ed84af4668e0a9b69',1,'ev::TimeSurface_']]],
-  ['positive_35',['POSITIVE',['../types_8hpp.html#a20fde2a7fa1be910a10a635a76b810d5',1,'ev']]]
+  ['positive_35',['POSITIVE',['../types_8hpp.html#a157d217734129e5ce5aba5651f589647',1,'ev']]]
 ];

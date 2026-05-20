@@ -44,6 +44,6 @@ var types_8hpp =
     [ "ev::Size3f", "types_8hpp.html#a99e62b4a05132e68460a491095b3e817", null ],
     [ "ev::Size3i", "types_8hpp.html#af3568db1ae4bd990435889015f7d91fb", null ],
     [ "ev::Size3l", "types_8hpp.html#ac9a59cbdeffcf0478035eec317fec57a", null ],
-    [ "ev::NEGATIVE", "types_8hpp.html#ac5f8f340186c5d0047aa4ed573f4e2c6", null ],
-    [ "ev::POSITIVE", "types_8hpp.html#a20fde2a7fa1be910a10a635a76b810d5", null ]
+    [ "ev::NEGATIVE", "types_8hpp.html#afa153d4807e396ab09f324321a6896a5", null ],
+    [ "ev::POSITIVE", "types_8hpp.html#a157d217734129e5ce5aba5651f589647", null ]
 ];
