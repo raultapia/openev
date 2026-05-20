@@ -5,8 +5,8 @@ var classev_1_1Event__ =
     [ "Event_", "classev_1_1Event__.html#ad00e0c667bcefb9a8a7a2b704d8319cc", null ],
     [ "Event_", "classev_1_1Event__.html#adac1e49c13d6481b0c0672f709a41c9f", null ],
     [ "Event_", "classev_1_1Event__.html#ae32a7ce365704c83b5dbf736e51a4c77", null ],
-    [ "Event_", "classev_1_1Event__.html#ac133e05284405bbf763cfcbdd6c1d33e", null ],
-    [ "Event_", "classev_1_1Event__.html#a1194e0117ed8b0f8565d0c5d714eb9aa", null ],
+    [ "Event_", "classev_1_1Event__.html#a26e197d33b564745efbecb55d377e0eb", null ],
+    [ "Event_", "classev_1_1Event__.html#a5063eaa697175b8ac818967b147a5521", null ],
     [ "distance", "classev_1_1Event__.html#ada122d3ce351ad2aa14b4d39b98ae1d7", null ],
     [ "operator cv::Point3_< U >", "classev_1_1Event__.html#a2dcebb5b85799611d185457ce5bc1844", null ],
     [ "operator cv::Point_< U >", "classev_1_1Event__.html#aac5b5f290a4ddfbcd5355a4afafc0998", null ],
@@ -20,6 +20,6 @@ var classev_1_1Event__ =
     [ "operator==", "classev_1_1Event__.html#a8270105da74273108e0a2118f0e6b0c2", null ],
     [ "operator==", "classev_1_1Event__.html#a739ba6e2e35906778582a0f4d161f495", null ],
     [ "operator<<", "classev_1_1Event__.html#aede2c993af39d16417abc83793412565", null ],
-    [ "p", "classev_1_1Event__.html#a2a0bf1127a8699d50fbffcafc545381a", null ],
-    [ "t", "classev_1_1Event__.html#afdb69c87797e8da1e08fa3844db759c3", null ]
+    [ "p", "classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522", null ],
+    [ "t", "classev_1_1Event__.html#a958bf08f1f29536453a7822ae608bae9", null ]
 ];

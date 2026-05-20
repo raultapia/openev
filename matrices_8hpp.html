@@ -104,7 +104,9 @@ $(function(){initNavTree('matrices_8hpp.html','',''); });
 
 <p>Basic event-based vision structures based on OpenCV components.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;cmath&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="types_8hpp_source.html">openev/core/types.hpp</a>&quot;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
 <code>#include &lt;limits&gt;</code><br />
 <code>#include &lt;opencv2/core/hal/interface.h&gt;</code><br />
 <code>#include &lt;opencv2/core/mat.hpp&gt;</code><br />
@@ -129,6 +131,12 @@ Typedefs</h2></td></tr>
 using&#160;</td><td class="memItemRight"><b>ev::Mat::Binary</b> = <a class="el" href="classev_1_1Mat_1_1Binary__.html">Binary_</a>&lt;uchar&gt;</td></tr>
 <tr class="memitem:a51d1c7180a25e6ced4589cd1e402af84" id="r_a51d1c7180a25e6ced4589cd1e402af84"><td class="memItemLeft"><a id="a51d1c7180a25e6ced4589cd1e402af84" name="a51d1c7180a25e6ced4589cd1e402af84"></a>
 using&#160;</td><td class="memItemRight"><b>ev::Mat::Ternary</b> = <a class="el" href="classev_1_1Mat_1_1Ternary__.html">Ternary_</a>&lt;char&gt;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a71481f32d8c911c517ed0f83a48a928d" id="r_a71481f32d8c911c517ed0f83a48a928d"><td class="memTemplParams" colspan="2"><a id="a71481f32d8c911c517ed0f83a48a928d" name="a71481f32d8c911c517ed0f83a48a928d"></a>
+template&lt;typename MatType&gt; </td></tr>
+<tr class="memitem:a71481f32d8c911c517ed0f83a48a928d template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><b>ev::Mat::detail::clearZero</b> (MatType &amp;mat)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Basic event-based vision structures based on OpenCV components. </p>

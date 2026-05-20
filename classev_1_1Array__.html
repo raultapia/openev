@@ -115,26 +115,26 @@ Inheritance diagram for ev::Array_&lt; T, N &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a57dbd3eb85ec4cc10be24242660864ca" id="r_a57dbd3eb85ec4cc10be24242660864ca"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a57dbd3eb85ec4cc10be24242660864ca">duration</a> () const</td></tr>
-<tr class="memdesc:a57dbd3eb85ec4cc10be24242660864ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
-<tr class="memitem:afbe773482f7863bc60bb4d22a654b610" id="r_afbe773482f7863bc60bb4d22a654b610"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#afbe773482f7863bc60bb4d22a654b610">rate</a> () const</td></tr>
-<tr class="memdesc:afbe773482f7863bc60bb4d22a654b610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
-<tr class="memitem:a561afa22adac949d29ba64d24eb0c016" id="r_a561afa22adac949d29ba64d24eb0c016"><td class="memItemLeft"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a>&#160;</td><td class="memItemRight"><a class="el" href="#a561afa22adac949d29ba64d24eb0c016">mean</a> () const</td></tr>
-<tr class="memdesc:a561afa22adac949d29ba64d24eb0c016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
-<tr class="memitem:a670972313d2a4f36b791de8cb816df21" id="r_a670972313d2a4f36b791de8cb816df21"><td class="memItemLeft">cv::Point2d&#160;</td><td class="memItemRight"><a class="el" href="#a670972313d2a4f36b791de8cb816df21">meanPoint</a> () const</td></tr>
-<tr class="memdesc:a670972313d2a4f36b791de8cb816df21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
-<tr class="memitem:aa5cb9f483d9d6c75647153e461c060cc" id="r_aa5cb9f483d9d6c75647153e461c060cc"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#aa5cb9f483d9d6c75647153e461c060cc">meanTime</a> () const</td></tr>
-<tr class="memdesc:aa5cb9f483d9d6c75647153e461c060cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
-<tr class="memitem:a95f757a62f73d89c6d6168af83141903" id="r_a95f757a62f73d89c6d6168af83141903"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a95f757a62f73d89c6d6168af83141903">midTime</a> () const</td></tr>
-<tr class="memdesc:a95f757a62f73d89c6d6168af83141903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
+<tr class="memitem:a2808fb83d28d21efadc21a46ccb78b9f" id="r_a2808fb83d28d21efadc21a46ccb78b9f"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#a2808fb83d28d21efadc21a46ccb78b9f">duration</a> () const</td></tr>
+<tr class="memdesc:a2808fb83d28d21efadc21a46ccb78b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
+<tr class="memitem:a267c69305fc989c13b755130d3dfda48" id="r_a267c69305fc989c13b755130d3dfda48"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#a267c69305fc989c13b755130d3dfda48">rate</a> () const</td></tr>
+<tr class="memdesc:a267c69305fc989c13b755130d3dfda48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
+<tr class="memitem:a5805de28507ea1ef75ecf021e4aafcb3" id="r_a5805de28507ea1ef75ecf021e4aafcb3"><td class="memItemLeft"><a class="el" href="classev_1_1Event__.html">Event_</a>&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a5805de28507ea1ef75ecf021e4aafcb3">mean</a> () const</td></tr>
+<tr class="memdesc:a5805de28507ea1ef75ecf021e4aafcb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
+<tr class="memitem:a9cbf02c220a6bc40ec100ef96763d526" id="r_a9cbf02c220a6bc40ec100ef96763d526"><td class="memItemLeft">cv::Point_&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a9cbf02c220a6bc40ec100ef96763d526">meanPoint</a> () const</td></tr>
+<tr class="memdesc:a9cbf02c220a6bc40ec100ef96763d526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
+<tr class="memitem:a986010d1710617b73b7d7eac26b5cc9f" id="r_a986010d1710617b73b7d7eac26b5cc9f"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#a986010d1710617b73b7d7eac26b5cc9f">meanTime</a> () const</td></tr>
+<tr class="memdesc:a986010d1710617b73b7d7eac26b5cc9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
+<tr class="memitem:a77ce540b1f2a04eb2a4082506d76f236" id="r_a77ce540b1f2a04eb2a4082506d76f236"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#a77ce540b1f2a04eb2a4082506d76f236">midTime</a> () const</td></tr>
+<tr class="memdesc:a77ce540b1f2a04eb2a4082506d76f236"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T, std::size_t N&gt;<br />
 class ev::Array_&lt; T, N &gt;</div><p>This class extends std::array to implement event arrays. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/array">here</a>. </p>
 <p><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> arrays inherit all the properties from standard C++ arrays. Events in the array are stored contiguously. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a57dbd3eb85ec4cc10be24242660864ca" name="a57dbd3eb85ec4cc10be24242660864ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57dbd3eb85ec4cc10be24242660864ca">&#9670;&#160;</a></span>duration()</h2>
+<a id="a2808fb83d28d21efadc21a46ccb78b9f" name="a2808fb83d28d21efadc21a46ccb78b9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2808fb83d28d21efadc21a46ccb78b9f">&#9670;&#160;</a></span>duration()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -145,7 +145,7 @@ template&lt;typename T, std::size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::duration </td>
+          <td class="memname">ResultType <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::duration </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -163,8 +163,8 @@ template&lt;typename T, std::size_t N&gt; </div>
 
 </div>
 </div>
-<a id="a561afa22adac949d29ba64d24eb0c016" name="a561afa22adac949d29ba64d24eb0c016"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a561afa22adac949d29ba64d24eb0c016">&#9670;&#160;</a></span>mean()</h2>
+<a id="a5805de28507ea1ef75ecf021e4aafcb3" name="a5805de28507ea1ef75ecf021e4aafcb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5805de28507ea1ef75ecf021e4aafcb3">&#9670;&#160;</a></span>mean()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -175,7 +175,7 @@ template&lt;typename T, std::size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a> <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::mean </td>
+          <td class="memname"><a class="el" href="classev_1_1Event__.html">Event_</a>&lt; ResultType &gt; <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::mean </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -193,8 +193,8 @@ template&lt;typename T, std::size_t N&gt; </div>
 
 </div>
 </div>
-<a id="a670972313d2a4f36b791de8cb816df21" name="a670972313d2a4f36b791de8cb816df21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a670972313d2a4f36b791de8cb816df21">&#9670;&#160;</a></span>meanPoint()</h2>
+<a id="a9cbf02c220a6bc40ec100ef96763d526" name="a9cbf02c220a6bc40ec100ef96763d526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cbf02c220a6bc40ec100ef96763d526">&#9670;&#160;</a></span>meanPoint()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,7 +205,7 @@ template&lt;typename T, std::size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">cv::Point2d <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::meanPoint </td>
+          <td class="memname">cv::Point_&lt; ResultType &gt; <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::meanPoint </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -223,8 +223,8 @@ template&lt;typename T, std::size_t N&gt; </div>
 
 </div>
 </div>
-<a id="aa5cb9f483d9d6c75647153e461c060cc" name="aa5cb9f483d9d6c75647153e461c060cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5cb9f483d9d6c75647153e461c060cc">&#9670;&#160;</a></span>meanTime()</h2>
+<a id="a986010d1710617b73b7d7eac26b5cc9f" name="a986010d1710617b73b7d7eac26b5cc9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a986010d1710617b73b7d7eac26b5cc9f">&#9670;&#160;</a></span>meanTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,7 +235,7 @@ template&lt;typename T, std::size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::meanTime </td>
+          <td class="memname">ResultType <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::meanTime </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -253,8 +253,8 @@ template&lt;typename T, std::size_t N&gt; </div>
 
 </div>
 </div>
-<a id="a95f757a62f73d89c6d6168af83141903" name="a95f757a62f73d89c6d6168af83141903"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95f757a62f73d89c6d6168af83141903">&#9670;&#160;</a></span>midTime()</h2>
+<a id="a77ce540b1f2a04eb2a4082506d76f236" name="a77ce540b1f2a04eb2a4082506d76f236"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77ce540b1f2a04eb2a4082506d76f236">&#9670;&#160;</a></span>midTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -265,7 +265,7 @@ template&lt;typename T, std::size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::midTime </td>
+          <td class="memname">ResultType <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::midTime </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>
@@ -283,8 +283,8 @@ template&lt;typename T, std::size_t N&gt; </div>
 
 </div>
 </div>
-<a id="afbe773482f7863bc60bb4d22a654b610" name="afbe773482f7863bc60bb4d22a654b610"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbe773482f7863bc60bb4d22a654b610">&#9670;&#160;</a></span>rate()</h2>
+<a id="a267c69305fc989c13b755130d3dfda48" name="a267c69305fc989c13b755130d3dfda48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a267c69305fc989c13b755130d3dfda48">&#9670;&#160;</a></span>rate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -295,7 +295,7 @@ template&lt;typename T, std::size_t N&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::rate </td>
+          <td class="memname">ResultType <a class="el" href="classev_1_1Array__.html">ev::Array_</a>&lt; T, N &gt;::rate </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td> const</td>

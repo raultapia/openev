@@ -1,9 +1,9 @@
 var classev_1_1CircularBuffer__ =
 [
-    [ "duration", "classev_1_1CircularBuffer__.html#a77e31e79a688a52f561d8dc52f758c1a", null ],
-    [ "mean", "classev_1_1CircularBuffer__.html#a68a8d946686353867756ae70b613b213", null ],
-    [ "meanPoint", "classev_1_1CircularBuffer__.html#a80acac433086b5e7305f58e0694497a9", null ],
-    [ "meanTime", "classev_1_1CircularBuffer__.html#aedb97bfc57ef17532112d1e7f2eef724", null ],
-    [ "midTime", "classev_1_1CircularBuffer__.html#a70ec8903a02fe3914221fa9682b78b3e", null ],
-    [ "rate", "classev_1_1CircularBuffer__.html#a24ea44ed8747ce40d6481b6a14ea2eb4", null ]
+    [ "duration", "classev_1_1CircularBuffer__.html#a6d0099ba9be4b33724273ecac80675d4", null ],
+    [ "mean", "classev_1_1CircularBuffer__.html#a0c29ff2a094216c1413788f3c6ca791b", null ],
+    [ "meanPoint", "classev_1_1CircularBuffer__.html#ace43e3bf5a4f5deeb43e2018bcd5cf77", null ],
+    [ "meanTime", "classev_1_1CircularBuffer__.html#a263de79ea32650d26df7a515fc0e5caf", null ],
+    [ "midTime", "classev_1_1CircularBuffer__.html#ae2e180c9043fc5ff544e5b2f63ccc607", null ],
+    [ "rate", "classev_1_1CircularBuffer__.html#ad393a5164c03a51b1a84a926a00970b6", null ]
 ];
