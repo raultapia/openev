@@ -4,6 +4,7 @@
 
 #include <cstddef>
 #include <cstdint>
+#include <random>
 #include <vector>
 
 namespace {
@@ -14,11 +15,17 @@ std::vector<ev::Event> makeEvents(const std::size_t count) {
   std::vector<ev::Event> events;
   events.reserve(count);
 
+  std::mt19937 rng(42);
+  std::uniform_int_distribution<int> x_dist(0, kWidth - 1);
+  std::uniform_int_distribution<int> y_dist(0, kHeight - 1);
+  std::uniform_real_distribution<double> t_dist(0.0, 1.0);
+  std::bernoulli_distribution p_dist(0.5);
+
   for(std::size_t i = 0; i < count; ++i) {
-    const auto x = static_cast<int>((i * 37U) % static_cast<std::size_t>(kWidth));
-    const auto y = static_cast<int>((i * 53U) % static_cast<std::size_t>(kHeight));
-    const auto t = static_cast<double>(i) * 1e-6;
-    const auto p = (i % 2U) == 0U ? ev::POSITIVE : ev::NEGATIVE;
+    const auto x = x_dist(rng);
+    const auto y = y_dist(rng);
+    const auto t = t_dist(rng);
+    const auto p = p_dist(rng) ? ev::POSITIVE : ev::NEGATIVE;
     events.emplace_back(x, y, t, p);
   }
 
