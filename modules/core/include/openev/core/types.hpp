@@ -18,6 +18,12 @@
 #include <string>
 
 namespace ev {
+using TimeType = float;
+using PolarityType = bool;
+using WeightType = float;
+using DepthType = float;
+using CounterType = int16_t;
+
 constexpr bool POSITIVE = true;  /*!< Positive polarity */
 constexpr bool NEGATIVE = false; /*!< Negative polarity */
 
@@ -55,8 +61,8 @@ using Event = Eventi;
 template <typename T>
 class Event_ : public cv::Point_<T> {
 public:
-  double t; /*!< Event timestamp */
-  bool p;   /*!< Event polarity */
+  TimeType t;     /*!< Event timestamp */
+  PolarityType p; /*!< Event polarity */
 
   /*!
   Default constructor.
@@ -97,7 +103,7 @@ public:
   \param t Timestamp
   \param p Polarity
   */
-  Event_(const T x, const T y, const double t, const bool p) : cv::Point_<T>(x, y), t{t}, p{p} {};
+  Event_(const T x, const T y, const TimeType t, const PolarityType p) : cv::Point_<T>(x, y), t{t}, p{p} {};
 
   /*!
   Contructor using timestamp, event coordinates as cv::Point, and polarity.
@@ -105,7 +111,7 @@ public:
   \param t Timestamp
   \param p Polarity
   */
-  Event_(const cv::Point_<T> &pt, const double t, const bool p) : cv::Point_<T>(pt), t{t}, p{p} {};
+  Event_(const cv::Point_<T> &pt, const TimeType t, const PolarityType p) : cv::Point_<T>(pt), t{t}, p{p} {};
 
   /*!
   Copy assignment operator
@@ -119,8 +125,8 @@ public:
   Event_<T> &operator=(const Event_<U> &e) {
     Event_<T>::x = static_cast<T>(e.x);
     Event_<T>::y = static_cast<T>(e.y);
-    Event_<T>::t = static_cast<double>(e.t);
-    Event_<T>::p = static_cast<bool>(e.p);
+    Event_<T>::t = static_cast<TimeType>(e.t);
+    Event_<T>::p = static_cast<PolarityType>(e.p);
     return *this;
   }
 
@@ -130,7 +136,7 @@ public:
   Event_<T> &operator=(const cv::Point3_<T> &p) {
     Event_<T>::x = static_cast<T>(p.x);
     Event_<T>::y = static_cast<T>(p.y);
-    Event_<T>::t = static_cast<double>(p.z);
+    Event_<T>::t = static_cast<TimeType>(p.z);
     return *this;
   }
 
@@ -247,8 +253,8 @@ class AugmentedEvent_ : public Event_<T> {
   using Event_<T>::Event_;
 
 public:
-  double weight{1};            /*!< Event weight */
-  double depth{0};             /*!< Event depth */
+  WeightType weight{1};        /*!< Event weight */
+  DepthType depth{0};          /*!< Event depth */
   Stereo stereo{Stereo::LEFT}; /*!< Left/right */
 
   /*!

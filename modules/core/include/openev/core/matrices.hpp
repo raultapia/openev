@@ -6,6 +6,7 @@
 #ifndef OPENEV_CORE_MATRICES_HPP
 #define OPENEV_CORE_MATRICES_HPP
 
+#include "openev/core/types.hpp"
 #include <cmath>
 #include <cstring>
 #include <limits>
@@ -116,17 +117,17 @@ private:
 };
 using Ternary = Ternary_<char>;
 
-class Time : public cv::Mat_<double> {
+class Time : public cv::Mat_<TimeType> {
 public:
-  using cv::Mat_<double>::Mat_;
+  using cv::Mat_<TimeType>::Mat_;
 
   template <typename T>
-  inline double insert(const Event_<T> &e) {
+  inline TimeType insert(const Event_<T> &e) {
     return set(e.x, e.y, e.t);
   }
 
   template <typename T>
-  inline double emplace(const T x, const T y, const double t) {
+  inline TimeType emplace(const T x, const T y, const TimeType t) {
     return set(x, y, t);
   }
 
@@ -141,26 +142,26 @@ public:
 
 private:
   template <typename T>
-  inline double set(const T x, const T y, const double t) {
+  inline TimeType set(const T x, const T y, const TimeType t) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->ptr<double>(std::lround(y)) + std::lround(x)) = t;
+      return *(this->ptr<TimeType>(std::lround(y)) + std::lround(x)) = t;
     } else {
-      return *(this->ptr<double>(y) + x) = t;
+      return *(this->ptr<TimeType>(y) + x) = t;
     }
   }
 };
 
-class Polarity : public cv::Mat_<bool> {
+class Polarity : public cv::Mat_<PolarityType> {
 public:
-  using cv::Mat_<bool>::Mat_;
+  using cv::Mat_<PolarityType>::Mat_;
 
   template <typename T>
-  inline bool insert(const Event_<T> &e) {
+  inline PolarityType insert(const Event_<T> &e) {
     return set(e.x, e.y, e.p);
   }
 
   template <typename T>
-  inline bool emplace(const T x, const T y, const bool p) {
+  inline PolarityType emplace(const T x, const T y, const PolarityType p) {
     return set(x, y, p);
   }
 
@@ -175,26 +176,26 @@ public:
 
 private:
   template <typename T>
-  inline bool set(const T x, const T y, const bool p) {
+  inline PolarityType set(const T x, const T y, const PolarityType p) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->ptr<bool>(std::lround(y)) + std::lround(x)) = p;
+      return *(this->ptr<PolarityType>(std::lround(y)) + std::lround(x)) = p;
     } else {
-      return *(this->ptr<bool>(y) + x) = p;
+      return *(this->ptr<PolarityType>(y) + x) = p;
     }
   }
 };
 
-class Counter : public cv::Mat_<int> {
+class Counter : public cv::Mat_<CounterType> {
 public:
-  using cv::Mat_<int>::Mat_;
+  using cv::Mat_<CounterType>::Mat_;
 
   template <typename T>
-  inline int insert(const Event_<T> &e) {
+  inline CounterType insert(const Event_<T> &e) {
     return set(e.x, e.y, e.p);
   }
 
   template <typename T>
-  inline int emplace(const T x, const T y, const bool p) {
+  inline CounterType emplace(const T x, const T y, const bool p) {
     return set(x, y, p);
   }
 
@@ -209,11 +210,11 @@ public:
 
 private:
   template <typename T>
-  inline int set(const T x, const T y, const bool p) {
+  inline CounterType set(const T x, const T y, const bool p) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->ptr<int>(std::lround(y)) + std::lround(x)) += (p ? +1 : -1);
+      return *(this->ptr<CounterType>(std::lround(y)) + std::lround(x)) += (p ? +1 : -1);
     } else {
-      return *(this->ptr<int>(y) + x) += (p ? +1 : -1);
+      return *(this->ptr<CounterType>(y) + x) += (p ? +1 : -1);
     }
   }
 };
