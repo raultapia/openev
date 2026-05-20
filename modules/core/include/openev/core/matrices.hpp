@@ -7,6 +7,7 @@
 #define OPENEV_CORE_MATRICES_HPP
 
 #include <cmath>
+#include <cstring>
 #include <limits>
 #include <opencv2/core/hal/interface.h>
 #include <opencv2/core/mat.hpp>
@@ -22,6 +23,20 @@ class Event_;
 /*! \endcond */
 
 namespace Mat {
+namespace detail {
+template <typename MatType>
+inline void clearZero(MatType &mat) {
+  if(mat.empty()) {
+    return;
+  }
+  if(mat.isContinuous()) {
+    std::memset(mat.data, 0, mat.total() * mat.elemSize());
+    return;
+  }
+  mat.setTo(0);
+}
+} // namespace detail
+
 template <typename Tb>
 class Binary_ : public cv::Mat_<Tb> {
 public:
@@ -38,7 +53,7 @@ public:
   }
 
   inline void clear() {
-    cv::Mat_<Tb>::setTo(0);
+    detail::clearZero(*this);
   }
 
   static constexpr Tb ON = std::numeric_limits<Tb>::max();
@@ -77,7 +92,7 @@ public:
   }
 
   inline void clear() {
-    cv::Mat_<Tb>::setTo(ZERO);
+    detail::clearZero(*this);
   }
 
   static constexpr Tb POSITIVE = std::numeric_limits<Tb>::max();
@@ -116,7 +131,7 @@ public:
   }
 
   inline void clear() {
-    cv::Mat_<double>::setTo(0);
+    detail::clearZero(*this);
   }
 
   friend std::ostream &operator<<(std::ostream &os, const Time &time) {
@@ -150,7 +165,7 @@ public:
   }
 
   inline void clear() {
-    cv::Mat_<bool>::setTo(0);
+    detail::clearZero(*this);
   }
 
   friend std::ostream &operator<<(std::ostream &os, const Polarity &polarity) {
@@ -184,7 +199,7 @@ public:
   }
 
   inline void clear() {
-    cv::Mat_<int>::setTo(0);
+    detail::clearZero(*this);
   }
 
   friend std::ostream &operator<<(std::ostream &os, const Counter &counter) {
