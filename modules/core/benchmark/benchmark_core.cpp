@@ -38,7 +38,6 @@ void benchmarkInsert(benchmark::State &state, const char *label) {
   Matrix matrix(kHeight, kWidth);
 
   for(auto _ : state) {
-    matrix.clear();
     for(const auto &event : events) {
       benchmark::DoNotOptimize(matrix.insert(event));
     }
@@ -47,6 +46,30 @@ void benchmarkInsert(benchmark::State &state, const char *label) {
 
   state.SetLabel(label);
   state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
+}
+
+template <typename Matrix>
+void benchmarkClear(benchmark::State &state, const char *label) {
+  const auto events = makeEvents(static_cast<std::size_t>(state.range(0)));
+  Matrix matrix(kHeight, kWidth);
+  Matrix backup(kHeight, kWidth);
+
+  for(const auto &event : events) {
+    backup.insert(event);
+  }
+
+  for(auto _ : state) {
+    state.PauseTiming();
+    backup.copyTo(matrix);
+    state.ResumeTiming();
+
+    benchmark::DoNotOptimize(matrix.data);
+    matrix.clear();
+    benchmark::ClobberMemory();
+  }
+
+  state.SetLabel(label);
+  state.SetItemsProcessed(state.iterations());
 }
 
 static void BM_BinaryInsert(benchmark::State &state) {
@@ -69,10 +92,36 @@ static void BM_CounterInsert(benchmark::State &state) {
   benchmarkInsert<ev::Mat::Counter>(state, "counter");
 }
 
+static void BM_BinaryClear(benchmark::State &state) {
+  benchmarkClear<ev::Mat::Binary>(state, "binary");
+}
+
+static void BM_TernaryClear(benchmark::State &state) {
+  benchmarkClear<ev::Mat::Ternary>(state, "ternary");
+}
+
+static void BM_TimeClear(benchmark::State &state) {
+  benchmarkClear<ev::Mat::Time>(state, "time");
+}
+
+static void BM_PolarityClear(benchmark::State &state) {
+  benchmarkClear<ev::Mat::Polarity>(state, "polarity");
+}
+
+static void BM_CounterClear(benchmark::State &state) {
+  benchmarkClear<ev::Mat::Counter>(state, "counter");
+}
+
 BENCHMARK(BM_BinaryInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_TernaryInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_TimeInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_PolarityInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CounterInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+
+BENCHMARK(BM_BinaryClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_TernaryClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_TimeClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_PolarityClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_CounterClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 } // namespace
