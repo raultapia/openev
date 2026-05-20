@@ -20,13 +20,14 @@ Event queues inherit all the properties from standard C++ queues. Events queues 
 template <typename T>
 class Queue_ : public std::queue<Event_<T>> {
   using std::queue<Event_<T>>::queue;
+  using ResultType = TimeType;
 
 public:
   /*!
   \brief Time difference between the last and the first event.
   \return Time difference
   */
-  [[nodiscard]] inline double duration() const {
+  [[nodiscard]] inline ResultType duration() const {
     return std::queue<ev::Event_<T>>::back().t - std::queue<ev::Event_<T>>::front().t;
   }
 
@@ -34,7 +35,7 @@ public:
   \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event.
   \return Event rate
   */
-  [[nodiscard]] inline double rate() const {
+  [[nodiscard]] inline ResultType rate() const {
     return std::queue<ev::Event_<T>>::size() / duration();
   }
 
@@ -42,12 +43,12 @@ public:
   \brief Compute the mean of the events.
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
-  [[nodiscard]] inline Eventd mean() {
+  [[nodiscard]] inline Event_<ResultType> mean() {
     const std::size_t n = std::queue<ev::Event_<T>>::size();
-    double x{0};
-    double y{0};
-    double t{0};
-    double p{0};
+    ResultType x{0};
+    ResultType y{0};
+    ResultType t{0};
+    ResultType p{0};
 
     while(!std::queue<ev::Event_<T>>::empty()) {
       const Event_<T> &e = std::queue<ev::Event_<T>>::front();
@@ -65,10 +66,10 @@ public:
   \brief Compute the mean x,y point of the events.
   \return Mean point
   */
-  [[nodiscard]] inline cv::Point2d meanPoint() {
+  [[nodiscard]] inline cv::Point_<ResultType> meanPoint() {
     const std::size_t n = std::queue<ev::Event_<T>>::size();
-    double x{0};
-    double y{0};
+    ResultType x{0};
+    ResultType y{0};
 
     while(!std::queue<ev::Event_<T>>::empty()) {
       const Event_<T> &e = std::queue<ev::Event_<T>>::front();
@@ -84,9 +85,9 @@ public:
   \brief Compute the mean time of the events.
   \return Mean time
   */
-  [[nodiscard]] inline double meanTime() {
+  [[nodiscard]] inline ResultType meanTime() {
     const std::size_t n = std::queue<ev::Event_<T>>::size();
-    double t{0};
+    ResultType t{0};
 
     while(!std::queue<ev::Event_<T>>::empty()) {
       t += std::queue<ev::Event_<T>>::front().t;
@@ -100,7 +101,7 @@ public:
   \brief Calculate the midpoint time between the oldest and the newest event.
   \return Midpoint time.
   */
-  [[nodiscard]] inline double midTime() const {
+  [[nodiscard]] inline ResultType midTime() const {
     return 0.5 * (std::queue<ev::Event_<T>>::front().t + std::queue<ev::Event_<T>>::back().t);
   }
 };
