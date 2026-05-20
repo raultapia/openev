@@ -24,8 +24,8 @@ using WeightType = float;
 using DepthType = float;
 using CounterType = int16_t;
 
-constexpr bool POSITIVE = true;  /*!< Positive polarity */
-constexpr bool NEGATIVE = false; /*!< Negative polarity */
+constexpr PolarityType POSITIVE = static_cast<PolarityType>(true);  /*!< Positive polarity */
+constexpr PolarityType NEGATIVE = static_cast<PolarityType>(false); /*!< Negative polarity */
 
 enum class Stereo : char {
   LEFT = 'L',
