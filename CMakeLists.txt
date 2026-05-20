@@ -11,6 +11,12 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(Git QUIET REQUIRED)
 execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
+include(FetchContent)
+set(BENCHMARK_ENABLE_TESTING OFF)
+FetchContent_Declare(google_benchmark GIT_REPOSITORY https://github.com/google/benchmark.git GIT_TAG v1.8.3)
+FetchContent_Declare(googletest GIT_REPOSITORY https://github.com/google/googletest.git GIT_TAG v1.17.0)
+FetchContent_MakeAvailable(google_benchmark googletest)
+
 # Modules
 add_library(openev INTERFACE)
 set(OpenEV_LIBRARIES "")

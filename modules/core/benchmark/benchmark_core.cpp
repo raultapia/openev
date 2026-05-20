@@ -1,0 +1,71 @@
+#include "openev/core.hpp"
+
+#include <benchmark/benchmark.h>
+
+#include <cstddef>
+#include <cstdint>
+#include <vector>
+
+namespace {
+constexpr int kWidth = 640;
+constexpr int kHeight = 480;
+
+std::vector<ev::Event> makeEvents(const std::size_t count) {
+  std::vector<ev::Event> events;
+  events.reserve(count);
+
+  for(std::size_t i = 0; i < count; ++i) {
+    const auto x = static_cast<int>((i * 37U) % static_cast<std::size_t>(kWidth));
+    const auto y = static_cast<int>((i * 53U) % static_cast<std::size_t>(kHeight));
+    const auto t = static_cast<double>(i) * 1e-6;
+    const auto p = (i % 2U) == 0U ? ev::POSITIVE : ev::NEGATIVE;
+    events.emplace_back(x, y, t, p);
+  }
+
+  return events;
+}
+
+template <typename Matrix>
+void benchmarkInsert(benchmark::State &state, const char *label) {
+  const auto events = makeEvents(static_cast<std::size_t>(state.range(0)));
+  Matrix matrix(kHeight, kWidth);
+
+  for(auto _ : state) {
+    matrix.clear();
+    for(const auto &event : events) {
+      benchmark::DoNotOptimize(matrix.insert(event));
+    }
+    benchmark::ClobberMemory();
+  }
+
+  state.SetLabel(label);
+  state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
+}
+
+static void BM_BinaryInsert(benchmark::State &state) {
+  benchmarkInsert<ev::Mat::Binary>(state, "binary");
+}
+
+static void BM_TernaryInsert(benchmark::State &state) {
+  benchmarkInsert<ev::Mat::Ternary>(state, "ternary");
+}
+
+static void BM_TimeInsert(benchmark::State &state) {
+  benchmarkInsert<ev::Mat::Time>(state, "time");
+}
+
+static void BM_PolarityInsert(benchmark::State &state) {
+  benchmarkInsert<ev::Mat::Polarity>(state, "polarity");
+}
+
+static void BM_CounterInsert(benchmark::State &state) {
+  benchmarkInsert<ev::Mat::Counter>(state, "counter");
+}
+
+BENCHMARK(BM_BinaryInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_TernaryInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_TimeInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_PolarityInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_CounterInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+
+} // namespace

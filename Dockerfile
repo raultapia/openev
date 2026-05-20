@@ -5,7 +5,6 @@ RUN apt -y upgrade
 RUN apt -y install build-essential
 RUN apt -y install cmake
 RUN apt -y install git
-RUN apt -y install libgtest-dev
 RUN apt -y install software-properties-common
 
 # Dependencies
