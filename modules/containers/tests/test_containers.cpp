@@ -32,36 +32,36 @@ TYPED_TEST_SUITE(ContainerTestFixture, ContainerTypes);
 
 TYPED_TEST(ContainerTestFixture, Duration) {
   const float duration = this->container.duration();
-  EXPECT_DOUBLE_EQ(duration, 5.3432 - 1.2143);
+  EXPECT_FLOAT_EQ(duration, 5.3432 - 1.2143);
 }
 
 TYPED_TEST(ContainerTestFixture, Rate) {
   const float rate = this->container.rate();
-  EXPECT_DOUBLE_EQ(rate, 3.0 / (5.3432 - 1.2143));
+  EXPECT_FLOAT_EQ(rate, 3.0 / (5.3432 - 1.2143));
 }
 
 TYPED_TEST(ContainerTestFixture, Mean) {
   const ev::Eventf mean = this->container.mean();
-  EXPECT_DOUBLE_EQ(mean.x, (34 + 45 + 87) / 3.0);
-  EXPECT_DOUBLE_EQ(mean.y, (10 + 14 + 23) / 3.0);
-  EXPECT_DOUBLE_EQ(mean.t, (1.2143 + 3.2342 + 5.3432) / 3.0);
+  EXPECT_FLOAT_EQ(mean.x, (34 + 45 + 87) / 3.0);
+  EXPECT_FLOAT_EQ(mean.y, (10 + 14 + 23) / 3.0);
+  EXPECT_FLOAT_EQ(mean.t, (1.2143 + 3.2342 + 5.3432) / 3.0);
   EXPECT_TRUE(mean.p);
 }
 
 TYPED_TEST(ContainerTestFixture, MeanPoint) {
   const cv::Point2f meanPoint = this->container.meanPoint();
-  EXPECT_DOUBLE_EQ(meanPoint.x, (34 + 45 + 87) / 3.0);
-  EXPECT_DOUBLE_EQ(meanPoint.y, (10 + 14 + 23) / 3.0);
+  EXPECT_FLOAT_EQ(meanPoint.x, (34 + 45 + 87) / 3.0);
+  EXPECT_FLOAT_EQ(meanPoint.y, (10 + 14 + 23) / 3.0);
 }
 
 TYPED_TEST(ContainerTestFixture, MeanTime) {
   const float meanTime = this->container.meanTime();
-  EXPECT_DOUBLE_EQ(meanTime, (1.2143 + 3.2342 + 5.3432) / 3.0);
+  EXPECT_FLOAT_EQ(meanTime, (1.2143 + 3.2342 + 5.3432) / 3.0);
 }
 
 TYPED_TEST(ContainerTestFixture, MidTime) {
   const float midTime = this->container.midTime();
-  EXPECT_DOUBLE_EQ(midTime, (1.2143 + 5.3432) / 2.0);
+  EXPECT_FLOAT_EQ(midTime, (1.2143 + 5.3432) / 2.0);
 }
 
 TEST(CircularBuffer, EmplaceFront) {

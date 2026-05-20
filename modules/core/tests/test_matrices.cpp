@@ -90,26 +90,26 @@ TEST(TimeTest, Insert) {
   ev::Mat::Time time(10, 10);
   const ev::Event event(3, 4, 1.5, ev::POSITIVE);
   time.insert(event);
-  EXPECT_DOUBLE_EQ(time(4, 3), 1.5);
+  EXPECT_FLOAT_EQ(time(4, 3), 1.5);
 }
 
 TEST(TimeTest, Emplace) {
   ev::Mat::Time time(10, 10);
   time.emplace(5, 6, 1.5);
-  EXPECT_DOUBLE_EQ(time(6, 5), 1.5);
+  EXPECT_FLOAT_EQ(time(6, 5), 1.5);
 }
 
 TEST(TimeTest, Clear) {
   ev::Mat::Time time(10, 10);
   time.emplace(5, 6, 1.5);
   time.clear();
-  EXPECT_DOUBLE_EQ(time(6, 5), 0.0);
+  EXPECT_FLOAT_EQ(time(6, 5), 0.0);
 }
 
 TEST(TimeTest, LargeMatrixStressTest) {
   ev::Mat::Time time(10000, 10000);
   time.emplace(9999, 9999, 3.14);
-  EXPECT_DOUBLE_EQ(time(9999, 9999), 3.14);
+  EXPECT_FLOAT_EQ(time(9999, 9999), 3.14);
 }
 
 TEST(TimeTest, StreamOperator) {
