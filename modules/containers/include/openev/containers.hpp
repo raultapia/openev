@@ -9,6 +9,7 @@
 #include "openev/containers/array.hpp"
 #include "openev/containers/circular.hpp"
 #include "openev/containers/deque.hpp"
+#include "openev/containers/persistent_queue.hpp"
 #include "openev/containers/queue.hpp"
 #include "openev/containers/vector.hpp"
 

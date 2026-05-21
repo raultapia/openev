@@ -1,6 +1,7 @@
 #include "openev/containers/array.hpp"
 #include "openev/containers/circular.hpp"
 #include "openev/containers/deque.hpp"
+#include "openev/containers/persistent_queue.hpp"
 #include "openev/containers/queue.hpp"
 #include "openev/containers/vector.hpp"
 #include <gtest/gtest.h>
@@ -15,7 +16,7 @@ protected:
     if constexpr(std::is_same_v<Container, ev::Vector> || std::is_same_v<Container, ev::CircularBuffer> || std::is_same_v<Container, ev::Deque>) {
       container.resize(3);
     }
-    if constexpr(std::is_same_v<Container, ev::Queue>) {
+    if constexpr(std::is_same_v<Container, ev::Queue> || std::is_same_v<Container, ev::PersistentQueue>) {
       container.push(ev::Event(34, 10, 1.2143, true));
       container.push(ev::Event(45, 14, 3.2342, false));
       container.push(ev::Event(87, 23, 5.3432, true));
@@ -27,7 +28,7 @@ protected:
   }
 };
 
-using ContainerTypes = ::testing::Types<ev::Array<3>, ev::Vector, ev::CircularBuffer, ev::Deque, ev::Queue>;
+using ContainerTypes = ::testing::Types<ev::Array<3>, ev::Vector, ev::CircularBuffer, ev::Deque, ev::PersistentQueue, ev::Queue>;
 TYPED_TEST_SUITE(ContainerTestFixture, ContainerTypes);
 
 TYPED_TEST(ContainerTestFixture, Duration) {

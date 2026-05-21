@@ -8,7 +8,7 @@
 
 #include "openev/core/types.hpp"
 #include <deque>
-#include <numeric> // For std::accumulate
+#include <numeric>
 #include <opencv2/core/types.hpp>
 
 namespace ev {
