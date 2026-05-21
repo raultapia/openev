@@ -106,7 +106,19 @@ $(function(){initNavTree('containers_8hpp_source.html','',''); });
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="sliding__window_8hpp.html">openev/containers/sliding_window.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;openev/containers/vector.hpp&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CONTAINERS_HPP</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">inline</span> <span class="keywordtype">void</span> workaround() {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  (void)ev::USING_ARRAY_HPP;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  (void)ev::USING_CIRCULAR_HPP;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  (void)ev::USING_DEQUE_HPP;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  (void)ev::USING_PERSISTENT_QUEUE_HPP;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  (void)ev::USING_QUEUE_HPP;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  (void)ev::USING_SLIDING_WINDOW_HPP;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  (void)ev::USING_VECTOR_HPP;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>} <span class="comment">// namespace</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CONTAINERS_HPP</span></div>
 <div class="ttc" id="acircular_8hpp_html"><div class="ttname"><a href="circular_8hpp.html">circular.hpp</a></div><div class="ttdoc">Circular buffer container for basic event structures.</div></div>
 <div class="ttc" id="adeque_8hpp_html"><div class="ttname"><a href="deque_8hpp.html">deque.hpp</a></div><div class="ttdoc">Deque container for basic event structures.</div></div>
 <div class="ttc" id="aqueue_8hpp_html"><div class="ttname"><a href="queue_8hpp.html">queue.hpp</a></div><div class="ttdoc">Persistent queue container for basic event structures.</div></div>
