@@ -1,6 +1,6 @@
 var sliding__window_8hpp =
 [
-    [ "ev::SlidingWindow_&lt; T &gt;", "classev_1_1SlidingWindow__.html", null ],
+    [ "ev::SlidingWindow_&lt; T &gt;", "classev_1_1SlidingWindow__.html", "classev_1_1SlidingWindow__" ],
     [ "ev::SlidingWindow", "sliding__window_8hpp.html#a139260b39b868315075d21426efa0696", null ],
     [ "ev::SlidingWindowd", "sliding__window_8hpp.html#aa9f4843f33ab4497b06de774f2209911", null ],
     [ "ev::SlidingWindowf", "sliding__window_8hpp.html#a2e111a3e94fe7b4131b9cc927d5dee3e", null ],

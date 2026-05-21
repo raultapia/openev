@@ -102,7 +102,7 @@ $(function(){initNavTree('matrices_8hpp.html','',''); });
 </div><!--header-->
 <div class="contents">
 
-<p>Basic event-based vision structures based on OpenCV components.  
+<p>Event-based matrix representations for accumulating events into spatial maps.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="types_8hpp_source.html">openev/core/types.hpp</a>&quot;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
@@ -120,10 +120,15 @@ $(function(){initNavTree('matrices_8hpp.html','',''); });
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:ev_3A_3AMat_3A_3ABinary_5F_3C_20Tb_20_3E" id="r_ev_3A_3AMat_3A_3ABinary_5F_3C_20Tb_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Mat_1_1Binary__.html">ev::Mat::Binary_&lt; Tb &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spatial map marking whether any event has occurred at each pixel.  <a href="classev_1_1Mat_1_1Binary__.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ev_3A_3AMat_3A_3ATernary_5F_3C_20Tb_20_3E" id="r_ev_3A_3AMat_3A_3ATernary_5F_3C_20Tb_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Mat_1_1Ternary__.html">ev::Mat::Ternary_&lt; Tb &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spatial map encoding event polarity at each pixel.  <a href="classev_1_1Mat_1_1Ternary__.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ev_3A_3AMat_3A_3ATime" id="r_ev_3A_3AMat_3A_3ATime"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Mat_1_1Time.html">ev::Mat::Time</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spatial map storing the timestamp of the most recent event at each pixel.  <a href="classev_1_1Mat_1_1Time.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ev_3A_3AMat_3A_3APolarity" id="r_ev_3A_3AMat_3A_3APolarity"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Mat_1_1Polarity.html">ev::Mat::Polarity</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spatial map storing the polarity of the most recent event at each pixel.  <a href="classev_1_1Mat_1_1Polarity.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ev_3A_3AMat_3A_3ACounter" id="r_ev_3A_3AMat_3A_3ACounter"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Mat_1_1Counter.html">ev::Mat::Counter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Spatial map accumulating signed event counts per pixel.  <a href="classev_1_1Mat_1_1Counter.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -144,7 +149,7 @@ Variables</h2></td></tr>
 constexpr bool&#160;</td><td class="memItemRight"><b>ev::USING_MATRICES_HPP</b> = true</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Basic event-based vision structures based on OpenCV components. </p>
+<div class="textblock"><p>Event-based matrix representations for accumulating events into spatial maps. </p>
 <dl class="section author"><dt>Author</dt><dd>Raul Tapia </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->

@@ -17,6 +17,12 @@ var searchData=
   ['dequel_14',['Dequel',['../deque_8hpp.html#a9aa152b5a7b054f1c2ade7bef1c1eaaa',1,'ev']]],
   ['devices_2ehpp_15',['devices.hpp',['../devices_8hpp.html',1,'']]],
   ['distance_16',['distance',['../classev_1_1Event__.html#ada122d3ce351ad2aa14b4d39b98ae1d7',1,'ev::Event_']]],
-  ['documentation_17',['📚 Documentation',['../index.html#autotoc_md1',1,'']]],
-  ['duration_18',['duration',['../classev_1_1Array__.html#a2808fb83d28d21efadc21a46ccb78b9f',1,'ev::Array_::duration()'],['../classev_1_1CircularBuffer__.html#a6d0099ba9be4b33724273ecac80675d4',1,'ev::CircularBuffer_::duration()'],['../classev_1_1Deque__.html#abed3641cf128102d98097a1114874440',1,'ev::Deque_::duration()'],['../classev_1_1Queue__.html#a063e6a48ac8d546e3db2067eef4d4484',1,'ev::Queue_::duration()'],['../classev_1_1Vector__.html#ab59c23b37a769922b0465050a38ea6b1',1,'ev::Vector_::duration()'],['../classev_1_1AbstractRepresentation__.html#a81921f180ef8e7ce1f1b542ae7c6dfc9',1,'ev::AbstractRepresentation_::duration()']]]
+  ['distance_5fflag_5f2d_17',['DISTANCE_FLAG_2D',['../types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa1bb17d6a06f5b7cb3309e0ecd4c5e0a6',1,'ev']]],
+  ['distance_5fflag_5f3d_18',['DISTANCE_FLAG_3D',['../types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa9f9c02c772b164446bd6a78c8f1dcc5a',1,'ev']]],
+  ['distance_5fflag_5fspatial_19',['DISTANCE_FLAG_SPATIAL',['../types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa3cd54d365f3f8fafb95020779d7be9cf',1,'ev']]],
+  ['distance_5fflag_5fspatiotemporal_20',['DISTANCE_FLAG_SPATIOTEMPORAL',['../types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa0916d2f8933467e2b1ce91dd82af2159',1,'ev']]],
+  ['distance_5fflag_5ftemporal_21',['DISTANCE_FLAG_TEMPORAL',['../types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa0d545312afd753ff0bacaef3bad8f319',1,'ev']]],
+  ['distancetypes_22',['DistanceTypes',['../types_8hpp.html#a7a3cbf6385d956c723270812cebd164a',1,'ev']]],
+  ['documentation_23',['📚 Documentation',['../index.html#autotoc_md1',1,'']]],
+  ['duration_24',['duration',['../classev_1_1Array__.html#a2808fb83d28d21efadc21a46ccb78b9f',1,'ev::Array_::duration()'],['../classev_1_1CircularBuffer__.html#a6d0099ba9be4b33724273ecac80675d4',1,'ev::CircularBuffer_::duration()'],['../classev_1_1Deque__.html#abed3641cf128102d98097a1114874440',1,'ev::Deque_::duration()'],['../classev_1_1Queue__.html#a063e6a48ac8d546e3db2067eef4d4484',1,'ev::Queue_::duration()'],['../classev_1_1Vector__.html#ab59c23b37a769922b0465050a38ea6b1',1,'ev::Vector_::duration()'],['../classev_1_1AbstractRepresentation__.html#a81921f180ef8e7ce1f1b542ae7c6dfc9',1,'ev::AbstractRepresentation_::duration()']]]
 ];

@@ -102,7 +102,7 @@ $(function(){initNavTree('classev_1_1SlidingWindow__.html','','classev_1_1Slidin
 </div><!--header-->
 <div class="contents">
 
-<p>FIFO event container that retains only the trailing time window.  
+<p>FIFO event container that retains only events within a trailing time window.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="sliding__window_8hpp_source.html">sliding_window.hpp</a>&gt;</code></p>
@@ -118,19 +118,20 @@ Inheritance diagram for ev::SlidingWindow_&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5c48bdf890d58bda52c4982509e6e8be" id="r_a5c48bdf890d58bda52c4982509e6e8be"><td class="memItemLeft"><a id="a5c48bdf890d58bda52c4982509e6e8be" name="a5c48bdf890d58bda52c4982509e6e8be"></a>
-&#160;</td><td class="memItemRight"><b>SlidingWindow_</b> (const TimeType window=0)</td></tr>
-<tr class="memitem:a319da4bb6e689a2760b42e968b46a81d" id="r_a319da4bb6e689a2760b42e968b46a81d"><td class="memItemLeft"><a id="a319da4bb6e689a2760b42e968b46a81d" name="a319da4bb6e689a2760b42e968b46a81d"></a>
-TimeType&#160;</td><td class="memItemRight"><b>window</b> () const</td></tr>
-<tr class="memitem:a8852cd5b340714a88e4785a32e1bed53" id="r_a8852cd5b340714a88e4785a32e1bed53"><td class="memItemLeft"><a id="a8852cd5b340714a88e4785a32e1bed53" name="a8852cd5b340714a88e4785a32e1bed53"></a>
-void&#160;</td><td class="memItemRight"><b>setWindow</b> (const TimeType window)</td></tr>
-<tr class="memitem:a4d2dea5cc676061ec7923135b047098a" id="r_a4d2dea5cc676061ec7923135b047098a"><td class="memItemLeft"><a id="a4d2dea5cc676061ec7923135b047098a" name="a4d2dea5cc676061ec7923135b047098a"></a>
-void&#160;</td><td class="memItemRight"><b>push</b> (const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;event)</td></tr>
-<tr class="memitem:a86b9ba0d7719c0f18a2c36cc94846359" id="r_a86b9ba0d7719c0f18a2c36cc94846359"><td class="memItemLeft"><a id="a86b9ba0d7719c0f18a2c36cc94846359" name="a86b9ba0d7719c0f18a2c36cc94846359"></a>
-void&#160;</td><td class="memItemRight"><b>push</b> (<a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;&amp;event)</td></tr>
+<tr class="memitem:a5c48bdf890d58bda52c4982509e6e8be" id="r_a5c48bdf890d58bda52c4982509e6e8be"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5c48bdf890d58bda52c4982509e6e8be">SlidingWindow_</a> (const TimeType <a class="el" href="#a319da4bb6e689a2760b42e968b46a81d">window</a>=0)</td></tr>
+<tr class="memdesc:a5c48bdf890d58bda52c4982509e6e8be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a sliding window with the given temporal span.  <br /></td></tr>
+<tr class="memitem:a319da4bb6e689a2760b42e968b46a81d" id="r_a319da4bb6e689a2760b42e968b46a81d"><td class="memItemLeft">TimeType&#160;</td><td class="memItemRight"><a class="el" href="#a319da4bb6e689a2760b42e968b46a81d">window</a> () const</td></tr>
+<tr class="memdesc:a319da4bb6e689a2760b42e968b46a81d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the current time window length.  <br /></td></tr>
+<tr class="memitem:a8852cd5b340714a88e4785a32e1bed53" id="r_a8852cd5b340714a88e4785a32e1bed53"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8852cd5b340714a88e4785a32e1bed53">setWindow</a> (const TimeType <a class="el" href="#a319da4bb6e689a2760b42e968b46a81d">window</a>)</td></tr>
+<tr class="memdesc:a8852cd5b340714a88e4785a32e1bed53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a new time window length and immediately discard events outside the new window.  <br /></td></tr>
+<tr class="memitem:a4d2dea5cc676061ec7923135b047098a" id="r_a4d2dea5cc676061ec7923135b047098a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a4d2dea5cc676061ec7923135b047098a">push</a> (const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;event)</td></tr>
+<tr class="memdesc:a4d2dea5cc676061ec7923135b047098a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push an event to the back and discard front events older than the window.  <br /></td></tr>
+<tr class="memitem:a86b9ba0d7719c0f18a2c36cc94846359" id="r_a86b9ba0d7719c0f18a2c36cc94846359"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a86b9ba0d7719c0f18a2c36cc94846359">push</a> (<a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;&amp;event)</td></tr>
+<tr class="memdesc:a86b9ba0d7719c0f18a2c36cc94846359"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push an event (move) to the back and discard front events older than the window.  <br /></td></tr>
 <tr class="memitem:aa0057e5f23ee0f712318f0abed1ade9e" id="r_aa0057e5f23ee0f712318f0abed1ade9e"><td class="memTemplParams" colspan="2"><a id="aa0057e5f23ee0f712318f0abed1ade9e" name="aa0057e5f23ee0f712318f0abed1ade9e"></a>
 template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:aa0057e5f23ee0f712318f0abed1ade9e template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><b>emplace</b> (Args &amp;&amp;...args)</td></tr>
+<tr class="memdesc:aa0057e5f23ee0f712318f0abed1ade9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an event in-place at the back and discard front events older than the window. <br /></td></tr>
 <tr class="inherit_header pub_methods_classev_1_1Deque__"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classev_1_1Deque__')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classev_1_1Deque__.html">ev::Deque_&lt; T &gt;</a></td></tr>
 <tr class="memitem:abed3641cf128102d98097a1114874440 inherit pub_methods_classev_1_1Deque__" id="r_abed3641cf128102d98097a1114874440"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Deque__.html#abed3641cf128102d98097a1114874440">duration</a> () const</td></tr>
 <tr class="memdesc:abed3641cf128102d98097a1114874440 inherit pub_methods_classev_1_1Deque__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
@@ -147,8 +148,192 @@ template&lt;typename... Args&gt; </td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
-class ev::SlidingWindow_&lt; T &gt;</div><p>FIFO event container that retains only the trailing time window. </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+class ev::SlidingWindow_&lt; T &gt;</div><p>FIFO event container that retains only events within a trailing time window. </p>
+<p>Events are pushed to the back; after each insertion, front events older than \( t_{newest} - window \) are automatically discarded. Inherits all <a class="el" href="classev_1_1Deque__.html" title="This class extends std::deque to implement event deques. For more information, please refer here.">Deque_</a> statistics (duration, rate, mean, etc.) computed over the retained events.</p>
+<p>Analogously to OpenCV library, the following aliases are defined for convenience: </p><div class="fragment"><div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="sliding__window_8hpp.html#ac6e809d6a5018c4d481678c17e655192">SlidingWindowi</a> = <a class="code hl_function" href="#a5c48bdf890d58bda52c4982509e6e8be">SlidingWindow_&lt;int&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="sliding__window_8hpp.html#a73e09b853d57297a1242e2831131f682">SlidingWindowl</a> = <a class="code hl_function" href="#a5c48bdf890d58bda52c4982509e6e8be">SlidingWindow_&lt;long&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="sliding__window_8hpp.html#a2e111a3e94fe7b4131b9cc927d5dee3e">SlidingWindowf</a> = <a class="code hl_function" href="#a5c48bdf890d58bda52c4982509e6e8be">SlidingWindow_&lt;float&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="sliding__window_8hpp.html#aa9f4843f33ab4497b06de774f2209911">SlidingWindowd</a> = <a class="code hl_function" href="#a5c48bdf890d58bda52c4982509e6e8be">SlidingWindow_&lt;double&gt;</a>;</div>
+<div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="sliding__window_8hpp.html#a139260b39b868315075d21426efa0696">SlidingWindow</a>  = <a class="code hl_typedef" href="sliding__window_8hpp.html#ac6e809d6a5018c4d481678c17e655192">SlidingWindowi</a>;</div>
+<div class="ttc" id="aclassev_1_1SlidingWindow___html_a5c48bdf890d58bda52c4982509e6e8be"><div class="ttname"><a href="#a5c48bdf890d58bda52c4982509e6e8be">ev::SlidingWindow_::SlidingWindow_</a></div><div class="ttdeci">SlidingWindow_(const TimeType window=0)</div><div class="ttdoc">Construct a sliding window with the given temporal span.</div><div class="ttdef"><b>Definition</b> sliding_window.hpp:40</div></div>
+<div class="ttc" id="asliding__window_8hpp_html_a139260b39b868315075d21426efa0696"><div class="ttname"><a href="sliding__window_8hpp.html#a139260b39b868315075d21426efa0696">ev::SlidingWindow</a></div><div class="ttdeci">SlidingWindowi SlidingWindow</div><div class="ttdef"><b>Definition</b> sliding_window.hpp:104</div></div>
+<div class="ttc" id="asliding__window_8hpp_html_a2e111a3e94fe7b4131b9cc927d5dee3e"><div class="ttname"><a href="sliding__window_8hpp.html#a2e111a3e94fe7b4131b9cc927d5dee3e">ev::SlidingWindowf</a></div><div class="ttdeci">SlidingWindow_&lt; float &gt; SlidingWindowf</div><div class="ttdef"><b>Definition</b> sliding_window.hpp:102</div></div>
+<div class="ttc" id="asliding__window_8hpp_html_a73e09b853d57297a1242e2831131f682"><div class="ttname"><a href="sliding__window_8hpp.html#a73e09b853d57297a1242e2831131f682">ev::SlidingWindowl</a></div><div class="ttdeci">SlidingWindow_&lt; long &gt; SlidingWindowl</div><div class="ttdef"><b>Definition</b> sliding_window.hpp:101</div></div>
+<div class="ttc" id="asliding__window_8hpp_html_aa9f4843f33ab4497b06de774f2209911"><div class="ttname"><a href="sliding__window_8hpp.html#aa9f4843f33ab4497b06de774f2209911">ev::SlidingWindowd</a></div><div class="ttdeci">SlidingWindow_&lt; double &gt; SlidingWindowd</div><div class="ttdef"><b>Definition</b> sliding_window.hpp:103</div></div>
+<div class="ttc" id="asliding__window_8hpp_html_ac6e809d6a5018c4d481678c17e655192"><div class="ttname"><a href="sliding__window_8hpp.html#ac6e809d6a5018c4d481678c17e655192">ev::SlidingWindowi</a></div><div class="ttdeci">SlidingWindow_&lt; int &gt; SlidingWindowi</div><div class="ttdef"><b>Definition</b> sliding_window.hpp:100</div></div>
+</div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5c48bdf890d58bda52c4982509e6e8be" name="a5c48bdf890d58bda52c4982509e6e8be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c48bdf890d58bda52c4982509e6e8be">&#9670;&#160;</a></span>SlidingWindow_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classev_1_1SlidingWindow__.html">ev::SlidingWindow_</a>&lt; T &gt;::SlidingWindow_ </td>
+          <td>(</td>
+          <td class="paramtype">const TimeType</td>          <td class="paramname"><span class="paramname"><em>window</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct a sliding window with the given temporal span. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#a319da4bb6e689a2760b42e968b46a81d" title="Return the current time window length.">window</a></td><td>Time window length in the same units as <a class="el" href="classev_1_1Event__.html#a958bf08f1f29536453a7822ae608bae9">Event_::t</a> (default 0, retains all events). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a4d2dea5cc676061ec7923135b047098a" name="a4d2dea5cc676061ec7923135b047098a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d2dea5cc676061ec7923135b047098a">&#9670;&#160;</a></span>push() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1SlidingWindow__.html">ev::SlidingWindow_</a>&lt; T &gt;::push </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Push an event to the back and discard front events older than the window. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a86b9ba0d7719c0f18a2c36cc94846359" name="a86b9ba0d7719c0f18a2c36cc94846359"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86b9ba0d7719c0f18a2c36cc94846359">&#9670;&#160;</a></span>push() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1SlidingWindow__.html">ev::SlidingWindow_</a>&lt; T &gt;::push </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>event</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Push an event (move) to the back and discard front events older than the window. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> to add </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8852cd5b340714a88e4785a32e1bed53" name="a8852cd5b340714a88e4785a32e1bed53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8852cd5b340714a88e4785a32e1bed53">&#9670;&#160;</a></span>setWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1SlidingWindow__.html">ev::SlidingWindow_</a>&lt; T &gt;::setWindow </td>
+          <td>(</td>
+          <td class="paramtype">const TimeType</td>          <td class="paramname"><span class="paramname"><em>window</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set a new time window length and immediately discard events outside the new window. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="#a319da4bb6e689a2760b42e968b46a81d" title="Return the current time window length.">window</a></td><td>New window length </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a319da4bb6e689a2760b42e968b46a81d" name="a319da4bb6e689a2760b42e968b46a81d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a319da4bb6e689a2760b42e968b46a81d">&#9670;&#160;</a></span>window()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TimeType <a class="el" href="classev_1_1SlidingWindow__.html">ev::SlidingWindow_</a>&lt; T &gt;::window </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the current time window length. </p>
+<dl class="section return"><dt>Returns</dt><dd>Window length </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>modules/containers/include/openev/containers/<a class="el" href="sliding__window_8hpp_source.html">sliding_window.hpp</a></li>
 </ul>
 </div><!-- contents -->

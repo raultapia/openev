@@ -115,6 +115,12 @@ Inheritance diagram for ev::CircularBuffer_&lt; T &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a6a6653624a6a5672067abbb55741cc76" id="r_a6a6653624a6a5672067abbb55741cc76"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a6a6653624a6a5672067abbb55741cc76 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6a6653624a6a5672067abbb55741cc76">emplace_back</a> (Args &amp;&amp;...args)</td></tr>
+<tr class="memdesc:a6a6653624a6a5672067abbb55741cc76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_&lt;T&gt;</a> in-place at the back of the buffer.  <br /></td></tr>
+<tr class="memitem:a58a2e5a66249d2025628bc30c84f2b0c" id="r_a58a2e5a66249d2025628bc30c84f2b0c"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a58a2e5a66249d2025628bc30c84f2b0c template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a58a2e5a66249d2025628bc30c84f2b0c">emplace_front</a> (Args &amp;&amp;...args)</td></tr>
+<tr class="memdesc:a58a2e5a66249d2025628bc30c84f2b0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_&lt;T&gt;</a> in-place at the front of the buffer.  <br /></td></tr>
 <tr class="memitem:a6d0099ba9be4b33724273ecac80675d4" id="r_a6d0099ba9be4b33724273ecac80675d4"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#a6d0099ba9be4b33724273ecac80675d4">duration</a> () const</td></tr>
 <tr class="memdesc:a6d0099ba9be4b33724273ecac80675d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
 <tr class="memitem:ad393a5164c03a51b1a84a926a00970b6" id="r_ad393a5164c03a51b1a84a926a00970b6"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#ad393a5164c03a51b1a84a926a00970b6">rate</a> () const</td></tr>
@@ -160,6 +166,70 @@ template&lt;typename T&gt; </div>
 
 <p>Time difference between the last and the first event. </p>
 <dl class="section return"><dt>Returns</dt><dd>Time difference </dd></dl>
+
+</div>
+</div>
+<a id="a6a6653624a6a5672067abbb55741cc76" name="a6a6653624a6a5672067abbb55741cc76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a6653624a6a5672067abbb55741cc76">&#9670;&#160;</a></span>emplace_back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_</a>&lt; T &gt;::emplace_back </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct an <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_&lt;T&gt;</a> in-place at the back of the buffer. </p>
+<p>Arguments are forwarded to the <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_&lt;T&gt;</a> constructor. If the buffer is full, the oldest element at the front is overwritten. </p>
+
+</div>
+</div>
+<a id="a58a2e5a66249d2025628bc30c84f2b0c" name="a58a2e5a66249d2025628bc30c84f2b0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58a2e5a66249d2025628bc30c84f2b0c">&#9670;&#160;</a></span>emplace_front()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_</a>&lt; T &gt;::emplace_front </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construct an <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_&lt;T&gt;</a> in-place at the front of the buffer. </p>
+<p>Arguments are forwarded to the <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_&lt;T&gt;</a> constructor. If the buffer is full, the oldest element at the back is overwritten. </p>
 
 </div>
 </div>

@@ -22,7 +22,7 @@ var searchData=
   ['circularbufferf_19',['CircularBufferf',['../circular_8hpp.html#a2177fa7266e809ebd4b9985811ad2cd0',1,'ev']]],
   ['circularbufferi_20',['CircularBufferi',['../circular_8hpp.html#a3e8f3efa8053d80fd57d37a15e38948d',1,'ev']]],
   ['circularbufferl_21',['CircularBufferl',['../circular_8hpp.html#a2c230919453eccc9d8db72633beaa19d',1,'ev']]],
-  ['clear_22',['clear',['../classev_1_1AbstractRepresentation__.html#a16486a8b4a053dc72407e303c35423a4',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#ad9b12fb1d244ce29c140f35ae4a539f1',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background)']]],
+  ['clear_22',['clear',['../classev_1_1Mat_1_1Binary__.html#a71f11811efc99c697a1a223618335968',1,'ev::Mat::Binary_::clear()'],['../classev_1_1Mat_1_1Ternary__.html#a388029b8e5a76ec69e2d690d79fa95f0',1,'ev::Mat::Ternary_::clear()'],['../classev_1_1Mat_1_1Time.html#a902578972fbe55db0575283094e451c7',1,'ev::Mat::Time::clear()'],['../classev_1_1Mat_1_1Polarity.html#a7ed6d68e686ec4afc3dcbdf14ca905ca',1,'ev::Mat::Polarity::clear()'],['../classev_1_1Mat_1_1Counter.html#ad421839eff3e9729aca45d8205c59e77',1,'ev::Mat::Counter::clear()'],['../classev_1_1AbstractRepresentation__.html#a16486a8b4a053dc72407e303c35423a4',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#ad9b12fb1d244ce29c140f35ae4a539f1',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background)']]],
   ['contact_23',['📬 Contact',['../index.html#autotoc_md4',1,'']]],
   ['containers_2ehpp_24',['containers.hpp',['../containers_8hpp.html',1,'']]],
   ['containertestfixture_25',['ContainerTestFixture',['../classContainerTestFixture.html',1,'']]],

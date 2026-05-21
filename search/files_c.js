@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['voting_2ecpp_0',['voting.cpp',['../voting_8cpp.html',1,'']]]
+  ['vector_2ehpp_0',['vector.hpp',['../vector_8hpp.html',1,'']]],
+  ['voting_2ecpp_1',['voting.cpp',['../voting_8cpp.html',1,'']]]
 ];

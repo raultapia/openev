@@ -40,5 +40,6 @@ var searchData=
   ['pointcloud_5f_3c_20ushort_20_3e_37',['PointCloud_&lt; ushort &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
   ['polarity_38',['Polarity',['../classev_1_1Mat_1_1Polarity.html',1,'ev::Mat']]],
   ['polarity_39',['polarity',['../classev_1_1TimeSurface__.html#a77fcfc6179d0b59ed84af4668e0a9b69',1,'ev::TimeSurface_']]],
-  ['positive_40',['POSITIVE',['../types_8hpp.html#a157d217734129e5ce5aba5651f589647',1,'ev']]]
+  ['positive_40',['POSITIVE',['../classev_1_1Mat_1_1Ternary__.html#aeab2063fb095d76a43d9cfcb86ddb644',1,'ev::Mat::Ternary_::POSITIVE'],['../types_8hpp.html#a157d217734129e5ce5aba5651f589647',1,'ev::POSITIVE']]],
+  ['push_41',['push',['../classev_1_1SlidingWindow__.html#a4d2dea5cc676061ec7923135b047098a',1,'ev::SlidingWindow_::push(const Event_&lt; T &gt; &amp;event)'],['../classev_1_1SlidingWindow__.html#a86b9ba0d7719c0f18a2c36cc94846359',1,'ev::SlidingWindow_::push(Event_&lt; T &gt; &amp;&amp;event)']]]
 ];

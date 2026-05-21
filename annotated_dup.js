@@ -2,11 +2,11 @@ var annotated_dup =
 [
     [ "ev", null, [
       [ "Mat", null, [
-        [ "Binary_", "classev_1_1Mat_1_1Binary__.html", null ],
-        [ "Ternary_", "classev_1_1Mat_1_1Ternary__.html", null ],
-        [ "Time", "classev_1_1Mat_1_1Time.html", null ],
-        [ "Polarity", "classev_1_1Mat_1_1Polarity.html", null ],
-        [ "Counter", "classev_1_1Mat_1_1Counter.html", null ]
+        [ "Binary_", "classev_1_1Mat_1_1Binary__.html", "classev_1_1Mat_1_1Binary__" ],
+        [ "Ternary_", "classev_1_1Mat_1_1Ternary__.html", "classev_1_1Mat_1_1Ternary__" ],
+        [ "Time", "classev_1_1Mat_1_1Time.html", "classev_1_1Mat_1_1Time" ],
+        [ "Polarity", "classev_1_1Mat_1_1Polarity.html", "classev_1_1Mat_1_1Polarity" ],
+        [ "Counter", "classev_1_1Mat_1_1Counter.html", "classev_1_1Mat_1_1Counter" ]
       ] ],
       [ "Event_", "classev_1_1Event__.html", "classev_1_1Event__" ],
       [ "efft", "classev_1_1efft.html", null ],
@@ -15,7 +15,7 @@ var annotated_dup =
       [ "Deque_", "classev_1_1Deque__.html", "classev_1_1Deque__" ],
       [ "PersistentQueue_", "classev_1_1PersistentQueue__.html", "classev_1_1PersistentQueue__" ],
       [ "Queue_", "classev_1_1Queue__.html", "classev_1_1Queue__" ],
-      [ "SlidingWindow_", "classev_1_1SlidingWindow__.html", null ],
+      [ "SlidingWindow_", "classev_1_1SlidingWindow__.html", "classev_1_1SlidingWindow__" ],
       [ "Vector_", "classev_1_1Vector__.html", "classev_1_1Vector__" ],
       [ "AugmentedEvent_", "classev_1_1AugmentedEvent__.html", "classev_1_1AugmentedEvent__" ],
       [ "Size3_", "classev_1_1Size3__.html", "classev_1_1Size3__" ],

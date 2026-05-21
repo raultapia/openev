@@ -116,10 +116,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6287aaef59e3f5f63c32c8ec920a65a1" id="r_a6287aaef59e3f5f63c32c8ec920a65a1"><td class="memTemplParams" colspan="2">template&lt;typename Te&gt; </td></tr>
 <tr class="memitem:a6287aaef59e3f5f63c32c8ec920a65a1 template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6287aaef59e3f5f63c32c8ec920a65a1">contains</a> (const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; Te &gt; &amp;e) const</td></tr>
 <tr class="memdesc:a6287aaef59e3f5f63c32c8ec920a65a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the circle contains an event.  <br /></td></tr>
-<tr class="memitem:a4e90c2eea489692d68518fac79d0e0aa" id="r_a4e90c2eea489692d68518fac79d0e0aa"><td class="memItemLeft"><a id="a4e90c2eea489692d68518fac79d0e0aa" name="a4e90c2eea489692d68518fac79d0e0aa"></a>
-cv::Size&#160;</td><td class="memItemRight"><b>size</b> () const</td></tr>
-<tr class="memitem:a15ed35d61003ccc5f64743cffc86c63f" id="r_a15ed35d61003ccc5f64743cffc86c63f"><td class="memItemLeft"><a id="a15ed35d61003ccc5f64743cffc86c63f" name="a15ed35d61003ccc5f64743cffc86c63f"></a>
-double&#160;</td><td class="memItemRight"><b>area</b> () const</td></tr>
+<tr class="memitem:a4e90c2eea489692d68518fac79d0e0aa" id="r_a4e90c2eea489692d68518fac79d0e0aa"><td class="memItemLeft">cv::Size&#160;</td><td class="memItemRight"><a class="el" href="#a4e90c2eea489692d68518fac79d0e0aa">size</a> () const</td></tr>
+<tr class="memdesc:a4e90c2eea489692d68518fac79d0e0aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bounding square of the circle as a cv::Size (radius × radius).  <br /></td></tr>
+<tr class="memitem:a15ed35d61003ccc5f64743cffc86c63f" id="r_a15ed35d61003ccc5f64743cffc86c63f"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#a15ed35d61003ccc5f64743cffc86c63f">area</a> () const</td></tr>
+<tr class="memdesc:a15ed35d61003ccc5f64743cffc86c63f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the area of the circle.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -136,12 +136,12 @@ struct ev::Circ_&lt; T &gt;</div><p>This class defines a circle given its center
 <div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="types_8hpp.html#a7cbc0afa41025d180501299639207516">Circf</a> = <a class="code hl_function" href="#a07b7b8eec44d781ea87ae1ec9fd83b1d">Circ_&lt;float&gt;</a>;</div>
 <div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="types_8hpp.html#a4d3fd3da8e598d2335233132fae8e797">Circd</a> = <a class="code hl_function" href="#a07b7b8eec44d781ea87ae1ec9fd83b1d">Circ_&lt;double&gt;</a>;</div>
 <div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="types_8hpp.html#ad3699ca0383d4559bc6df42af6fa9961">Circ</a> = <a class="code hl_typedef" href="types_8hpp.html#a5128a9f25d86efd651c7411623176a7c">Circi</a>;</div>
-<div class="ttc" id="astructev_1_1Circ___html_a07b7b8eec44d781ea87ae1ec9fd83b1d"><div class="ttname"><a href="#a07b7b8eec44d781ea87ae1ec9fd83b1d">ev::Circ_::Circ_</a></div><div class="ttdeci">Circ_()</div><div class="ttdef"><b>Definition</b> types.hpp:497</div></div>
-<div class="ttc" id="atypes_8hpp_html_a3e37ec53b152b464865ffebb723aeb08"><div class="ttname"><a href="types_8hpp.html#a3e37ec53b152b464865ffebb723aeb08">ev::Circl</a></div><div class="ttdeci">Circ_&lt; long &gt; Circl</div><div class="ttdef"><b>Definition</b> types.hpp:534</div></div>
-<div class="ttc" id="atypes_8hpp_html_a4d3fd3da8e598d2335233132fae8e797"><div class="ttname"><a href="types_8hpp.html#a4d3fd3da8e598d2335233132fae8e797">ev::Circd</a></div><div class="ttdeci">Circ_&lt; double &gt; Circd</div><div class="ttdef"><b>Definition</b> types.hpp:536</div></div>
-<div class="ttc" id="atypes_8hpp_html_a5128a9f25d86efd651c7411623176a7c"><div class="ttname"><a href="types_8hpp.html#a5128a9f25d86efd651c7411623176a7c">ev::Circi</a></div><div class="ttdeci">Circ_&lt; int &gt; Circi</div><div class="ttdef"><b>Definition</b> types.hpp:533</div></div>
-<div class="ttc" id="atypes_8hpp_html_a7cbc0afa41025d180501299639207516"><div class="ttname"><a href="types_8hpp.html#a7cbc0afa41025d180501299639207516">ev::Circf</a></div><div class="ttdeci">Circ_&lt; float &gt; Circf</div><div class="ttdef"><b>Definition</b> types.hpp:535</div></div>
-<div class="ttc" id="atypes_8hpp_html_ad3699ca0383d4559bc6df42af6fa9961"><div class="ttname"><a href="types_8hpp.html#ad3699ca0383d4559bc6df42af6fa9961">ev::Circ</a></div><div class="ttdeci">Circi Circ</div><div class="ttdef"><b>Definition</b> types.hpp:537</div></div>
+<div class="ttc" id="astructev_1_1Circ___html_a07b7b8eec44d781ea87ae1ec9fd83b1d"><div class="ttname"><a href="#a07b7b8eec44d781ea87ae1ec9fd83b1d">ev::Circ_::Circ_</a></div><div class="ttdeci">Circ_()</div><div class="ttdef"><b>Definition</b> types.hpp:510</div></div>
+<div class="ttc" id="atypes_8hpp_html_a3e37ec53b152b464865ffebb723aeb08"><div class="ttname"><a href="types_8hpp.html#a3e37ec53b152b464865ffebb723aeb08">ev::Circl</a></div><div class="ttdeci">Circ_&lt; long &gt; Circl</div><div class="ttdef"><b>Definition</b> types.hpp:556</div></div>
+<div class="ttc" id="atypes_8hpp_html_a4d3fd3da8e598d2335233132fae8e797"><div class="ttname"><a href="types_8hpp.html#a4d3fd3da8e598d2335233132fae8e797">ev::Circd</a></div><div class="ttdeci">Circ_&lt; double &gt; Circd</div><div class="ttdef"><b>Definition</b> types.hpp:558</div></div>
+<div class="ttc" id="atypes_8hpp_html_a5128a9f25d86efd651c7411623176a7c"><div class="ttname"><a href="types_8hpp.html#a5128a9f25d86efd651c7411623176a7c">ev::Circi</a></div><div class="ttdeci">Circ_&lt; int &gt; Circi</div><div class="ttdef"><b>Definition</b> types.hpp:555</div></div>
+<div class="ttc" id="atypes_8hpp_html_a7cbc0afa41025d180501299639207516"><div class="ttname"><a href="types_8hpp.html#a7cbc0afa41025d180501299639207516">ev::Circf</a></div><div class="ttdeci">Circ_&lt; float &gt; Circf</div><div class="ttdef"><b>Definition</b> types.hpp:557</div></div>
+<div class="ttc" id="atypes_8hpp_html_ad3699ca0383d4559bc6df42af6fa9961"><div class="ttname"><a href="types_8hpp.html#ad3699ca0383d4559bc6df42af6fa9961">ev::Circ</a></div><div class="ttdeci">Circi Circ</div><div class="ttdef"><b>Definition</b> types.hpp:559</div></div>
 </div><!-- fragment --> </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a07b7b8eec44d781ea87ae1ec9fd83b1d" name="a07b7b8eec44d781ea87ae1ec9fd83b1d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a07b7b8eec44d781ea87ae1ec9fd83b1d">&#9670;&#160;</a></span>Circ_() <span class="overload">[1/2]</span></h2>
@@ -210,6 +210,36 @@ template&lt;typename T&gt; </div>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a15ed35d61003ccc5f64743cffc86c63f" name="a15ed35d61003ccc5f64743cffc86c63f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ed35d61003ccc5f64743cffc86c63f">&#9670;&#160;</a></span>area()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="structev_1_1Circ__.html">ev::Circ_</a>&lt; T &gt;::area </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the area of the circle. </p>
+<p>Area is computed as \( \pi r^2 \). </p><dl class="section return"><dt>Returns</dt><dd>Area </dd></dl>
+
+</div>
+</div>
 <a id="a6287aaef59e3f5f63c32c8ec920a65a1" name="a6287aaef59e3f5f63c32c8ec920a65a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6287aaef59e3f5f63c32c8ec920a65a1">&#9670;&#160;</a></span>contains()</h2>
 
@@ -276,6 +306,36 @@ template&lt;typename T&gt; </div>
 
 <p>Check if empty. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if empty </dd></dl>
+
+</div>
+</div>
+<a id="a4e90c2eea489692d68518fac79d0e0aa" name="a4e90c2eea489692d68518fac79d0e0aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e90c2eea489692d68518fac79d0e0aa">&#9670;&#160;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Size <a class="el" href="structev_1_1Circ__.html">ev::Circ_</a>&lt; T &gt;::size </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Bounding square of the circle as a cv::Size (radius × radius). </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="types_8hpp.html#a69a4eb2011eab1db80bea6cb3e6cba88">Size</a> with width and height equal to the radius. </dd></dl>
 
 </div>
 </div>

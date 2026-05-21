@@ -119,11 +119,11 @@ Inheritance diagram for ev::PersistentQueue_&lt; T &gt;:</div>
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aea5e4768317402df41fbf17cc0b542ab" id="r_aea5e4768317402df41fbf17cc0b542ab"><td class="memItemLeft"><a class="el" href="classev_1_1Event__.html">Event_</a>&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aea5e4768317402df41fbf17cc0b542ab">mean</a> ()</td></tr>
-<tr class="memdesc:aea5e4768317402df41fbf17cc0b542ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
+<tr class="memdesc:aea5e4768317402df41fbf17cc0b542ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events without consuming the queue.  <br /></td></tr>
 <tr class="memitem:a668c70eff9fbee01b808c0d995918f4d" id="r_a668c70eff9fbee01b808c0d995918f4d"><td class="memItemLeft">cv::Point_&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a668c70eff9fbee01b808c0d995918f4d">meanPoint</a> ()</td></tr>
-<tr class="memdesc:a668c70eff9fbee01b808c0d995918f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
+<tr class="memdesc:a668c70eff9fbee01b808c0d995918f4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events without consuming the queue.  <br /></td></tr>
 <tr class="memitem:aaa425b81b554787d5d2232d23be00556" id="r_aaa425b81b554787d5d2232d23be00556"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#aaa425b81b554787d5d2232d23be00556">meanTime</a> ()</td></tr>
-<tr class="memdesc:aaa425b81b554787d5d2232d23be00556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
+<tr class="memdesc:aaa425b81b554787d5d2232d23be00556"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events without consuming the queue.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classev_1_1Queue__"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classev_1_1Queue__')"><span class="dynarrow"><span class="arrowhead closed"></span></span>Public Member Functions inherited from <a class="el" href="classev_1_1Queue__.html">ev::Queue_&lt; T &gt;</a></td></tr>
 <tr class="memitem:a063e6a48ac8d546e3db2067eef4d4484 inherit pub_methods_classev_1_1Queue__" id="r_a063e6a48ac8d546e3db2067eef4d4484"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Queue__.html#a063e6a48ac8d546e3db2067eef4d4484">duration</a> () const</td></tr>
 <tr class="memdesc:a063e6a48ac8d546e3db2067eef4d4484 inherit pub_methods_classev_1_1Queue__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
@@ -168,8 +168,9 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Compute the mean of the events. </p>
+<p>Compute the mean of the events without consuming the queue. </p>
 <dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a> object containing the mean values of x, y, t, and p attributes. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Unlike <a class="el" href="classev_1_1Queue__.html#a0888e767590340cba459437540e31658" title="Compute the mean of the events.">Queue_::mean()</a>, the queue contents are preserved after this call. </dd></dl>
 
 </div>
 </div>
@@ -198,8 +199,9 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Compute the mean x,y point of the events. </p>
+<p>Compute the mean x,y point of the events without consuming the queue. </p>
 <dl class="section return"><dt>Returns</dt><dd>Mean point </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Unlike <a class="el" href="classev_1_1Queue__.html#aedbfb8f7b7cc37e5b72b193d50ef7296" title="Compute the mean x,y point of the events.">Queue_::meanPoint()</a>, the queue contents are preserved after this call. </dd></dl>
 
 </div>
 </div>
@@ -228,8 +230,9 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Compute the mean time of the events. </p>
+<p>Compute the mean time of the events without consuming the queue. </p>
 <dl class="section return"><dt>Returns</dt><dd>Mean time </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Unlike <a class="el" href="classev_1_1Queue__.html#a73d389465147364d6008f44fc5ef4daf" title="Compute the mean time of the events.">Queue_::meanTime()</a>, the queue contents are preserved after this call. </dd></dl>
 
 </div>
 </div>

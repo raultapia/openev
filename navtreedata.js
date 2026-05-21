@@ -52,7 +52,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "abstract-camera_8cpp.html",
-"example-event_8cpp-example.html"
+"dir_a88862ed037ede1e2db0c81b11c25f06.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

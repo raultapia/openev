@@ -101,6 +101,11 @@ $(function(){initNavTree('classev_1_1Mat_1_1Time.html','','classev_1_1Mat_1_1Tim
   <div class="headertitle"><div class="title">ev::Mat::Time Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Spatial map storing the timestamp of the most recent event at each pixel.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="matrices_8hpp_source.html">matrices.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ev::Mat::Time:</div>
 <div class="dyncontent">
@@ -110,20 +115,108 @@ Inheritance diagram for ev::Mat::Time:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a07198bd87952680eb43a050f0b3f4476" id="r_a07198bd87952680eb43a050f0b3f4476"><td class="memTemplParams" colspan="2"><a id="a07198bd87952680eb43a050f0b3f4476" name="a07198bd87952680eb43a050f0b3f4476"></a>
-template&lt;typename T&gt; </td></tr>
-<tr class="memitem:a07198bd87952680eb43a050f0b3f4476 template"><td class="memItemLeft">TimeType&#160;</td><td class="memItemRight"><b>insert</b> (const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;e)</td></tr>
-<tr class="memitem:a79c8c697f917a3131d50209763cfb9da" id="r_a79c8c697f917a3131d50209763cfb9da"><td class="memTemplParams" colspan="2"><a id="a79c8c697f917a3131d50209763cfb9da" name="a79c8c697f917a3131d50209763cfb9da"></a>
-template&lt;typename T&gt; </td></tr>
-<tr class="memitem:a79c8c697f917a3131d50209763cfb9da template"><td class="memItemLeft">TimeType&#160;</td><td class="memItemRight"><b>emplace</b> (const T x, const T y, const TimeType t)</td></tr>
+<tr class="memitem:a07198bd87952680eb43a050f0b3f4476" id="r_a07198bd87952680eb43a050f0b3f4476"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a07198bd87952680eb43a050f0b3f4476 template"><td class="memItemLeft">TimeType&#160;</td><td class="memItemRight"><a class="el" href="#a07198bd87952680eb43a050f0b3f4476">insert</a> (const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;e)</td></tr>
+<tr class="memdesc:a07198bd87952680eb43a050f0b3f4476"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an event, storing e.t at pixel (e.x, e.y).  <br /></td></tr>
+<tr class="memitem:a79c8c697f917a3131d50209763cfb9da" id="r_a79c8c697f917a3131d50209763cfb9da"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a79c8c697f917a3131d50209763cfb9da template"><td class="memItemLeft">TimeType&#160;</td><td class="memItemRight"><a class="el" href="#a79c8c697f917a3131d50209763cfb9da">emplace</a> (const T x, const T y, const TimeType t)</td></tr>
+<tr class="memdesc:a79c8c697f917a3131d50209763cfb9da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store timestamp t at (x, y) without constructing an <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_</a>.  <br /></td></tr>
 <tr class="memitem:a902578972fbe55db0575283094e451c7" id="r_a902578972fbe55db0575283094e451c7"><td class="memItemLeft"><a id="a902578972fbe55db0575283094e451c7" name="a902578972fbe55db0575283094e451c7"></a>
 void&#160;</td><td class="memItemRight"><b>clear</b> ()</td></tr>
+<tr class="memdesc:a902578972fbe55db0575283094e451c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset all timestamps to zero. <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:a64b6716ecbd13e0ef974dc3b9f3b04f5" id="r_a64b6716ecbd13e0ef974dc3b9f3b04f5"><td class="memItemLeft"><a id="a64b6716ecbd13e0ef974dc3b9f3b04f5" name="a64b6716ecbd13e0ef974dc3b9f3b04f5"></a>
 std::ostream &amp;&#160;</td><td class="memItemRight"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const <a class="el" href="classev_1_1Mat_1_1Time.html">Time</a> &amp;time)</td></tr>
 </table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Spatial map storing the timestamp of the most recent event at each pixel. </p>
+<p>Each insertion overwrites the stored timestamp unconditionally; only the latest timestamp per pixel is retained. Timestamps are stored as TimeType (float by default). </p>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a79c8c697f917a3131d50209763cfb9da" name="a79c8c697f917a3131d50209763cfb9da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79c8c697f917a3131d50209763cfb9da">&#9670;&#160;</a></span>emplace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TimeType ev::Mat::Time::emplace </td>
+          <td>(</td>
+          <td class="paramtype">const T</td>          <td class="paramname"><span class="paramname"><em>x</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T</td>          <td class="paramname"><span class="paramname"><em>y</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TimeType</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Store timestamp t at (x, y) without constructing an <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Spatial coordinate x </td></tr>
+    <tr><td class="paramname">y</td><td>Spatial coordinate y </td></tr>
+    <tr><td class="paramname">t</td><td>Timestamp </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Stored timestamp </dd></dl>
+
+</div>
+</div>
+<a id="a07198bd87952680eb43a050f0b3f4476" name="a07198bd87952680eb43a050f0b3f4476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07198bd87952680eb43a050f0b3f4476">&#9670;&#160;</a></span>insert()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TimeType ev::Mat::Time::insert </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classev_1_1Event__.html">Event_</a>&lt; T &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Insert an event, storing e.t at pixel (e.x, e.y). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">e</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> to insert </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Stored timestamp </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>modules/core/include/openev/core/<a class="el" href="matrices_8hpp_source.html">matrices.hpp</a></li>
 </ul>

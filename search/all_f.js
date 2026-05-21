@@ -23,5 +23,6 @@ var searchData=
   ['rect3l_20',['Rect3l',['../types_8hpp.html#af5a7fd07db1f9f76dedb9af8023edb53',1,'ev']]],
   ['render_21',['render',['../classev_1_1EventHistogram__.html#a42d57d6b67fe596a387dd49ca64b1e5a',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b',1,'ev::TimeSurface_::render()']]],
   ['representations_2ehpp_22',['representations.hpp',['../representations_8hpp.html',1,'']]],
-  ['reset_23',['reset',['../classev_1_1AbstractReader__.html#a29982bb0dde6ca0e1b43fc15e2dce769',1,'ev::AbstractReader_']]]
+  ['reset_23',['reset',['../classev_1_1AbstractReader__.html#a29982bb0dde6ca0e1b43fc15e2dce769',1,'ev::AbstractReader_']]],
+  ['right_24',['RIGHT',['../types_8hpp.html#aadecfb0ae5329f7e7cfe2173f746ec4fa21507b40c80068eda19865706fdc2403',1,'ev']]]
 ];

@@ -44,6 +44,17 @@ var types_8hpp =
     [ "ev::Size3f", "types_8hpp.html#a99e62b4a05132e68460a491095b3e817", null ],
     [ "ev::Size3i", "types_8hpp.html#af3568db1ae4bd990435889015f7d91fb", null ],
     [ "ev::Size3l", "types_8hpp.html#ac9a59cbdeffcf0478035eec317fec57a", null ],
+    [ "ev::DistanceTypes", "types_8hpp.html#a7a3cbf6385d956c723270812cebd164a", [
+      [ "ev::DISTANCE_FLAG_SPATIAL", "types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa3cd54d365f3f8fafb95020779d7be9cf", null ],
+      [ "ev::DISTANCE_FLAG_TEMPORAL", "types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa0d545312afd753ff0bacaef3bad8f319", null ],
+      [ "ev::DISTANCE_FLAG_SPATIOTEMPORAL", "types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa0916d2f8933467e2b1ce91dd82af2159", null ],
+      [ "ev::DISTANCE_FLAG_3D", "types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa9f9c02c772b164446bd6a78c8f1dcc5a", null ],
+      [ "ev::DISTANCE_FLAG_2D", "types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa1bb17d6a06f5b7cb3309e0ecd4c5e0a6", null ]
+    ] ],
+    [ "ev::Stereo", "types_8hpp.html#aadecfb0ae5329f7e7cfe2173f746ec4f", [
+      [ "LEFT", "types_8hpp.html#aadecfb0ae5329f7e7cfe2173f746ec4fa684d325a7303f52e64011467ff5c5758", null ],
+      [ "RIGHT", "types_8hpp.html#aadecfb0ae5329f7e7cfe2173f746ec4fa21507b40c80068eda19865706fdc2403", null ]
+    ] ],
     [ "ev::NEGATIVE", "types_8hpp.html#afa153d4807e396ab09f324321a6896a5", null ],
     [ "ev::POSITIVE", "types_8hpp.html#a157d217734129e5ce5aba5651f589647", null ]
 ];
