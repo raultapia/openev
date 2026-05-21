@@ -13,6 +13,8 @@
 #include <utility>
 
 namespace ev {
+constexpr bool USING_CIRCULAR_HPP = true;
+
 /*!
 \brief This class extends boost::circular_buffer to implement event circular buffers. For more information, please refer <a href="http://boost.org/libs/circular_buffer">here</a>.
 

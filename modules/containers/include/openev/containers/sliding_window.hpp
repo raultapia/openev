@@ -12,6 +12,8 @@
 #include <utility>
 
 namespace ev {
+constexpr bool USING_SLIDING_WINDOW_HPP = true;
+
 /*!
 \brief FIFO event container that retains only the trailing time window.
 */

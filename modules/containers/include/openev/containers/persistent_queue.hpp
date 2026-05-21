@@ -12,6 +12,8 @@
 #include <opencv2/core/types.hpp>
 
 namespace ev {
+constexpr bool USING_PERSISTENT_QUEUE_HPP = true;
+
 /*!
 \brief This class extends std::queue to implement persistent event queues. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/queue">here</a>.
 

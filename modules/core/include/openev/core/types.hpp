@@ -18,6 +18,8 @@
 #include <string>
 
 namespace ev {
+constexpr bool USING_TYPES_HPP = true;
+
 using TimeType = float;
 using PolarityType = bool;
 using WeightType = float;

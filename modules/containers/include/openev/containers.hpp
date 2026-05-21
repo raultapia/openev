@@ -14,4 +14,16 @@
 #include "openev/containers/sliding_window.hpp"
 #include "openev/containers/vector.hpp"
 
+namespace {
+inline void workaround() {
+  (void)ev::USING_ARRAY_HPP;
+  (void)ev::USING_CIRCULAR_HPP;
+  (void)ev::USING_DEQUE_HPP;
+  (void)ev::USING_PERSISTENT_QUEUE_HPP;
+  (void)ev::USING_QUEUE_HPP;
+  (void)ev::USING_SLIDING_WINDOW_HPP;
+  (void)ev::USING_VECTOR_HPP;
+}
+} // namespace
+
 #endif // OPENEV_CONTAINERS_HPP

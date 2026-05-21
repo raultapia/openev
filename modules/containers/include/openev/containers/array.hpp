@@ -13,6 +13,8 @@
 #include <opencv2/core/types.hpp>
 
 namespace ev {
+constexpr bool USING_ARRAY_HPP = true;
+
 /*!
 \brief This class extends std::array to implement event arrays. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/array">here</a>.
 

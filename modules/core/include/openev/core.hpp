@@ -9,4 +9,11 @@
 #include "openev/core/matrices.hpp"
 #include "openev/core/types.hpp"
 
+namespace {
+inline void workaround() {
+  (void)ev::USING_TYPES_HPP;
+  (void)ev::USING_MATRICES_HPP;
+}
+} // namespace
+
 #endif // OPENEV_CORE_HPP
