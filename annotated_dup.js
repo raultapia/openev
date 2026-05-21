@@ -13,7 +13,9 @@ var annotated_dup =
       [ "Array_", "classev_1_1Array__.html", "classev_1_1Array__" ],
       [ "CircularBuffer_", "classev_1_1CircularBuffer__.html", "classev_1_1CircularBuffer__" ],
       [ "Deque_", "classev_1_1Deque__.html", "classev_1_1Deque__" ],
+      [ "PersistentQueue_", "classev_1_1PersistentQueue__.html", "classev_1_1PersistentQueue__" ],
       [ "Queue_", "classev_1_1Queue__.html", "classev_1_1Queue__" ],
+      [ "SlidingWindow_", "classev_1_1SlidingWindow__.html", null ],
       [ "Vector_", "classev_1_1Vector__.html", "classev_1_1Vector__" ],
       [ "AugmentedEvent_", "classev_1_1AugmentedEvent__.html", "classev_1_1AugmentedEvent__" ],
       [ "Size3_", "classev_1_1Size3__.html", "classev_1_1Size3__" ],
@@ -35,5 +37,6 @@ var annotated_dup =
       [ "TimeSurface_", "classev_1_1TimeSurface__.html", "classev_1_1TimeSurface__" ]
     ] ],
     [ "caer_device_handle", "structcaer__device__handle.html", null ],
-    [ "ContainerTestFixture", "classContainerTestFixture.html", null ]
+    [ "ContainerTestFixture", "classContainerTestFixture.html", null ],
+    [ "SlidingWindowTest", "classSlidingWindowTest.html", null ]
 ];

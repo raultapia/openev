@@ -121,11 +121,21 @@ var hierarchy =
       [ "ev::CircularBuffer_< T >", "classev_1_1CircularBuffer__.html", null ]
     ] ],
     [ "std::deque", null, [
-      [ "ev::Deque_< int >", "classev_1_1Deque__.html", null ],
-      [ "ev::Deque_< long >", "classev_1_1Deque__.html", null ],
-      [ "ev::Deque_< float >", "classev_1_1Deque__.html", null ],
-      [ "ev::Deque_< double >", "classev_1_1Deque__.html", null ],
-      [ "ev::Deque_< T >", "classev_1_1Deque__.html", null ]
+      [ "ev::Deque_< int >", "classev_1_1Deque__.html", [
+        [ "ev::SlidingWindow_< int >", "classev_1_1SlidingWindow__.html", null ]
+      ] ],
+      [ "ev::Deque_< long >", "classev_1_1Deque__.html", [
+        [ "ev::SlidingWindow_< long >", "classev_1_1SlidingWindow__.html", null ]
+      ] ],
+      [ "ev::Deque_< float >", "classev_1_1Deque__.html", [
+        [ "ev::SlidingWindow_< float >", "classev_1_1SlidingWindow__.html", null ]
+      ] ],
+      [ "ev::Deque_< double >", "classev_1_1Deque__.html", [
+        [ "ev::SlidingWindow_< double >", "classev_1_1SlidingWindow__.html", null ]
+      ] ],
+      [ "ev::Deque_< T >", "classev_1_1Deque__.html", [
+        [ "ev::SlidingWindow_< T >", "classev_1_1SlidingWindow__.html", null ]
+      ] ]
     ] ],
     [ "eFFT", null, [
       [ "ev::efft< N >", "classev_1_1efft.html", null ]
@@ -188,11 +198,21 @@ var hierarchy =
       ] ]
     ] ],
     [ "std::queue", null, [
-      [ "ev::Queue_< int >", "classev_1_1Queue__.html", null ],
-      [ "ev::Queue_< long >", "classev_1_1Queue__.html", null ],
-      [ "ev::Queue_< float >", "classev_1_1Queue__.html", null ],
-      [ "ev::Queue_< double >", "classev_1_1Queue__.html", null ],
-      [ "ev::Queue_< T >", "classev_1_1Queue__.html", null ]
+      [ "ev::Queue_< int >", "classev_1_1Queue__.html", [
+        [ "ev::PersistentQueue_< int >", "classev_1_1PersistentQueue__.html", null ]
+      ] ],
+      [ "ev::Queue_< long >", "classev_1_1Queue__.html", [
+        [ "ev::PersistentQueue_< long >", "classev_1_1PersistentQueue__.html", null ]
+      ] ],
+      [ "ev::Queue_< float >", "classev_1_1Queue__.html", [
+        [ "ev::PersistentQueue_< float >", "classev_1_1PersistentQueue__.html", null ]
+      ] ],
+      [ "ev::Queue_< double >", "classev_1_1Queue__.html", [
+        [ "ev::PersistentQueue_< double >", "classev_1_1PersistentQueue__.html", null ]
+      ] ],
+      [ "ev::Queue_< T >", "classev_1_1Queue__.html", [
+        [ "ev::PersistentQueue_< T >", "classev_1_1PersistentQueue__.html", null ]
+      ] ]
     ] ],
     [ "cv::Rect_", null, [
       [ "ev::Rect3_< int >", "classev_1_1Rect3__.html", null ],
@@ -209,7 +229,8 @@ var hierarchy =
       [ "ev::Size3_< T >", "classev_1_1Size3__.html", null ]
     ] ],
     [ "testing::Test", null, [
-      [ "ContainerTestFixture< Container >", "classContainerTestFixture.html", null ]
+      [ "ContainerTestFixture< Container >", "classContainerTestFixture.html", null ],
+      [ "SlidingWindowTest", "classSlidingWindowTest.html", null ]
     ] ],
     [ "std::vector", null, [
       [ "ev::Vector_< int >", "classev_1_1Vector__.html", null ],

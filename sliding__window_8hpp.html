@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: modules/containers/include/openev/containers/queue.hpp File Reference</title>
+<title>OpenEV: modules/containers/include/openev/containers/sliding_window.hpp File Reference</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -72,7 +72,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-$(function(){initNavTree('queue_8hpp.html','',''); });
+$(function(){initNavTree('sliding__window_8hpp.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -98,109 +98,108 @@ $(function(){initNavTree('queue_8hpp.html','',''); });
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">queue.hpp File Reference</div></div>
+  <div class="headertitle"><div class="title">sliding_window.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Persistent queue container for basic event structures.  
+<p>Sliding time-window container for basic event structures.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="types_8hpp_source.html">openev/core/types.hpp</a>&quot;</code><br />
-<code>#include &lt;cstddef&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="deque_8hpp_source.html">openev/containers/deque.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="types_8hpp_source.html">openev/core/types.hpp</a>&quot;</code><br />
 <code>#include &lt;opencv2/core/types.hpp&gt;</code><br />
-<code>#include &lt;queue&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
 </div>
-<p><a href="queue_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="sliding__window_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:ev_3A_3AQueue_5F_3C_20T_20_3E" id="r_ev_3A_3AQueue_5F_3C_20T_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Queue__.html">ev::Queue_&lt; T &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class extends std::queue to implement event queues. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/queue">here</a>.  <a href="classev_1_1Queue__.html#details">More...</a><br /></td></tr>
+<tr class="memitem:ev_3A_3ASlidingWindow_5F_3C_20T_20_3E" id="r_ev_3A_3ASlidingWindow_5F_3C_20T_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1SlidingWindow__.html">ev::SlidingWindow_&lt; T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">FIFO event container that retains only the trailing time window.  <a href="classev_1_1SlidingWindow__.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ae74878b9f2bbd96526523326e4d2ecbd" id="r_ae74878b9f2bbd96526523326e4d2ecbd"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ae74878b9f2bbd96526523326e4d2ecbd">ev::Queuei</a> = <a class="el" href="classev_1_1Queue__.html">Queue_</a>&lt;int&gt;</td></tr>
-<tr class="memitem:aba2de5667e6a0d4bc4772c63350c0d81" id="r_aba2de5667e6a0d4bc4772c63350c0d81"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aba2de5667e6a0d4bc4772c63350c0d81">ev::Queuel</a> = <a class="el" href="classev_1_1Queue__.html">Queue_</a>&lt;long&gt;</td></tr>
-<tr class="memitem:a765308e46e7aead00e2e6482ce6ff226" id="r_a765308e46e7aead00e2e6482ce6ff226"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a765308e46e7aead00e2e6482ce6ff226">ev::Queuef</a> = <a class="el" href="classev_1_1Queue__.html">Queue_</a>&lt;float&gt;</td></tr>
-<tr class="memitem:aa5f51701a147e88e0611b04e6e932fb7" id="r_aa5f51701a147e88e0611b04e6e932fb7"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aa5f51701a147e88e0611b04e6e932fb7">ev::Queued</a> = <a class="el" href="classev_1_1Queue__.html">Queue_</a>&lt;double&gt;</td></tr>
-<tr class="memitem:a7e74ebcb99a3290b5bc2f2564f9a0966" id="r_a7e74ebcb99a3290b5bc2f2564f9a0966"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> = <a class="el" href="#ae74878b9f2bbd96526523326e4d2ecbd">Queuei</a></td></tr>
+<tr class="memitem:ac6e809d6a5018c4d481678c17e655192" id="r_ac6e809d6a5018c4d481678c17e655192"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#ac6e809d6a5018c4d481678c17e655192">ev::SlidingWindowi</a> = <a class="el" href="classev_1_1SlidingWindow__.html">SlidingWindow_</a>&lt;int&gt;</td></tr>
+<tr class="memitem:a73e09b853d57297a1242e2831131f682" id="r_a73e09b853d57297a1242e2831131f682"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a73e09b853d57297a1242e2831131f682">ev::SlidingWindowl</a> = <a class="el" href="classev_1_1SlidingWindow__.html">SlidingWindow_</a>&lt;long&gt;</td></tr>
+<tr class="memitem:a2e111a3e94fe7b4131b9cc927d5dee3e" id="r_a2e111a3e94fe7b4131b9cc927d5dee3e"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a2e111a3e94fe7b4131b9cc927d5dee3e">ev::SlidingWindowf</a> = <a class="el" href="classev_1_1SlidingWindow__.html">SlidingWindow_</a>&lt;float&gt;</td></tr>
+<tr class="memitem:aa9f4843f33ab4497b06de774f2209911" id="r_aa9f4843f33ab4497b06de774f2209911"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#aa9f4843f33ab4497b06de774f2209911">ev::SlidingWindowd</a> = <a class="el" href="classev_1_1SlidingWindow__.html">SlidingWindow_</a>&lt;double&gt;</td></tr>
+<tr class="memitem:a139260b39b868315075d21426efa0696" id="r_a139260b39b868315075d21426efa0696"><td class="memItemLeft">using&#160;</td><td class="memItemRight"><a class="el" href="#a139260b39b868315075d21426efa0696">ev::SlidingWindow</a> = <a class="el" href="#ac6e809d6a5018c4d481678c17e655192">SlidingWindowi</a></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Persistent queue container for basic event structures. </p>
-<p>Queue container for basic event structures.</p>
+<div class="textblock"><p>Sliding time-window container for basic event structures. </p>
 <dl class="section author"><dt>Author</dt><dd>Raul Tapia </dd></dl>
 </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
-<a id="a7e74ebcb99a3290b5bc2f2564f9a0966" name="a7e74ebcb99a3290b5bc2f2564f9a0966"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e74ebcb99a3290b5bc2f2564f9a0966">&#9670;&#160;</a></span>Queue</h2>
+<a id="a139260b39b868315075d21426efa0696" name="a139260b39b868315075d21426efa0696"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a139260b39b868315075d21426efa0696">&#9670;&#160;</a></span>SlidingWindow</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> = Queuei</td>
+          <td class="memname">using <a class="el" href="#a139260b39b868315075d21426efa0696">ev::SlidingWindow</a> = SlidingWindowi</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Alias for Queue_ using Event </p>
+<p>Alias for SlidingWindow_ using int </p>
 
 </div>
 </div>
-<a id="aa5f51701a147e88e0611b04e6e932fb7" name="aa5f51701a147e88e0611b04e6e932fb7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5f51701a147e88e0611b04e6e932fb7">&#9670;&#160;</a></span>Queued</h2>
+<a id="aa9f4843f33ab4497b06de774f2209911" name="aa9f4843f33ab4497b06de774f2209911"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9f4843f33ab4497b06de774f2209911">&#9670;&#160;</a></span>SlidingWindowd</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#aa5f51701a147e88e0611b04e6e932fb7">ev::Queued</a> = Queue_&lt;double&gt;</td>
+          <td class="memname">using <a class="el" href="#aa9f4843f33ab4497b06de774f2209911">ev::SlidingWindowd</a> = SlidingWindow_&lt;double&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Alias for Queue_ using double </p>
+<p>Alias for SlidingWindow_ using double </p>
 
 </div>
 </div>
-<a id="a765308e46e7aead00e2e6482ce6ff226" name="a765308e46e7aead00e2e6482ce6ff226"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a765308e46e7aead00e2e6482ce6ff226">&#9670;&#160;</a></span>Queuef</h2>
+<a id="a2e111a3e94fe7b4131b9cc927d5dee3e" name="a2e111a3e94fe7b4131b9cc927d5dee3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e111a3e94fe7b4131b9cc927d5dee3e">&#9670;&#160;</a></span>SlidingWindowf</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#a765308e46e7aead00e2e6482ce6ff226">ev::Queuef</a> = Queue_&lt;float&gt;</td>
+          <td class="memname">using <a class="el" href="#a2e111a3e94fe7b4131b9cc927d5dee3e">ev::SlidingWindowf</a> = SlidingWindow_&lt;float&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Alias for Queue_ using float </p>
+<p>Alias for SlidingWindow_ using float </p>
 
 </div>
 </div>
-<a id="ae74878b9f2bbd96526523326e4d2ecbd" name="ae74878b9f2bbd96526523326e4d2ecbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae74878b9f2bbd96526523326e4d2ecbd">&#9670;&#160;</a></span>Queuei</h2>
+<a id="ac6e809d6a5018c4d481678c17e655192" name="ac6e809d6a5018c4d481678c17e655192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6e809d6a5018c4d481678c17e655192">&#9670;&#160;</a></span>SlidingWindowi</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#ae74878b9f2bbd96526523326e4d2ecbd">ev::Queuei</a> = Queue_&lt;int&gt;</td>
+          <td class="memname">using <a class="el" href="#ac6e809d6a5018c4d481678c17e655192">ev::SlidingWindowi</a> = SlidingWindow_&lt;int&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Alias for Queue_ using int </p>
+<p>Alias for SlidingWindow_ using int </p>
 
 </div>
 </div>
-<a id="aba2de5667e6a0d4bc4772c63350c0d81" name="aba2de5667e6a0d4bc4772c63350c0d81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba2de5667e6a0d4bc4772c63350c0d81">&#9670;&#160;</a></span>Queuel</h2>
+<a id="a73e09b853d57297a1242e2831131f682" name="a73e09b853d57297a1242e2831131f682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73e09b853d57297a1242e2831131f682">&#9670;&#160;</a></span>SlidingWindowl</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="#aba2de5667e6a0d4bc4772c63350c0d81">ev::Queuel</a> = Queue_&lt;long&gt;</td>
+          <td class="memname">using <a class="el" href="#a73e09b853d57297a1242e2831131f682">ev::SlidingWindowl</a> = SlidingWindow_&lt;long&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Alias for Queue_ using long </p>
+<p>Alias for SlidingWindow_ using long </p>
 
 </div>
 </div>
@@ -217,7 +216,7 @@ Typedefs</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>modules</b></li><li class="navelem"><b>containers</b></li><li class="navelem"><b>include</b></li><li class="navelem"><b>openev</b></li><li class="navelem"><b>containers</b></li><li class="navelem"><a href="queue_8hpp.html">queue.hpp</a></li>
+    <li class="navelem"><b>modules</b></li><li class="navelem"><b>containers</b></li><li class="navelem"><b>include</b></li><li class="navelem"><b>openev</b></li><li class="navelem"><b>containers</b></li><li class="navelem"><a href="sliding__window_8hpp.html">sliding_window.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.16.1 </li>
   </ul>
 </div>
