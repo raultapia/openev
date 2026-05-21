@@ -20,6 +20,7 @@ FetchContent_MakeAvailable(google_benchmark googletest)
 # Modules
 add_library(openev INTERFACE)
 set(OpenEV_LIBRARIES "")
+set(BENCHMARK_CMDS "")
 foreach(
   MODULE IN
   ITEMS ALGORITHMS
@@ -35,6 +36,9 @@ foreach(
     add_subdirectory(modules/${module})
     target_link_libraries(openev INTERFACE oe_${module})
     list(APPEND OpenEV_LIBRARIES "${CMAKE_INSTALL_PREFIX}/lib/openev/liboe_${module}.so")
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/modules/${module}/benchmark")
+      list(APPEND BENCHMARK_CMDS COMMAND $<TARGET_FILE:oe_${module}_benchmark>)
+    endif()
     set(IS_ENABLED_MODULE_${MODULE} 1)
   else()
     set(IS_ENABLED_MODULE_${MODULE} 0)
@@ -46,6 +50,9 @@ set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/inc
 
 # Tests
 enable_testing()
+
+# Benchmarks
+add_custom_target(benchmarks ${BENCHMARK_CMDS})
 
 # Examples
 option(BUILD_EXAMPLES "Build the examples" ON)
