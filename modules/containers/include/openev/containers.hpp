@@ -11,6 +11,7 @@
 #include "openev/containers/deque.hpp"
 #include "openev/containers/persistent_queue.hpp"
 #include "openev/containers/queue.hpp"
+#include "openev/containers/sliding_window.hpp"
 #include "openev/containers/vector.hpp"
 
 #endif // OPENEV_CONTAINERS_HPP

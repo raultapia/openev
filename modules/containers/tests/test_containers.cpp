@@ -3,6 +3,7 @@
 #include "openev/containers/deque.hpp"
 #include "openev/containers/persistent_queue.hpp"
 #include "openev/containers/queue.hpp"
+#include "openev/containers/sliding_window.hpp"
 #include "openev/containers/vector.hpp"
 #include <gtest/gtest.h>
 #include <opencv2/opencv.hpp>
@@ -79,4 +80,67 @@ TEST(CircularBuffer, EmplaceBack) {
   buffer.emplace_back(30, 40, 2.0, false);
   EXPECT_EQ(buffer[0], ev::Event(10, 20, 1.0, true));
   EXPECT_EQ(buffer[1], ev::Event(30, 40, 2.0, false));
+}
+
+class SlidingWindowTest : public ::testing::Test {
+protected:
+  ev::SlidingWindow window{2.5};
+};
+
+TEST_F(SlidingWindowTest, PushEvictsExpiredEvents) {
+  window.push(ev::Event(10, 20, 1.0, true));
+  window.push(ev::Event(11, 21, 2.0, false));
+  window.push(ev::Event(12, 22, 3.0, true));
+  window.push(ev::Event(13, 23, 4.0, false));
+
+  ASSERT_EQ(window.size(), 3U);
+  EXPECT_EQ(window.front(), ev::Event(11, 21, 2.0, false));
+  EXPECT_EQ(window.back(), ev::Event(13, 23, 4.0, false));
+}
+
+TEST_F(SlidingWindowTest, EmplaceEvictsExpiredEvents) {
+  window.emplace(10, 20, 1.0, true);
+  window.emplace(11, 21, 2.0, false);
+  window.emplace(12, 22, 4.0, true);
+
+  ASSERT_EQ(window.size(), 2U);
+  EXPECT_EQ(window.front(), ev::Event(11, 21, 2.0, false));
+  EXPECT_EQ(window.back(), ev::Event(12, 22, 4.0, true));
+}
+
+TEST_F(SlidingWindowTest, WindowSetterRetainsOnlyRecentEvents) {
+  window.push(ev::Event(10, 20, 1.0, true));
+  window.push(ev::Event(11, 21, 2.0, false));
+  window.push(ev::Event(12, 22, 3.0, true));
+  window.push(ev::Event(13, 23, 4.0, false));
+
+  window.setWindow(1.0);
+
+  ASSERT_EQ(window.size(), 2U);
+  EXPECT_EQ(window.front(), ev::Event(12, 22, 3.0, true));
+  EXPECT_EQ(window.back(), ev::Event(13, 23, 4.0, false));
+}
+
+TEST_F(SlidingWindowTest, StatisticsOperateOnCurrentWindow) {
+  window.push(ev::Event(34, 10, 1.2143, true));
+  window.push(ev::Event(45, 14, 3.2342, false));
+  window.push(ev::Event(87, 23, 5.3432, true));
+
+  const float duration = window.duration();
+  const float rate = window.rate();
+  const ev::Eventf mean = window.mean();
+  const cv::Point2f meanPoint = window.meanPoint();
+  const float meanTime = window.meanTime();
+  const float midTime = window.midTime();
+
+  EXPECT_FLOAT_EQ(duration, 5.3432F - 3.2342F);
+  EXPECT_FLOAT_EQ(rate, 2.0F / (5.3432F - 3.2342F));
+  EXPECT_FLOAT_EQ(mean.x, (45 + 87) / 2.0F);
+  EXPECT_FLOAT_EQ(mean.y, (14 + 23) / 2.0F);
+  EXPECT_FLOAT_EQ(mean.t, (3.2342F + 5.3432F) / 2.0F);
+  EXPECT_FALSE(mean.p);
+  EXPECT_FLOAT_EQ(meanPoint.x, (45 + 87) / 2.0F);
+  EXPECT_FLOAT_EQ(meanPoint.y, (14 + 23) / 2.0F);
+  EXPECT_FLOAT_EQ(meanTime, (3.2342F + 5.3432F) / 2.0F);
+  EXPECT_FLOAT_EQ(midTime, (3.2342F + 5.3432F) / 2.0F);
 }

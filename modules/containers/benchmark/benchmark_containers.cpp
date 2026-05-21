@@ -29,6 +29,22 @@ std::vector<ev::Event> makeEvents(const std::size_t count) {
   return events;
 }
 
+std::vector<ev::Event> makeTimelineEvents(const std::size_t count, const double step = 1e-3) {
+  std::vector<ev::Event> events;
+  events.reserve(count);
+
+  std::mt19937 rng(42);
+  std::uniform_int_distribution<int> x_dist(0, kWidth - 1);
+  std::uniform_int_distribution<int> y_dist(0, kHeight - 1);
+  std::bernoulli_distribution p_dist(0.5);
+
+  for(std::size_t i = 0; i < count; ++i) {
+    events.emplace_back(x_dist(rng), y_dist(rng), static_cast<double>(i) * step, p_dist(rng) ? ev::POSITIVE : ev::NEGATIVE);
+  }
+
+  return events;
+}
+
 template <typename Container>
 void fillSequential(Container &container, const std::vector<ev::Event> &events) {
   if constexpr(std::is_same_v<Container, ev::Queue> || std::is_same_v<Container, ev::PersistentQueue>) {
@@ -49,6 +65,11 @@ void fillSequential(Container &container, const std::vector<ev::Event> &events) 
     for(std::size_t i = 0; i < events.size(); ++i) {
       container[i] = events[i];
     }
+  } else if constexpr(std::is_same_v<Container, ev::SlidingWindow>) {
+    container.clear();
+    for(const auto &event : events) {
+      container.push(event);
+    }
   } else {
     for(std::size_t i = 0; i < events.size(); ++i) {
       container[i] = events[i];
@@ -58,7 +79,12 @@ void fillSequential(Container &container, const std::vector<ev::Event> &events) 
 
 template <typename Container, typename Fn>
 void benchmarkReadOnlyMetric(benchmark::State &state, const char *label, Fn fn) {
-  const auto events = makeEvents(static_cast<std::size_t>(state.range(0)));
+  const auto events = [](const std::size_t count) {
+    if constexpr(std::is_same_v<Container, ev::SlidingWindow>) {
+      return makeTimelineEvents(count);
+    }
+    return makeEvents(count);
+  }(static_cast<std::size_t>(state.range(0)));
   Container container;
   fillSequential(container, events);
 
@@ -73,7 +99,12 @@ void benchmarkReadOnlyMetric(benchmark::State &state, const char *label, Fn fn) 
 
 template <typename Container, typename Fn>
 void benchmarkDestructiveMetric(benchmark::State &state, const char *label, Fn fn) {
-  const auto events = makeEvents(static_cast<std::size_t>(state.range(0)));
+  const auto events = [](const std::size_t count) {
+    if constexpr(std::is_same_v<Container, ev::SlidingWindow>) {
+      return makeTimelineEvents(count);
+    }
+    return makeEvents(count);
+  }(static_cast<std::size_t>(state.range(0)));
   Container container;
 
   for(auto _ : state) {
@@ -134,6 +165,25 @@ void benchmarkCircularEmplaceFront(benchmark::State &state, const char *label) {
 
     for(const auto &event : events) {
       container.emplace_front(event.x, event.y, event.t, event.p);
+    }
+    benchmark::ClobberMemory();
+  }
+
+  state.SetLabel(label);
+  state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
+}
+
+void benchmarkSlidingWindowPush(benchmark::State &state, const char *label) {
+  const auto events = makeTimelineEvents(static_cast<std::size_t>(state.range(0)));
+  ev::SlidingWindow container(0.1);
+
+  for(auto _ : state) {
+    state.PauseTiming();
+    container.clear();
+    state.ResumeTiming();
+
+    for(const auto &event : events) {
+      container.push(event);
     }
     benchmark::ClobberMemory();
   }
@@ -249,6 +299,12 @@ static void BM_DequeMidTime(benchmark::State &state) { benchmarkMidTime<ev::Dequ
 static void BM_CircularMidTime(benchmark::State &state) { benchmarkMidTime<ev::CircularBuffer>(state, "circular"); }
 static void BM_QueueMidTime(benchmark::State &state) { benchmarkMidTime<ev::Queue>(state, "queue"); }
 static void BM_PersistentQueueMidTime(benchmark::State &state) { benchmarkMidTime<ev::PersistentQueue>(state, "persistent_queue"); }
+static void BM_SlidingWindowDuration(benchmark::State &state) { benchmarkDuration<ev::SlidingWindow>(state, "sliding_window"); }
+static void BM_SlidingWindowRate(benchmark::State &state) { benchmarkRate<ev::SlidingWindow>(state, "sliding_window"); }
+static void BM_SlidingWindowMean(benchmark::State &state) { benchmarkMean<ev::SlidingWindow>(state, "sliding_window"); }
+static void BM_SlidingWindowMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::SlidingWindow>(state, "sliding_window"); }
+static void BM_SlidingWindowMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::SlidingWindow>(state, "sliding_window"); }
+static void BM_SlidingWindowMidTime(benchmark::State &state) { benchmarkMidTime<ev::SlidingWindow>(state, "sliding_window"); }
 
 static void BM_Array1024Duration(benchmark::State &state) { benchmarkArrayDuration<ev::Array<1024>>(state, "array"); }
 static void BM_Array16384Duration(benchmark::State &state) { benchmarkArrayDuration<ev::Array<16384>>(state, "array"); }
@@ -265,42 +321,49 @@ static void BM_Array16384MidTime(benchmark::State &state) { benchmarkArrayMidTim
 
 static void BM_CircularEmplaceBack(benchmark::State &state) { benchmarkCircularEmplaceBack(state, "circular"); }
 static void BM_CircularEmplaceFront(benchmark::State &state) { benchmarkCircularEmplaceFront(state, "circular"); }
+static void BM_SlidingWindowPush(benchmark::State &state) { benchmarkSlidingWindowPush(state, "sliding_window"); }
 
 BENCHMARK(BM_VectorDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_PersistentQueueDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_SlidingWindowDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_PersistentQueueRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_SlidingWindowRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_PersistentQueueMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_SlidingWindowMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_PersistentQueueMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_SlidingWindowMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_PersistentQueueMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_SlidingWindowMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_PersistentQueueMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_SlidingWindowMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_Array1024Duration)->Arg(1024);
 BENCHMARK(BM_Array16384Duration)->Arg(16384);
@@ -317,4 +380,5 @@ BENCHMARK(BM_Array16384MidTime)->Arg(16384);
 
 BENCHMARK(BM_CircularEmplaceBack)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularEmplaceFront)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_SlidingWindowPush)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 } // namespace
