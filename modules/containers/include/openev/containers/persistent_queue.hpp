@@ -26,8 +26,9 @@ class PersistentQueue_ : public Queue_<T> {
 
 public:
   /*!
-  \brief Compute the mean of the events.
+  \brief Compute the mean of the events without consuming the queue.
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
+  \note Unlike Queue_::mean(), the queue contents are preserved after this call.
   */
   [[nodiscard]] inline Event_<ResultType> mean() {
     const std::size_t n = Queue_<T>::size();
@@ -50,8 +51,9 @@ public:
   }
 
   /*!
-  \brief Compute the mean x,y point of the events.
+  \brief Compute the mean x,y point of the events without consuming the queue.
   \return Mean point
+  \note Unlike Queue_::meanPoint(), the queue contents are preserved after this call.
   */
   [[nodiscard]] inline cv::Point_<ResultType> meanPoint() {
     const std::size_t n = Queue_<T>::size();
@@ -70,8 +72,9 @@ public:
   }
 
   /*!
-  \brief Compute the mean time of the events.
+  \brief Compute the mean time of the events without consuming the queue.
   \return Mean time
+  \note Unlike Queue_::meanTime(), the queue contents are preserved after this call.
   */
   [[nodiscard]] inline ResultType meanTime() {
     const std::size_t n = Queue_<T>::size();

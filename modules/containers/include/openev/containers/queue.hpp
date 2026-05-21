@@ -44,6 +44,7 @@ public:
   /*!
   \brief Compute the mean of the events.
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
+  \warning This method drains the queue; all events are removed upon completion. Use PersistentQueue_ to preserve contents.
   */
   [[nodiscard]] inline Event_<ResultType> mean() {
     const std::size_t n = std::queue<ev::Event_<T>>::size();
@@ -67,6 +68,7 @@ public:
   /*!
   \brief Compute the mean x,y point of the events.
   \return Mean point
+  \warning This method drains the queue; all events are removed upon completion. Use PersistentQueue_ to preserve contents.
   */
   [[nodiscard]] inline cv::Point_<ResultType> meanPoint() {
     const std::size_t n = std::queue<ev::Event_<T>>::size();
@@ -86,6 +88,7 @@ public:
   /*!
   \brief Compute the mean time of the events.
   \return Mean time
+  \warning This method drains the queue; all events are removed upon completion. Use PersistentQueue_ to preserve contents.
   */
   [[nodiscard]] inline ResultType meanTime() {
     const std::size_t n = std::queue<ev::Event_<T>>::size();

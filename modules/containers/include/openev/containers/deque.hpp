@@ -17,7 +17,7 @@ constexpr bool USING_DEQUE_HPP = true;
 /*!
 \brief This class extends std::deque to implement event deques. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/deque">here</a>.
 
-Event deques inherit all the properties from standard C++ deques. Events dequeu are double-ended queues that allows fast insertion and deletion at both its beginning and its end.
+Event deques inherit all the properties from standard C++ deques. Event deques are double-ended queues that allow fast insertion and deletion at both their beginning and their end.
 */
 template <typename T>
 class Deque_ : public std::deque<Event_<T>> {

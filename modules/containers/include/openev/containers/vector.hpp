@@ -1,5 +1,5 @@
 /*!
-\file containers.hpp
+\file vector.hpp
 \brief Vector container for basic event structures.
 \author Raul Tapia
 */

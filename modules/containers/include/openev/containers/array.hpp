@@ -1,5 +1,5 @@
 /*!
-\file containers.hpp
+\file array.hpp
 \brief Array container for basic event structures.
 \author Raul Tapia
 */

@@ -29,11 +29,24 @@ using CounterType = int16_t;
 constexpr PolarityType POSITIVE = static_cast<PolarityType>(true);  /*!< Positive polarity */
 constexpr PolarityType NEGATIVE = static_cast<PolarityType>(false); /*!< Negative polarity */
 
+/*!
+\brief Stereo camera side identifier.
+*/
 enum class Stereo : char {
-  LEFT = 'L',
-  RIGHT = 'R'
+  LEFT = 'L', /*!< Left camera */
+  RIGHT = 'R' /*!< Right camera */
 };
 
+/*!
+\brief Norm types and dimensional flags for Event_::distance().
+
+Combine one norm constant with one dimensional flag using bitwise OR:
+\code{.cpp}
+e1.distance(e2, DISTANCE_NORM_L2 | DISTANCE_FLAG_SPATIAL);        // 2D Euclidean (x,y)
+e1.distance(e2, DISTANCE_NORM_L1 | DISTANCE_FLAG_TEMPORAL);       // temporal (signed t diff)
+e1.distance(e2, DISTANCE_NORM_L2 | DISTANCE_FLAG_SPATIOTEMPORAL); // 3D Euclidean (x,y,t)
+\endcode
+*/
 enum DistanceTypes : uint8_t {
   DISTANCE_NORM_INF = static_cast<uint8_t>(cv::NORM_INF),
   DISTANCE_NORM_L1 = static_cast<uint8_t>(cv::NORM_L1),
@@ -41,11 +54,11 @@ enum DistanceTypes : uint8_t {
   DISTANCE_NORM_L2SQR = static_cast<uint8_t>(cv::NORM_L2SQR),
   DISTANCE_NORM_MANHATTAN = DISTANCE_NORM_L1,
   DISTANCE_NORM_EUCLIDEAN = DISTANCE_NORM_L2,
-  DISTANCE_FLAG_SPATIAL = static_cast<uint8_t>(0b00010000),
-  DISTANCE_FLAG_TEMPORAL = static_cast<uint8_t>(0b00100000),
-  DISTANCE_FLAG_SPATIOTEMPORAL = static_cast<uint8_t>(0b01000000),
-  DISTANCE_FLAG_3D = DISTANCE_FLAG_SPATIOTEMPORAL,
-  DISTANCE_FLAG_2D = DISTANCE_FLAG_SPATIAL,
+  DISTANCE_FLAG_SPATIAL = static_cast<uint8_t>(0b00010000),        /*!< Use only x,y coordinates */
+  DISTANCE_FLAG_TEMPORAL = static_cast<uint8_t>(0b00100000),       /*!< Use only t coordinate (returns signed difference) */
+  DISTANCE_FLAG_SPATIOTEMPORAL = static_cast<uint8_t>(0b01000000), /*!< Use x,y,t coordinates */
+  DISTANCE_FLAG_3D = DISTANCE_FLAG_SPATIOTEMPORAL,                 /*!< Alias for DISTANCE_FLAG_SPATIOTEMPORAL */
+  DISTANCE_FLAG_2D = DISTANCE_FLAG_SPATIAL,                        /*!< Alias for DISTANCE_FLAG_SPATIAL */
 };
 
 /*!
@@ -178,7 +191,7 @@ public:
   }
 
   /*!
-  Comparison operator
+  Less-than operator; compares by timestamp to enable time-ordered sorting.
   */
   [[nodiscard]] inline bool operator<(const Event_<T> &e) const {
     return Event_<T>::t < e.t;
@@ -280,7 +293,7 @@ using AugmentedEventd = AugmentedEvent_<double>; /*!< Alias for AugmentedEvent_ 
 using AugmentedEvent = AugmentedEventi;          /*!< Alias for AugmentedEvent_ using int */
 
 /*!
-\brief This class extends cv::Size_<T> for event data. For more information, please refer <a href="https://docs.opencv.org/master/d6/d50/classcv_1_1Size__.html">here</a>.
+\brief Type alias for cv::Size_<T> providing a named 2D size for event data. For more information, please refer <a href="https://docs.opencv.org/master/d6/d50/classcv_1_1Size__.html">here</a>.
 
 Analogously to OpenCV library, the following aliases are defined for convenience:
 \code{.cpp}
@@ -355,7 +368,7 @@ using Size3d = Size3_<double>; /*!< Alias for Size3_ using double */
 using Size3 = Size3i;          /*!< Alias for Size3_ using int */
 
 /*!
-\brief This class extends cv::Rect_<T> for event data. For more information, please refer <a href="https://docs.opencv.org/master/d2/d44/classcv_1_1Rect__.html">here</a>.
+\brief Type alias for cv::Rect_<T> providing a named 2D rectangle for event data. For more information, please refer <a href="https://docs.opencv.org/master/d2/d44/classcv_1_1Rect__.html">here</a>.
 
 Analogously to OpenCV library, the following aliases are defined for convenience:
 \code{.cpp}
@@ -522,10 +535,19 @@ struct alignas(16) Circ_ {
     return !empty() && pow(center.x - e.x, 2) + pow(center.y - e.y, 2) <= radius * radius;
   }
 
+  /*!
+  \brief Bounding square of the circle as a cv::Size (radius × radius).
+  \return Size with width and height equal to the radius.
+  */
   [[nodiscard]] inline cv::Size size() const {
     return {radius, radius};
   }
 
+  /*!
+  Area is computed as \f$ \pi r^2 \f$.
+  \brief Compute the area of the circle.
+  \return Area
+  */
   [[nodiscard]] inline double area() const {
     return M_PI * radius * radius;
   }

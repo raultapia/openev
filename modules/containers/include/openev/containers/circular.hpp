@@ -26,17 +26,27 @@ class CircularBuffer_ : public boost::circular_buffer<Event_<T>> {
   using ResultType = TimeType;
 
 public:
-  /*! \cond INTERNAL */
+  /*!
+  \brief Construct an Event_<T> in-place at the back of the buffer.
+
+  Arguments are forwarded to the Event_<T> constructor. If the buffer is full, the
+  oldest element at the front is overwritten.
+  */
   template <typename... Args>
   inline void emplace_back(Args &&...args) {
     boost::circular_buffer<Event_<T>>::push_back(Event_<T>(std::forward<Args>(args)...));
   }
 
+  /*!
+  \brief Construct an Event_<T> in-place at the front of the buffer.
+
+  Arguments are forwarded to the Event_<T> constructor. If the buffer is full, the
+  oldest element at the back is overwritten.
+  */
   template <typename... Args>
   inline void emplace_front(Args &&...args) {
     boost::circular_buffer<Event_<T>>::push_front(Event_<T>(std::forward<Args>(args)...));
   }
-  /*! \endcond */
 
   /*!
   \brief Time difference between the last and the first event.
