@@ -117,37 +117,37 @@ $(function(){initNavTree('abstract-reader_8hpp_source.html','',''); });
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <a class="code hl_function" href="classev_1_1AbstractReader__.html#a49c895c468629730172261f1d540651a">AbstractReader_</a>(<span class="keyword">const</span> std::size_t buffer_size, <span class="keyword">const</span> <span class="keywordtype">bool</span> use_threading);</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span></div>
-<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classev_1_1AbstractReader__.html#af5be207b55edec3e9c95a0c51ecfe2a3">   39</a></span>  <span class="keyword">inline</span> <a class="code hl_typedef" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;<a class="code hl_function" href="classev_1_1AbstractReader__.html#af5be207b55edec3e9c95a0c51ecfe2a3">data</a>() {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">if</span>(!eof_ &amp;&amp; buffer_.size() &lt; bufferSize_) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keywordflow">if</span>(!updateBuffer_()) {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        eof_.store(<span class="keyword">true</span>);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">return</span> buffer_;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  }</div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classev_1_1AbstractReader__.html#af5be207b55edec3e9c95a0c51ecfe2a3">   40</a></span>  <span class="keyword">inline</span> <a class="code hl_typedef" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;<a class="code hl_function" href="classev_1_1AbstractReader__.html#af5be207b55edec3e9c95a0c51ecfe2a3">data</a>() {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">if</span>(!eof_ &amp;&amp; buffer_.size() &lt; bufferSize_) {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keywordflow">if</span>(!updateBuffer_()) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        eof_.store(<span class="keyword">true</span>);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordflow">return</span> buffer_;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
 </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">const</span> std::size_t bufferSize_;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  std::thread thread_;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <a class="code hl_typedef" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> buffer_;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  std::mutex bufferMutex_;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  std::atomic&lt;bool&gt; threadRunning_{};</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  std::atomic&lt;bool&gt; eof_{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> updateBuffer_() = 0;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordtype">void</span> threadFunction();</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keyword">const</span> std::size_t bufferSize_;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  std::thread thread_;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_typedef" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> buffer_;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  std::mutex bufferMutex_;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  std::atomic&lt;bool&gt; threadRunning_{};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  std::atomic&lt;bool&gt; eof_{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keyword">virtual</span> <span class="keywordtype">bool</span> updateBuffer_() = 0;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordtype">void</span> threadFunction();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
 </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>} <span class="comment">// namespace ev</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_READERS_ABSTRACT_READER_HPP</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>} <span class="comment">// namespace ev</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_READERS_ABSTRACT_READER_HPP</span></div>
 <div class="ttc" id="aclassev_1_1AbstractReader___html_a49c895c468629730172261f1d540651a"><div class="ttname"><a href="classev_1_1AbstractReader__.html#a49c895c468629730172261f1d540651a">ev::AbstractReader_::AbstractReader_</a></div><div class="ttdeci">AbstractReader_(const std::size_t buffer_size, const bool use_threading)</div><div class="ttdoc">Constructor for AbstractReader_.</div><div class="ttdef"><b>Definition</b> abstract-reader.cpp:8</div></div>
-<div class="ttc" id="aclassev_1_1AbstractReader___html_af5be207b55edec3e9c95a0c51ecfe2a3"><div class="ttname"><a href="classev_1_1AbstractReader__.html#af5be207b55edec3e9c95a0c51ecfe2a3">ev::AbstractReader_::data</a></div><div class="ttdeci">Queue &amp; data()</div><div class="ttdef"><b>Definition</b> abstract-reader.hpp:39</div></div>
+<div class="ttc" id="aclassev_1_1AbstractReader___html_af5be207b55edec3e9c95a0c51ecfe2a3"><div class="ttname"><a href="classev_1_1AbstractReader__.html#af5be207b55edec3e9c95a0c51ecfe2a3">ev::AbstractReader_::data</a></div><div class="ttdeci">Queue &amp; data()</div><div class="ttdoc">Returns a reference to the internal buffer (Queue) containing the data.</div><div class="ttdef"><b>Definition</b> abstract-reader.hpp:40</div></div>
 <div class="ttc" id="aqueue_8hpp_html"><div class="ttname"><a href="queue_8hpp.html">queue.hpp</a></div><div class="ttdoc">Persistent queue container for basic event structures.</div></div>
 <div class="ttc" id="aqueue_8hpp_html_a7e74ebcb99a3290b5bc2f2564f9a0966"><div class="ttname"><a href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a></div><div class="ttdeci">Queuei Queue</div><div class="ttdef"><b>Definition</b> queue.hpp:117</div></div>
 </div><!-- fragment --></div><!-- contents -->
