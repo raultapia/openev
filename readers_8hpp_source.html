@@ -101,7 +101,14 @@ $(function(){initNavTree('readers_8hpp_source.html','',''); });
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="hdf5-reader_8hpp.html">openev/readers/hdf5-reader.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="plain-text-reader_8hpp.html">openev/readers/plain-text-reader.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_READERS_HPP</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">inline</span> <span class="keywordtype">void</span> workaround() {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  (void)ev::USING_HDF5_READER_HPP;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  (void)ev::USING_PLAIN_TEXT_READER_HPP;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>}</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>} <span class="comment">// namespace</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_READERS_HPP</span></div>
 <div class="ttc" id="ahdf5-reader_8hpp_html"><div class="ttname"><a href="hdf5-reader_8hpp.html">hdf5-reader.hpp</a></div><div class="ttdoc">HDF5 reader.</div></div>
 <div class="ttc" id="aplain-text-reader_8hpp_html"><div class="ttname"><a href="plain-text-reader_8hpp.html">plain-text-reader.hpp</a></div><div class="ttdoc">Plain text reader.</div></div>
 </div><!-- fragment --></div><!-- contents -->
