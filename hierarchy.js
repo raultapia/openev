@@ -4,6 +4,7 @@ var hierarchy =
       [ "ev::Davis", "classev_1_1Davis.html", null ]
     ] ],
     [ "ev::AbstractReader_", "classev_1_1AbstractReader__.html", [
+      [ "ev::HDF5Reader", "classev_1_1HDF5Reader.html", null ],
       [ "ev::PlainTextReader", "classev_1_1PlainTextReader.html", null ]
     ] ],
     [ "ev::AbstractRepresentation_&lt; T, Options, E &gt;", "classev_1_1AbstractRepresentation__.html", [
@@ -170,14 +171,24 @@ var hierarchy =
       [ "ev::EventImage_< cv::Vec3d >", "classev_1_1EventImage__.html", null ],
       [ "ev::EventImage_< cv::Vec4d >", "classev_1_1EventImage__.html", null ],
       [ "ev::EventImage_< T, RepresentationOptions::NONE, int >", "classev_1_1EventImage__.html", null ],
-      [ "ev::Mat::Binary_< uchar >", "classev_1_1Mat_1_1Binary__.html", null ],
-      [ "ev::Mat::Ternary_< char >", "classev_1_1Mat_1_1Ternary__.html", null ],
+      [ "ev::Mat::Mat_< Tb >", "classev_1_1Mat_1_1Mat__.html", [
+        [ "ev::Mat::Binary_< Tb >", "classev_1_1Mat_1_1Binary__.html", null ],
+        [ "ev::Mat::Ternary_< Tb >", "classev_1_1Mat_1_1Ternary__.html", null ]
+      ] ],
+      [ "ev::Mat::Mat_< CounterType >", "classev_1_1Mat_1_1Mat__.html", [
+        [ "ev::Mat::Counter", "classev_1_1Mat_1_1Counter.html", null ]
+      ] ],
+      [ "ev::Mat::Mat_< PolarityType >", "classev_1_1Mat_1_1Mat__.html", [
+        [ "ev::Mat::Polarity", "classev_1_1Mat_1_1Polarity.html", null ]
+      ] ],
+      [ "ev::Mat::Mat_< TimeType >", "classev_1_1Mat_1_1Mat__.html", [
+        [ "ev::Mat::Time", "classev_1_1Mat_1_1Time.html", null ]
+      ] ],
       [ "ev::EventImage_< T, Options, E >", "classev_1_1EventImage__.html", null ],
-      [ "ev::Mat::Binary_< Tb >", "classev_1_1Mat_1_1Binary__.html", null ],
-      [ "ev::Mat::Counter", "classev_1_1Mat_1_1Counter.html", null ],
-      [ "ev::Mat::Polarity", "classev_1_1Mat_1_1Polarity.html", null ],
-      [ "ev::Mat::Ternary_< Tb >", "classev_1_1Mat_1_1Ternary__.html", null ],
-      [ "ev::Mat::Time", "classev_1_1Mat_1_1Time.html", null ],
+      [ "ev::Mat::Mat_< T >", "classev_1_1Mat_1_1Mat__.html", [
+        [ "ev::Mat::Binary_< uchar >", "classev_1_1Mat_1_1Binary__.html", null ],
+        [ "ev::Mat::Ternary_< char >", "classev_1_1Mat_1_1Ternary__.html", null ]
+      ] ],
       [ "ev::UndistortMap", "classev_1_1UndistortMap.html", null ]
     ] ],
     [ "cv::Point_", null, [
@@ -230,6 +241,8 @@ var hierarchy =
     ] ],
     [ "testing::Test", null, [
       [ "ContainerTestFixture< Container >", "classContainerTestFixture.html", null ],
+      [ "HDF5ReaderTest", "classHDF5ReaderTest.html", null ],
+      [ "PlainTextReaderTest", "classPlainTextReaderTest.html", null ],
       [ "SlidingWindowTest", "classSlidingWindowTest.html", null ]
     ] ],
     [ "std::vector", null, [

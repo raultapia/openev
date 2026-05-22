@@ -112,7 +112,8 @@ Inheritance diagram for ev::AbstractReader_:</div>
  <div class="center">
   <img src="classev_1_1AbstractReader__.png" usemap="#ev_3A_3AAbstractReader_5F_map" alt=""/>
   <map id="ev_3A_3AAbstractReader_5F_map" name="ev_3A_3AAbstractReader_5F_map">
-<area href="classev_1_1PlainTextReader.html" title="This class extends AbstractReader_ to read dataset in plain text format." alt="ev::PlainTextReader" shape="rect" coords="0,56,127,80"/>
+<area href="classev_1_1HDF5Reader.html" title="This class extends AbstractReader_ to read event data from HDF5 files." alt="ev::HDF5Reader" shape="rect" coords="0,56,127,80"/>
+<area href="classev_1_1PlainTextReader.html" title="This class extends AbstractReader_ to read dataset in plain text format." alt="ev::PlainTextReader" shape="rect" coords="137,56,264,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -120,38 +121,12 @@ Inheritance diagram for ev::AbstractReader_:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a49c895c468629730172261f1d540651a" id="r_a49c895c468629730172261f1d540651a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a49c895c468629730172261f1d540651a">AbstractReader_</a> (const std::size_t buffer_size, const bool use_threading)</td></tr>
 <tr class="memdesc:a49c895c468629730172261f1d540651a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classev_1_1AbstractReader__.html" title="This is an auxiliary class. This class cannot be instanced.">AbstractReader_</a>.  <br /></td></tr>
-<tr class="memitem:a985ae671e4cee0f176e99416286daa6d" id="r_a985ae671e4cee0f176e99416286daa6d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a985ae671e4cee0f176e99416286daa6d">read</a> (<a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> &amp;e)</td></tr>
-<tr class="memdesc:a985ae671e4cee0f176e99416286daa6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next event.  <br /></td></tr>
-<tr class="memitem:a8f56e54677cc191613bc2846b77c08f4" id="r_a8f56e54677cc191613bc2846b77c08f4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8f56e54677cc191613bc2846b77c08f4">read</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;vector, const int n)</td></tr>
-<tr class="memdesc:a8f56e54677cc191613bc2846b77c08f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read next n events.  <br /></td></tr>
-<tr class="memitem:ab4433401f2febdffb4d7ef149eb832d0" id="r_ab4433401f2febdffb4d7ef149eb832d0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab4433401f2febdffb4d7ef149eb832d0">read</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;queue, const int n, const bool keep_size=false)</td></tr>
-<tr class="memdesc:ab4433401f2febdffb4d7ef149eb832d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read next n events.  <br /></td></tr>
-<tr class="memitem:aad598fa677669062e2e98274da8ea174" id="r_aad598fa677669062e2e98274da8ea174"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aad598fa677669062e2e98274da8ea174">read_t</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;vector, const double t)</td></tr>
-<tr class="memdesc:aad598fa677669062e2e98274da8ea174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next events until the specified duration is reached.  <br /></td></tr>
-<tr class="memitem:af2d69dd61a74d7c4493213eb0dceb3e0" id="r_af2d69dd61a74d7c4493213eb0dceb3e0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af2d69dd61a74d7c4493213eb0dceb3e0">read_t</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;queue, const double t, const bool keep_size=false)</td></tr>
-<tr class="memdesc:af2d69dd61a74d7c4493213eb0dceb3e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the next events until the specified duration is reached and store them in a queue.  <br /></td></tr>
-<tr class="memitem:ae92df7271be44d9bfcfbef332cb0207f" id="r_ae92df7271be44d9bfcfbef332cb0207f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ae92df7271be44d9bfcfbef332cb0207f">skip</a> (int n)</td></tr>
-<tr class="memdesc:ae92df7271be44d9bfcfbef332cb0207f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skip the next n events.  <br /></td></tr>
-<tr class="memitem:a03abce7946e422c4e3c84adebe8c3ffb" id="r_a03abce7946e422c4e3c84adebe8c3ffb"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a03abce7946e422c4e3c84adebe8c3ffb">skip_t</a> (const double t)</td></tr>
-<tr class="memdesc:a03abce7946e422c4e3c84adebe8c3ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Skip events for the specified duration.  <br /></td></tr>
-<tr class="memitem:a29982bb0dde6ca0e1b43fc15e2dce769" id="r_a29982bb0dde6ca0e1b43fc15e2dce769"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a29982bb0dde6ca0e1b43fc15e2dce769">reset</a> ()</td></tr>
-<tr class="memdesc:a29982bb0dde6ca0e1b43fc15e2dce769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start reading from the first event.  <br /></td></tr>
-<tr class="memitem:aa0510648df2b0c445f659786c3b9bde7" id="r_aa0510648df2b0c445f659786c3b9bde7"><td class="memItemLeft">virtual std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#aa0510648df2b0c445f659786c3b9bde7">count</a> ()=0</td></tr>
-<tr class="memdesc:aa0510648df2b0c445f659786c3b9bde7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count the total number of events available.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-static-attribs" class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
-Static Public Attributes</h2></td></tr>
-<tr class="memitem:a9111316a78bd922e164621bf332d00b1" id="r_a9111316a78bd922e164621bf332d00b1"><td class="memItemLeft"><a id="a9111316a78bd922e164621bf332d00b1" name="a9111316a78bd922e164621bf332d00b1"></a>
-static constexpr std::size_t&#160;</td><td class="memItemRight"><b>NO_BUFFER</b> = 0</td></tr>
-<tr class="memitem:acc7ea21ec059327d4c74dde3e2cc1e79" id="r_acc7ea21ec059327d4c74dde3e2cc1e79"><td class="memItemLeft"><a id="acc7ea21ec059327d4c74dde3e2cc1e79" name="acc7ea21ec059327d4c74dde3e2cc1e79"></a>
-static constexpr std::size_t&#160;</td><td class="memItemRight"><b>INF_BUFFER</b> = std::numeric_limits&lt;std::size_t&gt;::max()</td></tr>
+<tr class="memitem:af5be207b55edec3e9c95a0c51ecfe2a3" id="r_af5be207b55edec3e9c95a0c51ecfe2a3"><td class="memItemLeft"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#af5be207b55edec3e9c95a0c51ecfe2a3">data</a> ()</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a6aed5e91b7213944d73dec902f3d3202" id="r_a6aed5e91b7213944d73dec902f3d3202"><td class="memItemLeft"><a id="a6aed5e91b7213944d73dec902f3d3202" name="a6aed5e91b7213944d73dec902f3d3202"></a>
-virtual bool&#160;</td><td class="memItemRight"><b>read_</b> (<a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> &amp;e)=0</td></tr>
-<tr class="memitem:a6316e6465d6317d0161ee5b20d29e22d" id="r_a6316e6465d6317d0161ee5b20d29e22d"><td class="memItemLeft"><a id="a6316e6465d6317d0161ee5b20d29e22d" name="a6316e6465d6317d0161ee5b20d29e22d"></a>
-virtual void&#160;</td><td class="memItemRight"><b>reset_</b> ()=0</td></tr>
+<tr class="memitem:a416b70e558485214777ee5af1c6f4c7d" id="r_a416b70e558485214777ee5af1c6f4c7d"><td class="memItemLeft"><a id="a416b70e558485214777ee5af1c6f4c7d" name="a416b70e558485214777ee5af1c6f4c7d"></a>
+virtual bool&#160;</td><td class="memItemRight"><b>updateBuffer_</b> ()=0</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -165,6 +140,8 @@ std::thread&#160;</td><td class="memItemRight"><b>thread_</b></td></tr>
 std::mutex&#160;</td><td class="memItemRight"><b>bufferMutex_</b></td></tr>
 <tr class="memitem:a913e3294bb2a33597015c8238f5fd428" id="r_a913e3294bb2a33597015c8238f5fd428"><td class="memItemLeft"><a id="a913e3294bb2a33597015c8238f5fd428" name="a913e3294bb2a33597015c8238f5fd428"></a>
 std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight"><b>threadRunning_</b> {}</td></tr>
+<tr class="memitem:a973ce4152615bcdab7b30dc6526e10e2" id="r_a973ce4152615bcdab7b30dc6526e10e2"><td class="memItemLeft"><a id="a973ce4152615bcdab7b30dc6526e10e2" name="a973ce4152615bcdab7b30dc6526e10e2"></a>
+std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight"><b>eof_</b> {false}</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an auxiliary class. This class cannot be instanced. </p>
@@ -199,8 +176,8 @@ std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight"><b>threadRunning_</
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="aa0510648df2b0c445f659786c3b9bde7" name="aa0510648df2b0c445f659786c3b9bde7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0510648df2b0c445f659786c3b9bde7">&#9670;&#160;</a></span>count()</h2>
+<a id="af5be207b55edec3e9c95a0c51ecfe2a3" name="af5be207b55edec3e9c95a0c51ecfe2a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5be207b55edec3e9c95a0c51ecfe2a3">&#9670;&#160;</a></span>data()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,7 +186,7 @@ std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight"><b>threadRunning_</
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::size_t ev::AbstractReader_::count </td>
+          <td class="memname"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp; ev::AbstractReader_::data </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -217,249 +194,11 @@ std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight"><b>threadRunning_</
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Count the total number of events available. </p>
-<dl class="section return"><dt>Returns</dt><dd>The total number of events available. </dd></dl>
-
-<p>Implemented in <a class="el" href="classev_1_1PlainTextReader.html#ab25fa40ec0533fb6280584c4a6a6ae62">ev::PlainTextReader</a>.</p>
-
-</div>
-</div>
-<a id="a985ae671e4cee0f176e99416286daa6d" name="a985ae671e4cee0f176e99416286daa6d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a985ae671e4cee0f176e99416286daa6d">&#9670;&#160;</a></span>read() <span class="overload">[1/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::AbstractReader_::read </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read the next event. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">e</td><td>Reference to an <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> object where the next event will be stored. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the event was successfully read, false otherwise. </dd></dl>
-
-</div>
-</div>
-<a id="ab4433401f2febdffb4d7ef149eb832d0" name="ab4433401f2febdffb4d7ef149eb832d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4433401f2febdffb4d7ef149eb832d0">&#9670;&#160;</a></span>read() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::AbstractReader_::read </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>queue</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>keep_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read next n events. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">n</td><td>Number of events to get </td></tr>
-    <tr><td class="paramname">queue</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> queue </td></tr>
-    <tr><td class="paramname">keep_size</td><td>If true, pop one event for each insertion to maintain queue size. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if queue populated with n new events </dd></dl>
-
-</div>
-</div>
-<a id="a8f56e54677cc191613bc2846b77c08f4" name="a8f56e54677cc191613bc2846b77c08f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f56e54677cc191613bc2846b77c08f4">&#9670;&#160;</a></span>read() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::AbstractReader_::read </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">ev::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vector</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>n</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read next n events. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vector</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector </td></tr>
-    <tr><td class="paramname">n</td><td>Number of events to get </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if vector populated with n new events </dd></dl>
-
-</div>
-</div>
-<a id="af2d69dd61a74d7c4493213eb0dceb3e0" name="af2d69dd61a74d7c4493213eb0dceb3e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2d69dd61a74d7c4493213eb0dceb3e0">&#9670;&#160;</a></span>read_t() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::AbstractReader_::read_t </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>queue</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>t</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>keep_size</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the next events until the specified duration is reached and store them in a queue. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">t</td><td>Duration to get events for. </td></tr>
-    <tr><td class="paramname">queue</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> queue to store the events. </td></tr>
-    <tr><td class="paramname">keep_size</td><td>If true, pop one event for each insertion to maintain queue size. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the queue is populated with events for the specified duration. </dd></dl>
-
-</div>
-</div>
-<a id="aad598fa677669062e2e98274da8ea174" name="aad598fa677669062e2e98274da8ea174"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad598fa677669062e2e98274da8ea174">&#9670;&#160;</a></span>read_t() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::AbstractReader_::read_t </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">ev::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>vector</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>t</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Read the next events until the specified duration is reached. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">vector</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector to store the events. </td></tr>
-    <tr><td class="paramname">t</td><td>Duration to get events for. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the vector is populated with events for the specified duration. </dd></dl>
-
-</div>
-</div>
-<a id="a29982bb0dde6ca0e1b43fc15e2dce769" name="a29982bb0dde6ca0e1b43fc15e2dce769"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29982bb0dde6ca0e1b43fc15e2dce769">&#9670;&#160;</a></span>reset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ev::AbstractReader_::reset </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Start reading from the first event. </p>
-<dl class="section note"><dt>Note</dt><dd>The behaviour of reset should be implemented in the derived classes. </dd></dl>
-
-</div>
-</div>
-<a id="ae92df7271be44d9bfcfbef332cb0207f" name="ae92df7271be44d9bfcfbef332cb0207f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae92df7271be44d9bfcfbef332cb0207f">&#9670;&#160;</a></span>skip()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::AbstractReader_::skip </td>
-          <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Skip the next n events. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">n</td><td>Number of events to skip. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the skip was successful. </dd></dl>
-
-</div>
-</div>
-<a id="a03abce7946e422c4e3c84adebe8c3ffb" name="a03abce7946e422c4e3c84adebe8c3ffb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03abce7946e422c4e3c84adebe8c3ffb">&#9670;&#160;</a></span>skip_t()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::AbstractReader_::skip_t </td>
-          <td>(</td>
-          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>t</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Skip events for the specified duration. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">t</td><td>Duration to skip events for. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the skip was successful. </dd></dl>
+<p>TODO </p>
 
 </div>
 </div>

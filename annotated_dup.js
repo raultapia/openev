@@ -2,6 +2,7 @@ var annotated_dup =
 [
     [ "ev", null, [
       [ "Mat", null, [
+        [ "Mat_", "classev_1_1Mat_1_1Mat__.html", "classev_1_1Mat_1_1Mat__" ],
         [ "Binary_", "classev_1_1Mat_1_1Binary__.html", "classev_1_1Mat_1_1Binary__" ],
         [ "Ternary_", "classev_1_1Mat_1_1Ternary__.html", "classev_1_1Mat_1_1Ternary__" ],
         [ "Time", "classev_1_1Mat_1_1Time.html", "classev_1_1Mat_1_1Time" ],
@@ -29,7 +30,8 @@ var annotated_dup =
       [ "Davis", "classev_1_1Davis.html", "classev_1_1Davis" ],
       [ "UndistortMap", "classev_1_1UndistortMap.html", null ],
       [ "AbstractReader_", "classev_1_1AbstractReader__.html", "classev_1_1AbstractReader__" ],
-      [ "PlainTextReader", "classev_1_1PlainTextReader.html", "classev_1_1PlainTextReader" ],
+      [ "HDF5Reader", "classev_1_1HDF5Reader.html", null ],
+      [ "PlainTextReader", "classev_1_1PlainTextReader.html", null ],
       [ "AbstractRepresentation_", "classev_1_1AbstractRepresentation__.html", "classev_1_1AbstractRepresentation__" ],
       [ "EventHistogram_", "classev_1_1EventHistogram__.html", "classev_1_1EventHistogram__" ],
       [ "EventImage_", "classev_1_1EventImage__.html", null ],
@@ -38,5 +40,7 @@ var annotated_dup =
     ] ],
     [ "caer_device_handle", "structcaer__device__handle.html", null ],
     [ "ContainerTestFixture", "classContainerTestFixture.html", null ],
+    [ "HDF5ReaderTest", "classHDF5ReaderTest.html", null ],
+    [ "PlainTextReaderTest", "classPlainTextReaderTest.html", null ],
     [ "SlidingWindowTest", "classSlidingWindowTest.html", null ]
 ];

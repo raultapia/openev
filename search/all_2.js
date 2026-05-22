@@ -22,13 +22,13 @@ var searchData=
   ['circularbufferf_19',['CircularBufferf',['../circular_8hpp.html#a2177fa7266e809ebd4b9985811ad2cd0',1,'ev']]],
   ['circularbufferi_20',['CircularBufferi',['../circular_8hpp.html#a3e8f3efa8053d80fd57d37a15e38948d',1,'ev']]],
   ['circularbufferl_21',['CircularBufferl',['../circular_8hpp.html#a2c230919453eccc9d8db72633beaa19d',1,'ev']]],
-  ['clear_22',['clear',['../classev_1_1Mat_1_1Binary__.html#a71f11811efc99c697a1a223618335968',1,'ev::Mat::Binary_::clear()'],['../classev_1_1Mat_1_1Ternary__.html#a388029b8e5a76ec69e2d690d79fa95f0',1,'ev::Mat::Ternary_::clear()'],['../classev_1_1Mat_1_1Time.html#a902578972fbe55db0575283094e451c7',1,'ev::Mat::Time::clear()'],['../classev_1_1Mat_1_1Polarity.html#a7ed6d68e686ec4afc3dcbdf14ca905ca',1,'ev::Mat::Polarity::clear()'],['../classev_1_1Mat_1_1Counter.html#ad421839eff3e9729aca45d8205c59e77',1,'ev::Mat::Counter::clear()'],['../classev_1_1AbstractRepresentation__.html#a16486a8b4a053dc72407e303c35423a4',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#ad9b12fb1d244ce29c140f35ae4a539f1',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background)']]],
+  ['clear_22',['clear',['../classev_1_1Mat_1_1Mat__.html#a9fef11595e8d28e1c8d18eda8b4ef30e',1,'ev::Mat::Mat_::clear()'],['../classev_1_1AbstractRepresentation__.html#a16486a8b4a053dc72407e303c35423a4',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#ad9b12fb1d244ce29c140f35ae4a539f1',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background)']]],
   ['contact_23',['📬 Contact',['../index.html#autotoc_md4',1,'']]],
   ['containers_2ehpp_24',['containers.hpp',['../containers_8hpp.html',1,'']]],
   ['containertestfixture_25',['ContainerTestFixture',['../classContainerTestFixture.html',1,'']]],
   ['contains_26',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a4d2384e4c8a2a7972566ed2f32181acb',1,'ev::PointCloud_::contains()']]],
   ['core_2ehpp_27',['core.hpp',['../core_8hpp.html',1,'']]],
-  ['count_28',['count',['../classev_1_1AbstractReader__.html#aa0510648df2b0c445f659786c3b9bde7',1,'ev::AbstractReader_::count()'],['../classev_1_1PlainTextReader.html#ab25fa40ec0533fb6280584c4a6a6ae62',1,'ev::PlainTextReader::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
+  ['count_28',['count',['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_']]],
   ['counter_29',['Counter',['../classev_1_1Mat_1_1Counter.html',1,'ev::Mat']]],
   ['counter_30',['counter',['../classev_1_1EventHistogram__.html#a7023954b751f89fa7466fd5036cedd3a',1,'ev::EventHistogram_']]]
 ];

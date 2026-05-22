@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['📝_20license_0',['📝 License',['../index.html#autotoc_md3',1,'']]]
+  ['📚_20documentation_0',['📚 Documentation',['../index.html#autotoc_md1',1,'']]]
 ];

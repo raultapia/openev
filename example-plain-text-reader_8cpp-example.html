@@ -101,7 +101,7 @@ $(function(){initNavTree('example-plain-text-reader_8cpp-example.html','',''); }
   <div class="headertitle"><div class="title">example-plain-text-reader.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<p>This is an example of how to use the Davis class.</p>
+<p>This is an example of how to use the PlainTextReader class.</p>
 <div class="fragment"><div class="line"></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">openev/core/types.hpp</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;<a class="code" href="plain-text-reader_8hpp.html">openev/readers/plain-text-reader.hpp</a>&quot;</span></div>
@@ -137,19 +137,21 @@ $(function(){initNavTree('example-plain-text-reader_8cpp-example.html','',''); }
 <div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> <span class="comment">/*argc*/</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="comment">/*argv*/</span>[]) {</div>
 <div class="line">  create_file(<span class="stringliteral">&quot;test.txt&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line">  <a id="_a0" name="_a0"></a><a class="code hl_class" href="classev_1_1PlainTextReader.html">ev::PlainTextReader</a> reader(<span class="stringliteral">&quot;test.txt&quot;</span>);</div>
-<div class="line">  <a id="_a1" name="_a1"></a><a class="code hl_typedef" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a> e;</div>
-<div class="line">  <span class="keywordflow">while</span>(reader.read(e)) {</div>
-<div class="line">    std::cout &lt;&lt; e &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  <a id="_a0" name="_a0"></a><a class="code hl_class" href="classev_1_1PlainTextReader.html">ev::PlainTextReader</a> reader(<span class="stringliteral">&quot;test.txt&quot;</span>, ev::PlainTextReaderColumns::TXYP, <span class="stringliteral">&quot; &quot;</span>, 1);</div>
+<div class="line">  <a id="_a1" name="_a1"></a><a class="code hl_typedef" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> &amp;q = reader.data();</div>
+<div class="line">  <span class="keywordflow">while</span>(!q.empty()) {</div>
+<div class="line">    std::cout &lt;&lt; q.front() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">    q.pop();</div>
+<div class="line">    reader.data();</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  delete_file(<span class="stringliteral">&quot;test.txt&quot;</span>);</div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassev_1_1PlainTextReader_html"><div class="ttname"><a href="classev_1_1PlainTextReader.html">ev::PlainTextReader</a></div><div class="ttdoc">This class extends AbstractReader_ to read dataset in plain text format.</div><div class="ttdef"><b>Definition</b> plain-text-reader.hpp:30</div></div>
+<div class="ttc" id="aclassev_1_1PlainTextReader_html"><div class="ttname"><a href="classev_1_1PlainTextReader.html">ev::PlainTextReader</a></div><div class="ttdoc">This class extends AbstractReader_ to read dataset in plain text format.</div><div class="ttdef"><b>Definition</b> plain-text-reader.hpp:27</div></div>
 <div class="ttc" id="aplain-text-reader_8hpp_html"><div class="ttname"><a href="plain-text-reader_8hpp.html">plain-text-reader.hpp</a></div><div class="ttdoc">Plain text reader.</div></div>
+<div class="ttc" id="aqueue_8hpp_html_a7e74ebcb99a3290b5bc2f2564f9a0966"><div class="ttname"><a href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a></div><div class="ttdeci">Queuei Queue</div><div class="ttdef"><b>Definition</b> queue.hpp:117</div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
-<div class="ttc" id="atypes_8hpp_html_af245e3e3c0d2581ac19f5a39fb34dc3f"><div class="ttname"><a href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a></div><div class="ttdeci">Eventi Event</div><div class="ttdef"><b>Definition</b> types.hpp:252</div></div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
