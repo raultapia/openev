@@ -26,19 +26,56 @@ class Event_;
 /*! \endcond */
 
 namespace Mat {
-namespace detail {
-template <typename MatType>
-inline void clearZero(MatType &mat) {
-  if(mat.empty()) {
-    return;
+template <typename T>
+class Mat_ : public cv::Mat_<T> {
+public:
+  using cv::Mat_<T>::Mat_;
+
+  void updateStats(const Event &e) {
+    if(first_) {
+      last_ = e.t;
+      count_++;
+      return;
+    }
+    first_ = e.t;
   }
-  if(mat.isContinuous()) {
-    std::memset(mat.data, 0, mat.total() * mat.elemSize());
-    return;
+
+  CounterType count() const {
+    return count_;
   }
-  mat.setTo(0);
-}
-} // namespace detail
+
+  TimeType duration() const {
+    return last_ - first_;
+  }
+
+  /*!
+  \brief Reset statistics (count, first timestamp, last timestamp).
+  */
+  inline void resetStats() {
+    first_ = 0;
+    last_  = 0;
+    count_ = 0;
+  }
+
+  /*!
+  \brief Reset all pixels.
+  */
+  inline void clear() {
+    if(cv::Mat_<T>::empty()) {
+      return;
+    }
+    if(cv::Mat_<T>::isContinuous()) {
+      std::memset(cv::Mat_<T>::data, 0, cv::Mat_<T>::total() * cv::Mat_<T>::elemSize());
+      return;
+    }
+    cv::Mat_<T>::setTo(0);
+  }
+
+private:
+  TimeType first_{0};
+  TimeType last_{0};
+  CounterType count_{0};
+};
 
 /*!
 \brief Spatial map marking whether any event has occurred at each pixel.
@@ -51,9 +88,9 @@ using Binary = Binary_<uchar>;
 \endcode
 */
 template <typename Tb>
-class Binary_ : public cv::Mat_<Tb> {
+class Binary_ : public Mat_<Tb> {
 public:
-  using cv::Mat_<Tb>::Mat_;
+  using Mat_<Tb>::Mat_;
 
   /*!
   \brief Insert an event, setting the pixel at (e.x, e.y) to ON.
@@ -74,13 +111,6 @@ public:
   template <typename T>
   inline Tb emplace(const T x, const T y) {
     return set(x, y);
-  }
-
-  /*!
-  \brief Reset all pixels to OFF.
-  */
-  inline void clear() {
-    detail::clearZero(*this);
   }
 
   static constexpr Tb ON = std::numeric_limits<Tb>::max(); /*!< Value written on event insertion */
@@ -115,9 +145,9 @@ using Ternary = Ternary_<char>;
 \endcode
 */
 template <typename Tb>
-class Ternary_ : public cv::Mat_<Tb> {
+class Ternary_ : public Mat_<Tb> {
 public:
-  using cv::Mat_<Tb>::Mat_;
+  using Mat_<Tb>::Mat_;
 
   /*!
   \brief Insert an event, writing POSITIVE or NEGATIVE at (e.x, e.y) based on e.p.
@@ -139,13 +169,6 @@ public:
   template <typename T>
   inline Tb emplace(const T x, const T y, const bool p) {
     return set(x, y, p);
-  }
-
-  /*!
-  \brief Reset all pixels to ZERO.
-  */
-  inline void clear() {
-    detail::clearZero(*this);
   }
 
   static constexpr Tb POSITIVE = std::numeric_limits<Tb>::max(); /*!< Value for positive-polarity events */
@@ -175,9 +198,9 @@ using Ternary = Ternary_<char>;
 Each insertion overwrites the stored timestamp unconditionally; only the latest timestamp
 per pixel is retained. Timestamps are stored as TimeType (float by default).
 */
-class Time : public cv::Mat_<TimeType> {
+class Time : public Mat_<TimeType> {
 public:
-  using cv::Mat_<TimeType>::Mat_;
+  using Mat_<TimeType>::Mat_;
 
   /*!
   \brief Insert an event, storing e.t at pixel (e.x, e.y).
@@ -199,13 +222,6 @@ public:
   template <typename T>
   inline TimeType emplace(const T x, const T y, const TimeType t) {
     return set(x, y, t);
-  }
-
-  /*!
-  \brief Reset all timestamps to zero.
-  */
-  inline void clear() {
-    detail::clearZero(*this);
   }
 
   friend std::ostream &operator<<(std::ostream &os, const Time &time) {
@@ -230,9 +246,9 @@ private:
 Each insertion overwrites the stored polarity unconditionally; only the latest polarity
 per pixel is retained.
 */
-class Polarity : public cv::Mat_<PolarityType> {
+class Polarity : public Mat_<PolarityType> {
 public:
-  using cv::Mat_<PolarityType>::Mat_;
+  using Mat_<PolarityType>::Mat_;
 
   /*!
   \brief Insert an event, storing e.p at pixel (e.x, e.y).
@@ -254,13 +270,6 @@ public:
   template <typename T>
   inline PolarityType emplace(const T x, const T y, const PolarityType p) {
     return set(x, y, p);
-  }
-
-  /*!
-  \brief Reset all polarities to zero.
-  */
-  inline void clear() {
-    detail::clearZero(*this);
   }
 
   friend std::ostream &operator<<(std::ostream &os, const Polarity &polarity) {
@@ -285,9 +294,9 @@ private:
 Each positive-polarity event increments the pixel counter by +1; each negative-polarity
 event decrements it by -1. Counters are stored as CounterType (int16_t by default).
 */
-class Counter : public cv::Mat_<CounterType> {
+class Counter : public Mat_<CounterType> {
 public:
-  using cv::Mat_<CounterType>::Mat_;
+  using Mat_<CounterType>::Mat_;
 
   /*!
   \brief Insert an event, incrementing (p=true) or decrementing (p=false) the counter at (e.x, e.y).
@@ -309,13 +318,6 @@ public:
   template <typename T>
   inline CounterType emplace(const T x, const T y, const bool p) {
     return set(x, y, p);
-  }
-
-  /*!
-  \brief Reset all counters to zero.
-  */
-  inline void clear() {
-    detail::clearZero(*this);
   }
 
   friend std::ostream &operator<<(std::ostream &os, const Counter &counter) {
