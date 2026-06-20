@@ -111,6 +111,7 @@ var hierarchy =
       [ "ev::Array_< double, N >", "classev_1_1Array__.html", null ],
       [ "ev::Array_< T, N >", "classev_1_1Array__.html", null ]
     ] ],
+    [ "ev::BackgroundActivityFilter", "classev_1_1BackgroundActivityFilter.html", null ],
     [ "ev::BiasValue", "structev_1_1BiasValue.html", null ],
     [ "caer_device_handle", "structcaer__device__handle.html", null ],
     [ "ev::Circ_&lt; T &gt;", "structev_1_1Circ__.html", null ],
