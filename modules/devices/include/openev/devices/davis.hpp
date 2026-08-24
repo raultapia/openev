@@ -31,6 +31,12 @@ public:
   /*! \endcond */
 
   /*!
+  \brief Initialize the DAVIS camera.
+  This function sets up the DAVIS camera for operation. It must be called before any other.
+  */
+  void start() override;
+
+  /*!
   \brief Retrieve the bias value associated with the given name.
   \param name The identifier for the bias value to retrieve.
   \return The bias value corresponding to the given name.
@@ -247,8 +253,6 @@ public:
 private:
   template <typename T1, typename T2, typename T3>
   void getData_([[maybe_unused]] T1 *dvs, [[maybe_unused]] T2 *aps, [[maybe_unused]] T3 *imu);
-
-  void init() override;
 };
 
 } // namespace ev

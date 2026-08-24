@@ -13,11 +13,6 @@ ev::AbstractCamera::~AbstractCamera() {
   caerDeviceClose(&deviceHandler_);
 }
 
-void ev::AbstractCamera::start() {
-  init();
-  flush(1);
-}
-
 void ev::AbstractCamera::stop() {
   caerDeviceDataStop(deviceHandler_);
 }

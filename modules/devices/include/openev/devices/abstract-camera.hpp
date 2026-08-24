@@ -127,17 +127,9 @@ public:
   /*! \endcond */
 
   /*!
-  \brief Set offset to add after receiving events.
-  \param offset Time offset
-  */
-  inline void setTimeOffset(const double offset) {
-    timeOffset_ = offset;
-  }
-
-  /*!
   \brief Start reading data.
   */
-  void start();
+  virtual void start() = 0;
 
   /*!
   \brief Stop reading data.
@@ -204,11 +196,9 @@ protected:
   /*! \cond INTERNAL */
   std::atomic<bool> running_{false};
   caerDeviceHandle deviceHandler_{nullptr};
-  double timeOffset_{0};
+  std::int64_t reset_{0};
   cv::Rect_<uint16_t> roi_;
   /*! \endcond */
-
-  virtual void init() = 0;
 };
 
 } // namespace ev

@@ -8,6 +8,7 @@
 #include "openev/containers/vector.hpp"
 #include "openev/devices/abstract-camera.hpp"
 #include <array>
+#include <chrono>
 #include <cstdlib>
 #include <cstring>
 #include <libcaer/devices/davis.h>
@@ -25,6 +26,7 @@
 #include <opencv2/core/types.hpp>
 #include <opencv2/core/utils/logger.hpp>
 #include <queue>
+#include <thread>
 #include <type_traits>
 #include <version>
 
@@ -43,12 +45,18 @@ ev::Davis::Davis() {
 
     caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, ev::Davis::DEFAULT_INTERVAL); // 50Hz == 20000us
     caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_PACKET_SIZE, 0U);                       // Set to zero to disable
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_MODE, 0U);                                                      // 0 == APS frames disabled
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_INTERVAL, ev::Davis::DEFAULT_INTERVAL);                         // 50Hz == 20000us
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, ev::Davis::DEFAULT_EXPOSURE);                               // 6500 us
+
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_MUX, DAVIS_CONFIG_MUX_TIMESTAMP_RESET, 1);
+    reset_ = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
   }
 }
 
-void ev::Davis::init() {
+void ev::Davis::start() {
   std::array<uint32_t, 5> enable{};
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, enable.data());
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_RUN, &enable[1]);
@@ -65,6 +73,8 @@ void ev::Davis::init() {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_ACCELEROMETER, enable[2]);
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, enable[2]);
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, enable[2]);
+
+  AbstractCamera::flush(1);
 }
 
 ev::BiasValue ev::Davis::getBias(const uint8_t name) const {
@@ -201,11 +211,9 @@ bool ev::Davis::getData(ev::Queue &events, ev::StampedMatQueue &frames, ev::ImuQ
 template <typename T1, typename T2, typename T3>
 void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
   caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
-  while(container == nullptr) {
-    CV_LOG_WARNING(nullptr, "Connection with camera lost, retrying.");
-    caerDeviceDataStop(deviceHandler_);
-    init();
-    container = caerDeviceDataGet(deviceHandler_);
+  if(container == nullptr) {
+    CV_LOG_WARNING(nullptr, "Connection with camera lost.");
+    return;
   }
 
   const int32_t containter_size = caerEventPacketContainerGetEventPacketsNumber(container);
@@ -230,9 +238,9 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
           const uint16_t y = caerPolarityEventGetY(p);
           if(roi_.width <= 0 || roi_.height <= 0 || roi_.contains(cv::Point(x, y))) {
             if constexpr(std::is_same_v<T1, ev::Vector>) {
-              dvs->emplace_back(x, y, caerPolarityEventGetTimestamp(p) + timeOffset_, caerPolarityEventGetPolarity(p));
+              dvs->emplace_back(x, y, caerPolarityEventGetTimestamp(p) + reset_, caerPolarityEventGetPolarity(p));
             } else if constexpr(std::is_same_v<T1, ev::Queue>) {
-              dvs->emplace(x, y, caerPolarityEventGetTimestamp(p) + timeOffset_, caerPolarityEventGetPolarity(p));
+              dvs->emplace(x, y, caerPolarityEventGetTimestamp(p) + reset_, caerPolarityEventGetPolarity(p));
             }
           }
         }
@@ -246,7 +254,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
         for(int32_t k = 0; k < packet_size; k++) {
           const caerFrameEventConst p = caerFrameEventPacketGetEventConst(reinterpret_cast<caerFrameEventPacketConst>(packet), k);
           ev::StampedMat mat;
-          mat.t = caerFrameEventGetTimestamp(p) + timeOffset_;
+          mat.t = caerFrameEventGetTimestamp(p) + reset_;
 
           const int32_t x = caerFrameEventGetLengthX(p);
           const int32_t y = caerFrameEventGetLengthY(p);
@@ -274,7 +282,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
         for(int32_t k = 0; k < packet_size; k++) {
           const caerIMU6EventConst p = caerIMU6EventPacketGetEventConst(reinterpret_cast<caerIMU6EventPacketConst>(packet), k);
           ev::Imu data;
-          data.t = caerIMU6EventGetTimestamp(p) + timeOffset_;
+          data.t = caerIMU6EventGetTimestamp(p) + reset_;
           data.linear_acceleration.x = -caerIMU6EventGetAccelX(p) * ev::EARTH_GRAVITY;
           data.linear_acceleration.y = caerIMU6EventGetAccelY(p) * ev::EARTH_GRAVITY;
           data.linear_acceleration.z = -caerIMU6EventGetAccelZ(p) * ev::EARTH_GRAVITY;
@@ -303,11 +311,9 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
 
 void ev::Davis::getEventRaw(std::vector<uint64_t> &data) {
   caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
-  while(container == nullptr) {
-    CV_LOG_WARNING(nullptr, "Connection with camera lost, retrying.");
-    caerDeviceDataStop(deviceHandler_);
-    init();
-    container = caerDeviceDataGet(deviceHandler_);
+  if(container == nullptr) {
+    CV_LOG_WARNING(nullptr, "Connection with camera lost.");
+    return;
   }
 
   const int32_t containter_size = caerEventPacketContainerGetEventPacketsNumber(container);
@@ -332,11 +338,9 @@ std::size_t ev::Davis::getEventRaw(uint64_t *data, const bool allow_realloc /*= 
   std::size_t size = 0;
 
   caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
-  while(container == nullptr) {
-    CV_LOG_WARNING(nullptr, "Connection with camera lost, retrying.");
-    caerDeviceDataStop(deviceHandler_);
-    init();
-    container = caerDeviceDataGet(deviceHandler_);
+  if(container == nullptr) {
+    CV_LOG_WARNING(nullptr, "Connection with camera lost.");
+    return 0;
   }
 
   const int32_t containter_size = caerEventPacketContainerGetEventPacketsNumber(container);
