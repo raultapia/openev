@@ -1,6 +1,6 @@
 /*!
 \example example-plain-text-reader.cpp
-This is an example of how to use the Davis class.
+This is an example of how to use the PlainTextReader class.
 */
 #include "openev/core/types.hpp"
 #include "openev/readers/plain-text-reader.hpp"
@@ -36,10 +36,12 @@ static bool delete_file(const std::string &filename) {
 int main(int /*argc*/, const char * /*argv*/[]) {
   create_file("test.txt");
 
-  ev::PlainTextReader reader("test.txt");
-  ev::Event e;
-  while(reader.read(e)) {
-    std::cout << e << '\n';
+  ev::PlainTextReader reader("test.txt", ev::PlainTextReaderColumns::TXYP, " ", 1);
+  ev::Queue &q = reader.data();
+  while(!q.empty()) {
+    std::cout << q.front() << '\n';
+    q.pop();
+    reader.data();
   }
 
   delete_file("test.txt");

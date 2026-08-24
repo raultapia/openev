@@ -4,28 +4,21 @@
 \author Raul Tapia
 */
 #include "openev/readers/plain-text-reader.hpp"
+#include <algorithm>
+#include <cstdio>
 #include <opencv2/core/utils/logger.hpp>
-#include <sstream>
 
-ev::PlainTextReader::PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns /*= PlainTextReaderColumns::TXYP*/, const std::string &separator /*= " "*/, const std::size_t buffer_size /*= 0*/, const bool use_threading /*=false*/) : AbstractReader_{buffer_size, use_threading}, file_{filename, std::ios::in}, separator_{separator} {
-  switch(columns) {
-  case ev::PlainTextReaderColumns::TXYP:
-    parser_ = [](std::stringstream &iss, ev::Event &e) { iss >> e.t >> e.x >> e.y >> e.p; };
-    break;
-  case ev::PlainTextReaderColumns::XYTP:
-    parser_ = [](std::stringstream &iss, ev::Event &e) { iss >> e.x >> e.y >> e.t >> e.p; };
-    break;
-  case ev::PlainTextReaderColumns::PTXY:
-    parser_ = [](std::stringstream &iss, ev::Event &e) { iss >> e.p >> e.t >> e.x >> e.y; };
-    break;
-  case ev::PlainTextReaderColumns::PXYT:
-    parser_ = [](std::stringstream &iss, ev::Event &e) { iss >> e.p >> e.x >> e.y >> e.t; };
-    break;
-  default:
-    CV_LOG_ERROR(nullptr, "ev::PlainTextReader: No column order selected.");
+ev::PlainTextReader::PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns /*= PlainTextReaderColumns::TXYP*/, const std::string &separator /*= " "*/, const std::size_t buffer_size /*= 0*/, const bool use_threading /*=false*/) : AbstractReader_{buffer_size, use_threading}, file_{filename, std::ios::in}, columns_{columns}, sep_char_{0} {
+  if(separator != " ") {
+    if(separator.size() == 1) {
+      sep_char_ = separator[0];
+    } else {
+      sep_str_ = separator;
+    }
   }
-  replace_ = (separator != " ");
-  CV_LOG_ERROR(nullptr, "ev::PlainTextReader: Could not open file.", file_.is_open());
+  if(!file_.is_open()) {
+    CV_LOG_ERROR(nullptr, "ev::PlainTextReader: Could not open file.");
+  }
 }
 
 ev::PlainTextReader::~PlainTextReader() {
@@ -34,40 +27,41 @@ ev::PlainTextReader::~PlainTextReader() {
   }
 }
 
-std::size_t ev::PlainTextReader::count() {
-  const std::streampos original_pos = file_.tellg();
-  auto original_state = file_.rdstate();
-
-  file_.clear(std::ios::goodbit);
-  file_.seekg(0, std::ios::beg);
-
-  std::size_t line_count = 0;
+bool ev::PlainTextReader::updateBuffer_() {
   std::string line;
-  while(std::getline(file_, line)) {
-    line_count++;
+  if(!std::getline(file_, line)) {
+    return false;
   }
 
-  file_.clear(std::ios::goodbit);
-  file_.seekg(original_pos);
-  file_.setstate(original_state);
-
-  return line_count;
-}
-
-bool ev::PlainTextReader::read_(ev::Event &e) {
-  std::string line;
-  if(std::getline(file_, line)) {
-    if(replace_) {
-      line = std::regex_replace(line, separator_, " ");
+  if(sep_char_) {
+    std::replace(line.begin(), line.end(), sep_char_, ' ');
+  } else if(!sep_str_.empty()) {
+    std::size_t pos = 0;
+    while((pos = line.find(sep_str_, pos)) != std::string::npos) {
+      line.replace(pos++, sep_str_.size(), " ");
     }
-    std::stringstream iss(line, std::ios_base::in);
-    parser_(iss, e);
-    return true;
   }
-  return false;
-}
 
-void ev::PlainTextReader::reset_() {
-  file_.clear(std::ios::goodbit);
-  file_.seekg(0, std::ios::beg);
+  Event e;
+  int pi;
+  switch(columns_) {
+  case PlainTextReaderColumns::TXYP:
+    if(std::sscanf(line.c_str(), "%f %d %d %d", &e.t, &e.x, &e.y, &pi) != 4) return false;
+    break;
+  case PlainTextReaderColumns::XYTP:
+    if(std::sscanf(line.c_str(), "%d %d %f %d", &e.x, &e.y, &e.t, &pi) != 4) return false;
+    break;
+  case PlainTextReaderColumns::PTXY:
+    if(std::sscanf(line.c_str(), "%d %f %d %d", &pi, &e.t, &e.x, &e.y) != 4) return false;
+    break;
+  case PlainTextReaderColumns::PXYT:
+    if(std::sscanf(line.c_str(), "%d %d %d %f", &pi, &e.x, &e.y, &e.t) != 4) return false;
+    break;
+  default:
+    CV_LOG_ERROR(nullptr, "ev::PlainTextReader: No column order selected.");
+    return false;
+  }
+  e.p = static_cast<bool>(pi > 0);
+  buffer_.push(e);
+  return true;
 }
