@@ -7,19 +7,29 @@ file(GLOB_RECURSE TEST_FILES "${CMAKE_CURRENT_SOURCE_DIR}/tests/*")
 file(GLOB_RECURSE BENCHMARK_FILES "${CMAKE_CURRENT_SOURCE_DIR}/benchmark/*")
 
 find_package(OpenCV REQUIRED COMPONENTS core highgui calib3d)
-find_package(HDF5 REQUIRED COMPONENTS C CXX)
 include(GoogleTest)
 
 add_library(oe_${MODULE_NAME} SHARED ${SRC_FILES})
 target_link_libraries(oe_${MODULE_NAME} PUBLIC opencv_core opencv_highgui opencv_calib3d)
 target_link_libraries(oe_${MODULE_NAME} PUBLIC pthread)
-target_link_libraries(oe_${MODULE_NAME} PUBLIC ${HDF5_CXX_LIBRARIES} ${HDF5_LIBRARIES})
-target_include_directories(oe_${MODULE_NAME} PUBLIC ${HDF5_INCLUDE_DIRS})
 target_include_directories(oe_${MODULE_NAME} PUBLIC "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 target_include_directories(oe_${MODULE_NAME} PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/modules/core/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 target_include_directories(oe_${MODULE_NAME} PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/modules/containers/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 target_include_directories(oe_${MODULE_NAME} PUBLIC "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 set_target_properties(oe_${MODULE_NAME} PROPERTIES PUBLIC_HEADER "${INC_FILES}")
+
+include(FetchContent)
+FetchContent_Declare(
+  hdf5
+  GIT_REPOSITORY https://github.com/HDFGroup/hdf5.git
+  GIT_TAG        hdf5-1_14_3
+  GIT_SHALLOW    TRUE)
+set(HDF5_BUILD_EXAMPLES    OFF CACHE BOOL "" FORCE)
+set(HDF5_BUILD_TOOLS       OFF CACHE BOOL "" FORCE)
+set(HDF5_BUILD_TESTS       OFF CACHE BOOL "" FORCE)
+set(BUILD_TESTING          OFF CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(hdf5)
+target_link_libraries(oe_${MODULE_NAME} PUBLIC hdf5_cpp-static hdf5-static)
 
 install(
   TARGETS oe_${MODULE_NAME}
