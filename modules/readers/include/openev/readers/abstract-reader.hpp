@@ -34,7 +34,8 @@ public:
   AbstractReader_(const std::size_t buffer_size, const bool use_threading);
 
   /*!
-      TODO
+  \brief Returns a reference to the internal buffer (Queue) containing the data.
+  \return Reference to the internal Queue buffer.
   */
   inline Queue &data() {
     if(!eof_ && buffer_.size() < bufferSize_) {
