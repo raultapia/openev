@@ -1,6 +1,6 @@
 /*!
-\file cmax.hpp
-\brief
+\file voting.hpp
+\brief Bilinear voting utilities for event-based vision.
 \author Raul Tapia
 */
 #ifndef OPENEV_EVPROC_VOTING_HPP
@@ -12,10 +12,11 @@
 namespace ev {
 
 template <typename T>
-static inline std::array<T, 4> bilinearVoting(Event_<T> event);
+std::array<T, 4> bilinearVoting(Event_<T> event);
 
 template <typename T>
-static inline std::array<AugmentedEvent_<T>, 4> bilinearVoting(AugmentedEvent_<T> event);
+std::array<AugmentedEvent_<T>, 4> bilinearVoting(AugmentedEvent_<T> event);
+
 } // namespace ev
 
 #endif // OPENEV_EVPROC_VOTING_HPP
