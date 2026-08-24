@@ -1,0 +1,57 @@
+/*!
+\file filtering.hpp
+\brief Background activity noise filter for event streams.
+\author Raul Tapia
+*/
+#ifndef OPENEV_EVPROC_FILTERING_HPP
+#define OPENEV_EVPROC_FILTERING_HPP
+
+#include "openev/core/matrices.hpp"
+#include "openev/core/types.hpp"
+#include <limits>
+#include <opencv2/core/types.hpp>
+
+namespace ev {
+
+/*!
+\brief Background activity filter for event noise removal.
+
+Discards isolated events that have no correlated neighbor within a spatial radius and
+time window. An event passes if at least one pixel in its neighborhood fired within the
+last \p dt time units.
+
+\note T. Delbruck, "Frame-free dynamic digital vision"
+*/
+class BackgroundActivityFilter {
+public:
+  /*!
+  Constructor.
+  \param size Sensor resolution (width × height)
+  \param dt Time threshold; events with no neighbor firing within this window are discarded
+  \param radius Spatial neighborhood half-size (default 1 → 3×3 / 8-connected)
+  */
+  BackgroundActivityFilter(const cv::Size &size, ev::TimeType dt, int radius = 1);
+
+  ~BackgroundActivityFilter() = default;
+  BackgroundActivityFilter(const BackgroundActivityFilter &) = default;
+  BackgroundActivityFilter(BackgroundActivityFilter &&) noexcept = default;
+  BackgroundActivityFilter &operator=(const BackgroundActivityFilter &) = default;
+  BackgroundActivityFilter &operator=(BackgroundActivityFilter &&) noexcept = default;
+
+  /*!
+  Test and record a single event.
+  \param e Event to evaluate
+  \return True if the event passes (at least one neighbor fired within \p dt)
+  \note The internal timestamp map is updated regardless of whether the event passes.
+  */
+  [[nodiscard]] bool operator()(const ev::Event &e);
+
+private:
+  ev::Mat::Time map_;
+  ev::TimeType dt_;
+  int radius_;
+};
+
+} // namespace ev
+
+#endif // OPENEV_EVPROC_FILTERING_HPP

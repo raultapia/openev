@@ -7,6 +7,7 @@
 #ifndef OPENEV_EVPROC_HPP
 #define OPENEV_EVPROC_HPP
 
+#include "openev/evproc/filtering.hpp"
 #include "openev/evproc/undistortion.hpp"
 #include "openev/evproc/voting.hpp"
 
