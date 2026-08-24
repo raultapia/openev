@@ -13,6 +13,7 @@
 #include <vector>
 
 namespace ev {
+constexpr bool USING_HDF5_READER_HPP = true;
 
 /*!
 \brief This class extends AbstractReader_ to read event data from HDF5 files.

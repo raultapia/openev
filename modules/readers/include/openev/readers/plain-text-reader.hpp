@@ -13,6 +13,7 @@
 #include <string>
 
 namespace ev {
+constexpr bool USING_PLAIN_TEXT_READER_HPP = true;
 
 enum PlainTextReaderColumns : uint8_t {
   TXYP,
