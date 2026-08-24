@@ -20,17 +20,7 @@
 
 ev::UndistortMap::UndistortMap(const cv::Mat &cam_matrix, const cv::Mat &dist_coeff, const cv::Size &sz) {
   CV_LOG_ERROR(nullptr, "UndistortMap: Camera matrix size should be 3x3", cam_matrix.rows == 3 && cam_matrix.cols == 3);
-  CV_LOG_ERROR(nullptr, "UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == cv::Size(4, 1) ||
-                                                                                                      dist_coeff.size() == cv::Size(5, 1) ||
-                                                                                                      dist_coeff.size() == cv::Size(8, 1) ||
-                                                                                                      dist_coeff.size() == cv::Size(12, 1) ||
-                                                                                                      dist_coeff.size() == cv::Size(14, 1) ||
-                                                                                                      dist_coeff.size() == cv::Size(1, 4) ||
-                                                                                                      dist_coeff.size() == cv::Size(1, 5) ||
-                                                                                                      dist_coeff.size() == cv::Size(1, 8) ||
-                                                                                                      dist_coeff.size() == cv::Size(1, 12) ||
-                                                                                                      dist_coeff.size() == cv::Size(1, 14) ||
-                                                                                                      dist_coeff.size() == cv::Size(0, 0));
+  CV_LOG_ERROR(nullptr, "UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == cv::Size(4, 1) || dist_coeff.size() == cv::Size(5, 1) || dist_coeff.size() == cv::Size(8, 1) || dist_coeff.size() == cv::Size(12, 1) || dist_coeff.size() == cv::Size(14, 1) || dist_coeff.size() == cv::Size(1, 4) || dist_coeff.size() == cv::Size(1, 5) || dist_coeff.size() == cv::Size(1, 8) || dist_coeff.size() == cv::Size(1, 12) || dist_coeff.size() == cv::Size(1, 14) || dist_coeff.size() == cv::Size(0, 0));
   init(cam_matrix, dist_coeff, sz);
 }
 

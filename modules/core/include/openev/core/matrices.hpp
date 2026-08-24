@@ -53,7 +53,7 @@ public:
   */
   inline void resetStats() {
     first_ = 0;
-    last_  = 0;
+    last_ = 0;
     count_ = 0;
   }
 

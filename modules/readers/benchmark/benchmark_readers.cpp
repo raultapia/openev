@@ -23,23 +23,31 @@ static std::string makeTempFile(const std::size_t count, const ev::PlainTextRead
   std::ofstream f(path);
   for(std::size_t i = 0; i < count; ++i) {
     const double t = static_cast<double>(i) * 1e-6;
-    const int x    = static_cast<int>(i % 640);
-    const int y    = static_cast<int>(i % 480);
-    const int p    = static_cast<int>(i % 2);
+    const int x = static_cast<int>(i % 640);
+    const int y = static_cast<int>(i % 480);
+    const int p = static_cast<int>(i % 2);
     switch(fmt) {
-    case ev::PlainTextReaderColumns::TXYP: f << t << sep << x << sep << y << sep << p << '\n'; break;
-    case ev::PlainTextReaderColumns::XYTP: f << x << sep << y << sep << t << sep << p << '\n'; break;
-    case ev::PlainTextReaderColumns::PTXY: f << p << sep << t << sep << x << sep << y << '\n'; break;
-    case ev::PlainTextReaderColumns::PXYT: f << p << sep << x << sep << y << sep << t << '\n'; break;
+    case ev::PlainTextReaderColumns::TXYP:
+      f << t << sep << x << sep << y << sep << p << '\n';
+      break;
+    case ev::PlainTextReaderColumns::XYTP:
+      f << x << sep << y << sep << t << sep << p << '\n';
+      break;
+    case ev::PlainTextReaderColumns::PTXY:
+      f << p << sep << t << sep << x << sep << y << '\n';
+      break;
+    case ev::PlainTextReaderColumns::PXYT:
+      f << p << sep << x << sep << y << sep << t << '\n';
+      break;
     }
   }
   return path;
 }
 
-static const std::string kFileTXYP  = makeTempFile(kEventCount, ev::PlainTextReaderColumns::TXYP);
-static const std::string kFileXYTP  = makeTempFile(kEventCount, ev::PlainTextReaderColumns::XYTP);
-static const std::string kFilePTXY  = makeTempFile(kEventCount, ev::PlainTextReaderColumns::PTXY);
-static const std::string kFilePXYT  = makeTempFile(kEventCount, ev::PlainTextReaderColumns::PXYT);
+static const std::string kFileTXYP = makeTempFile(kEventCount, ev::PlainTextReaderColumns::TXYP);
+static const std::string kFileXYTP = makeTempFile(kEventCount, ev::PlainTextReaderColumns::XYTP);
+static const std::string kFilePTXY = makeTempFile(kEventCount, ev::PlainTextReaderColumns::PTXY);
+static const std::string kFilePXYT = makeTempFile(kEventCount, ev::PlainTextReaderColumns::PXYT);
 static const std::string kFileComma = makeTempFile(kEventCount, ev::PlainTextReaderColumns::TXYP, ',');
 
 static bool pullOne(ev::PlainTextReader &reader, ev::Event &e) {
@@ -84,7 +92,9 @@ static void BM_PullBatch(benchmark::State &state) {
   for(auto _ : state) {
     state.PauseTiming();
     ev::PlainTextReader reader(kFileTXYP, ev::PlainTextReaderColumns::TXYP, " ", buf);
-    for(std::size_t i = 0; i < buf; ++i) { reader.data(); }
+    for(std::size_t i = 0; i < buf; ++i) {
+      reader.data();
+    }
     state.ResumeTiming();
 
     while(pullOne(reader, e)) {
@@ -133,7 +143,10 @@ static void BM_SepSpace(benchmark::State &state) {
     state.PauseTiming();
     ev::PlainTextReader reader(kFileTXYP, ev::PlainTextReaderColumns::TXYP, " ", 1);
     state.ResumeTiming();
-    while(pullOne(reader, e)) { benchmark::DoNotOptimize(e); ++count; }
+    while(pullOne(reader, e)) {
+      benchmark::DoNotOptimize(e);
+      ++count;
+    }
   }
   state.SetItemsProcessed(count);
   state.SetLabel("sep_space");
@@ -146,7 +159,10 @@ static void BM_SepComma(benchmark::State &state) {
     state.PauseTiming();
     ev::PlainTextReader reader(kFileComma, ev::PlainTextReaderColumns::TXYP, ",", 1);
     state.ResumeTiming();
-    while(pullOne(reader, e)) { benchmark::DoNotOptimize(e); ++count; }
+    while(pullOne(reader, e)) {
+      benchmark::DoNotOptimize(e);
+      ++count;
+    }
   }
   state.SetItemsProcessed(count);
   state.SetLabel("sep_comma");
@@ -182,9 +198,9 @@ static std::string makeHDF5File(const std::size_t count) {
   hsize_t dims[1] = {count};
   H5::DataSpace space(1, dims);
   grp.createDataSet("t", H5::PredType::NATIVE_DOUBLE, space).write(t.data(), H5::PredType::NATIVE_DOUBLE);
-  grp.createDataSet("x", H5::PredType::NATIVE_INT,    space).write(x.data(), H5::PredType::NATIVE_INT);
-  grp.createDataSet("y", H5::PredType::NATIVE_INT,    space).write(y.data(), H5::PredType::NATIVE_INT);
-  grp.createDataSet("p", H5::PredType::NATIVE_INT,    space).write(p.data(), H5::PredType::NATIVE_INT);
+  grp.createDataSet("x", H5::PredType::NATIVE_INT, space).write(x.data(), H5::PredType::NATIVE_INT);
+  grp.createDataSet("y", H5::PredType::NATIVE_INT, space).write(y.data(), H5::PredType::NATIVE_INT);
+  grp.createDataSet("p", H5::PredType::NATIVE_INT, space).write(p.data(), H5::PredType::NATIVE_INT);
 
   return path;
 }

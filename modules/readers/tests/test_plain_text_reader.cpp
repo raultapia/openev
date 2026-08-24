@@ -1,8 +1,8 @@
-#include "readers_test_utils.hpp"
 #include "openev/readers/plain-text-reader.hpp"
-#include <gtest/gtest.h>
+#include "readers_test_utils.hpp"
 #include <cstdio>
 #include <fstream>
+#include <gtest/gtest.h>
 #include <string>
 
 static std::string writeTempFile(const std::string &content) {
@@ -54,10 +54,10 @@ protected:
   std::string f_txyp_, f_xytp_, f_ptxy_, f_pxyt_, f_comma_;
 
   void SetUp() override {
-    f_txyp_  = writeTempFile(kTXYP);
-    f_xytp_  = writeTempFile(kXYTP);
-    f_ptxy_  = writeTempFile(kPTXY);
-    f_pxyt_  = writeTempFile(kPXYT);
+    f_txyp_ = writeTempFile(kTXYP);
+    f_xytp_ = writeTempFile(kXYTP);
+    f_ptxy_ = writeTempFile(kPTXY);
+    f_pxyt_ = writeTempFile(kPXYT);
     f_comma_ = writeTempFile(kComma);
   }
 
@@ -196,17 +196,24 @@ TEST_F(PlainTextReaderTest, DrainMatchesFileContent) {
   ev::PlainTextReader reader(f_txyp_, ev::PlainTextReaderColumns::TXYP, " ", 1);
   ev::Vector v = drainAll(reader);
   ASSERT_EQ(v.size(), 5U);
-  EXPECT_FLOAT_EQ(v[0].t, 1.0f); EXPECT_EQ(v[0].x, 10);
-  EXPECT_FLOAT_EQ(v[1].t, 2.0f); EXPECT_EQ(v[1].x, 30);
-  EXPECT_FLOAT_EQ(v[2].t, 3.0f); EXPECT_EQ(v[2].x, 50);
-  EXPECT_FLOAT_EQ(v[3].t, 4.0f); EXPECT_EQ(v[3].x, 70);
-  EXPECT_FLOAT_EQ(v[4].t, 5.0f); EXPECT_EQ(v[4].x, 90);
+  EXPECT_FLOAT_EQ(v[0].t, 1.0f);
+  EXPECT_EQ(v[0].x, 10);
+  EXPECT_FLOAT_EQ(v[1].t, 2.0f);
+  EXPECT_EQ(v[1].x, 30);
+  EXPECT_FLOAT_EQ(v[2].t, 3.0f);
+  EXPECT_EQ(v[2].x, 50);
+  EXPECT_FLOAT_EQ(v[3].t, 4.0f);
+  EXPECT_EQ(v[3].x, 70);
+  EXPECT_FLOAT_EQ(v[4].t, 5.0f);
+  EXPECT_EQ(v[4].x, 90);
 }
 
 TEST_F(PlainTextReaderTest, BufferSizeMatchesEventCount) {
   ev::PlainTextReader reader(f_txyp_, ev::PlainTextReaderColumns::TXYP, " ", 5);
   ev::Queue &q = reader.data();
-  for(int i = 0; i < 4; i++) { reader.data(); }
+  for(int i = 0; i < 4; i++) {
+    reader.data();
+  }
   EXPECT_EQ(q.size(), 5U);
 }
 

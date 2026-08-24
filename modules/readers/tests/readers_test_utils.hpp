@@ -1,8 +1,8 @@
 #pragma once
 
-#include "openev/readers/abstract-reader.hpp"
 #include "openev/containers/queue.hpp"
 #include "openev/containers/vector.hpp"
+#include "openev/readers/abstract-reader.hpp"
 
 static bool tryPull(ev::AbstractReader_ &reader, ev::Event &e) {
   ev::Queue &q = reader.data();

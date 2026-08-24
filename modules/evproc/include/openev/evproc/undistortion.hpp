@@ -15,8 +15,8 @@
 #include <opencv2/core/mat.inl.hpp>
 #include <opencv2/core/traits.hpp>
 #include <opencv2/core/types.hpp>
-#include <opencv2/imgproc.hpp>
 #include <opencv2/core/utils/logger.hpp>
+#include <opencv2/imgproc.hpp>
 #include <stdint.h>
 #include <vector>
 
