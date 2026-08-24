@@ -27,5 +27,6 @@ var classev_1_1Davis =
     [ "setBias", "classev_1_1Davis.html#a71e2394a373d4d8d2609b20626df84f7", null ],
     [ "setDvsEventsPerPacket", "classev_1_1Davis.html#a600bbd8f6582e5eb52fa4fd4241d8276", null ],
     [ "setDvsTimeInterval", "classev_1_1Davis.html#a74c9a189b351a1e7be42b5813913a5a4", null ],
-    [ "setExposure", "classev_1_1Davis.html#ab4f29d8847c55d95b179f8cc0a05f306", null ]
+    [ "setExposure", "classev_1_1Davis.html#ab4f29d8847c55d95b179f8cc0a05f306", null ],
+    [ "start", "classev_1_1Davis.html#a702a3506b525d160bff45cf08e02c4a0", null ]
 ];

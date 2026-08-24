@@ -145,11 +145,8 @@ Inheritance diagram for ev::AbstractCamera:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abb4deb2bf57885b4e5847f613c67c538" id="r_abb4deb2bf57885b4e5847f613c67c538"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abb4deb2bf57885b4e5847f613c67c538">setTimeOffset</a> (const double offset)</td></tr>
-<tr class="memdesc:abb4deb2bf57885b4e5847f613c67c538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set offset to add after receiving events.  <br /></td></tr>
-<tr class="memitem:a772cbc6ed1b40c183fdc5423abd6ade0" id="r_a772cbc6ed1b40c183fdc5423abd6ade0"><td class="memItemLeft"><a id="a772cbc6ed1b40c183fdc5423abd6ade0" name="a772cbc6ed1b40c183fdc5423abd6ade0"></a>
-void&#160;</td><td class="memItemRight"><b>start</b> ()</td></tr>
-<tr class="memdesc:a772cbc6ed1b40c183fdc5423abd6ade0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start reading data. <br /></td></tr>
+<tr class="memitem:a4771dfb75858e7218f9c1ac1d3eb6b57" id="r_a4771dfb75858e7218f9c1ac1d3eb6b57"><td class="memItemLeft">virtual void&#160;</td><td class="memItemRight"><a class="el" href="#a4771dfb75858e7218f9c1ac1d3eb6b57">start</a> ()=0</td></tr>
+<tr class="memdesc:a4771dfb75858e7218f9c1ac1d3eb6b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start reading data.  <br /></td></tr>
 <tr class="memitem:ad53b72c2d823eb43d6770660eb8c5296" id="r_ad53b72c2d823eb43d6770660eb8c5296"><td class="memItemLeft"><a id="ad53b72c2d823eb43d6770660eb8c5296" name="ad53b72c2d823eb43d6770660eb8c5296"></a>
 void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <tr class="memdesc:ad53b72c2d823eb43d6770660eb8c5296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop reading data. <br /></td></tr>
@@ -169,11 +166,6 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <tr class="memdesc:ac6858f5256715a27d0077636f964b4be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data.  <br /></td></tr>
 <tr class="memitem:a5cba73cbd2080f685789d53c743c863e" id="r_a5cba73cbd2080f685789d53c743c863e"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a5cba73cbd2080f685789d53c743c863e">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events)=0</td></tr>
 <tr class="memdesc:a5cba73cbd2080f685789d53c743c863e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get data.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a014333faea188c3112ee3ab06f78de21" id="r_a014333faea188c3112ee3ab06f78de21"><td class="memItemLeft"><a id="a014333faea188c3112ee3ab06f78de21" name="a014333faea188c3112ee3ab06f78de21"></a>
-virtual void&#160;</td><td class="memItemRight"><b>init</b> ()=0</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an auxiliary class. This class cannot be instanced. </p>
@@ -431,8 +423,8 @@ virtual void&#160;</td><td class="memItemRight"><b>init</b> ()=0</td></tr>
 
 </div>
 </div>
-<a id="abb4deb2bf57885b4e5847f613c67c538" name="abb4deb2bf57885b4e5847f613c67c538"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb4deb2bf57885b4e5847f613c67c538">&#9670;&#160;</a></span>setTimeOffset()</h2>
+<a id="a4771dfb75858e7218f9c1ac1d3eb6b57" name="a4771dfb75858e7218f9c1ac1d3eb6b57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4771dfb75858e7218f9c1ac1d3eb6b57">&#9670;&#160;</a></span>start()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -441,26 +433,22 @@ virtual void&#160;</td><td class="memItemRight"><b>init</b> ()=0</td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ev::AbstractCamera::setTimeOffset </td>
+          <td class="memname">virtual void ev::AbstractCamera::start </td>
           <td>(</td>
-          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>offset</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Set offset to add after receiving events. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">offset</td><td>Time offset </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Start reading data. </p>
+
+<p>Implemented in <a class="el" href="classev_1_1Davis.html#a702a3506b525d160bff45cf08e02c4a0">ev::Davis</a>.</p>
 
 </div>
 </div>

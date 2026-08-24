@@ -8,7 +8,6 @@ var classev_1_1AbstractCamera =
     [ "getSensorSize", "classev_1_1AbstractCamera.html#a1a63eca45e88264202f7d7a8679f4826", null ],
     [ "setBias", "classev_1_1AbstractCamera.html#a7eea396e8cc99d7074ec6ae377f9223a", null ],
     [ "setRoi", "classev_1_1AbstractCamera.html#a6d9fc3efdb25bb166b2aa685e40b197a", null ],
-    [ "setTimeOffset", "classev_1_1AbstractCamera.html#abb4deb2bf57885b4e5847f613c67c538", null ],
-    [ "start", "classev_1_1AbstractCamera.html#a772cbc6ed1b40c183fdc5423abd6ade0", null ],
+    [ "start", "classev_1_1AbstractCamera.html#a4771dfb75858e7218f9c1ac1d3eb6b57", null ],
     [ "stop", "classev_1_1AbstractCamera.html#ad53b72c2d823eb43d6770660eb8c5296", null ]
 ];
