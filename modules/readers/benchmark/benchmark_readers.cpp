@@ -60,8 +60,6 @@ static bool pullOne(ev::PlainTextReader &reader, ev::Event &e) {
   return true;
 }
 
-// --- single-event pull throughput ---
-
 static void BM_PullSingle(benchmark::State &state) {
   const std::size_t buf = static_cast<std::size_t>(state.range(0));
   ev::Event e;
@@ -81,8 +79,6 @@ static void BM_PullSingle(benchmark::State &state) {
   state.SetItemsProcessed(count);
   state.SetLabel("pull_single");
 }
-
-// --- batch drain: pre-fill buffer to N, then drain ---
 
 static void BM_PullBatch(benchmark::State &state) {
   const std::size_t buf = static_cast<std::size_t>(state.range(0));
@@ -106,8 +102,6 @@ static void BM_PullBatch(benchmark::State &state) {
   state.SetItemsProcessed(count);
   state.SetLabel("pull_batch");
 }
-
-// --- column format parsing (each format uses a matching file) ---
 
 template <ev::PlainTextReaderColumns Fmt>
 static void BM_Format(benchmark::State &state, const std::string &file, const char *label) {
@@ -133,8 +127,6 @@ static void BM_FormatTXYP(benchmark::State &state) { BM_Format<ev::PlainTextRead
 static void BM_FormatXYTP(benchmark::State &state) { BM_Format<ev::PlainTextReaderColumns::XYTP>(state, kFileXYTP, "XYTP"); }
 static void BM_FormatPTXY(benchmark::State &state) { BM_Format<ev::PlainTextReaderColumns::PTXY>(state, kFilePTXY, "PTXY"); }
 static void BM_FormatPXYT(benchmark::State &state) { BM_Format<ev::PlainTextReaderColumns::PXYT>(state, kFilePXYT, "PXYT"); }
-
-// --- separator overhead: space (no transform) vs comma (char replace) ---
 
 static void BM_SepSpace(benchmark::State &state) {
   ev::Event e;
@@ -176,8 +168,6 @@ BENCHMARK(BM_FormatPTXY)->Iterations(3);
 BENCHMARK(BM_FormatPXYT)->Iterations(3);
 BENCHMARK(BM_SepSpace)->Iterations(3);
 BENCHMARK(BM_SepComma)->Iterations(3);
-
-// --- HDF5 reader throughput ---
 
 static std::string makeHDF5File(const std::size_t count) {
   char path[] = "/tmp/openev_bench_hdf5_XXXXXX";
