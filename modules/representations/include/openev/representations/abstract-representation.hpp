@@ -6,9 +6,10 @@
 #ifndef OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 #define OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 
+#include "openev/core/types.hpp"
 #include <array>
 #include <cstddef>
-#include <float.h>
+#include <limits>
 #include <memory>
 #include <opencv2/core/hal/interface.h>
 #include <opencv2/core/mat.hpp>
@@ -144,8 +145,8 @@ public:
   \brief Time difference between the oldest and the newest event integrated in the representation.
   \return Time difference. Returns -1 if time limits are not properly set.
   */
-  [[nodiscard]] inline double duration() const {
-    if(tLimits_[MIN] == DBL_MAX || tLimits_[MAX] == DBL_MIN) {
+  [[nodiscard]] inline TimeType duration() const {
+    if(tLimits_[MIN] == std::numeric_limits<TimeType>::max() || tLimits_[MAX] == std::numeric_limits<TimeType>::min()) {
       return -1;
     }
     return tLimits_[MAX] - tLimits_[MIN];
@@ -155,11 +156,11 @@ public:
   \brief Calculate the midpoint time between the oldest and the newest event.
   \return Midpoint time. Returns -1 if time limits are not properly set.
   */
-  [[nodiscard]] inline double midTime() const {
-    if(tLimits_[MIN] == DBL_MAX || tLimits_[MAX] == DBL_MIN) {
+  [[nodiscard]] inline TimeType midTime() const {
+    if(tLimits_[MIN] == std::numeric_limits<TimeType>::max() || tLimits_[MAX] == std::numeric_limits<TimeType>::min()) {
       return -1;
     }
-    return 0.5 * (tLimits_[MAX] + tLimits_[MIN]);
+    return 0.5f * (tLimits_[MAX] + tLimits_[MIN]);
   }
 
   /*!
@@ -320,8 +321,8 @@ protected:
   Type V_OFF = TypeHelper<T>::initialize()[1];
   Type V_RESET = TypeHelper<T>::initialize()[2];
 
-  double timeOffset_{0};
-  std::array<double, 2> tLimits_{DBL_MAX, DBL_MIN};
+  TimeType timeOffset_{0};
+  std::array<TimeType, 2> tLimits_{std::numeric_limits<TimeType>::max(), std::numeric_limits<TimeType>::min()};
   std::size_t count_{0};
   std::unique_ptr<cv::ColormapTypes> colormap_;
 

@@ -12,14 +12,14 @@ namespace ev {
 template <typename T, const RepresentationOptions Options, typename E>
 void AbstractRepresentation_<T, Options, E>::clear() {
   count_ = 0;
-  tLimits_ = {DBL_MAX, DBL_MIN};
+  tLimits_ = {std::numeric_limits<TimeType>::max(), std::numeric_limits<TimeType>::min()};
   clear_();
 }
 
 template <typename T, const RepresentationOptions Options, typename E>
 void AbstractRepresentation_<T, Options, E>::clear(const cv::Mat &background) {
   count_ = 0;
-  tLimits_ = {DBL_MAX, DBL_MIN};
+  tLimits_ = {std::numeric_limits<TimeType>::max(), std::numeric_limits<TimeType>::min()};
 
   if(background.channels() != TypeHelper<T>::NumChannels) {
     cv::Mat temp;
