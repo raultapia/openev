@@ -143,6 +143,14 @@ public:
   [[nodiscard]] cv::Size getSensorSize() const;
 
   /*!
+  \brief Get device reset time.
+  \return Reset time in microseconds
+  */
+  [[nodiscard]] uint64_t getResetTime() const {
+    return resetTime_;
+  }
+
+  /*!
   \brief Get current ROI.
   \return ROI
   */
@@ -196,6 +204,7 @@ protected:
   /*! \cond INTERNAL */
   std::atomic<bool> running_{false};
   caerDeviceHandle deviceHandler_{nullptr};
+  uint64_t resetTime_{0};
   cv::Rect_<uint16_t> roi_;
   /*! \endcond */
 };

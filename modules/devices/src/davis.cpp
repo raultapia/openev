@@ -8,6 +8,7 @@
 #include "openev/containers/vector.hpp"
 #include "openev/devices/abstract-camera.hpp"
 #include <array>
+#include <chrono>
 #include <cstdlib>
 #include <cstring>
 #include <libcaer/devices/davis.h>
@@ -68,6 +69,8 @@ void ev::Davis::start() {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, enable[2]);
 
   AbstractCamera::flush(1);
+  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_MUX, DAVIS_CONFIG_MUX_TIMESTAMP_RESET, 1);
+  resetTime_ = static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count());
 }
 
 ev::BiasValue ev::Davis::getBias(const uint8_t name) const {
