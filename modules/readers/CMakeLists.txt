@@ -22,7 +22,7 @@ include(FetchContent)
 FetchContent_Declare(
   hdf5
   GIT_REPOSITORY https://github.com/HDFGroup/hdf5.git
-  GIT_TAG        hdf5-1_14_3
+  GIT_TAG        hdf5-1_12_3
   GIT_SHALLOW    TRUE)
 set(HDF5_BUILD_EXAMPLES    OFF CACHE BOOL "" FORCE)
 set(HDF5_BUILD_TOOLS       OFF CACHE BOOL "" FORCE)
