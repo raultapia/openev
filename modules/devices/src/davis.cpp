@@ -8,7 +8,6 @@
 #include "openev/containers/vector.hpp"
 #include "openev/devices/abstract-camera.hpp"
 #include <array>
-#include <chrono>
 #include <cstdlib>
 #include <cstring>
 #include <libcaer/devices/davis.h>
@@ -26,7 +25,6 @@
 #include <opencv2/core/types.hpp>
 #include <opencv2/core/utils/logger.hpp>
 #include <queue>
-#include <thread>
 #include <type_traits>
 #include <version>
 
@@ -48,11 +46,6 @@ ev::Davis::Davis() {
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_MODE, 0U);                                                      // 0 == APS frames disabled
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_INTERVAL, ev::Davis::DEFAULT_INTERVAL);                         // 50Hz == 20000us
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, ev::Davis::DEFAULT_EXPOSURE);                               // 6500 us
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-
-    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_MUX, DAVIS_CONFIG_MUX_TIMESTAMP_RESET, 1);
-    reset_ = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
   }
 }
 
@@ -238,9 +231,9 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
           const uint16_t y = caerPolarityEventGetY(p);
           if(roi_.width <= 0 || roi_.height <= 0 || roi_.contains(cv::Point(x, y))) {
             if constexpr(std::is_same_v<T1, ev::Vector>) {
-              dvs->emplace_back(x, y, caerPolarityEventGetTimestamp(p) + reset_, caerPolarityEventGetPolarity(p));
+              dvs->emplace_back(x, y, caerPolarityEventGetTimestamp(p), caerPolarityEventGetPolarity(p));
             } else if constexpr(std::is_same_v<T1, ev::Queue>) {
-              dvs->emplace(x, y, caerPolarityEventGetTimestamp(p) + reset_, caerPolarityEventGetPolarity(p));
+              dvs->emplace(x, y, caerPolarityEventGetTimestamp(p), caerPolarityEventGetPolarity(p));
             }
           }
         }
@@ -254,7 +247,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
         for(int32_t k = 0; k < packet_size; k++) {
           const caerFrameEventConst p = caerFrameEventPacketGetEventConst(reinterpret_cast<caerFrameEventPacketConst>(packet), k);
           ev::StampedMat mat;
-          mat.t = caerFrameEventGetTimestamp(p) + reset_;
+          mat.t = caerFrameEventGetTimestamp(p);
 
           const int32_t x = caerFrameEventGetLengthX(p);
           const int32_t y = caerFrameEventGetLengthY(p);
@@ -282,7 +275,7 @@ void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
         for(int32_t k = 0; k < packet_size; k++) {
           const caerIMU6EventConst p = caerIMU6EventPacketGetEventConst(reinterpret_cast<caerIMU6EventPacketConst>(packet), k);
           ev::Imu data;
-          data.t = caerIMU6EventGetTimestamp(p) + reset_;
+          data.t = caerIMU6EventGetTimestamp(p);
           data.linear_acceleration.x = -caerIMU6EventGetAccelX(p) * ev::EARTH_GRAVITY;
           data.linear_acceleration.y = caerIMU6EventGetAccelY(p) * ev::EARTH_GRAVITY;
           data.linear_acceleration.z = -caerIMU6EventGetAccelZ(p) * ev::EARTH_GRAVITY;

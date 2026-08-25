@@ -196,7 +196,6 @@ protected:
   /*! \cond INTERNAL */
   std::atomic<bool> running_{false};
   caerDeviceHandle deviceHandler_{nullptr};
-  std::int64_t reset_{0};
   cv::Rect_<uint16_t> roi_;
   /*! \endcond */
 };
