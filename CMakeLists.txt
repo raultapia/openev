@@ -3,10 +3,12 @@ project(
   openev
   DESCRIPTION "Extending OpenCV to event-based vision"
   HOMEPAGE_URL https://github.com/raultapia/openev)
-set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
 
 find_package(Git QUIET REQUIRED)
 execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
