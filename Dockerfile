@@ -13,11 +13,12 @@ RUN apt -y update
 RUN apt -y install libboost-all-dev
 RUN apt -y install libcaer-dev
 RUN apt -y install libeigen3-dev
+RUN apt -y install libhdf5-dev
 RUN apt -y install libopencv-dev
 
 # Build
 COPY . /openev
 WORKDIR /openev
 RUN git submodule init && git submodule update
-RUN rm -rf build && mkdir build && cd build && cmake .. && make && make test
-RUN rm -rf build && mkdir build && cd build && cmake .. && make && make benchmarks
+RUN rm -rf build && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug .. && make && make test
+RUN rm -rf build && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug .. && make && make benchmarks
