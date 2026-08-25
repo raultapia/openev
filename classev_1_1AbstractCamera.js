@@ -4,6 +4,7 @@ var classev_1_1AbstractCamera =
     [ "getBias", "classev_1_1AbstractCamera.html#ae18b9c49046695f339dea026aa53bfe5", null ],
     [ "getData", "classev_1_1AbstractCamera.html#a5cba73cbd2080f685789d53c743c863e", null ],
     [ "getData", "classev_1_1AbstractCamera.html#ac6858f5256715a27d0077636f964b4be", null ],
+    [ "getResetTime", "classev_1_1AbstractCamera.html#ad0f9fec684a87c1690510a6307d74540", null ],
     [ "getRoi", "classev_1_1AbstractCamera.html#aa697b4c5c361499f2b5767c6ef1acadf", null ],
     [ "getSensorSize", "classev_1_1AbstractCamera.html#a1a63eca45e88264202f7d7a8679f4826", null ],
     [ "setBias", "classev_1_1AbstractCamera.html#a7eea396e8cc99d7074ec6ae377f9223a", null ],

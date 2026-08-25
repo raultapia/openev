@@ -152,6 +152,8 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <tr class="memdesc:ad53b72c2d823eb43d6770660eb8c5296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop reading data. <br /></td></tr>
 <tr class="memitem:a1a63eca45e88264202f7d7a8679f4826" id="r_a1a63eca45e88264202f7d7a8679f4826"><td class="memItemLeft">cv::Size&#160;</td><td class="memItemRight"><a class="el" href="#a1a63eca45e88264202f7d7a8679f4826">getSensorSize</a> () const</td></tr>
 <tr class="memdesc:a1a63eca45e88264202f7d7a8679f4826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device sensor size.  <br /></td></tr>
+<tr class="memitem:ad0f9fec684a87c1690510a6307d74540" id="r_ad0f9fec684a87c1690510a6307d74540"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#ad0f9fec684a87c1690510a6307d74540">getResetTime</a> () const</td></tr>
+<tr class="memdesc:ad0f9fec684a87c1690510a6307d74540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device reset time.  <br /></td></tr>
 <tr class="memitem:aa697b4c5c361499f2b5767c6ef1acadf" id="r_aa697b4c5c361499f2b5767c6ef1acadf"><td class="memItemLeft">cv::Rect_&lt; uint16_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa697b4c5c361499f2b5767c6ef1acadf">getRoi</a> () const</td></tr>
 <tr class="memdesc:aa697b4c5c361499f2b5767c6ef1acadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current ROI.  <br /></td></tr>
 <tr class="memitem:a6d9fc3efdb25bb166b2aa685e40b197a" id="r_a6d9fc3efdb25bb166b2aa685e40b197a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a6d9fc3efdb25bb166b2aa685e40b197a">setRoi</a> (const cv::Rect_&lt; uint16_t &gt; &amp;roi)</td></tr>
@@ -295,6 +297,34 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <dl class="section return"><dt>Returns</dt><dd>True if vector not empty </dd></dl>
 
 <p>Implemented in <a class="el" href="classev_1_1Davis.html#a7a7b13f5a17d2b0da7ef75056b301621">ev::Davis</a>.</p>
+
+</div>
+</div>
+<a id="ad0f9fec684a87c1690510a6307d74540" name="ad0f9fec684a87c1690510a6307d74540"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0f9fec684a87c1690510a6307d74540">&#9670;&#160;</a></span>getResetTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t ev::AbstractCamera::getResetTime </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get device reset time. </p>
+<dl class="section return"><dt>Returns</dt><dd>Reset time in microseconds </dd></dl>
 
 </div>
 </div>
