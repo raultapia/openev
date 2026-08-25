@@ -253,14 +253,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('abstract-camer
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>  std::atomic&lt;bool&gt; running_{<span class="keyword">false</span>};</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  caerDeviceHandle deviceHandler_{<span class="keyword">nullptr</span>};</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  std::int64_t reset_{0};</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  cv::Rect_&lt;uint16_t&gt; roi_;</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>};</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  cv::Rect_&lt;uint16_t&gt; roi_;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>};</div>
 </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>} <span class="comment">// namespace ev</span></div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_DEVICES_ABSTRACT_CAMERA_HPP</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>} <span class="comment">// namespace ev</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_DEVICES_ABSTRACT_CAMERA_HPP</span></div>
 <div class="ttc" id="aclassev_1_1AbstractCamera_html"><div class="ttname"><a href="classev_1_1AbstractCamera.html">ev::AbstractCamera</a></div><div class="ttdoc">This is an auxiliary class. This class cannot be instanced.</div><div class="ttdef"><b>Definition</b> abstract-camera.hpp:118</div></div>
 <div class="ttc" id="aclassev_1_1AbstractCamera_html_a1a63eca45e88264202f7d7a8679f4826"><div class="ttname"><a href="classev_1_1AbstractCamera.html#a1a63eca45e88264202f7d7a8679f4826">ev::AbstractCamera::getSensorSize</a></div><div class="ttdeci">cv::Size getSensorSize() const</div><div class="ttdoc">Get device sensor size.</div><div class="ttdef"><b>Definition</b> abstract-camera.cpp:20</div></div>
 <div class="ttc" id="aclassev_1_1AbstractCamera_html_a3f81aa6d40adbac4488794fdaa905006"><div class="ttname"><a href="classev_1_1AbstractCamera.html#a3f81aa6d40adbac4488794fdaa905006">ev::AbstractCamera::flush</a></div><div class="ttdeci">void flush(const double msec) const</div><div class="ttdoc">Discard data during an interval of time.</div><div class="ttdef"><b>Definition</b> abstract-camera.cpp:61</div></div>
