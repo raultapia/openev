@@ -11,11 +11,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 find_package(Git QUIET REQUIRED)
 execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
-include(FetchContent)
-set(BENCHMARK_ENABLE_TESTING OFF)
-FetchContent_Declare(google_benchmark GIT_REPOSITORY https://github.com/google/benchmark.git GIT_TAG v1.8.3)
-FetchContent_Declare(googletest GIT_REPOSITORY https://github.com/google/googletest.git GIT_TAG v1.17.0)
-FetchContent_MakeAvailable(google_benchmark googletest)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  include(FetchContent)
+  set(BENCHMARK_ENABLE_TESTING OFF)
+  FetchContent_Declare(google_benchmark GIT_REPOSITORY https://github.com/google/benchmark.git GIT_TAG v1.8.3)
+  FetchContent_Declare(googletest GIT_REPOSITORY https://github.com/google/googletest.git GIT_TAG v1.17.0)
+  FetchContent_MakeAvailable(google_benchmark googletest)
+endif()
 
 # Modules
 add_library(openev INTERFACE)
@@ -48,11 +50,11 @@ configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAK
 target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/openev.hpp;${PROJECT_SOURCE_DIR}/include/openev/options.hpp")
 
-# Tests
-enable_testing()
-
-# Benchmarks
-add_custom_target(benchmarks ${BENCHMARK_CMDS})
+# Tests and benchmarks
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  enable_testing()
+  add_custom_target(benchmarks ${BENCHMARK_CMDS})
+endif()
 
 # Examples
 option(BUILD_EXAMPLES "Build the examples" ON)

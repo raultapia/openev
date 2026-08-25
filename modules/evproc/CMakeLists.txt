@@ -6,7 +6,9 @@ file(GLOB_RECURSE INC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/include/openev/${MODULE
 file(GLOB_RECURSE TEST_FILES "${CMAKE_CURRENT_SOURCE_DIR}/tests/*")
 
 find_package(OpenCV REQUIRED COMPONENTS core highgui calib3d)
-include(GoogleTest)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  include(GoogleTest)
+endif()
 
 add_library(oe_${MODULE_NAME} SHARED ${SRC_FILES})
 target_link_libraries(oe_${MODULE_NAME} PUBLIC opencv_core opencv_highgui opencv_calib3d)
@@ -23,8 +25,9 @@ install(
   PUBLIC_HEADER DESTINATION include/openev/${MODULE_NAME})
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/include/openev/${MODULE_NAME}.hpp DESTINATION include/openev)
 
-enable_testing()
-add_executable(oe_${MODULE_NAME}_tests ${TEST_FILES})
-target_link_libraries(oe_${MODULE_NAME}_tests GTest::gtest GTest::gtest_main)
-target_link_libraries(oe_${MODULE_NAME}_tests oe_${MODULE_NAME})
-gtest_discover_tests(oe_${MODULE_NAME}_tests)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  add_executable(oe_${MODULE_NAME}_tests ${TEST_FILES})
+  target_link_libraries(oe_${MODULE_NAME}_tests GTest::gtest GTest::gtest_main)
+  target_link_libraries(oe_${MODULE_NAME}_tests oe_${MODULE_NAME})
+  gtest_discover_tests(oe_${MODULE_NAME}_tests)
+endif()
