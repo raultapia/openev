@@ -31,19 +31,36 @@ class Mat_ : public cv::Mat_<T> {
 public:
   using cv::Mat_<T>::Mat_;
 
+  /*! \cond INTERNAL */
+  Mat_() = default;
+  Mat_(const int rows, const int cols) : cv::Mat_<T>(rows, cols, static_cast<T>(0)) {}
+  explicit Mat_(const cv::Size size) : cv::Mat_<T>(size, static_cast<T>(0)) {}
+  /*! \endcond */
+
+  /*!
+  \brief Account for an event in the statistics reported by count() and duration().
+  \param e Event to account for
+  */
   void updateStats(const Event &e) {
-    if(first_) {
-      last_ = e.t;
-      count_++;
-      return;
+    if(count_ == 0) {
+      first_ = e.t;
     }
-    first_ = e.t;
+    last_ = e.t;
+    count_++;
   }
 
+  /*!
+  \brief Number of events accounted for by updateStats() since the last resetStats().
+  \return Event count
+  */
   CounterType count() const {
     return count_;
   }
 
+  /*!
+  \brief Time elapsed between the first and the last event accounted for by updateStats().
+  \return Time difference, zero if fewer than two events were accounted for
+  */
   TimeType duration() const {
     return last_ - first_;
   }

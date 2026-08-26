@@ -9,7 +9,7 @@ TEST(MatBaseTest, UpdateStatsCountDuration) {
   b.updateStats(ev::Event(3, 4, 1.0f, ev::POSITIVE));
   b.updateStats(ev::Event(3, 4, 3.0f, ev::POSITIVE));
   b.updateStats(ev::Event(3, 4, 5.0f, ev::POSITIVE));
-  EXPECT_EQ(b.count(), 2);
+  EXPECT_EQ(b.count(), 3);
   EXPECT_FLOAT_EQ(b.duration(), 4.0f);
 }
 
@@ -22,7 +22,8 @@ TEST(MatBaseTest, CountZeroBeforeAnyUpdate) {
 TEST(MatBaseTest, UpdateStatsSingleEvent) {
   ev::Mat::Binary b(10, 10);
   b.updateStats(ev::Event(0, 0, 2.0f, ev::POSITIVE));
-  EXPECT_EQ(b.count(), 0);
+  EXPECT_EQ(b.count(), 1);
+  EXPECT_FLOAT_EQ(b.duration(), 0.0f);
 }
 
 TEST(MatBaseTest, ResetStats) {
