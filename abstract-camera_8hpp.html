@@ -133,7 +133,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('abstract-camer
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="queue_8hpp_source.html">openev/containers/queue.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vector_8hpp_source.html">openev/containers/vector.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="types_8hpp_source.html">openev/core/types.hpp</a>&quot;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
+<code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
 <code>#include &lt;opencv2/core/mat.hpp&gt;</code><br />
 <code>#include &lt;opencv2/core/mat.inl.hpp&gt;</code><br />
@@ -148,7 +150,6 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('abstract-camer
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:caer_5Fdevice_5Fhandle" id="r_caer_5Fdevice_5Fhandle"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structcaer__device__handle.html">caer_device_handle</a></td></tr>
-<tr class="memitem:ev_3A_3ABiasValue" id="r_ev_3A_3ABiasValue"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structev_1_1BiasValue.html">ev::BiasValue</a></td></tr>
 <tr class="memitem:ev_3A_3AStampedMat" id="r_ev_3A_3AStampedMat"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1StampedMat.html">ev::StampedMat</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class extends cv::Mat to include timestamp.  <a href="classev_1_1StampedMat.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ev_3A_3Axyz_5Ft" id="r_ev_3A_3Axyz_5Ft"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structev_1_1xyz__t.html">ev::xyz_t</a></td></tr>
@@ -176,22 +177,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a0d4ad24f15848a76cbef198f48168f00" id="r_a0d4ad24f15848a76cbef198f48168f00"><td class="memTemplParams" colspan="2"><a id="a0d4ad24f15848a76cbef198f48168f00" name="a0d4ad24f15848a76cbef198f48168f00"></a>
 template&lt;typename T&gt; </td></tr>
 <tr class="memitem:a0d4ad24f15848a76cbef198f48168f00 template"><td class="memItemLeft">constexpr double&#160;</td><td class="memItemRight"><b>ev::unit::us</b> (const T x)</td></tr>
-<tr class="memitem:a957311e186f5af0576d3a70dbad13da8" id="r_a957311e186f5af0576d3a70dbad13da8"><td class="memItemLeft"><a id="a957311e186f5af0576d3a70dbad13da8" name="a957311e186f5af0576d3a70dbad13da8"></a>
-struct <a class="el" href="structev_1_1BiasValue.html">ev::BiasValue</a>&#160;</td><td class="memItemRight"><b>ev::__attribute__</b> ((aligned(2)))</td></tr>
-<tr class="memitem:a42103a84ec9bf3a22f2974cd535d6002" id="r_a42103a84ec9bf3a22f2974cd535d6002"><td class="memItemLeft"><a id="a42103a84ec9bf3a22f2974cd535d6002" name="a42103a84ec9bf3a22f2974cd535d6002"></a>
-std::ostream &amp;&#160;</td><td class="memItemRight"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const struct BiasValue &amp;value)</td></tr>
-<tr class="memitem:a3a294a6818348c9f90f36ac5b06e6522" id="r_a3a294a6818348c9f90f36ac5b06e6522"><td class="memItemLeft"><a id="a3a294a6818348c9f90f36ac5b06e6522" name="a3a294a6818348c9f90f36ac5b06e6522"></a>
-struct <a class="el" href="structev_1_1xyz__t.html">ev::xyz_t</a>&#160;</td><td class="memItemRight"><b>ev::__attribute__</b> ((aligned(32)))</td></tr>
-<tr class="memitem:a644718bb2fb240de962dc3c9a1fdf0dc" id="r_a644718bb2fb240de962dc3c9a1fdf0dc"><td class="memItemLeft"><a id="a644718bb2fb240de962dc3c9a1fdf0dc" name="a644718bb2fb240de962dc3c9a1fdf0dc"></a>
-bool&#160;</td><td class="memItemRight"><b>empty</b> () const</td></tr>
-<tr class="memitem:a23b477d0e2d399f75d585d154c346591" id="r_a23b477d0e2d399f75d585d154c346591"><td class="memItemLeft"><a id="a23b477d0e2d399f75d585d154c346591" name="a23b477d0e2d399f75d585d154c346591"></a>
-void&#160;</td><td class="memItemRight"><b>release</b> ()</td></tr>
-<tr class="memitem:ac204939dc1340199832d83a87a43b7d8" id="r_ac204939dc1340199832d83a87a43b7d8"><td class="memItemLeft"><a id="ac204939dc1340199832d83a87a43b7d8" name="ac204939dc1340199832d83a87a43b7d8"></a>
-std::ostream &amp;&#160;</td><td class="memItemRight"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const xyz_t &amp;xyz)</td></tr>
-<tr class="memitem:aa82e9461a32bae69521b16729d60e535" id="r_aa82e9461a32bae69521b16729d60e535"><td class="memItemLeft"><a id="aa82e9461a32bae69521b16729d60e535" name="aa82e9461a32bae69521b16729d60e535"></a>
-struct <a class="el" href="structev_1_1Imu.html">ev::Imu</a>&#160;</td><td class="memItemRight"><b>ev::__attribute__</b> ((aligned(128)))</td></tr>
-<tr class="memitem:a18572ac4cbca506a2f1b860ae5475b21" id="r_a18572ac4cbca506a2f1b860ae5475b21"><td class="memItemLeft"><a id="a18572ac4cbca506a2f1b860ae5475b21" name="a18572ac4cbca506a2f1b860ae5475b21"></a>
-std::ostream &amp;&#160;</td><td class="memItemRight"><b>operator&lt;&lt;</b> (std::ostream &amp;os, const Imu &amp;imu)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -201,24 +186,6 @@ constexpr double&#160;</td><td class="memItemRight"><b>ev::EARTH_GRAVITY</b> = 9
 constexpr double&#160;</td><td class="memItemRight"><b>ev::DEG2RAD</b> = M_PI / 180.0</td></tr>
 <tr class="memitem:aee548fd89942f0e936fe24520b61e7d8" id="r_aee548fd89942f0e936fe24520b61e7d8"><td class="memItemLeft"><a id="aee548fd89942f0e936fe24520b61e7d8" name="aee548fd89942f0e936fe24520b61e7d8"></a>
 constexpr double&#160;</td><td class="memItemRight"><b>ev::SCALE_16B_8B</b> = 1.0 / 256.0</td></tr>
-<tr class="memitem:a8c9d41dee93653849ab69780793c5759" id="r_a8c9d41dee93653849ab69780793c5759"><td class="memItemLeft"><a id="a8c9d41dee93653849ab69780793c5759" name="a8c9d41dee93653849ab69780793c5759"></a>
-uint8_t&#160;</td><td class="memItemRight"><b>coarse</b></td></tr>
-<tr class="memitem:a6f33245e1f441e2e36a7eb2487e86607" id="r_a6f33245e1f441e2e36a7eb2487e86607"><td class="memItemLeft"><a id="a6f33245e1f441e2e36a7eb2487e86607" name="a6f33245e1f441e2e36a7eb2487e86607"></a>
-uint8_t&#160;</td><td class="memItemRight"><b>fine</b></td></tr>
-<tr class="memitem:ada617a1bd74775f48b891fff37d3adda" id="r_ada617a1bd74775f48b891fff37d3adda"><td class="memItemLeft"><a id="ada617a1bd74775f48b891fff37d3adda" name="ada617a1bd74775f48b891fff37d3adda"></a>
-<a class="el" href="classev_1_1StampedMat.html">ev::StampedMat</a>&#160;</td><td class="memItemRight"><b>ev::__attribute__</b></td></tr>
-<tr class="memitem:af88b946fb90d5f08b5fb740c70e98c10" id="r_af88b946fb90d5f08b5fb740c70e98c10"><td class="memItemLeft"><a id="af88b946fb90d5f08b5fb740c70e98c10" name="af88b946fb90d5f08b5fb740c70e98c10"></a>
-double&#160;</td><td class="memItemRight"><b>x</b> {0}</td></tr>
-<tr class="memitem:ab927965981178aa1fba979a37168db2a" id="r_ab927965981178aa1fba979a37168db2a"><td class="memItemLeft"><a id="ab927965981178aa1fba979a37168db2a" name="ab927965981178aa1fba979a37168db2a"></a>
-double&#160;</td><td class="memItemRight"><b>y</b> {0}</td></tr>
-<tr class="memitem:ab3e6ed577a7c669c19de1f9c1b46c872" id="r_ab3e6ed577a7c669c19de1f9c1b46c872"><td class="memItemLeft"><a id="ab3e6ed577a7c669c19de1f9c1b46c872" name="ab3e6ed577a7c669c19de1f9c1b46c872"></a>
-double&#160;</td><td class="memItemRight"><b>z</b> {0}</td></tr>
-<tr class="memitem:a87accd1af8e0aff4b818d891374f7cec" id="r_a87accd1af8e0aff4b818d891374f7cec"><td class="memItemLeft"><a id="a87accd1af8e0aff4b818d891374f7cec" name="a87accd1af8e0aff4b818d891374f7cec"></a>
-double&#160;</td><td class="memItemRight"><b>t</b> {0}</td></tr>
-<tr class="memitem:aa8bcc58564507c8763298c2a3f270ec7" id="r_aa8bcc58564507c8763298c2a3f270ec7"><td class="memItemLeft"><a id="aa8bcc58564507c8763298c2a3f270ec7" name="aa8bcc58564507c8763298c2a3f270ec7"></a>
-xyz_t&#160;</td><td class="memItemRight"><b>linear_acceleration</b></td></tr>
-<tr class="memitem:ad6ede727010e0e68a4ab416a449dc656" id="r_ad6ede727010e0e68a4ab416a449dc656"><td class="memItemLeft"><a id="ad6ede727010e0e68a4ab416a449dc656" name="ad6ede727010e0e68a4ab416a449dc656"></a>
-xyz_t&#160;</td><td class="memItemRight"><b>angular_velocity</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Abstract camera device driver. </p>

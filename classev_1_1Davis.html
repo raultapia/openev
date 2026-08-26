@@ -147,16 +147,20 @@ Inheritance diagram for ev::Davis:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a702a3506b525d160bff45cf08e02c4a0" id="r_a702a3506b525d160bff45cf08e02c4a0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a702a3506b525d160bff45cf08e02c4a0">start</a> () override</td></tr>
 <tr class="memdesc:a702a3506b525d160bff45cf08e02c4a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the DAVIS camera. This function sets up the DAVIS camera for operation. It must be called before any other.  <br /></td></tr>
+<tr class="memitem:a203fb81db877c792158e41b45aada0bc" id="r_a203fb81db877c792158e41b45aada0bc"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a203fb81db877c792158e41b45aada0bc">hasAps</a> () const override</td></tr>
+<tr class="memdesc:a203fb81db877c792158e41b45aada0bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">DAVIS cameras have an APS sensor.  <br /></td></tr>
+<tr class="memitem:abe4cdb906ea96c12e2c46d47b55792b2" id="r_abe4cdb906ea96c12e2c46d47b55792b2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#abe4cdb906ea96c12e2c46d47b55792b2">hasImu</a> () const override</td></tr>
+<tr class="memdesc:abe4cdb906ea96c12e2c46d47b55792b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">DAVIS cameras have an IMU.  <br /></td></tr>
+<tr class="memitem:a71f5276df44836fe47980097eaaf583b" id="r_a71f5276df44836fe47980097eaaf583b"><td class="memItemLeft">cv::Size&#160;</td><td class="memItemRight"><a class="el" href="#a71f5276df44836fe47980097eaaf583b">getSensorSize</a> () const override</td></tr>
+<tr class="memdesc:a71f5276df44836fe47980097eaaf583b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device sensor size.  <br /></td></tr>
+<tr class="memitem:abcb4d239d5a3eb6c21310838ed935340" id="r_abcb4d239d5a3eb6c21310838ed935340"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#abcb4d239d5a3eb6c21310838ed935340">setRoi</a> (const cv::Rect_&lt; uint16_t &gt; &amp;roi) override</td></tr>
+<tr class="memdesc:abcb4d239d5a3eb6c21310838ed935340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current ROI. Events outside the ROI are not considered. Images are cropped according to the ROI.  <br /></td></tr>
 <tr class="memitem:a99281a5f9c8403cdb1119b7ef807967d" id="r_a99281a5f9c8403cdb1119b7ef807967d"><td class="memItemLeft"><a class="el" href="structev_1_1BiasValue.html">BiasValue</a>&#160;</td><td class="memItemRight"><a class="el" href="#a99281a5f9c8403cdb1119b7ef807967d">getBias</a> (const uint8_t name) const</td></tr>
 <tr class="memdesc:a99281a5f9c8403cdb1119b7ef807967d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the bias value associated with the given name.  <br /></td></tr>
 <tr class="memitem:a71e2394a373d4d8d2609b20626df84f7" id="r_a71e2394a373d4d8d2609b20626df84f7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a71e2394a373d4d8d2609b20626df84f7">setBias</a> (const uint8_t name, const <a class="el" href="structev_1_1BiasValue.html">BiasValue</a> &amp;value)</td></tr>
 <tr class="memdesc:a71e2394a373d4d8d2609b20626df84f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bias value associated with the given name.  <br /></td></tr>
 <tr class="memitem:a0117f88181902660a09a9d21cffd600e" id="r_a0117f88181902660a09a9d21cffd600e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0117f88181902660a09a9d21cffd600e">enableDvs</a> (bool state)</td></tr>
 <tr class="memdesc:a0117f88181902660a09a9d21cffd600e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable DVS.  <br /></td></tr>
-<tr class="memitem:a74c9a189b351a1e7be42b5813913a5a4" id="r_a74c9a189b351a1e7be42b5813913a5a4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a74c9a189b351a1e7be42b5813913a5a4">setDvsTimeInterval</a> (uint32_t usec)</td></tr>
-<tr class="memdesc:a74c9a189b351a1e7be42b5813913a5a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set DVS maximum time interval between subsequent transmissions.  <br /></td></tr>
-<tr class="memitem:a600bbd8f6582e5eb52fa4fd4241d8276" id="r_a600bbd8f6582e5eb52fa4fd4241d8276"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a600bbd8f6582e5eb52fa4fd4241d8276">setDvsEventsPerPacket</a> (uint32_t n)</td></tr>
-<tr class="memdesc:a600bbd8f6582e5eb52fa4fd4241d8276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set DVS maximum number of events per transmission.  <br /></td></tr>
 <tr class="memitem:a54c7f45f74dc699134d8d618623c285a" id="r_a54c7f45f74dc699134d8d618623c285a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a54c7f45f74dc699134d8d618623c285a">enableAps</a> (bool state)</td></tr>
 <tr class="memdesc:a54c7f45f74dc699134d8d618623c285a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable APS.  <br /></td></tr>
 <tr class="memitem:ad86fffda93f5304b98314aafc8e71fa2" id="r_ad86fffda93f5304b98314aafc8e71fa2"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad86fffda93f5304b98314aafc8e71fa2">setApsTimeInterval</a> (uint32_t usec)</td></tr>
@@ -165,60 +169,58 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab4f29d8847c55d95b179f8cc0a05f306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set APS exposure time.  <br /></td></tr>
 <tr class="memitem:a861ff86ef40d59ee669ee5b5c9a32fbd" id="r_a861ff86ef40d59ee669ee5b5c9a32fbd"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a861ff86ef40d59ee669ee5b5c9a32fbd">enableImu</a> (bool state)</td></tr>
 <tr class="memdesc:a861ff86ef40d59ee669ee5b5c9a32fbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable IMU.  <br /></td></tr>
-<tr class="memitem:a7a7b13f5a17d2b0da7ef75056b301621" id="r_a7a7b13f5a17d2b0da7ef75056b301621"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a7a7b13f5a17d2b0da7ef75056b301621">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events) override</td></tr>
-<tr class="memdesc:a7a7b13f5a17d2b0da7ef75056b301621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS data.  <br /></td></tr>
-<tr class="memitem:a73199b0d1416c16b842c8a0401b77f30" id="r_a73199b0d1416c16b842c8a0401b77f30"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a73199b0d1416c16b842c8a0401b77f30">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events) override</td></tr>
-<tr class="memdesc:a73199b0d1416c16b842c8a0401b77f30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS data.  <br /></td></tr>
-<tr class="memitem:a2222a532137ae5aa3ca416b428397b2e" id="r_a2222a532137ae5aa3ca416b428397b2e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a2222a532137ae5aa3ca416b428397b2e">getData</a> (<a class="el" href="classev_1_1StampedMat.html">StampedMat</a> &amp;frame)</td></tr>
-<tr class="memdesc:a2222a532137ae5aa3ca416b428397b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get APS data.  <br /></td></tr>
-<tr class="memitem:ab4066750e85fa399bb64af1c91d61d77" id="r_ab4066750e85fa399bb64af1c91d61d77"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ab4066750e85fa399bb64af1c91d61d77">getData</a> (StampedMatVector &amp;frames)</td></tr>
-<tr class="memdesc:ab4066750e85fa399bb64af1c91d61d77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get APS data.  <br /></td></tr>
-<tr class="memitem:aad5abd1faeaa1db3541efd1b898341a0" id="r_aad5abd1faeaa1db3541efd1b898341a0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aad5abd1faeaa1db3541efd1b898341a0">getData</a> (StampedMatQueue &amp;frames)</td></tr>
-<tr class="memdesc:aad5abd1faeaa1db3541efd1b898341a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get APS data.  <br /></td></tr>
-<tr class="memitem:a94ff6a26778ae5bf5be897f71fa9de15" id="r_a94ff6a26778ae5bf5be897f71fa9de15"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a94ff6a26778ae5bf5be897f71fa9de15">getData</a> (<a class="el" href="structev_1_1Imu.html">Imu</a> &amp;imu)</td></tr>
-<tr class="memdesc:a94ff6a26778ae5bf5be897f71fa9de15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get IMU data.  <br /></td></tr>
-<tr class="memitem:ac4e4cb4e57c52c26530f76f3b681fadc" id="r_ac4e4cb4e57c52c26530f76f3b681fadc"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac4e4cb4e57c52c26530f76f3b681fadc">getData</a> (ImuVector &amp;imu)</td></tr>
-<tr class="memdesc:ac4e4cb4e57c52c26530f76f3b681fadc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get IMU data.  <br /></td></tr>
-<tr class="memitem:ad71a40e7fd331ec62ca64ca5920a093d" id="r_ad71a40e7fd331ec62ca64ca5920a093d"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ad71a40e7fd331ec62ca64ca5920a093d">getData</a> (ImuQueue &amp;imu)</td></tr>
-<tr class="memdesc:ad71a40e7fd331ec62ca64ca5920a093d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get IMU data.  <br /></td></tr>
-<tr class="memitem:a924382387c75df918403a214e2fe28a7" id="r_a924382387c75df918403a214e2fe28a7"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a924382387c75df918403a214e2fe28a7">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, <a class="el" href="classev_1_1StampedMat.html">StampedMat</a> &amp;frame)</td></tr>
-<tr class="memdesc:a924382387c75df918403a214e2fe28a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS data.  <br /></td></tr>
-<tr class="memitem:a1eb7cb1c05c96d5fd4912600bbc5f365" id="r_a1eb7cb1c05c96d5fd4912600bbc5f365"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1eb7cb1c05c96d5fd4912600bbc5f365">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, StampedMatVector &amp;frames)</td></tr>
-<tr class="memdesc:a1eb7cb1c05c96d5fd4912600bbc5f365"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS data.  <br /></td></tr>
-<tr class="memitem:ac131a8d1bdfa056bfa96f510351872a5" id="r_ac131a8d1bdfa056bfa96f510351872a5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac131a8d1bdfa056bfa96f510351872a5">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events, StampedMatQueue &amp;frames)</td></tr>
-<tr class="memdesc:ac131a8d1bdfa056bfa96f510351872a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS data.  <br /></td></tr>
-<tr class="memitem:a8d2cb388c41005c85c861c08dd1fa5c0" id="r_a8d2cb388c41005c85c861c08dd1fa5c0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a8d2cb388c41005c85c861c08dd1fa5c0">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, <a class="el" href="structev_1_1Imu.html">Imu</a> &amp;imu)</td></tr>
-<tr class="memdesc:a8d2cb388c41005c85c861c08dd1fa5c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+IMU data.  <br /></td></tr>
-<tr class="memitem:a4c59582cfcc4400d4ab587f73ddb7aea" id="r_a4c59582cfcc4400d4ab587f73ddb7aea"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a4c59582cfcc4400d4ab587f73ddb7aea">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, ImuVector &amp;imu)</td></tr>
-<tr class="memdesc:a4c59582cfcc4400d4ab587f73ddb7aea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+IMU data.  <br /></td></tr>
-<tr class="memitem:a5a0ef05d34e43be4ad0e3291061173f0" id="r_a5a0ef05d34e43be4ad0e3291061173f0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a5a0ef05d34e43be4ad0e3291061173f0">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events, ImuQueue &amp;imu)</td></tr>
-<tr class="memdesc:a5a0ef05d34e43be4ad0e3291061173f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+IMU data.  <br /></td></tr>
-<tr class="memitem:ac73b8f209990a669b62db92afd4032b1" id="r_ac73b8f209990a669b62db92afd4032b1"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac73b8f209990a669b62db92afd4032b1">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, <a class="el" href="classev_1_1StampedMat.html">StampedMat</a> &amp;frame, <a class="el" href="structev_1_1Imu.html">Imu</a> &amp;imu)</td></tr>
-<tr class="memdesc:ac73b8f209990a669b62db92afd4032b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS+IMU data.  <br /></td></tr>
-<tr class="memitem:a983c93be61ca48c6d6a82e2c76719601" id="r_a983c93be61ca48c6d6a82e2c76719601"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a983c93be61ca48c6d6a82e2c76719601">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, StampedMatVector &amp;frame, ImuVector &amp;imu)</td></tr>
-<tr class="memdesc:a983c93be61ca48c6d6a82e2c76719601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS+IMU data.  <br /></td></tr>
-<tr class="memitem:a53535ab0c974cc8ddc02bc18ec8d20ab" id="r_a53535ab0c974cc8ddc02bc18ec8d20ab"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a53535ab0c974cc8ddc02bc18ec8d20ab">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events, StampedMatQueue &amp;frame, ImuQueue &amp;imu)</td></tr>
-<tr class="memdesc:a53535ab0c974cc8ddc02bc18ec8d20ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS+IMU data.  <br /></td></tr>
-<tr class="memitem:abcab1d9da49a96ab62c69e83f494ee81" id="r_abcab1d9da49a96ab62c69e83f494ee81"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abcab1d9da49a96ab62c69e83f494ee81">getEventRaw</a> (std::vector&lt; uint64_t &gt; &amp;data)</td></tr>
-<tr class="memdesc:abcab1d9da49a96ab62c69e83f494ee81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve raw event data.  <br /></td></tr>
-<tr class="memitem:a9b1fc0eb37788690c70b8f299c2d80ad" id="r_a9b1fc0eb37788690c70b8f299c2d80ad"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#a9b1fc0eb37788690c70b8f299c2d80ad">getEventRaw</a> (uint64_t *data, const bool allow_realloc=true)</td></tr>
-<tr class="memdesc:a9b1fc0eb37788690c70b8f299c2d80ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve raw event data.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classev_1_1AbstractCamera"><td colspan="2">Public Member Functions inherited from <a class="el" href="classev_1_1AbstractCamera.html">ev::AbstractCamera</a></td></tr>
 <tr class="memitem:ad53b72c2d823eb43d6770660eb8c5296 pub_methods_classev_1_1AbstractCamera" id="r_ad53b72c2d823eb43d6770660eb8c5296"><td class="memItemLeft">
 void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <tr class="memdesc:ad53b72c2d823eb43d6770660eb8c5296 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop reading data. <br /></td></tr>
-<tr class="memitem:a1a63eca45e88264202f7d7a8679f4826 pub_methods_classev_1_1AbstractCamera" id="r_a1a63eca45e88264202f7d7a8679f4826"><td class="memItemLeft">cv::Size&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a1a63eca45e88264202f7d7a8679f4826">getSensorSize</a> () const</td></tr>
-<tr class="memdesc:a1a63eca45e88264202f7d7a8679f4826 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device sensor size.  <br /></td></tr>
+<tr class="memitem:a8481790d41fa02ff5b58d519791cd4ef pub_methods_classev_1_1AbstractCamera" id="r_a8481790d41fa02ff5b58d519791cd4ef"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a8481790d41fa02ff5b58d519791cd4ef">isOpen</a> () const</td></tr>
+<tr class="memdesc:a8481790d41fa02ff5b58d519791cd4ef pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the device was found and opened.  <br /></td></tr>
 <tr class="memitem:ad0f9fec684a87c1690510a6307d74540 pub_methods_classev_1_1AbstractCamera" id="r_ad0f9fec684a87c1690510a6307d74540"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ad0f9fec684a87c1690510a6307d74540">getResetTime</a> () const</td></tr>
 <tr class="memdesc:ad0f9fec684a87c1690510a6307d74540 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device reset time.  <br /></td></tr>
 <tr class="memitem:aa697b4c5c361499f2b5767c6ef1acadf pub_methods_classev_1_1AbstractCamera" id="r_aa697b4c5c361499f2b5767c6ef1acadf"><td class="memItemLeft">cv::Rect_&lt; uint16_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#aa697b4c5c361499f2b5767c6ef1acadf">getRoi</a> () const</td></tr>
 <tr class="memdesc:aa697b4c5c361499f2b5767c6ef1acadf pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current ROI.  <br /></td></tr>
-<tr class="memitem:a6d9fc3efdb25bb166b2aa685e40b197a pub_methods_classev_1_1AbstractCamera" id="r_a6d9fc3efdb25bb166b2aa685e40b197a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a6d9fc3efdb25bb166b2aa685e40b197a">setRoi</a> (const cv::Rect_&lt; uint16_t &gt; &amp;roi)</td></tr>
-<tr class="memdesc:a6d9fc3efdb25bb166b2aa685e40b197a pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current ROI. Events outside the ROI are not considered. Images are cropped according to the ROI.  <br /></td></tr>
-<tr class="memitem:ae18b9c49046695f339dea026aa53bfe5 pub_methods_classev_1_1AbstractCamera" id="r_ae18b9c49046695f339dea026aa53bfe5"><td class="memItemLeft"><a class="el" href="structev_1_1BiasValue.html">BiasValue</a>&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ae18b9c49046695f339dea026aa53bfe5">getBias</a> (const int8_t config_bias, const uint8_t name) const</td></tr>
-<tr class="memdesc:ae18b9c49046695f339dea026aa53bfe5 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the bias value associated with a specific configuration and name.  <br /></td></tr>
-<tr class="memitem:a7eea396e8cc99d7074ec6ae377f9223a pub_methods_classev_1_1AbstractCamera" id="r_a7eea396e8cc99d7074ec6ae377f9223a"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a7eea396e8cc99d7074ec6ae377f9223a">setBias</a> (const int8_t config_bias, const uint8_t name, const <a class="el" href="structev_1_1BiasValue.html">BiasValue</a> &amp;value)</td></tr>
-<tr class="memdesc:a7eea396e8cc99d7074ec6ae377f9223a pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the bias value associated with a specific configuration and name.  <br /></td></tr>
+<tr class="memitem:a2e53ff9e8ce9eb4d380b2147dacf017d pub_methods_classev_1_1AbstractCamera" id="r_a2e53ff9e8ce9eb4d380b2147dacf017d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a2e53ff9e8ce9eb4d380b2147dacf017d">setTimeInterval</a> (const uint32_t usec)</td></tr>
+<tr class="memdesc:a2e53ff9e8ce9eb4d380b2147dacf017d pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum time interval between subsequent transmissions.  <br /></td></tr>
+<tr class="memitem:ae73cdbc0a520bec72d6b0741c61361ca pub_methods_classev_1_1AbstractCamera" id="r_ae73cdbc0a520bec72d6b0741c61361ca"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ae73cdbc0a520bec72d6b0741c61361ca">setEventsPerPacket</a> (const uint32_t n)</td></tr>
+<tr class="memdesc:ae73cdbc0a520bec72d6b0741c61361ca pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum number of events per transmission.  <br /></td></tr>
+<tr class="memitem:afddca84cbf54d9a4a99b3e04ab1313b5 pub_methods_classev_1_1AbstractCamera" id="r_afddca84cbf54d9a4a99b3e04ab1313b5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#afddca84cbf54d9a4a99b3e04ab1313b5">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events)</td></tr>
+<tr class="memdesc:afddca84cbf54d9a4a99b3e04ab1313b5 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS data.  <br /></td></tr>
+<tr class="memitem:a9c07c813b74bee9fcf7412396957d016 pub_methods_classev_1_1AbstractCamera" id="r_a9c07c813b74bee9fcf7412396957d016"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a9c07c813b74bee9fcf7412396957d016">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events)</td></tr>
+<tr class="memdesc:a9c07c813b74bee9fcf7412396957d016 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS data.  <br /></td></tr>
+<tr class="memitem:ab52f358de8211812a81765d12e192673 pub_methods_classev_1_1AbstractCamera" id="r_ab52f358de8211812a81765d12e192673"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ab52f358de8211812a81765d12e192673">getData</a> (<a class="el" href="classev_1_1StampedMat.html">StampedMat</a> &amp;frame)</td></tr>
+<tr class="memdesc:ab52f358de8211812a81765d12e192673 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get APS data.  <br /></td></tr>
+<tr class="memitem:a797ef018b3812d00be14e4a07b7ed0f4 pub_methods_classev_1_1AbstractCamera" id="r_a797ef018b3812d00be14e4a07b7ed0f4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a797ef018b3812d00be14e4a07b7ed0f4">getData</a> (StampedMatVector &amp;frames)</td></tr>
+<tr class="memdesc:a797ef018b3812d00be14e4a07b7ed0f4 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get APS data.  <br /></td></tr>
+<tr class="memitem:a1dd91cb8cc74c82a9aedc15db2b73622 pub_methods_classev_1_1AbstractCamera" id="r_a1dd91cb8cc74c82a9aedc15db2b73622"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a1dd91cb8cc74c82a9aedc15db2b73622">getData</a> (StampedMatQueue &amp;frames)</td></tr>
+<tr class="memdesc:a1dd91cb8cc74c82a9aedc15db2b73622 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get APS data.  <br /></td></tr>
+<tr class="memitem:ae867c32708f8ff57e35810c56fac1011 pub_methods_classev_1_1AbstractCamera" id="r_ae867c32708f8ff57e35810c56fac1011"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ae867c32708f8ff57e35810c56fac1011">getData</a> (<a class="el" href="structev_1_1Imu.html">Imu</a> &amp;imu)</td></tr>
+<tr class="memdesc:ae867c32708f8ff57e35810c56fac1011 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get IMU data.  <br /></td></tr>
+<tr class="memitem:a43fb5e97e41029a18bbe8065bef290bd pub_methods_classev_1_1AbstractCamera" id="r_a43fb5e97e41029a18bbe8065bef290bd"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a43fb5e97e41029a18bbe8065bef290bd">getData</a> (ImuVector &amp;imu)</td></tr>
+<tr class="memdesc:a43fb5e97e41029a18bbe8065bef290bd pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get IMU data.  <br /></td></tr>
+<tr class="memitem:ae68b4a215c87f5964ef62b0dc65e4312 pub_methods_classev_1_1AbstractCamera" id="r_ae68b4a215c87f5964ef62b0dc65e4312"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ae68b4a215c87f5964ef62b0dc65e4312">getData</a> (ImuQueue &amp;imu)</td></tr>
+<tr class="memdesc:ae68b4a215c87f5964ef62b0dc65e4312 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get IMU data.  <br /></td></tr>
+<tr class="memitem:a1bc74225c76b6a2cdc66bc557fc7e308 pub_methods_classev_1_1AbstractCamera" id="r_a1bc74225c76b6a2cdc66bc557fc7e308"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a1bc74225c76b6a2cdc66bc557fc7e308">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, <a class="el" href="classev_1_1StampedMat.html">StampedMat</a> &amp;frame)</td></tr>
+<tr class="memdesc:a1bc74225c76b6a2cdc66bc557fc7e308 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS data.  <br /></td></tr>
+<tr class="memitem:a07f5f50a989a04e7c3c72cb404d6b347 pub_methods_classev_1_1AbstractCamera" id="r_a07f5f50a989a04e7c3c72cb404d6b347"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a07f5f50a989a04e7c3c72cb404d6b347">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, StampedMatVector &amp;frames)</td></tr>
+<tr class="memdesc:a07f5f50a989a04e7c3c72cb404d6b347 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS data.  <br /></td></tr>
+<tr class="memitem:a013ec5da4d0caea9f22aa202d72e3519 pub_methods_classev_1_1AbstractCamera" id="r_a013ec5da4d0caea9f22aa202d72e3519"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a013ec5da4d0caea9f22aa202d72e3519">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events, StampedMatQueue &amp;frames)</td></tr>
+<tr class="memdesc:a013ec5da4d0caea9f22aa202d72e3519 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS data.  <br /></td></tr>
+<tr class="memitem:a82b15ea3ce3d9a49600a3b7e58ad5a0c pub_methods_classev_1_1AbstractCamera" id="r_a82b15ea3ce3d9a49600a3b7e58ad5a0c"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a82b15ea3ce3d9a49600a3b7e58ad5a0c">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, <a class="el" href="structev_1_1Imu.html">Imu</a> &amp;imu)</td></tr>
+<tr class="memdesc:a82b15ea3ce3d9a49600a3b7e58ad5a0c pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+IMU data.  <br /></td></tr>
+<tr class="memitem:ab3e6eb7865c9f339311e478d25698a35 pub_methods_classev_1_1AbstractCamera" id="r_ab3e6eb7865c9f339311e478d25698a35"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ab3e6eb7865c9f339311e478d25698a35">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, ImuVector &amp;imu)</td></tr>
+<tr class="memdesc:ab3e6eb7865c9f339311e478d25698a35 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+IMU data.  <br /></td></tr>
+<tr class="memitem:ac32cddd28a3504ef6fc33adced26d7fa pub_methods_classev_1_1AbstractCamera" id="r_ac32cddd28a3504ef6fc33adced26d7fa"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ac32cddd28a3504ef6fc33adced26d7fa">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events, ImuQueue &amp;imu)</td></tr>
+<tr class="memdesc:ac32cddd28a3504ef6fc33adced26d7fa pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+IMU data.  <br /></td></tr>
+<tr class="memitem:ad8c56135b0ef658f18b2c582081f1f78 pub_methods_classev_1_1AbstractCamera" id="r_ad8c56135b0ef658f18b2c582081f1f78"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ad8c56135b0ef658f18b2c582081f1f78">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, <a class="el" href="classev_1_1StampedMat.html">StampedMat</a> &amp;frame, <a class="el" href="structev_1_1Imu.html">Imu</a> &amp;imu)</td></tr>
+<tr class="memdesc:ad8c56135b0ef658f18b2c582081f1f78 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS+IMU data.  <br /></td></tr>
+<tr class="memitem:a6b876b8ff9703d182b56b958ad36bc56 pub_methods_classev_1_1AbstractCamera" id="r_a6b876b8ff9703d182b56b958ad36bc56"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a6b876b8ff9703d182b56b958ad36bc56">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events, StampedMatVector &amp;frame, ImuVector &amp;imu)</td></tr>
+<tr class="memdesc:a6b876b8ff9703d182b56b958ad36bc56 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS+IMU data.  <br /></td></tr>
+<tr class="memitem:adc61d6e338cf3d00344255919f74d3b5 pub_methods_classev_1_1AbstractCamera" id="r_adc61d6e338cf3d00344255919f74d3b5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#adc61d6e338cf3d00344255919f74d3b5">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events, StampedMatQueue &amp;frame, ImuQueue &amp;imu)</td></tr>
+<tr class="memdesc:adc61d6e338cf3d00344255919f74d3b5 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS+APS+IMU data.  <br /></td></tr>
+<tr class="memitem:a56d153948f34deb044457a721ddb306c pub_methods_classev_1_1AbstractCamera" id="r_a56d153948f34deb044457a721ddb306c"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a56d153948f34deb044457a721ddb306c">getEventRaw</a> (std::vector&lt; uint64_t &gt; &amp;data)</td></tr>
+<tr class="memdesc:a56d153948f34deb044457a721ddb306c pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve raw event data.  <br /></td></tr>
+<tr class="memitem:ae6f3b44b64c023a7cf15f22f3bd9d70b pub_methods_classev_1_1AbstractCamera" id="r_ae6f3b44b64c023a7cf15f22f3bd9d70b"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#ae6f3b44b64c023a7cf15f22f3bd9d70b">getEventRaw</a> (uint64_t *&amp;data, const bool allow_realloc=true)</td></tr>
+<tr class="memdesc:ae6f3b44b64c023a7cf15f22f3bd9d70b pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve raw event data.  <br /></td></tr>
 <tr class="memitem:a3f81aa6d40adbac4488794fdaa905006 pub_methods_classev_1_1AbstractCamera" id="r_a3f81aa6d40adbac4488794fdaa905006"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html#a3f81aa6d40adbac4488794fdaa905006">flush</a> (const double msec) const</td></tr>
 <tr class="memdesc:a3f81aa6d40adbac4488794fdaa905006 pub_methods_classev_1_1AbstractCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discard data during an interval of time.  <br /></td></tr>
 </table><table class="memberdecls">
@@ -341,86 +343,8 @@ static constexpr uint32_t&#160;</td><td class="memItemRight"><b>DEFAULT_EXPOSURE
 
 </div>
 </div>
-<a id="a94ff6a26778ae5bf5be897f71fa9de15" name="a94ff6a26778ae5bf5be897f71fa9de15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94ff6a26778ae5bf5be897f71fa9de15">&#9670;&#160;</a></span>getData() <span class="overload">[1/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structev_1_1Imu.html">Imu</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>imu</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get IMU data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">imu</td><td><a class="el" href="structev_1_1Imu.html" title="This struct is used to store IMU data from a DAVIS event camera.">Imu</a> data destination </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if imu data not empty </dd></dl>
-
-</div>
-</div>
-<a id="ad71a40e7fd331ec62ca64ca5920a093d" name="ad71a40e7fd331ec62ca64ca5920a093d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad71a40e7fd331ec62ca64ca5920a093d">&#9670;&#160;</a></span>getData() <span class="overload">[2/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype">ImuQueue &amp;</td>          <td class="paramname"><span class="paramname"><em>imu</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get IMU data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">imu</td><td><a class="el" href="structev_1_1Imu.html" title="This struct is used to store IMU data from a DAVIS event camera.">Imu</a> data queue to which imu data will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if queue not empty </dd></dl>
-
-</div>
-</div>
-<a id="ac4e4cb4e57c52c26530f76f3b681fadc" name="ac4e4cb4e57c52c26530f76f3b681fadc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4e4cb4e57c52c26530f76f3b681fadc">&#9670;&#160;</a></span>getData() <span class="overload">[3/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype">ImuVector &amp;</td>          <td class="paramname"><span class="paramname"><em>imu</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get IMU data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">imu</td><td><a class="el" href="structev_1_1Imu.html" title="This struct is used to store IMU data from a DAVIS event camera.">Imu</a> data vector to which imu data will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if vector not empty </dd></dl>
-
-</div>
-</div>
-<a id="a73199b0d1416c16b842c8a0401b77f30" name="a73199b0d1416c16b842c8a0401b77f30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73199b0d1416c16b842c8a0401b77f30">&#9670;&#160;</a></span>getData() <span class="overload">[4/17]</span></h2>
+<a id="a71f5276df44836fe47980097eaaf583b" name="a71f5276df44836fe47980097eaaf583b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71f5276df44836fe47980097eaaf583b">&#9670;&#160;</a></span>getSensorSize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -429,211 +353,30 @@ static constexpr uint32_t&#160;</td><td class="memItemRight"><b>DEFAULT_EXPOSURE
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ev::Davis::getData </td>
+          <td class="memname">cv::Size ev::Davis::getSensorSize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span></td><td>)</td>
-          <td></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get DVS data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> queue to which events will be added. </td></tr>
-  </table>
-  </dd>
+<p>Get device sensor size. </p>
+<dl class="section return"><dt>Returns</dt><dd>Sensor size </dd></dl>
+
+<p>Implements <a class="el" href="classev_1_1AbstractCamera.html#a16fae383923cd196b906596b7d076189">ev::AbstractCamera</a>.</p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#a14">example-davis.cpp</a>.</dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if queue not empty </dd></dl>
-
-<p>Implements <a class="el" href="classev_1_1AbstractCamera.html#a5cba73cbd2080f685789d53c743c863e">ev::AbstractCamera</a>.</p>
 
 </div>
 </div>
-<a id="a5a0ef05d34e43be4ad0e3291061173f0" name="a5a0ef05d34e43be4ad0e3291061173f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a0ef05d34e43be4ad0e3291061173f0">&#9670;&#160;</a></span>getData() <span class="overload">[5/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ev::ImuQueue &amp;</td>          <td class="paramname"><span class="paramname"><em>imu</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get DVS+IMU data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> queue to which events will be added </td></tr>
-    <tr><td class="paramname">imu</td><td><a class="el" href="structev_1_1Imu.html" title="This struct is used to store IMU data from a DAVIS event camera.">Imu</a> data queue to which imu data will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if event queue or imu data queue not empty </dd></dl>
-
-</div>
-</div>
-<a id="a53535ab0c974cc8ddc02bc18ec8d20ab" name="a53535ab0c974cc8ddc02bc18ec8d20ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53535ab0c974cc8ddc02bc18ec8d20ab">&#9670;&#160;</a></span>getData() <span class="overload">[6/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ev::StampedMatQueue &amp;</td>          <td class="paramname"><span class="paramname"><em>frames</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ev::ImuQueue &amp;</td>          <td class="paramname"><span class="paramname"><em>imu</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get DVS+APS+IMU data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> queue to which events will be added </td></tr>
-    <tr><td class="paramname">frames</td><td>Frame queue to which frame will be added </td></tr>
-    <tr><td class="paramname">imu</td><td><a class="el" href="structev_1_1Imu.html" title="This struct is used to store IMU data from a DAVIS event camera.">Imu</a> data queue to which imu data will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if event queue, frame queue, or imu data queue not empty </dd></dl>
-
-</div>
-</div>
-<a id="ac131a8d1bdfa056bfa96f510351872a5" name="ac131a8d1bdfa056bfa96f510351872a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac131a8d1bdfa056bfa96f510351872a5">&#9670;&#160;</a></span>getData() <span class="overload">[7/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">ev::Queue</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ev::StampedMatQueue &amp;</td>          <td class="paramname"><span class="paramname"><em>frames</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get DVS+APS data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> queue to which events will be added </td></tr>
-    <tr><td class="paramname">frames</td><td>Frame queue to which frame will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if event queue or frame queue not empty </dd></dl>
-
-</div>
-</div>
-<a id="a2222a532137ae5aa3ca416b428397b2e" name="a2222a532137ae5aa3ca416b428397b2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2222a532137ae5aa3ca416b428397b2e">&#9670;&#160;</a></span>getData() <span class="overload">[8/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classev_1_1StampedMat.html">StampedMat</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>frame</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get APS data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">frame</td><td>Frame destination </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if frame not empty </dd></dl>
-
-</div>
-</div>
-<a id="aad5abd1faeaa1db3541efd1b898341a0" name="aad5abd1faeaa1db3541efd1b898341a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad5abd1faeaa1db3541efd1b898341a0">&#9670;&#160;</a></span>getData() <span class="overload">[9/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype">StampedMatQueue &amp;</td>          <td class="paramname"><span class="paramname"><em>frames</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get APS data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">frames</td><td>Frame queue to which frame will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if queue not empty </dd></dl>
-
-</div>
-</div>
-<a id="ab4066750e85fa399bb64af1c91d61d77" name="ab4066750e85fa399bb64af1c91d61d77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4066750e85fa399bb64af1c91d61d77">&#9670;&#160;</a></span>getData() <span class="overload">[10/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype">StampedMatVector &amp;</td>          <td class="paramname"><span class="paramname"><em>frames</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get APS data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">frames</td><td>Frame vector to which frame will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if vector not empty </dd></dl>
-
-</div>
-</div>
-<a id="a7a7b13f5a17d2b0da7ef75056b301621" name="a7a7b13f5a17d2b0da7ef75056b301621"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a7b13f5a17d2b0da7ef75056b301621">&#9670;&#160;</a></span>getData() <span class="overload">[11/17]</span></h2>
+<a id="a203fb81db877c792158e41b45aada0bc" name="a203fb81db877c792158e41b45aada0bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a203fb81db877c792158e41b45aada0bc">&#9670;&#160;</a></span>hasAps()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -642,287 +385,53 @@ static constexpr uint32_t&#160;</td><td class="memItemRight"><b>DEFAULT_EXPOSURE
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ev::Davis::getData </td>
+          <td class="memname">bool ev::Davis::hasAps </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">ev::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span></td><td>)</td>
-          <td></td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get DVS data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector to which events will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if vector not empty </dd></dl>
+<p>DAVIS cameras have an APS sensor. </p>
+<dl class="section return"><dt>Returns</dt><dd>Always true </dd></dl>
 
-<p>Implements <a class="el" href="classev_1_1AbstractCamera.html#ac6858f5256715a27d0077636f964b4be">ev::AbstractCamera</a>.</p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#a16">example-davis.cpp</a>.</dd>
-</dl>
+<p>Implements <a class="el" href="classev_1_1AbstractCamera.html#af4ecfdc50ee00aab04111007ca7a7abd">ev::AbstractCamera</a>.</p>
 
 </div>
 </div>
-<a id="a8d2cb388c41005c85c861c08dd1fa5c0" name="a8d2cb388c41005c85c861c08dd1fa5c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d2cb388c41005c85c861c08dd1fa5c0">&#9670;&#160;</a></span>getData() <span class="overload">[12/17]</span></h2>
+<a id="abe4cdb906ea96c12e2c46d47b55792b2" name="abe4cdb906ea96c12e2c46d47b55792b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe4cdb906ea96c12e2c46d47b55792b2">&#9670;&#160;</a></span>hasImu()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ev::Davis::getData </td>
+          <td class="memname">bool ev::Davis::hasImu </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">ev::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structev_1_1Imu.html">ev::Imu</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>imu</em></span>&#160;)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Get DVS+IMU data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector to which events will be added </td></tr>
-    <tr><td class="paramname">imu</td><td><a class="el" href="structev_1_1Imu.html" title="This struct is used to store IMU data from a DAVIS event camera.">Imu</a> data destination </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if event vector or imu data not empty </dd></dl>
+<p>DAVIS cameras have an IMU. </p>
+<dl class="section return"><dt>Returns</dt><dd>Always true </dd></dl>
 
-</div>
-</div>
-<a id="a4c59582cfcc4400d4ab587f73ddb7aea" name="a4c59582cfcc4400d4ab587f73ddb7aea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c59582cfcc4400d4ab587f73ddb7aea">&#9670;&#160;</a></span>getData() <span class="overload">[13/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">ev::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ev::ImuVector &amp;</td>          <td class="paramname"><span class="paramname"><em>imu</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get DVS+IMU data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector to which events will be added </td></tr>
-    <tr><td class="paramname">imu</td><td><a class="el" href="structev_1_1Imu.html" title="This struct is used to store IMU data from a DAVIS event camera.">Imu</a> data vector to which imu data will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if event vector or imu data vector not empty </dd></dl>
-
-</div>
-</div>
-<a id="a924382387c75df918403a214e2fe28a7" name="a924382387c75df918403a214e2fe28a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a924382387c75df918403a214e2fe28a7">&#9670;&#160;</a></span>getData() <span class="overload">[14/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">ev::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classev_1_1StampedMat.html">ev::StampedMat</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>frame</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get DVS+APS data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector to which events will be added </td></tr>
-    <tr><td class="paramname">frame</td><td>Frame destination </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if event vector or frame not empty </dd></dl>
-
-</div>
-</div>
-<a id="ac73b8f209990a669b62db92afd4032b1" name="ac73b8f209990a669b62db92afd4032b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac73b8f209990a669b62db92afd4032b1">&#9670;&#160;</a></span>getData() <span class="overload">[15/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">ev::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classev_1_1StampedMat.html">ev::StampedMat</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>frame</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structev_1_1Imu.html">ev::Imu</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>imu</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get DVS+APS+IMU data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector to which events will be added </td></tr>
-    <tr><td class="paramname">frame</td><td>Frame destination </td></tr>
-    <tr><td class="paramname">imu</td><td><a class="el" href="structev_1_1Imu.html" title="This struct is used to store IMU data from a DAVIS event camera.">Imu</a> data destination </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if event vector, frame, or imu data not empty </dd></dl>
-
-</div>
-</div>
-<a id="a983c93be61ca48c6d6a82e2c76719601" name="a983c93be61ca48c6d6a82e2c76719601"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a983c93be61ca48c6d6a82e2c76719601">&#9670;&#160;</a></span>getData() <span class="overload">[16/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">ev::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ev::StampedMatVector &amp;</td>          <td class="paramname"><span class="paramname"><em>frames</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ev::ImuVector &amp;</td>          <td class="paramname"><span class="paramname"><em>imu</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get DVS+APS+IMU data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector to which events will be added </td></tr>
-    <tr><td class="paramname">frames</td><td>Frame vector to which frame will be added </td></tr>
-    <tr><td class="paramname">imu</td><td><a class="el" href="structev_1_1Imu.html" title="This struct is used to store IMU data from a DAVIS event camera.">Imu</a> data vector to which imu data will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if event vector, frame vector, or imu data vector not empty </dd></dl>
-
-</div>
-</div>
-<a id="a1eb7cb1c05c96d5fd4912600bbc5f365" name="a1eb7cb1c05c96d5fd4912600bbc5f365"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1eb7cb1c05c96d5fd4912600bbc5f365">&#9670;&#160;</a></span>getData() <span class="overload">[17/17]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ev::Davis::getData </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">ev::Vector</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>events</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">ev::StampedMatVector &amp;</td>          <td class="paramname"><span class="paramname"><em>frames</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get DVS+APS data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">events</td><td><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> vector to which events will be added </td></tr>
-    <tr><td class="paramname">frames</td><td>Frame vector to which frame will be added </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if event vector or frame vector not empty </dd></dl>
-
-</div>
-</div>
-<a id="abcab1d9da49a96ab62c69e83f494ee81" name="abcab1d9da49a96ab62c69e83f494ee81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abcab1d9da49a96ab62c69e83f494ee81">&#9670;&#160;</a></span>getEventRaw() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ev::Davis::getEventRaw </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; uint64_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retrieve raw event data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td>A vector to which the raw event data will be added. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section note"><dt>Note</dt><dd>Events are encoded as follows: Mask for x: 11111111111111100000000000000000 00000000000000000000000000000000 Mask for y: 00000000000000011111111111111100 00000000000000000000000000000000 Mask for p: 00000000000000000000000000000010 00000000000000000000000000000000 Mask for t: 00000000000000000000000000000000 11111111111111111111111111111111 </dd></dl>
-
-</div>
-</div>
-<a id="a9b1fc0eb37788690c70b8f299c2d80ad" name="a9b1fc0eb37788690c70b8f299c2d80ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b1fc0eb37788690c70b8f299c2d80ad">&#9670;&#160;</a></span>getEventRaw() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::size_t ev::Davis::getEventRaw </td>
-          <td>(</td>
-          <td class="paramtype">uint64_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>allow_realloc</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Retrieve raw event data. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">data</td><td>A vector to which the raw event data will be added. </td></tr>
-    <tr><td class="paramname">allow_realloc</td><td>If true, this function will assume data is empty and automatically manage its size (reallocating if needed). </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The size of the vector. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Events are encoded as follows: Mask for x: 11111111111111100000000000000000 00000000000000000000000000000000 Mask for y: 00000000000000011111111111111100 00000000000000000000000000000000 Mask for p: 00000000000000000000000000000010 00000000000000000000000000000000 Mask for t: 00000000000000000000000000000000 11111111111111111111111111111111 </dd></dl>
+<p>Implements <a class="el" href="classev_1_1AbstractCamera.html#a3d1d222b0de69698e75994a614376478">ev::AbstractCamera</a>.</p>
 
 </div>
 </div>
@@ -982,62 +491,6 @@ static constexpr uint32_t&#160;</td><td class="memItemRight"><b>DEFAULT_EXPOSURE
 
 </div>
 </div>
-<a id="a600bbd8f6582e5eb52fa4fd4241d8276" name="a600bbd8f6582e5eb52fa4fd4241d8276"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a600bbd8f6582e5eb52fa4fd4241d8276">&#9670;&#160;</a></span>setDvsEventsPerPacket()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ev::Davis::setDvsEventsPerPacket </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set DVS maximum number of events per transmission. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Set to zero to disable. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">n</td><td>Maximum number of events </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#a10">example-davis.cpp</a>.</dd>
-</dl>
-
-</div>
-</div>
-<a id="a74c9a189b351a1e7be42b5813913a5a4" name="a74c9a189b351a1e7be42b5813913a5a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74c9a189b351a1e7be42b5813913a5a4">&#9670;&#160;</a></span>setDvsTimeInterval()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ev::Davis::setDvsTimeInterval </td>
-          <td>(</td>
-          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>usec</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set DVS maximum time interval between subsequent transmissions. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Set to zero to disable. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">usec</td><td>Maximum time interval in microseconds </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#a9">example-davis.cpp</a>.</dd>
-</dl>
-
-</div>
-</div>
 <a id="ab4f29d8847c55d95b179f8cc0a05f306" name="ab4f29d8847c55d95b179f8cc0a05f306"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab4f29d8847c55d95b179f8cc0a05f306">&#9670;&#160;</a></span>setExposure()</h2>
 
@@ -1059,6 +512,45 @@ static constexpr uint32_t&#160;</td><td class="memItemRight"><b>DEFAULT_EXPOSURE
     <tr><td class="paramname">usec</td><td>Exposure time in microseconds </td></tr>
   </table>
   </dd>
+</dl>
+
+</div>
+</div>
+<a id="abcb4d239d5a3eb6c21310838ed935340" name="abcb4d239d5a3eb6c21310838ed935340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcb4d239d5a3eb6c21310838ed935340">&#9670;&#160;</a></span>setRoi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ev::Davis::setRoi </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Rect_&lt; uint16_t &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>roi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel override">override</span><span class="mlabel virtual">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set current ROI. Events outside the ROI are not considered. Images are cropped according to the ROI. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roi</td><td>ROI </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if valid ROI </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Both filters are applied by the device when the model supports them. Events keep full-sensor coordinates, whereas frames are delivered already cropped, so their pixel (0, 0) is roi.tl(). Subtract that offset before overlaying them. </dd></dl>
+
+<p>Implements <a class="el" href="classev_1_1AbstractCamera.html#a18e265eab9b9e60c336eea6315c5445a">ev::AbstractCamera</a>.</p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#a4">example-davis.cpp</a>.</dd>
 </dl>
 
 </div>

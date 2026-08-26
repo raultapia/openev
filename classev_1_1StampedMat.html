@@ -140,10 +140,18 @@ Inheritance diagram for ev::StampedMat:</div>
   <img src="classev_1_1StampedMat.png" alt=""/>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a51d16a045cf746d77ea073ec94810e76" id="r_a51d16a045cf746d77ea073ec94810e76"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a51d16a045cf746d77ea073ec94810e76">copyTo</a> (<a class="el" href="classev_1_1StampedMat.html">StampedMat</a> &amp;dst) const</td></tr>
+<tr class="memdesc:a51d16a045cf746d77ea073ec94810e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy image data and timestamp to another <a class="el" href="classev_1_1StampedMat.html" title="This class extends cv::Mat to include timestamp.">StampedMat</a>.  <br /></td></tr>
+<tr class="memitem:a9353c344b301d71aa7163bfafecbab6d" id="r_a9353c344b301d71aa7163bfafecbab6d"><td class="memItemLeft"><a id="a9353c344b301d71aa7163bfafecbab6d" name="a9353c344b301d71aa7163bfafecbab6d"></a>
+void&#160;</td><td class="memItemRight"><b>release</b> ()</td></tr>
+<tr class="memdesc:a9353c344b301d71aa7163bfafecbab6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Release the image data and reset the timestamp. <br /></td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aad1f029f767ee29c19c4ef38e2eefca9" id="r_aad1f029f767ee29c19c4ef38e2eefca9"><td class="memItemLeft"><a id="aad1f029f767ee29c19c4ef38e2eefca9" name="aad1f029f767ee29c19c4ef38e2eefca9"></a>
-double&#160;</td><td class="memItemRight"><b>t</b></td></tr>
+<tr class="memitem:a9b164b2ea6cc6377249d4ae66f3c9b92" id="r_a9b164b2ea6cc6377249d4ae66f3c9b92"><td class="memItemLeft"><a id="a9b164b2ea6cc6377249d4ae66f3c9b92" name="a9b164b2ea6cc6377249d4ae66f3c9b92"></a>
+TimeType&#160;</td><td class="memItemRight"><b>t</b> {0}</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class extends cv::Mat to include timestamp. </p>
@@ -151,7 +159,41 @@ double&#160;</td><td class="memItemRight"><b>t</b></td></tr>
 <div class="line"><span class="keyword">using </span>StampedMatQueue = std::queue&lt;StampedMat&gt;;</div>
 </div><!-- fragment --> <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#_a12">example-davis.cpp</a>.</dd>
 </dl>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a51d16a045cf746d77ea073ec94810e76" name="a51d16a045cf746d77ea073ec94810e76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51d16a045cf746d77ea073ec94810e76">&#9670;&#160;</a></span>copyTo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ev::StampedMat::copyTo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classev_1_1StampedMat.html">StampedMat</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>dst</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Copy image data and timestamp to another <a class="el" href="classev_1_1StampedMat.html" title="This class extends cv::Mat to include timestamp.">StampedMat</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dst</td><td>Destination </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>modules/devices/include/openev/devices/<a class="el" href="abstract-camera_8hpp_source.html">abstract-camera.hpp</a></li>
 </ul>
 </div><!-- contents -->

@@ -33,7 +33,7 @@ var annotated_dup =
       [ "Rect3_", "classev_1_1Rect3__.html", "classev_1_1Rect3__" ],
       [ "Size3_", "classev_1_1Size3__.html", "classev_1_1Size3__" ],
       [ "SlidingWindow_", "classev_1_1SlidingWindow__.html", "classev_1_1SlidingWindow__" ],
-      [ "StampedMat", "classev_1_1StampedMat.html", null ],
+      [ "StampedMat", "classev_1_1StampedMat.html", "classev_1_1StampedMat" ],
       [ "TimeSurface_", "classev_1_1TimeSurface__.html", "classev_1_1TimeSurface__" ],
       [ "UndistortMap", "classev_1_1UndistortMap.html", null ],
       [ "Vector_", "classev_1_1Vector__.html", "classev_1_1Vector__" ],
