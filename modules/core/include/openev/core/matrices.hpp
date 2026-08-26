@@ -196,7 +196,7 @@ using Ternary = Ternary_<char>;
 \brief Spatial map storing the timestamp of the most recent event at each pixel.
 
 Each insertion overwrites the stored timestamp unconditionally; only the latest timestamp
-per pixel is retained. Timestamps are stored as TimeType (float by default).
+per pixel is retained. Timestamps are stored as TimeType.
 */
 class Time : public Mat_<TimeType> {
 public:

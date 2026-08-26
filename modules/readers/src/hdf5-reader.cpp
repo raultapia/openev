@@ -63,7 +63,7 @@ bool ev::HDF5Reader::updateBuffer_() {
   }
 
   Event e;
-  e.t = static_cast<float>(t_buf_[buf_pos_]);
+  e.t = static_cast<ev::TimeType>(t_buf_[buf_pos_]);
   e.x = x_buf_[buf_pos_];
   e.y = y_buf_[buf_pos_];
   e.p = p_buf_[buf_pos_] > 0;

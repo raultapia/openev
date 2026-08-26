@@ -20,7 +20,7 @@
 namespace ev {
 constexpr bool USING_TYPES_HPP = true;
 
-using TimeType = float;
+using TimeType = double;
 using PolarityType = bool;
 using WeightType = float;
 using DepthType = float;

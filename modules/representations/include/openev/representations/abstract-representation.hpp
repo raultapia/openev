@@ -160,7 +160,7 @@ public:
     if(tLimits_[MIN] == std::numeric_limits<TimeType>::max() || tLimits_[MAX] == std::numeric_limits<TimeType>::min()) {
       return -1;
     }
-    return 0.5f * (tLimits_[MAX] + tLimits_[MIN]);
+    return 0.5 * (tLimits_[MAX] + tLimits_[MIN]);
   }
 
   /*!

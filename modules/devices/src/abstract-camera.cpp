@@ -4,58 +4,40 @@
 \author Raul Tapia
 */
 #include "openev/devices/abstract-camera.hpp"
-#include "libcaer/devices/davis.h"
 #include "libcaer/devices/device.h"
 #include <chrono>
+#include <cstdlib>
+#include <cstring>
+#include <libcaer/events/common.h>
+#include <libcaer/events/frame.h>
+#include <libcaer/events/imu6.h>
+#include <libcaer/events/packetContainer.h>
+#include <libcaer/events/polarity.h>
+#include <opencv2/core/hal/interface.h>
+#include <opencv2/core/saturate.hpp>
+#include <opencv2/core/types.hpp>
+#include <opencv2/core/utils/logger.hpp>
+#include <type_traits>
 
 ev::AbstractCamera::~AbstractCamera() {
-  caerDeviceDataStop(deviceHandler_);
-  caerDeviceClose(&deviceHandler_);
+  stop();
+  if(isOpen()) {
+    caerDeviceClose(&deviceHandler_);
+  }
 }
 
 void ev::AbstractCamera::stop() {
-  caerDeviceDataStop(deviceHandler_);
-}
-
-cv::Size ev::AbstractCamera::getSensorSize() const {
-  struct caer_davis_info const info = caerDavisInfoGet(deviceHandler_);
-  return {info.dvsSizeX, info.dvsSizeY};
+  if(isOpen() && running_.exchange(false)) {
+    caerDeviceDataStop(deviceHandler_);
+  }
 }
 
 cv::Rect_<uint16_t> ev::AbstractCamera::getRoi() const {
   if(roi_.width <= 0 || roi_.height <= 0) {
-    struct caer_davis_info const info = caerDavisInfoGet(deviceHandler_);
-    return {0, 0, static_cast<uint16_t>(info.dvsSizeX), static_cast<uint16_t>(info.dvsSizeY)};
+    const cv::Size size = getSensorSize();
+    return {0, 0, static_cast<uint16_t>(size.width), static_cast<uint16_t>(size.height)};
   }
   return roi_;
-}
-
-bool ev::AbstractCamera::setRoi(const cv::Rect_<uint16_t> &roi) {
-  struct caer_davis_info const info = caerDavisInfoGet(deviceHandler_);
-  const cv::Rect_<uint16_t> full(0, 0, static_cast<uint16_t>(info.dvsSizeX), static_cast<uint16_t>(info.dvsSizeY));
-
-  if(roi.width > 0 && roi.height > 0 && full.contains(roi.tl()) && full.contains(roi.br())) {
-    if(caerDavisROIConfigure(deviceHandler_, roi.tl().x, roi.tl().y, static_cast<uint16_t>(roi.br().x - 1), static_cast<uint16_t>(roi.br().y - 1))) {
-      roi_ = roi;
-      return true;
-    }
-  }
-  return false;
-}
-
-ev::BiasValue ev::AbstractCamera::getBias(const int8_t config_bias, const uint8_t name) const {
-  uint32_t param{0};
-  caerDeviceConfigGet(deviceHandler_, config_bias, name, &param);
-  return {caerBiasCoarseFineParse(static_cast<uint16_t>(param)).coarseValue, caerBiasCoarseFineParse(static_cast<uint16_t>(param)).fineValue};
-}
-
-bool ev::AbstractCamera::setBias(const int8_t config_bias, const uint8_t name, const BiasValue &value) {
-  uint32_t param{0};
-  caerDeviceConfigGet(deviceHandler_, config_bias, name, &param);
-  struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(static_cast<uint16_t>(param));
-  cf.coarseValue = value.coarse;
-  cf.fineValue = value.fine;
-  return caerDeviceConfigSet(deviceHandler_, config_bias, name, caerBiasCoarseFineGenerate(cf));
 }
 
 void ev::AbstractCamera::flush(const double msec) const {
@@ -64,6 +46,249 @@ void ev::AbstractCamera::flush(const double msec) const {
   }
   const std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
   do {
-    caerDeviceDataGet(deviceHandler_);
+    caerEventPacketContainerFree(caerDeviceDataGet(deviceHandler_));
   } while(static_cast<double>(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t0).count()) < msec);
+}
+
+void ev::AbstractCamera::setTimeInterval(const uint32_t usec) {
+  // NOTE (libcaer): Must be at least 1 microsecond
+  caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, (usec < 1 || usec > 600000000) ? 600000000 : usec);
+}
+
+void ev::AbstractCamera::setEventsPerPacket(const uint32_t n) {
+  // NOTE (libcaer): Set to zero to disable
+  caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_PACKET_SIZE, n);
+}
+
+namespace {
+// NOTE (libcaer): the container returned by caerDeviceDataGet must be freed
+class Transmission {
+public:
+  explicit Transmission(caerDeviceHandle handle) : container_(caerDeviceDataGet(handle)) {}
+  ~Transmission() {
+    caerEventPacketContainerFree(container_);
+  }
+  Transmission(const Transmission &) = delete;
+  Transmission(Transmission &&) noexcept = delete;
+  Transmission &operator=(const Transmission &) = delete;
+  Transmission &operator=(Transmission &&) noexcept = delete;
+
+  [[nodiscard]] caerEventPacketContainerConst get() const {
+    return container_;
+  }
+
+private:
+  caerEventPacketContainer container_;
+};
+
+std::nullptr_t *const none = nullptr;
+
+template <typename T>
+bool notEmpty(T *dst) {
+  if constexpr(std::is_same_v<T, std::nullptr_t>) {
+    return false;
+  } else {
+    return !dst->empty();
+  }
+}
+} // namespace
+
+bool ev::AbstractCamera::getData(ev::Vector &events) { return getData_(&events, none, none); }
+
+bool ev::AbstractCamera::getData(ev::Queue &events) { return getData_(&events, none, none); }
+
+bool ev::AbstractCamera::getData(StampedMat &frame) { return getData_(none, &frame, none); }
+
+bool ev::AbstractCamera::getData(StampedMatVector &frames) { return getData_(none, &frames, none); }
+
+bool ev::AbstractCamera::getData(StampedMatQueue &frames) { return getData_(none, &frames, none); }
+
+bool ev::AbstractCamera::getData(Imu &imu) { return getData_(none, none, &imu); }
+
+bool ev::AbstractCamera::getData(ImuVector &imu) { return getData_(none, none, &imu); }
+
+bool ev::AbstractCamera::getData(ImuQueue &imu) { return getData_(none, none, &imu); }
+
+bool ev::AbstractCamera::getData(ev::Vector &events, ev::StampedMat &frame) { return getData_(&events, &frame, none); }
+
+bool ev::AbstractCamera::getData(ev::Vector &events, ev::StampedMatVector &frames) { return getData_(&events, &frames, none); }
+
+bool ev::AbstractCamera::getData(ev::Queue &events, ev::StampedMatQueue &frames) { return getData_(&events, &frames, none); }
+
+bool ev::AbstractCamera::getData(ev::Vector &events, ev::Imu &imu) { return getData_(&events, none, &imu); }
+
+bool ev::AbstractCamera::getData(ev::Vector &events, ev::ImuVector &imu) { return getData_(&events, none, &imu); }
+
+bool ev::AbstractCamera::getData(ev::Queue &events, ev::ImuQueue &imu) { return getData_(&events, none, &imu); }
+
+bool ev::AbstractCamera::getData(ev::Vector &events, ev::StampedMat &frame, ev::Imu &imu) { return getData_(&events, &frame, &imu); }
+
+bool ev::AbstractCamera::getData(ev::Vector &events, ev::StampedMatVector &frames, ev::ImuVector &imu) { return getData_(&events, &frames, &imu); }
+
+bool ev::AbstractCamera::getData(ev::Queue &events, ev::StampedMatQueue &frames, ev::ImuQueue &imu) { return getData_(&events, &frames, &imu); }
+
+std::size_t ev::AbstractCamera::getEventRaw(std::vector<uint64_t> &data) { return getEventRaw_(data, false); }
+
+std::size_t ev::AbstractCamera::getEventRaw(uint64_t *&data, const bool allow_realloc /*= true*/) { return getEventRaw_(data, allow_realloc); }
+
+template <typename T1, typename T2, typename T3>
+bool ev::AbstractCamera::getData_(T1 *dvs, T2 *aps, T3 *imu) {
+  if constexpr(std::is_same_v<T2, ev::StampedMat>) {
+    aps->release();
+  }
+  if constexpr(std::is_same_v<T3, ev::Imu>) {
+    imu->release();
+  }
+
+  const Transmission transmission(deviceHandler_);
+  const caerEventPacketContainerConst container = transmission.get();
+  if(container == nullptr) {
+    CV_LOG_WARNING(nullptr, "Connection with camera lost.");
+    return false;
+  }
+
+  const int32_t container_size = caerEventPacketContainerGetEventPacketsNumber(container);
+  for(int32_t i = 0; i < container_size; i++) {
+    const caerEventPacketHeaderConst packet = caerEventPacketContainerGetEventPacketConst(container, i);
+    if(packet == nullptr) {
+      continue;
+    }
+
+    const int32_t packet_size = caerEventPacketHeaderGetEventNumber(packet);
+    switch(caerEventPacketHeaderGetEventType(packet)) {
+    case POLARITY_EVENT:
+      if constexpr(std::is_same_v<T1, std::nullptr_t>) {
+        break;
+      } else {
+        if constexpr(std::is_same_v<T1, ev::Vector>) {
+          dvs->reserve(dvs->size() + static_cast<std::size_t>(packet_size));
+        }
+        for(int32_t k = 0; k < packet_size; k++) {
+          const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
+          const uint16_t x = caerPolarityEventGetX(p);
+          const uint16_t y = caerPolarityEventGetY(p);
+          if(!filterRoiInSoftware_ || roi_.contains(cv::Point(x, y))) {
+            if constexpr(std::is_same_v<T1, ev::Vector>) {
+              dvs->emplace_back(x, y, caerPolarityEventGetTimestamp(p), caerPolarityEventGetPolarity(p));
+            } else if constexpr(std::is_same_v<T1, ev::Queue>) {
+              dvs->emplace(x, y, caerPolarityEventGetTimestamp(p), caerPolarityEventGetPolarity(p));
+            }
+          }
+        }
+        break;
+      }
+
+    case FRAME_EVENT:
+      if constexpr(std::is_same_v<T2, std::nullptr_t>) {
+        break;
+      } else {
+        for(int32_t k = 0; k < packet_size; k++) {
+          const caerFrameEventConst p = caerFrameEventPacketGetEventConst(reinterpret_cast<caerFrameEventPacketConst>(packet), k);
+          ev::StampedMat mat;
+          mat.t = caerFrameEventGetTimestamp(p);
+
+          const int32_t x = caerFrameEventGetLengthX(p);
+          const int32_t y = caerFrameEventGetLengthY(p);
+          const cv::Mat m16(y, x, CV_16UC1);
+          std::memcpy(m16.data, p->pixels, sizeof(uint16_t) * y * x);
+          m16.convertTo(mat, CV_8UC1, ev::SCALE_16B_8B);
+
+          if constexpr(std::is_same_v<T2, ev::StampedMat>) {
+            mat.copyTo(*aps);
+          }
+          if constexpr(std::is_same_v<T2, ev::StampedMatVector>) {
+            aps->push_back(mat);
+          }
+          if constexpr(std::is_same_v<T2, ev::StampedMatQueue>) {
+            aps->push(mat);
+          }
+        }
+        break;
+      }
+
+    case IMU6_EVENT:
+      if constexpr(std::is_same_v<T3, std::nullptr_t>) {
+        break;
+      } else {
+        for(int32_t k = 0; k < packet_size; k++) {
+          const caerIMU6EventConst p = caerIMU6EventPacketGetEventConst(reinterpret_cast<caerIMU6EventPacketConst>(packet), k);
+          ev::Imu data;
+          data.t = caerIMU6EventGetTimestamp(p);
+          data.linear_acceleration.x = -caerIMU6EventGetAccelX(p) * ev::EARTH_GRAVITY;
+          data.linear_acceleration.y = caerIMU6EventGetAccelY(p) * ev::EARTH_GRAVITY;
+          data.linear_acceleration.z = -caerIMU6EventGetAccelZ(p) * ev::EARTH_GRAVITY;
+          data.angular_velocity.x = -caerIMU6EventGetGyroX(p) * ev::DEG2RAD;
+          data.angular_velocity.y = caerIMU6EventGetGyroY(p) * ev::DEG2RAD;
+          data.angular_velocity.z = -caerIMU6EventGetGyroZ(p) * ev::DEG2RAD;
+
+          if constexpr(std::is_same_v<T3, ev::Imu>) {
+            *imu = data;
+          }
+          if constexpr(std::is_same_v<T3, ev::ImuVector>) {
+            imu->push_back(data);
+          }
+          if constexpr(std::is_same_v<T3, ev::ImuQueue>) {
+            imu->push(data);
+          }
+        }
+        break;
+      }
+
+    default:
+      break;
+    }
+  }
+
+  return notEmpty(dvs) || notEmpty(aps) || notEmpty(imu);
+}
+
+template <typename T>
+std::size_t ev::AbstractCamera::getEventRaw_(T &data, [[maybe_unused]] const bool allow_realloc) {
+  std::size_t idx = 0;
+  [[maybe_unused]] std::size_t size = 0;
+
+  const Transmission transmission(deviceHandler_);
+  const caerEventPacketContainerConst container = transmission.get();
+  if(container == nullptr) {
+    CV_LOG_WARNING(nullptr, "Connection with camera lost.");
+    return 0;
+  }
+
+  const int32_t container_size = caerEventPacketContainerGetEventPacketsNumber(container);
+  for(int32_t i = 0; i < container_size; i++) {
+    const caerEventPacketHeaderConst packet = caerEventPacketContainerGetEventPacketConst(container, i);
+    if(packet == nullptr || caerEventPacketHeaderGetEventType(packet) != POLARITY_EVENT) {
+      continue;
+    }
+
+    const int32_t packet_size = caerEventPacketHeaderGetEventNumber(packet);
+    if constexpr(std::is_same_v<T, std::vector<uint64_t>>) {
+      data.reserve(data.size() + static_cast<std::size_t>(packet_size));
+    } else {
+      size += static_cast<std::size_t>(packet_size);
+      if(allow_realloc) {
+        auto *const resized = static_cast<uint64_t *>(realloc(data, size * sizeof(uint64_t)));
+        if(resized == nullptr) {
+          CV_LOG_ERROR(nullptr, "ev::Davis: Could not resize raw event buffer.");
+          return idx;
+        }
+        data = resized;
+      }
+    }
+
+    for(int32_t k = 0; k < packet_size; k++) {
+      const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
+      if(p != nullptr) {
+        const uint64_t event = (static_cast<uint64_t>(p->data) << 32) | static_cast<uint64_t>(p->timestamp);
+        if constexpr(std::is_same_v<T, std::vector<uint64_t>>) {
+          data.emplace_back(event);
+        } else {
+          data[idx] = event;
+        }
+        idx++;
+      }
+    }
+  }
+
+  return idx;
 }

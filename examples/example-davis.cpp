@@ -44,8 +44,8 @@ int main(int /*argc*/, const char * /*argv*/[]) {
   camera.enableDvs(true);
   camera.enableAps(true);
   camera.enableImu(false);
-  camera.setDvsTimeInterval(33333U); // 30Hz
-  camera.setDvsEventsPerPacket(0);   // No limit
+  camera.setTimeInterval(33333U); // 30Hz
+  camera.setEventsPerPacket(0);   // No limit
 
   ev::Vector events;
   ev::StampedMat img;

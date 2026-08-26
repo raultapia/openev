@@ -27,7 +27,6 @@
 #include <opencv2/core/utils/logger.hpp>
 #include <queue>
 #include <type_traits>
-#include <version>
 
 ev::Davis::Davis() {
   deviceHandler_ = caerDeviceOpen(0, CAER_DEVICE_DAVIS, 0, 0, "");
@@ -42,57 +41,88 @@ ev::Davis::Davis() {
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, 1U);
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, 1U);
 
-    caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, ev::Davis::DEFAULT_INTERVAL); // 50Hz == 20000us
-    caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_PACKET_SIZE, 0U);                       // Set to zero to disable
-    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_MODE, 0U);                                                      // 0 == APS frames disabled
-    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_INTERVAL, ev::Davis::DEFAULT_INTERVAL);                         // 50Hz == 20000us
-    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, ev::Davis::DEFAULT_EXPOSURE);                               // 6500 us
+    AbstractCamera::setTimeInterval(ev::Davis::DEFAULT_INTERVAL);                                                        // 50Hz == 20000us
+    AbstractCamera::setEventsPerPacket(0U);                                                                              // Set to zero to disable
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_MODE, 0U);                              // 0 == APS frames disabled
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_INTERVAL, ev::Davis::DEFAULT_INTERVAL); // 50Hz == 20000us
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, ev::Davis::DEFAULT_EXPOSURE);       // 6500 us
   }
 }
 
 void ev::Davis::start() {
+  if(running_) {
+    return;
+  }
+
   std::array<uint32_t, 5> enable{};
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, enable.data());
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_RUN, &enable[1]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_ACCELEROMETER, &enable[2]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, &enable[3]);
   caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, &enable[4]);
-  enable[2] = static_cast<uint32_t>(static_cast<bool>(enable[2]) && static_cast<bool>(enable[3]) && static_cast<bool>(enable[4]));
 
-  caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
+  running_ = caerDeviceDataStart(deviceHandler_, nullptr, nullptr, nullptr, nullptr, nullptr);
   caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_DATAEXCHANGE, CAER_HOST_CONFIG_DATAEXCHANGE_BLOCKING, 1U);
 
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, enable[0]);
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_RUN, enable[1]);
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_ACCELEROMETER, enable[2]);
-  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, enable[2]);
-  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, enable[2]);
+  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, enable[3]);
+  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, enable[4]);
 
   AbstractCamera::flush(1);
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_MUX, DAVIS_CONFIG_MUX_TIMESTAMP_RESET, 1);
   resetTime_ = static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count());
 }
 
+cv::Size ev::Davis::getSensorSize() const {
+  struct caer_davis_info const info = caerDavisInfoGet(deviceHandler_);
+  return {info.dvsSizeX, info.dvsSizeY};
+}
+
 ev::BiasValue ev::Davis::getBias(const uint8_t name) const {
-  return AbstractCamera::getBias(DAVIS_CONFIG_BIAS, name);
+  uint32_t param{0};
+  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_BIAS, name, &param);
+  const struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(static_cast<uint16_t>(param));
+  return {cf.coarseValue, cf.fineValue};
 }
 
 bool ev::Davis::setBias(const uint8_t name, const ev::BiasValue &value) {
-  return AbstractCamera::setBias(DAVIS_CONFIG_BIAS, name, value);
+  uint32_t param{0};
+  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_BIAS, name, &param);
+  struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(static_cast<uint16_t>(param));
+  cf.coarseValue = value.coarse;
+  cf.fineValue = value.fine;
+  return caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_BIAS, name, caerBiasCoarseFineGenerate(cf));
+}
+
+bool ev::Davis::setRoi(const cv::Rect_<uint16_t> &roi) {
+  struct caer_davis_info const info = caerDavisInfoGet(deviceHandler_);
+  const cv::Rect_<uint16_t> full(0, 0, static_cast<uint16_t>(info.dvsSizeX), static_cast<uint16_t>(info.dvsSizeY));
+
+  if(roi.width > 0 && roi.height > 0 && full.contains(roi.tl()) && roi.br().x <= full.width && roi.br().y <= full.height) {
+    const auto end_x = static_cast<uint16_t>(roi.br().x - 1);
+    const auto end_y = static_cast<uint16_t>(roi.br().y - 1);
+
+    // NOTE (libcaer): this configures the APS ROI
+    if(caerDavisROIConfigure(deviceHandler_, roi.tl().x, roi.tl().y, end_x, end_y)) {
+      // NOTE (libcaer): this manages the DVS ROI
+      filterRoiInSoftware_ = !info.dvsHasROIFilter;
+      if(!filterRoiInSoftware_) {
+        filterRoiInSoftware_ = !(caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_FILTER_ROI_START_COLUMN, roi.tl().x) && caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_FILTER_ROI_START_ROW, roi.tl().y) && caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_FILTER_ROI_END_COLUMN, end_x) && caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_FILTER_ROI_END_ROW, end_y));
+        if(filterRoiInSoftware_) {
+          CV_LOG_WARNING(nullptr, "ev::Davis: Could not configure the DVS ROI filter, falling back to software filtering.");
+        }
+      }
+      roi_ = roi;
+      return true;
+    }
+  }
+  return false;
 }
 
 void ev::Davis::enableDvs(const bool state) {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, static_cast<uint32_t>(state));
-}
-
-void ev::Davis::setDvsTimeInterval(const uint32_t usec) {
-  // NOTE (libcaer): Must be at least 1 microsecond
-  caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, (usec < 1 || usec > 600000000) ? 600000000 : usec);
-}
-
-void ev::Davis::setDvsEventsPerPacket(const uint32_t n) {
-  // NOTE (libcaer): Set to zero to disable
-  caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_PACKET_SIZE, n);
 }
 
 void ev::Davis::enableAps(const bool state) {
@@ -111,252 +141,4 @@ void ev::Davis::enableImu(const bool state) {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_ACCELEROMETER, static_cast<uint32_t>(state));
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, static_cast<uint32_t>(state));
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, static_cast<uint32_t>(state));
-}
-
-bool ev::Davis::getData(ev::Vector &events) {
-  getData_<ev::Vector, std::nullptr_t, std::nullptr_t>(&events, nullptr, nullptr);
-  return !events.empty();
-}
-
-bool ev::Davis::getData(ev::Queue &events) {
-  getData_<ev::Queue, std::nullptr_t, std::nullptr_t>(&events, nullptr, nullptr);
-  return !events.empty();
-}
-
-bool ev::Davis::getData(StampedMat &frame) {
-  frame.release();
-  getData_<std::nullptr_t, ev::StampedMat, std::nullptr_t>(nullptr, &frame, nullptr);
-  return !frame.empty();
-}
-
-bool ev::Davis::getData(StampedMatVector &frames) {
-  getData_<std::nullptr_t, ev::StampedMatVector, std::nullptr_t>(nullptr, &frames, nullptr);
-  return !frames.empty();
-}
-
-bool ev::Davis::getData(StampedMatQueue &frames) {
-  getData_<std::nullptr_t, ev::StampedMatQueue, std::nullptr_t>(nullptr, &frames, nullptr);
-  return !frames.empty();
-}
-
-bool ev::Davis::getData(Imu &imu) {
-  imu.release();
-  getData_<std::nullptr_t, ev::Imu, std::nullptr_t>(nullptr, &imu, nullptr);
-  return !imu.empty();
-}
-
-bool ev::Davis::getData(ImuVector &imu) {
-  getData_<std::nullptr_t, ev::ImuVector, std::nullptr_t>(nullptr, &imu, nullptr);
-  return !imu.empty();
-}
-
-bool ev::Davis::getData(ImuQueue &imu) {
-  getData_<std::nullptr_t, ev::ImuQueue, std::nullptr_t>(nullptr, &imu, nullptr);
-  return !imu.empty();
-}
-
-bool ev::Davis::getData(ev::Vector &events, ev::StampedMat &frame) {
-  frame.release();
-  getData_<ev::Vector, ev::StampedMat, std::nullptr_t>(&events, &frame, nullptr);
-  return (!events.empty() || !frame.empty());
-}
-
-bool ev::Davis::getData(ev::Vector &events, ev::StampedMatVector &frames) {
-  getData_<ev::Vector, ev::StampedMatVector, std::nullptr_t>(&events, &frames, nullptr);
-  return (!events.empty() || !frames.empty());
-}
-
-bool ev::Davis::getData(ev::Queue &events, ev::StampedMatQueue &frames) {
-  getData_<ev::Queue, ev::StampedMatQueue, std::nullptr_t>(&events, &frames, nullptr);
-  return (!events.empty() || !frames.empty());
-}
-
-bool ev::Davis::getData(ev::Vector &events, ev::Imu &imu) {
-  imu.release();
-  getData_<ev::Vector, std::nullptr_t, ev::Imu>(&events, nullptr, &imu);
-  return (!events.empty() || !imu.empty());
-}
-
-bool ev::Davis::getData(ev::Vector &events, ev::ImuVector &imu) {
-  getData_<ev::Vector, std::nullptr_t, ev::ImuVector>(&events, nullptr, &imu);
-  return (!events.empty() || !imu.empty());
-}
-
-bool ev::Davis::getData(ev::Queue &events, ev::ImuQueue &imu) {
-  getData_<ev::Queue, std::nullptr_t, ev::ImuQueue>(&events, nullptr, &imu);
-  return (!events.empty() || !imu.empty());
-}
-
-bool ev::Davis::getData(ev::Vector &events, ev::StampedMat &frame, ev::Imu &imu) {
-  frame.release();
-  imu.release();
-  getData_<ev::Vector, ev::StampedMat, ev::Imu>(&events, &frame, &imu);
-  return (!events.empty() || !frame.empty() || !imu.empty());
-}
-
-bool ev::Davis::getData(ev::Vector &events, ev::StampedMatVector &frames, ev::ImuVector &imu) {
-  getData_<ev::Vector, ev::StampedMatVector, ev::ImuVector>(&events, &frames, &imu);
-  return (!events.empty() || !frames.empty() || !imu.empty());
-}
-
-bool ev::Davis::getData(ev::Queue &events, ev::StampedMatQueue &frames, ev::ImuQueue &imu) {
-  getData_<ev::Queue, ev::StampedMatQueue, ev::ImuQueue>(&events, &frames, &imu);
-  return (!events.empty() || !frames.empty() || !imu.empty());
-}
-
-template <typename T1, typename T2, typename T3>
-void ev::Davis::getData_(T1 *dvs, T2 *aps, T3 *imu) {
-  caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
-  if(container == nullptr) {
-    CV_LOG_WARNING(nullptr, "Connection with camera lost.");
-    return;
-  }
-
-  const int32_t containter_size = caerEventPacketContainerGetEventPacketsNumber(container);
-  for(int32_t i = 0; i < containter_size; i++) {
-    const caerEventPacketHeaderConst packet = caerEventPacketContainerGetEventPacketConst(container, i);
-    if(packet == nullptr) {
-      continue;
-    }
-
-    const int32_t packet_size = caerEventPacketHeaderGetEventNumber(packet);
-    switch(caerEventPacketHeaderGetEventType(packet)) {
-    case POLARITY_EVENT:
-      if constexpr(std::is_same_v<T1, std::nullptr_t>) {
-        break;
-      } else {
-        if constexpr(std::is_same_v<T1, ev::Vector>) {
-          dvs->reserve(dvs->size() + static_cast<std::size_t>(packet_size));
-        }
-        for(int32_t k = 0; k < packet_size; k++) {
-          const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
-          const uint16_t x = caerPolarityEventGetX(p);
-          const uint16_t y = caerPolarityEventGetY(p);
-          if(roi_.width <= 0 || roi_.height <= 0 || roi_.contains(cv::Point(x, y))) {
-            if constexpr(std::is_same_v<T1, ev::Vector>) {
-              dvs->emplace_back(x, y, caerPolarityEventGetTimestamp(p), caerPolarityEventGetPolarity(p));
-            } else if constexpr(std::is_same_v<T1, ev::Queue>) {
-              dvs->emplace(x, y, caerPolarityEventGetTimestamp(p), caerPolarityEventGetPolarity(p));
-            }
-          }
-        }
-        break;
-      }
-
-    case FRAME_EVENT:
-      if constexpr(std::is_same_v<T2, std::nullptr_t>) {
-        break;
-      } else {
-        for(int32_t k = 0; k < packet_size; k++) {
-          const caerFrameEventConst p = caerFrameEventPacketGetEventConst(reinterpret_cast<caerFrameEventPacketConst>(packet), k);
-          ev::StampedMat mat;
-          mat.t = caerFrameEventGetTimestamp(p);
-
-          const int32_t x = caerFrameEventGetLengthX(p);
-          const int32_t y = caerFrameEventGetLengthY(p);
-          const cv::Mat m16(y, x, CV_16UC1);
-          std::memcpy(m16.data, p->pixels, sizeof(uint16_t) * y * x);
-          m16.convertTo(mat, CV_8UC1, ev::SCALE_16B_8B);
-
-          if constexpr(std::is_same_v<T2, ev::StampedMat>) {
-            mat.copyTo(*aps);
-          }
-          if constexpr(std::is_same_v<T2, ev::StampedMatVector>) {
-            aps->push_back(mat);
-          }
-          if constexpr(std::is_same_v<T2, ev::StampedMatQueue>) {
-            aps->push(mat);
-          }
-        }
-        break;
-      }
-
-    case IMU6_EVENT:
-      if constexpr(std::is_same_v<T3, std::nullptr_t>) {
-        break;
-      } else {
-        for(int32_t k = 0; k < packet_size; k++) {
-          const caerIMU6EventConst p = caerIMU6EventPacketGetEventConst(reinterpret_cast<caerIMU6EventPacketConst>(packet), k);
-          ev::Imu data;
-          data.t = caerIMU6EventGetTimestamp(p);
-          data.linear_acceleration.x = -caerIMU6EventGetAccelX(p) * ev::EARTH_GRAVITY;
-          data.linear_acceleration.y = caerIMU6EventGetAccelY(p) * ev::EARTH_GRAVITY;
-          data.linear_acceleration.z = -caerIMU6EventGetAccelZ(p) * ev::EARTH_GRAVITY;
-          data.angular_velocity.x = -caerIMU6EventGetGyroX(p) * ev::DEG2RAD;
-          data.angular_velocity.y = caerIMU6EventGetGyroY(p) * ev::DEG2RAD;
-          data.angular_velocity.z = -caerIMU6EventGetGyroZ(p) * ev::DEG2RAD;
-
-          if constexpr(std::is_same_v<T3, ev::Imu>) {
-            *imu = data;
-          }
-          if constexpr(std::is_same_v<T3, ev::ImuVector>) {
-            imu->push_back(data);
-          }
-          if constexpr(std::is_same_v<T3, ev::ImuQueue>) {
-            imu->push(data);
-          }
-        }
-        break;
-      }
-
-    default:
-      break;
-    }
-  }
-}
-
-void ev::Davis::getEventRaw(std::vector<uint64_t> &data) {
-  caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
-  if(container == nullptr) {
-    CV_LOG_WARNING(nullptr, "Connection with camera lost.");
-    return;
-  }
-
-  const int32_t containter_size = caerEventPacketContainerGetEventPacketsNumber(container);
-  for(int32_t i = 0; i < containter_size; i++) {
-    const caerEventPacketHeaderConst packet = caerEventPacketContainerGetEventPacketConst(container, i);
-    if(packet == nullptr || caerEventPacketHeaderGetEventType(packet) != POLARITY_EVENT) {
-      continue;
-    }
-    const int32_t packet_size = caerEventPacketHeaderGetEventNumber(packet);
-    data.reserve(data.size() + static_cast<std::size_t>(packet_size));
-    for(int32_t k = 0; k < packet_size; k++) {
-      const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
-      if(p != nullptr) {
-        data.emplace_back((static_cast<uint64_t>(p->data) << 32) | static_cast<uint64_t>(p->timestamp));
-      }
-    }
-  }
-}
-
-std::size_t ev::Davis::getEventRaw(uint64_t *data, const bool allow_realloc /*= true*/) {
-  std::size_t idx = 0;
-  std::size_t size = 0;
-
-  caerEventPacketContainerConst container = caerDeviceDataGet(deviceHandler_);
-  if(container == nullptr) {
-    CV_LOG_WARNING(nullptr, "Connection with camera lost.");
-    return 0;
-  }
-
-  const int32_t containter_size = caerEventPacketContainerGetEventPacketsNumber(container);
-  for(int32_t i = 0; i < containter_size; i++) {
-    const caerEventPacketHeaderConst packet = caerEventPacketContainerGetEventPacketConst(container, i);
-    if(packet == nullptr || caerEventPacketHeaderGetEventType(packet) != POLARITY_EVENT) {
-      continue;
-    }
-    const int32_t packet_size = caerEventPacketHeaderGetEventNumber(packet);
-    size += static_cast<std::size_t>(caerEventPacketHeaderGetEventNumber(packet));
-    if(allow_realloc) {
-      data = static_cast<uint64_t *>(realloc(data, size * sizeof(uint64_t)));
-    }
-    for(int32_t k = 0; k < packet_size; k++) {
-      const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
-      if(p != nullptr) {
-        data[idx++] = (static_cast<uint64_t>(p->data) << 32) | static_cast<uint64_t>(p->timestamp);
-      }
-    }
-  }
-
-  return size;
 }

@@ -46,16 +46,16 @@ bool ev::PlainTextReader::updateBuffer_() {
   int pi;
   switch(columns_) {
   case PlainTextReaderColumns::TXYP:
-    if(std::sscanf(line.c_str(), "%f %d %d %d", &e.t, &e.x, &e.y, &pi) != 4) return false;
+    if(std::sscanf(line.c_str(), "%lf %d %d %d", &e.t, &e.x, &e.y, &pi) != 4) return false;
     break;
   case PlainTextReaderColumns::XYTP:
-    if(std::sscanf(line.c_str(), "%d %d %f %d", &e.x, &e.y, &e.t, &pi) != 4) return false;
+    if(std::sscanf(line.c_str(), "%d %d %lf %d", &e.x, &e.y, &e.t, &pi) != 4) return false;
     break;
   case PlainTextReaderColumns::PTXY:
-    if(std::sscanf(line.c_str(), "%d %f %d %d", &pi, &e.t, &e.x, &e.y) != 4) return false;
+    if(std::sscanf(line.c_str(), "%d %lf %d %d", &pi, &e.t, &e.x, &e.y) != 4) return false;
     break;
   case PlainTextReaderColumns::PXYT:
-    if(std::sscanf(line.c_str(), "%d %d %d %f", &pi, &e.x, &e.y, &e.t) != 4) return false;
+    if(std::sscanf(line.c_str(), "%d %d %d %lf", &pi, &e.x, &e.y, &e.t) != 4) return false;
     break;
   default:
     CV_LOG_ERROR(nullptr, "ev::PlainTextReader: No column order selected.");
