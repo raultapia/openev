@@ -19,14 +19,26 @@
 #include <utility>
 
 ev::UndistortMap::UndistortMap(const cv::Mat &cam_matrix, const cv::Mat &dist_coeff, const cv::Size &sz) {
-  CV_LOG_ERROR(nullptr, "UndistortMap: Camera matrix size should be 3x3", cam_matrix.rows == 3 && cam_matrix.cols == 3);
-  CV_LOG_ERROR(nullptr, "UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == cv::Size(4, 1) || dist_coeff.size() == cv::Size(5, 1) || dist_coeff.size() == cv::Size(8, 1) || dist_coeff.size() == cv::Size(12, 1) || dist_coeff.size() == cv::Size(14, 1) || dist_coeff.size() == cv::Size(1, 4) || dist_coeff.size() == cv::Size(1, 5) || dist_coeff.size() == cv::Size(1, 8) || dist_coeff.size() == cv::Size(1, 12) || dist_coeff.size() == cv::Size(1, 14) || dist_coeff.size() == cv::Size(0, 0));
+  if(cam_matrix.rows != 3 || cam_matrix.cols != 3) {
+    CV_LOG_ERROR(nullptr, "ev::UndistortMap: Camera matrix size should be 3x3.");
+    return;
+  }
+  if(!(dist_coeff.size() == cv::Size(4, 1) || dist_coeff.size() == cv::Size(5, 1) || dist_coeff.size() == cv::Size(8, 1) || dist_coeff.size() == cv::Size(12, 1) || dist_coeff.size() == cv::Size(14, 1) || dist_coeff.size() == cv::Size(1, 4) || dist_coeff.size() == cv::Size(1, 5) || dist_coeff.size() == cv::Size(1, 8) || dist_coeff.size() == cv::Size(1, 12) || dist_coeff.size() == cv::Size(1, 14) || dist_coeff.size() == cv::Size(0, 0))) {
+    CV_LOG_ERROR(nullptr, "ev::UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0.");
+    return;
+  }
   init(cam_matrix, dist_coeff, sz);
 }
 
 ev::UndistortMap::UndistortMap(const std::vector<double> &intrinsics, const std::vector<double> &dist_coeff, const cv::Size &sz) {
-  CV_LOG_ERROR(nullptr, "UndistortMap: Intrinsic parameters size should be 4: fx, fy, cx, cy", intrinsics.size() == 4);
-  CV_LOG_ERROR(nullptr, "UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0", dist_coeff.size() == 4 || dist_coeff.size() == 5 || dist_coeff.size() == 8 || dist_coeff.size() == 12 || dist_coeff.size() == 14 || dist_coeff.empty());
+  if(intrinsics.size() != 4) {
+    CV_LOG_ERROR(nullptr, "ev::UndistortMap: Intrinsic parameters size should be 4: fx, fy, cx, cy.");
+    return;
+  }
+  if(!(dist_coeff.size() == 4 || dist_coeff.size() == 5 || dist_coeff.size() == 8 || dist_coeff.size() == 12 || dist_coeff.size() == 14 || dist_coeff.empty())) {
+    CV_LOG_ERROR(nullptr, "ev::UndistortMap: Distortion coefficients size should be 4, 5, 8, 12, 14, or 0.");
+    return;
+  }
   std::vector<double> d;
   std::copy(dist_coeff.begin(), dist_coeff.end(), std::back_inserter(d));
   init((cv::Mat_<double>(3, 3) << intrinsics[0], 0.0, intrinsics[2], 0.0, intrinsics[1], intrinsics[3], 0.0, 0.0, 1.0), cv::Mat(cv::Size(1, static_cast<int>(d.size())), CV_64F, d.data()), sz);

@@ -37,7 +37,10 @@ public:
 
   template <typename T>
   UndistortMap(const std::vector<cv::Point_<T>> &data, const cv::Size &sz) {
-    CV_LOG_ERROR(nullptr, "UndistortMap: Data size does not match frame size", data.size() == static_cast<std::size_t>(sz.area()));
+    if(data.size() != static_cast<std::size_t>(sz.area())) {
+      CV_LOG_ERROR(nullptr, "ev::UndistortMap: Data size does not match frame size.");
+      return;
+    }
     cv::Mat_<cv::Point_<double>>::create(sz);
     cv::Mat_<cv::Point_<double>>::iterator it = cv::Mat_<cv::Point_<double>>::begin();
     std::for_each(data.begin(), data.end(), [&it](const cv::Point_<T> &p) { *it++ = cv::Point_<double>(p.x, p.y); });
@@ -45,21 +48,24 @@ public:
 
   template <typename T>
   inline bool operator()(cv::Point_<T> &p) const {
+    if(!cv::Point(static_cast<int>(p.x), static_cast<int>(p.y)).inside(UndistortMap::operator cv::Rect())) {
+      return false;
+    }
     p = static_cast<cv::Point_<T>>(cv::Mat_<cv::Point_<double>>::ptr<cv::Point_<double>>(static_cast<int>(p.y))[static_cast<int>(p.x)]);
-    return p.inside(UndistortMap::operator cv::Rect());
+    return true;
   }
 
   template <typename T, std::size_t N>
   inline void operator()(Array_<T, N> &array) const {
     for(std::size_t i = 0; i < N; i++) {
-      array[i] = static_cast<cv::Point_<T>>(cv::Mat_<cv::Point_<double>>::ptr<cv::Point_<double>>(static_cast<int>(array[i].y))[static_cast<int>(array[i].x)]);
+      UndistortMap::operator()(array[i]);
     }
   }
 
   template <typename T>
   inline void operator()(Vector_<T> &vector) const {
     for(std::size_t i = 0; i < vector.size(); i++) {
-      vector[i] = static_cast<cv::Point_<T>>(cv::Mat_<cv::Point_<double>>::ptr<cv::Point_<double>>(static_cast<int>(vector[i].y))[static_cast<int>(vector[i].x)]);
+      UndistortMap::operator()(vector[i]);
     }
   }
 
