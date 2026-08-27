@@ -75,12 +75,12 @@ void ev::AbstractCamera::setDefectivePixels(const std::string &defective_pixels_
   hasDefectivePixels_ = true;
 }
 
-void ev::AbstractCamera::setTimeInterval(const uint32_t usec) {
+void ev::AbstractCamera::setContainerInterval(const uint32_t usec) {
   // NOTE (libcaer): Must be at least 1 microsecond
   caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, (usec < 1 || usec > 600000000) ? 600000000 : usec);
 }
 
-void ev::AbstractCamera::setEventsPerPacket(const uint32_t n) {
+void ev::AbstractCamera::setContainerSize(const uint32_t n) {
   // NOTE (libcaer): Set to zero to disable
   caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_PACKET_SIZE, n);
 }

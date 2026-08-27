@@ -222,17 +222,18 @@ public:
   void setDefectivePixels(const std::string &defective_pixels_file);
 
   /*!
-  \brief Set the maximum time interval between subsequent transmissions.
+  \brief Set the maximum time interval between subsequent containers.
   \param usec Maximum time interval in microseconds
   */
-  void setTimeInterval(const uint32_t usec);
+  void setContainerInterval(const uint32_t usec);
 
   /*!
-  \brief Set the maximum number of events per transmission.
+  \brief Set the maximum number of events a container may hold before it is delivered. The limit applies to each typed packet of the container separately, so a container carrying
+  events, frames, and imu data can deliver up to this number of each of them.
   \warning Set to zero to disable.
   \param n Maximum number of events
   */
-  void setEventsPerPacket(const uint32_t n);
+  void setContainerSize(const uint32_t n);
 
   /*!
   \brief Get DVS data.

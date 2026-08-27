@@ -9,7 +9,6 @@ This is an example of how to use the Davis class.
 #include "openev/representations/event-histogram.hpp"
 #include <cstdlib>
 #include <iostream>
-#include <memory>
 #include <opencv2/core.hpp>
 #include <opencv2/core/cvstd.inl.hpp>
 #include <opencv2/core/mat.hpp>
@@ -21,7 +20,6 @@ This is an example of how to use the Davis class.
 #include <opencv2/core/utility.hpp>
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
-#include <string>
 
 static inline void show1(ev::EventHistogram3b &evhist) {
   ev::EventHistogram3b resized;
@@ -44,8 +42,8 @@ int main(int /*argc*/, const char * /*argv*/[]) {
   camera.enableDvs(true);
   camera.enableAps(true);
   camera.enableImu(false);
-  camera.setTimeInterval(33333U); // 30Hz
-  camera.setEventsPerPacket(0);   // No limit
+  camera.setContainerInterval(33333U); // 30Hz
+  camera.setContainerSize(0);          // No limit
 
   ev::Vector events;
   ev::StampedMat img;

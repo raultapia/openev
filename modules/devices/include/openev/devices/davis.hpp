@@ -6,14 +6,10 @@
 #ifndef OPENEV_DEVICES_DAVIS_HPP
 #define OPENEV_DEVICES_DAVIS_HPP
 
-#include "openev/containers/queue.hpp"
-#include "openev/containers/vector.hpp"
 #include "openev/devices/abstract-camera.hpp"
-#include <cstddef>
 #include <ostream>
 #include <stdint.h>
 #include <string>
-#include <vector>
 
 namespace ev {
 /*!
@@ -103,6 +99,14 @@ public:
   bool setBias(const uint8_t name, const BiasValue &value);
 
   /*!
+  \brief Convert a bias value into the current it produces. The coarse and fine ranges overlap, so a bias with a lower coarse can produce a higher current than one with a higher
+  coarse, and a fine of zero produces no current at all regardless of the coarse.
+  \param value The bias value to convert.
+  \return Current in picoamperes.
+  */
+  [[nodiscard]] static uint32_t biasToCurrent(const BiasValue &value);
+
+  /*!
   \brief Enable DVS
   \param state True to enable, false to disable
   */
@@ -124,7 +128,7 @@ public:
   \brief Set APS exposure time.
   \param usec Exposure time in microseconds
   */
-  void setExposure(uint32_t exposure);
+  void setApsExposure(uint32_t usec);
 
   /*!
   \brief Enable IMU

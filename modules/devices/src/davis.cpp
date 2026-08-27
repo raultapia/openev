@@ -4,8 +4,6 @@
 \author Raul Tapia
 */
 #include "openev/devices/davis.hpp"
-#include "openev/containers/queue.hpp"
-#include "openev/containers/vector.hpp"
 #include "openev/devices/abstract-camera.hpp"
 #include <array>
 #include <chrono>
@@ -40,9 +38,9 @@ ev::Davis::Davis() {
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, 1U);
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, 1U);
 
-    AbstractCamera::setTimeInterval(ev::Davis::DEFAULT_INTERVAL);                                                        // 50Hz == 20000us
-    AbstractCamera::setEventsPerPacket(0U);                                                                              // Set to zero to disable
-    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_MODE, 0U);                              // 0 == APS frames disabled
+    AbstractCamera::setContainerInterval(ev::Davis::DEFAULT_INTERVAL);                                                   // 50Hz == 20000us
+    AbstractCamera::setContainerSize(0U);                                                                                // Set to zero to disable
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_MODE, 0U);                              // Default frame mode
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_INTERVAL, ev::Davis::DEFAULT_INTERVAL); // 50Hz == 20000us
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, ev::Davis::DEFAULT_EXPOSURE);       // 6500 us
   }
@@ -158,6 +156,13 @@ bool ev::Davis::setBias(const uint8_t name, const ev::BiasValue &value) {
   return caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_BIAS, name, caerBiasCoarseFineGenerate(cf));
 }
 
+uint32_t ev::Davis::biasToCurrent(const ev::BiasValue &value) {
+  struct caer_bias_coarsefine cf {};
+  cf.coarseValue = value.coarse;
+  cf.fineValue = value.fine;
+  return caerBiasCoarseFineToCurrent(cf);
+}
+
 void ev::Davis::enableDvs(const bool state) {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, DAVIS_CONFIG_DVS_RUN, static_cast<uint32_t>(state));
 }
@@ -170,8 +175,8 @@ void ev::Davis::setApsTimeInterval(const uint32_t usec) {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_INTERVAL, usec);
 }
 
-void ev::Davis::setExposure(const uint32_t exposure) {
-  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, exposure);
+void ev::Davis::setApsExposure(const uint32_t usec) {
+  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, usec);
 }
 
 void ev::Davis::enableImu(const bool state) {
