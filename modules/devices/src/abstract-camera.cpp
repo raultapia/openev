@@ -5,6 +5,8 @@
 */
 #include "openev/devices/abstract-camera.hpp"
 #include "libcaer/devices/device.h"
+#include <algorithm>
+#include <array>
 #include <chrono>
 #include <cstdlib>
 #include <cstring>
@@ -14,6 +16,7 @@
 #include <libcaer/events/packetContainer.h>
 #include <libcaer/events/polarity.h>
 #include <opencv2/core/hal/interface.h>
+#include <opencv2/core/persistence.hpp>
 #include <opencv2/core/saturate.hpp>
 #include <opencv2/core/types.hpp>
 #include <opencv2/core/utils/logger.hpp>
@@ -40,14 +43,36 @@ cv::Rect_<uint16_t> ev::AbstractCamera::getRoi() const {
   return roi_;
 }
 
-void ev::AbstractCamera::flush(const double msec) const {
-  if(msec <= 0) {
-    return;
+void ev::AbstractCamera::setDefectivePixels(const std::string &defective_pixels_file) {
+  if(!isOpen()) {
+    CV_Error(cv::Error::StsError, "ev::AbstractCamera: the camera is not open.");
   }
-  const std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
-  do {
-    caerEventPacketContainerFree(caerDeviceDataGet(deviceHandler_));
-  } while(static_cast<double>(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t0).count()) < msec);
+
+  cv::FileStorage fs(defective_pixels_file, cv::FileStorage::READ);
+  if(!fs.isOpened()) {
+    CV_Error(cv::Error::StsError, "ev::AbstractCamera: could not open the defective pixel file.");
+  }
+
+  const cv::FileNode camera = fs[getSerialNumber()];
+  if(camera.isNone() || camera.empty()) {
+    CV_Error(cv::Error::StsBadArg, "ev::AbstractCamera: the defective pixel file does not contain this camera.");
+  }
+
+  std::vector<cv::Point> hot;
+  std::vector<cv::Point> saturated;
+  camera["hot_pixels"] >> hot;
+  camera["saturated_pixels"] >> saturated;
+  fs.release();
+
+  const cv::Size size = getSensorSize();
+  hotPixels_ = cv::Mat::zeros(size, CV_8UC1);
+  for(const cv::Point &p : hot) {
+    if(p.inside(cv::Rect({0, 0}, size))) {
+      hotPixels_.at<uchar>(p) = 1;
+    }
+  }
+  saturatedPixels_ = std::move(saturated);
+  hasDefectivePixels_ = true;
 }
 
 void ev::AbstractCamera::setTimeInterval(const uint32_t usec) {
@@ -131,6 +156,16 @@ std::size_t ev::AbstractCamera::getEventRaw(std::vector<uint64_t> &data) { retur
 
 std::size_t ev::AbstractCamera::getEventRaw(uint64_t *&data, const bool allow_realloc /*= true*/) { return getEventRaw_(data, allow_realloc); }
 
+void ev::AbstractCamera::flush(const double msec) const {
+  if(msec <= 0) {
+    return;
+  }
+  const std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
+  do {
+    caerEventPacketContainerFree(caerDeviceDataGet(deviceHandler_));
+  } while(static_cast<double>(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t0).count()) < msec);
+}
+
 template <typename T1, typename T2, typename T3>
 bool ev::AbstractCamera::getData_(T1 *dvs, T2 *aps, T3 *imu) {
   if constexpr(std::is_same_v<T2, ev::StampedMat>) {
@@ -167,6 +202,9 @@ bool ev::AbstractCamera::getData_(T1 *dvs, T2 *aps, T3 *imu) {
           const caerPolarityEventConst p = caerPolarityEventPacketGetEventConst(reinterpret_cast<caerPolarityEventPacketConst>(packet), k);
           const uint16_t x = caerPolarityEventGetX(p);
           const uint16_t y = caerPolarityEventGetY(p);
+          if(hasDefectivePixels_ && hotPixels_.at<uchar>(y, x)) {
+            continue;
+          }
           if(!filterRoiInSoftware_ || roi_.contains(cv::Point(x, y))) {
             if constexpr(std::is_same_v<T1, ev::Vector>) {
               dvs->emplace_back(x, y, caerPolarityEventGetTimestamp(p), caerPolarityEventGetPolarity(p));
@@ -192,6 +230,9 @@ bool ev::AbstractCamera::getData_(T1 *dvs, T2 *aps, T3 *imu) {
           const cv::Mat m16(y, x, CV_16UC1);
           std::memcpy(m16.data, p->pixels, sizeof(uint16_t) * y * x);
           m16.convertTo(mat, CV_8UC1, ev::SCALE_16B_8B);
+          if(hasDefectivePixels_) {
+            interpolate_(mat);
+          }
 
           if constexpr(std::is_same_v<T2, ev::StampedMat>) {
             mat.copyTo(*aps);
@@ -291,4 +332,33 @@ std::size_t ev::AbstractCamera::getEventRaw_(T &data, [[maybe_unused]] const boo
   }
 
   return idx;
+}
+
+void ev::AbstractCamera::interpolate_(cv::Mat &frame) const {
+  const cv::Point offset(roi_.width > 0 ? roi_.x : 0, roi_.height > 0 ? roi_.y : 0);
+  std::array<uchar, 8> neighbours{};
+
+  const cv::Rect bounds({0, 0}, frame.size());
+  for(const cv::Point &p : saturatedPixels_) {
+    const cv::Point q = p - offset;
+    if(!q.inside(bounds)) {
+      continue;
+    }
+
+    std::size_t n = 0;
+    for(int dy = -1; dy <= 1; dy++) {
+      for(int dx = -1; dx <= 1; dx++) {
+        const cv::Point neighbour(p.x + dx, p.y + dy);
+        if((dx == 0 && dy == 0) || !cv::Point(q.x + dx, q.y + dy).inside(bounds) || std::find(saturatedPixels_.begin(), saturatedPixels_.end(), neighbour) != saturatedPixels_.end()) {
+          continue;
+        }
+        neighbours.at(n++) = frame.at<uchar>(q.y + dy, q.x + dx);
+      }
+    }
+    if(n == 0) {
+      continue;
+    }
+    std::sort(neighbours.begin(), neighbours.begin() + static_cast<long>(n));
+    frame.at<uchar>(q) = neighbours.at(n / 2);
+  }
 }

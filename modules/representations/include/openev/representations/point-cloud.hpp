@@ -72,6 +72,10 @@ private:
   std::array<std::vector<cv::Point3_<typename TypeHelper<T>::FloatingPointType>>, 2> points_;
   cv::viz::Viz3d window_{"OpenEV"};
 
+  [[nodiscard]] cv::Size frameSize_() const override {
+    return {};
+  }
+
   void clear_() override;
   void clear_(const cv::Mat &background) override;
   bool insert_(const Event_<E> &e) override;

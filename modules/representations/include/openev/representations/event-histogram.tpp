@@ -52,6 +52,10 @@ cv::Mat &EventHistogram_<T, Options, E>::render() {
     }
   }
 
+  if(!EventHistogram_<T, Options, E>::background_.empty()) {
+    EventHistogram_<T, Options, E>::background_.copyTo(*this, counter == 0);
+  }
+
   return *this;
 }
 

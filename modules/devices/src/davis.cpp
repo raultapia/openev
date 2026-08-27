@@ -25,8 +25,7 @@
 #include <opencv2/core/saturate.hpp>
 #include <opencv2/core/types.hpp>
 #include <opencv2/core/utils/logger.hpp>
-#include <queue>
-#include <type_traits>
+#include <string>
 
 ev::Davis::Davis() {
   deviceHandler_ = caerDeviceOpen(0, CAER_DEVICE_DAVIS, 0, 0, "");
@@ -80,20 +79,42 @@ cv::Size ev::Davis::getSensorSize() const {
   return {info.dvsSizeX, info.dvsSizeY};
 }
 
-ev::BiasValue ev::Davis::getBias(const uint8_t name) const {
-  uint32_t param{0};
-  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_BIAS, name, &param);
-  const struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(static_cast<uint16_t>(param));
-  return {cf.coarseValue, cf.fineValue};
+namespace {
+const char *chipName(const int16_t id) {
+  switch(id) {
+  case DAVIS_CHIP_DAVIS240A:
+    return "DAVIS240A";
+  case DAVIS_CHIP_DAVIS240B:
+    return "DAVIS240B";
+  case DAVIS_CHIP_DAVIS240C:
+    return "DAVIS240C";
+  case DAVIS_CHIP_DAVIS128:
+    return "DAVIS128";
+  case DAVIS_CHIP_DAVIS346A:
+    return "DAVIS346A";
+  case DAVIS_CHIP_DAVIS346B:
+    return "DAVIS346B";
+  case DAVIS_CHIP_DAVIS346C:
+    return "DAVIS346C";
+  case DAVIS_CHIP_DAVIS640:
+    return "DAVIS640";
+  case DAVIS_CHIP_DAVIS640H:
+    return "DAVIS640H";
+  case DAVIS_CHIP_DAVIS208:
+    return "DAVIS208";
+  default:
+    return "DAVIS (Unknown)";
+  }
 }
+} // namespace
 
-bool ev::Davis::setBias(const uint8_t name, const ev::BiasValue &value) {
-  uint32_t param{0};
-  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_BIAS, name, &param);
-  struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(static_cast<uint16_t>(param));
-  cf.coarseValue = value.coarse;
-  cf.fineValue = value.fine;
-  return caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_BIAS, name, caerBiasCoarseFineGenerate(cf));
+std::string ev::Davis::getSerialNumber() const {
+  struct caer_davis_info const info = caerDavisInfoGet(deviceHandler_);
+  const std::string serial(static_cast<const char *>(info.deviceSerialNumber));
+  if(serial.empty()) {
+    return {};
+  }
+  return std::string(chipName(info.chipID)) + "-" + serial;
 }
 
 bool ev::Davis::setRoi(const cv::Rect_<uint16_t> &roi) {
@@ -119,6 +140,22 @@ bool ev::Davis::setRoi(const cv::Rect_<uint16_t> &roi) {
     }
   }
   return false;
+}
+
+ev::BiasValue ev::Davis::getBias(const uint8_t name) const {
+  uint32_t param{0};
+  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_BIAS, name, &param);
+  const struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(static_cast<uint16_t>(param));
+  return {cf.coarseValue, cf.fineValue};
+}
+
+bool ev::Davis::setBias(const uint8_t name, const ev::BiasValue &value) {
+  uint32_t param{0};
+  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_BIAS, name, &param);
+  struct caer_bias_coarsefine cf = caerBiasCoarseFineParse(static_cast<uint16_t>(param));
+  cf.coarseValue = value.coarse;
+  cf.fineValue = value.fine;
+  return caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_BIAS, name, caerBiasCoarseFineGenerate(cf));
 }
 
 void ev::Davis::enableDvs(const bool state) {

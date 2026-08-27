@@ -63,6 +63,12 @@ public:
   cv::Mat &render() { return *this; }
 
 private:
+  [[nodiscard]] cv::Size frameSize_() const override {
+    return cv::Mat_<T>::size();
+  }
+
+public:
+private:
   void clear_() override;
   void clear_(const cv::Mat &background) override;
   bool insert_(const Event_<E> &e) override;

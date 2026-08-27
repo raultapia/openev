@@ -171,9 +171,10 @@ public:
 
   /*!
   \brief Remove all events from the representation and add a background image.
-  \note The way in which the events are removed should be implemented in the derived classes.
+  \param background Background image, not larger than the representation
+  \param origin Top-left corner at which the background is placed
   */
-  void clear(const cv::Mat &background);
+  void clear(const cv::Mat &background, const cv::Point &origin = {0, 0});
 
   /*!
   \brief Insert one event in the representation.
@@ -325,7 +326,9 @@ protected:
   std::array<TimeType, 2> tLimits_{std::numeric_limits<TimeType>::max(), std::numeric_limits<TimeType>::min()};
   std::size_t count_{0};
   std::unique_ptr<cv::ColormapTypes> colormap_;
+  cv::Mat background_;
 
+  [[nodiscard]] virtual cv::Size frameSize_() const = 0;
   virtual void clear_() = 0;
   virtual void clear_(const cv::Mat &background) = 0;
   virtual bool insert_(const Event_<E> &e) = 0;

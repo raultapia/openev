@@ -12,6 +12,7 @@
 #include <cstddef>
 #include <ostream>
 #include <stdint.h>
+#include <string>
 #include <vector>
 
 namespace ev {
@@ -72,6 +73,12 @@ public:
   [[nodiscard]] cv::Size getSensorSize() const override;
 
   /*!
+  \brief Get device serial number, prefixed with the chip model.
+  \return Serial number as CHIP-XXXXXXXX, empty if the camera is not open
+  */
+  [[nodiscard]] std::string getSerialNumber() const override;
+
+  /*!
   \brief Set current ROI. Events outside the ROI are not considered. Images are cropped according to the ROI.
   \param roi ROI
   \return True if valid ROI
@@ -124,7 +131,6 @@ public:
   \param state True to enable, false to disable
   */
   void enableImu(bool state);
-
 };
 
 } // namespace ev

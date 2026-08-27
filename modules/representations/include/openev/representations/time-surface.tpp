@@ -61,6 +61,10 @@ cv::Mat &TimeSurface_<T, Options, E>::render(const Kernel kernel /*= Kernel::NON
     }
   }
 
+  if(!TimeSurface_<T, Options, E>::background_.empty()) {
+    TimeSurface_<T, Options, E>::background_.copyTo(*this, time == 0);
+  }
+
   return *this;
 }
 

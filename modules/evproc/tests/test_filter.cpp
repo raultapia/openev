@@ -1,5 +1,5 @@
-#include "openev/evproc/filtering.hpp"
 #include "openev/core/types.hpp"
+#include "openev/evproc/filtering.hpp"
 #include <gtest/gtest.h>
 #include <opencv2/core/types.hpp>
 

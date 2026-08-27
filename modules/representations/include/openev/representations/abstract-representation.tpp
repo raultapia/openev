@@ -13,25 +13,43 @@ template <typename T, const RepresentationOptions Options, typename E>
 void AbstractRepresentation_<T, Options, E>::clear() {
   count_ = 0;
   tLimits_ = {std::numeric_limits<TimeType>::max(), std::numeric_limits<TimeType>::min()};
+  background_.release();
   clear_();
 }
 
 template <typename T, const RepresentationOptions Options, typename E>
-void AbstractRepresentation_<T, Options, E>::clear(const cv::Mat &background) {
+void AbstractRepresentation_<T, Options, E>::clear(const cv::Mat &background, const cv::Point &origin /*= {0, 0}*/) {
   count_ = 0;
   tLimits_ = {std::numeric_limits<TimeType>::max(), std::numeric_limits<TimeType>::min()};
 
+  cv::Mat converted;
   if(background.channels() != TypeHelper<T>::NumChannels) {
-    cv::Mat temp;
     if(background.channels() == 1 && TypeHelper<T>::NumChannels == 3) {
-      cv::cvtColor(background, temp, cv::COLOR_GRAY2BGR);
+      cv::cvtColor(background, converted, cv::COLOR_GRAY2BGR);
     } else if(background.channels() == 3 && TypeHelper<T>::NumChannels == 1) {
-      cv::cvtColor(background, temp, cv::COLOR_BGR2GRAY);
+      cv::cvtColor(background, converted, cv::COLOR_BGR2GRAY);
     }
-    clear_(temp);
   } else {
-    clear_(background);
+    converted = background;
   }
+
+  const cv::Size frame = frameSize_();
+  if(frame.empty()) {
+    converted.copyTo(background_);
+  } else {
+    const cv::Rect placed(origin, converted.size());
+    if((placed & cv::Rect({0, 0}, frame)) != placed) {
+      CV_Error(cv::Error::StsBadSize, "ev::AbstractRepresentation::clear: the background does not fit in the representation.");
+    }
+    if(placed.size() == frame) {
+      converted.copyTo(background_);
+    } else {
+      background_.create(frame, converted.type());
+      background_.setTo(V_RESET);
+      converted.copyTo(background_(placed));
+    }
+  }
+  clear_(background_);
 }
 
 template <typename T, const RepresentationOptions Options, typename E>

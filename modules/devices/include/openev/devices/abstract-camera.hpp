@@ -18,6 +18,7 @@
 #include <ostream>
 #include <queue>
 #include <stdint.h>
+#include <string>
 #include <vector>
 
 typedef struct caer_device_handle {
@@ -175,6 +176,12 @@ public:
   [[nodiscard]] virtual cv::Size getSensorSize() const = 0;
 
   /*!
+  \brief Get device serial number, prefixed with the camera family.
+  \return Serial number, empty if the camera is not open
+  */
+  [[nodiscard]] virtual std::string getSerialNumber() const = 0;
+
+  /*!
   \brief Get device reset time.
   \return Reset time in microseconds
   */
@@ -194,6 +201,25 @@ public:
   \return True if valid ROI
   */
   virtual bool setRoi(const cv::Rect_<uint16_t> &roi) = 0;
+
+  /*!
+  \brief Load a defective pixel file. Events on hot pixels are discarded, and saturated pixels are replaced by the median of their neighbours on every frame.
+  \param defective_pixels_file Path to a YAML file
+  \note The file holds one entry per camera, keyed by the serial number reported by getSerialNumber(). Each entry lists the defective pixels as flat sequences of x, y pairs. Every event at a hot_pixels coordinate is discarded. Every saturated_pixels coordinate is replaced on each APS frame by the median of its neighbours, excluding those that are themselves saturated or fall outside the frame. The dead_pixels entry may be present but is not used.
+  \code{.yaml}
+  %YAML:1.0
+  ---
+  DAVIS346B-00000259:
+     dead_pixels: []
+     hot_pixels: [ 102, 216, 308, 205 ]
+     saturated_pixels: [ 183, 126 ]
+  DAVIS240C-00000117:
+     dead_pixels: []
+     hot_pixels: [ 5, 5 ]
+     saturated_pixels: []
+  \endcode
+  */
+  void setDefectivePixels(const std::string &defective_pixels_file);
 
   /*!
   \brief Set the maximum time interval between subsequent transmissions.
@@ -380,7 +406,12 @@ protected:
   template <typename T>
   std::size_t getEventRaw_(T &data, [[maybe_unused]] const bool allow_realloc);
 
+  void interpolate_(cv::Mat &frame) const;
+
   std::atomic<bool> running_{false};
+  bool hasDefectivePixels_{false};
+  cv::Mat hotPixels_;
+  std::vector<cv::Point> saturatedPixels_;
   caerDeviceHandle deviceHandler_{nullptr};
   uint64_t resetTime_{0};
   cv::Rect_<uint16_t> roi_;

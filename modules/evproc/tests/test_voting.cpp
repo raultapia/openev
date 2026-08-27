@@ -1,5 +1,5 @@
-#include "openev/evproc/voting.hpp"
 #include "openev/core/types.hpp"
+#include "openev/evproc/voting.hpp"
 #include <gtest/gtest.h>
 
 TEST(BilinearVotingTest, IntegerCoordAllWeightOnPixel) {
@@ -41,10 +41,14 @@ TEST(BilinearVotingTest, WeightsSumToOne) {
 
 TEST(BilinearVotingAugmentedTest, PositionsAreCorrect) {
   const auto e = ev::bilinearVoting(ev::AugmentedEventf(3.5f, 5.5f, 0.0f, true));
-  EXPECT_EQ(e[0].x, 3); EXPECT_EQ(e[0].y, 5);
-  EXPECT_EQ(e[1].x, 4); EXPECT_EQ(e[1].y, 5);
-  EXPECT_EQ(e[2].x, 3); EXPECT_EQ(e[2].y, 6);
-  EXPECT_EQ(e[3].x, 4); EXPECT_EQ(e[3].y, 6);
+  EXPECT_EQ(e[0].x, 3);
+  EXPECT_EQ(e[0].y, 5);
+  EXPECT_EQ(e[1].x, 4);
+  EXPECT_EQ(e[1].y, 5);
+  EXPECT_EQ(e[2].x, 3);
+  EXPECT_EQ(e[2].y, 6);
+  EXPECT_EQ(e[3].x, 4);
+  EXPECT_EQ(e[3].y, 6);
 }
 
 TEST(BilinearVotingAugmentedTest, WeightsAreCorrect) {

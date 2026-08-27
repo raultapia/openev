@@ -6,8 +6,8 @@
 
 static ev::UndistortMap makeIdentityMap(const cv::Size &sz) {
   const cv::Mat K = (cv::Mat_<double>(3, 3) << 600.0, 0.0, sz.width / 2.0,
-                                                0.0, 600.0, sz.height / 2.0,
-                                                0.0,   0.0,            1.0);
+                     0.0, 600.0, sz.height / 2.0,
+                     0.0, 0.0, 1.0);
   const cv::Mat D = cv::Mat::zeros(1, 5, CV_64F);
   return {K, D, sz};
 }
