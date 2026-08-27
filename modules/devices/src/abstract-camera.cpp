@@ -77,7 +77,13 @@ void ev::AbstractCamera::setDefectivePixels(const std::string &defective_pixels_
 
 void ev::AbstractCamera::setContainerInterval(const uint32_t usec) {
   // NOTE (libcaer): Must be at least 1 microsecond
-  caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, (usec < 1 || usec > 600000000) ? 600000000 : usec);
+  constexpr uint32_t MIN_INTERVAL = 1;
+  constexpr uint32_t MAX_INTERVAL = 600000000;
+  const uint32_t clamped = std::clamp(usec, MIN_INTERVAL, MAX_INTERVAL);
+  if(clamped != usec) {
+    CV_LOG_WARNING(nullptr, "ev::AbstractCamera::setContainerInterval: " << usec << " us is out of range, using " << clamped << " us instead.");
+  }
+  caerDeviceConfigSet(deviceHandler_, CAER_HOST_CONFIG_PACKETS, CAER_HOST_CONFIG_PACKETS_MAX_CONTAINER_INTERVAL, clamped);
 }
 
 void ev::AbstractCamera::setContainerSize(const uint32_t n) {
