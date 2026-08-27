@@ -168,6 +168,10 @@ void ev::AbstractCamera::flush(const double msec) const {
 
 template <typename T1, typename T2, typename T3>
 bool ev::AbstractCamera::getData_(T1 *dvs, T2 *aps, T3 *imu) {
+  static_assert(std::is_same_v<T1, std::nullptr_t> || std::is_same_v<T1, ev::Vector> || std::is_same_v<T1, ev::Queue>, "ev::AbstractCamera::getData_: unsupported dvs destination.");
+  static_assert(std::is_same_v<T2, std::nullptr_t> || std::is_same_v<T2, ev::StampedMat> || std::is_same_v<T2, ev::StampedMatVector> || std::is_same_v<T2, ev::StampedMatQueue>, "ev::AbstractCamera::getData_: unsupported aps destination.");
+  static_assert(std::is_same_v<T3, std::nullptr_t> || std::is_same_v<T3, ev::Imu> || std::is_same_v<T3, ev::ImuVector> || std::is_same_v<T3, ev::ImuQueue>, "ev::AbstractCamera::getData_: unsupported imu destination.");
+
   if constexpr(std::is_same_v<T2, ev::StampedMat>) {
     aps->release();
   }
@@ -285,6 +289,8 @@ bool ev::AbstractCamera::getData_(T1 *dvs, T2 *aps, T3 *imu) {
 
 template <typename T>
 std::size_t ev::AbstractCamera::getEventRaw_(T &data, [[maybe_unused]] const bool allow_realloc) {
+  static_assert(std::is_same_v<T, std::vector<uint64_t>> || std::is_same_v<T, uint64_t *>, "ev::AbstractCamera::getEventRaw_: unsupported buffer type.");
+
   std::size_t idx = 0;
   [[maybe_unused]] std::size_t size = 0;
 

@@ -16,6 +16,7 @@
 #include <opencv2/core/utils/logger.hpp>
 #include <ostream>
 #include <string>
+#include <type_traits>
 
 namespace ev {
 constexpr bool USING_TYPES_HPP = true;
@@ -75,6 +76,8 @@ using Event = Eventi;
 */
 template <typename T>
 class Event_ : public cv::Point_<T> {
+  static_assert(std::is_arithmetic_v<T>, "ev::Event_: the coordinate type must be arithmetic.");
+
 public:
   TimeType t;     /*!< Event timestamp */
   PolarityType p; /*!< Event polarity */

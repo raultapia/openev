@@ -18,6 +18,7 @@
 #include <opencv2/core/utils/logger.hpp>
 #include <opencv2/imgproc.hpp>
 #include <stdint.h>
+#include <type_traits>
 #include <vector>
 
 namespace ev {
@@ -37,6 +38,7 @@ public:
 
   template <typename T>
   UndistortMap(const std::vector<cv::Point_<T>> &data, const cv::Size &sz) {
+    static_assert(std::is_arithmetic_v<T>, "ev::UndistortMap: the point type must be arithmetic.");
     if(data.size() != static_cast<std::size_t>(sz.area())) {
       CV_LOG_ERROR(nullptr, "ev::UndistortMap: Data size does not match frame size.");
       return;
@@ -48,6 +50,7 @@ public:
 
   template <typename T>
   inline bool operator()(cv::Point_<T> &p) const {
+    static_assert(std::is_arithmetic_v<T>, "ev::UndistortMap: the point type must be arithmetic.");
     if(!cv::Point(static_cast<int>(p.x), static_cast<int>(p.y)).inside(UndistortMap::operator cv::Rect())) {
       return false;
     }

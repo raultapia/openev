@@ -7,7 +7,7 @@
 #include "openev/core/types.hpp"
 
 template <typename T>
-std::array<T, 4> ev::bilinearVoting(ev::Event_<T> event) {
+std::array<T, 4> ev::detail::bilinearVoting(ev::Event_<T> event) {
   const T dx = event.x - static_cast<int>(event.x);
   const T dy = event.y - static_cast<int>(event.y);
   const T one_minus_dx = 1 - dx;
@@ -16,7 +16,7 @@ std::array<T, 4> ev::bilinearVoting(ev::Event_<T> event) {
 }
 
 template <typename T>
-std::array<ev::AugmentedEvent_<T>, 4> ev::bilinearVoting(ev::AugmentedEvent_<T> event) {
+std::array<ev::AugmentedEvent_<T>, 4> ev::detail::bilinearVoting(ev::AugmentedEvent_<T> event) {
   const int int_x = static_cast<int>(event.x);
   const int int_y = static_cast<int>(event.y);
   const T dx = event.x - int_x;
@@ -38,7 +38,7 @@ std::array<ev::AugmentedEvent_<T>, 4> ev::bilinearVoting(ev::AugmentedEvent_<T> 
   return {e1, e2, e3, e4};
 }
 
-template std::array<float, 4> ev::bilinearVoting(ev::Event_<float>);
-template std::array<double, 4> ev::bilinearVoting(ev::Event_<double>);
-template std::array<ev::AugmentedEvent_<float>, 4> ev::bilinearVoting(ev::AugmentedEvent_<float>);
-template std::array<ev::AugmentedEvent_<double>, 4> ev::bilinearVoting(ev::AugmentedEvent_<double>);
+template std::array<float, 4> ev::detail::bilinearVoting(ev::Event_<float>);
+template std::array<double, 4> ev::detail::bilinearVoting(ev::Event_<double>);
+template std::array<ev::AugmentedEvent_<float>, 4> ev::detail::bilinearVoting(ev::AugmentedEvent_<float>);
+template std::array<ev::AugmentedEvent_<double>, 4> ev::detail::bilinearVoting(ev::AugmentedEvent_<double>);

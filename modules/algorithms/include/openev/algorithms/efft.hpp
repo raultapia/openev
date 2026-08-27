@@ -19,6 +19,8 @@ class Event_;
 
 template <unsigned int N>
 class efft : public eFFT<N> {
+  static_assert(N > 0 && (N & (N - 1)) == 0, "ev::efft: the size must be a power of two.");
+
 public:
   efft() {
     eFFT<N>::initialize();

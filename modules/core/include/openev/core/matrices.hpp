@@ -28,6 +28,8 @@ class Event_;
 namespace Mat {
 template <typename T>
 class Mat_ : public cv::Mat_<T> {
+  static_assert(std::is_arithmetic_v<T>, "ev::Mat_: the pixel type must be arithmetic.");
+
 public:
   using cv::Mat_<T>::Mat_;
 
@@ -106,6 +108,8 @@ using Binary = Binary_<uchar>;
 */
 template <typename Tb>
 class Binary_ : public Mat_<Tb> {
+  static_assert(std::is_integral_v<Tb>, "ev::Binary_: the pixel type must be integral.");
+
 public:
   using Mat_<Tb>::Mat_;
 
@@ -158,11 +162,13 @@ Pixels with no events remain at ZERO. Only the last inserted polarity per pixel 
 
 The following alias is defined for convenience:
 \code{.cpp}
-using Ternary = Ternary_<char>;
+using Ternary = Ternary_<signed char>;
 \endcode
 */
 template <typename Tb>
 class Ternary_ : public Mat_<Tb> {
+  static_assert(std::is_integral_v<Tb> && std::is_signed_v<Tb>, "ev::Ternary_: the pixel type must be signed, otherwise NEGATIVE and ZERO are both zero.");
+
 public:
   using Mat_<Tb>::Mat_;
 
@@ -207,7 +213,7 @@ private:
     }
   }
 };
-using Ternary = Ternary_<char>;
+using Ternary = Ternary_<signed char>;
 
 /*!
 \brief Spatial map storing the timestamp of the most recent event at each pixel.

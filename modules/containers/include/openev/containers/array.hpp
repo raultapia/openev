@@ -22,6 +22,8 @@ Event arrays inherit all the properties from standard C++ arrays. Events in the 
 */
 template <typename T, std::size_t N>
 class Array_ : public std::array<Event_<T>, N> {
+  static_assert(N > 0, "ev::Array_: the size must be greater than zero.");
+
   using std::array<Event_<T>, N>::array;
   using ResultType = TimeType;
 
