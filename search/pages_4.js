@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['openev_0',['OpenEV',['../index.html',1,'']]]
+  ['installation_0',['⚙️ Installation',['../index.html#autotoc_md0',1,'']]]
 ];

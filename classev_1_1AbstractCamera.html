@@ -168,10 +168,10 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <tr class="memdesc:a18e265eab9b9e60c336eea6315c5445a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current ROI. Events outside the ROI are not considered. Images are cropped according to the ROI.  <br /></td></tr>
 <tr class="memitem:a2cb47198181cbf56ad2aa8a0f3a12aaa" id="r_a2cb47198181cbf56ad2aa8a0f3a12aaa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2cb47198181cbf56ad2aa8a0f3a12aaa">setDefectivePixels</a> (const std::string &amp;defective_pixels_file)</td></tr>
 <tr class="memdesc:a2cb47198181cbf56ad2aa8a0f3a12aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a defective pixel file. Events on hot pixels are discarded, and saturated pixels are replaced by the median of their neighbours on every frame.  <br /></td></tr>
-<tr class="memitem:a2e53ff9e8ce9eb4d380b2147dacf017d" id="r_a2e53ff9e8ce9eb4d380b2147dacf017d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2e53ff9e8ce9eb4d380b2147dacf017d">setTimeInterval</a> (const uint32_t usec)</td></tr>
-<tr class="memdesc:a2e53ff9e8ce9eb4d380b2147dacf017d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum time interval between subsequent transmissions.  <br /></td></tr>
-<tr class="memitem:ae73cdbc0a520bec72d6b0741c61361ca" id="r_ae73cdbc0a520bec72d6b0741c61361ca"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae73cdbc0a520bec72d6b0741c61361ca">setEventsPerPacket</a> (const uint32_t n)</td></tr>
-<tr class="memdesc:ae73cdbc0a520bec72d6b0741c61361ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum number of events per transmission.  <br /></td></tr>
+<tr class="memitem:abcca6fef8f11ccc6e5c9172fd28c0195" id="r_abcca6fef8f11ccc6e5c9172fd28c0195"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abcca6fef8f11ccc6e5c9172fd28c0195">setContainerInterval</a> (const uint32_t usec)</td></tr>
+<tr class="memdesc:abcca6fef8f11ccc6e5c9172fd28c0195"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum time interval between subsequent containers.  <br /></td></tr>
+<tr class="memitem:adcdc4480da4e3f7e8e9d36d505f7bc1e" id="r_adcdc4480da4e3f7e8e9d36d505f7bc1e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#adcdc4480da4e3f7e8e9d36d505f7bc1e">setContainerSize</a> (const uint32_t n)</td></tr>
+<tr class="memdesc:adcdc4480da4e3f7e8e9d36d505f7bc1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum number of events a container may hold before it is delivered. The limit applies to each typed packet of the container separately, so a container carrying events, frames, and imu data can deliver up to this number of each of them.  <br /></td></tr>
 <tr class="memitem:afddca84cbf54d9a4a99b3e04ab1313b5" id="r_afddca84cbf54d9a4a99b3e04ab1313b5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afddca84cbf54d9a4a99b3e04ab1313b5">getData</a> (<a class="el" href="vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33">Vector</a> &amp;events)</td></tr>
 <tr class="memdesc:afddca84cbf54d9a4a99b3e04ab1313b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get DVS data.  <br /></td></tr>
 <tr class="memitem:a9c07c813b74bee9fcf7412396957d016" id="r_a9c07c813b74bee9fcf7412396957d016"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a9c07c813b74bee9fcf7412396957d016">getData</a> (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;events)</td></tr>
@@ -1013,6 +1013,61 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
+<a id="abcca6fef8f11ccc6e5c9172fd28c0195" name="abcca6fef8f11ccc6e5c9172fd28c0195"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcca6fef8f11ccc6e5c9172fd28c0195">&#9670;&#160;</a></span>setContainerInterval()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ev::AbstractCamera::setContainerInterval </td>
+          <td>(</td>
+          <td class="paramtype">const uint32_t</td>          <td class="paramname"><span class="paramname"><em>usec</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the maximum time interval between subsequent containers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">usec</td><td>Maximum time interval in microseconds </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#a9">example-davis.cpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="adcdc4480da4e3f7e8e9d36d505f7bc1e" name="adcdc4480da4e3f7e8e9d36d505f7bc1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcdc4480da4e3f7e8e9d36d505f7bc1e">&#9670;&#160;</a></span>setContainerSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ev::AbstractCamera::setContainerSize </td>
+          <td>(</td>
+          <td class="paramtype">const uint32_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set the maximum number of events a container may hold before it is delivered. The limit applies to each typed packet of the container separately, so a container carrying events, frames, and imu data can deliver up to this number of each of them. </p>
+<dl class="section warning"><dt>Warning</dt><dd>Set to zero to disable. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Maximum number of events </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#a10">example-davis.cpp</a>.</dd>
+</dl>
+
+</div>
+</div>
 <a id="a2cb47198181cbf56ad2aa8a0f3a12aaa" name="a2cb47198181cbf56ad2aa8a0f3a12aaa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2cb47198181cbf56ad2aa8a0f3a12aaa">&#9670;&#160;</a></span>setDefectivePixels()</h2>
 
@@ -1049,34 +1104,6 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
-<a id="ae73cdbc0a520bec72d6b0741c61361ca" name="ae73cdbc0a520bec72d6b0741c61361ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae73cdbc0a520bec72d6b0741c61361ca">&#9670;&#160;</a></span>setEventsPerPacket()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ev::AbstractCamera::setEventsPerPacket </td>
-          <td>(</td>
-          <td class="paramtype">const uint32_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set the maximum number of events per transmission. </p>
-<dl class="section warning"><dt>Warning</dt><dd>Set to zero to disable. </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">n</td><td>Maximum number of events </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#a10">example-davis.cpp</a>.</dd>
-</dl>
-
-</div>
-</div>
 <a id="a18e265eab9b9e60c336eea6315c5445a" name="a18e265eab9b9e60c336eea6315c5445a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a18e265eab9b9e60c336eea6315c5445a">&#9670;&#160;</a></span>setRoi()</h2>
 
@@ -1110,33 +1137,6 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <dl class="section return"><dt>Returns</dt><dd>True if valid ROI </dd></dl>
 
 <p>Implemented in <a class="el" href="classev_1_1Davis.html#abcb4d239d5a3eb6c21310838ed935340">ev::Davis</a>.</p>
-
-</div>
-</div>
-<a id="a2e53ff9e8ce9eb4d380b2147dacf017d" name="a2e53ff9e8ce9eb4d380b2147dacf017d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2e53ff9e8ce9eb4d380b2147dacf017d">&#9670;&#160;</a></span>setTimeInterval()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ev::AbstractCamera::setTimeInterval </td>
-          <td>(</td>
-          <td class="paramtype">const uint32_t</td>          <td class="paramname"><span class="paramname"><em>usec</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set the maximum time interval between subsequent transmissions. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">usec</td><td>Maximum time interval in microseconds </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="example-davis_8cpp-example.html#a9">example-davis.cpp</a>.</dd>
-</dl>
 
 </div>
 </div>

@@ -23,7 +23,7 @@ var searchData=
   ['circularbufferi_20',['CircularBufferi',['../circular_8hpp.html#a3e8f3efa8053d80fd57d37a15e38948d',1,'ev']]],
   ['circularbufferl_21',['CircularBufferl',['../circular_8hpp.html#a2c230919453eccc9d8db72633beaa19d',1,'ev']]],
   ['clear_22',['clear',['../classev_1_1Mat_1_1Mat__.html#a9fef11595e8d28e1c8d18eda8b4ef30e',1,'ev::Mat::Mat_::clear()'],['../classev_1_1AbstractRepresentation__.html#a16486a8b4a053dc72407e303c35423a4',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#ace7de9413b56904c2f75183e15693c01',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background, const cv::Point &amp;origin={0, 0})']]],
-  ['contact_23',['📬 Contact',['../index.html#autotoc_md4',1,'']]],
+  ['contact_23',['📬 Contact',['../index.html#autotoc_md6',1,'']]],
   ['containers_2ehpp_24',['containers.hpp',['../containers_8hpp.html',1,'']]],
   ['containertestfixture_25',['ContainerTestFixture',['../classContainerTestFixture.html',1,'']]],
   ['contains_26',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a4d2384e4c8a2a7972566ed2f32181acb',1,'ev::PointCloud_::contains()']]],

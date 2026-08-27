@@ -27,10 +27,10 @@ var classev_1_1AbstractCamera =
     [ "hasAps", "classev_1_1AbstractCamera.html#af4ecfdc50ee00aab04111007ca7a7abd", null ],
     [ "hasImu", "classev_1_1AbstractCamera.html#a3d1d222b0de69698e75994a614376478", null ],
     [ "isOpen", "classev_1_1AbstractCamera.html#a8481790d41fa02ff5b58d519791cd4ef", null ],
+    [ "setContainerInterval", "classev_1_1AbstractCamera.html#abcca6fef8f11ccc6e5c9172fd28c0195", null ],
+    [ "setContainerSize", "classev_1_1AbstractCamera.html#adcdc4480da4e3f7e8e9d36d505f7bc1e", null ],
     [ "setDefectivePixels", "classev_1_1AbstractCamera.html#a2cb47198181cbf56ad2aa8a0f3a12aaa", null ],
-    [ "setEventsPerPacket", "classev_1_1AbstractCamera.html#ae73cdbc0a520bec72d6b0741c61361ca", null ],
     [ "setRoi", "classev_1_1AbstractCamera.html#a18e265eab9b9e60c336eea6315c5445a", null ],
-    [ "setTimeInterval", "classev_1_1AbstractCamera.html#a2e53ff9e8ce9eb4d380b2147dacf017d", null ],
     [ "start", "classev_1_1AbstractCamera.html#a4771dfb75858e7218f9c1ac1d3eb6b57", null ],
     [ "stop", "classev_1_1AbstractCamera.html#ad53b72c2d823eb43d6770660eb8c5296", null ]
 ];

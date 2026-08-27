@@ -27,10 +27,12 @@ var NAVTREE =
   [ "OpenEV", "index.html", [
     [ "Classes", "annotated.html", [
       [ "⚙️ Installation", "index.html#autotoc_md0", null ],
-      [ "📚 Documentation", "index.html#autotoc_md1", null ],
-      [ "🖥️ Usage", "index.html#autotoc_md2", null ],
-      [ "📝 License", "index.html#autotoc_md3", null ],
-      [ "📬 Contact", "index.html#autotoc_md4", null ],
+      [ "🧩 Modules", "index.html#autotoc_md1", null ],
+      [ "🧪 Tests and benchmarks", "index.html#autotoc_md2", null ],
+      [ "📚 Documentation", "index.html#autotoc_md3", null ],
+      [ "🖥️ Usage", "index.html#autotoc_md4", null ],
+      [ "📝 License", "index.html#autotoc_md5", null ],
+      [ "📬 Contact", "index.html#autotoc_md6", null ],
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],

@@ -8,9 +8,9 @@ var classev_1_1Davis =
     [ "getSerialNumber", "classev_1_1Davis.html#a4f1b09e500d2e0fedd5835332b0451d9", null ],
     [ "hasAps", "classev_1_1Davis.html#a203fb81db877c792158e41b45aada0bc", null ],
     [ "hasImu", "classev_1_1Davis.html#abe4cdb906ea96c12e2c46d47b55792b2", null ],
+    [ "setApsExposure", "classev_1_1Davis.html#a02707127ffcd8b68dc0cf22cbe7fe355", null ],
     [ "setApsTimeInterval", "classev_1_1Davis.html#ad86fffda93f5304b98314aafc8e71fa2", null ],
     [ "setBias", "classev_1_1Davis.html#a71e2394a373d4d8d2609b20626df84f7", null ],
-    [ "setExposure", "classev_1_1Davis.html#ab4f29d8847c55d95b179f8cc0a05f306", null ],
     [ "setRoi", "classev_1_1Davis.html#abcb4d239d5a3eb6c21310838ed935340", null ],
     [ "start", "classev_1_1Davis.html#a702a3506b525d160bff45cf08e02c4a0", null ]
 ];

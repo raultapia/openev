@@ -142,15 +142,53 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <div class="line">make</div>
 <div class="line">sudo make install</div>
 </div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+🧩 Modules</h2>
+<p>OpenEV is modular. Every directory under <a href="https://github.com/raultapia/openev/tree/main/modules"><span class="tt">modules</span></a> is a module built as its own shared library, and all of them are built by default. Modules only depend on each other through headers, as shown below.</p>
+<div class="fragment"><div class="line">core ──┬── containers ──┬── devices</div>
+<div class="line">       │                ├── evproc</div>
+<div class="line">       │                └── readers</div>
+<div class="line">       └── representations</div>
+<div class="line"> </div>
+<div class="line">algorithms</div>
+</div><!-- fragment --><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Module  </th><th class="markdownTableHeadNone">Depends on  </th><th class="markdownTableHeadNone">External dependencies  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">core</span>  </td><td class="markdownTableBodyNone">-  </td><td class="markdownTableBodyNone">OpenCV  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">algorithms</span>  </td><td class="markdownTableBodyNone">-  </td><td class="markdownTableBodyNone">OpenCV, eFFT, Eigen  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">containers</span>  </td><td class="markdownTableBodyNone"><span class="tt">core</span>  </td><td class="markdownTableBodyNone">OpenCV, Boost  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">representations</span>  </td><td class="markdownTableBodyNone"><span class="tt">core</span>  </td><td class="markdownTableBodyNone">OpenCV, OpenCV viz  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">devices</span>  </td><td class="markdownTableBodyNone"><span class="tt">core</span>, <span class="tt">containers</span>  </td><td class="markdownTableBodyNone">OpenCV, libcaer  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">evproc</span>  </td><td class="markdownTableBodyNone"><span class="tt">core</span>, <span class="tt">containers</span>  </td><td class="markdownTableBodyNone">OpenCV  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">readers</span>  </td><td class="markdownTableBodyNone"><span class="tt">core</span>, <span class="tt">containers</span>  </td><td class="markdownTableBodyNone">OpenCV, HDF5, pthread  </td></tr>
+</table>
+<p>To leave a module out, set its option to <span class="tt">OFF</span>. The option name is the directory name in upper case.</p>
+<div class="fragment"><div class="line">cmake .. -DBUILD_MODULE_READERS=OFF</div>
+<div class="line">cmake .. -DBUILD_MODULE_DEVICES=OFF -DBUILD_MODULE_ALGORITHMS=OFF</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+🧪 Tests and benchmarks</h2>
+<p>Tests and benchmarks are only built in <span class="tt">Debug</span>.</p>
+<div class="fragment"><div class="line">cmake .. -DCMAKE_BUILD_TYPE=Debug</div>
+<div class="line">make</div>
+<div class="line">ctest</div>
+</div><!-- fragment --><p>Benchmarks are built by the same configuration and run through their own target.</p>
+<div class="fragment"><div class="line">make benchmarks</div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 📚 Documentation</h2>
 <p>The OpenEV documentation can be found <a href="https://raultapia.github.io/openev">here</a>.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
 🖥️ Usage</h2>
 <p>See <a href="https://github.com/raultapia/openev/tree/main/examples"><span class="tt">examples</span></a> folder.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 📝 License</h2>
 <p>Distributed under the GPLv3 License. See <a href="https://github.com/raultapia/openev/tree/main/LICENSE"><span class="tt">LICENSE</span></a> for more information.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
 📬 Contact</h2>
 <p><a href="https://raultapia.com">Raul Tapia</a> - <a href="#" onclick="location.href='mai'+'lto:'+'rau'+'lt'+'api'+'a@'+'us.'+'es'; return false;">rault<span class="obfuscator">.nosp@m.</span>apia<span class="obfuscator">.nosp@m.</span>@us.e<span class="obfuscator">.nosp@m.</span>s</a> </p>
 </div></div><!-- PageDoc -->
