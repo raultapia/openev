@@ -52,9 +52,9 @@ foreach(MODULE_CMAKE_FILE IN LISTS MODULE_CMAKE_FILES)
     string(APPEND OPENEV_MODULE_OPTIONS "#define OE_IS_ENABLED_MODULE_${MODULE} 0\n")
   endif()
 endforeach()
-configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_SOURCE_DIR}/include/openev/options.hpp" @ONLY)
-target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
-set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/openev.hpp;${PROJECT_SOURCE_DIR}/include/openev/options.hpp")
+configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_BINARY_DIR}/include/openev/options.hpp" @ONLY)
+target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
+set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/openev.hpp;${CMAKE_BINARY_DIR}/include/openev/options.hpp")
 
 # Module dependencies
 function(openev_required_modules SOURCE_FILE OUT_REQUIRED OUT_MISSING)
