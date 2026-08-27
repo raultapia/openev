@@ -75,11 +75,10 @@ TEST(UndistortMapTest, VectorOverloadSkipsPointsOutsideBounds) {
   EXPECT_EQ(events[1].y, 9999);
 }
 
-TEST(UndistortMapTest, MismatchedDataSizeYieldsEmptyMap) {
+TEST(UndistortMapTest, MismatchedDataSizeThrows) {
   const cv::Size sz{20, 10};
   const std::vector<cv::Point_<double>> tooFew(3, cv::Point_<double>(0.0, 0.0));
-  const ev::UndistortMap map(tooFew, sz);
-  EXPECT_TRUE(map.empty());
+  EXPECT_THROW(const ev::UndistortMap map(tooFew, sz), cv::Exception);
 }
 
 TEST(UndistortMapTest, MatchingDataSizeBuildsMap) {
@@ -91,16 +90,14 @@ TEST(UndistortMapTest, MatchingDataSizeBuildsMap) {
   EXPECT_EQ(map.rows, sz.height);
 }
 
-TEST(UndistortMapTest, InvalidCameraMatrixYieldsEmptyMap) {
+TEST(UndistortMapTest, InvalidCameraMatrixThrows) {
   const cv::Mat bad = cv::Mat::eye(2, 2, CV_64F);
   const cv::Mat D = cv::Mat::zeros(1, 5, CV_64F);
-  const ev::UndistortMap map(bad, D, cv::Size(640, 480));
-  EXPECT_TRUE(map.empty());
+  EXPECT_THROW(const ev::UndistortMap map(bad, D, cv::Size(640, 480)), cv::Exception);
 }
 
-TEST(UndistortMapTest, InvalidIntrinsicsYieldEmptyMap) {
+TEST(UndistortMapTest, InvalidIntrinsicsThrow) {
   const std::vector<double> bad{600.0, 600.0};
   const std::vector<double> D(5, 0.0);
-  const ev::UndistortMap map(bad, D, cv::Size(640, 480));
-  EXPECT_TRUE(map.empty());
+  EXPECT_THROW(const ev::UndistortMap map(bad, D, cv::Size(640, 480)), cv::Exception);
 }

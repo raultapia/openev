@@ -17,7 +17,7 @@ ev::PlainTextReader::PlainTextReader(const std::string &filename, const PlainTex
     }
   }
   if(!file_.is_open()) {
-    CV_LOG_ERROR(nullptr, "ev::PlainTextReader: Could not open file.");
+    CV_Error(cv::Error::StsError, "ev::PlainTextReader: Could not open file.");
   }
 }
 
@@ -58,8 +58,7 @@ bool ev::PlainTextReader::updateBuffer_() {
     if(std::sscanf(line.c_str(), "%d %d %d %lf", &pi, &e.x, &e.y, &e.t) != 4) return false;
     break;
   default:
-    CV_LOG_ERROR(nullptr, "ev::PlainTextReader: No column order selected.");
-    return false;
+    CV_Error(cv::Error::StsBadArg, "ev::PlainTextReader: No column order selected.");
   }
   e.p = static_cast<bool>(pi > 0);
   buffer_.push(e);

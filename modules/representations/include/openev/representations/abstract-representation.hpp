@@ -294,26 +294,23 @@ public:
   \note Colormap can only be used with 3-channel representations.
   */
   inline void setColormap(const cv::ColormapTypes cm) {
-    if constexpr(TypeHelper<T>::NumChannels == 1) {
-      CV_LOG_ERROR(nullptr, "setColorMap: Colormap can only be used with 3-channel representations");
+    static_assert(TypeHelper<T>::NumChannels == 3, "ev::AbstractRepresentation_::setColormap: a colormap can only be used with 3-channel representations.");
+    colormap_ = std::make_unique<cv::ColormapTypes>(cm);
+
+    constexpr std::array<uchar, 3> aux1_data = {0, 128, 255};
+    cv::Mat aux1(1, 3, CV_8UC1, const_cast<uchar *>(aux1_data.data()));
+    cv::Mat aux3;
+    cv::applyColorMap(aux1, aux3, *colormap_);
+
+    if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::IGNORE_POLARITY)) {
+      V_ON = aux3.at<cv::Vec3b>(0, 2);
+      V_RESET = aux3.at<cv::Vec3b>(0, 0);
     } else {
-      colormap_ = std::make_unique<cv::ColormapTypes>(cm);
-
-      constexpr std::array<uchar, 3> aux1_data = {0, 128, 255};
-      cv::Mat aux1(1, 3, CV_8UC1, const_cast<uchar *>(aux1_data.data()));
-      cv::Mat aux3;
-      cv::applyColorMap(aux1, aux3, *colormap_);
-
-      if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::IGNORE_POLARITY)) {
-        V_ON = aux3.at<cv::Vec3b>(0, 2);
-        V_RESET = aux3.at<cv::Vec3b>(0, 0);
-      } else {
-        V_ON = aux3.at<cv::Vec3b>(0, 2);
-        V_OFF = aux3.at<cv::Vec3b>(0, 0);
-        V_RESET = aux3.at<cv::Vec3b>(0, 1);
-      }
-      this->clear();
+      V_ON = aux3.at<cv::Vec3b>(0, 2);
+      V_OFF = aux3.at<cv::Vec3b>(0, 0);
+      V_RESET = aux3.at<cv::Vec3b>(0, 1);
     }
+    this->clear();
   }
 
 protected:

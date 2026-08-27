@@ -233,8 +233,7 @@ public:
     if(static_cast<bool>(type & DISTANCE_FLAG_TEMPORAL)) {
       return Event_<T>::t - e.t;
     }
-    CV_LOG_ERROR(nullptr, "Bad distance option");
-    return 0.0;
+    CV_Error(cv::Error::StsBadArg, "ev::Event_::distance: Bad distance option.");
   }
 
   /*!

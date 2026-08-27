@@ -40,8 +40,7 @@ public:
   UndistortMap(const std::vector<cv::Point_<T>> &data, const cv::Size &sz) {
     static_assert(std::is_arithmetic_v<T>, "ev::UndistortMap: the point type must be arithmetic.");
     if(data.size() != static_cast<std::size_t>(sz.area())) {
-      CV_LOG_ERROR(nullptr, "ev::UndistortMap: Data size does not match frame size.");
-      return;
+      CV_Error(cv::Error::StsBadSize, "ev::UndistortMap: Data size does not match frame size.");
     }
     cv::Mat_<cv::Point_<double>>::create(sz);
     cv::Mat_<cv::Point_<double>>::iterator it = cv::Mat_<cv::Point_<double>>::begin();

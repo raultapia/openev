@@ -316,8 +316,7 @@ std::size_t ev::AbstractCamera::getEventRaw_(T &data, [[maybe_unused]] const boo
       if(allow_realloc) {
         auto *const resized = static_cast<uint64_t *>(realloc(data, size * sizeof(uint64_t)));
         if(resized == nullptr) {
-          CV_LOG_ERROR(nullptr, "ev::Davis: Could not resize raw event buffer.");
-          return idx;
+          CV_Error(cv::Error::StsNoMem, "ev::AbstractCamera: Could not resize the raw event buffer.");
         }
         data = resized;
       }

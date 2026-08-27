@@ -26,7 +26,7 @@ ev::HDF5Reader::HDF5Reader(const std::string &filename,
     t_ds_.getSpace().getSimpleExtentDims(dims);
     total_ = dims[0];
   } catch(const H5::Exception &e) {
-    CV_LOG_ERROR(nullptr, "ev::HDF5Reader: " << e.getDetailMsg());
+    CV_Error(cv::Error::StsError, "ev::HDF5Reader: " + e.getDetailMsg());
   }
 }
 
