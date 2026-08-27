@@ -30,6 +30,9 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline ResultType duration() const {
+    if(std::queue<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Queue_::duration: the container is empty.");
+    }
     return std::queue<ev::Event_<T>>::back().t - std::queue<ev::Event_<T>>::front().t;
   }
 
@@ -38,7 +41,14 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline ResultType rate() const {
-    return std::queue<ev::Event_<T>>::size() / duration();
+    if(std::queue<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Queue_::rate: the container is empty.");
+    }
+    const ResultType d = duration();
+    if(d == 0) {
+      CV_Error(cv::Error::StsDivByZero, "ev::Queue_::rate: the events span no time.");
+    }
+    return std::queue<ev::Event_<T>>::size() / d;
   }
 
   /*!
@@ -47,6 +57,9 @@ public:
   \warning This method drains the queue; all events are removed upon completion. Use PersistentQueue_ to preserve contents.
   */
   [[nodiscard]] inline Event_<ResultType> mean() {
+    if(std::queue<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Queue_::mean: the container is empty.");
+    }
     const std::size_t n = std::queue<ev::Event_<T>>::size();
     ResultType x{0};
     ResultType y{0};
@@ -71,6 +84,9 @@ public:
   \warning This method drains the queue; all events are removed upon completion. Use PersistentQueue_ to preserve contents.
   */
   [[nodiscard]] inline cv::Point_<ResultType> meanPoint() {
+    if(std::queue<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Queue_::meanPoint: the container is empty.");
+    }
     const std::size_t n = std::queue<ev::Event_<T>>::size();
     ResultType x{0};
     ResultType y{0};
@@ -91,6 +107,9 @@ public:
   \warning This method drains the queue; all events are removed upon completion. Use PersistentQueue_ to preserve contents.
   */
   [[nodiscard]] inline ResultType meanTime() {
+    if(std::queue<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Queue_::meanTime: the container is empty.");
+    }
     const std::size_t n = std::queue<ev::Event_<T>>::size();
     ResultType t{0};
 
@@ -107,6 +126,9 @@ public:
   \return Midpoint time.
   */
   [[nodiscard]] inline ResultType midTime() const {
+    if(std::queue<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Queue_::midTime: the container is empty.");
+    }
     return 0.5 * (std::queue<ev::Event_<T>>::front().t + std::queue<ev::Event_<T>>::back().t);
   }
 };

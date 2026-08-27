@@ -31,6 +31,9 @@ public:
   \note Unlike Queue_::mean(), the queue contents are preserved after this call.
   */
   [[nodiscard]] inline Event_<ResultType> mean() {
+    if(Queue_<T>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::PersistentQueue_::mean: the container is empty.");
+    }
     const std::size_t n = Queue_<T>::size();
     ResultType x{0};
     ResultType y{0};
@@ -56,6 +59,9 @@ public:
   \note Unlike Queue_::meanPoint(), the queue contents are preserved after this call.
   */
   [[nodiscard]] inline cv::Point_<ResultType> meanPoint() {
+    if(Queue_<T>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::PersistentQueue_::meanPoint: the container is empty.");
+    }
     const std::size_t n = Queue_<T>::size();
     ResultType x{0};
     ResultType y{0};
@@ -77,6 +83,9 @@ public:
   \note Unlike Queue_::meanTime(), the queue contents are preserved after this call.
   */
   [[nodiscard]] inline ResultType meanTime() {
+    if(Queue_<T>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::PersistentQueue_::meanTime: the container is empty.");
+    }
     const std::size_t n = Queue_<T>::size();
     ResultType t{0};
 

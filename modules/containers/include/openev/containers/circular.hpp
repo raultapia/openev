@@ -53,6 +53,9 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline ResultType duration() const {
+    if(boost::circular_buffer<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::CircularBuffer_::duration: the container is empty.");
+    }
     return boost::circular_buffer<ev::Event_<T>>::back().t - boost::circular_buffer<ev::Event_<T>>::front().t;
   }
 
@@ -61,7 +64,14 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline ResultType rate() const {
-    return boost::circular_buffer<ev::Event_<T>>::size() / duration();
+    if(boost::circular_buffer<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::CircularBuffer_::rate: the container is empty.");
+    }
+    const ResultType d = duration();
+    if(d == 0) {
+      CV_Error(cv::Error::StsDivByZero, "ev::CircularBuffer_::rate: the events span no time.");
+    }
+    return boost::circular_buffer<ev::Event_<T>>::size() / d;
   }
 
   /*!
@@ -69,6 +79,9 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] inline Event_<ResultType> mean() const {
+    if(boost::circular_buffer<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::CircularBuffer_::mean: the container is empty.");
+    }
     const ResultType x = std::accumulate(boost::circular_buffer<ev::Event_<T>>::begin(), boost::circular_buffer<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.x; }) / boost::circular_buffer<ev::Event_<T>>::size();
     const ResultType y = std::accumulate(boost::circular_buffer<ev::Event_<T>>::begin(), boost::circular_buffer<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.y; }) / boost::circular_buffer<ev::Event_<T>>::size();
     const ResultType t = std::accumulate(boost::circular_buffer<ev::Event_<T>>::begin(), boost::circular_buffer<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.t; }) / boost::circular_buffer<ev::Event_<T>>::size();
@@ -81,6 +94,9 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point_<ResultType> meanPoint() const {
+    if(boost::circular_buffer<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::CircularBuffer_::meanPoint: the container is empty.");
+    }
     const ResultType x = std::accumulate(boost::circular_buffer<ev::Event_<T>>::begin(), boost::circular_buffer<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.x; }) / boost::circular_buffer<ev::Event_<T>>::size();
     const ResultType y = std::accumulate(boost::circular_buffer<ev::Event_<T>>::begin(), boost::circular_buffer<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.y; }) / boost::circular_buffer<ev::Event_<T>>::size();
     return {x, y};
@@ -91,6 +107,9 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline ResultType meanTime() const {
+    if(boost::circular_buffer<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::CircularBuffer_::meanTime: the container is empty.");
+    }
     return std::accumulate(boost::circular_buffer<ev::Event_<T>>::begin(), boost::circular_buffer<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.t; }) / boost::circular_buffer<ev::Event_<T>>::size();
   }
 
@@ -99,6 +118,9 @@ public:
   \return Midpoint time.
   */
   [[nodiscard]] inline ResultType midTime() const {
+    if(boost::circular_buffer<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::CircularBuffer_::midTime: the container is empty.");
+    }
     return 0.5 * (boost::circular_buffer<ev::Event_<T>>::front().t + boost::circular_buffer<ev::Event_<T>>::back().t);
   }
 };

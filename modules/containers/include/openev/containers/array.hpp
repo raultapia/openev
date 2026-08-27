@@ -41,7 +41,11 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline ResultType rate() const {
-    return std::array<ev::Event_<T>, N>::size() / duration();
+    const ResultType d = duration();
+    if(d == 0) {
+      CV_Error(cv::Error::StsDivByZero, "ev::Array_::rate: the events span no time.");
+    }
+    return std::array<ev::Event_<T>, N>::size() / d;
   }
 
   /*!

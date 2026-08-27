@@ -30,6 +30,9 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline ResultType duration() const {
+    if(std::deque<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Deque_::duration: the container is empty.");
+    }
     return std::deque<ev::Event_<T>>::back().t - std::deque<ev::Event_<T>>::front().t;
   }
 
@@ -38,7 +41,14 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline ResultType rate() const {
-    return std::deque<ev::Event_<T>>::size() / duration();
+    if(std::deque<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Deque_::rate: the container is empty.");
+    }
+    const ResultType d = duration();
+    if(d == 0) {
+      CV_Error(cv::Error::StsDivByZero, "ev::Deque_::rate: the events span no time.");
+    }
+    return std::deque<ev::Event_<T>>::size() / d;
   }
 
   /*!
@@ -46,6 +56,9 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] inline Event_<ResultType> mean() const {
+    if(std::deque<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Deque_::mean: the container is empty.");
+    }
     const ResultType x = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.x; }) / std::deque<ev::Event_<T>>::size();
     const ResultType y = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.y; }) / std::deque<ev::Event_<T>>::size();
     const ResultType t = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.t; }) / std::deque<ev::Event_<T>>::size();
@@ -58,6 +71,9 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point_<ResultType> meanPoint() const {
+    if(std::deque<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Deque_::meanPoint: the container is empty.");
+    }
     const ResultType x = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.x; }) / std::deque<ev::Event_<T>>::size();
     const ResultType y = std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.y; }) / std::deque<ev::Event_<T>>::size();
     return {x, y};
@@ -68,6 +84,9 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline ResultType meanTime() const {
+    if(std::deque<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Deque_::meanTime: the container is empty.");
+    }
     return std::accumulate(std::deque<ev::Event_<T>>::begin(), std::deque<ev::Event_<T>>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.t; }) / std::deque<ev::Event_<T>>::size();
   }
 
@@ -76,6 +95,9 @@ public:
   \return Midpoint time.
   */
   [[nodiscard]] inline ResultType midTime() const {
+    if(std::deque<ev::Event_<T>>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::Deque_::midTime: the container is empty.");
+    }
     return 0.5 * (std::deque<ev::Event_<T>>::front().t + std::deque<ev::Event_<T>>::back().t);
   }
 };
