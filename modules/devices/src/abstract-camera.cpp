@@ -7,7 +7,6 @@
 #include "libcaer/devices/device.h"
 #include <algorithm>
 #include <array>
-#include <chrono>
 #include <cstdlib>
 #include <cstring>
 #include <libcaer/events/common.h>
@@ -174,17 +173,27 @@ std::size_t ev::AbstractCamera::getEventRaw(std::vector<uint64_t> &data) { retur
 
 std::size_t ev::AbstractCamera::getEventRaw(uint64_t *&data, const bool allow_realloc /*= true*/) { return getEventRaw_(data, allow_realloc); }
 
-void ev::AbstractCamera::flush(const double msec) const {
-  if(msec <= 0) {
+void ev::AbstractCamera::flush(const double usec) const {
+  if(usec <= 0) {
     return;
   }
-  const std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
+
+  int64_t first = -1;
+  int64_t last = -1;
   [[maybe_unused]] std::size_t discarded = 0;
   do {
-    caerEventPacketContainerFree(caerDeviceDataGet(deviceHandler_));
+    const Transmission transmission(deviceHandler_);
     discarded++;
-  } while(static_cast<double>(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t0).count()) < msec);
-  CV_LOG_DEBUG(nullptr, "ev::AbstractCamera::flush: discarded " << discarded << " container(s) over " << msec << " ms.");
+    const int64_t lowest = caerEventPacketContainerGetLowestEventTimestamp(transmission.get());
+    const int64_t highest = caerEventPacketContainerGetHighestEventTimestamp(transmission.get());
+    if(lowest >= 0 && highest >= 0) {
+      if(first < 0 || lowest < first) {
+        first = lowest;
+      }
+      last = highest;
+    }
+  } while(first < 0 || static_cast<double>(last - first) < usec);
+  CV_LOG_DEBUG(nullptr, "ev::AbstractCamera::flush: discarded " << discarded << " containers over " << usec << " us of device time.");
 }
 
 template <typename T1, typename T2, typename T3>

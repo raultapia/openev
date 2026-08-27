@@ -395,9 +395,9 @@ public:
 
   /*!
   \brief Discard data during an interval of time.
-  \param msec Time interval in milliseconds
+  \param usec Time interval in microseconds
   */
-  void flush(const double msec) const;
+  void flush(const double usec) const;
 
 protected:
   /*! \cond INTERNAL */

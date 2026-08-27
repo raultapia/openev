@@ -70,7 +70,7 @@ void ev::Davis::start() {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_GYROSCOPE, enable[3]);
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_IMU, DAVIS_CONFIG_IMU_RUN_TEMPERATURE, enable[4]);
 
-  AbstractCamera::flush(1);
+  AbstractCamera::flush(1000);
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_MUX, DAVIS_CONFIG_MUX_TIMESTAMP_RESET, 1);
   resetTime_ = static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()).count());
 }
