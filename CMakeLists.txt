@@ -21,20 +21,21 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   FetchContent_MakeAvailable(google_benchmark googletest)
 endif()
 
+# Tests
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  enable_testing()
+endif()
+
 # Modules
 add_library(openev INTERFACE)
 set(OpenEV_LIBRARIES "")
 set(BENCHMARK_CMDS "")
-foreach(
-  MODULE IN
-  ITEMS ALGORITHMS
-        CONTAINERS
-        CORE
-        DEVICES
-        EVPROC
-        READERS
-        REPRESENTATIONS)
-  string(TOLOWER "${MODULE}" module)
+set(OPENEV_MODULE_OPTIONS "")
+file(GLOB MODULE_CMAKE_FILES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/modules/*/CMakeLists.txt)
+foreach(MODULE_CMAKE_FILE IN LISTS MODULE_CMAKE_FILES)
+  get_filename_component(module ${MODULE_CMAKE_FILE} DIRECTORY)
+  get_filename_component(module ${module} NAME)
+  string(TOUPPER "${module}" MODULE)
   option(BUILD_MODULE_${MODULE} "Build the ${module} module" ON)
   if(BUILD_MODULE_${MODULE})
     add_subdirectory(modules/${module})
@@ -43,18 +44,36 @@ foreach(
     if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/modules/${module}/benchmark")
       list(APPEND BENCHMARK_CMDS COMMAND $<TARGET_FILE:oe_${module}_benchmark>)
     endif()
-    set(IS_ENABLED_MODULE_${MODULE} 1)
+    string(APPEND OPENEV_MODULE_OPTIONS "#define OE_IS_ENABLED_MODULE_${MODULE} 1\n")
   else()
-    set(IS_ENABLED_MODULE_${MODULE} 0)
+    string(APPEND OPENEV_MODULE_OPTIONS "#define OE_IS_ENABLED_MODULE_${MODULE} 0\n")
   endif()
 endforeach()
 configure_file("${CMAKE_SOURCE_DIR}/include/openev/options.hpp.in.cmake" "${CMAKE_SOURCE_DIR}/include/openev/options.hpp" @ONLY)
 target_include_directories(openev INTERFACE "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>" "$<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/include>")
 set_target_properties(openev PROPERTIES PUBLIC_HEADER "${PROJECT_SOURCE_DIR}/include/openev/openev.hpp;${PROJECT_SOURCE_DIR}/include/openev/options.hpp")
 
-# Tests and benchmarks
+# Module dependencies
+function(openev_required_modules SOURCE_FILE OUT_REQUIRED OUT_MISSING)
+  file(STRINGS ${SOURCE_FILE} INCLUDE_LINES REGEX "include[ \t]*[<\"]openev/[a-z]+/")
+  set(REQUIRED "")
+  set(MISSING "")
+  foreach(INCLUDE_LINE IN LISTS INCLUDE_LINES)
+    string(REGEX MATCH "openev/([a-z]+)/" UNUSED "${INCLUDE_LINE}")
+    string(TOUPPER "${CMAKE_MATCH_1}" MODULE)
+    if(NOT "${MODULE}" IN_LIST REQUIRED)
+      list(APPEND REQUIRED ${MODULE})
+      if(NOT BUILD_MODULE_${MODULE})
+        list(APPEND MISSING ${MODULE})
+      endif()
+    endif()
+  endforeach()
+  set(${OUT_REQUIRED} "${REQUIRED}" PARENT_SCOPE)
+  set(${OUT_MISSING} "${MISSING}" PARENT_SCOPE)
+endfunction()
+
+# Benchmarks
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  enable_testing()
   add_custom_target(benchmarks ${BENCHMARK_CMDS})
 endif()
 
@@ -65,14 +84,8 @@ if(BUILD_EXAMPLES)
 endif()
 
 # Install
-install(
-  TARGETS openev
-  EXPORT OpenEVTargets
-  PUBLIC_HEADER DESTINATION include/openev)
-install(
-  EXPORT OpenEVTargets
-  FILE OpenEVTargets.cmake
-  DESTINATION lib/cmake/openev)
+install(TARGETS openev EXPORT OpenEVTargets PUBLIC_HEADER DESTINATION include/openev)
+install(EXPORT OpenEVTargets FILE OpenEVTargets.cmake DESTINATION lib/cmake/openev)
 include(CMakePackageConfigHelpers)
 set(OpenEV_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}/include")
 set(OpenEV_LIBRARY_DIRS "${CMAKE_INSTALL_PREFIX}/lib/openev")
