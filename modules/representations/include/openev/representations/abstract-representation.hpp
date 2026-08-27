@@ -123,6 +123,8 @@ public:
 */
 template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int>
 class AbstractRepresentation_ {
+  static_assert(TypeHelper<T>::NumChannels == 1 || TypeHelper<T>::NumChannels == 3, "ev::AbstractRepresentation_: only 1- and 3-channel representations are supported.");
+
 public:
   using Type = typename TypeHelper<T>::Type; /*!< Type */
 

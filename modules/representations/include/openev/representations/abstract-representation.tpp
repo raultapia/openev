@@ -22,15 +22,29 @@ void AbstractRepresentation_<T, Options, E>::clear(const cv::Mat &background, co
   count_ = 0;
   tLimits_ = {std::numeric_limits<TimeType>::max(), std::numeric_limits<TimeType>::min()};
 
+  if(background.depth() != cv::DataType<typename TypeHelper<T>::PrimitiveDataType>::depth) {
+    CV_Error(cv::Error::StsBadArg, "ev::AbstractRepresentation::clear: the background depth (" + std::string(cv::depthToString(background.depth())) + ") does not match the representation (" + std::string(cv::depthToString(cv::DataType<typename TypeHelper<T>::PrimitiveDataType>::depth)) + ").");
+  }
+
   cv::Mat converted;
-  if(background.channels() != TypeHelper<T>::NumChannels) {
-    if(background.channels() == 1 && TypeHelper<T>::NumChannels == 3) {
-      cv::cvtColor(background, converted, cv::COLOR_GRAY2BGR);
-    } else if(background.channels() == 3 && TypeHelper<T>::NumChannels == 1) {
+  if(background.channels() == TypeHelper<T>::NumChannels) {
+    converted = background;
+  } else if constexpr(TypeHelper<T>::NumChannels == 1) {
+    if(background.channels() == 3) {
       cv::cvtColor(background, converted, cv::COLOR_BGR2GRAY);
+    } else if(background.channels() == 4) {
+      cv::cvtColor(background, converted, cv::COLOR_BGRA2GRAY);
     }
   } else {
-    converted = background;
+    if(background.channels() == 1) {
+      cv::cvtColor(background, converted, cv::COLOR_GRAY2BGR);
+    } else if(background.channels() == 4) {
+      cv::cvtColor(background, converted, cv::COLOR_BGRA2BGR);
+    }
+  }
+
+  if(converted.empty()) {
+    CV_Error(cv::Error::StsBadArg, "ev::AbstractRepresentation::clear: cannot convert a " + std::to_string(background.channels()) + "-channel background into a " + std::to_string(TypeHelper<T>::NumChannels) + "-channel representation.");
   }
 
   const cv::Size frame = frameSize_();
