@@ -65,13 +65,25 @@ void ev::AbstractCamera::setDefectivePixels(const std::string &defective_pixels_
   fs.release();
 
   const cv::Size size = getSensorSize();
+  const cv::Rect bounds({0, 0}, size);
+  const auto outside = [&bounds](const cv::Point &p) { return !p.inside(bounds); };
+
   hotPixels_ = cv::Mat::zeros(size, CV_8UC1);
   for(const cv::Point &p : hot) {
-    if(p.inside(cv::Rect({0, 0}, size))) {
+    if(!outside(p)) {
       hotPixels_.at<uchar>(p) = 1;
     }
   }
+  const std::size_t saturatedRead = saturated.size();
   saturatedPixels_ = std::move(saturated);
+  saturatedPixels_.erase(std::remove_if(saturatedPixels_.begin(), saturatedPixels_.end(), outside), saturatedPixels_.end());
+
+  const std::size_t loadedHot = hot.size() - static_cast<std::size_t>(std::count_if(hot.begin(), hot.end(), outside));
+  const std::size_t discarded = (hot.size() - loadedHot) + (saturatedRead - saturatedPixels_.size());
+  if(discarded > 0) {
+    CV_LOG_WARNING(nullptr, "ev::AbstractCamera::setDefectivePixels: " << discarded << " coordinate(s) outside the " << size.width << "x" << size.height << " sensor were discarded.");
+  }
+  CV_LOG_DEBUG(nullptr, "ev::AbstractCamera::setDefectivePixels: loaded " << loadedHot << " hot and " << saturatedPixels_.size() << " saturated pixel(s).");
   hasDefectivePixels_ = true;
 }
 
@@ -167,9 +179,12 @@ void ev::AbstractCamera::flush(const double msec) const {
     return;
   }
   const std::chrono::high_resolution_clock::time_point t0 = std::chrono::high_resolution_clock::now();
+  [[maybe_unused]] std::size_t discarded = 0;
   do {
     caerEventPacketContainerFree(caerDeviceDataGet(deviceHandler_));
+    discarded++;
   } while(static_cast<double>(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t0).count()) < msec);
+  CV_LOG_DEBUG(nullptr, "ev::AbstractCamera::flush: discarded " << discarded << " container(s) over " << msec << " ms.");
 }
 
 template <typename T1, typename T2, typename T3>
@@ -350,6 +365,7 @@ void ev::AbstractCamera::interpolate_(cv::Mat &frame) const {
   std::array<uchar, 8> neighbours{};
 
   const cv::Rect bounds({0, 0}, frame.size());
+  [[maybe_unused]] std::size_t skipped = 0;
   for(const cv::Point &p : saturatedPixels_) {
     const cv::Point q = p - offset;
     if(!q.inside(bounds)) {
@@ -367,9 +383,13 @@ void ev::AbstractCamera::interpolate_(cv::Mat &frame) const {
       }
     }
     if(n == 0) {
+      skipped++;
       continue;
     }
     std::sort(neighbours.begin(), neighbours.begin() + static_cast<long>(n));
     frame.at<uchar>(q) = neighbours.at(n / 2);
+  }
+  if(skipped > 0) {
+    CV_LOG_DEBUG(nullptr, "ev::AbstractCamera::interpolate_: " << skipped << " saturated pixel(s) left untouched, no usable neighbour.");
   }
 }

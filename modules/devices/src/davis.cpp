@@ -43,6 +43,9 @@ ev::Davis::Davis() {
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_MODE, 0U);                              // Default frame mode
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_INTERVAL, ev::Davis::DEFAULT_INTERVAL); // 50Hz == 20000us
     caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, ev::Davis::DEFAULT_EXPOSURE);       // 6500 us
+
+    const cv::Size size = getSensorSize();
+    CV_LOG_DEBUG(nullptr, "ev::Davis: opened " << getSerialNumber() << ", " << size.width << "x" << size.height << " sensor.");
   }
 }
 
@@ -134,6 +137,7 @@ bool ev::Davis::setRoi(const cv::Rect_<uint16_t> &roi) {
         }
       }
       roi_ = roi;
+      CV_LOG_DEBUG(nullptr, "ev::Davis::setRoi: " << roi.width << "x" << roi.height << " at (" << roi.x << ", " << roi.y << "), dvs filtered by " << (filterRoiInSoftware_ ? "software" : "hardware") << ".");
       return true;
     }
   }

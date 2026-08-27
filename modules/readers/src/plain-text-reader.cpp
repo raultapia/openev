@@ -43,22 +43,27 @@ bool ev::PlainTextReader::updateBuffer_() {
   }
 
   Event e;
-  int pi;
+  int pi = 0;
+  bool parsed = false;
   switch(columns_) {
   case PlainTextReaderColumns::TXYP:
-    if(std::sscanf(line.c_str(), "%lf %d %d %d", &e.t, &e.x, &e.y, &pi) != 4) return false;
+    parsed = std::sscanf(line.c_str(), "%lf %d %d %d", &e.t, &e.x, &e.y, &pi) == 4;
     break;
   case PlainTextReaderColumns::XYTP:
-    if(std::sscanf(line.c_str(), "%d %d %lf %d", &e.x, &e.y, &e.t, &pi) != 4) return false;
+    parsed = std::sscanf(line.c_str(), "%d %d %lf %d", &e.x, &e.y, &e.t, &pi) == 4;
     break;
   case PlainTextReaderColumns::PTXY:
-    if(std::sscanf(line.c_str(), "%d %lf %d %d", &pi, &e.t, &e.x, &e.y) != 4) return false;
+    parsed = std::sscanf(line.c_str(), "%d %lf %d %d", &pi, &e.t, &e.x, &e.y) == 4;
     break;
   case PlainTextReaderColumns::PXYT:
-    if(std::sscanf(line.c_str(), "%d %d %d %lf", &pi, &e.x, &e.y, &e.t) != 4) return false;
+    parsed = std::sscanf(line.c_str(), "%d %d %d %lf", &pi, &e.x, &e.y, &e.t) == 4;
     break;
   default:
     CV_Error(cv::Error::StsBadArg, "ev::PlainTextReader: No column order selected.");
+  }
+  if(!parsed) {
+    CV_LOG_WARNING(nullptr, "ev::PlainTextReader: could not parse a line, stopping there: \"" << line << "\"");
+    return false;
   }
   e.p = static_cast<bool>(pi > 0);
   buffer_.push(e);
