@@ -158,12 +158,16 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <tr class="memdesc:a3d1d222b0de69698e75994a614376478"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the device produces IMU data.  <br /></td></tr>
 <tr class="memitem:a16fae383923cd196b906596b7d076189" id="r_a16fae383923cd196b906596b7d076189"><td class="memItemLeft">virtual cv::Size&#160;</td><td class="memItemRight"><a class="el" href="#a16fae383923cd196b906596b7d076189">getSensorSize</a> () const =0</td></tr>
 <tr class="memdesc:a16fae383923cd196b906596b7d076189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device sensor size.  <br /></td></tr>
+<tr class="memitem:ab406b87e05890e0a933af1f6a8114a28" id="r_ab406b87e05890e0a933af1f6a8114a28"><td class="memItemLeft">virtual std::string&#160;</td><td class="memItemRight"><a class="el" href="#ab406b87e05890e0a933af1f6a8114a28">getSerialNumber</a> () const =0</td></tr>
+<tr class="memdesc:ab406b87e05890e0a933af1f6a8114a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device serial number, prefixed with the camera family.  <br /></td></tr>
 <tr class="memitem:ad0f9fec684a87c1690510a6307d74540" id="r_ad0f9fec684a87c1690510a6307d74540"><td class="memItemLeft">uint64_t&#160;</td><td class="memItemRight"><a class="el" href="#ad0f9fec684a87c1690510a6307d74540">getResetTime</a> () const</td></tr>
 <tr class="memdesc:ad0f9fec684a87c1690510a6307d74540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get device reset time.  <br /></td></tr>
 <tr class="memitem:aa697b4c5c361499f2b5767c6ef1acadf" id="r_aa697b4c5c361499f2b5767c6ef1acadf"><td class="memItemLeft">cv::Rect_&lt; uint16_t &gt;&#160;</td><td class="memItemRight"><a class="el" href="#aa697b4c5c361499f2b5767c6ef1acadf">getRoi</a> () const</td></tr>
 <tr class="memdesc:aa697b4c5c361499f2b5767c6ef1acadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current ROI.  <br /></td></tr>
 <tr class="memitem:a18e265eab9b9e60c336eea6315c5445a" id="r_a18e265eab9b9e60c336eea6315c5445a"><td class="memItemLeft">virtual bool&#160;</td><td class="memItemRight"><a class="el" href="#a18e265eab9b9e60c336eea6315c5445a">setRoi</a> (const cv::Rect_&lt; uint16_t &gt; &amp;roi)=0</td></tr>
 <tr class="memdesc:a18e265eab9b9e60c336eea6315c5445a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set current ROI. Events outside the ROI are not considered. Images are cropped according to the ROI.  <br /></td></tr>
+<tr class="memitem:a2cb47198181cbf56ad2aa8a0f3a12aaa" id="r_a2cb47198181cbf56ad2aa8a0f3a12aaa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2cb47198181cbf56ad2aa8a0f3a12aaa">setDefectivePixels</a> (const std::string &amp;defective_pixels_file)</td></tr>
+<tr class="memdesc:a2cb47198181cbf56ad2aa8a0f3a12aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a defective pixel file. Events on hot pixels are discarded, and saturated pixels are replaced by the median of their neighbours on every frame.  <br /></td></tr>
 <tr class="memitem:a2e53ff9e8ce9eb4d380b2147dacf017d" id="r_a2e53ff9e8ce9eb4d380b2147dacf017d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2e53ff9e8ce9eb4d380b2147dacf017d">setTimeInterval</a> (const uint32_t usec)</td></tr>
 <tr class="memdesc:a2e53ff9e8ce9eb4d380b2147dacf017d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the maximum time interval between subsequent transmissions.  <br /></td></tr>
 <tr class="memitem:ae73cdbc0a520bec72d6b0741c61361ca" id="r_ae73cdbc0a520bec72d6b0741c61361ca"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae73cdbc0a520bec72d6b0741c61361ca">setEventsPerPacket</a> (const uint32_t n)</td></tr>
@@ -891,6 +895,36 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 
 </div>
 </div>
+<a id="ab406b87e05890e0a933af1f6a8114a28" name="ab406b87e05890e0a933af1f6a8114a28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab406b87e05890e0a933af1f6a8114a28">&#9670;&#160;</a></span>getSerialNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string ev::AbstractCamera::getSerialNumber </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel nodiscard">nodiscard</span><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get device serial number, prefixed with the camera family. </p>
+<dl class="section return"><dt>Returns</dt><dd>Serial number, empty if the camera is not open </dd></dl>
+
+<p>Implemented in <a class="el" href="classev_1_1Davis.html#a4f1b09e500d2e0fedd5835332b0451d9">ev::Davis</a>.</p>
+
+</div>
+</div>
 <a id="af4ecfdc50ee00aab04111007ca7a7abd" name="af4ecfdc50ee00aab04111007ca7a7abd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af4ecfdc50ee00aab04111007ca7a7abd">&#9670;&#160;</a></span>hasAps()</h2>
 
@@ -976,6 +1010,42 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 
 <p>Check whether the device was found and opened. </p>
 <dl class="section return"><dt>Returns</dt><dd>True if the camera is open </dd></dl>
+
+</div>
+</div>
+<a id="a2cb47198181cbf56ad2aa8a0f3a12aaa" name="a2cb47198181cbf56ad2aa8a0f3a12aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cb47198181cbf56ad2aa8a0f3a12aaa">&#9670;&#160;</a></span>setDefectivePixels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ev::AbstractCamera::setDefectivePixels </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>defective_pixels_file</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Load a defective pixel file. Events on hot pixels are discarded, and saturated pixels are replaced by the median of their neighbours on every frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">defective_pixels_file</td><td>Path to a YAML file </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The file holds one entry per camera, keyed by the serial number reported by <a class="el" href="#ab406b87e05890e0a933af1f6a8114a28" title="Get device serial number, prefixed with the camera family.">getSerialNumber()</a>. Each entry lists the defective pixels as flat sequences of x, y pairs. Every event at a hot_pixels coordinate is discarded. Every saturated_pixels coordinate is replaced on each APS frame by the median of its neighbours, excluding those that are themselves saturated or fall outside the frame. The dead_pixels entry may be present but is not used. <div class="fragment"><div class="line">%YAML:1.0</div>
+<div class="line">---</div>
+<div class="line">DAVIS346B-00000259:</div>
+<div class="line">   dead_pixels: []</div>
+<div class="line">   hot_pixels: [ 102, 216, 308, 205 ]</div>
+<div class="line">   saturated_pixels: [ 183, 126 ]</div>
+<div class="line">DAVIS240C-00000117:</div>
+<div class="line">   dead_pixels: []</div>
+<div class="line">   hot_pixels: [ 5, 5 ]</div>
+<div class="line">   saturated_pixels: []</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>

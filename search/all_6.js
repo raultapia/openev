@@ -5,5 +5,6 @@ var searchData=
   ['geteventraw_2',['getEventRaw',['../classev_1_1AbstractCamera.html#a56d153948f34deb044457a721ddb306c',1,'ev::AbstractCamera::getEventRaw(std::vector&lt; uint64_t &gt; &amp;data)'],['../classev_1_1AbstractCamera.html#ae6f3b44b64c023a7cf15f22f3bd9d70b',1,'ev::AbstractCamera::getEventRaw(uint64_t *&amp;data, const bool allow_realloc=true)']]],
   ['getresettime_3',['getResetTime',['../classev_1_1AbstractCamera.html#ad0f9fec684a87c1690510a6307d74540',1,'ev::AbstractCamera']]],
   ['getroi_4',['getRoi',['../classev_1_1AbstractCamera.html#aa697b4c5c361499f2b5767c6ef1acadf',1,'ev::AbstractCamera']]],
-  ['getsensorsize_5',['getSensorSize',['../classev_1_1AbstractCamera.html#a16fae383923cd196b906596b7d076189',1,'ev::AbstractCamera::getSensorSize()'],['../classev_1_1Davis.html#a71f5276df44836fe47980097eaaf583b',1,'ev::Davis::getSensorSize()']]]
+  ['getsensorsize_5',['getSensorSize',['../classev_1_1AbstractCamera.html#a16fae383923cd196b906596b7d076189',1,'ev::AbstractCamera::getSensorSize()'],['../classev_1_1Davis.html#a71f5276df44836fe47980097eaaf583b',1,'ev::Davis::getSensorSize()']]],
+  ['getserialnumber_6',['getSerialNumber',['../classev_1_1AbstractCamera.html#ab406b87e05890e0a933af1f6a8114a28',1,'ev::AbstractCamera::getSerialNumber()'],['../classev_1_1Davis.html#a4f1b09e500d2e0fedd5835332b0451d9',1,'ev::Davis::getSerialNumber()']]]
 ];

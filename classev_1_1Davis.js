@@ -5,6 +5,7 @@ var classev_1_1Davis =
     [ "enableImu", "classev_1_1Davis.html#a861ff86ef40d59ee669ee5b5c9a32fbd", null ],
     [ "getBias", "classev_1_1Davis.html#a99281a5f9c8403cdb1119b7ef807967d", null ],
     [ "getSensorSize", "classev_1_1Davis.html#a71f5276df44836fe47980097eaaf583b", null ],
+    [ "getSerialNumber", "classev_1_1Davis.html#a4f1b09e500d2e0fedd5835332b0451d9", null ],
     [ "hasAps", "classev_1_1Davis.html#a203fb81db877c792158e41b45aada0bc", null ],
     [ "hasImu", "classev_1_1Davis.html#abe4cdb906ea96c12e2c46d47b55792b2", null ],
     [ "setApsTimeInterval", "classev_1_1Davis.html#ad86fffda93f5304b98314aafc8e71fa2", null ],
