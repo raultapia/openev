@@ -85,7 +85,7 @@ public:
 
 private:
   inline void trim() {
-    if(Deque_<T>::empty()) {
+    if(window_ <= 0 || Deque_<T>::empty()) {
       return;
     }
     const auto newest = std::deque<Event_<T>>::back().t;

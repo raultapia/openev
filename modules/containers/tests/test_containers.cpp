@@ -207,3 +207,21 @@ TEST(ZeroSpan, DefaultArrayRateThrows) {
   EXPECT_DOUBLE_EQ(a.duration(), 0.0);
   EXPECT_THROW((void)a.rate(), cv::Exception);
 }
+
+TEST(SlidingWindow, DefaultWindowRetainsEverything) {
+  ev::SlidingWindow window;
+  EXPECT_DOUBLE_EQ(window.window(), 0.0);
+  for(int i = 0; i < 100; i++) {
+    window.push(ev::Event(i, i, i * 1e-3, true));
+  }
+  EXPECT_EQ(window.size(), 100U);
+  EXPECT_DOUBLE_EQ(window.duration(), 99e-3);
+}
+
+TEST(SlidingWindow, NegativeWindowRetainsEverything) {
+  ev::SlidingWindow window(-1.0);
+  for(int i = 0; i < 10; i++) {
+    window.push(ev::Event(i, i, i * 1e-3, true));
+  }
+  EXPECT_EQ(window.size(), 10U);
+}
