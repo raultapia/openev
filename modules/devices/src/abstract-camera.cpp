@@ -178,6 +178,10 @@ void ev::AbstractCamera::flush(const double usec) const {
   if(usec <= 0) {
     return;
   }
+  if(!running_) {
+    CV_LOG_WARNING(nullptr, "ev::AbstractCamera::flush: the camera is not running, there is nothing to discard. Call start() first.");
+    return;
+  }
 
   int64_t first = -1;
   int64_t last = -1;
