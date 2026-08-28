@@ -139,7 +139,8 @@ Inheritance diagram for ev::SlidingWindow_&lt; T &gt;:</div>
  <div class="center">
   <img src="classev_1_1SlidingWindow__.png" usemap="#ev_3A_3ASlidingWindow_5F_3C_20T_20_3E_map" alt=""/>
   <map id="ev_3A_3ASlidingWindow_5F_3C_20T_20_3E_map" name="ev_3A_3ASlidingWindow_5F_3C_20T_20_3E_map">
-<area href="classev_1_1Deque__.html" title="This class extends std::deque to implement event deques. For more information, please refer here." alt="ev::Deque_&lt; T &gt;" shape="rect" coords="0,56,162,80"/>
+<area href="classev_1_1Deque__.html" title="This class extends std::deque to implement event deques. For more information, please refer here." alt="ev::Deque_&lt; T &gt;" shape="rect" coords="132,56,387,80"/>
+<area href="classev_1_1AbstractContainer__.html" alt="ev::AbstractContainer_&lt; Deque_&lt; T &gt;, T &gt;" shape="rect" coords="265,0,520,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -159,19 +160,25 @@ Public Member Functions</h2></td></tr>
 template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:aa0057e5f23ee0f712318f0abed1ade9e template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><b>emplace</b> (Args &amp;&amp;...args)</td></tr>
 <tr class="memdesc:aa0057e5f23ee0f712318f0abed1ade9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an event in-place at the back and discard front events older than the window. <br /></td></tr>
-<tr class="inherit_header pub_methods_classev_1_1Deque__"><td colspan="2">Public Member Functions inherited from <a class="el" href="classev_1_1Deque__.html">ev::Deque_&lt; T &gt;</a></td></tr>
-<tr class="memitem:abed3641cf128102d98097a1114874440 pub_methods_classev_1_1Deque__" id="r_abed3641cf128102d98097a1114874440"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Deque__.html#abed3641cf128102d98097a1114874440">duration</a> () const</td></tr>
-<tr class="memdesc:abed3641cf128102d98097a1114874440 pub_methods_classev_1_1Deque__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
-<tr class="memitem:af6330498b8aa65738e3f8bfd4a5c198d pub_methods_classev_1_1Deque__" id="r_af6330498b8aa65738e3f8bfd4a5c198d"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Deque__.html#af6330498b8aa65738e3f8bfd4a5c198d">rate</a> () const</td></tr>
-<tr class="memdesc:af6330498b8aa65738e3f8bfd4a5c198d pub_methods_classev_1_1Deque__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
-<tr class="memitem:ab3d629e5024d3df9d795ad777637ad81 pub_methods_classev_1_1Deque__" id="r_ab3d629e5024d3df9d795ad777637ad81"><td class="memItemLeft"><a class="el" href="classev_1_1Event__.html">Event_</a>&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Deque__.html#ab3d629e5024d3df9d795ad777637ad81">mean</a> () const</td></tr>
-<tr class="memdesc:ab3d629e5024d3df9d795ad777637ad81 pub_methods_classev_1_1Deque__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
-<tr class="memitem:aa0fce956fd9f7195ca25665a861ecfad pub_methods_classev_1_1Deque__" id="r_aa0fce956fd9f7195ca25665a861ecfad"><td class="memItemLeft">cv::Point_&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Deque__.html#aa0fce956fd9f7195ca25665a861ecfad">meanPoint</a> () const</td></tr>
-<tr class="memdesc:aa0fce956fd9f7195ca25665a861ecfad pub_methods_classev_1_1Deque__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
-<tr class="memitem:ae869b51336768feeb4f09393eba7a393 pub_methods_classev_1_1Deque__" id="r_ae869b51336768feeb4f09393eba7a393"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Deque__.html#ae869b51336768feeb4f09393eba7a393">meanTime</a> () const</td></tr>
-<tr class="memdesc:ae869b51336768feeb4f09393eba7a393 pub_methods_classev_1_1Deque__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
-<tr class="memitem:a2d405dcb9d3819d9b3de722097daa742 pub_methods_classev_1_1Deque__" id="r_a2d405dcb9d3819d9b3de722097daa742"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1Deque__.html#a2d405dcb9d3819d9b3de722097daa742">midTime</a> () const</td></tr>
-<tr class="memdesc:a2d405dcb9d3819d9b3de722097daa742 pub_methods_classev_1_1Deque__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classev_1_1AbstractContainer__"><td colspan="2">Public Member Functions inherited from <a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; Deque_&lt; T &gt;, T &gt;</a></td></tr>
+<tr class="memitem:aa4e39c7be1b3b6ed6c57db751b10823d pub_methods_classev_1_1AbstractContainer__" id="r_aa4e39c7be1b3b6ed6c57db751b10823d"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#aa4e39c7be1b3b6ed6c57db751b10823d">duration</a> () const</td></tr>
+<tr class="memdesc:aa4e39c7be1b3b6ed6c57db751b10823d pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
+<tr class="memitem:a78fdf5593bd1b76d8ad49f9f707046c1 pub_methods_classev_1_1AbstractContainer__" id="r_a78fdf5593bd1b76d8ad49f9f707046c1"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#a78fdf5593bd1b76d8ad49f9f707046c1">rate</a> () const</td></tr>
+<tr class="memdesc:a78fdf5593bd1b76d8ad49f9f707046c1 pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
+<tr class="memitem:acf7d3b5abcf5d31d7014e0d6d05fd90d pub_methods_classev_1_1AbstractContainer__" id="r_acf7d3b5abcf5d31d7014e0d6d05fd90d"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#acf7d3b5abcf5d31d7014e0d6d05fd90d">midTime</a> () const</td></tr>
+<tr class="memdesc:acf7d3b5abcf5d31d7014e0d6d05fd90d pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
+<tr class="memitem:a78578212bb047785d1ecaa5b44b0da26 pub_methods_classev_1_1AbstractContainer__" id="r_a78578212bb047785d1ecaa5b44b0da26"><td class="memItemLeft"><a class="el" href="classev_1_1Event__.html">Event_</a>&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#a78578212bb047785d1ecaa5b44b0da26">mean</a> () const</td></tr>
+<tr class="memdesc:a78578212bb047785d1ecaa5b44b0da26 pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
+<tr class="memitem:a2f93725feac6a8d68917d1f40f224fef pub_methods_classev_1_1AbstractContainer__" id="r_a2f93725feac6a8d68917d1f40f224fef"><td class="memItemLeft">cv::Point_&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#a2f93725feac6a8d68917d1f40f224fef">meanPoint</a> () const</td></tr>
+<tr class="memdesc:a2f93725feac6a8d68917d1f40f224fef pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
+<tr class="memitem:adfc035c126e42586673c53a1caeea5ec pub_methods_classev_1_1AbstractContainer__" id="r_adfc035c126e42586673c53a1caeea5ec"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#adfc035c126e42586673c53a1caeea5ec">meanTime</a> () const</td></tr>
+<tr class="memdesc:adfc035c126e42586673c53a1caeea5ec pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classev_1_1AbstractContainer__"><td colspan="2">Public Types inherited from <a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; Deque_&lt; T &gt;, T &gt;</a></td></tr>
+<tr class="memitem:a14f38393ffc00e17c702dc8f186b7921 pub_types_classev_1_1AbstractContainer__" id="r_a14f38393ffc00e17c702dc8f186b7921"><td class="memItemLeft">
+using&#160;</td><td class="memItemRight"><b>ResultType</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />

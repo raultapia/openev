@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: Member List</title>
+<title>OpenEV: modules/containers/include/openev/containers/abstract-container.hpp File Reference</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('classev_1_1CircularBuffer__.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('abstract-container_8hpp.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -125,26 +125,41 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classev_1_1Cir
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ev::CircularBuffer_&lt; T &gt; Member List</div></div>
+  <div class="headertitle"><div class="title">abstract-container.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_&lt; T &gt;</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html#aa4e39c7be1b3b6ed6c57db751b10823d">duration</a>() const</td><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; CircularBuffer_&lt; T &gt;, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classev_1_1CircularBuffer__.html#a6a6653624a6a5672067abbb55741cc76">emplace_back</a>(Args &amp;&amp;...args)</td><td class="entry"><a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classev_1_1CircularBuffer__.html#a58a2e5a66249d2025628bc30c84f2b0c">emplace_front</a>(Args &amp;&amp;...args)</td><td class="entry"><a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_&lt; T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html#a78578212bb047785d1ecaa5b44b0da26">mean</a>() const</td><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; CircularBuffer_&lt; T &gt;, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html#a2f93725feac6a8d68917d1f40f224fef">meanPoint</a>() const</td><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; CircularBuffer_&lt; T &gt;, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html#adfc035c126e42586673c53a1caeea5ec">meanTime</a>() const</td><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; CircularBuffer_&lt; T &gt;, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html#acf7d3b5abcf5d31d7014e0d6d05fd90d">midTime</a>() const</td><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; CircularBuffer_&lt; T &gt;, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html#a78fdf5593bd1b76d8ad49f9f707046c1">rate</a>() const</td><td class="entry"><a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; CircularBuffer_&lt; T &gt;, T &gt;</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-</table></div><!-- contents -->
+<p>Statistics shared by all the event containers.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="types_8hpp_source.html">openev/core/types.hpp</a>&quot;</code><br />
+<code>#include &lt;numeric&gt;</code><br />
+<code>#include &lt;opencv2/core/base.hpp&gt;</code><br />
+<code>#include &lt;opencv2/core/types.hpp&gt;</code><br />
+</div>
+<p><a href="abstract-container_8hpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:ev_3A_3AAbstractContainer_5F_3C_20Container_2C_20T_20_3E" id="r_ev_3A_3AAbstractContainer_5F_3C_20Container_2C_20T_20_3E"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; Container, T &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an auxiliary class. This class cannot be instanced.  <a href="classev_1_1AbstractContainer__.html#details">More...</a><br /></td></tr>
+</table>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Statistics shared by all the event containers. </p>
+<dl class="section author"><dt>Author</dt><dd>Raul Tapia </dd></dl>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><b>modules</b></li><li class="navelem"><b>containers</b></li><li class="navelem"><b>include</b></li><li class="navelem"><b>openev</b></li><li class="navelem"><b>containers</b></li><li class="navelem"><a href="abstract-container_8hpp.html">abstract-container.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

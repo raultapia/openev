@@ -142,76 +142,85 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('persistent__qu
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00033" data-start="{" data-end="}">
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classev_1_1PersistentQueue__.html#aea5e4768317402df41fbf17cc0b542ab">   33</a></span>  [[nodiscard]] <span class="keyword">inline</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;ResultType&gt;</a> <a class="code hl_function" href="classev_1_1PersistentQueue__.html#aea5e4768317402df41fbf17cc0b542ab">mean</a>() {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">const</span> std::size_t n = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::size</a>();</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    ResultType x{0};</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    ResultType y{0};</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    ResultType t{0};</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    ResultType p{0};</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::front</a>();</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      x += e.x;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      y += e.y;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      t += e.<a class="code hl_variable" href="classev_1_1Event__.html#a958bf08f1f29536453a7822ae608bae9">t</a>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      p += e.<a class="code hl_variable" href="classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522">p</a>;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::pop</a>();</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::emplace</a>(e);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">return</span> {x / n, y / n, t / n, p / n &gt; 0.5};</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">if</span>(<a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::empty</a>()) {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>      CV_Error(cv::Error::StsError, <span class="stringliteral">&quot;ev::PersistentQueue_::mean: the container is empty.&quot;</span>);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">const</span> std::size_t n = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::size</a>();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    ResultType x{0};</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    ResultType y{0};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    ResultType t{0};</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    ResultType p{0};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::front</a>();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      x += e.x;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      y += e.y;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      t += e.<a class="code hl_variable" href="classev_1_1Event__.html#a958bf08f1f29536453a7822ae608bae9">t</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      p += e.<a class="code hl_variable" href="classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522">p</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::pop</a>();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::emplace</a>(e);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordflow">return</span> {x / n, y / n, t / n, p / n &gt; 0.5};</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
 </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span></div>
-<div class="foldopen" id="foldopen00058" data-start="{" data-end="}">
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classev_1_1PersistentQueue__.html#a668c70eff9fbee01b808c0d995918f4d">   58</a></span>  [[nodiscard]] <span class="keyword">inline</span> cv::Point_&lt;ResultType&gt; <a class="code hl_function" href="classev_1_1PersistentQueue__.html#a668c70eff9fbee01b808c0d995918f4d">meanPoint</a>() {</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">const</span> std::size_t n = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::size</a>();</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    ResultType x{0};</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    ResultType y{0};</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::front</a>();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      x += e.x;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      y += e.y;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::pop</a>();</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::emplace</a>(e);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">return</span> {x / n, y / n};</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span></div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classev_1_1PersistentQueue__.html#a668c70eff9fbee01b808c0d995918f4d">   61</a></span>  [[nodiscard]] <span class="keyword">inline</span> cv::Point_&lt;ResultType&gt; <a class="code hl_function" href="classev_1_1PersistentQueue__.html#a668c70eff9fbee01b808c0d995918f4d">meanPoint</a>() {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">if</span>(<a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::empty</a>()) {</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      CV_Error(cv::Error::StsError, <span class="stringliteral">&quot;ev::PersistentQueue_::meanPoint: the container is empty.&quot;</span>);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">const</span> std::size_t n = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::size</a>();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    ResultType x{0};</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    ResultType y{0};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::front</a>();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      x += e.x;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      y += e.y;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::pop</a>();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::emplace</a>(e);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">return</span> {x / n, y / n};</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  }</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
-<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classev_1_1PersistentQueue__.html#aaa425b81b554787d5d2232d23be00556">   79</a></span>  [[nodiscard]] <span class="keyword">inline</span> ResultType <a class="code hl_function" href="classev_1_1PersistentQueue__.html#aaa425b81b554787d5d2232d23be00556">meanTime</a>() {</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">const</span> std::size_t n = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::size</a>();</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    ResultType t{0};</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>      t += <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::front</a>().t;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::emplace</a>(<a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::front</a>());</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::pop</a>();</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">return</span> t / n;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="foldopen" id="foldopen00085" data-start="{" data-end="}">
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classev_1_1PersistentQueue__.html#aaa425b81b554787d5d2232d23be00556">   85</a></span>  [[nodiscard]] <span class="keyword">inline</span> ResultType <a class="code hl_function" href="classev_1_1PersistentQueue__.html#aaa425b81b554787d5d2232d23be00556">meanTime</a>() {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">if</span>(<a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::empty</a>()) {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      CV_Error(cv::Error::StsError, <span class="stringliteral">&quot;ev::PersistentQueue_::meanTime: the container is empty.&quot;</span>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keyword">const</span> std::size_t n = <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::size</a>();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    ResultType t{0};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; n; i++) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      t += <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::front</a>().t;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::emplace</a>(<a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::front</a>());</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      <a class="code hl_class" href="classev_1_1Queue__.html">Queue_&lt;T&gt;::pop</a>();</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">return</span> t / n;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  }</div>
 </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>};</div>
 </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keyword">using </span>PersistentQueuei = PersistentQueue_&lt;int&gt;;    </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">using </span>PersistentQueuel = PersistentQueue_&lt;long&gt;;   </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keyword">using </span>PersistentQueuef = PersistentQueue_&lt;float&gt;;  </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">using </span>PersistentQueued = PersistentQueue_&lt;double&gt;; </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="keyword">using </span>PersistentQueue = PersistentQueuei;          </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>} <span class="comment">// namespace ev</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CONTAINERS_PERSISTENT_QUEUE_HPP</span></div>
-<div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:77</div></div>
-<div class="ttc" id="aclassev_1_1Event___html_a06e41f9584135aa2aab85f0f20498522"><div class="ttname"><a href="classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522">ev::Event_::p</a></div><div class="ttdeci">PolarityType p</div><div class="ttdef"><b>Definition</b> types.hpp:80</div></div>
-<div class="ttc" id="aclassev_1_1Event___html_a958bf08f1f29536453a7822ae608bae9"><div class="ttname"><a href="classev_1_1Event__.html#a958bf08f1f29536453a7822ae608bae9">ev::Event_::t</a></div><div class="ttdeci">TimeType t</div><div class="ttdef"><b>Definition</b> types.hpp:79</div></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">using </span>PersistentQueuei = PersistentQueue_&lt;int&gt;;    </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">using </span>PersistentQueuel = PersistentQueue_&lt;long&gt;;   </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">using </span>PersistentQueuef = PersistentQueue_&lt;float&gt;;  </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">using </span>PersistentQueued = PersistentQueue_&lt;double&gt;; </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="keyword">using </span>PersistentQueue = PersistentQueuei;          </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>} <span class="comment">// namespace ev</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CONTAINERS_PERSISTENT_QUEUE_HPP</span></div>
+<div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:78</div></div>
+<div class="ttc" id="aclassev_1_1Event___html_a06e41f9584135aa2aab85f0f20498522"><div class="ttname"><a href="classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522">ev::Event_::p</a></div><div class="ttdeci">PolarityType p</div><div class="ttdef"><b>Definition</b> types.hpp:83</div></div>
+<div class="ttc" id="aclassev_1_1Event___html_a958bf08f1f29536453a7822ae608bae9"><div class="ttname"><a href="classev_1_1Event__.html#a958bf08f1f29536453a7822ae608bae9">ev::Event_::t</a></div><div class="ttdeci">TimeType t</div><div class="ttdef"><b>Definition</b> types.hpp:82</div></div>
 <div class="ttc" id="aclassev_1_1PersistentQueue___html"><div class="ttname"><a href="classev_1_1PersistentQueue__.html">ev::PersistentQueue_</a></div><div class="ttdoc">This class extends std::queue to implement persistent event queues. For more information,...</div><div class="ttdef"><b>Definition</b> persistent_queue.hpp:23</div></div>
-<div class="ttc" id="aclassev_1_1PersistentQueue___html_a668c70eff9fbee01b808c0d995918f4d"><div class="ttname"><a href="classev_1_1PersistentQueue__.html#a668c70eff9fbee01b808c0d995918f4d">ev::PersistentQueue_::meanPoint</a></div><div class="ttdeci">cv::Point_&lt; ResultType &gt; meanPoint()</div><div class="ttdoc">Compute the mean x,y point of the events without consuming the queue.</div><div class="ttdef"><b>Definition</b> persistent_queue.hpp:58</div></div>
-<div class="ttc" id="aclassev_1_1PersistentQueue___html_aaa425b81b554787d5d2232d23be00556"><div class="ttname"><a href="classev_1_1PersistentQueue__.html#aaa425b81b554787d5d2232d23be00556">ev::PersistentQueue_::meanTime</a></div><div class="ttdeci">ResultType meanTime()</div><div class="ttdoc">Compute the mean time of the events without consuming the queue.</div><div class="ttdef"><b>Definition</b> persistent_queue.hpp:79</div></div>
+<div class="ttc" id="aclassev_1_1PersistentQueue___html_a668c70eff9fbee01b808c0d995918f4d"><div class="ttname"><a href="classev_1_1PersistentQueue__.html#a668c70eff9fbee01b808c0d995918f4d">ev::PersistentQueue_::meanPoint</a></div><div class="ttdeci">cv::Point_&lt; ResultType &gt; meanPoint()</div><div class="ttdoc">Compute the mean x,y point of the events without consuming the queue.</div><div class="ttdef"><b>Definition</b> persistent_queue.hpp:61</div></div>
+<div class="ttc" id="aclassev_1_1PersistentQueue___html_aaa425b81b554787d5d2232d23be00556"><div class="ttname"><a href="classev_1_1PersistentQueue__.html#aaa425b81b554787d5d2232d23be00556">ev::PersistentQueue_::meanTime</a></div><div class="ttdeci">ResultType meanTime()</div><div class="ttdoc">Compute the mean time of the events without consuming the queue.</div><div class="ttdef"><b>Definition</b> persistent_queue.hpp:85</div></div>
 <div class="ttc" id="aclassev_1_1PersistentQueue___html_aea5e4768317402df41fbf17cc0b542ab"><div class="ttname"><a href="classev_1_1PersistentQueue__.html#aea5e4768317402df41fbf17cc0b542ab">ev::PersistentQueue_::mean</a></div><div class="ttdeci">Event_&lt; ResultType &gt; mean()</div><div class="ttdoc">Compute the mean of the events without consuming the queue.</div><div class="ttdef"><b>Definition</b> persistent_queue.hpp:33</div></div>
-<div class="ttc" id="aclassev_1_1Queue___html"><div class="ttname"><a href="classev_1_1Queue__.html">ev::Queue_</a></div><div class="ttdoc">This class extends std::queue to implement event queues. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> queue.hpp:23</div></div>
+<div class="ttc" id="aclassev_1_1Queue___html"><div class="ttname"><a href="classev_1_1Queue__.html">ev::Queue_</a></div><div class="ttdoc">This class extends std::queue to implement event queues. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> queue.hpp:24</div></div>
 <div class="ttc" id="aqueue_8hpp_html"><div class="ttname"><a href="queue_8hpp.html">queue.hpp</a></div><div class="ttdoc">Persistent queue container for basic event structures.</div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
 </div><!-- fragment --></div><!-- contents -->

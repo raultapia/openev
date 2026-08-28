@@ -1,6 +1,6 @@
 var deque_8hpp =
 [
-    [ "ev::Deque_&lt; T &gt;", "classev_1_1Deque__.html", "classev_1_1Deque__" ],
+    [ "ev::Deque_&lt; T &gt;", "classev_1_1Deque__.html", null ],
     [ "ev::Deque", "deque_8hpp.html#a91f08f4ba2d9118df8fdde8bbca42b6a", null ],
     [ "ev::Dequed", "deque_8hpp.html#a4af4d4e467051ba64332233f05d2aead", null ],
     [ "ev::Dequef", "deque_8hpp.html#a75e234c95b8f5357d9f363e607419150", null ],

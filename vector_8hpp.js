@@ -1,6 +1,6 @@
 var vector_8hpp =
 [
-    [ "ev::Vector_&lt; T &gt;", "classev_1_1Vector__.html", "classev_1_1Vector__" ],
+    [ "ev::Vector_&lt; T &gt;", "classev_1_1Vector__.html", null ],
     [ "ev::Vector", "vector_8hpp.html#abcabb0b30506df5308e816b35dd12a33", null ],
     [ "ev::Vectord", "vector_8hpp.html#a12f83491aa04d80bbde10823c401ed38", null ],
     [ "ev::Vectorf", "vector_8hpp.html#a172805a35a26d9692d501edf2d1c62a9", null ],

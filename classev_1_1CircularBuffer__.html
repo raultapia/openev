@@ -137,8 +137,11 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classev_1_1Cir
 Inheritance diagram for ev::CircularBuffer_&lt; T &gt;:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classev_1_1CircularBuffer__.png" alt=""/>
- </div></div>
+  <img src="classev_1_1CircularBuffer__.png" usemap="#ev_3A_3ACircularBuffer_5F_3C_20T_20_3E_map" alt=""/>
+  <map id="ev_3A_3ACircularBuffer_5F_3C_20T_20_3E_map" name="ev_3A_3ACircularBuffer_5F_3C_20T_20_3E_map">
+<area href="classev_1_1AbstractContainer__.html" alt="ev::AbstractContainer_&lt; CircularBuffer_&lt; T &gt;, T &gt;" shape="rect" coords="310,0,610,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -148,54 +151,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a58a2e5a66249d2025628bc30c84f2b0c" id="r_a58a2e5a66249d2025628bc30c84f2b0c"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:a58a2e5a66249d2025628bc30c84f2b0c template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a58a2e5a66249d2025628bc30c84f2b0c">emplace_front</a> (Args &amp;&amp;...args)</td></tr>
 <tr class="memdesc:a58a2e5a66249d2025628bc30c84f2b0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct an <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_&lt;T&gt;</a> in-place at the front of the buffer.  <br /></td></tr>
-<tr class="memitem:a6d0099ba9be4b33724273ecac80675d4" id="r_a6d0099ba9be4b33724273ecac80675d4"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#a6d0099ba9be4b33724273ecac80675d4">duration</a> () const</td></tr>
-<tr class="memdesc:a6d0099ba9be4b33724273ecac80675d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
-<tr class="memitem:ad393a5164c03a51b1a84a926a00970b6" id="r_ad393a5164c03a51b1a84a926a00970b6"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#ad393a5164c03a51b1a84a926a00970b6">rate</a> () const</td></tr>
-<tr class="memdesc:ad393a5164c03a51b1a84a926a00970b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
-<tr class="memitem:a0c29ff2a094216c1413788f3c6ca791b" id="r_a0c29ff2a094216c1413788f3c6ca791b"><td class="memItemLeft"><a class="el" href="classev_1_1Event__.html">Event_</a>&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0c29ff2a094216c1413788f3c6ca791b">mean</a> () const</td></tr>
-<tr class="memdesc:a0c29ff2a094216c1413788f3c6ca791b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
-<tr class="memitem:ace43e3bf5a4f5deeb43e2018bcd5cf77" id="r_ace43e3bf5a4f5deeb43e2018bcd5cf77"><td class="memItemLeft">cv::Point_&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ace43e3bf5a4f5deeb43e2018bcd5cf77">meanPoint</a> () const</td></tr>
-<tr class="memdesc:ace43e3bf5a4f5deeb43e2018bcd5cf77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
-<tr class="memitem:a263de79ea32650d26df7a515fc0e5caf" id="r_a263de79ea32650d26df7a515fc0e5caf"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#a263de79ea32650d26df7a515fc0e5caf">meanTime</a> () const</td></tr>
-<tr class="memdesc:a263de79ea32650d26df7a515fc0e5caf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
-<tr class="memitem:ae2e180c9043fc5ff544e5b2f63ccc607" id="r_ae2e180c9043fc5ff544e5b2f63ccc607"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#ae2e180c9043fc5ff544e5b2f63ccc607">midTime</a> () const</td></tr>
-<tr class="memdesc:ae2e180c9043fc5ff544e5b2f63ccc607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
+<tr class="inherit_header pub_methods_classev_1_1AbstractContainer__"><td colspan="2">Public Member Functions inherited from <a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; CircularBuffer_&lt; T &gt;, T &gt;</a></td></tr>
+<tr class="memitem:aa4e39c7be1b3b6ed6c57db751b10823d pub_methods_classev_1_1AbstractContainer__" id="r_aa4e39c7be1b3b6ed6c57db751b10823d"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#aa4e39c7be1b3b6ed6c57db751b10823d">duration</a> () const</td></tr>
+<tr class="memdesc:aa4e39c7be1b3b6ed6c57db751b10823d pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time difference between the last and the first event.  <br /></td></tr>
+<tr class="memitem:a78fdf5593bd1b76d8ad49f9f707046c1 pub_methods_classev_1_1AbstractContainer__" id="r_a78fdf5593bd1b76d8ad49f9f707046c1"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#a78fdf5593bd1b76d8ad49f9f707046c1">rate</a> () const</td></tr>
+<tr class="memdesc:a78fdf5593bd1b76d8ad49f9f707046c1 pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute event rate as the ratio between the number of events and the time difference between the last and the first event.  <br /></td></tr>
+<tr class="memitem:acf7d3b5abcf5d31d7014e0d6d05fd90d pub_methods_classev_1_1AbstractContainer__" id="r_acf7d3b5abcf5d31d7014e0d6d05fd90d"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#acf7d3b5abcf5d31d7014e0d6d05fd90d">midTime</a> () const</td></tr>
+<tr class="memdesc:acf7d3b5abcf5d31d7014e0d6d05fd90d pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the midpoint time between the oldest and the newest event.  <br /></td></tr>
+<tr class="memitem:a78578212bb047785d1ecaa5b44b0da26 pub_methods_classev_1_1AbstractContainer__" id="r_a78578212bb047785d1ecaa5b44b0da26"><td class="memItemLeft"><a class="el" href="classev_1_1Event__.html">Event_</a>&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#a78578212bb047785d1ecaa5b44b0da26">mean</a> () const</td></tr>
+<tr class="memdesc:a78578212bb047785d1ecaa5b44b0da26 pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean of the events.  <br /></td></tr>
+<tr class="memitem:a2f93725feac6a8d68917d1f40f224fef pub_methods_classev_1_1AbstractContainer__" id="r_a2f93725feac6a8d68917d1f40f224fef"><td class="memItemLeft">cv::Point_&lt; ResultType &gt;&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#a2f93725feac6a8d68917d1f40f224fef">meanPoint</a> () const</td></tr>
+<tr class="memdesc:a2f93725feac6a8d68917d1f40f224fef pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
+<tr class="memitem:adfc035c126e42586673c53a1caeea5ec pub_methods_classev_1_1AbstractContainer__" id="r_adfc035c126e42586673c53a1caeea5ec"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractContainer__.html#adfc035c126e42586673c53a1caeea5ec">meanTime</a> () const</td></tr>
+<tr class="memdesc:adfc035c126e42586673c53a1caeea5ec pub_methods_classev_1_1AbstractContainer__"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-inherited" class="groupheader"><a id="inherited" name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_types_classev_1_1AbstractContainer__"><td colspan="2">Public Types inherited from <a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_&lt; CircularBuffer_&lt; T &gt;, T &gt;</a></td></tr>
+<tr class="memitem:a14f38393ffc00e17c702dc8f186b7921 pub_types_classev_1_1AbstractContainer__" id="r_a14f38393ffc00e17c702dc8f186b7921"><td class="memItemLeft">
+using&#160;</td><td class="memItemRight"><b>ResultType</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename T&gt;<br />
 class ev::CircularBuffer_&lt; T &gt;</div><p>This class extends boost::circular_buffer to implement event circular buffers. For more information, please refer <a href="http://boost.org/libs/circular_buffer">here</a>. </p>
 <p><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> circular buffers inherit all the properties from boost circular buffers. Circular buffers are fixed-size data structures in a circular fashion (i.e, the end of the buffer is reached, it wraps around to the beginning). </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a6d0099ba9be4b33724273ecac80675d4" name="a6d0099ba9be4b33724273ecac80675d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d0099ba9be4b33724273ecac80675d4">&#9670;&#160;</a></span>duration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">ResultType <a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_</a>&lt; T &gt;::duration </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Time difference between the last and the first event. </p>
-<dl class="section return"><dt>Returns</dt><dd>Time difference </dd></dl>
-
-</div>
-</div>
 <a id="a6a6653624a6a5672067abbb55741cc76" name="a6a6653624a6a5672067abbb55741cc76"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6a6653624a6a5672067abbb55741cc76">&#9670;&#160;</a></span>emplace_back()</h2>
 
@@ -257,156 +237,6 @@ template&lt;typename... Args&gt; </div>
 
 <p>Construct an <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_&lt;T&gt;</a> in-place at the front of the buffer. </p>
 <p>Arguments are forwarded to the <a class="el" href="classev_1_1Event__.html" title="This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.">Event_&lt;T&gt;</a> constructor. If the buffer is full, the oldest element at the back is overwritten. </p>
-
-</div>
-</div>
-<a id="a0c29ff2a094216c1413788f3c6ca791b" name="a0c29ff2a094216c1413788f3c6ca791b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c29ff2a094216c1413788f3c6ca791b">&#9670;&#160;</a></span>mean()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classev_1_1Event__.html">Event_</a>&lt; ResultType &gt; <a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_</a>&lt; T &gt;::mean </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Compute the mean of the events. </p>
-<dl class="section return"><dt>Returns</dt><dd>An <a class="el" href="types_8hpp.html#a36a787072d9898082e8ebd82ea3a649b">Eventd</a> object containing the mean values of x, y, t, and p attributes. </dd></dl>
-
-</div>
-</div>
-<a id="ace43e3bf5a4f5deeb43e2018bcd5cf77" name="ace43e3bf5a4f5deeb43e2018bcd5cf77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace43e3bf5a4f5deeb43e2018bcd5cf77">&#9670;&#160;</a></span>meanPoint()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">cv::Point_&lt; ResultType &gt; <a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_</a>&lt; T &gt;::meanPoint </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Compute the mean x,y point of the events. </p>
-<dl class="section return"><dt>Returns</dt><dd>Mean point </dd></dl>
-
-</div>
-</div>
-<a id="a263de79ea32650d26df7a515fc0e5caf" name="a263de79ea32650d26df7a515fc0e5caf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a263de79ea32650d26df7a515fc0e5caf">&#9670;&#160;</a></span>meanTime()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">ResultType <a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_</a>&lt; T &gt;::meanTime </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Compute the mean time of the events. </p>
-<dl class="section return"><dt>Returns</dt><dd>Mean time </dd></dl>
-
-</div>
-</div>
-<a id="ae2e180c9043fc5ff544e5b2f63ccc607" name="ae2e180c9043fc5ff544e5b2f63ccc607"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2e180c9043fc5ff544e5b2f63ccc607">&#9670;&#160;</a></span>midTime()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">ResultType <a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_</a>&lt; T &gt;::midTime </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Calculate the midpoint time between the oldest and the newest event. </p>
-<dl class="section return"><dt>Returns</dt><dd>Midpoint time. </dd></dl>
-
-</div>
-</div>
-<a id="ad393a5164c03a51b1a84a926a00970b6" name="ad393a5164c03a51b1a84a926a00970b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad393a5164c03a51b1a84a926a00970b6">&#9670;&#160;</a></span>rate()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">ResultType <a class="el" href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_</a>&lt; T &gt;::rate </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Compute event rate as the ratio between the number of events and the time difference between the last and the first event. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> rate </dd></dl>
 
 </div>
 </div>

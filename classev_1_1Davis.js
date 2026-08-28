@@ -1,8 +1,10 @@
 var classev_1_1Davis =
 [
     [ "enableAps", "classev_1_1Davis.html#a54c7f45f74dc699134d8d618623c285a", null ],
+    [ "enableApsAutoExposure", "classev_1_1Davis.html#ab0da26377606e9a1d40198c3234d1a40", null ],
     [ "enableDvs", "classev_1_1Davis.html#a0117f88181902660a09a9d21cffd600e", null ],
     [ "enableImu", "classev_1_1Davis.html#a861ff86ef40d59ee669ee5b5c9a32fbd", null ],
+    [ "getApsExposure", "classev_1_1Davis.html#a693c004b489faf9f308412dbcc9db261", null ],
     [ "getBias", "classev_1_1Davis.html#a99281a5f9c8403cdb1119b7ef807967d", null ],
     [ "getSensorSize", "classev_1_1Davis.html#a71f5276df44836fe47980097eaaf583b", null ],
     [ "getSerialNumber", "classev_1_1Davis.html#a4f1b09e500d2e0fedd5835332b0451d9", null ],

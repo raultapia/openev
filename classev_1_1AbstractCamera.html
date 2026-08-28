@@ -210,14 +210,14 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <tr class="memdesc:a56d153948f34deb044457a721ddb306c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve raw event data.  <br /></td></tr>
 <tr class="memitem:ae6f3b44b64c023a7cf15f22f3bd9d70b" id="r_ae6f3b44b64c023a7cf15f22f3bd9d70b"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#ae6f3b44b64c023a7cf15f22f3bd9d70b">getEventRaw</a> (uint64_t *&amp;data, const bool allow_realloc=true)</td></tr>
 <tr class="memdesc:ae6f3b44b64c023a7cf15f22f3bd9d70b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve raw event data.  <br /></td></tr>
-<tr class="memitem:a3f81aa6d40adbac4488794fdaa905006" id="r_a3f81aa6d40adbac4488794fdaa905006"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a3f81aa6d40adbac4488794fdaa905006">flush</a> (const double msec) const</td></tr>
-<tr class="memdesc:a3f81aa6d40adbac4488794fdaa905006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discard data during an interval of time.  <br /></td></tr>
+<tr class="memitem:aed7277244d66be5de2179d154ad44562" id="r_aed7277244d66be5de2179d154ad44562"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aed7277244d66be5de2179d154ad44562">flush</a> (const double usec) const</td></tr>
+<tr class="memdesc:aed7277244d66be5de2179d154ad44562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Discard data during an interval of time.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an auxiliary class. This class cannot be instanced. </p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a3f81aa6d40adbac4488794fdaa905006" name="a3f81aa6d40adbac4488794fdaa905006"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3f81aa6d40adbac4488794fdaa905006">&#9670;&#160;</a></span>flush()</h2>
+<a id="aed7277244d66be5de2179d154ad44562" name="aed7277244d66be5de2179d154ad44562"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed7277244d66be5de2179d154ad44562">&#9670;&#160;</a></span>flush()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -225,7 +225,7 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
         <tr>
           <td class="memname">void ev::AbstractCamera::flush </td>
           <td>(</td>
-          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>msec</em></span></td><td>)</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>usec</em></span></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
@@ -234,7 +234,7 @@ void&#160;</td><td class="memItemRight"><b>stop</b> ()</td></tr>
 <p>Discard data during an interval of time. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">msec</td><td>Time interval in milliseconds </td></tr>
+    <tr><td class="paramname">usec</td><td>Time interval in microseconds </td></tr>
   </table>
   </dd>
 </dl>

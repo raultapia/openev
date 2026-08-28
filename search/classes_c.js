@@ -1,7 +1,7 @@
 var searchData=
 [
   ['ternary_5f_0',['Ternary_',['../classev_1_1Mat_1_1Ternary__.html',1,'ev::Mat']]],
-  ['ternary_5f_3c_20char_20_3e_1',['Ternary_&lt; char &gt;',['../classev_1_1Mat_1_1Ternary__.html',1,'ev::Mat']]],
+  ['ternary_5f_3c_20signed_20char_20_3e_1',['Ternary_&lt; signed char &gt;',['../classev_1_1Mat_1_1Ternary__.html',1,'ev::Mat']]],
   ['time_2',['Time',['../classev_1_1Mat_1_1Time.html',1,'ev::Mat']]],
   ['timesurface_5f_3',['TimeSurface_',['../classev_1_1TimeSurface__.html',1,'ev']]],
   ['timesurface_5f_3c_20cv_3a_3avec3b_20_3e_4',['TimeSurface_&lt; cv::Vec3b &gt;',['../classev_1_1TimeSurface__.html',1,'ev']]],
