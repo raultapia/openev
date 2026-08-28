@@ -125,10 +125,22 @@ public:
   void setApsTimeInterval(uint32_t usec);
 
   /*!
+  \brief Get the APS exposure time currently applied by the device.
+  \return Exposure time in microseconds
+  */
+  [[nodiscard]] uint32_t getApsExposure() const;
+
+  /*!
   \brief Set APS exposure time.
   \param usec Exposure time in microseconds
   */
   void setApsExposure(uint32_t usec);
+
+  /*!
+  \brief Let the device choose the APS exposure time on its own, aiming to avoid under and over exposure.
+  \param state True to enable, false to disable
+  */
+  void enableApsAutoExposure(bool state);
 
   /*!
   \brief Enable IMU

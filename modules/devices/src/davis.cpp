@@ -161,7 +161,7 @@ bool ev::Davis::setBias(const uint8_t name, const ev::BiasValue &value) {
 }
 
 uint32_t ev::Davis::biasToCurrent(const ev::BiasValue &value) {
-  struct caer_bias_coarsefine cf {};
+  struct caer_bias_coarsefine cf{};
   cf.coarseValue = value.coarse;
   cf.fineValue = value.fine;
   return caerBiasCoarseFineToCurrent(cf);
@@ -179,8 +179,23 @@ void ev::Davis::setApsTimeInterval(const uint32_t usec) {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_FRAME_INTERVAL, usec);
 }
 
+uint32_t ev::Davis::getApsExposure() const {
+  uint32_t usec{0};
+  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, &usec);
+  return usec;
+}
+
 void ev::Davis::setApsExposure(const uint32_t usec) {
+  uint32_t automatic{0};
+  caerDeviceConfigGet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_AUTOEXPOSURE, &automatic);
+  if(automatic != 0) {
+    CV_Error(cv::Error::StsError, "ev::Davis::setApsExposure: the automatic exposure is enabled and overwrites the exposure on every frame.");
+  }
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_EXPOSURE, usec);
+}
+
+void ev::Davis::enableApsAutoExposure(const bool state) {
+  caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_AUTOEXPOSURE, static_cast<uint32_t>(state));
 }
 
 void ev::Davis::enableImu(const bool state) {
