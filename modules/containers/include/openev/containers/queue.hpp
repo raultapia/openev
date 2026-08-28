@@ -6,6 +6,7 @@
 #ifndef OPENEV_CONTAINERS_QUEUE_HPP
 #define OPENEV_CONTAINERS_QUEUE_HPP
 
+#include "openev/containers/abstract-container.hpp"
 #include "openev/core/types.hpp"
 #include <cstddef>
 #include <opencv2/core/types.hpp>
@@ -20,37 +21,11 @@ constexpr bool USING_QUEUE_HPP = true;
 Event queues inherit all the properties from standard C++ queues. Events queues are FIFO data structures not intended to be directly iterated.
 */
 template <typename T>
-class Queue_ : public std::queue<Event_<T>> {
+class Queue_ : public std::queue<Event_<T>>, public AbstractContainer_<Queue_<T>, T> {
   using std::queue<Event_<T>>::queue;
   using ResultType = TimeType;
 
 public:
-  /*!
-  \brief Time difference between the last and the first event.
-  \return Time difference
-  */
-  [[nodiscard]] inline ResultType duration() const {
-    if(std::queue<ev::Event_<T>>::empty()) {
-      CV_Error(cv::Error::StsError, "ev::Queue_::duration: the container is empty.");
-    }
-    return std::queue<ev::Event_<T>>::back().t - std::queue<ev::Event_<T>>::front().t;
-  }
-
-  /*!
-  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event.
-  \return Event rate
-  */
-  [[nodiscard]] inline ResultType rate() const {
-    if(std::queue<ev::Event_<T>>::empty()) {
-      CV_Error(cv::Error::StsError, "ev::Queue_::rate: the container is empty.");
-    }
-    const ResultType d = duration();
-    if(d == 0) {
-      CV_Error(cv::Error::StsDivByZero, "ev::Queue_::rate: the events span no time.");
-    }
-    return std::queue<ev::Event_<T>>::size() / d;
-  }
-
   /*!
   \brief Compute the mean of the events.
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
@@ -119,17 +94,6 @@ public:
     }
 
     return t / n;
-  }
-
-  /*!
-  \brief Calculate the midpoint time between the oldest and the newest event.
-  \return Midpoint time.
-  */
-  [[nodiscard]] inline ResultType midTime() const {
-    if(std::queue<ev::Event_<T>>::empty()) {
-      CV_Error(cv::Error::StsError, "ev::Queue_::midTime: the container is empty.");
-    }
-    return 0.5 * (std::queue<ev::Event_<T>>::front().t + std::queue<ev::Event_<T>>::back().t);
   }
 };
 using Queuei = Queue_<int>;    /*!< Alias for Queue_ using int */

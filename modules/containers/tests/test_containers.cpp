@@ -144,3 +144,66 @@ TEST_F(SlidingWindowTest, StatisticsOperateOnCurrentWindow) {
   EXPECT_DOUBLE_EQ(meanTime, (3.2342 + 5.3432) / 2.0);
   EXPECT_DOUBLE_EQ(midTime, (3.2342 + 5.3432) / 2.0);
 }
+
+template <typename Container>
+class EmptyContainerTestFixture : public ::testing::Test {
+protected:
+  Container container;
+};
+
+using EmptyContainerTypes = ::testing::Types<ev::Vector, ev::CircularBuffer, ev::Deque, ev::PersistentQueue, ev::Queue>;
+TYPED_TEST_SUITE(EmptyContainerTestFixture, EmptyContainerTypes);
+
+TYPED_TEST(EmptyContainerTestFixture, DurationThrows) {
+  EXPECT_TRUE(this->container.empty());
+  EXPECT_THROW((void)this->container.duration(), cv::Exception);
+}
+
+TYPED_TEST(EmptyContainerTestFixture, RateThrows) {
+  EXPECT_THROW((void)this->container.rate(), cv::Exception);
+}
+
+TYPED_TEST(EmptyContainerTestFixture, MidTimeThrows) {
+  EXPECT_THROW((void)this->container.midTime(), cv::Exception);
+}
+
+TYPED_TEST(EmptyContainerTestFixture, MeanThrows) {
+  EXPECT_THROW((void)this->container.mean(), cv::Exception);
+}
+
+TYPED_TEST(EmptyContainerTestFixture, MeanPointThrows) {
+  EXPECT_THROW((void)this->container.meanPoint(), cv::Exception);
+}
+
+TYPED_TEST(EmptyContainerTestFixture, MeanTimeThrows) {
+  EXPECT_THROW((void)this->container.meanTime(), cv::Exception);
+}
+
+TEST(EmptyContainer, SlidingWindowThrows) {
+  ev::SlidingWindow window(1.0);
+  EXPECT_TRUE(window.empty());
+  EXPECT_THROW((void)window.duration(), cv::Exception);
+  EXPECT_THROW((void)window.mean(), cv::Exception);
+}
+
+TEST(ZeroSpan, SingleEventRateThrows) {
+  ev::Vector v;
+  v.emplace_back(1, 1, 5.0, true);
+  EXPECT_DOUBLE_EQ(v.duration(), 0.0);
+  EXPECT_THROW((void)v.rate(), cv::Exception);
+}
+
+TEST(ZeroSpan, SimultaneousEventsRateThrows) {
+  ev::Vector v;
+  for(int i = 0; i < 100; i++) {
+    v.emplace_back(i, i, 7.0, true);
+  }
+  EXPECT_DOUBLE_EQ(v.duration(), 0.0);
+  EXPECT_THROW((void)v.rate(), cv::Exception);
+}
+
+TEST(ZeroSpan, DefaultArrayRateThrows) {
+  const ev::Array<3> a;
+  EXPECT_DOUBLE_EQ(a.duration(), 0.0);
+  EXPECT_THROW((void)a.rate(), cv::Exception);
+}

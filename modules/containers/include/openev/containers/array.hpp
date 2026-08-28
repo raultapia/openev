@@ -6,10 +6,10 @@
 #ifndef OPENEV_CONTAINERS_ARRAY_HPP
 #define OPENEV_CONTAINERS_ARRAY_HPP
 
+#include "openev/containers/abstract-container.hpp"
 #include "openev/core/types.hpp"
 #include <array>
 #include <cstddef>
-#include <numeric>
 #include <opencv2/core/types.hpp>
 
 namespace ev {
@@ -21,70 +21,10 @@ constexpr bool USING_ARRAY_HPP = true;
 Event arrays inherit all the properties from standard C++ arrays. Events in the array are stored contiguously.
 */
 template <typename T, std::size_t N>
-class Array_ : public std::array<Event_<T>, N> {
+class Array_ : public std::array<Event_<T>, N>, public AbstractContainer_<Array_<T, N>, T> {
   static_assert(N > 0, "ev::Array_: the size must be greater than zero.");
-
   using std::array<Event_<T>, N>::array;
   using ResultType = TimeType;
-
-public:
-  /*!
-  \brief Time difference between the last and the first event.
-  \return Time difference
-  */
-  [[nodiscard]] inline ResultType duration() const {
-    return std::array<ev::Event_<T>, N>::back().t - std::array<ev::Event_<T>, N>::front().t;
-  }
-
-  /*!
-  \brief Compute event rate as the ratio between the number of events and the time difference between the last and the first event.
-  \return Event rate
-  */
-  [[nodiscard]] inline ResultType rate() const {
-    const ResultType d = duration();
-    if(d == 0) {
-      CV_Error(cv::Error::StsDivByZero, "ev::Array_::rate: the events span no time.");
-    }
-    return std::array<ev::Event_<T>, N>::size() / d;
-  }
-
-  /*!
-  \brief Compute the mean of the events.
-  \return An Eventd object containing the mean values of x, y, t, and p attributes.
-  */
-  [[nodiscard]] inline Event_<ResultType> mean() const {
-    const ResultType x = std::accumulate(std::array<ev::Event_<T>, N>::begin(), std::array<ev::Event_<T>, N>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.x; }) / N;
-    const ResultType y = std::accumulate(std::array<ev::Event_<T>, N>::begin(), std::array<ev::Event_<T>, N>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.y; }) / N;
-    const ResultType t = std::accumulate(std::array<ev::Event_<T>, N>::begin(), std::array<ev::Event_<T>, N>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.t; }) / N;
-    const ResultType p = std::accumulate(std::array<ev::Event_<T>, N>::begin(), std::array<ev::Event_<T>, N>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.p; }) / N;
-    return {x, y, t, p > 0.5};
-  }
-
-  /*!
-  \brief Compute the mean x,y point of the events.
-  \return Mean point
-  */
-  [[nodiscard]] inline cv::Point_<ResultType> meanPoint() const {
-    const ResultType x = std::accumulate(std::array<ev::Event_<T>, N>::begin(), std::array<ev::Event_<T>, N>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.x; }) / N;
-    const ResultType y = std::accumulate(std::array<ev::Event_<T>, N>::begin(), std::array<ev::Event_<T>, N>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.y; }) / N;
-    return {x, y};
-  }
-
-  /*!
-  \brief Compute the mean time of the events.
-  \return Mean time
-  */
-  [[nodiscard]] inline ResultType meanTime() const {
-    return std::accumulate(std::array<ev::Event_<T>, N>::begin(), std::array<ev::Event_<T>, N>::end(), 0.0, [](ResultType sum, const Event_<T> &e) { return sum + e.t; }) / N;
-  }
-
-  /*!
-  \brief Calculate the midpoint time between the oldest and the newest event.
-  \return Midpoint time.
-  */
-  [[nodiscard]] inline ResultType midTime() const {
-    return 0.5 * (std::array<ev::Event_<T>, N>::front().t + std::array<ev::Event_<T>, N>::back().t);
-  }
 };
 
 template <std::size_t N>
