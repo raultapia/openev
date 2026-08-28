@@ -14,7 +14,46 @@ cv::Mat &EventHistogram_<T, Options, E>::render() {
   }
 
   cv::Mat_<double> normalized(counter);
-  normalized = normalized / peak_;
+  if(outlierRejectionFactor_ > 0) {
+    const cv::Mat_<int> &counts = counter;
+    const int *const data = counts.ptr<int>();
+    const std::size_t total = counts.total();
+
+    std::vector<int> active;
+    active.reserve(total);
+    for(std::size_t i = 0; i < total; i++) {
+      if(data[i] != 0) {
+        active.push_back(std::abs(data[i]));
+      }
+    }
+
+    const std::size_t middle = active.size() / 2;
+    std::nth_element(active.begin(), active.begin() + middle, active.end());
+    const int median = active[middle];
+    for(int &value : active) {
+      value = std::abs(value - median);
+    }
+    std::nth_element(active.begin(), active.begin() + middle, active.end());
+    const int deviation = std::max(active[middle], 1);
+
+    constexpr double MAD_TO_SIGMA = 1.4826;
+    const double threshold = median + outlierRejectionFactor_ * MAD_TO_SIGMA * deviation;
+
+    double peak = 1;
+    for(std::size_t i = 0; i < total; i++) {
+      const double value = std::abs(data[i]);
+      if(value <= threshold && value > peak) {
+        peak = value;
+      }
+    }
+
+    double *const values = normalized.ptr<double>();
+    for(std::size_t i = 0; i < total; i++) {
+      values[i] = std::clamp(values[i], -peak, peak) / peak;
+    }
+  } else {
+    normalized = normalized / peak_;
+  }
 
   if constexpr(TypeHelper<T>::NumChannels == 1) {
     cv::Mat_<T>(

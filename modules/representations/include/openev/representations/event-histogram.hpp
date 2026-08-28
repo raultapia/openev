@@ -58,7 +58,17 @@ public:
   */
   cv::Mat &render();
 
+  /*!
+  \brief Saturate the pixels whose count is abnormally high when rendering.
+  \param k Median absolute deviations above the median at which a pixel is considered an outlier.
+  \note A pixel with count \f$ C_{i,j} \f$ saturates when \f$ |C_{i,j}| > \mathrm{median}(C) + 1.4826 \, k \, \mathrm{MAD}(C) \f$.
+  */
+  inline void setOutlierRejection(const double k) {
+    outlierRejectionFactor_ = k;
+  }
+
 private:
+  double outlierRejectionFactor_{0};
   void clear_() override;
   void clear_(const cv::Mat &background) override;
   bool insert_(const Event_<E> &e) override;
