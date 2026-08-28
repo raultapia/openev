@@ -409,6 +409,16 @@ protected:
 
   void interpolate_(cv::Mat &frame) const;
 
+  /*!
+  \brief Supress pixels by hardware.
+  \param pixels Pixels to suppress
+  \return Number of pixels the device took
+  \note Whatever is not taken stays for the software filter.
+  */
+  virtual std::size_t setDvsFilterPixels([[maybe_unused]] const std::vector<cv::Point> &pixels) {
+    return 0;
+  }
+
   std::atomic<bool> running_{false};
   bool hasDefectivePixels_{false};
   cv::Mat hotPixels_;

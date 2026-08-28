@@ -10,6 +10,7 @@
 #include <ostream>
 #include <stdint.h>
 #include <string>
+#include <vector>
 
 namespace ev {
 /*!
@@ -147,6 +148,9 @@ public:
   \param state True to enable, false to disable
   */
   void enableImu(bool state);
+
+private:
+  std::size_t setDvsFilterPixels(const std::vector<cv::Point> &pixels) override;
 };
 
 } // namespace ev

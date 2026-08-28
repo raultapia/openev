@@ -63,26 +63,27 @@ void ev::AbstractCamera::setDefectivePixels(const std::string &defective_pixels_
   camera["saturated_pixels"] >> saturated;
   fs.release();
 
+  const std::size_t hot_read = hot.size();
+  const std::size_t saturated_read = saturated.size();
   const cv::Size size = getSensorSize();
   const cv::Rect bounds({0, 0}, size);
   const auto outside = [&bounds](const cv::Point &p) { return !p.inside(bounds); };
 
-  hotPixels_ = cv::Mat::zeros(size, CV_8UC1);
-  for(const cv::Point &p : hot) {
-    if(!outside(p)) {
-      hotPixels_.at<uchar>(p) = 1;
-    }
-  }
-  const std::size_t saturatedRead = saturated.size();
+  hot.erase(std::remove_if(hot.begin(), hot.end(), outside), hot.end());
   saturatedPixels_ = std::move(saturated);
   saturatedPixels_.erase(std::remove_if(saturatedPixels_.begin(), saturatedPixels_.end(), outside), saturatedPixels_.end());
 
-  const std::size_t loadedHot = hot.size() - static_cast<std::size_t>(std::count_if(hot.begin(), hot.end(), outside));
-  const std::size_t discarded = (hot.size() - loadedHot) + (saturatedRead - saturatedPixels_.size());
+  const std::size_t num_hot_removed_by_hardware = setDvsFilterPixels(hot);
+  hotPixels_ = cv::Mat::zeros(size, CV_8UC1);
+  for(std::size_t i = num_hot_removed_by_hardware; i < hot.size(); i++) {
+    hotPixels_.at<uchar>(hot[i]) = 1;
+  }
+
+  const std::size_t discarded = (hot_read - hot.size()) + (saturated_read - saturatedPixels_.size());
   if(discarded > 0) {
     CV_LOG_WARNING(nullptr, "ev::AbstractCamera::setDefectivePixels: " << discarded << " coordinate(s) outside the " << size.width << "x" << size.height << " sensor were discarded.");
   }
-  CV_LOG_DEBUG(nullptr, "ev::AbstractCamera::setDefectivePixels: loaded " << loadedHot << " hot and " << saturatedPixels_.size() << " saturated pixel(s).");
+  CV_LOG_DEBUG(nullptr, "ev::AbstractCamera::setDefectivePixels: loaded " << hot.size() << " hot pixel(s), " << num_hot_removed_by_hardware << " suppressed by the device, and " << saturatedPixels_.size() << " saturated pixel(s).");
   hasDefectivePixels_ = true;
 }
 

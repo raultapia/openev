@@ -5,6 +5,7 @@
 */
 #include "openev/devices/davis.hpp"
 #include "openev/devices/abstract-camera.hpp"
+#include <algorithm>
 #include <array>
 #include <chrono>
 #include <cstdlib>
@@ -196,6 +197,25 @@ void ev::Davis::setApsExposure(const uint32_t usec) {
 
 void ev::Davis::enableApsAutoExposure(const bool state) {
   caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_APS, DAVIS_CONFIG_APS_AUTOEXPOSURE, static_cast<uint32_t>(state));
+}
+
+std::size_t ev::Davis::setDvsFilterPixels(const std::vector<cv::Point> &pixels) {
+  constexpr std::size_t SLOTS = 8;
+  struct caer_davis_info const info = caerDavisInfoGet(deviceHandler_);
+  if(pixels.empty() || !info.dvsHasPixelFilter) {
+    return 0;
+  }
+
+  const std::size_t num_pixels_to_filter = std::min(pixels.size(), SLOTS);
+  for(std::size_t i = 0; i < SLOTS; i++) {
+    const cv::Point pixel = pixels[std::min(i, num_pixels_to_filter - 1)];
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, static_cast<uint8_t>(DAVIS_CONFIG_DVS_FILTER_PIXEL_0_COLUMN + 2 * i), static_cast<uint32_t>(pixel.x));
+    caerDeviceConfigSet(deviceHandler_, DAVIS_CONFIG_DVS, static_cast<uint8_t>(DAVIS_CONFIG_DVS_FILTER_PIXEL_0_ROW + 2 * i), static_cast<uint32_t>(pixel.y));
+  }
+  if(pixels.size() > SLOTS) {
+    CV_LOG_WARNING(nullptr, "ev::Davis::setDvsFilterPixels: the device only suppresses " << SLOTS << " pixels, the remaining " << pixels.size() - SLOTS << " are filtered by software.");
+  }
+  return num_pixels_to_filter;
 }
 
 void ev::Davis::enableImu(const bool state) {
