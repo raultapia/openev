@@ -8,7 +8,6 @@
 
 #include "openev/core/matrices.hpp"
 #include "openev/core/types.hpp"
-#include <limits>
 #include <opencv2/core/types.hpp>
 
 namespace ev {
@@ -28,7 +27,7 @@ public:
   Constructor.
   \param size Sensor resolution (width × height)
   \param dt Time threshold; events with no neighbor firing within this window are discarded
-  \param radius Spatial neighborhood half-size (default 1 → 3×3 / 8-connected)
+  \param radius Spatial neighborhood half-size (default 1 -> 3x3 / 8-connected)
   */
   BackgroundActivityFilter(const cv::Size &size, ev::TimeType dt, int radius = 1);
 
@@ -37,6 +36,14 @@ public:
   BackgroundActivityFilter(BackgroundActivityFilter &&) noexcept = default;
   BackgroundActivityFilter &operator=(const BackgroundActivityFilter &) = default;
   BackgroundActivityFilter &operator=(BackgroundActivityFilter &&) noexcept = default;
+
+  /*!
+  \brief Set the time threshold.
+  \param dt Time threshold; events with no neighbor firing within this window are discarded
+  */
+  inline void setDt(const ev::TimeType dt) {
+    dt_ = dt;
+  }
 
   /*!
   Test and record a single event.
@@ -49,7 +56,7 @@ public:
 private:
   ev::Mat::Time map_;
   ev::TimeType dt_;
-  int radius_;
+  const int radius_;
 };
 
 } // namespace ev
