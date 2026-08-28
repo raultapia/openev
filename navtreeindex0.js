@@ -94,6 +94,8 @@ var NAVTREEINDEX0 =
 "classev_1_1BackgroundActivityFilter.html":[0,7,0,7],
 "classev_1_1BackgroundActivityFilter.html#a075360f5043d6dd394b59d32fc676ffd":[0,7,0,7,0],
 "classev_1_1BackgroundActivityFilter.html#a1b260f272eb4af389015c73992a7311f":[0,7,0,7,1],
+"classev_1_1BackgroundActivityFilter.html#a617aa0c24148e7c26eb4703db9838afe":[0,7,0,7,3],
+"classev_1_1BackgroundActivityFilter.html#ac15ecfde6764be315517ba0a6bdb52f8":[0,7,0,7,2],
 "classev_1_1CircularBuffer__.html":[0,7,0,10],
 "classev_1_1CircularBuffer__.html#a58a2e5a66249d2025628bc30c84f2b0c":[0,7,0,10,1],
 "classev_1_1CircularBuffer__.html#a6a6653624a6a5672067abbb55741cc76":[0,7,0,10,0],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "dir_a88862ed037ede1e2db0c81b11c25f06.html":[1,0,1,4,0,0],
 "dir_a9796c9e39ac7e13d6bbfc7502720b2e.html":[1,0,1,2,0],
 "dir_ac365576e83bfa75870e11cc0c3f49be.html":[1,0,1,1,0,0,0],
-"dir_afffdc8b92bf52e5ab23c218bdea6d5a.html":[1,0,1,2,0,0,0],
-"dir_b4859a27e8014b38b8336c62a05ac43f.html":[1,0,1,6,0,0],
-"dir_befeee8c40e99af5734de068683fa4ca.html":[1,0,1,3,0]
+"dir_afffdc8b92bf52e5ab23c218bdea6d5a.html":[1,0,1,2,0,0,0]
 };
