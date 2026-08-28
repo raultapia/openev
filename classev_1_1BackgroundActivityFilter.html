@@ -147,8 +147,6 @@ Public Member Functions</h2></td></tr>
 <a class="el" href="#a075360f5043d6dd394b59d32fc676ffd">BackgroundActivityFilter</a> &amp;&#160;</td><td class="memItemRight"><b>operator=</b> (<a class="el" href="#a075360f5043d6dd394b59d32fc676ffd">BackgroundActivityFilter</a> &amp;&amp;) noexcept=default</td></tr>
 <tr class="memitem:ac15ecfde6764be315517ba0a6bdb52f8" id="r_ac15ecfde6764be315517ba0a6bdb52f8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac15ecfde6764be315517ba0a6bdb52f8">setDt</a> (const ev::TimeType dt)</td></tr>
 <tr class="memdesc:ac15ecfde6764be315517ba0a6bdb52f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the time threshold.  <br /></td></tr>
-<tr class="memitem:a617aa0c24148e7c26eb4703db9838afe" id="r_a617aa0c24148e7c26eb4703db9838afe"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a617aa0c24148e7c26eb4703db9838afe">setRadius</a> (const int radius)</td></tr>
-<tr class="memdesc:a617aa0c24148e7c26eb4703db9838afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the spatial neighborhood half-size.  <br /></td></tr>
 <tr class="memitem:a1b260f272eb4af389015c73992a7311f" id="r_a1b260f272eb4af389015c73992a7311f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1b260f272eb4af389015c73992a7311f">operator()</a> (const <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a> &amp;e)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
@@ -251,39 +249,6 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dt</td><td>Time threshold; events with no neighbor firing within this window are discarded </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a617aa0c24148e7c26eb4703db9838afe" name="a617aa0c24148e7c26eb4703db9838afe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a617aa0c24148e7c26eb4703db9838afe">&#9670;&#160;</a></span>setRadius()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ev::BackgroundActivityFilter::setRadius </td>
-          <td>(</td>
-          <td class="paramtype">const int</td>          <td class="paramname"><span class="paramname"><em>radius</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the spatial neighborhood half-size. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">radius</td><td>Spatial neighborhood half-size (1 -&gt; 3x3 / 8-connected) </td></tr>
   </table>
   </dd>
 </dl>
