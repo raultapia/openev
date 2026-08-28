@@ -85,7 +85,13 @@ void benchmarkReadOnlyMetric(benchmark::State &state, const char *label, Fn fn) 
     }
     return makeEvents(count);
   }(static_cast<std::size_t>(state.range(0)));
-  Container container;
+  Container container = []([[maybe_unused]] const std::vector<ev::Event> &e) {
+    if constexpr(std::is_same_v<Container, ev::SlidingWindow>) {
+      return ev::SlidingWindow(e.back().t - e.front().t);
+    } else {
+      return Container();
+    }
+  }(events);
   fillSequential(container, events);
 
   for(auto _ : state) {
