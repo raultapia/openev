@@ -151,6 +151,8 @@ template&lt;typename... Args&gt; </td></tr>
 <tr class="memitem:aa2fe426daa8e738e4f59a07cbd1bf0ca template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><b>EventHistogram_</b> (Args &amp;&amp;...args)</td></tr>
 <tr class="memitem:a42d57d6b67fe596a387dd49ca64b1e5a" id="r_a42d57d6b67fe596a387dd49ca64b1e5a"><td class="memItemLeft">cv::Mat &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a42d57d6b67fe596a387dd49ca64b1e5a">render</a> ()</td></tr>
 <tr class="memdesc:a42d57d6b67fe596a387dd49ca64b1e5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Render event histogram matrix.  <br /></td></tr>
+<tr class="memitem:a7764ad1f34631bb1cd45840387e4a71e" id="r_a7764ad1f34631bb1cd45840387e4a71e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7764ad1f34631bb1cd45840387e4a71e">setOutlierRejection</a> (const double k)</td></tr>
+<tr class="memdesc:a7764ad1f34631bb1cd45840387e4a71e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saturate the pixels whose count is abnormally high when rendering.  <br /></td></tr>
 <tr class="inherit_header pub_methods_classev_1_1EventImage__"><td colspan="2">Public Member Functions inherited from <a class="el" href="classev_1_1EventImage__.html">ev::EventImage_&lt; T, RepresentationOptions::NONE, int &gt;</a></td></tr>
 <tr class="memitem:acd042438095620e1f94dc4b111663c48 pub_methods_classev_1_1EventImage__" id="r_acd042438095620e1f94dc4b111663c48"><td class="memItemLeft">
 &#160;</td><td class="memItemRight"><b>EventImage_</b> (Args &amp;&amp;...args)</td></tr>
@@ -207,21 +209,21 @@ class ev::EventHistogram_&lt; T, Options, E &gt;</div><p>This class extends <a c
 <div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="event-histogram_8hpp.html#a21a8cdc274ef832521b0cca1f995a04d">EventHistogram1</a> = <a class="code hl_typedef" href="event-histogram_8hpp.html#a1d1f20b33d954b7919c5e895d217d378">EventHistogram1b</a>;</div>
 <div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="event-histogram_8hpp.html#a88a8363af5169d596f2f8e12a511a2b6">EventHistogram3</a> = <a class="code hl_typedef" href="event-histogram_8hpp.html#a2755c50acee98e580ca3c3f1f43dac83">EventHistogram3b</a>;</div>
 <div class="line"><span class="keyword">using </span><a class="code hl_typedef" href="event-histogram_8hpp.html#a05a51104c2f85a0f518dbd0badacdd05">EventHistogram</a> = <a class="code hl_typedef" href="event-histogram_8hpp.html#a21a8cdc274ef832521b0cca1f995a04d">EventHistogram1</a>;</div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a05a51104c2f85a0f518dbd0badacdd05"><div class="ttname"><a href="event-histogram_8hpp.html#a05a51104c2f85a0f518dbd0badacdd05">ev::EventHistogram</a></div><div class="ttdeci">EventHistogram1 EventHistogram</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:81</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a1d1f20b33d954b7919c5e895d217d378"><div class="ttname"><a href="event-histogram_8hpp.html#a1d1f20b33d954b7919c5e895d217d378">ev::EventHistogram1b</a></div><div class="ttdeci">EventHistogram_&lt; uchar &gt; EventHistogram1b</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:67</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a21a8cdc274ef832521b0cca1f995a04d"><div class="ttname"><a href="event-histogram_8hpp.html#a21a8cdc274ef832521b0cca1f995a04d">ev::EventHistogram1</a></div><div class="ttdeci">EventHistogram1b EventHistogram1</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:79</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a26aa90098c4ff6c67161824fb77a146b"><div class="ttname"><a href="event-histogram_8hpp.html#a26aa90098c4ff6c67161824fb77a146b">ev::EventHistogram3f</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3f &gt; EventHistogram3f</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:76</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a2755c50acee98e580ca3c3f1f43dac83"><div class="ttname"><a href="event-histogram_8hpp.html#a2755c50acee98e580ca3c3f1f43dac83">ev::EventHistogram3b</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3b &gt; EventHistogram3b</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:68</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a3cac7eb0e2b771bb0f82afd36596a334"><div class="ttname"><a href="event-histogram_8hpp.html#a3cac7eb0e2b771bb0f82afd36596a334">ev::EventHistogram3d</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3d &gt; EventHistogram3d</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:78</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a509fae219803b1b5744377da8f7ab229"><div class="ttname"><a href="event-histogram_8hpp.html#a509fae219803b1b5744377da8f7ab229">ev::EventHistogram1f</a></div><div class="ttdeci">EventHistogram_&lt; float &gt; EventHistogram1f</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:75</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a57aab26918bff1cb0b7afee81be252f0"><div class="ttname"><a href="event-histogram_8hpp.html#a57aab26918bff1cb0b7afee81be252f0">ev::EventHistogram1w</a></div><div class="ttdeci">EventHistogram_&lt; ushort &gt; EventHistogram1w</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:71</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a84b89689a5e5c6aa3215f496ffd40cb4"><div class="ttname"><a href="event-histogram_8hpp.html#a84b89689a5e5c6aa3215f496ffd40cb4">ev::EventHistogram3i</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3i &gt; EventHistogram3i</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:74</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a88a8363af5169d596f2f8e12a511a2b6"><div class="ttname"><a href="event-histogram_8hpp.html#a88a8363af5169d596f2f8e12a511a2b6">ev::EventHistogram3</a></div><div class="ttdeci">EventHistogram3b EventHistogram3</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:80</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_a8d25a2ffde0a79ce7e034b6b0fa09dbc"><div class="ttname"><a href="event-histogram_8hpp.html#a8d25a2ffde0a79ce7e034b6b0fa09dbc">ev::EventHistogram3w</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3w &gt; EventHistogram3w</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:72</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_aa9359c156214c533e43d3ac12f2bc0f9"><div class="ttname"><a href="event-histogram_8hpp.html#aa9359c156214c533e43d3ac12f2bc0f9">ev::EventHistogram1d</a></div><div class="ttdeci">EventHistogram_&lt; double &gt; EventHistogram1d</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:77</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_abb16ac5bbe8269d75a1d39c79d61e0e9"><div class="ttname"><a href="event-histogram_8hpp.html#abb16ac5bbe8269d75a1d39c79d61e0e9">ev::EventHistogram3s</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3s &gt; EventHistogram3s</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:70</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_acefdc2948ccbc3ed1970f08f8dca2f33"><div class="ttname"><a href="event-histogram_8hpp.html#acefdc2948ccbc3ed1970f08f8dca2f33">ev::EventHistogram1i</a></div><div class="ttdeci">EventHistogram_&lt; int &gt; EventHistogram1i</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:73</div></div>
-<div class="ttc" id="aevent-histogram_8hpp_html_ae2f4fd5dc68ba8dd9bc0858e84447bb3"><div class="ttname"><a href="event-histogram_8hpp.html#ae2f4fd5dc68ba8dd9bc0858e84447bb3">ev::EventHistogram1s</a></div><div class="ttdeci">EventHistogram_&lt; short &gt; EventHistogram1s</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:69</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a05a51104c2f85a0f518dbd0badacdd05"><div class="ttname"><a href="event-histogram_8hpp.html#a05a51104c2f85a0f518dbd0badacdd05">ev::EventHistogram</a></div><div class="ttdeci">EventHistogram1 EventHistogram</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:91</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a1d1f20b33d954b7919c5e895d217d378"><div class="ttname"><a href="event-histogram_8hpp.html#a1d1f20b33d954b7919c5e895d217d378">ev::EventHistogram1b</a></div><div class="ttdeci">EventHistogram_&lt; uchar &gt; EventHistogram1b</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:77</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a21a8cdc274ef832521b0cca1f995a04d"><div class="ttname"><a href="event-histogram_8hpp.html#a21a8cdc274ef832521b0cca1f995a04d">ev::EventHistogram1</a></div><div class="ttdeci">EventHistogram1b EventHistogram1</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:89</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a26aa90098c4ff6c67161824fb77a146b"><div class="ttname"><a href="event-histogram_8hpp.html#a26aa90098c4ff6c67161824fb77a146b">ev::EventHistogram3f</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3f &gt; EventHistogram3f</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:86</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a2755c50acee98e580ca3c3f1f43dac83"><div class="ttname"><a href="event-histogram_8hpp.html#a2755c50acee98e580ca3c3f1f43dac83">ev::EventHistogram3b</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3b &gt; EventHistogram3b</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:78</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a3cac7eb0e2b771bb0f82afd36596a334"><div class="ttname"><a href="event-histogram_8hpp.html#a3cac7eb0e2b771bb0f82afd36596a334">ev::EventHistogram3d</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3d &gt; EventHistogram3d</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:88</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a509fae219803b1b5744377da8f7ab229"><div class="ttname"><a href="event-histogram_8hpp.html#a509fae219803b1b5744377da8f7ab229">ev::EventHistogram1f</a></div><div class="ttdeci">EventHistogram_&lt; float &gt; EventHistogram1f</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:85</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a57aab26918bff1cb0b7afee81be252f0"><div class="ttname"><a href="event-histogram_8hpp.html#a57aab26918bff1cb0b7afee81be252f0">ev::EventHistogram1w</a></div><div class="ttdeci">EventHistogram_&lt; ushort &gt; EventHistogram1w</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:81</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a84b89689a5e5c6aa3215f496ffd40cb4"><div class="ttname"><a href="event-histogram_8hpp.html#a84b89689a5e5c6aa3215f496ffd40cb4">ev::EventHistogram3i</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3i &gt; EventHistogram3i</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:84</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a88a8363af5169d596f2f8e12a511a2b6"><div class="ttname"><a href="event-histogram_8hpp.html#a88a8363af5169d596f2f8e12a511a2b6">ev::EventHistogram3</a></div><div class="ttdeci">EventHistogram3b EventHistogram3</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:90</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_a8d25a2ffde0a79ce7e034b6b0fa09dbc"><div class="ttname"><a href="event-histogram_8hpp.html#a8d25a2ffde0a79ce7e034b6b0fa09dbc">ev::EventHistogram3w</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3w &gt; EventHistogram3w</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:82</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_aa9359c156214c533e43d3ac12f2bc0f9"><div class="ttname"><a href="event-histogram_8hpp.html#aa9359c156214c533e43d3ac12f2bc0f9">ev::EventHistogram1d</a></div><div class="ttdeci">EventHistogram_&lt; double &gt; EventHistogram1d</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:87</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_abb16ac5bbe8269d75a1d39c79d61e0e9"><div class="ttname"><a href="event-histogram_8hpp.html#abb16ac5bbe8269d75a1d39c79d61e0e9">ev::EventHistogram3s</a></div><div class="ttdeci">EventHistogram_&lt; cv::Vec3s &gt; EventHistogram3s</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:80</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_acefdc2948ccbc3ed1970f08f8dca2f33"><div class="ttname"><a href="event-histogram_8hpp.html#acefdc2948ccbc3ed1970f08f8dca2f33">ev::EventHistogram1i</a></div><div class="ttdeci">EventHistogram_&lt; int &gt; EventHistogram1i</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:83</div></div>
+<div class="ttc" id="aevent-histogram_8hpp_html_ae2f4fd5dc68ba8dd9bc0858e84447bb3"><div class="ttname"><a href="event-histogram_8hpp.html#ae2f4fd5dc68ba8dd9bc0858e84447bb3">ev::EventHistogram1s</a></div><div class="ttdeci">EventHistogram_&lt; short &gt; EventHistogram1s</div><div class="ttdef"><b>Definition</b> event-histogram.hpp:79</div></div>
 </div><!-- fragment --> </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a42d57d6b67fe596a387dd49ca64b1e5a" name="a42d57d6b67fe596a387dd49ca64b1e5a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a42d57d6b67fe596a387dd49ca64b1e5a">&#9670;&#160;</a></span>render()</h2>
@@ -242,6 +244,42 @@ template&lt;typename T, const RepresentationOptions Options = RepresentationOpti
 
 <p>Render event histogram matrix. </p>
 <p><a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">Event</a> histogram matrix is generated from counter matrix. </p>
+
+</div>
+</div>
+<a id="a7764ad1f34631bb1cd45840387e4a71e" name="a7764ad1f34631bb1cd45840387e4a71e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7764ad1f34631bb1cd45840387e4a71e">&#9670;&#160;</a></span>setOutlierRejection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classev_1_1EventHistogram__.html">ev::EventHistogram_</a>&lt; T, Options, E &gt;::setOutlierRejection </td>
+          <td>(</td>
+          <td class="paramtype">const double</td>          <td class="paramname"><span class="paramname"><em>k</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Saturate the pixels whose count is abnormally high when rendering. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">k</td><td>Median absolute deviations above the median at which a pixel is considered an outlier. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>A pixel with count \( C_{i,j} \) saturates when \( |C_{i,j}| &gt; \mathrm{median}(C) + 1.4826 \, k \, \mathrm{MAD}(C) \). </dd></dl>
 
 </div>
 </div>
