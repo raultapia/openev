@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: ev::BackgroundActivityFilter Class Reference</title>
+<title>OpenEV: ev::RefractoryPeriodFilter Class Reference</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('classev_1_1BackgroundActivityFilter.html','','classev_1_1BackgroundActivityFilter-members'); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('classev_1_1RefractoryPeriodFilter.html','','classev_1_1RefractoryPeriodFilter-members'); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -125,63 +125,57 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classev_1_1Bac
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ev::BackgroundActivityFilter Class Reference</div></div>
+  <div class="headertitle"><div class="title">ev::RefractoryPeriodFilter Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Background activity filter for event noise removal.  
+<p>Refractory period filter for event rate limiting.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="filtering_8hpp_source.html">filtering.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a075360f5043d6dd394b59d32fc676ffd" id="r_a075360f5043d6dd394b59d32fc676ffd"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a075360f5043d6dd394b59d32fc676ffd">BackgroundActivityFilter</a> (const cv::Size &amp;size, ev::TimeType dt, int radius=1)</td></tr>
-<tr class="memitem:a191896c76d329800246775f248f97a42" id="r_a191896c76d329800246775f248f97a42"><td class="memItemLeft"><a id="a191896c76d329800246775f248f97a42" name="a191896c76d329800246775f248f97a42"></a>
-&#160;</td><td class="memItemRight"><b>BackgroundActivityFilter</b> (const BackgroundActivityFilter &amp;)=default</td></tr>
-<tr class="memitem:acd60560d08db82f9d071fa7ab32d10b5" id="r_acd60560d08db82f9d071fa7ab32d10b5"><td class="memItemLeft"><a id="acd60560d08db82f9d071fa7ab32d10b5" name="acd60560d08db82f9d071fa7ab32d10b5"></a>
-&#160;</td><td class="memItemRight"><b>BackgroundActivityFilter</b> (BackgroundActivityFilter &amp;&amp;) noexcept=default</td></tr>
-<tr class="memitem:a2706c6f5b714b1a9a202bc2a3c26e055" id="r_a2706c6f5b714b1a9a202bc2a3c26e055"><td class="memItemLeft"><a id="a2706c6f5b714b1a9a202bc2a3c26e055" name="a2706c6f5b714b1a9a202bc2a3c26e055"></a>
-<a class="el" href="#a075360f5043d6dd394b59d32fc676ffd">BackgroundActivityFilter</a> &amp;&#160;</td><td class="memItemRight"><b>operator=</b> (const <a class="el" href="#a075360f5043d6dd394b59d32fc676ffd">BackgroundActivityFilter</a> &amp;)=default</td></tr>
-<tr class="memitem:a200a26bdd167d8792a3f6686227cb16d" id="r_a200a26bdd167d8792a3f6686227cb16d"><td class="memItemLeft"><a id="a200a26bdd167d8792a3f6686227cb16d" name="a200a26bdd167d8792a3f6686227cb16d"></a>
-<a class="el" href="#a075360f5043d6dd394b59d32fc676ffd">BackgroundActivityFilter</a> &amp;&#160;</td><td class="memItemRight"><b>operator=</b> (<a class="el" href="#a075360f5043d6dd394b59d32fc676ffd">BackgroundActivityFilter</a> &amp;&amp;) noexcept=default</td></tr>
-<tr class="memitem:ac15ecfde6764be315517ba0a6bdb52f8" id="r_ac15ecfde6764be315517ba0a6bdb52f8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ac15ecfde6764be315517ba0a6bdb52f8">setDt</a> (const ev::TimeType dt)</td></tr>
-<tr class="memdesc:ac15ecfde6764be315517ba0a6bdb52f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the time threshold.  <br /></td></tr>
-<tr class="memitem:a1b260f272eb4af389015c73992a7311f" id="r_a1b260f272eb4af389015c73992a7311f"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#a1b260f272eb4af389015c73992a7311f">operator()</a> (const <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a> &amp;e)</td></tr>
+<tr class="memitem:a0cf052b17987a16b31fd75921c0b5880" id="r_a0cf052b17987a16b31fd75921c0b5880"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a0cf052b17987a16b31fd75921c0b5880">RefractoryPeriodFilter</a> (const cv::Size &amp;size, ev::TimeType dt)</td></tr>
+<tr class="memitem:a3ba04f4e1e3cf4e712d68b8520577a48" id="r_a3ba04f4e1e3cf4e712d68b8520577a48"><td class="memItemLeft"><a id="a3ba04f4e1e3cf4e712d68b8520577a48" name="a3ba04f4e1e3cf4e712d68b8520577a48"></a>
+&#160;</td><td class="memItemRight"><b>RefractoryPeriodFilter</b> (const RefractoryPeriodFilter &amp;)=default</td></tr>
+<tr class="memitem:a6bbdf0da4e20a4b7ddb2bbf00418ad85" id="r_a6bbdf0da4e20a4b7ddb2bbf00418ad85"><td class="memItemLeft"><a id="a6bbdf0da4e20a4b7ddb2bbf00418ad85" name="a6bbdf0da4e20a4b7ddb2bbf00418ad85"></a>
+&#160;</td><td class="memItemRight"><b>RefractoryPeriodFilter</b> (RefractoryPeriodFilter &amp;&amp;) noexcept=default</td></tr>
+<tr class="memitem:a80fd2f1679d165ed1690179eff95e512" id="r_a80fd2f1679d165ed1690179eff95e512"><td class="memItemLeft"><a id="a80fd2f1679d165ed1690179eff95e512" name="a80fd2f1679d165ed1690179eff95e512"></a>
+<a class="el" href="#a0cf052b17987a16b31fd75921c0b5880">RefractoryPeriodFilter</a> &amp;&#160;</td><td class="memItemRight"><b>operator=</b> (const <a class="el" href="#a0cf052b17987a16b31fd75921c0b5880">RefractoryPeriodFilter</a> &amp;)=default</td></tr>
+<tr class="memitem:ac42886b9b673872b6fd71f98b23ba2a9" id="r_ac42886b9b673872b6fd71f98b23ba2a9"><td class="memItemLeft"><a id="ac42886b9b673872b6fd71f98b23ba2a9" name="ac42886b9b673872b6fd71f98b23ba2a9"></a>
+<a class="el" href="#a0cf052b17987a16b31fd75921c0b5880">RefractoryPeriodFilter</a> &amp;&#160;</td><td class="memItemRight"><b>operator=</b> (<a class="el" href="#a0cf052b17987a16b31fd75921c0b5880">RefractoryPeriodFilter</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="memitem:a2d1a15d97360ca69eae52c20e8f65b1f" id="r_a2d1a15d97360ca69eae52c20e8f65b1f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a2d1a15d97360ca69eae52c20e8f65b1f">setDt</a> (const ev::TimeType dt)</td></tr>
+<tr class="memdesc:a2d1a15d97360ca69eae52c20e8f65b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the inhibition time.  <br /></td></tr>
+<tr class="memitem:aaf24b852fa0596057523775f81b145cf" id="r_aaf24b852fa0596057523775f81b145cf"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aaf24b852fa0596057523775f81b145cf">operator()</a> (const <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a> &amp;e)</td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Background activity filter for event noise removal. </p>
-<p>Discards isolated events that have no correlated neighbor within a spatial radius and time window. An event passes if at least one pixel in its neighborhood fired within the last <code class="param">dt</code> time units.</p>
-<dl class="section note"><dt>Note</dt><dd>T. Delbruck, "Frame-free dynamic digital vision" </dd></dl>
+<div class="textblock"><p>Refractory period filter for event rate limiting. </p>
+<p>Inhibits each pixel for <code class="param">dt</code> time units after one of its events is accepted, so no pixel can fire faster than \( 1/dt \).</p>
+<dl class="section note"><dt>Note</dt><dd>T. Delbruck, R. Graca and M. Paluch, "Feedback control of event cameras" </dd></dl>
 </div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a075360f5043d6dd394b59d32fc676ffd" name="a075360f5043d6dd394b59d32fc676ffd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a075360f5043d6dd394b59d32fc676ffd">&#9670;&#160;</a></span>BackgroundActivityFilter()</h2>
+<a id="a0cf052b17987a16b31fd75921c0b5880" name="a0cf052b17987a16b31fd75921c0b5880"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cf052b17987a16b31fd75921c0b5880">&#9670;&#160;</a></span>RefractoryPeriodFilter()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">ev::BackgroundActivityFilter::BackgroundActivityFilter </td>
+          <td class="memname">ev::RefractoryPeriodFilter::RefractoryPeriodFilter </td>
           <td>(</td>
           <td class="paramtype">const cv::Size &amp;</td>          <td class="paramname"><span class="paramname"><em>size</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">ev::TimeType</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>radius</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>&#160;)</td>
+          <td class="paramtype">ev::TimeType</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Constructor. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">size</td><td>Sensor resolution (width x height) </td></tr>
-    <tr><td class="paramname">dt</td><td>Time threshold; events with no neighbor firing within this window are discarded </td></tr>
-    <tr><td class="paramname">radius</td><td>Spatial neighborhood half-size (default 1 -&gt; 3x3 / 8-connected) </td></tr>
+    <tr><td class="paramname">dt</td><td>Inhibition time; events fired before this time has elapsed since the last accepted event of the same pixel are discarded </td></tr>
   </table>
   </dd>
 </dl>
@@ -189,8 +183,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="a1b260f272eb4af389015c73992a7311f" name="a1b260f272eb4af389015c73992a7311f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b260f272eb4af389015c73992a7311f">&#9670;&#160;</a></span>operator()()</h2>
+<a id="aaf24b852fa0596057523775f81b145cf" name="aaf24b852fa0596057523775f81b145cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf24b852fa0596057523775f81b145cf">&#9670;&#160;</a></span>operator()()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,7 +193,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ev::BackgroundActivityFilter::operator() </td>
+          <td class="memname">bool ev::RefractoryPeriodFilter::operator() </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>e</em></span></td><td>)</td>
           <td></td>
@@ -217,13 +211,13 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if the event passes (at least one neighbor fired within <code class="param">dt</code>) </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>The internal timestamp map is updated regardless of whether the event passes. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the event passes (its pixel has been idle for at least <code class="param">dt</code>) </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The internal timestamp map is updated only when the event passes. </dd></dl>
 
 </div>
 </div>
-<a id="ac15ecfde6764be315517ba0a6bdb52f8" name="ac15ecfde6764be315517ba0a6bdb52f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac15ecfde6764be315517ba0a6bdb52f8">&#9670;&#160;</a></span>setDt()</h2>
+<a id="a2d1a15d97360ca69eae52c20e8f65b1f" name="a2d1a15d97360ca69eae52c20e8f65b1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d1a15d97360ca69eae52c20e8f65b1f">&#9670;&#160;</a></span>setDt()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -232,7 +226,7 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void ev::BackgroundActivityFilter::setDt </td>
+          <td class="memname">void ev::RefractoryPeriodFilter::setDt </td>
           <td>(</td>
           <td class="paramtype">const ev::TimeType</td>          <td class="paramname"><span class="paramname"><em>dt</em></span></td><td>)</td>
           <td></td>
@@ -245,10 +239,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Set the time threshold. </p>
+<p>Set the inhibition time. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dt</td><td>Time threshold; events with no neighbor firing within this window are discarded </td></tr>
+    <tr><td class="paramname">dt</td><td>Inhibition time; events fired before this time has elapsed since the last accepted event of the same pixel are discarded </td></tr>
   </table>
   </dd>
 </dl>
@@ -272,7 +266,7 @@ Public Member Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>ev</b></li><li class="navelem"><a href="classev_1_1BackgroundActivityFilter.html">BackgroundActivityFilter</a></li>
+    <li class="navelem"><b>ev</b></li><li class="navelem"><a href="classev_1_1RefractoryPeriodFilter.html">RefractoryPeriodFilter</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

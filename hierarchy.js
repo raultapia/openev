@@ -222,6 +222,7 @@ var hierarchy =
       [ "ev::Rect3_< double >", "classev_1_1Rect3__.html", null ],
       [ "ev::Rect3_< T >", "classev_1_1Rect3__.html", null ]
     ] ],
+    [ "ev::RefractoryPeriodFilter", "classev_1_1RefractoryPeriodFilter.html", null ],
     [ "cv::Size_", null, [
       [ "ev::Size3_< int >", "classev_1_1Size3__.html", null ],
       [ "ev::Size3_< long >", "classev_1_1Size3__.html", null ],

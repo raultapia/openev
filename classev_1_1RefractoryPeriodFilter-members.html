@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: modules/evproc/include/openev/evproc.hpp Source File</title>
+<title>OpenEV: Member List</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -17,6 +17,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
 <script type="module">
 import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
@@ -92,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('evproc_8hpp_source.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('classev_1_1RefractoryPeriodFilter.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -118,28 +125,26 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('evproc_8hpp_so
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">evproc.hpp</div></div>
+  <div class="headertitle"><div class="title">ev::RefractoryPeriodFilter Member List</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="evproc_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef OPENEV_EVPROC_HPP</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define OPENEV_EVPROC_HPP</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="filtering_8hpp.html">openev/evproc/filtering.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="undistortion_8hpp.html">openev/evproc/undistortion.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="voting_8hpp.html">openev/evproc/voting.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_EVPROC_HPP</span></div>
-<div class="ttc" id="afiltering_8hpp_html"><div class="ttname"><a href="filtering_8hpp.html">filtering.hpp</a></div><div class="ttdoc">Noise filters for event streams.</div></div>
-<div class="ttc" id="aundistortion_8hpp_html"><div class="ttname"><a href="undistortion_8hpp.html">undistortion.hpp</a></div><div class="ttdoc">Undistortion utilities.</div></div>
-<div class="ttc" id="avoting_8hpp_html"><div class="ttname"><a href="voting_8hpp.html">voting.hpp</a></div><div class="ttdoc">Bilinear voting utilities for event-based vision.</div></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>This is the complete list of members for <a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a>, including all inherited members.</p>
+<table class="directory">
+  <tr class="even"><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html#aaf24b852fa0596057523775f81b145cf">operator()</a>(const ev::Event &amp;e)</td><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>operator=</b>(const RefractoryPeriodFilter &amp;)=default (defined in <a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>operator=</b>(RefractoryPeriodFilter &amp;&amp;) noexcept=default (defined in <a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html#a0cf052b17987a16b31fd75921c0b5880">RefractoryPeriodFilter</a>(const cv::Size &amp;size, ev::TimeType dt)</td><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>RefractoryPeriodFilter</b>(const RefractoryPeriodFilter &amp;)=default (defined in <a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>RefractoryPeriodFilter</b>(RefractoryPeriodFilter &amp;&amp;) noexcept=default (defined in <a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html#a2d1a15d97360ca69eae52c20e8f65b1f">setDt</a>(const ev::TimeType dt)</td><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~RefractoryPeriodFilter</b>()=default (defined in <a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1RefractoryPeriodFilter.html">ev::RefractoryPeriodFilter</a></td><td class="entry"></td></tr>
+</table></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>modules</b></li><li class="navelem"><b>evproc</b></li><li class="navelem"><b>include</b></li><li class="navelem"><b>openev</b></li><li class="navelem"><a href="evproc_8hpp.html">evproc.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

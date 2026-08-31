@@ -9,7 +9,7 @@ var searchData=
   ['setcontainerinterval_6',['setContainerInterval',['../classev_1_1AbstractCamera.html#abcca6fef8f11ccc6e5c9172fd28c0195',1,'ev::AbstractCamera']]],
   ['setcontainersize_7',['setContainerSize',['../classev_1_1AbstractCamera.html#adcdc4480da4e3f7e8e9d36d505f7bc1e',1,'ev::AbstractCamera']]],
   ['setdefectivepixels_8',['setDefectivePixels',['../classev_1_1AbstractCamera.html#a2cb47198181cbf56ad2aa8a0f3a12aaa',1,'ev::AbstractCamera']]],
-  ['setdt_9',['setDt',['../classev_1_1BackgroundActivityFilter.html#ac15ecfde6764be315517ba0a6bdb52f8',1,'ev::BackgroundActivityFilter']]],
+  ['setdt_9',['setDt',['../classev_1_1BackgroundActivityFilter.html#ac15ecfde6764be315517ba0a6bdb52f8',1,'ev::BackgroundActivityFilter::setDt()'],['../classev_1_1RefractoryPeriodFilter.html#a2d1a15d97360ca69eae52c20e8f65b1f',1,'ev::RefractoryPeriodFilter::setDt()']]],
   ['setoutlierrejection_10',['setOutlierRejection',['../classev_1_1EventHistogram__.html#a7764ad1f34631bb1cd45840387e4a71e',1,'ev::EventHistogram_']]],
   ['setroi_11',['setRoi',['../classev_1_1AbstractCamera.html#a18e265eab9b9e60c336eea6315c5445a',1,'ev::AbstractCamera::setRoi()'],['../classev_1_1Davis.html#abcb4d239d5a3eb6c21310838ed935340',1,'ev::Davis::setRoi()']]],
   ['settimeoffset_12',['setTimeOffset',['../classev_1_1AbstractRepresentation__.html#ad04186804acb170ece2da3d625d4461b',1,'ev::AbstractRepresentation_']]],

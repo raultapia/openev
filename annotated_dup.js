@@ -32,6 +32,7 @@ var annotated_dup =
       [ "PointCloud_", "classev_1_1PointCloud__.html", "classev_1_1PointCloud__" ],
       [ "Queue_", "classev_1_1Queue__.html", "classev_1_1Queue__" ],
       [ "Rect3_", "classev_1_1Rect3__.html", "classev_1_1Rect3__" ],
+      [ "RefractoryPeriodFilter", "classev_1_1RefractoryPeriodFilter.html", "classev_1_1RefractoryPeriodFilter" ],
       [ "Size3_", "classev_1_1Size3__.html", "classev_1_1Size3__" ],
       [ "SlidingWindow_", "classev_1_1SlidingWindow__.html", "classev_1_1SlidingWindow__" ],
       [ "StampedMat", "classev_1_1StampedMat.html", "classev_1_1StampedMat" ],
