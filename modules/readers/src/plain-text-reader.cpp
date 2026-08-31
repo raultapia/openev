@@ -46,23 +46,22 @@ ev::PlainTextReader::~PlainTextReader() {
 }
 
 bool ev::PlainTextReader::updateBuffer_() {
-  std::string line;
-  if(!std::getline(file_, line)) {
+  if(!std::getline(file_, line_)) {
     return false;
   }
 
   if(!sep_str_.empty()) {
     std::size_t pos = 0;
-    while((pos = line.find(sep_str_, pos)) != std::string::npos) {
-      line.replace(pos++, sep_str_.size(), " ");
+    while((pos = line_.find(sep_str_, pos)) != std::string::npos) {
+      line_.replace(pos++, sep_str_.size(), " ");
     }
   }
 
   Event e;
   int pi = 0;
   bool parsed = false;
-  const char *it = line.data();
-  const char *const end = it + line.size();
+  const char *it = line_.data();
+  const char *const end = it + line_.size();
   switch(columns_) {
   case PlainTextReaderColumns::TXYP:
     parsed = field(it, end, e.t, sep_char_) && field(it, end, e.x, sep_char_) && field(it, end, e.y, sep_char_) && field(it, end, pi, sep_char_);
@@ -80,7 +79,7 @@ bool ev::PlainTextReader::updateBuffer_() {
     CV_Error(cv::Error::StsBadArg, "ev::PlainTextReader: No column order selected.");
   }
   if(!parsed) {
-    CV_LOG_WARNING(nullptr, "ev::PlainTextReader: could not parse a line, stopping there: \"" << line << "\"");
+    CV_LOG_WARNING(nullptr, "ev::PlainTextReader: could not parse a line, stopping there: \"" << line_ << "\"");
     return false;
   }
   e.p = static_cast<bool>(pi > 0);

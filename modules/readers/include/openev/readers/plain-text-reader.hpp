@@ -42,6 +42,7 @@ private:
   PlainTextReaderColumns columns_;
   char sep_char_;       // non-zero when separator is a single non-space char
   std::string sep_str_; // non-empty when separator is multi-char
+  std::string line_;    // reused across calls
 
   bool updateBuffer_() override;
 };
