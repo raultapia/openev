@@ -42,7 +42,7 @@ public:
     ResultType p{0};
 
     for(int i = 0; i < n; i++) {
-      const Event_<T> &e = Queue_<T>::front();
+      const Event_<T> e = Queue_<T>::front();
       x += e.x;
       y += e.y;
       t += e.t;
@@ -68,7 +68,7 @@ public:
     ResultType y{0};
 
     for(int i = 0; i < n; i++) {
-      const Event_<T> &e = Queue_<T>::front();
+      const Event_<T> e = Queue_<T>::front();
       x += e.x;
       y += e.y;
       Queue_<T>::pop();
@@ -114,7 +114,7 @@ public:
     pixels.reserve(n);
 
     for(int i = 0; i < n; i++) {
-      const Event_<T> &e = Queue_<T>::front();
+      const Event_<T> e = Queue_<T>::front();
       pixels.push_back(AbstractContainer_<Queue_<T>, T>::pixel_(e));
       Queue_<T>::pop();
       Queue_<T>::emplace(e);
