@@ -204,12 +204,14 @@ public:
   }
 
 private:
+  static constexpr Tb VALUE[2]{NEGATIVE, POSITIVE};
+
   template <typename T>
   inline Tb set(const T x, const T y, const bool p) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->template ptr<Tb>(std::lround(y)) + std::lround(x)) = (p ? POSITIVE : NEGATIVE);
+      return *(this->template ptr<Tb>(std::lround(y)) + std::lround(x)) = VALUE[p];
     } else {
-      return *(this->template ptr<Tb>(y) + x) = (p ? POSITIVE : NEGATIVE);
+      return *(this->template ptr<Tb>(y) + x) = VALUE[p];
     }
   }
 };
@@ -349,12 +351,14 @@ public:
   }
 
 private:
+  static constexpr CounterType INCREMENT[2]{-1, +1};
+
   template <typename T>
   inline CounterType set(const T x, const T y, const bool p) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->ptr<CounterType>(std::lround(y)) + std::lround(x)) += (p ? +1 : -1);
+      return *(this->ptr<CounterType>(std::lround(y)) + std::lround(x)) += INCREMENT[p];
     } else {
-      return *(this->ptr<CounterType>(y) + x) += (p ? +1 : -1);
+      return *(this->ptr<CounterType>(y) + x) += INCREMENT[p];
     }
   }
 };
