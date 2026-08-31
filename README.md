@@ -54,7 +54,7 @@ cmake .. -DBUILD_MODULE_DEVICES=OFF -DBUILD_MODULE_ALGORITHMS=OFF
 
 ## 🧪 Tests and benchmarks
 
-Tests and benchmarks are only built in `Debug`.
+Tests are only built in `Debug`.
 
 ```bash
 cmake .. -DCMAKE_BUILD_TYPE=Debug
@@ -62,9 +62,11 @@ make
 ctest
 ```
 
-Benchmarks are built by the same configuration and run through their own target.
+Benchmarks are opt-in and independent of the build type, so that they can be measured on the same code that is shipped. Build them in `Release`.
 
 ```bash
+cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_BENCHMARKS=ON
+make
 make benchmarks
 ```
 

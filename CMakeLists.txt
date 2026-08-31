@@ -13,20 +13,23 @@ endif()
 find_package(Git QUIET REQUIRED)
 execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+# Prepare test and benchmark dependencies
+option(BUILD_BENCHMARKS "Build the benchmarks" OFF)
+if(CMAKE_BUILD_TYPE STREQUAL "Debug" OR BUILD_BENCHMARKS)
   include(FetchContent)
+endif()
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+  set(INSTALL_GTEST OFF)
+  FetchContent_Declare(googletest GIT_REPOSITORY https://github.com/google/googletest.git GIT_TAG v1.17.0)
+  FetchContent_MakeAvailable(googletest)
+  enable_testing()
+endif()
+if(BUILD_BENCHMARKS)
   set(BENCHMARK_ENABLE_TESTING OFF)
   set(BENCHMARK_ENABLE_INSTALL OFF)
   set(BENCHMARK_INSTALL_DOCS OFF)
-  set(INSTALL_GTEST OFF)
   FetchContent_Declare(google_benchmark GIT_REPOSITORY https://github.com/google/benchmark.git GIT_TAG v1.8.3)
-  FetchContent_Declare(googletest GIT_REPOSITORY https://github.com/google/googletest.git GIT_TAG v1.17.0)
-  FetchContent_MakeAvailable(google_benchmark googletest)
-endif()
-
-# Tests
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-  enable_testing()
+  FetchContent_MakeAvailable(google_benchmark)
 endif()
 
 # Modules
@@ -76,7 +79,7 @@ function(openev_required_modules SOURCE_FILE OUT_REQUIRED OUT_MISSING)
 endfunction()
 
 # Benchmarks
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+if(BUILD_BENCHMARKS)
   add_custom_target(benchmarks ${BENCHMARK_CMDS})
 endif()
 
