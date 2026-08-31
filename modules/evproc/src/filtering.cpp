@@ -1,6 +1,6 @@
 /*!
 \file filtering.cpp
-\brief Implementation of BackgroundActivityFilter.
+\brief Implementation of BackgroundActivityFilter and RefractoryPeriodFilter.
 \author Raul Tapia
 */
 #include "openev/evproc/filtering.hpp"
@@ -32,4 +32,16 @@ bool ev::BackgroundActivityFilter::operator()(const ev::Event &e) {
   }
 
   return false;
+}
+
+ev::RefractoryPeriodFilter::RefractoryPeriodFilter(const cv::Size &size, const ev::TimeType dt)
+    : map_(size, std::numeric_limits<ev::TimeType>::lowest()), dt_{dt} {}
+
+bool ev::RefractoryPeriodFilter::operator()(const ev::Event &e) {
+  if(e.t - map_(e.y, e.x) < dt_) {
+    return false;
+  }
+
+  map_.insert(e);
+  return true;
 }

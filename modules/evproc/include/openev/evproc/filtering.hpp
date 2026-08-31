@@ -1,6 +1,6 @@
 /*!
 \file filtering.hpp
-\brief Background activity noise filter for event streams.
+\brief Noise filters for event streams.
 \author Raul Tapia
 */
 #ifndef OPENEV_EVPROC_FILTERING_HPP
@@ -25,7 +25,7 @@ class BackgroundActivityFilter {
 public:
   /*!
   Constructor.
-  \param size Sensor resolution (width × height)
+  \param size Sensor resolution (width x height)
   \param dt Time threshold; events with no neighbor firing within this window are discarded
   \param radius Spatial neighborhood half-size (default 1 -> 3x3 / 8-connected)
   */
@@ -56,7 +56,51 @@ public:
 private:
   ev::Mat::Time map_;
   ev::TimeType dt_;
-  const int radius_;
+  int radius_;
+};
+
+/*!
+\brief Refractory period filter for event rate limiting.
+
+Inhibits each pixel for \p dt time units after one of its events is accepted, so no pixel
+can fire faster than \f$ 1/dt \f$.
+
+\note T. Delbruck, R. Graca and M. Paluch, "Feedback control of event cameras"
+*/
+class RefractoryPeriodFilter {
+public:
+  /*!
+  Constructor.
+  \param size Sensor resolution (width x height)
+  \param dt Inhibition time; events fired before this time has elapsed since the last accepted event of the same pixel are discarded
+  */
+  RefractoryPeriodFilter(const cv::Size &size, ev::TimeType dt);
+
+  ~RefractoryPeriodFilter() = default;
+  RefractoryPeriodFilter(const RefractoryPeriodFilter &) = default;
+  RefractoryPeriodFilter(RefractoryPeriodFilter &&) noexcept = default;
+  RefractoryPeriodFilter &operator=(const RefractoryPeriodFilter &) = default;
+  RefractoryPeriodFilter &operator=(RefractoryPeriodFilter &&) noexcept = default;
+
+  /*!
+  \brief Set the inhibition time.
+  \param dt Inhibition time; events fired before this time has elapsed since the last accepted event of the same pixel are discarded
+  */
+  inline void setDt(const ev::TimeType dt) {
+    dt_ = dt;
+  }
+
+  /*!
+  Test and record a single event.
+  \param e Event to evaluate
+  \return True if the event passes (its pixel has been idle for at least \p dt)
+  \note The internal timestamp map is updated only when the event passes.
+  */
+  [[nodiscard]] bool operator()(const ev::Event &e);
+
+private:
+  ev::Mat::Time map_;
+  ev::TimeType dt_;
 };
 
 } // namespace ev

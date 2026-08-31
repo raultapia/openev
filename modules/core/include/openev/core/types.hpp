@@ -538,7 +538,7 @@ struct alignas(16) Circ_ {
   }
 
   /*!
-  \brief Bounding square of the circle as a cv::Size (radius × radius).
+  \brief Bounding square of the circle as a cv::Size (radius x radius).
   \return Size with width and height equal to the radius.
   */
   [[nodiscard]] inline cv::Size size() const {
