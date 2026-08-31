@@ -7,6 +7,8 @@
 #define OPENEV_CONTAINERS_ABSTRACT_CONTAINER_HPP
 
 #include "openev/core/types.hpp"
+#include <algorithm>
+#include <climits>
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
@@ -15,6 +17,7 @@
 #include <opencv2/core/types.hpp>
 #include <type_traits>
 #include <unordered_map>
+#include <vector>
 
 namespace ev {
 /*!
@@ -98,11 +101,12 @@ public:
   */
   [[nodiscard]] inline ResultType entropy() const {
     check_("entropy");
-    std::unordered_map<uint64_t, std::size_t> histogram;
+    std::vector<cv::Point> pixels;
+    pixels.reserve(self_().size());
     for(const Event_<T> &e : self_()) {
-      histogram[pixel_(e)]++;
+      pixels.push_back(pixel_(e));
     }
-    return entropy_(histogram, static_cast<ResultType>(self_().size()));
+    return entropy_(pixels);
   }
 
 protected:
@@ -117,19 +121,53 @@ protected:
     }
   }
 
-  [[nodiscard]] inline static uint64_t pixel_(const Event_<T> &e) {
+  [[nodiscard]] inline static cv::Point pixel_(const Event_<T> &e) {
     if constexpr(std::is_floating_point_v<T>) {
-      return (static_cast<uint64_t>(static_cast<uint32_t>(std::lround(e.y))) << 32U) | static_cast<uint32_t>(std::lround(e.x));
+      return {static_cast<int>(std::lround(e.x)), static_cast<int>(std::lround(e.y))};
     } else {
-      return (static_cast<uint64_t>(static_cast<uint32_t>(e.y)) << 32U) | static_cast<uint32_t>(e.x);
+      return {static_cast<int>(e.x), static_cast<int>(e.y)};
     }
   }
 
-  [[nodiscard]] inline static ResultType entropy_(const std::unordered_map<uint64_t, std::size_t> &histogram, const ResultType n) {
+  [[nodiscard]] inline static ResultType entropy_(const std::vector<cv::Point> &pixels) {
+    constexpr uint64_t MAX_AREA_PER_EVENT = 32;
+    const ResultType n = static_cast<ResultType>(pixels.size());
+
+    int left = INT_MAX;
+    int right = INT_MIN;
+    int top = INT_MAX;
+    int bottom = INT_MIN;
+    for(const cv::Point &pixel : pixels) {
+      left = std::min(left, pixel.x);
+      right = std::max(right, pixel.x);
+      top = std::min(top, pixel.y);
+      bottom = std::max(bottom, pixel.y);
+    }
+
+    const auto width = static_cast<uint64_t>(static_cast<int64_t>(right) - static_cast<int64_t>(left) + 1);
+    const auto height = static_cast<uint64_t>(static_cast<int64_t>(bottom) - static_cast<int64_t>(top) + 1);
+
     ResultType h{0};
-    for(const auto &[pixel, count] : histogram) {
-      const ResultType p = static_cast<ResultType>(count) / n;
-      h -= p * std::log2(p);
+    if(width <= (MAX_AREA_PER_EVENT * pixels.size()) / height) {
+      std::vector<uint32_t> counts(width * height, 0);
+      for(const cv::Point &pixel : pixels) {
+        counts[(static_cast<uint64_t>(pixel.y - top) * width) + static_cast<uint64_t>(pixel.x - left)]++;
+      }
+      for(const uint32_t count : counts) {
+        if(count > 0) {
+          const ResultType p = static_cast<ResultType>(count) / n;
+          h -= p * std::log2(p);
+        }
+      }
+    } else {
+      std::unordered_map<uint64_t, std::size_t> histogram;
+      for(const cv::Point &pixel : pixels) {
+        histogram[(static_cast<uint64_t>(static_cast<uint32_t>(pixel.y)) << 32U) | static_cast<uint32_t>(pixel.x)]++;
+      }
+      for(const auto &[pixel, count] : histogram) {
+        const ResultType p = static_cast<ResultType>(count) / n;
+        h -= p * std::log2(p);
+      }
     }
     return h;
   }

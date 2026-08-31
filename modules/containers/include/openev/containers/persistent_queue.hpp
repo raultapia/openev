@@ -9,9 +9,8 @@
 #include "openev/containers/queue.hpp"
 #include "openev/core/types.hpp"
 #include <cstddef>
-#include <cstdint>
 #include <opencv2/core/types.hpp>
-#include <unordered_map>
+#include <vector>
 
 namespace ev {
 constexpr bool USING_PERSISTENT_QUEUE_HPP = true;
@@ -111,16 +110,17 @@ public:
       CV_Error(cv::Error::StsError, "ev::PersistentQueue_::entropy: the container is empty.");
     }
     const std::size_t n = Queue_<T>::size();
-    std::unordered_map<uint64_t, std::size_t> histogram;
+    std::vector<cv::Point> pixels;
+    pixels.reserve(n);
 
     for(int i = 0; i < n; i++) {
       const Event_<T> &e = Queue_<T>::front();
-      histogram[AbstractContainer_<Queue_<T>, T>::pixel_(e)]++;
+      pixels.push_back(AbstractContainer_<Queue_<T>, T>::pixel_(e));
       Queue_<T>::pop();
       Queue_<T>::emplace(e);
     }
 
-    return AbstractContainer_<Queue_<T>, T>::entropy_(histogram, static_cast<ResultType>(n));
+    return AbstractContainer_<Queue_<T>, T>::entropy_(pixels);
   }
 };
 using PersistentQueuei = PersistentQueue_<int>;    /*!< Alias for PersistentQueue_ using int */

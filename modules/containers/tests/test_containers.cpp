@@ -305,3 +305,31 @@ TEST(Entropy, PersistentQueuePreserves) {
   EXPECT_EQ(q.size(), 100U);
   EXPECT_DOUBLE_EQ(q.entropy(), 1.0);
 }
+
+TEST(Entropy, SparseFallbackMatchesCompact) {
+  ev::Vector compact;
+  ev::Vector sparse;
+  for(int i = 0; i < 100; i++) {
+    compact.emplace_back(i % 2, (i / 2) % 2, i * 1e-3, true);
+    sparse.emplace_back((i % 2) * 50000, ((i / 2) % 2) * 50000, i * 1e-3, true);
+  }
+  EXPECT_DOUBLE_EQ(compact.entropy(), 2.0);
+  EXPECT_DOUBLE_EQ(sparse.entropy(), compact.entropy());
+}
+
+TEST(Entropy, SparseSinglePixelIsZero) {
+  ev::Vector v;
+  v.emplace_back(0, 0, 0.0, true);
+  v.emplace_back(100000, 100000, 1.0, true);
+  v.emplace_back(100000, 100000, 2.0, true);
+  v.emplace_back(0, 0, 3.0, true);
+  EXPECT_DOUBLE_EQ(v.entropy(), 1.0);
+}
+
+TEST(Entropy, NegativeCoordinatesAreDistinctPixels) {
+  ev::Vector v;
+  for(int i = 0; i < 100; i++) {
+    v.emplace_back(i % 2 ? -1 : 1, 0, i * 1e-3, true);
+  }
+  EXPECT_DOUBLE_EQ(v.entropy(), 1.0);
+}
