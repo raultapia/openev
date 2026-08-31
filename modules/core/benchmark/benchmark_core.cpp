@@ -92,26 +92,16 @@ void benchmarkUpdateStats(benchmark::State &state, const char *label) {
 
 template <typename Matrix>
 void benchmarkClear(benchmark::State &state, const char *label) {
-  const auto events = makeEvents(static_cast<std::size_t>(state.range(0)));
   Matrix matrix(kHeight, kWidth);
-  Matrix backup(kHeight, kWidth);
-
-  for(const auto &event : events) {
-    backup.insert(event);
-  }
 
   for(auto _ : state) {
-    state.PauseTiming();
-    backup.copyTo(matrix);
-    state.ResumeTiming();
-
     benchmark::DoNotOptimize(matrix.data);
     matrix.clear();
     benchmark::ClobberMemory();
   }
 
   state.SetLabel(label);
-  state.SetItemsProcessed(state.iterations());
+  state.SetBytesProcessed(state.iterations() * static_cast<int64_t>(matrix.total() * matrix.elemSize()));
 }
 
 static void BM_BinaryInsert(benchmark::State &state) {
@@ -184,10 +174,10 @@ BENCHMARK(BM_TimeUpdateStats)->Arg(1 << 14);
 BENCHMARK(BM_PolarityUpdateStats)->Arg(1 << 14);
 BENCHMARK(BM_CounterUpdateStats)->Arg(1 << 14);
 
-BENCHMARK(BM_BinaryClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_TernaryClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_TimeClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_PolarityClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_CounterClear)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_BinaryClear);
+BENCHMARK(BM_TernaryClear);
+BENCHMARK(BM_TimeClear);
+BENCHMARK(BM_PolarityClear);
+BENCHMARK(BM_CounterClear);
 
 } // namespace
