@@ -280,129 +280,133 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('matrices_8hpp_
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  }</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  <span class="keyword">inline</span> Tb set(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point_v&lt;T&gt;) {</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      <span class="keywordflow">return</span> *(this-&gt;<span class="keyword">template</span> ptr&lt;Tb&gt;(std::lround(y)) + std::lround(x)) = (p ? <a class="code hl_variable" href="types_8hpp.html#a157d217734129e5ce5aba5651f589647">POSITIVE</a> : <a class="code hl_variable" href="types_8hpp.html#afa153d4807e396ab09f324321a6896a5">NEGATIVE</a>);</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      <span class="keywordflow">return</span> *(this-&gt;<span class="keyword">template</span> ptr&lt;Tb&gt;(y) + x) = (p ? <a class="code hl_variable" href="types_8hpp.html#a157d217734129e5ce5aba5651f589647">POSITIVE</a> : <a class="code hl_variable" href="types_8hpp.html#afa153d4807e396ab09f324321a6896a5">NEGATIVE</a>);</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    }</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  }</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>};</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> Tb VALUE[2]{<a class="code hl_variable" href="types_8hpp.html#afa153d4807e396ab09f324321a6896a5">NEGATIVE</a>, <a class="code hl_variable" href="types_8hpp.html#a157d217734129e5ce5aba5651f589647">POSITIVE</a>};</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  <span class="keyword">inline</span> Tb set(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point_v&lt;T&gt;) {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>      <span class="keywordflow">return</span> *(this-&gt;<span class="keyword">template</span> ptr&lt;Tb&gt;(std::lround(y)) + std::lround(x)) = VALUE[p];</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      <span class="keywordflow">return</span> *(this-&gt;<span class="keyword">template</span> ptr&lt;Tb&gt;(y) + x) = VALUE[p];</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    }</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  }</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>};</div>
 </div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keyword">using </span>Ternary = <a class="code hl_class" href="classev_1_1Mat_1_1Ternary__.html">Ternary_&lt;signed char&gt;</a>;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span></div>
-<div class="foldopen" id="foldopen00224" data-start="{" data-end="};">
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Time.html">  224</a></span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Mat_1_1Time.html">Time</a> : <span class="keyword">public</span> <a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_&lt;TimeType&gt;</a> {</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  <span class="keyword">using </span><a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;TimeType&gt;<a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">::Mat_</a>;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span></div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00234" data-start="{" data-end="}">
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Time.html#a07198bd87952680eb43a050f0b3f4476">  234</a></span>  <span class="keyword">inline</span> TimeType <a class="code hl_function" href="classev_1_1Mat_1_1Time.html#a07198bd87952680eb43a050f0b3f4476">insert</a>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e) {</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <span class="keywordflow">return</span> set(e.x, e.y, e.<a class="code hl_variable" href="classev_1_1Event__.html#a958bf08f1f29536453a7822ae608bae9">t</a>);</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>  }</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="keyword">using </span>Ternary = <a class="code hl_class" href="classev_1_1Mat_1_1Ternary__.html">Ternary_&lt;signed char&gt;</a>;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span></div>
+<div class="foldopen" id="foldopen00226" data-start="{" data-end="};">
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Time.html">  226</a></span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Mat_1_1Time.html">Time</a> : <span class="keyword">public</span> <a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_&lt;TimeType&gt;</a> {</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>  <span class="keyword">using </span><a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;TimeType&gt;<a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">::Mat_</a>;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00236" data-start="{" data-end="}">
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Time.html#a07198bd87952680eb43a050f0b3f4476">  236</a></span>  <span class="keyword">inline</span> TimeType <a class="code hl_function" href="classev_1_1Mat_1_1Time.html#a07198bd87952680eb43a050f0b3f4476">insert</a>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e) {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordflow">return</span> set(e.x, e.y, e.<a class="code hl_variable" href="classev_1_1Event__.html#a958bf08f1f29536453a7822ae608bae9">t</a>);</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  }</div>
 </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span></div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00246" data-start="{" data-end="}">
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Time.html#a79c8c697f917a3131d50209763cfb9da">  246</a></span>  <span class="keyword">inline</span> TimeType <a class="code hl_function" href="classev_1_1Mat_1_1Time.html#a79c8c697f917a3131d50209763cfb9da">emplace</a>(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> TimeType t) {</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    <span class="keywordflow">return</span> set(x, y, t);</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  }</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00248" data-start="{" data-end="}">
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Time.html#a79c8c697f917a3131d50209763cfb9da">  248</a></span>  <span class="keyword">inline</span> TimeType <a class="code hl_function" href="classev_1_1Mat_1_1Time.html#a79c8c697f917a3131d50209763cfb9da">emplace</a>(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> TimeType t) {</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    <span class="keywordflow">return</span> set(x, y, t);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  }</div>
 </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  <span class="keyword">friend</span> std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Mat_1_1Time.html">Time</a> &amp;time) {</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    os &lt;&lt; <span class="stringliteral">&quot;Time &quot;</span> &lt;&lt; time.cols &lt;&lt; <span class="stringliteral">&quot;x&quot;</span> &lt;&lt; time.rows;</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">return</span> os;</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>  }</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>  <span class="keyword">inline</span> TimeType set(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> TimeType t) {</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point_v&lt;T&gt;) {</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;TimeType&gt;(std::lround(y)) + std::lround(x)) = t;</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;TimeType&gt;(y) + x) = t;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    }</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>  }</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>};</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  <span class="keyword">friend</span> std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Mat_1_1Time.html">Time</a> &amp;time) {</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    os &lt;&lt; <span class="stringliteral">&quot;Time &quot;</span> &lt;&lt; time.cols &lt;&lt; <span class="stringliteral">&quot;x&quot;</span> &lt;&lt; time.rows;</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  }</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>  <span class="keyword">inline</span> TimeType set(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> TimeType t) {</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point_v&lt;T&gt;) {</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;TimeType&gt;(std::lround(y)) + std::lround(x)) = t;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;TimeType&gt;(y) + x) = t;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    }</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  }</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>};</div>
 </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span></div>
-<div class="foldopen" id="foldopen00272" data-start="{" data-end="};">
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Polarity.html">  272</a></span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Mat_1_1Polarity.html">Polarity</a> : <span class="keyword">public</span> <a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;PolarityType&gt; {</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>  <span class="keyword">using </span><a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;PolarityType&gt;<a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">::Mat_</a>;</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span></div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00282" data-start="{" data-end="}">
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Polarity.html#a6cedffdbbe926ade0871300e4f791299">  282</a></span>  <span class="keyword">inline</span> PolarityType <a class="code hl_function" href="classev_1_1Mat_1_1Polarity.html#a6cedffdbbe926ade0871300e4f791299">insert</a>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e) {</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordflow">return</span> set(e.x, e.y, e.<a class="code hl_variable" href="classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522">p</a>);</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>  }</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span></div>
+<div class="foldopen" id="foldopen00274" data-start="{" data-end="};">
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Polarity.html">  274</a></span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Mat_1_1Polarity.html">Polarity</a> : <span class="keyword">public</span> <a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;PolarityType&gt; {</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>  <span class="keyword">using </span><a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;PolarityType&gt;<a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">::Mat_</a>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00284" data-start="{" data-end="}">
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Polarity.html#a6cedffdbbe926ade0871300e4f791299">  284</a></span>  <span class="keyword">inline</span> PolarityType <a class="code hl_function" href="classev_1_1Mat_1_1Polarity.html#a6cedffdbbe926ade0871300e4f791299">insert</a>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e) {</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    <span class="keywordflow">return</span> set(e.x, e.y, e.<a class="code hl_variable" href="classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522">p</a>);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  }</div>
 </div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span></div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00294" data-start="{" data-end="}">
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Polarity.html#a1e5f685cba07e7b09bbfad82251dde3c">  294</a></span>  <span class="keyword">inline</span> PolarityType <a class="code hl_function" href="classev_1_1Mat_1_1Polarity.html#a1e5f685cba07e7b09bbfad82251dde3c">emplace</a>(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> PolarityType p) {</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="keywordflow">return</span> set(x, y, p);</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>  }</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00296" data-start="{" data-end="}">
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Polarity.html#a1e5f685cba07e7b09bbfad82251dde3c">  296</a></span>  <span class="keyword">inline</span> PolarityType <a class="code hl_function" href="classev_1_1Mat_1_1Polarity.html#a1e5f685cba07e7b09bbfad82251dde3c">emplace</a>(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> PolarityType p) {</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keywordflow">return</span> set(x, y, p);</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>  }</div>
 </div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>  <span class="keyword">friend</span> std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Mat_1_1Polarity.html">Polarity</a> &amp;polarity) {</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>    os &lt;&lt; <span class="stringliteral">&quot;Polarity &quot;</span> &lt;&lt; polarity.cols &lt;&lt; <span class="stringliteral">&quot;x&quot;</span> &lt;&lt; polarity.rows;</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>    <span class="keywordflow">return</span> os;</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>  }</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  <span class="keyword">inline</span> PolarityType set(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> PolarityType p) {</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point_v&lt;T&gt;) {</div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;PolarityType&gt;(std::lround(y)) + std::lround(x)) = p;</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;PolarityType&gt;(y) + x) = p;</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    }</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>  }</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>};</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>  <span class="keyword">friend</span> std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Mat_1_1Polarity.html">Polarity</a> &amp;polarity) {</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    os &lt;&lt; <span class="stringliteral">&quot;Polarity &quot;</span> &lt;&lt; polarity.cols &lt;&lt; <span class="stringliteral">&quot;x&quot;</span> &lt;&lt; polarity.rows;</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>  }</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>  <span class="keyword">inline</span> PolarityType set(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> PolarityType p) {</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point_v&lt;T&gt;) {</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;PolarityType&gt;(std::lround(y)) + std::lround(x)) = p;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;PolarityType&gt;(y) + x) = p;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    }</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>  }</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>};</div>
 </div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span></div>
-<div class="foldopen" id="foldopen00320" data-start="{" data-end="};">
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Counter.html">  320</a></span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Mat_1_1Counter.html">Counter</a> : <span class="keyword">public</span> <a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;CounterType&gt; {</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>  <span class="keyword">using </span><a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;CounterType&gt;<a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">::Mat_</a>;</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span></div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00330" data-start="{" data-end="}">
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Counter.html#a16dbb7003060b27a1d0c6146d864fb59">  330</a></span>  <span class="keyword">inline</span> CounterType <a class="code hl_function" href="classev_1_1Mat_1_1Counter.html#a16dbb7003060b27a1d0c6146d864fb59">insert</a>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e) {</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <span class="keywordflow">return</span> set(e.x, e.y, e.<a class="code hl_variable" href="classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522">p</a>);</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>  }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span></div>
+<div class="foldopen" id="foldopen00322" data-start="{" data-end="};">
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Counter.html">  322</a></span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Mat_1_1Counter.html">Counter</a> : <span class="keyword">public</span> <a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;CounterType&gt; {</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>  <span class="keyword">using </span><a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">Mat_</a>&lt;CounterType&gt;<a class="code hl_class" href="classev_1_1Mat_1_1Mat__.html">::Mat_</a>;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00332" data-start="{" data-end="}">
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Counter.html#a16dbb7003060b27a1d0c6146d864fb59">  332</a></span>  <span class="keyword">inline</span> CounterType <a class="code hl_function" href="classev_1_1Mat_1_1Counter.html#a16dbb7003060b27a1d0c6146d864fb59">insert</a>(<span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a> &amp;e) {</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>    <span class="keywordflow">return</span> set(e.x, e.y, e.<a class="code hl_variable" href="classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522">p</a>);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>  }</div>
 </div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span></div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="foldopen" id="foldopen00342" data-start="{" data-end="}">
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Counter.html#aaf4773643c947c64ef13b48767acb6e7">  342</a></span>  <span class="keyword">inline</span> CounterType <a class="code hl_function" href="classev_1_1Mat_1_1Counter.html#aaf4773643c947c64ef13b48767acb6e7">emplace</a>(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    <span class="keywordflow">return</span> set(x, y, p);</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>  }</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="foldopen" id="foldopen00344" data-start="{" data-end="}">
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="classev_1_1Mat_1_1Counter.html#aaf4773643c947c64ef13b48767acb6e7">  344</a></span>  <span class="keyword">inline</span> CounterType <a class="code hl_function" href="classev_1_1Mat_1_1Counter.html#aaf4773643c947c64ef13b48767acb6e7">emplace</a>(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    <span class="keywordflow">return</span> set(x, y, p);</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>  }</div>
 </div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>  <span class="keyword">friend</span> std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Mat_1_1Counter.html">Counter</a> &amp;counter) {</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    os &lt;&lt; <span class="stringliteral">&quot;Counter &quot;</span> &lt;&lt; counter.cols &lt;&lt; <span class="stringliteral">&quot;x&quot;</span> &lt;&lt; counter.rows;</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    <span class="keywordflow">return</span> os;</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>  }</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  <span class="keyword">inline</span> CounterType set(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point_v&lt;T&gt;) {</div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;CounterType&gt;(std::lround(y)) + std::lround(x)) += (p ? +1 : -1);</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;CounterType&gt;(y) + x) += (p ? +1 : -1);</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    }</div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>  }</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>};</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>  <span class="keyword">friend</span> std::ostream &amp;operator&lt;&lt;(std::ostream &amp;os, <span class="keyword">const</span> <a class="code hl_class" href="classev_1_1Mat_1_1Counter.html">Counter</a> &amp;counter) {</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    os &lt;&lt; <span class="stringliteral">&quot;Counter &quot;</span> &lt;&lt; counter.cols &lt;&lt; <span class="stringliteral">&quot;x&quot;</span> &lt;&lt; counter.rows;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="keywordflow">return</span> os;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>  }</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> CounterType INCREMENT[2]{-1, +1};</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>  <span class="keyword">inline</span> CounterType set(<span class="keyword">const</span> T x, <span class="keyword">const</span> T y, <span class="keyword">const</span> <span class="keywordtype">bool</span> p) {</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span>(std::is_floating_point_v&lt;T&gt;) {</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;CounterType&gt;(std::lround(y)) + std::lround(x)) += INCREMENT[p];</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>      <span class="keywordflow">return</span> *(this-&gt;ptr&lt;CounterType&gt;(y) + x) += INCREMENT[p];</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    }</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>  }</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>};</div>
 </div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>} <span class="comment">// namespace Mat</span></div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>} <span class="comment">// namespace ev</span></div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span> </div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CORE_MATRICES_HPP</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>} <span class="comment">// namespace Mat</span></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>} <span class="comment">// namespace ev</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CORE_MATRICES_HPP</span></div>
 <div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:78</div></div>
 <div class="ttc" id="aclassev_1_1Event___html_a06e41f9584135aa2aab85f0f20498522"><div class="ttname"><a href="classev_1_1Event__.html#a06e41f9584135aa2aab85f0f20498522">ev::Event_::p</a></div><div class="ttdeci">PolarityType p</div><div class="ttdef"><b>Definition</b> types.hpp:83</div></div>
 <div class="ttc" id="aclassev_1_1Event___html_a958bf08f1f29536453a7822ae608bae9"><div class="ttname"><a href="classev_1_1Event__.html#a958bf08f1f29536453a7822ae608bae9">ev::Event_::t</a></div><div class="ttdeci">TimeType t</div><div class="ttdef"><b>Definition</b> types.hpp:82</div></div>
@@ -411,27 +415,27 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('matrices_8hpp_
 <div class="ttc" id="aclassev_1_1Mat_1_1Binary___html_a835b47bb1a76a0e35d0064fbcae3eca0"><div class="ttname"><a href="classev_1_1Mat_1_1Binary__.html#a835b47bb1a76a0e35d0064fbcae3eca0">ev::Mat::Binary_::emplace</a></div><div class="ttdeci">Tb emplace(const T x, const T y)</div><div class="ttdoc">Set the pixel at (x, y) to ON without constructing an Event_.</div><div class="ttdef"><b>Definition</b> matrices.hpp:133</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Binary___html_ab39e35edbc8506e62d369999eaaf506f"><div class="ttname"><a href="classev_1_1Mat_1_1Binary__.html#ab39e35edbc8506e62d369999eaaf506f">ev::Mat::Binary_&lt; uchar &gt;::ON</a></div><div class="ttdeci">static constexpr uchar ON</div><div class="ttdef"><b>Definition</b> matrices.hpp:137</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Binary___html_ad08a1f9dd816c42aa74a872d4fa4d3c8"><div class="ttname"><a href="classev_1_1Mat_1_1Binary__.html#ad08a1f9dd816c42aa74a872d4fa4d3c8">ev::Mat::Binary_&lt; uchar &gt;::OFF</a></div><div class="ttdeci">static constexpr uchar OFF</div><div class="ttdef"><b>Definition</b> matrices.hpp:138</div></div>
-<div class="ttc" id="aclassev_1_1Mat_1_1Counter_html"><div class="ttname"><a href="classev_1_1Mat_1_1Counter.html">ev::Mat::Counter</a></div><div class="ttdoc">Spatial map accumulating signed event counts per pixel.</div><div class="ttdef"><b>Definition</b> matrices.hpp:320</div></div>
-<div class="ttc" id="aclassev_1_1Mat_1_1Counter_html_a16dbb7003060b27a1d0c6146d864fb59"><div class="ttname"><a href="classev_1_1Mat_1_1Counter.html#a16dbb7003060b27a1d0c6146d864fb59">ev::Mat::Counter::insert</a></div><div class="ttdeci">CounterType insert(const Event_&lt; T &gt; &amp;e)</div><div class="ttdoc">Insert an event, incrementing (p=true) or decrementing (p=false) the counter at (e....</div><div class="ttdef"><b>Definition</b> matrices.hpp:330</div></div>
-<div class="ttc" id="aclassev_1_1Mat_1_1Counter_html_aaf4773643c947c64ef13b48767acb6e7"><div class="ttname"><a href="classev_1_1Mat_1_1Counter.html#aaf4773643c947c64ef13b48767acb6e7">ev::Mat::Counter::emplace</a></div><div class="ttdeci">CounterType emplace(const T x, const T y, const bool p)</div><div class="ttdoc">Increment or decrement the counter at (x, y) without constructing an Event_.</div><div class="ttdef"><b>Definition</b> matrices.hpp:342</div></div>
+<div class="ttc" id="aclassev_1_1Mat_1_1Counter_html"><div class="ttname"><a href="classev_1_1Mat_1_1Counter.html">ev::Mat::Counter</a></div><div class="ttdoc">Spatial map accumulating signed event counts per pixel.</div><div class="ttdef"><b>Definition</b> matrices.hpp:322</div></div>
+<div class="ttc" id="aclassev_1_1Mat_1_1Counter_html_a16dbb7003060b27a1d0c6146d864fb59"><div class="ttname"><a href="classev_1_1Mat_1_1Counter.html#a16dbb7003060b27a1d0c6146d864fb59">ev::Mat::Counter::insert</a></div><div class="ttdeci">CounterType insert(const Event_&lt; T &gt; &amp;e)</div><div class="ttdoc">Insert an event, incrementing (p=true) or decrementing (p=false) the counter at (e....</div><div class="ttdef"><b>Definition</b> matrices.hpp:332</div></div>
+<div class="ttc" id="aclassev_1_1Mat_1_1Counter_html_aaf4773643c947c64ef13b48767acb6e7"><div class="ttname"><a href="classev_1_1Mat_1_1Counter.html#aaf4773643c947c64ef13b48767acb6e7">ev::Mat::Counter::emplace</a></div><div class="ttdeci">CounterType emplace(const T x, const T y, const bool p)</div><div class="ttdoc">Increment or decrement the counter at (x, y) without constructing an Event_.</div><div class="ttdef"><b>Definition</b> matrices.hpp:344</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Mat___html"><div class="ttname"><a href="classev_1_1Mat_1_1Mat__.html">ev::Mat::Mat_</a></div><div class="ttdef"><b>Definition</b> matrices.hpp:30</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Mat___html_a4f73fe3a4cfb519fa6901e66f6f25581"><div class="ttname"><a href="classev_1_1Mat_1_1Mat__.html#a4f73fe3a4cfb519fa6901e66f6f25581">ev::Mat::Mat_::count</a></div><div class="ttdeci">CounterType count() const</div><div class="ttdoc">Number of events accounted for by updateStats() since the last resetStats().</div><div class="ttdef"><b>Definition</b> matrices.hpp:58</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Mat___html_a9ed14c83123b7e557c533664b7f2c74b"><div class="ttname"><a href="classev_1_1Mat_1_1Mat__.html#a9ed14c83123b7e557c533664b7f2c74b">ev::Mat::Mat_::duration</a></div><div class="ttdeci">TimeType duration() const</div><div class="ttdoc">Time elapsed between the first and the last event accounted for by updateStats().</div><div class="ttdef"><b>Definition</b> matrices.hpp:66</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Mat___html_a9fef11595e8d28e1c8d18eda8b4ef30e"><div class="ttname"><a href="classev_1_1Mat_1_1Mat__.html#a9fef11595e8d28e1c8d18eda8b4ef30e">ev::Mat::Mat_::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Reset all pixels.</div><div class="ttdef"><b>Definition</b> matrices.hpp:82</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Mat___html_aa03353b5a51b46d870bf33322fbbba85"><div class="ttname"><a href="classev_1_1Mat_1_1Mat__.html#aa03353b5a51b46d870bf33322fbbba85">ev::Mat::Mat_::resetStats</a></div><div class="ttdeci">void resetStats()</div><div class="ttdoc">Reset statistics (count, first timestamp, last timestamp).</div><div class="ttdef"><b>Definition</b> matrices.hpp:73</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Mat___html_ab56daeec1c46bfb8c074d44905cc504f"><div class="ttname"><a href="classev_1_1Mat_1_1Mat__.html#ab56daeec1c46bfb8c074d44905cc504f">ev::Mat::Mat_::updateStats</a></div><div class="ttdeci">void updateStats(const Event &amp;e)</div><div class="ttdoc">Account for an event in the statistics reported by count() and duration().</div><div class="ttdef"><b>Definition</b> matrices.hpp:46</div></div>
-<div class="ttc" id="aclassev_1_1Mat_1_1Polarity_html"><div class="ttname"><a href="classev_1_1Mat_1_1Polarity.html">ev::Mat::Polarity</a></div><div class="ttdoc">Spatial map storing the polarity of the most recent event at each pixel.</div><div class="ttdef"><b>Definition</b> matrices.hpp:272</div></div>
-<div class="ttc" id="aclassev_1_1Mat_1_1Polarity_html_a1e5f685cba07e7b09bbfad82251dde3c"><div class="ttname"><a href="classev_1_1Mat_1_1Polarity.html#a1e5f685cba07e7b09bbfad82251dde3c">ev::Mat::Polarity::emplace</a></div><div class="ttdeci">PolarityType emplace(const T x, const T y, const PolarityType p)</div><div class="ttdoc">Store polarity p at (x, y) without constructing an Event_.</div><div class="ttdef"><b>Definition</b> matrices.hpp:294</div></div>
-<div class="ttc" id="aclassev_1_1Mat_1_1Polarity_html_a6cedffdbbe926ade0871300e4f791299"><div class="ttname"><a href="classev_1_1Mat_1_1Polarity.html#a6cedffdbbe926ade0871300e4f791299">ev::Mat::Polarity::insert</a></div><div class="ttdeci">PolarityType insert(const Event_&lt; T &gt; &amp;e)</div><div class="ttdoc">Insert an event, storing e.p at pixel (e.x, e.y).</div><div class="ttdef"><b>Definition</b> matrices.hpp:282</div></div>
+<div class="ttc" id="aclassev_1_1Mat_1_1Polarity_html"><div class="ttname"><a href="classev_1_1Mat_1_1Polarity.html">ev::Mat::Polarity</a></div><div class="ttdoc">Spatial map storing the polarity of the most recent event at each pixel.</div><div class="ttdef"><b>Definition</b> matrices.hpp:274</div></div>
+<div class="ttc" id="aclassev_1_1Mat_1_1Polarity_html_a1e5f685cba07e7b09bbfad82251dde3c"><div class="ttname"><a href="classev_1_1Mat_1_1Polarity.html#a1e5f685cba07e7b09bbfad82251dde3c">ev::Mat::Polarity::emplace</a></div><div class="ttdeci">PolarityType emplace(const T x, const T y, const PolarityType p)</div><div class="ttdoc">Store polarity p at (x, y) without constructing an Event_.</div><div class="ttdef"><b>Definition</b> matrices.hpp:296</div></div>
+<div class="ttc" id="aclassev_1_1Mat_1_1Polarity_html_a6cedffdbbe926ade0871300e4f791299"><div class="ttname"><a href="classev_1_1Mat_1_1Polarity.html#a6cedffdbbe926ade0871300e4f791299">ev::Mat::Polarity::insert</a></div><div class="ttdeci">PolarityType insert(const Event_&lt; T &gt; &amp;e)</div><div class="ttdoc">Insert an event, storing e.p at pixel (e.x, e.y).</div><div class="ttdef"><b>Definition</b> matrices.hpp:284</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Ternary___html"><div class="ttname"><a href="classev_1_1Mat_1_1Ternary__.html">ev::Mat::Ternary_</a></div><div class="ttdoc">Spatial map encoding event polarity at each pixel.</div><div class="ttdef"><b>Definition</b> matrices.hpp:169</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Ternary___html_a5216f04a3c3da3e3e6d5171efe258bf8"><div class="ttname"><a href="classev_1_1Mat_1_1Ternary__.html#a5216f04a3c3da3e3e6d5171efe258bf8">ev::Mat::Ternary_::insert</a></div><div class="ttdeci">Tb insert(const Event_&lt; T &gt; &amp;e)</div><div class="ttdoc">Insert an event, writing POSITIVE or NEGATIVE at (e.x, e.y) based on e.p.</div><div class="ttdef"><b>Definition</b> matrices.hpp:181</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Ternary___html_a66d7f31a5f2f574d41a4d46cb6fec5f0"><div class="ttname"><a href="classev_1_1Mat_1_1Ternary__.html#a66d7f31a5f2f574d41a4d46cb6fec5f0">ev::Mat::Ternary_&lt; signed char &gt;::ZERO</a></div><div class="ttdeci">static constexpr signed char ZERO</div><div class="ttdef"><b>Definition</b> matrices.hpp:198</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Ternary___html_aca1de1fee0e8d6d308074ad4576f30f9"><div class="ttname"><a href="classev_1_1Mat_1_1Ternary__.html#aca1de1fee0e8d6d308074ad4576f30f9">ev::Mat::Ternary_::emplace</a></div><div class="ttdeci">Tb emplace(const T x, const T y, const bool p)</div><div class="ttdoc">Write polarity p at (x, y) without constructing an Event_.</div><div class="ttdef"><b>Definition</b> matrices.hpp:193</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Ternary___html_ae1389a491cead3866ae29a818b21e5c2"><div class="ttname"><a href="classev_1_1Mat_1_1Ternary__.html#ae1389a491cead3866ae29a818b21e5c2">ev::Mat::Ternary_&lt; signed char &gt;::NEGATIVE</a></div><div class="ttdeci">static constexpr signed char NEGATIVE</div><div class="ttdef"><b>Definition</b> matrices.hpp:199</div></div>
 <div class="ttc" id="aclassev_1_1Mat_1_1Ternary___html_aeab2063fb095d76a43d9cfcb86ddb644"><div class="ttname"><a href="classev_1_1Mat_1_1Ternary__.html#aeab2063fb095d76a43d9cfcb86ddb644">ev::Mat::Ternary_&lt; signed char &gt;::POSITIVE</a></div><div class="ttdeci">static constexpr signed char POSITIVE</div><div class="ttdef"><b>Definition</b> matrices.hpp:197</div></div>
-<div class="ttc" id="aclassev_1_1Mat_1_1Time_html"><div class="ttname"><a href="classev_1_1Mat_1_1Time.html">ev::Mat::Time</a></div><div class="ttdoc">Spatial map storing the timestamp of the most recent event at each pixel.</div><div class="ttdef"><b>Definition</b> matrices.hpp:224</div></div>
-<div class="ttc" id="aclassev_1_1Mat_1_1Time_html_a07198bd87952680eb43a050f0b3f4476"><div class="ttname"><a href="classev_1_1Mat_1_1Time.html#a07198bd87952680eb43a050f0b3f4476">ev::Mat::Time::insert</a></div><div class="ttdeci">TimeType insert(const Event_&lt; T &gt; &amp;e)</div><div class="ttdoc">Insert an event, storing e.t at pixel (e.x, e.y).</div><div class="ttdef"><b>Definition</b> matrices.hpp:234</div></div>
-<div class="ttc" id="aclassev_1_1Mat_1_1Time_html_a79c8c697f917a3131d50209763cfb9da"><div class="ttname"><a href="classev_1_1Mat_1_1Time.html#a79c8c697f917a3131d50209763cfb9da">ev::Mat::Time::emplace</a></div><div class="ttdeci">TimeType emplace(const T x, const T y, const TimeType t)</div><div class="ttdoc">Store timestamp t at (x, y) without constructing an Event_.</div><div class="ttdef"><b>Definition</b> matrices.hpp:246</div></div>
+<div class="ttc" id="aclassev_1_1Mat_1_1Time_html"><div class="ttname"><a href="classev_1_1Mat_1_1Time.html">ev::Mat::Time</a></div><div class="ttdoc">Spatial map storing the timestamp of the most recent event at each pixel.</div><div class="ttdef"><b>Definition</b> matrices.hpp:226</div></div>
+<div class="ttc" id="aclassev_1_1Mat_1_1Time_html_a07198bd87952680eb43a050f0b3f4476"><div class="ttname"><a href="classev_1_1Mat_1_1Time.html#a07198bd87952680eb43a050f0b3f4476">ev::Mat::Time::insert</a></div><div class="ttdeci">TimeType insert(const Event_&lt; T &gt; &amp;e)</div><div class="ttdoc">Insert an event, storing e.t at pixel (e.x, e.y).</div><div class="ttdef"><b>Definition</b> matrices.hpp:236</div></div>
+<div class="ttc" id="aclassev_1_1Mat_1_1Time_html_a79c8c697f917a3131d50209763cfb9da"><div class="ttname"><a href="classev_1_1Mat_1_1Time.html#a79c8c697f917a3131d50209763cfb9da">ev::Mat::Time::emplace</a></div><div class="ttdeci">TimeType emplace(const T x, const T y, const TimeType t)</div><div class="ttdoc">Store timestamp t at (x, y) without constructing an Event_.</div><div class="ttdef"><b>Definition</b> matrices.hpp:248</div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
 <div class="ttc" id="atypes_8hpp_html_a157d217734129e5ce5aba5651f589647"><div class="ttname"><a href="types_8hpp.html#a157d217734129e5ce5aba5651f589647">ev::POSITIVE</a></div><div class="ttdeci">constexpr PolarityType POSITIVE</div><div class="ttdef"><b>Definition</b> types.hpp:30</div></div>
 <div class="ttc" id="atypes_8hpp_html_af245e3e3c0d2581ac19f5a39fb34dc3f"><div class="ttname"><a href="types_8hpp.html#af245e3e3c0d2581ac19f5a39fb34dc3f">ev::Event</a></div><div class="ttdeci">Eventi Event</div><div class="ttdef"><b>Definition</b> types.hpp:254</div></div>

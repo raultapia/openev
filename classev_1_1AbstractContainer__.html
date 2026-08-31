@@ -181,16 +181,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2f93725feac6a8d68917d1f40f224fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean x,y point of the events.  <br /></td></tr>
 <tr class="memitem:adfc035c126e42586673c53a1caeea5ec" id="r_adfc035c126e42586673c53a1caeea5ec"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#adfc035c126e42586673c53a1caeea5ec">meanTime</a> () const</td></tr>
 <tr class="memdesc:adfc035c126e42586673c53a1caeea5ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the mean time of the events.  <br /></td></tr>
+<tr class="memitem:a820de2b9c4488e6c585b80efcfcc86b6" id="r_a820de2b9c4488e6c585b80efcfcc86b6"><td class="memItemLeft">ResultType&#160;</td><td class="memItemRight"><a class="el" href="#a820de2b9c4488e6c585b80efcfcc86b6">entropy</a> () const</td></tr>
+<tr class="memdesc:a820de2b9c4488e6c585b80efcfcc86b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the Shannon entropy of the spatial distribution of the events.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Container, typename T&gt;<br />
 class ev::AbstractContainer_&lt; Container, T &gt;</div><p>This is an auxiliary class. This class cannot be instanced. </p>
 <p>It holds the statistics every event container offers, so that each of them only has to derive from it passing its own type: </p><div class="fragment"><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Vector__.html">Vector_</a> : <span class="keyword">public</span> std::vector&lt;Event_&lt;T&gt;&gt;, <span class="keyword">public</span> <a class="code hl_class" href="classev_1_1AbstractContainer__.html">AbstractContainer_</a>&lt;Vector_&lt;T&gt;, T&gt; { ... };</div>
-<div class="ttc" id="aclassev_1_1AbstractContainer___html"><div class="ttname"><a href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_</a></div><div class="ttdoc">This is an auxiliary class. This class cannot be instanced.</div><div class="ttdef"><b>Definition</b> abstract-container.hpp:27</div></div>
+<div class="ttc" id="aclassev_1_1AbstractContainer___html"><div class="ttname"><a href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_</a></div><div class="ttdoc">This is an auxiliary class. This class cannot be instanced.</div><div class="ttdef"><b>Definition</b> abstract-container.hpp:31</div></div>
 <div class="ttc" id="aclassev_1_1Vector___html"><div class="ttname"><a href="classev_1_1Vector__.html">ev::Vector_</a></div><div class="ttdoc">This class extends std::vector to implement event vectors. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> vector.hpp:23</div></div>
-</div><!-- fragment --> <dl class="section note"><dt>Note</dt><dd><a class="el" href="#aa4e39c7be1b3b6ed6c57db751b10823d" title="Time difference between the last and the first event.">duration()</a>, <a class="el" href="#a78fdf5593bd1b76d8ad49f9f707046c1" title="Compute event rate as the ratio between the number of events and the time difference between the last...">rate()</a>, and <a class="el" href="#acf7d3b5abcf5d31d7014e0d6d05fd90d" title="Calculate the midpoint time between the oldest and the newest event.">midTime()</a> only need the first and the last event, so they work on containers that cannot be traversed, such as the ones built on std::queue. Those containers hide <a class="el" href="#a78578212bb047785d1ecaa5b44b0da26" title="Compute the mean of the events.">mean()</a>, <a class="el" href="#a2f93725feac6a8d68917d1f40f224fef" title="Compute the mean x,y point of the events.">meanPoint()</a>, and <a class="el" href="#adfc035c126e42586673c53a1caeea5ec" title="Compute the mean time of the events.">meanTime()</a> with their own version. </dd></dl>
-</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+</div><!-- fragment --> </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="aa4e39c7be1b3b6ed6c57db751b10823d" name="aa4e39c7be1b3b6ed6c57db751b10823d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa4e39c7be1b3b6ed6c57db751b10823d">&#9670;&#160;</a></span>duration()</h2>
 
@@ -218,6 +219,37 @@ template&lt;typename Container, typename T&gt; </div>
 
 <p>Time difference between the last and the first event. </p>
 <dl class="section return"><dt>Returns</dt><dd>Time difference </dd></dl>
+
+</div>
+</div>
+<a id="a820de2b9c4488e6c585b80efcfcc86b6" name="a820de2b9c4488e6c585b80efcfcc86b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a820de2b9c4488e6c585b80efcfcc86b6">&#9670;&#160;</a></span>entropy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Container, typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ResultType <a class="el" href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_</a>&lt; Container, T &gt;::entropy </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the Shannon entropy of the spatial distribution of the events. </p>
+<dl class="section return"><dt>Returns</dt><dd>Entropy in bits </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>\( H = -\sum_i p_i \log_2 p_i \), where \( p_i \) is the fraction of events falling on the i-th pixel, so \( 2^H \) is the effective number of active pixels. </dd></dl>
 
 </div>
 </div>

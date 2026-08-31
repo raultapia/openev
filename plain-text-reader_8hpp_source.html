@@ -157,14 +157,15 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('plain-text-rea
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  PlainTextReaderColumns columns_;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">char</span> sep_char_;       <span class="comment">// non-zero when separator is a single non-space char</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  std::string sep_str_; <span class="comment">// non-empty when separator is multi-char</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordtype">bool</span> updateBuffer_() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  std::string line_;    <span class="comment">// reused across calls</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">bool</span> updateBuffer_() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>};</div>
 </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>} <span class="comment">// namespace ev</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_READERS_PLAIN_TEXT_READER_HPP</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>} <span class="comment">// namespace ev</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_READERS_PLAIN_TEXT_READER_HPP</span></div>
 <div class="ttc" id="aclassev_1_1AbstractReader___html_a49c895c468629730172261f1d540651a"><div class="ttname"><a href="classev_1_1AbstractReader__.html#a49c895c468629730172261f1d540651a">ev::AbstractReader_::AbstractReader_</a></div><div class="ttdeci">AbstractReader_(const std::size_t buffer_size, const bool use_threading)</div><div class="ttdoc">Constructor for AbstractReader_.</div><div class="ttdef"><b>Definition</b> abstract-reader.cpp:8</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

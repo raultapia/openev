@@ -173,12 +173,14 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <div class="line">cmake .. -DBUILD_MODULE_DEVICES=OFF -DBUILD_MODULE_ALGORITHMS=OFF</div>
 </div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 🧪 Tests and benchmarks</h2>
-<p>Tests and benchmarks are only built in <span class="tt">Debug</span>.</p>
+<p>Tests are only built in <span class="tt">Debug</span>.</p>
 <div class="fragment"><div class="line">cmake .. -DCMAKE_BUILD_TYPE=Debug</div>
 <div class="line">make</div>
 <div class="line">ctest</div>
-</div><!-- fragment --><p>Benchmarks are built by the same configuration and run through their own target.</p>
-<div class="fragment"><div class="line">make benchmarks</div>
+</div><!-- fragment --><p>Benchmarks are opt-in and independent of the build type, so that they can be measured on the same code that is shipped. Build them in <span class="tt">Release</span>.</p>
+<div class="fragment"><div class="line">cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_BENCHMARKS=ON</div>
+<div class="line">make</div>
+<div class="line">make benchmarks</div>
 </div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 📚 Documentation</h2>
 <p>The OpenEV documentation can be found <a href="https://raultapia.github.io/openev">here</a>.</p>

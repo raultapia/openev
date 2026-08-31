@@ -1,6 +1,6 @@
 var queue_8hpp =
 [
-    [ "ev::Queue_&lt; T &gt;", "classev_1_1Queue__.html", "classev_1_1Queue__" ],
+    [ "ev::Queue_&lt; T &gt;", "classev_1_1Queue__.html", null ],
     [ "ev::Queue", "queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966", null ],
     [ "ev::Queued", "queue_8hpp.html#aa5f51701a147e88e0611b04e6e932fb7", null ],
     [ "ev::Queuef", "queue_8hpp.html#a765308e46e7aead00e2e6482ce6ff226", null ],

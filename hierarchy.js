@@ -24,18 +24,10 @@ var hierarchy =
       [ "ev::Deque_< double >", "classev_1_1Deque__.html", [
         [ "ev::SlidingWindow_< double >", "classev_1_1SlidingWindow__.html", null ]
       ] ],
-      [ "ev::Queue_< int >", "classev_1_1Queue__.html", [
-        [ "ev::PersistentQueue_< int >", "classev_1_1PersistentQueue__.html", null ]
-      ] ],
-      [ "ev::Queue_< long >", "classev_1_1Queue__.html", [
-        [ "ev::PersistentQueue_< long >", "classev_1_1PersistentQueue__.html", null ]
-      ] ],
-      [ "ev::Queue_< float >", "classev_1_1Queue__.html", [
-        [ "ev::PersistentQueue_< float >", "classev_1_1PersistentQueue__.html", null ]
-      ] ],
-      [ "ev::Queue_< double >", "classev_1_1Queue__.html", [
-        [ "ev::PersistentQueue_< double >", "classev_1_1PersistentQueue__.html", null ]
-      ] ],
+      [ "ev::Queue_< int >", "classev_1_1Queue__.html", null ],
+      [ "ev::Queue_< long >", "classev_1_1Queue__.html", null ],
+      [ "ev::Queue_< float >", "classev_1_1Queue__.html", null ],
+      [ "ev::Queue_< double >", "classev_1_1Queue__.html", null ],
       [ "ev::Vector_< int >", "classev_1_1Vector__.html", null ],
       [ "ev::Vector_< long >", "classev_1_1Vector__.html", null ],
       [ "ev::Vector_< float >", "classev_1_1Vector__.html", null ],
@@ -53,9 +45,7 @@ var hierarchy =
       ] ]
     ] ],
     [ "ev::AbstractContainer_&lt; Queue_&lt; T &gt;, T &gt;", "classev_1_1AbstractContainer__.html", [
-      [ "ev::Queue_< T >", "classev_1_1Queue__.html", [
-        [ "ev::PersistentQueue_< T >", "classev_1_1PersistentQueue__.html", null ]
-      ] ]
+      [ "ev::Queue_< T >", "classev_1_1Queue__.html", null ]
     ] ],
     [ "ev::AbstractContainer_&lt; Vector_&lt; T &gt;, T &gt;", "classev_1_1AbstractContainer__.html", [
       [ "ev::Vector_< T >", "classev_1_1Vector__.html", null ]
