@@ -179,6 +179,10 @@ TYPED_TEST(EmptyContainerTestFixture, MeanTimeThrows) {
   EXPECT_THROW((void)this->container.meanTime(), cv::Exception);
 }
 
+TYPED_TEST(EmptyContainerTestFixture, EntropyThrows) {
+  EXPECT_THROW((void)this->container.entropy(), cv::Exception);
+}
+
 TEST(EmptyContainer, SlidingWindowThrows) {
   ev::SlidingWindow window(1.0);
   EXPECT_TRUE(window.empty());
@@ -224,4 +228,80 @@ TEST(SlidingWindow, NegativeWindowRetainsEverything) {
     window.push(ev::Event(i, i, i * 1e-3, true));
   }
   EXPECT_EQ(window.size(), 10U);
+}
+
+TEST(Entropy, SinglePixelIsZero) {
+  ev::Vector v;
+  for(int i = 0; i < 100; i++) {
+    v.emplace_back(5, 5, i * 1e-3, true);
+  }
+  EXPECT_DOUBLE_EQ(v.entropy(), 0.0);
+}
+
+TEST(Entropy, TwoEqualPixelsIsOneBit) {
+  ev::Vector v;
+  for(int i = 0; i < 100; i++) {
+    v.emplace_back(i % 2, 0, i * 1e-3, true);
+  }
+  EXPECT_DOUBLE_EQ(v.entropy(), 1.0);
+}
+
+TEST(Entropy, FourEqualPixelsIsTwoBits) {
+  ev::Vector v;
+  for(int i = 0; i < 100; i++) {
+    v.emplace_back(i % 2, (i / 2) % 2, i * 1e-3, true);
+  }
+  EXPECT_DOUBLE_EQ(v.entropy(), 2.0);
+}
+
+TEST(Entropy, EffectivePixelsMatchesFootprint) {
+  ev::Vector v;
+  for(int i = 0; i < 1600; i++) {
+    v.emplace_back(i % 4, (i / 4) % 4, i * 1e-3, true);
+  }
+  EXPECT_DOUBLE_EQ(std::pow(2.0, v.entropy()), 16.0);
+}
+
+TEST(Entropy, ConcentrationLowersEntropy) {
+  ev::Vector spread;
+  ev::Vector concentrated;
+  for(int i = 0; i < 100; i++) {
+    spread.emplace_back(i % 4, 0, i * 1e-3, true);
+    concentrated.emplace_back(i < 97 ? 0 : i % 4, 0, i * 1e-3, true);
+  }
+  EXPECT_DOUBLE_EQ(spread.entropy(), 2.0);
+  EXPECT_LT(concentrated.entropy(), spread.entropy());
+}
+
+TEST(Entropy, SamePixelDifferentTimeIsStillZero) {
+  ev::Vector v;
+  v.emplace_back(3, 7, 0.0, true);
+  v.emplace_back(3, 7, 1.0, false);
+  EXPECT_DOUBLE_EQ(v.entropy(), 0.0);
+}
+
+TEST(Entropy, FloatCoordinatesRoundToPixel) {
+  ev::Vectorf v;
+  v.emplace_back(1.4F, 1.4F, 0.0, true);
+  v.emplace_back(1.0F, 1.0F, 1.0, true);
+  EXPECT_DOUBLE_EQ(v.entropy(), 0.0);
+}
+
+TEST(Entropy, QueueDrains) {
+  ev::Queue q;
+  for(int i = 0; i < 100; i++) {
+    q.emplace(i % 2, 0, i * 1e-3, true);
+  }
+  EXPECT_DOUBLE_EQ(q.entropy(), 1.0);
+  EXPECT_TRUE(q.empty());
+}
+
+TEST(Entropy, PersistentQueuePreserves) {
+  ev::PersistentQueue q;
+  for(int i = 0; i < 100; i++) {
+    q.emplace(i % 2, 0, i * 1e-3, true);
+  }
+  EXPECT_DOUBLE_EQ(q.entropy(), 1.0);
+  EXPECT_EQ(q.size(), 100U);
+  EXPECT_DOUBLE_EQ(q.entropy(), 1.0);
 }

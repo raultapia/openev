@@ -9,7 +9,9 @@
 #include "openev/containers/queue.hpp"
 #include "openev/core/types.hpp"
 #include <cstddef>
+#include <cstdint>
 #include <opencv2/core/types.hpp>
+#include <unordered_map>
 
 namespace ev {
 constexpr bool USING_PERSISTENT_QUEUE_HPP = true;
@@ -96,6 +98,29 @@ public:
     }
 
     return t / n;
+  }
+
+  /*!
+  \brief Compute the Shannon entropy of the spatial distribution of the events without consuming the queue.
+  \return Entropy in bits
+  \note \f$ H = -\sum_i p_i \log_2 p_i \f$, where \f$ p_i \f$ is the fraction of events falling on the i-th pixel, so \f$ 2^H \f$ is the effective number of active pixels.
+  \note Unlike Queue_::entropy(), the queue contents are preserved after this call.
+  */
+  [[nodiscard]] inline ResultType entropy() {
+    if(Queue_<T>::empty()) {
+      CV_Error(cv::Error::StsError, "ev::PersistentQueue_::entropy: the container is empty.");
+    }
+    const std::size_t n = Queue_<T>::size();
+    std::unordered_map<uint64_t, std::size_t> histogram;
+
+    for(int i = 0; i < n; i++) {
+      const Event_<T> &e = Queue_<T>::front();
+      histogram[AbstractContainer_<Queue_<T>, T>::pixel_(e)]++;
+      Queue_<T>::pop();
+      Queue_<T>::emplace(e);
+    }
+
+    return AbstractContainer_<Queue_<T>, T>::entropy_(histogram, static_cast<ResultType>(n));
   }
 };
 using PersistentQueuei = PersistentQueue_<int>;    /*!< Alias for PersistentQueue_ using int */

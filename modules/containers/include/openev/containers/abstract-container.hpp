@@ -7,9 +7,14 @@
 #define OPENEV_CONTAINERS_ABSTRACT_CONTAINER_HPP
 
 #include "openev/core/types.hpp"
+#include <cmath>
+#include <cstddef>
+#include <cstdint>
 #include <numeric>
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/types.hpp>
+#include <type_traits>
+#include <unordered_map>
 
 namespace ev {
 /*!
@@ -21,7 +26,7 @@ template <typename T>
 class Vector_ : public std::vector<Event_<T>>, public AbstractContainer_<Vector_<T>, T> { ... };
 \endcode
 \note duration(), rate(), and midTime() only need the first and the last event, so they work on containers that cannot be traversed,
-such as the ones built on std::queue. Those containers hide mean(), meanPoint(), and meanTime() with their own version.
+such as the ones built on std::queue. Those containers hide mean(), meanPoint(), meanTime(), and entropy() with their own version.
 */
 template <typename Container, typename T>
 class AbstractContainer_ {
@@ -86,6 +91,20 @@ public:
     return add_([](const Event_<T> &e) { return e.t; });
   }
 
+  /*!
+  \brief Compute the Shannon entropy of the spatial distribution of the events.
+  \return Entropy in bits
+  \note \f$ H = -\sum_i p_i \log_2 p_i \f$, where \f$ p_i \f$ is the fraction of events falling on the i-th pixel, so \f$ 2^H \f$ is the effective number of active pixels.
+  */
+  [[nodiscard]] inline ResultType entropy() const {
+    check_("entropy");
+    std::unordered_map<uint64_t, std::size_t> histogram;
+    for(const Event_<T> &e : self_()) {
+      histogram[pixel_(e)]++;
+    }
+    return entropy_(histogram, static_cast<ResultType>(self_().size()));
+  }
+
 protected:
   /*! \cond INTERNAL */
   [[nodiscard]] inline const Container &self_() const {
@@ -96,6 +115,23 @@ protected:
     if(self_().empty()) {
       CV_Error(cv::Error::StsError, std::string("ev::AbstractContainer_::") + statistic + ": the container is empty.");
     }
+  }
+
+  [[nodiscard]] inline static uint64_t pixel_(const Event_<T> &e) {
+    if constexpr(std::is_floating_point_v<T>) {
+      return (static_cast<uint64_t>(static_cast<uint32_t>(std::lround(e.y))) << 32U) | static_cast<uint32_t>(std::lround(e.x));
+    } else {
+      return (static_cast<uint64_t>(static_cast<uint32_t>(e.y)) << 32U) | static_cast<uint32_t>(e.x);
+    }
+  }
+
+  [[nodiscard]] inline static ResultType entropy_(const std::unordered_map<uint64_t, std::size_t> &histogram, const ResultType n) {
+    ResultType h{0};
+    for(const auto &[pixel, count] : histogram) {
+      const ResultType p = static_cast<ResultType>(count) / n;
+      h -= p * std::log2(p);
+    }
+    return h;
   }
 
   template <typename F>

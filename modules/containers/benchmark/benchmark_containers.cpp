@@ -241,6 +241,15 @@ void benchmarkMidTime(benchmark::State &state, const char *label) {
 }
 
 template <typename Container>
+void benchmarkEntropy(benchmark::State &state, const char *label) {
+  if constexpr(std::is_same_v<Container, ev::Queue> || std::is_same_v<Container, ev::PersistentQueue>) {
+    benchmarkDestructiveMetric<Container>(state, label, [](auto &container) { return container.entropy(); });
+  } else {
+    benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.entropy(); });
+  }
+}
+
+template <typename Container>
 void benchmarkArrayDuration(benchmark::State &state, const char *label) {
   benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.duration(); });
 }
@@ -268,6 +277,11 @@ void benchmarkArrayMeanTime(benchmark::State &state, const char *label) {
 template <typename Container>
 void benchmarkArrayMidTime(benchmark::State &state, const char *label) {
   benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.midTime(); });
+}
+
+template <typename Container>
+void benchmarkArrayEntropy(benchmark::State &state, const char *label) {
+  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.entropy(); });
 }
 
 static void BM_VectorDuration(benchmark::State &state) { benchmarkDuration<ev::Vector>(state, "vector"); }
@@ -312,6 +326,13 @@ static void BM_SlidingWindowMeanPoint(benchmark::State &state) { benchmarkMeanPo
 static void BM_SlidingWindowMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::SlidingWindow>(state, "sliding_window"); }
 static void BM_SlidingWindowMidTime(benchmark::State &state) { benchmarkMidTime<ev::SlidingWindow>(state, "sliding_window"); }
 
+static void BM_VectorEntropy(benchmark::State &state) { benchmarkEntropy<ev::Vector>(state, "vector"); }
+static void BM_DequeEntropy(benchmark::State &state) { benchmarkEntropy<ev::Deque>(state, "deque"); }
+static void BM_CircularEntropy(benchmark::State &state) { benchmarkEntropy<ev::CircularBuffer>(state, "circular"); }
+static void BM_QueueEntropy(benchmark::State &state) { benchmarkEntropy<ev::Queue>(state, "queue"); }
+static void BM_PersistentQueueEntropy(benchmark::State &state) { benchmarkEntropy<ev::PersistentQueue>(state, "persistent_queue"); }
+static void BM_SlidingWindowEntropy(benchmark::State &state) { benchmarkEntropy<ev::SlidingWindow>(state, "sliding_window"); }
+
 static void BM_Array1024Duration(benchmark::State &state) { benchmarkArrayDuration<ev::Array<1024>>(state, "array"); }
 static void BM_Array16384Duration(benchmark::State &state) { benchmarkArrayDuration<ev::Array<16384>>(state, "array"); }
 static void BM_Array1024Rate(benchmark::State &state) { benchmarkArrayRate<ev::Array<1024>>(state, "array"); }
@@ -324,6 +345,8 @@ static void BM_Array1024MeanTime(benchmark::State &state) { benchmarkArrayMeanTi
 static void BM_Array16384MeanTime(benchmark::State &state) { benchmarkArrayMeanTime<ev::Array<16384>>(state, "array"); }
 static void BM_Array1024MidTime(benchmark::State &state) { benchmarkArrayMidTime<ev::Array<1024>>(state, "array"); }
 static void BM_Array16384MidTime(benchmark::State &state) { benchmarkArrayMidTime<ev::Array<16384>>(state, "array"); }
+static void BM_Array1024Entropy(benchmark::State &state) { benchmarkArrayEntropy<ev::Array<1024>>(state, "array"); }
+static void BM_Array16384Entropy(benchmark::State &state) { benchmarkArrayEntropy<ev::Array<16384>>(state, "array"); }
 
 static void BM_CircularEmplaceBack(benchmark::State &state) { benchmarkCircularEmplaceBack(state, "circular"); }
 static void BM_CircularEmplaceFront(benchmark::State &state) { benchmarkCircularEmplaceFront(state, "circular"); }
@@ -371,6 +394,13 @@ BENCHMARK(BM_QueueMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_PersistentQueueMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
+BENCHMARK(BM_VectorEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_DequeEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_CircularEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_QueueEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_PersistentQueueEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_SlidingWindowEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+
 BENCHMARK(BM_Array1024Duration)->Arg(1024);
 BENCHMARK(BM_Array16384Duration)->Arg(16384);
 BENCHMARK(BM_Array1024Rate)->Arg(1024);
@@ -383,6 +413,8 @@ BENCHMARK(BM_Array1024MeanTime)->Arg(1024);
 BENCHMARK(BM_Array16384MeanTime)->Arg(16384);
 BENCHMARK(BM_Array1024MidTime)->Arg(1024);
 BENCHMARK(BM_Array16384MidTime)->Arg(16384);
+BENCHMARK(BM_Array1024Entropy)->Arg(1024);
+BENCHMARK(BM_Array16384Entropy)->Arg(16384);
 
 BENCHMARK(BM_CircularEmplaceBack)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularEmplaceFront)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
