@@ -47,7 +47,7 @@ std::vector<ev::Event> makeTimelineEvents(const std::size_t count, const double 
 
 template <typename Container>
 void fillSequential(Container &container, const std::vector<ev::Event> &events) {
-  if constexpr(std::is_same_v<Container, ev::Queue> || std::is_same_v<Container, ev::PersistentQueue>) {
+  if constexpr(std::is_same_v<Container, ev::Queue>) {
     while(!container.empty()) {
       container.pop();
     }
@@ -95,29 +95,6 @@ void benchmarkReadOnlyMetric(benchmark::State &state, const char *label, Fn fn) 
   fillSequential(container, events);
 
   for(auto _ : state) {
-    benchmark::DoNotOptimize(fn(container));
-    benchmark::ClobberMemory();
-  }
-
-  state.SetLabel(label);
-  state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
-}
-
-template <typename Container, typename Fn>
-void benchmarkDestructiveMetric(benchmark::State &state, const char *label, Fn fn) {
-  const auto events = [](const std::size_t count) {
-    if constexpr(std::is_same_v<Container, ev::SlidingWindow>) {
-      return makeTimelineEvents(count);
-    }
-    return makeEvents(count);
-  }(static_cast<std::size_t>(state.range(0)));
-  Container container;
-
-  for(auto _ : state) {
-    state.PauseTiming();
-    fillSequential(container, events);
-    state.ResumeTiming();
-
     benchmark::DoNotOptimize(fn(container));
     benchmark::ClobberMemory();
   }
@@ -210,29 +187,17 @@ void benchmarkRate(benchmark::State &state, const char *label) {
 
 template <typename Container>
 void benchmarkMean(benchmark::State &state, const char *label) {
-  if constexpr(std::is_same_v<Container, ev::Queue> || std::is_same_v<Container, ev::PersistentQueue>) {
-    benchmarkDestructiveMetric<Container>(state, label, [](auto &container) { return container.mean(); });
-  } else {
-    benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.mean(); });
-  }
+  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.mean(); });
 }
 
 template <typename Container>
 void benchmarkMeanPoint(benchmark::State &state, const char *label) {
-  if constexpr(std::is_same_v<Container, ev::Queue> || std::is_same_v<Container, ev::PersistentQueue>) {
-    benchmarkDestructiveMetric<Container>(state, label, [](auto &container) { return container.meanPoint(); });
-  } else {
-    benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.meanPoint(); });
-  }
+  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.meanPoint(); });
 }
 
 template <typename Container>
 void benchmarkMeanTime(benchmark::State &state, const char *label) {
-  if constexpr(std::is_same_v<Container, ev::Queue> || std::is_same_v<Container, ev::PersistentQueue>) {
-    benchmarkDestructiveMetric<Container>(state, label, [](auto &container) { return container.meanTime(); });
-  } else {
-    benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.meanTime(); });
-  }
+  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.meanTime(); });
 }
 
 template <typename Container>
@@ -242,11 +207,7 @@ void benchmarkMidTime(benchmark::State &state, const char *label) {
 
 template <typename Container>
 void benchmarkEntropy(benchmark::State &state, const char *label) {
-  if constexpr(std::is_same_v<Container, ev::Queue> || std::is_same_v<Container, ev::PersistentQueue>) {
-    benchmarkDestructiveMetric<Container>(state, label, [](auto &container) { return container.entropy(); });
-  } else {
-    benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.entropy(); });
-  }
+  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.entropy(); });
 }
 
 template <typename Container>
@@ -288,37 +249,31 @@ static void BM_VectorDuration(benchmark::State &state) { benchmarkDuration<ev::V
 static void BM_DequeDuration(benchmark::State &state) { benchmarkDuration<ev::Deque>(state, "deque"); }
 static void BM_CircularDuration(benchmark::State &state) { benchmarkDuration<ev::CircularBuffer>(state, "circular"); }
 static void BM_QueueDuration(benchmark::State &state) { benchmarkDuration<ev::Queue>(state, "queue"); }
-static void BM_PersistentQueueDuration(benchmark::State &state) { benchmarkDuration<ev::PersistentQueue>(state, "persistent_queue"); }
 
 static void BM_VectorRate(benchmark::State &state) { benchmarkRate<ev::Vector>(state, "vector"); }
 static void BM_DequeRate(benchmark::State &state) { benchmarkRate<ev::Deque>(state, "deque"); }
 static void BM_CircularRate(benchmark::State &state) { benchmarkRate<ev::CircularBuffer>(state, "circular"); }
 static void BM_QueueRate(benchmark::State &state) { benchmarkRate<ev::Queue>(state, "queue"); }
-static void BM_PersistentQueueRate(benchmark::State &state) { benchmarkRate<ev::PersistentQueue>(state, "persistent_queue"); }
 
 static void BM_VectorMean(benchmark::State &state) { benchmarkMean<ev::Vector>(state, "vector"); }
 static void BM_DequeMean(benchmark::State &state) { benchmarkMean<ev::Deque>(state, "deque"); }
 static void BM_CircularMean(benchmark::State &state) { benchmarkMean<ev::CircularBuffer>(state, "circular"); }
 static void BM_QueueMean(benchmark::State &state) { benchmarkMean<ev::Queue>(state, "queue"); }
-static void BM_PersistentQueueMean(benchmark::State &state) { benchmarkMean<ev::PersistentQueue>(state, "persistent_queue"); }
 
 static void BM_VectorMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::Vector>(state, "vector"); }
 static void BM_DequeMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::Deque>(state, "deque"); }
 static void BM_CircularMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::CircularBuffer>(state, "circular"); }
 static void BM_QueueMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::Queue>(state, "queue"); }
-static void BM_PersistentQueueMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::PersistentQueue>(state, "persistent_queue"); }
 
 static void BM_VectorMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::Vector>(state, "vector"); }
 static void BM_DequeMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::Deque>(state, "deque"); }
 static void BM_CircularMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::CircularBuffer>(state, "circular"); }
 static void BM_QueueMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::Queue>(state, "queue"); }
-static void BM_PersistentQueueMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::PersistentQueue>(state, "persistent_queue"); }
 
 static void BM_VectorMidTime(benchmark::State &state) { benchmarkMidTime<ev::Vector>(state, "vector"); }
 static void BM_DequeMidTime(benchmark::State &state) { benchmarkMidTime<ev::Deque>(state, "deque"); }
 static void BM_CircularMidTime(benchmark::State &state) { benchmarkMidTime<ev::CircularBuffer>(state, "circular"); }
 static void BM_QueueMidTime(benchmark::State &state) { benchmarkMidTime<ev::Queue>(state, "queue"); }
-static void BM_PersistentQueueMidTime(benchmark::State &state) { benchmarkMidTime<ev::PersistentQueue>(state, "persistent_queue"); }
 static void BM_SlidingWindowDuration(benchmark::State &state) { benchmarkDuration<ev::SlidingWindow>(state, "sliding_window"); }
 static void BM_SlidingWindowRate(benchmark::State &state) { benchmarkRate<ev::SlidingWindow>(state, "sliding_window"); }
 static void BM_SlidingWindowMean(benchmark::State &state) { benchmarkMean<ev::SlidingWindow>(state, "sliding_window"); }
@@ -330,7 +285,6 @@ static void BM_VectorEntropy(benchmark::State &state) { benchmarkEntropy<ev::Vec
 static void BM_DequeEntropy(benchmark::State &state) { benchmarkEntropy<ev::Deque>(state, "deque"); }
 static void BM_CircularEntropy(benchmark::State &state) { benchmarkEntropy<ev::CircularBuffer>(state, "circular"); }
 static void BM_QueueEntropy(benchmark::State &state) { benchmarkEntropy<ev::Queue>(state, "queue"); }
-static void BM_PersistentQueueEntropy(benchmark::State &state) { benchmarkEntropy<ev::PersistentQueue>(state, "persistent_queue"); }
 static void BM_SlidingWindowEntropy(benchmark::State &state) { benchmarkEntropy<ev::SlidingWindow>(state, "sliding_window"); }
 
 static void BM_Array1024Duration(benchmark::State &state) { benchmarkArrayDuration<ev::Array<1024>>(state, "array"); }
@@ -356,49 +310,42 @@ BENCHMARK(BM_VectorDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_PersistentQueueDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_PersistentQueueRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_PersistentQueueMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_PersistentQueueMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_PersistentQueueMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_PersistentQueueMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_QueueEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_PersistentQueueEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_Array1024Duration)->Arg(1024);

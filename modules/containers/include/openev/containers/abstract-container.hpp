@@ -12,7 +12,6 @@
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
-#include <numeric>
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/types.hpp>
 #include <type_traits>
@@ -28,8 +27,6 @@ It holds the statistics every event container offers, so that each of them only 
 template <typename T>
 class Vector_ : public std::vector<Event_<T>>, public AbstractContainer_<Vector_<T>, T> { ... };
 \endcode
-\note duration(), rate(), and midTime() only need the first and the last event, so they work on containers that cannot be traversed,
-such as the ones built on std::queue. Those containers hide mean(), meanPoint(), meanTime(), and entropy() with their own version.
 */
 template <typename Container, typename T>
 class AbstractContainer_ {
@@ -73,7 +70,18 @@ public:
   */
   [[nodiscard]] inline Event_<ResultType> mean() const {
     check_("mean");
-    return {add_([](const Event_<T> &e) { return e.x; }), add_([](const Event_<T> &e) { return e.y; }), add_([](const Event_<T> &e) { return e.t; }), add_([](const Event_<T> &e) { return e.p; }) > 0.5};
+    ResultType x{0};
+    ResultType y{0};
+    ResultType t{0};
+    ResultType p{0};
+    for(const Event_<T> &e : self_()) {
+      x += e.x;
+      y += e.y;
+      t += e.t;
+      p += e.p;
+    }
+    const auto n = static_cast<ResultType>(self_().size());
+    return {x / n, y / n, t / n, p / n > 0.5};
   }
 
   /*!
@@ -82,7 +90,14 @@ public:
   */
   [[nodiscard]] inline cv::Point_<ResultType> meanPoint() const {
     check_("meanPoint");
-    return {add_([](const Event_<T> &e) { return e.x; }), add_([](const Event_<T> &e) { return e.y; })};
+    ResultType x{0};
+    ResultType y{0};
+    for(const Event_<T> &e : self_()) {
+      x += e.x;
+      y += e.y;
+    }
+    const auto n = static_cast<ResultType>(self_().size());
+    return {x / n, y / n};
   }
 
   /*!
@@ -91,7 +106,11 @@ public:
   */
   [[nodiscard]] inline ResultType meanTime() const {
     check_("meanTime");
-    return add_([](const Event_<T> &e) { return e.t; });
+    ResultType t{0};
+    for(const Event_<T> &e : self_()) {
+      t += e.t;
+    }
+    return t / static_cast<ResultType>(self_().size());
   }
 
   /*!
@@ -170,11 +189,6 @@ protected:
       }
     }
     return h;
-  }
-
-  template <typename F>
-  [[nodiscard]] inline ResultType add_(F &&field) const {
-    return std::accumulate(self_().begin(), self_().end(), ResultType{0}, [&field](const ResultType sum, const Event_<T> &e) { return sum + field(e); }) / static_cast<ResultType>(self_().size());
   }
   /*! \endcond */
 };

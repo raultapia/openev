@@ -1,7 +1,6 @@
 #include "openev/containers/array.hpp"
 #include "openev/containers/circular.hpp"
 #include "openev/containers/deque.hpp"
-#include "openev/containers/persistent_queue.hpp"
 #include "openev/containers/queue.hpp"
 #include "openev/containers/sliding_window.hpp"
 #include "openev/containers/vector.hpp"
@@ -17,7 +16,7 @@ protected:
     if constexpr(std::is_same_v<Container, ev::Vector> || std::is_same_v<Container, ev::CircularBuffer> || std::is_same_v<Container, ev::Deque>) {
       container.resize(3);
     }
-    if constexpr(std::is_same_v<Container, ev::Queue> || std::is_same_v<Container, ev::PersistentQueue>) {
+    if constexpr(std::is_same_v<Container, ev::Queue>) {
       container.push(ev::Event(34, 10, 1.2143, true));
       container.push(ev::Event(45, 14, 3.2342, false));
       container.push(ev::Event(87, 23, 5.3432, true));
@@ -29,7 +28,7 @@ protected:
   }
 };
 
-using ContainerTypes = ::testing::Types<ev::Array<3>, ev::Vector, ev::CircularBuffer, ev::Deque, ev::PersistentQueue, ev::Queue>;
+using ContainerTypes = ::testing::Types<ev::Array<3>, ev::Vector, ev::CircularBuffer, ev::Deque, ev::Queue>;
 TYPED_TEST_SUITE(ContainerTestFixture, ContainerTypes);
 
 TYPED_TEST(ContainerTestFixture, Duration) {
@@ -151,7 +150,7 @@ protected:
   Container container;
 };
 
-using EmptyContainerTypes = ::testing::Types<ev::Vector, ev::CircularBuffer, ev::Deque, ev::PersistentQueue, ev::Queue>;
+using EmptyContainerTypes = ::testing::Types<ev::Vector, ev::CircularBuffer, ev::Deque, ev::Queue>;
 TYPED_TEST_SUITE(EmptyContainerTestFixture, EmptyContainerTypes);
 
 TYPED_TEST(EmptyContainerTestFixture, DurationThrows) {
@@ -287,17 +286,8 @@ TEST(Entropy, FloatCoordinatesRoundToPixel) {
   EXPECT_DOUBLE_EQ(v.entropy(), 0.0);
 }
 
-TEST(Entropy, QueueDrains) {
+TEST(Entropy, QueuePreserves) {
   ev::Queue q;
-  for(int i = 0; i < 100; i++) {
-    q.emplace(i % 2, 0, i * 1e-3, true);
-  }
-  EXPECT_DOUBLE_EQ(q.entropy(), 1.0);
-  EXPECT_TRUE(q.empty());
-}
-
-TEST(Entropy, PersistentQueuePreserves) {
-  ev::PersistentQueue q;
   for(int i = 0; i < 100; i++) {
     q.emplace(i % 2, 0, i * 1e-3, true);
   }
@@ -332,4 +322,23 @@ TEST(Entropy, NegativeCoordinatesAreDistinctPixels) {
     v.emplace_back(i % 2 ? -1 : 1, 0, i * 1e-3, true);
   }
   EXPECT_DOUBLE_EQ(v.entropy(), 1.0);
+}
+
+TEST(Queue, StatisticsPreserveContents) {
+  ev::Queue q;
+  for(int i = 0; i < 100; i++) {
+    q.emplace(i % 40, i % 30, i * 1e-3, i % 2);
+  }
+
+  (void)q.duration();
+  (void)q.rate();
+  (void)q.midTime();
+  (void)q.mean();
+  (void)q.meanPoint();
+  (void)q.meanTime();
+  (void)q.entropy();
+
+  EXPECT_EQ(q.size(), 100U);
+  EXPECT_EQ(q.front(), ev::Event(0, 0, 0.0, false));
+  EXPECT_EQ(q.back(), ev::Event(99 % 40, 99 % 30, 99e-3, true));
 }
