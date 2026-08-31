@@ -4,15 +4,14 @@
 \author Raul Tapia
 */
 #include "openev/readers/plain-text-reader.hpp"
-#include <algorithm>
 #include <charconv>
 #include <opencv2/core/utils/logger.hpp>
 #include <system_error>
 
 namespace {
 template <typename T>
-bool field(const char *&it, const char *const end, T &value) {
-  while(it != end && (*it == ' ' || *it == '\t' || *it == '\r')) {
+bool field(const char *&it, const char *const end, T &value, const char separator) {
+  while(it != end && (*it == ' ' || *it == '\t' || *it == '\r' || *it == separator)) {
     it++;
   }
   if(it != end && *it == '+') {
@@ -52,9 +51,7 @@ bool ev::PlainTextReader::updateBuffer_() {
     return false;
   }
 
-  if(sep_char_) {
-    std::replace(line.begin(), line.end(), sep_char_, ' ');
-  } else if(!sep_str_.empty()) {
+  if(!sep_str_.empty()) {
     std::size_t pos = 0;
     while((pos = line.find(sep_str_, pos)) != std::string::npos) {
       line.replace(pos++, sep_str_.size(), " ");
@@ -68,16 +65,16 @@ bool ev::PlainTextReader::updateBuffer_() {
   const char *const end = it + line.size();
   switch(columns_) {
   case PlainTextReaderColumns::TXYP:
-    parsed = field(it, end, e.t) && field(it, end, e.x) && field(it, end, e.y) && field(it, end, pi);
+    parsed = field(it, end, e.t, sep_char_) && field(it, end, e.x, sep_char_) && field(it, end, e.y, sep_char_) && field(it, end, pi, sep_char_);
     break;
   case PlainTextReaderColumns::XYTP:
-    parsed = field(it, end, e.x) && field(it, end, e.y) && field(it, end, e.t) && field(it, end, pi);
+    parsed = field(it, end, e.x, sep_char_) && field(it, end, e.y, sep_char_) && field(it, end, e.t, sep_char_) && field(it, end, pi, sep_char_);
     break;
   case PlainTextReaderColumns::PTXY:
-    parsed = field(it, end, pi) && field(it, end, e.t) && field(it, end, e.x) && field(it, end, e.y);
+    parsed = field(it, end, pi, sep_char_) && field(it, end, e.t, sep_char_) && field(it, end, e.x, sep_char_) && field(it, end, e.y, sep_char_);
     break;
   case PlainTextReaderColumns::PXYT:
-    parsed = field(it, end, pi) && field(it, end, e.x) && field(it, end, e.y) && field(it, end, e.t);
+    parsed = field(it, end, pi, sep_char_) && field(it, end, e.x, sep_char_) && field(it, end, e.y, sep_char_) && field(it, end, e.t, sep_char_);
     break;
   default:
     CV_Error(cv::Error::StsBadArg, "ev::PlainTextReader: No column order selected.");
