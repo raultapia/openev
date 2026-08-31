@@ -15,7 +15,6 @@
 #include <opencv2/core/base.hpp>
 #include <opencv2/core/types.hpp>
 #include <type_traits>
-#include <unordered_map>
 #include <vector>
 
 namespace ev {
@@ -179,13 +178,22 @@ protected:
         }
       }
     } else {
-      std::unordered_map<uint64_t, std::size_t> histogram;
+      std::vector<uint64_t> keys;
+      keys.reserve(pixels.size());
       for(const cv::Point &pixel : pixels) {
-        histogram[(static_cast<uint64_t>(static_cast<uint32_t>(pixel.y)) << 32U) | static_cast<uint32_t>(pixel.x)]++;
+        keys.push_back((static_cast<uint64_t>(static_cast<uint32_t>(pixel.y)) << 32U) | static_cast<uint32_t>(pixel.x));
       }
-      for(const auto &[pixel, count] : histogram) {
-        const ResultType p = static_cast<ResultType>(count) / n;
-        h -= p * std::log2(p);
+      std::sort(keys.begin(), keys.end());
+
+      std::size_t run = 1;
+      for(std::size_t i = 1; i <= keys.size(); i++) {
+        if(i == keys.size() || keys[i] != keys[i - 1]) {
+          const ResultType p = static_cast<ResultType>(run) / n;
+          h -= p * std::log2(p);
+          run = 1;
+        } else {
+          run++;
+        }
       }
     }
     return h;
