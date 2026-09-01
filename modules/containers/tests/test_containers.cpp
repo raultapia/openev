@@ -342,3 +342,27 @@ TEST(Queue, StatisticsPreserveContents) {
   EXPECT_EQ(q.front(), ev::Event(0, 0, 0.0, false));
   EXPECT_EQ(q.back(), ev::Event(99 % 40, 99 % 30, 99e-3, true));
 }
+
+TEST(SlidingWindow, TinyWindowKeepsLastEvent) {
+  ev::SlidingWindow window(1e-12);
+  for(int i = 0; i < 100; i++) {
+    window.push(ev::Event(i, i, i * 1.0, true));
+    ASSERT_EQ(window.size(), 1U);
+    EXPECT_EQ(window.back(), ev::Event(i, i, i * 1.0, true));
+  }
+}
+
+TEST(SlidingWindow, EqualTimestampsAreAllRetained) {
+  ev::SlidingWindow window(1e-12);
+  for(int i = 0; i < 50; i++) {
+    window.push(ev::Event(i, i, 7.0, true));
+  }
+  EXPECT_EQ(window.size(), 50U);
+}
+
+TEST(SlidingWindow, SetWindowOnEmptyDoesNotCrash) {
+  ev::SlidingWindow window(5.0);
+  EXPECT_TRUE(window.empty());
+  window.setWindow(1.0);
+  EXPECT_TRUE(window.empty());
+}

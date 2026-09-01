@@ -89,7 +89,7 @@ private:
       return;
     }
     const auto newest = std::deque<Event_<T>>::back().t;
-    while(Deque_<T>::size() > 1 && (newest - Deque_<T>::front().t) > window_) {
+    while((newest - Deque_<T>::front().t) > window_) {
       Deque_<T>::pop_front();
     }
   }
