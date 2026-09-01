@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('sliding__windo
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">const</span> <span class="keyword">auto</span> newest = std::deque&lt;Event_&lt;T&gt;&gt;::back().t;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">while</span>(Deque_&lt;T&gt;::size() &gt; 1 &amp;&amp; (newest - Deque_&lt;T&gt;::front().t) &gt; window_) {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">while</span>((newest - Deque_&lt;T&gt;::front().t) &gt; window_) {</div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      Deque_&lt;T&gt;::pop_front();</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  }</div>
