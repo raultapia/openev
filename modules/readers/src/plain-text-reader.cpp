@@ -5,8 +5,10 @@
 */
 #include "openev/readers/plain-text-reader.hpp"
 #include <charconv>
+#include <cstdlib>
 #include <opencv2/core/utils/logger.hpp>
 #include <system_error>
+#include <type_traits>
 
 namespace {
 template <typename T>
@@ -17,11 +19,21 @@ bool field(const char *&it, const char *const end, T &value, const char separato
   if(it != end && *it == '+') {
     it++;
   }
-  const std::from_chars_result result = std::from_chars(it, end, value);
-  if(result.ec != std::errc{}) {
-    return false;
+  if constexpr(std::is_floating_point_v<T>) {
+    char *stop = nullptr;
+    const double parsed = std::strtod(it, &stop);
+    if(stop == it) {
+      return false;
+    }
+    value = static_cast<T>(parsed);
+    it = stop;
+  } else {
+    const std::from_chars_result result = std::from_chars(it, end, value);
+    if(result.ec != std::errc{}) {
+      return false;
+    }
+    it = result.ptr;
   }
-  it = result.ptr;
   return true;
 }
 } // namespace
