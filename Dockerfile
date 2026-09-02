@@ -21,4 +21,4 @@ COPY . /openev
 WORKDIR /openev
 RUN git submodule init && git submodule update
 RUN rm -rf build && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug .. && make && make test
-RUN rm -rf build && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug .. && make && make benchmarks
+RUN rm -rf build && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_BENCHMARKS=ON .. && make && make benchmarks
