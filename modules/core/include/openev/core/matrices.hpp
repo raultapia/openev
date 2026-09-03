@@ -23,6 +23,12 @@ constexpr bool USING_MATRICES_HPP = true;
 /*! \cond INTERNAL */
 template <typename T>
 class Event_;
+
+template <typename T>
+[[nodiscard]] inline int round_(const T x) {
+  const double value = x;
+  return static_cast<int>(value + std::copysign(0.5, value));
+}
 /*! \endcond */
 
 namespace Mat {
@@ -146,7 +152,7 @@ private:
   template <typename T>
   inline Tb set(const T x, const T y) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->template ptr<Tb>(std::lround(y)) + std::lround(x)) = ON;
+      return *(this->template ptr<Tb>(round_(y)) + round_(x)) = ON;
     } else {
       return *(this->template ptr<Tb>(y) + x) = ON;
     }
@@ -209,7 +215,7 @@ private:
   template <typename T>
   inline Tb set(const T x, const T y, const bool p) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->template ptr<Tb>(std::lround(y)) + std::lround(x)) = VALUE[p];
+      return *(this->template ptr<Tb>(round_(y)) + round_(x)) = VALUE[p];
     } else {
       return *(this->template ptr<Tb>(y) + x) = VALUE[p];
     }
@@ -258,7 +264,7 @@ private:
   template <typename T>
   inline TimeType set(const T x, const T y, const TimeType t) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->ptr<TimeType>(std::lround(y)) + std::lround(x)) = t;
+      return *(this->ptr<TimeType>(round_(y)) + round_(x)) = t;
     } else {
       return *(this->ptr<TimeType>(y) + x) = t;
     }
@@ -306,7 +312,7 @@ private:
   template <typename T>
   inline PolarityType set(const T x, const T y, const PolarityType p) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->ptr<PolarityType>(std::lround(y)) + std::lround(x)) = p;
+      return *(this->ptr<PolarityType>(round_(y)) + round_(x)) = p;
     } else {
       return *(this->ptr<PolarityType>(y) + x) = p;
     }
@@ -356,7 +362,7 @@ private:
   template <typename T>
   inline CounterType set(const T x, const T y, const bool p) {
     if constexpr(std::is_floating_point_v<T>) {
-      return *(this->ptr<CounterType>(std::lround(y)) + std::lround(x)) += INCREMENT[p];
+      return *(this->ptr<CounterType>(round_(y)) + round_(x)) += INCREMENT[p];
     } else {
       return *(this->ptr<CounterType>(y) + x) += INCREMENT[p];
     }
