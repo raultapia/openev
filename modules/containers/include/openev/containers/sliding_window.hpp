@@ -12,7 +12,7 @@
 #include <utility>
 
 namespace ev {
-constexpr bool USING_SLIDING_WINDOW_HPP = true;
+[[maybe_unused]] constexpr bool USING_SLIDING_WINDOW_HPP = true;
 
 /*!
 \brief FIFO event container that retains only events within a trailing time window.

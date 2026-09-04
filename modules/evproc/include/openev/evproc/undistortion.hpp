@@ -22,6 +22,7 @@
 #include <vector>
 
 namespace ev {
+[[maybe_unused]] constexpr bool USING_UNDISTORTION_HPP = true;
 
 class UndistortMap : public cv::Mat_<cv::Point_<double>> {
 public:

@@ -21,6 +21,8 @@ class Mat;
 } // namespace cv
 
 namespace ev {
+[[maybe_unused]] constexpr bool USING_TIME_SURFACE_HPP = true;
+
 /*! \cond INTERNAL */
 template <typename T>
 class Event_;

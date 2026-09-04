@@ -9,4 +9,10 @@
 
 #include "openev/devices/davis.hpp"
 
+namespace {
+inline void workaroundDevices() {
+  (void)ev::USING_DAVIS_HPP;
+}
+} // namespace
+
 #endif // OPENEV_DEVICES_HPP

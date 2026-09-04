@@ -14,7 +14,7 @@
 #include "openev/containers/vector.hpp"
 
 namespace {
-inline void workaround() {
+inline void workaroundContainers() {
   (void)ev::USING_ARRAY_HPP;
   (void)ev::USING_CIRCULAR_HPP;
   (void)ev::USING_DEQUE_HPP;

@@ -18,7 +18,7 @@
 #include <type_traits>
 
 namespace ev {
-constexpr bool USING_MATRICES_HPP = true;
+[[maybe_unused]] constexpr bool USING_MATRICES_HPP = true;
 
 /*! \cond INTERNAL */
 template <typename T>

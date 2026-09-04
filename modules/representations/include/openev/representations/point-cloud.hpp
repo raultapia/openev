@@ -21,6 +21,8 @@ class Mat;
 } // namespace cv
 
 namespace ev {
+[[maybe_unused]] constexpr bool USING_POINT_CLOUD_HPP = true;
+
 /*! \cond INTERNAL */
 template <typename T>
 class Event_;

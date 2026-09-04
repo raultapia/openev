@@ -12,7 +12,7 @@
 #include <opencv2/core/types.hpp>
 
 namespace ev {
-constexpr bool USING_DEQUE_HPP = true;
+[[maybe_unused]] constexpr bool USING_DEQUE_HPP = true;
 
 /*!
 \brief This class extends std::deque to implement event deques. For more information, please refer <a href="https://en.cppreference.com/w/cpp/container/deque">here</a>.

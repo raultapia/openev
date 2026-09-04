@@ -15,6 +15,8 @@
 #include <utility>
 
 namespace ev {
+[[maybe_unused]] constexpr bool USING_EVENT_HISTOGRAM_HPP = true;
+
 /*! \cond INTERNAL */
 template <typename T>
 class Event_;

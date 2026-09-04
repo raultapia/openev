@@ -13,6 +13,8 @@
 #include <vector>
 
 namespace ev {
+[[maybe_unused]] constexpr bool USING_DAVIS_HPP = true;
+
 /*!
 \brief Coarse/fine bias value, the encoding used by DAVIS cameras.
 */

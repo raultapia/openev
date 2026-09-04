@@ -11,6 +11,7 @@
 #include <type_traits>
 
 namespace ev {
+[[maybe_unused]] constexpr bool USING_VOTING_HPP = true;
 
 /*! \cond INTERNAL */
 namespace detail {

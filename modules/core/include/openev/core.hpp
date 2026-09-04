@@ -10,7 +10,7 @@
 #include "openev/core/types.hpp"
 
 namespace {
-inline void workaround() {
+inline void workaroundCore() {
   (void)ev::USING_TYPES_HPP;
   (void)ev::USING_MATRICES_HPP;
 }

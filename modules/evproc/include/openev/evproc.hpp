@@ -11,4 +11,12 @@
 #include "openev/evproc/undistortion.hpp"
 #include "openev/evproc/voting.hpp"
 
+namespace {
+inline void workaroundEvproc() {
+  (void)ev::USING_FILTERING_HPP;
+  (void)ev::USING_UNDISTORTION_HPP;
+  (void)ev::USING_VOTING_HPP;
+}
+} // namespace
+
 #endif // OPENEV_EVPROC_HPP

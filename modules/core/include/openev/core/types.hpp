@@ -19,7 +19,7 @@
 #include <type_traits>
 
 namespace ev {
-constexpr bool USING_TYPES_HPP = true;
+[[maybe_unused]] constexpr bool USING_TYPES_HPP = true;
 
 using TimeType = double;
 using PolarityType = bool;

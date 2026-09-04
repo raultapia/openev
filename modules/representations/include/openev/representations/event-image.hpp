@@ -13,6 +13,8 @@
 #include <utility>
 
 namespace ev {
+[[maybe_unused]] constexpr bool USING_EVENT_IMAGE_HPP = true;
+
 /*! \cond INTERNAL */
 template <typename T>
 class Event_;

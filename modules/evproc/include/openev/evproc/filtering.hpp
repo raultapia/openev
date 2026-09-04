@@ -11,6 +11,7 @@
 #include <opencv2/core/types.hpp>
 
 namespace ev {
+[[maybe_unused]] constexpr bool USING_FILTERING_HPP = true;
 
 /*!
 \brief Background activity filter for event noise removal.

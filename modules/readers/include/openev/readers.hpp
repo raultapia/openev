@@ -10,7 +10,7 @@
 #include "openev/readers/plain-text-reader.hpp"
 
 namespace {
-inline void workaround() {
+inline void workaroundReaders() {
   (void)ev::USING_HDF5_READER_HPP;
   (void)ev::USING_PLAIN_TEXT_READER_HPP;
 }
