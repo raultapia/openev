@@ -122,12 +122,24 @@ bool AbstractRepresentation_<T, Options, E>::insert(const Event_<E> &e) {
 template <typename T, const RepresentationOptions Options, typename E>
 template <std::size_t N>
 bool AbstractRepresentation_<T, Options, E>::insert(const Array_<E, N> &array) {
-  return std::all_of(array.begin(), array.end(), [this](const Event_<E> &e) { return this->insert(e); });
+  bool ret = true;
+  for(const Event_<E> &e : array) {
+    if(!insert(e)) {
+      ret = false;
+    }
+  }
+  return ret;
 }
 
 template <typename T, const RepresentationOptions Options, typename E>
 bool AbstractRepresentation_<T, Options, E>::insert(const Vector_<E> &vector) {
-  return std::all_of(vector.begin(), vector.end(), [this](const Event_<E> &e) { return this->insert(e); });
+  bool ret = true;
+  for(const Event_<E> &e : vector) {
+    if(!insert(e)) {
+      ret = false;
+    }
+  }
+  return ret;
 }
 
 template <typename T, const RepresentationOptions Options, typename E>
