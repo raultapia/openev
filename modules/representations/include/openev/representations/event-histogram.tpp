@@ -57,8 +57,8 @@ cv::Mat &EventHistogram_<T, Options, E>::render() {
 
   if constexpr(TypeHelper<T>::NumChannels == 1) {
     cv::Mat_<T>(
-        (EventHistogram_<T, Options, E>::V_ON - EventHistogram_<T, Options, E>::V_RESET) * normalized.mul(cv::Mat_<double>(normalized > 0) / 255) +
-        (EventHistogram_<T, Options, E>::V_RESET - EventHistogram_<T, Options, E>::V_OFF) * normalized.mul(cv::Mat_<double>(normalized < 0) / 255) +
+        (EventHistogram_<T, Options, E>::V_ON - EventHistogram_<T, Options, E>::V_RESET) * cv::max(normalized, 0) +
+        (EventHistogram_<T, Options, E>::V_RESET - EventHistogram_<T, Options, E>::V_OFF) * cv::min(normalized, 0) +
         EventHistogram_<T, Options, E>::V_RESET)
         .copyTo(*this);
   } else {
@@ -73,8 +73,8 @@ cv::Mat &EventHistogram_<T, Options, E>::render() {
         cv::applyColorMap(aux, *this, *EventHistogram_<T, Options, E>::colormap_);
       }
     } else {
-      const cv::Mat_<double> a(normalized.mul(cv::Mat_<double>(normalized > 0) / 255));
-      const cv::Mat_<double> b(normalized.mul(cv::Mat_<double>(normalized < 0) / 255));
+      const cv::Mat_<double> a(cv::max(normalized, 0));
+      const cv::Mat_<double> b(cv::min(normalized, 0));
       std::vector<typename TypeHelper<T>::ChannelType> v(TypeHelper<T>::NumChannels);
       cv::parallel_for_(cv::Range(0, TypeHelper<T>::NumChannels), [&](const cv::Range &range) {
         const int start = range.start;
