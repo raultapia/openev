@@ -3,6 +3,7 @@
 \brief Implementation of abstract-reader.
 \author Raul Tapia
 */
+#include <algorithm>
 #include "openev/readers/abstract-reader.hpp"
 
 ev::AbstractReader_::AbstractReader_(const std::size_t buffer_size, const bool use_threading) : bufferSize_{buffer_size} {
@@ -23,7 +24,7 @@ void ev::AbstractReader_::threadFunction() {
   while(!eof_ && threadRunning_.load()) {
     {
       std::unique_lock<std::mutex> lock(bufferMutex_);
-      if(buffer_.size() < bufferSize_) {
+      if(buffer_.size() < std::max<std::size_t>(bufferSize_, 1)) {
         if(!updateBuffer_()) {
           eof_.store(true);
         }

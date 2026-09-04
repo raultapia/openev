@@ -7,6 +7,7 @@
 #define OPENEV_READERS_ABSTRACT_READER_HPP
 
 #include "openev/containers/queue.hpp"
+#include <algorithm>
 #include <atomic>
 #include <cstddef>
 #include <mutex>
@@ -29,7 +30,7 @@ public:
 
   /*!
   \brief Constructor for AbstractReader_.
-  \param buffer_size The size of the buffer to be used by the reader.
+  \param buffer_size The size of the buffer to be used by the reader. Zero keeps a single event in the buffer.
   */
   AbstractReader_(const std::size_t buffer_size, const bool use_threading);
 
@@ -38,7 +39,7 @@ public:
   \return Reference to the internal Queue buffer.
   */
   inline Queue &data() {
-    if(!eof_ && buffer_.size() < bufferSize_) {
+    if(!eof_ && buffer_.size() < std::max<std::size_t>(bufferSize_, 1)) {
       if(!updateBuffer_()) {
         eof_.store(true);
       }

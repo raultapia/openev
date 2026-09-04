@@ -77,6 +77,26 @@ TEST_F(PlainTextReaderTest, DataReturnsQueueReference) {
   EXPECT_EQ(&q1, &q2);
 }
 
+TEST_F(PlainTextReaderTest, DefaultBufferSizeReadsOneEventPerCall) {
+  ev::PlainTextReader reader(f_txyp_, ev::PlainTextReaderColumns::TXYP);
+  ev::Queue &q = reader.data();
+  EXPECT_EQ(q.size(), 1U);
+}
+
+TEST_F(PlainTextReaderTest, DefaultBufferSizeReadsEveryEvent) {
+  ev::PlainTextReader reader(f_txyp_, ev::PlainTextReaderColumns::TXYP);
+  std::size_t count = 0;
+  while(true) {
+    ev::Queue &q = reader.data();
+    if(q.empty()) {
+      break;
+    }
+    q.pop();
+    count++;
+  }
+  EXPECT_EQ(count, 5U);
+}
+
 TEST_F(PlainTextReaderTest, DataFillsOneEventPerCall) {
   ev::PlainTextReader reader(f_txyp_, ev::PlainTextReaderColumns::TXYP, " ", 1);
   ev::Queue &q = reader.data();
