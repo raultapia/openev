@@ -115,8 +115,9 @@ void EventHistogram_<T, Options, E>::clear_(const cv::Mat &background) {
 template <typename T, const RepresentationOptions Options, typename E>
 bool EventHistogram_<T, Options, E>::insert_(const Event_<E> &e) {
   if(e.inside(cv::Rect(0, 0, EventImage_<T, Options, E>::cols, EventImage_<T, Options, E>::rows))) {
-    if(abs(counter.insert(e)) > peak_) {
-      peak_ = abs(counter(e));
+    const int value = std::abs(counter.insert(e));
+    if(value > peak_) {
+      peak_ = value;
     }
     return true;
   }
