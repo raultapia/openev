@@ -21,6 +21,14 @@
 namespace ev {
 [[maybe_unused]] constexpr bool USING_TYPES_HPP = true;
 
+/*! \cond INTERNAL */
+template <typename T>
+[[nodiscard]] inline int round_(const T x) {
+  const double value = x;
+  return static_cast<int>(value + std::copysign(0.5, value));
+}
+/*! \endcond */
+
 using TimeType = double;
 using PolarityType = bool;
 using WeightType = float;

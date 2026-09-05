@@ -23,12 +23,6 @@ namespace ev {
 /*! \cond INTERNAL */
 template <typename T>
 class Event_;
-
-template <typename T>
-[[nodiscard]] inline int round_(const T x) {
-  const double value = x;
-  return static_cast<int>(value + std::copysign(0.5, value));
-}
 /*! \endcond */
 
 namespace Mat {

@@ -82,7 +82,7 @@ bool AbstractRepresentation_<T, Options, E>::insert(const Event_<E> &e) {
 
   if constexpr(REPRESENTATION_OPTION_CHECK(Options, RepresentationOptions::IGNORE_POLARITY)) {
     if constexpr(std::is_floating_point<E>::value) {
-      if(insert_({std::round(e.x), std::round(e.y), e.t + timeOffset_, ev::POSITIVE})) {
+      if(insert_({static_cast<E>(round_(e.x)), static_cast<E>(round_(e.y)), e.t + timeOffset_, ev::POSITIVE})) {
         tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
         tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
         count_++;
@@ -100,7 +100,7 @@ bool AbstractRepresentation_<T, Options, E>::insert(const Event_<E> &e) {
     }
   } else {
     if constexpr(std::is_floating_point<E>::value) {
-      if(insert_({std::round(e.x), std::round(e.y), e.t + timeOffset_, e.p})) {
+      if(insert_({static_cast<E>(round_(e.x)), static_cast<E>(round_(e.y)), e.t + timeOffset_, e.p})) {
         tLimits_[MIN] = std::min(tLimits_[MIN], e.t + timeOffset_);
         tLimits_[MAX] = std::max(tLimits_[MAX], e.t + timeOffset_);
         count_++;
