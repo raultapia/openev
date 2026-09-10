@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('circular_8hpp_
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span>ev {</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">constexpr</span> <span class="keywordtype">bool</span> USING_CIRCULAR_HPP = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>[[maybe_unused]] <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> USING_CIRCULAR_HPP = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('circular_8hpp_
 <div class="ttc" id="aclassev_1_1CircularBuffer___html"><div class="ttname"><a href="classev_1_1CircularBuffer__.html">ev::CircularBuffer_</a></div><div class="ttdoc">This class extends boost::circular_buffer to implement event circular buffers. For more information,...</div><div class="ttdef"><b>Definition</b> circular.hpp:24</div></div>
 <div class="ttc" id="aclassev_1_1CircularBuffer___html_a58a2e5a66249d2025628bc30c84f2b0c"><div class="ttname"><a href="classev_1_1CircularBuffer__.html#a58a2e5a66249d2025628bc30c84f2b0c">ev::CircularBuffer_::emplace_front</a></div><div class="ttdeci">void emplace_front(Args &amp;&amp;...args)</div><div class="ttdoc">Construct an Event_&lt;T&gt; in-place at the front of the buffer.</div><div class="ttdef"><b>Definition</b> circular.hpp:47</div></div>
 <div class="ttc" id="aclassev_1_1CircularBuffer___html_a6a6653624a6a5672067abbb55741cc76"><div class="ttname"><a href="classev_1_1CircularBuffer__.html#a6a6653624a6a5672067abbb55741cc76">ev::CircularBuffer_::emplace_back</a></div><div class="ttdeci">void emplace_back(Args &amp;&amp;...args)</div><div class="ttdoc">Construct an Event_&lt;T&gt; in-place at the back of the buffer.</div><div class="ttdef"><b>Definition</b> circular.hpp:36</div></div>
-<div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:78</div></div>
+<div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:86</div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

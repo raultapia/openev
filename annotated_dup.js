@@ -25,6 +25,7 @@ var annotated_dup =
       [ "Event_", "classev_1_1Event__.html", "classev_1_1Event__" ],
       [ "EventHistogram_", "classev_1_1EventHistogram__.html", "classev_1_1EventHistogram__" ],
       [ "EventImage_", "classev_1_1EventImage__.html", null ],
+      [ "Grid_", "classev_1_1Grid__.html", "classev_1_1Grid__" ],
       [ "HDF5Reader", "classev_1_1HDF5Reader.html", null ],
       [ "Imu", "structev_1_1Imu.html", null ],
       [ "PlainTextReader", "classev_1_1PlainTextReader.html", null ],
@@ -43,6 +44,7 @@ var annotated_dup =
     [ "caer_device_handle", "structcaer__device__handle.html", null ],
     [ "ContainerTestFixture", "classContainerTestFixture.html", null ],
     [ "EmptyContainerTestFixture", "classEmptyContainerTestFixture.html", null ],
+    [ "GridTestFixture", "classGridTestFixture.html", null ],
     [ "HDF5ReaderTest", "classHDF5ReaderTest.html", null ],
     [ "PlainTextReaderTest", "classPlainTextReaderTest.html", null ],
     [ "SlidingWindowTest", "classSlidingWindowTest.html", null ]

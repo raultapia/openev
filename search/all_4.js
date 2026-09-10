@@ -81,5 +81,6 @@ var searchData=
   ['eventimage_5f_3c_20uchar_20_3e_78',['EventImage_&lt; uchar &gt;',['../classev_1_1EventImage__.html',1,'ev']]],
   ['eventimage_5f_3c_20ushort_20_3e_79',['EventImage_&lt; ushort &gt;',['../classev_1_1EventImage__.html',1,'ev']]],
   ['eventl_80',['Eventl',['../types_8hpp.html#a0d3ac796a5ff950436d60e549423f57f',1,'ev']]],
-  ['evproc_2ehpp_81',['evproc.hpp',['../evproc_8hpp.html',1,'']]]
+  ['eventtype_81',['EventType',['../classev_1_1Grid__.html#a767c4869b48c19f4eb9c7aff6accc992',1,'ev::Grid_']]],
+  ['evproc_2ehpp_82',['evproc.hpp',['../evproc_8hpp.html',1,'']]]
 ];

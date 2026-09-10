@@ -24,5 +24,6 @@ var searchData=
   ['render_21',['render',['../classev_1_1EventHistogram__.html#a42d57d6b67fe596a387dd49ca64b1e5a',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b',1,'ev::TimeSurface_::render()']]],
   ['representations_2ehpp_22',['representations.hpp',['../representations_8hpp.html',1,'']]],
   ['resetstats_23',['resetStats',['../classev_1_1Mat_1_1Mat__.html#aa03353b5a51b46d870bf33322fbbba85',1,'ev::Mat::Mat_']]],
-  ['right_24',['RIGHT',['../types_8hpp.html#aadecfb0ae5329f7e7cfe2173f746ec4fa21507b40c80068eda19865706fdc2403',1,'ev']]]
+  ['right_24',['RIGHT',['../types_8hpp.html#aadecfb0ae5329f7e7cfe2173f746ec4fa21507b40c80068eda19865706fdc2403',1,'ev']]],
+  ['rows_25',['rows',['../classev_1_1Grid__.html#aea4ea55eff13b7b762777128513ca812',1,'ev::Grid_']]]
 ];

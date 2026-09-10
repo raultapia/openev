@@ -127,7 +127,13 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('devices_8hpp_s
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="davis_8hpp.html">openev/devices/davis.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_DEVICES_HPP</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">inline</span> <span class="keywordtype">void</span> workaroundDevices() {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  (void)ev::USING_DAVIS_HPP;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>} <span class="comment">// namespace</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_DEVICES_HPP</span></div>
 <div class="ttc" id="adavis_8hpp_html"><div class="ttname"><a href="davis_8hpp.html">davis.hpp</a></div><div class="ttdoc">Camera device driver for DAVIS cameras.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
