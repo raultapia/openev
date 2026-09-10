@@ -1,6 +1,7 @@
 #include "openev/containers/array.hpp"
 #include "openev/containers/circular.hpp"
 #include "openev/containers/deque.hpp"
+#include "openev/containers/grid.hpp"
 #include "openev/containers/queue.hpp"
 #include "openev/containers/sliding_window.hpp"
 #include "openev/containers/vector.hpp"
@@ -365,4 +366,148 @@ TEST(SlidingWindow, SetWindowOnEmptyDoesNotCrash) {
   EXPECT_TRUE(window.empty());
   window.setWindow(1.0);
   EXPECT_TRUE(window.empty());
+}
+
+template <typename Grid>
+Grid makeGrid(const cv::Size sensor = cv::Size(640, 480), const cv::Size cells = cv::Size(4, 3)) {
+  if constexpr(std::is_same_v<Grid, ev::Grid_<ev::CircularBuffer>>) {
+    return Grid(sensor, cells, 16);
+  } else if constexpr(std::is_same_v<Grid, ev::Grid_<ev::SlidingWindow>>) {
+    return Grid(sensor, cells, 100.0);
+  } else {
+    return Grid(sensor, cells);
+  }
+}
+
+template <typename Grid>
+class GridTestFixture : public ::testing::Test {
+protected:
+  Grid grid = makeGrid<Grid>();
+};
+
+using GridTypes = ::testing::Types<ev::Grid_<ev::Vector>, ev::Grid_<ev::Deque>, ev::Grid_<ev::Queue>, ev::Grid_<ev::CircularBuffer>, ev::Grid_<ev::SlidingWindow>>;
+TYPED_TEST_SUITE(GridTestFixture, GridTypes);
+
+TYPED_TEST(GridTestFixture, ShapeMatchesConstructor) {
+  EXPECT_EQ(this->grid.rows(), 3);
+  EXPECT_EQ(this->grid.cols(), 4);
+  EXPECT_EQ(this->grid.size(), cv::Size(4, 3));
+  EXPECT_EQ(this->grid.sensorSize(), cv::Size(640, 480));
+  EXPECT_EQ(this->grid.cellSize(), cv::Size(160, 160));
+}
+
+TYPED_TEST(GridTestFixture, CellsStartEmpty) {
+  for(const auto &cell : this->grid) {
+    EXPECT_TRUE(cell.empty());
+  }
+}
+
+TYPED_TEST(GridTestFixture, InsertGoesToItsCell) {
+  EXPECT_TRUE(this->grid.insert(ev::Event(0, 0, 1.0, true)));
+  EXPECT_TRUE(this->grid.insert(ev::Event(639, 479, 2.0, false)));
+  EXPECT_TRUE(this->grid.insert(ev::Event(160, 159, 3.0, true)));
+  EXPECT_EQ(this->grid(0, 0).size(), 1U);
+  EXPECT_EQ(this->grid(2, 3).size(), 1U);
+  EXPECT_EQ(this->grid(0, 1).size(), 1U);
+  EXPECT_EQ(this->grid(1, 1).size(), 0U);
+}
+
+TYPED_TEST(GridTestFixture, EventOutsideIsRejected) {
+  EXPECT_FALSE(this->grid.insert(ev::Event(640, 0, 1.0, true)));
+  EXPECT_FALSE(this->grid.insert(ev::Event(0, 480, 1.0, true)));
+  EXPECT_FALSE(this->grid.insert(ev::Event(-1, 0, 1.0, true)));
+  EXPECT_FALSE(this->grid.insert(ev::Event(0, -1, 1.0, true)));
+  for(const auto &cell : this->grid) {
+    EXPECT_TRUE(cell.empty());
+  }
+}
+
+TYPED_TEST(GridTestFixture, CellOfEvent) {
+  EXPECT_EQ(this->grid.cell(ev::Event(0, 0)), cv::Point(0, 0));
+  EXPECT_EQ(this->grid.cell(ev::Event(159, 159)), cv::Point(0, 0));
+  EXPECT_EQ(this->grid.cell(ev::Event(160, 160)), cv::Point(1, 1));
+  EXPECT_EQ(this->grid.cell(ev::Event(639, 479)), cv::Point(3, 2));
+  EXPECT_EQ(this->grid.cell(ev::Event(640, 479)), cv::Point(-1, -1));
+}
+
+TYPED_TEST(GridTestFixture, AccessByPointMatchesAccessByIndex) {
+  this->grid.insert(ev::Event(500, 300, 1.0, true));
+  EXPECT_EQ(this->grid(cv::Point(3, 1)).size(), 1U);
+  EXPECT_EQ(&this->grid(cv::Point(3, 1)), &this->grid(1, 3));
+}
+
+
+TYPED_TEST(GridTestFixture, ClearEmptiesEveryCell) {
+  this->grid.insert(ev::Event(1, 1, 1.0, true));
+  this->grid.insert(ev::Event(639, 479, 2.0, true));
+  this->grid.clear();
+  for(const auto &cell : this->grid) {
+    EXPECT_TRUE(cell.empty());
+  }
+}
+
+TYPED_TEST(GridTestFixture, IncompleteLastCellsCoverTheSensor) {
+  TypeParam grid = makeGrid<TypeParam>(cv::Size(7, 5), cv::Size(3, 2));
+  EXPECT_EQ(grid.cellSize(), cv::Size(3, 3));
+  EXPECT_EQ(grid.cell(ev::Event(6, 4)), cv::Point(2, 1));
+  EXPECT_EQ(grid.cell(ev::Event(5, 2)), cv::Point(1, 0));
+  EXPECT_TRUE(grid.insert(ev::Event(6, 4, 1.0, true)));
+  EXPECT_EQ(grid(1, 2).size(), 1U);
+}
+
+TYPED_TEST(GridTestFixture, SingleCellHoldsEverything) {
+  TypeParam grid = makeGrid<TypeParam>(cv::Size(640, 480), cv::Size(1, 1));
+  EXPECT_EQ(grid.cellSize(), cv::Size(640, 480));
+  EXPECT_TRUE(grid.insert(ev::Event(0, 0, 1.0, true)));
+  EXPECT_TRUE(grid.insert(ev::Event(639, 479, 2.0, true)));
+  EXPECT_EQ(grid(0, 0).size(), 2U);
+}
+
+TYPED_TEST(GridTestFixture, InvalidGeometryThrows) {
+  EXPECT_THROW(makeGrid<TypeParam>(cv::Size(0, 480), cv::Size(4, 3)), cv::Exception);
+  EXPECT_THROW(makeGrid<TypeParam>(cv::Size(640, 480), cv::Size(0, 3)), cv::Exception);
+  EXPECT_THROW(makeGrid<TypeParam>(cv::Size(640, 480), cv::Size(641, 3)), cv::Exception);
+  EXPECT_THROW(makeGrid<TypeParam>(cv::Size(640, 480), cv::Size(4, 481)), cv::Exception);
+}
+
+TEST(Grid, CircularCellsKeepTheirCapacity) {
+  ev::Grid_<ev::CircularBuffer> grid(cv::Size(640, 480), cv::Size(4, 3), 2);
+  EXPECT_TRUE(grid.insert(ev::Event(1, 1, 1.0, true)));
+  EXPECT_TRUE(grid.insert(ev::Event(1, 1, 2.0, true)));
+  EXPECT_TRUE(grid.insert(ev::Event(1, 1, 3.0, true)));
+  EXPECT_EQ(grid(0, 0).size(), 2U);
+  EXPECT_EQ(grid(0, 0).front(), ev::Event(1, 1, 2.0, true));
+  grid.clear();
+  EXPECT_EQ(grid(0, 0).capacity(), 2U);
+}
+
+TEST(Grid, SlidingWindowCellsEvictExpiredEvents) {
+  ev::Grid_<ev::SlidingWindow> grid(cv::Size(640, 480), cv::Size(4, 3), 1.5);
+  EXPECT_TRUE(grid.insert(ev::Event(1, 1, 1.0, true)));
+  EXPECT_TRUE(grid.insert(ev::Event(1, 1, 3.0, true)));
+  EXPECT_EQ(grid(0, 0).size(), 1U);
+  EXPECT_EQ(grid(0, 0).back(), ev::Event(1, 1, 3.0, true));
+  grid.clear();
+  EXPECT_DOUBLE_EQ(grid(0, 0).window(), 1.5);
+}
+
+TEST(Grid, FloatCoordinatesAreRounded) {
+  ev::Grid_<ev::Vectorf> grid(cv::Size(640, 480), cv::Size(4, 3));
+  EXPECT_EQ(grid.cell(ev::Eventf(159.4f, 0.0f)), cv::Point(0, 0));
+  EXPECT_EQ(grid.cell(ev::Eventf(159.6f, 0.0f)), cv::Point(1, 0));
+  EXPECT_TRUE(grid.insert(ev::Eventf(-0.4f, 479.4f, 1.0, true)));
+  EXPECT_FALSE(grid.insert(ev::Eventf(-0.6f, 0.0f, 1.0, true)));
+  EXPECT_FALSE(grid.insert(ev::Eventf(639.6f, 0.0f, 1.0, true)));
+  EXPECT_EQ(grid(2, 0).size(), 1U);
+}
+
+TEST(Grid, CellStatisticsAreAvailable) {
+  ev::Grid_<ev::Vector> grid(cv::Size(640, 480), cv::Size(4, 3));
+  grid.insert(ev::Event(10, 10, 1.0, true));
+  grid.insert(ev::Event(20, 20, 3.0, true));
+  grid.insert(ev::Event(630, 470, 5.0, false));
+  EXPECT_DOUBLE_EQ(grid(0, 0).duration(), 2.0);
+  EXPECT_DOUBLE_EQ(grid(0, 0).meanPoint().x, 15.0);
+  EXPECT_THROW((void)grid(2, 3).rate(), cv::Exception);
+  EXPECT_THROW((void)grid(1, 1).duration(), cv::Exception);
 }

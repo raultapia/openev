@@ -176,6 +176,58 @@ void benchmarkSlidingWindowPush(benchmark::State &state, const char *label) {
 }
 
 template <typename Container>
+ev::Grid_<Container> makeGrid(const int cells, const std::vector<ev::Event> &events) {
+  if constexpr(std::is_same_v<Container, ev::CircularBuffer>) {
+    return ev::Grid_<Container>(cv::Size(kWidth, kHeight), cv::Size(cells, cells), events.size() / static_cast<std::size_t>(cells * cells));
+  } else if constexpr(std::is_same_v<Container, ev::SlidingWindow>) {
+    return ev::Grid_<Container>(cv::Size(kWidth, kHeight), cv::Size(cells, cells), 0.1);
+  } else {
+    return ev::Grid_<Container>(cv::Size(kWidth, kHeight), cv::Size(cells, cells));
+  }
+}
+
+template <typename Container>
+void benchmarkGridInsert(benchmark::State &state, const char *label) {
+  const auto events = [](const std::size_t count) {
+    if constexpr(std::is_same_v<Container, ev::SlidingWindow>) {
+      return makeTimelineEvents(count);
+    }
+    return makeEvents(count);
+  }(static_cast<std::size_t>(state.range(0)));
+  auto grid = makeGrid<Container>(static_cast<int>(state.range(1)), events);
+
+  for(auto _ : state) {
+    state.PauseTiming();
+    grid.clear();
+    state.ResumeTiming();
+
+    for(const auto &event : events) {
+      benchmark::DoNotOptimize(grid.insert(event));
+    }
+    benchmark::ClobberMemory();
+  }
+
+  state.SetLabel(label);
+  state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
+}
+
+template <typename Container>
+void benchmarkGridCell(benchmark::State &state, const char *label) {
+  const auto events = makeEvents(static_cast<std::size_t>(state.range(0)));
+  const auto grid = makeGrid<Container>(static_cast<int>(state.range(1)), events);
+
+  for(auto _ : state) {
+    for(const auto &event : events) {
+      benchmark::DoNotOptimize(grid.cell(event));
+    }
+    benchmark::ClobberMemory();
+  }
+
+  state.SetLabel(label);
+  state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
+}
+
+template <typename Container>
 void benchmarkDuration(benchmark::State &state, const char *label) {
   benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.duration(); });
 }
@@ -306,6 +358,13 @@ static void BM_CircularEmplaceBack(benchmark::State &state) { benchmarkCircularE
 static void BM_CircularEmplaceFront(benchmark::State &state) { benchmarkCircularEmplaceFront(state, "circular"); }
 static void BM_SlidingWindowPush(benchmark::State &state) { benchmarkSlidingWindowPush(state, "sliding_window"); }
 
+static void BM_GridVectorInsert(benchmark::State &state) { benchmarkGridInsert<ev::Vector>(state, "grid_vector"); }
+static void BM_GridDequeInsert(benchmark::State &state) { benchmarkGridInsert<ev::Deque>(state, "grid_deque"); }
+static void BM_GridCircularInsert(benchmark::State &state) { benchmarkGridInsert<ev::CircularBuffer>(state, "grid_circular"); }
+static void BM_GridQueueInsert(benchmark::State &state) { benchmarkGridInsert<ev::Queue>(state, "grid_queue"); }
+static void BM_GridSlidingWindowInsert(benchmark::State &state) { benchmarkGridInsert<ev::SlidingWindow>(state, "grid_sliding_window"); }
+static void BM_GridVectorCell(benchmark::State &state) { benchmarkGridCell<ev::Vector>(state, "grid_vector"); }
+
 BENCHMARK(BM_VectorDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
@@ -366,4 +425,11 @@ BENCHMARK(BM_Array16384Entropy)->Arg(16384);
 BENCHMARK(BM_CircularEmplaceBack)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularEmplaceFront)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowPush)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+
+BENCHMARK(BM_GridVectorInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
+BENCHMARK(BM_GridDequeInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
+BENCHMARK(BM_GridCircularInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
+BENCHMARK(BM_GridQueueInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
+BENCHMARK(BM_GridSlidingWindowInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
+BENCHMARK(BM_GridVectorCell)->Args({1 << 14, 4})->Args({1 << 18, 16});
 } // namespace
