@@ -65,6 +65,19 @@ public:
   }
 
   /*!
+  \brief Compute polarity ratio as the fraction of events with the given polarity.
+  \param p Polarity, POSITIVE or NEGATIVE
+  \return Fraction of events with that polarity, between 0 and 1
+  */
+  [[nodiscard]] inline ResultType polarityRatio(const PolarityType p) const {
+    std::size_t matching = 0;
+    for(const Event_<T> &e : self_()) {
+      matching += e.p == p ? 1 : 0;
+    }
+    return static_cast<ResultType>(matching) / static_cast<ResultType>(self_().size());
+  }
+
+  /*!
   \brief Calculate the midpoint time between the oldest and the newest event.
   \return Midpoint time
   */
