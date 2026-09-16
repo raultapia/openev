@@ -37,7 +37,6 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline ResultType duration() const {
-    check_("duration");
     return self_().back().t - self_().front().t;
   }
 
@@ -46,7 +45,6 @@ public:
   \return Event rate
   */
   [[nodiscard]] inline ResultType rate() const {
-    check_("rate");
     const ResultType span = duration();
     if(span == 0) {
       CV_Error(cv::Error::StsDivByZero, "ev::AbstractContainer_::rate: the events span no time.");
@@ -59,7 +57,6 @@ public:
   \return Midpoint time
   */
   [[nodiscard]] inline ResultType midTime() const {
-    check_("midTime");
     return 0.5 * (self_().front().t + self_().back().t);
   }
 
@@ -68,7 +65,6 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] inline Event_<ResultType> mean() const {
-    check_("mean");
     ResultType x{0};
     ResultType y{0};
     ResultType t{0};
@@ -88,7 +84,6 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point_<ResultType> meanPoint() const {
-    check_("meanPoint");
     ResultType x{0};
     ResultType y{0};
     for(const Event_<T> &e : self_()) {
@@ -104,7 +99,6 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline ResultType meanTime() const {
-    check_("meanTime");
     ResultType t{0};
     for(const Event_<T> &e : self_()) {
       t += e.t;
@@ -118,7 +112,6 @@ public:
   \note \f$ H = -\sum_i p_i \log_2 p_i \f$, where \f$ p_i \f$ is the fraction of events falling on the i-th pixel, so \f$ 2^H \f$ is the effective number of active pixels.
   */
   [[nodiscard]] inline ResultType entropy() const {
-    check_("entropy");
     std::vector<cv::Point> pixels;
     pixels.reserve(self_().size());
     for(const Event_<T> &e : self_()) {
@@ -131,12 +124,6 @@ protected:
   /*! \cond INTERNAL */
   [[nodiscard]] inline const Container &self_() const {
     return static_cast<const Container &>(*this);
-  }
-
-  inline void check_(const char *statistic) const {
-    if(self_().empty()) {
-      CV_Error(cv::Error::StsError, std::string("ev::AbstractContainer_::") + statistic + ": the container is empty.");
-    }
   }
 
   [[nodiscard]] inline static cv::Point pixel_(const Event_<T> &e) {
