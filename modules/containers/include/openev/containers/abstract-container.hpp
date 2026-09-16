@@ -53,6 +53,18 @@ public:
   }
 
   /*!
+  \brief Compute event density as the ratio between the number of events and the number of pixels.
+  \param size Size in pixels
+  \return Events per square pixel
+  */
+  [[nodiscard]] inline ResultType density(const cv::Size size) const {
+    if(size.width <= 0 || size.height <= 0) {
+      CV_Error(cv::Error::StsBadArg, "ev::AbstractContainer_::density: the size must be positive.");
+    }
+    return static_cast<ResultType>(self_().size()) / (static_cast<ResultType>(size.width) * static_cast<ResultType>(size.height));
+  }
+
+  /*!
   \brief Calculate the midpoint time between the oldest and the newest event.
   \return Midpoint time
   */
