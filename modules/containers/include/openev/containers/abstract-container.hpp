@@ -13,6 +13,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <opencv2/core/base.hpp>
+#include <opencv2/core/matx.hpp>
 #include <opencv2/core/types.hpp>
 #include <type_traits>
 #include <vector>
@@ -65,6 +66,28 @@ public:
   }
 
   /*!
+  \brief Count the pixels with at least one event.
+  \return Number of active pixels
+  */
+  [[nodiscard]] inline std::size_t activePixels() const {
+    std::size_t active = 0;
+    forEachPixelCount_(pixels_(), [&active](const uint32_t) { active++; });
+    return active;
+  }
+
+  /*!
+  \brief Compute fill ratio as the fraction of pixels with at least one event.
+  \param size Size in pixels
+  \return Fraction of active pixels, between 0 and 1
+  */
+  [[nodiscard]] inline ResultType fillRatio(const cv::Size size) const {
+    if(size.width <= 0 || size.height <= 0) {
+      CV_Error(cv::Error::StsBadArg, "ev::AbstractContainer_::fillRatio: the size must be positive.");
+    }
+    return static_cast<ResultType>(activePixels()) / (static_cast<ResultType>(size.width) * static_cast<ResultType>(size.height));
+  }
+
+  /*!
   \brief Compute polarity ratio as the fraction of events with the given polarity.
   \param p Polarity, POSITIVE or NEGATIVE
   \return Fraction of events with that polarity, between 0 and 1
@@ -75,14 +98,6 @@ public:
       matching += e.p == p ? 1 : 0;
     }
     return static_cast<ResultType>(matching) / static_cast<ResultType>(self_().size());
-  }
-
-  /*!
-  \brief Calculate the midpoint time between the oldest and the newest event.
-  \return Midpoint time
-  */
-  [[nodiscard]] inline ResultType midTime() const {
-    return 0.5 * (self_().front().t + self_().back().t);
   }
 
   /*!
@@ -120,6 +135,34 @@ public:
   }
 
   /*!
+  \brief Compute the covariance of the x,y coordinates of the events around meanPoint().
+  \return Covariance matrix, with the variances of x and y in the diagonal
+  */
+  [[nodiscard]] inline cv::Matx<ResultType, 2, 2> covariance() const {
+    const cv::Point_<ResultType> mean = meanPoint();
+    ResultType xx{0};
+    ResultType yy{0};
+    ResultType xy{0};
+    for(const Event_<T> &e : self_()) {
+      const ResultType dx = e.x - mean.x;
+      const ResultType dy = e.y - mean.y;
+      xx += dx * dx;
+      yy += dy * dy;
+      xy += dx * dy;
+    }
+    const auto n = static_cast<ResultType>(self_().size());
+    return {xx / n, xy / n, xy / n, yy / n};
+  }
+
+  /*!
+  \brief Compute the smallest rectangle of pixels containing the events.
+  \return Bounding box in pixels
+  */
+  [[nodiscard]] inline cv::Rect boundingBox() const {
+    return bounds_(self_(), pixel_);
+  }
+
+  /*!
   \brief Compute the mean time of the events.
   \return Mean time
   */
@@ -132,17 +175,36 @@ public:
   }
 
   /*!
+  \brief Calculate the midpoint time between the oldest and the newest event.
+  \return Midpoint time
+  */
+  [[nodiscard]] inline ResultType midTime() const {
+    return 0.5 * (self_().front().t + self_().back().t);
+  }
+
+  /*!
+  \brief Find the largest number of events on a single pixel.
+  \return Peak count
+  */
+  [[nodiscard]] inline std::size_t peak() const {
+    uint32_t peak = 0;
+    forEachPixelCount_(pixels_(), [&peak](const uint32_t count) { peak = std::max(peak, count); });
+    return peak;
+  }
+
+  /*!
   \brief Compute the Shannon entropy of the spatial distribution of the events.
   \return Entropy in bits
   \note \f$ H = -\sum_i p_i \log_2 p_i \f$, where \f$ p_i \f$ is the fraction of events falling on the i-th pixel, so \f$ 2^H \f$ is the effective number of active pixels.
   */
   [[nodiscard]] inline ResultType entropy() const {
-    std::vector<cv::Point> pixels;
-    pixels.reserve(self_().size());
-    for(const Event_<T> &e : self_()) {
-      pixels.push_back(pixel_(e));
-    }
-    return entropy_(pixels);
+    const auto n = static_cast<ResultType>(self_().size());
+    ResultType h{0};
+    forEachPixelCount_(pixels_(), [&h, n](const uint32_t count) {
+      const ResultType p = static_cast<ResultType>(count) / n;
+      h -= p * std::log2(p);
+    });
+    return h;
   }
 
 protected:
@@ -159,34 +221,47 @@ protected:
     }
   }
 
-  [[nodiscard]] inline static ResultType entropy_(const std::vector<cv::Point> &pixels) {
-    constexpr uint64_t MAX_AREA_PER_EVENT = 32;
-    const ResultType n = static_cast<ResultType>(pixels.size());
+  [[nodiscard]] inline std::vector<cv::Point> pixels_() const {
+    std::vector<cv::Point> pixels;
+    pixels.reserve(self_().size());
+    for(const Event_<T> &e : self_()) {
+      pixels.push_back(pixel_(e));
+    }
+    return pixels;
+  }
 
+  template <typename Range, typename Pixel>
+  [[nodiscard]] inline static cv::Rect bounds_(const Range &range, Pixel toPixel) {
     int left = INT_MAX;
     int right = INT_MIN;
     int top = INT_MAX;
     int bottom = INT_MIN;
-    for(const cv::Point &pixel : pixels) {
+    for(const auto &item : range) {
+      const cv::Point pixel = toPixel(item);
       left = std::min(left, pixel.x);
       right = std::max(right, pixel.x);
       top = std::min(top, pixel.y);
       bottom = std::max(bottom, pixel.y);
     }
+    return {left, top, right - left + 1, bottom - top + 1};
+  }
 
-    const auto width = static_cast<uint64_t>(static_cast<int64_t>(right) - static_cast<int64_t>(left) + 1);
-    const auto height = static_cast<uint64_t>(static_cast<int64_t>(bottom) - static_cast<int64_t>(top) + 1);
+  // NOTE: calls fn(count) once per active pixel, counting on a dense array when the events are packed and on sorted keys when they are sparse
+  template <typename Fn>
+  inline static void forEachPixelCount_(const std::vector<cv::Point> &pixels, Fn fn) {
+    constexpr uint64_t MAX_AREA_PER_EVENT = 32;
+    const cv::Rect bounds = bounds_(pixels, [](const cv::Point &pixel) { return pixel; });
+    const auto width = static_cast<uint64_t>(bounds.width);
+    const auto height = static_cast<uint64_t>(bounds.height);
 
-    ResultType h{0};
     if(width <= (MAX_AREA_PER_EVENT * pixels.size()) / height) {
       std::vector<uint32_t> counts(width * height, 0);
       for(const cv::Point &pixel : pixels) {
-        counts[(static_cast<uint64_t>(pixel.y - top) * width) + static_cast<uint64_t>(pixel.x - left)]++;
+        counts[(static_cast<uint64_t>(pixel.y - bounds.y) * width) + static_cast<uint64_t>(pixel.x - bounds.x)]++;
       }
       for(const uint32_t count : counts) {
         if(count > 0) {
-          const ResultType p = static_cast<ResultType>(count) / n;
-          h -= p * std::log2(p);
+          fn(count);
         }
       }
     } else {
@@ -196,19 +271,16 @@ protected:
         keys.push_back((static_cast<uint64_t>(static_cast<uint32_t>(pixel.y)) << 32U) | static_cast<uint32_t>(pixel.x));
       }
       std::sort(keys.begin(), keys.end());
-
-      std::size_t run = 1;
+      uint32_t run = 1;
       for(std::size_t i = 1; i <= keys.size(); i++) {
         if(i == keys.size() || keys[i] != keys[i - 1]) {
-          const ResultType p = static_cast<ResultType>(run) / n;
-          h -= p * std::log2(p);
+          fn(run);
           run = 1;
         } else {
           run++;
         }
       }
     }
-    return h;
   }
   /*! \endcond */
 };
