@@ -19,6 +19,26 @@
 #include <vector>
 
 namespace ev {
+/*! \cond INTERNAL */
+#define OPENEV_HAS_GETTER_(name)             \
+  template <typename C, typename = void>     \
+  struct has_##name##_ : std::false_type {}; \
+  template <typename C>                      \
+  struct has_##name##_<C, std::void_t<decltype(std::declval<const C &>().name())>> : std::true_type {};
+
+OPENEV_HAS_GETTER_(firstTimestamp)
+OPENEV_HAS_GETTER_(lastTimestamp)
+OPENEV_HAS_GETTER_(sum)
+OPENEV_HAS_GETTER_(sumT)
+OPENEV_HAS_GETTER_(sumP)
+OPENEV_HAS_GETTER_(squares)
+OPENEV_HAS_GETTER_(bounds)
+OPENEV_HAS_GETTER_(activeCount)
+OPENEV_HAS_GETTER_(peakCount)
+OPENEV_HAS_GETTER_(sumCLogC)
+#undef OPENEV_HAS_GETTER_
+/*! \endcond */
+
 /*!
 \brief This is an auxiliary class. This class cannot be instanced.
 
@@ -27,6 +47,7 @@ It holds the statistics every event container offers, so that each of them only 
 template <typename T>
 class Vector_ : public std::vector<Event_<T>>, public AbstractContainer_<Vector_<T>, T> { ... };
 \endcode
+\note Incremental behaviour: Each statistic preferes the getters of its ingredients when the container offers them.
 */
 template <typename Container, typename T>
 class AbstractContainer_ {
@@ -38,7 +59,11 @@ public:
   \return Time difference
   */
   [[nodiscard]] inline ResultType duration() const {
-    return self_().back().t - self_().front().t;
+    if constexpr(has_firstTimestamp_<Container>::value && has_lastTimestamp_<Container>::value) {
+      return self_().lastTimestamp() - self_().firstTimestamp();
+    } else {
+      return self_().back().t - self_().front().t;
+    }
   }
 
   /*!
@@ -70,9 +95,13 @@ public:
   \return Number of active pixels
   */
   [[nodiscard]] inline std::size_t activePixels() const {
-    std::size_t active = 0;
-    forEachPixelCount_(pixels_(), [&active](const uint32_t) { active++; });
-    return active;
+    if constexpr(has_activeCount_<Container>::value) {
+      return self_().activeCount();
+    } else {
+      std::size_t active = 0;
+      forEachPixelCount_(pixels_(), [&active](const uint32_t) { active++; });
+      return active;
+    }
   }
 
   /*!
@@ -93,11 +122,16 @@ public:
   \return Fraction of events with that polarity, between 0 and 1
   */
   [[nodiscard]] inline ResultType polarityRatio(const PolarityType p) const {
-    std::size_t matching = 0;
-    for(const Event_<T> &e : self_()) {
-      matching += e.p == p ? 1 : 0;
+    if constexpr(has_sumP_<Container>::value) {
+      const ResultType positive = self_().sumP() / static_cast<ResultType>(self_().size());
+      return p ? positive : 1 - positive;
+    } else {
+      std::size_t matching = 0;
+      for(const Event_<T> &e : self_()) {
+        matching += e.p == p ? 1 : 0;
+      }
+      return static_cast<ResultType>(matching) / static_cast<ResultType>(self_().size());
     }
-    return static_cast<ResultType>(matching) / static_cast<ResultType>(self_().size());
   }
 
   /*!
@@ -105,18 +139,23 @@ public:
   \return An Eventd object containing the mean values of x, y, t, and p attributes.
   */
   [[nodiscard]] inline Event_<ResultType> mean() const {
-    ResultType x{0};
-    ResultType y{0};
-    ResultType t{0};
-    ResultType p{0};
-    for(const Event_<T> &e : self_()) {
-      x += e.x;
-      y += e.y;
-      t += e.t;
-      p += e.p;
+    if constexpr(has_sum_<Container>::value && has_sumT_<Container>::value && has_sumP_<Container>::value) {
+      const auto n = static_cast<ResultType>(self_().size());
+      return {self_().sum().x / n, self_().sum().y / n, self_().sumT() / n, self_().sumP() / n > 0.5};
+    } else {
+      ResultType x{0};
+      ResultType y{0};
+      ResultType t{0};
+      ResultType p{0};
+      for(const Event_<T> &e : self_()) {
+        x += e.x;
+        y += e.y;
+        t += e.t;
+        p += e.p;
+      }
+      const auto n = static_cast<ResultType>(self_().size());
+      return {x / n, y / n, t / n, p / n > 0.5};
     }
-    const auto n = static_cast<ResultType>(self_().size());
-    return {x / n, y / n, t / n, p / n > 0.5};
   }
 
   /*!
@@ -124,14 +163,18 @@ public:
   \return Mean point
   */
   [[nodiscard]] inline cv::Point_<ResultType> meanPoint() const {
-    ResultType x{0};
-    ResultType y{0};
-    for(const Event_<T> &e : self_()) {
-      x += e.x;
-      y += e.y;
+    if constexpr(has_sum_<Container>::value) {
+      return self_().sum() / static_cast<ResultType>(self_().size());
+    } else {
+      ResultType x{0};
+      ResultType y{0};
+      for(const Event_<T> &e : self_()) {
+        x += e.x;
+        y += e.y;
+      }
+      const auto n = static_cast<ResultType>(self_().size());
+      return {x / n, y / n};
     }
-    const auto n = static_cast<ResultType>(self_().size());
-    return {x / n, y / n};
   }
 
   /*!
@@ -139,19 +182,27 @@ public:
   \return Covariance matrix, with the variances of x and y in the diagonal
   */
   [[nodiscard]] inline cv::Matx<ResultType, 2, 2> covariance() const {
-    const cv::Point_<ResultType> mean = meanPoint();
-    ResultType xx{0};
-    ResultType yy{0};
-    ResultType xy{0};
-    for(const Event_<T> &e : self_()) {
-      const ResultType dx = e.x - mean.x;
-      const ResultType dy = e.y - mean.y;
-      xx += dx * dx;
-      yy += dy * dy;
-      xy += dx * dy;
+    if constexpr(has_sum_<Container>::value && has_squares_<Container>::value) {
+      const auto n = static_cast<ResultType>(self_().size());
+      const cv::Point_<ResultType> mean = self_().sum() / n;
+      const cv::Vec<ResultType, 3> squares = self_().squares() / n;
+      const ResultType xy = squares[2] - mean.x * mean.y;
+      return {squares[0] - mean.x * mean.x, xy, xy, squares[1] - mean.y * mean.y};
+    } else {
+      const cv::Point_<ResultType> mean = meanPoint();
+      ResultType xx{0};
+      ResultType yy{0};
+      ResultType xy{0};
+      for(const Event_<T> &e : self_()) {
+        const ResultType dx = e.x - mean.x;
+        const ResultType dy = e.y - mean.y;
+        xx += dx * dx;
+        yy += dy * dy;
+        xy += dx * dy;
+      }
+      const auto n = static_cast<ResultType>(self_().size());
+      return {xx / n, xy / n, xy / n, yy / n};
     }
-    const auto n = static_cast<ResultType>(self_().size());
-    return {xx / n, xy / n, xy / n, yy / n};
   }
 
   /*!
@@ -159,7 +210,11 @@ public:
   \return Bounding box in pixels
   */
   [[nodiscard]] inline cv::Rect boundingBox() const {
-    return bounds_(self_(), pixel_);
+    if constexpr(has_bounds_<Container>::value) {
+      return self_().bounds();
+    } else {
+      return bounds_(self_(), pixel_);
+    }
   }
 
   /*!
@@ -167,11 +222,15 @@ public:
   \return Mean time
   */
   [[nodiscard]] inline ResultType meanTime() const {
-    ResultType t{0};
-    for(const Event_<T> &e : self_()) {
-      t += e.t;
+    if constexpr(has_sumT_<Container>::value) {
+      return self_().sumT() / static_cast<ResultType>(self_().size());
+    } else {
+      ResultType t{0};
+      for(const Event_<T> &e : self_()) {
+        t += e.t;
+      }
+      return t / static_cast<ResultType>(self_().size());
     }
-    return t / static_cast<ResultType>(self_().size());
   }
 
   /*!
@@ -179,7 +238,11 @@ public:
   \return Midpoint time
   */
   [[nodiscard]] inline ResultType midTime() const {
-    return 0.5 * (self_().front().t + self_().back().t);
+    if constexpr(has_firstTimestamp_<Container>::value && has_lastTimestamp_<Container>::value) {
+      return 0.5 * (self_().firstTimestamp() + self_().lastTimestamp());
+    } else {
+      return 0.5 * (self_().front().t + self_().back().t);
+    }
   }
 
   /*!
@@ -187,9 +250,13 @@ public:
   \return Peak count
   */
   [[nodiscard]] inline std::size_t peak() const {
-    uint32_t peak = 0;
-    forEachPixelCount_(pixels_(), [&peak](const uint32_t count) { peak = std::max(peak, count); });
-    return peak;
+    if constexpr(has_peakCount_<Container>::value) {
+      return self_().peakCount();
+    } else {
+      uint32_t peak = 0;
+      forEachPixelCount_(pixels_(), [&peak](const uint32_t count) { peak = std::max(peak, count); });
+      return peak;
+    }
   }
 
   /*!
@@ -199,12 +266,17 @@ public:
   */
   [[nodiscard]] inline ResultType entropy() const {
     const auto n = static_cast<ResultType>(self_().size());
-    ResultType h{0};
-    forEachPixelCount_(pixels_(), [&h, n](const uint32_t count) {
-      const ResultType p = static_cast<ResultType>(count) / n;
-      h -= p * std::log2(p);
-    });
-    return h;
+    if constexpr(has_sumCLogC_<Container>::value) {
+      const ResultType h = std::log2(n) - self_().sumCLogC() / n;
+      return h < 0 ? 0 : h;
+    } else {
+      ResultType h{0};
+      forEachPixelCount_(pixels_(), [&h, n](const uint32_t count) {
+        const ResultType p = static_cast<ResultType>(count) / n;
+        h -= p * std::log2(p);
+      });
+      return h;
+    }
   }
 
 protected:
@@ -246,7 +318,6 @@ protected:
     return {left, top, right - left + 1, bottom - top + 1};
   }
 
-  // NOTE: calls fn(count) once per active pixel, counting on a dense array when the events are packed and on sorted keys when they are sparse
   template <typename Fn>
   inline static void forEachPixelCount_(const std::vector<cv::Point> &pixels, Fn fn) {
     constexpr uint64_t MAX_AREA_PER_EVENT = 32;
