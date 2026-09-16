@@ -7,5 +7,6 @@ var searchData=
   ['cols_4',['cols',['../classev_1_1Grid__.html#affab3298a7ab335976cfb3e6fa3c24ca',1,'ev::Grid_']]],
   ['contains_5',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a4d2384e4c8a2a7972566ed2f32181acb',1,'ev::PointCloud_::contains()']]],
   ['copyto_6',['copyTo',['../classev_1_1StampedMat.html#a51d16a045cf746d77ea073ec94810e76',1,'ev::StampedMat']]],
-  ['count_7',['count',['../classev_1_1Mat_1_1Mat__.html#a4f73fe3a4cfb519fa6901e66f6f25581',1,'ev::Mat::Mat_::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]]
+  ['count_7',['count',['../classev_1_1Mat_1_1Mat__.html#a4f73fe3a4cfb519fa6901e66f6f25581',1,'ev::Mat::Mat_::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
+  ['covariance_8',['covariance',['../classev_1_1AbstractContainer__.html#a5df6b5500346a21c737efa6338168a48',1,'ev::AbstractContainer_']]]
 ];

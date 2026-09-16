@@ -34,5 +34,6 @@ var searchData=
   ['core_2ehpp_31',['core.hpp',['../core_8hpp.html',1,'']]],
   ['count_32',['count',['../classev_1_1Mat_1_1Mat__.html#a4f73fe3a4cfb519fa6901e66f6f25581',1,'ev::Mat::Mat_::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
   ['counter_33',['Counter',['../classev_1_1Mat_1_1Counter.html',1,'ev::Mat']]],
-  ['counter_34',['counter',['../classev_1_1EventHistogram__.html#a7023954b751f89fa7466fd5036cedd3a',1,'ev::EventHistogram_']]]
+  ['counter_34',['counter',['../classev_1_1EventHistogram__.html#a7023954b751f89fa7466fd5036cedd3a',1,'ev::EventHistogram_']]],
+  ['covariance_35',['covariance',['../classev_1_1AbstractContainer__.html#a5df6b5500346a21c737efa6338168a48',1,'ev::AbstractContainer_']]]
 ];
