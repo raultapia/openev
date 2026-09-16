@@ -27,6 +27,11 @@ template <typename Container, typename = void>
 struct has_push_ : std::false_type {};
 template <typename Container>
 struct has_push_<Container, std::void_t<decltype(std::declval<Container &>().push(std::declval<const typename Container::value_type &>()))>> : std::true_type {};
+
+template <typename Container, typename = void>
+struct has_clear_ : std::false_type {};
+template <typename Container>
+struct has_clear_<Container, std::void_t<decltype(std::declval<Container &>().clear())>> : std::true_type {};
 /*! \endcond */
 
 /*!
@@ -140,10 +145,16 @@ public:
   }
 
   /*!
-  \brief Reset every cell to its freshly constructed state.
+  \brief Empty every cell.
   */
   inline void clear() {
-    cells_.assign(cells_.size(), prototype_);
+    if constexpr(has_clear_<Container>::value) {
+      for(Container &cell : cells_) {
+        cell.clear();
+      }
+    } else {
+      cells_.assign(cells_.size(), prototype_);
+    }
   }
 
   /*!
