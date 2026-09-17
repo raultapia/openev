@@ -12,6 +12,7 @@
 #include "openev/containers/grid.hpp"
 #include "openev/containers/queue.hpp"
 #include "openev/containers/sliding_window.hpp"
+#include "openev/containers/stats.hpp"
 #include "openev/containers/vector.hpp"
 
 namespace {
@@ -22,6 +23,7 @@ inline void workaroundContainers() {
   (void)ev::USING_GRID_HPP;
   (void)ev::USING_QUEUE_HPP;
   (void)ev::USING_SLIDING_WINDOW_HPP;
+  (void)ev::USING_STATS_HPP;
   (void)ev::USING_VECTOR_HPP;
 }
 } // namespace
