@@ -9,20 +9,20 @@ TEST(MatBaseTest, UpdateStatsCountDuration) {
   b.updateStats(ev::Event(3, 4, 1.0f, ev::POSITIVE));
   b.updateStats(ev::Event(3, 4, 3.0f, ev::POSITIVE));
   b.updateStats(ev::Event(3, 4, 5.0f, ev::POSITIVE));
-  EXPECT_EQ(b.count(), 3);
+  EXPECT_EQ(b.count(), 3U);
   EXPECT_FLOAT_EQ(b.duration(), 4.0f);
 }
 
 TEST(MatBaseTest, CountZeroBeforeAnyUpdate) {
   ev::Mat::Counter c(10, 10);
-  EXPECT_EQ(c.count(), 0);
+  EXPECT_EQ(c.count(), 0U);
   EXPECT_FLOAT_EQ(c.duration(), 0.0f);
 }
 
 TEST(MatBaseTest, UpdateStatsSingleEvent) {
   ev::Mat::Binary b(10, 10);
   b.updateStats(ev::Event(0, 0, 2.0f, ev::POSITIVE));
-  EXPECT_EQ(b.count(), 1);
+  EXPECT_EQ(b.count(), 1U);
   EXPECT_FLOAT_EQ(b.duration(), 0.0f);
 }
 
@@ -31,7 +31,7 @@ TEST(MatBaseTest, ResetStats) {
   b.updateStats(ev::Event(3, 4, 1.0f, ev::POSITIVE));
   b.updateStats(ev::Event(3, 4, 5.0f, ev::POSITIVE));
   b.resetStats();
-  EXPECT_EQ(b.count(), 0);
+  EXPECT_EQ(b.count(), 0U);
   EXPECT_FLOAT_EQ(b.duration(), 0.0f);
 }
 
@@ -336,4 +336,35 @@ TEST(CounterTest, FloatCoordinates) {
   counter.emplace(3.6f, 4.4f, ev::POSITIVE);
   counter.emplace(3.6f, 4.4f, ev::POSITIVE);
   EXPECT_EQ(counter(4, 4), 2);
+}
+
+TEST(MatBaseTest, StatisticsComeFromTheAccountedEvents) {
+  ev::Mat::Counter c(10, 10);
+  c.updateStats(ev::Event(3, 4, 1.0, ev::POSITIVE));
+  c.updateStats(ev::Event(5, 6, 2.0, ev::NEGATIVE));
+  c.updateStats(ev::Event(7, 8, 5.0, ev::POSITIVE));
+  EXPECT_DOUBLE_EQ(c.firstTimestamp(), 1.0);
+  EXPECT_DOUBLE_EQ(c.lastTimestamp(), 5.0);
+  EXPECT_DOUBLE_EQ(c.duration(), 4.0);
+  EXPECT_DOUBLE_EQ(c.midTime(), 3.0);
+  EXPECT_DOUBLE_EQ(c.rate(), 3.0 / 4.0);
+  EXPECT_DOUBLE_EQ(c.density(c.size()), 3.0 / 100.0);
+}
+
+TEST(MatBaseTest, CountDoesNotOverflowAShort) {
+  ev::Mat::Binary b(10, 10);
+  for(int i = 0; i < 40000; i++) {
+    b.updateStats(ev::Event(1, 1, i * 1e-3, ev::POSITIVE));
+  }
+  EXPECT_EQ(b.count(), 40000U);
+}
+
+TEST(MatBaseTest, InsertDoesNotAccount) {
+  ev::Mat::Counter c(10, 10);
+  c.insert(ev::Event(3, 4, 1.0, ev::POSITIVE));
+  EXPECT_EQ(c.count(), 0U);
+}
+
+TEST(MatBaseTest, StatisticsAddNoStorage) {
+  EXPECT_EQ(sizeof(ev::Mat::Binary), sizeof(cv::Mat_<uchar>) + 2 * sizeof(ev::TimeType) + sizeof(std::size_t));
 }

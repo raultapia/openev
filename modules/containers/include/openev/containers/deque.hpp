@@ -6,7 +6,7 @@
 #ifndef OPENEV_CONTAINERS_DEQUE_HPP
 #define OPENEV_CONTAINERS_DEQUE_HPP
 
-#include "openev/containers/abstract-container.hpp"
+#include "openev/core/stats.hpp"
 #include "openev/core/types.hpp"
 #include <deque>
 #include <opencv2/core/types.hpp>
@@ -20,7 +20,7 @@ namespace ev {
 Event deques inherit all the properties from standard C++ deques. Event deques are double-ended queues that allow fast insertion and deletion at both their beginning and their end.
 */
 template <typename T>
-class Deque_ : public std::deque<Event_<T>>, public AbstractContainer_<Deque_<T>, T> {
+class Deque_ : public std::deque<Event_<T>>, public Stats_<Deque_<T>> {
   using std::deque<Event_<T>>::deque;
   using ResultType = TimeType;
 };

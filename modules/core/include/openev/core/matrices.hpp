@@ -6,8 +6,10 @@
 #ifndef OPENEV_CORE_MATRICES_HPP
 #define OPENEV_CORE_MATRICES_HPP
 
+#include "openev/core/stats.hpp"
 #include "openev/core/types.hpp"
 #include <cmath>
+#include <cstddef>
 #include <cstring>
 #include <limits>
 #include <opencv2/core/hal/interface.h>
@@ -26,8 +28,12 @@ class Event_;
 /*! \endcond */
 
 namespace Mat {
+/*!
+\brief Matrix of event data. On top of cv::Mat_, it can account for the events it receives through updateStats().
+\note Accounting is opt-in: insert() and emplace() never call updateStats(), so a matrix that does not use the statistics pays nothing for them.
+*/
 template <typename T>
-class Mat_ : public cv::Mat_<T> {
+class Mat_ : public cv::Mat_<T>, public Stats_<Mat_<T>> {
   static_assert(std::is_arithmetic_v<T>, "ev::Mat_: the pixel type must be arithmetic.");
 
 public:
@@ -52,23 +58,31 @@ public:
   }
 
   /*!
-  \brief Number of events accounted for by updateStats() since the last resetStats().
+  \brief Number of events accounted for by updateStats().
   \return Event count
   */
-  CounterType count() const {
+  [[nodiscard]] std::size_t count() const {
     return count_;
   }
 
   /*!
-  \brief Time elapsed between the first and the last event accounted for by updateStats().
-  \return Time difference, zero if fewer than two events were accounted for
+  \brief Timestamp of the first event accounted for by updateStats().
+  \return Timestamp
   */
-  TimeType duration() const {
-    return last_ - first_;
+  [[nodiscard]] TimeType firstTimestamp() const {
+    return first_;
   }
 
   /*!
-  \brief Reset statistics (count, first timestamp, last timestamp).
+  \brief Timestamp of the last event accounted for by updateStats().
+  \return Timestamp
+  */
+  [[nodiscard]] TimeType lastTimestamp() const {
+    return last_;
+  }
+
+  /*!
+  \brief Reset statistics.
   */
   inline void resetStats() {
     first_ = 0;
@@ -93,7 +107,7 @@ public:
 private:
   TimeType first_{0};
   TimeType last_{0};
-  CounterType count_{0};
+  std::size_t count_{0};
 };
 
 /*!

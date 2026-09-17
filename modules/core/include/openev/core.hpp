@@ -7,12 +7,14 @@
 #define OPENEV_CORE_HPP
 
 #include "openev/core/matrices.hpp"
+#include "openev/core/stats.hpp"
 #include "openev/core/types.hpp"
 
 namespace {
 inline void workaroundCore() {
-  (void)ev::USING_TYPES_HPP;
   (void)ev::USING_MATRICES_HPP;
+  (void)ev::USING_STATS_HPP;
+  (void)ev::USING_TYPES_HPP;
 }
 } // namespace
 

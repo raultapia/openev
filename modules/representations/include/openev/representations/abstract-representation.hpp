@@ -6,6 +6,7 @@
 #ifndef OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 #define OPENEV_REPRESENTATIONS_ABSTRACT_REPRESENTATION_HPP
 
+#include "openev/core/stats.hpp"
 #include "openev/core/types.hpp"
 #include <array>
 #include <cstddef>
@@ -122,7 +123,7 @@ public:
 \brief This is an auxiliary class. This class cannot be instanced.
 */
 template <typename T, const RepresentationOptions Options = RepresentationOptions::NONE, typename E = int>
-class AbstractRepresentation_ {
+class AbstractRepresentation_ : public Stats_<AbstractRepresentation_<T, Options, E>> {
   static_assert(TypeHelper<T>::NumChannels == 1 || TypeHelper<T>::NumChannels == 3, "ev::AbstractRepresentation_: only 1- and 3-channel representations are supported.");
   static_assert(std::is_arithmetic_v<E>, "ev::AbstractRepresentation_: the event coordinate type must be arithmetic.");
 
@@ -145,26 +146,16 @@ public:
   [[nodiscard]] inline std::size_t count() const { return count_; }
 
   /*!
-  \brief Time difference between the oldest and the newest event integrated in the representation.
-  \return Time difference. Returns -1 if time limits are not properly set.
+  \brief Timestamp of the oldest event integrated in the representation.
+  \return Timestamp, zero without events
   */
-  [[nodiscard]] inline TimeType duration() const {
-    if(tLimits_[MIN] == std::numeric_limits<TimeType>::max() || tLimits_[MAX] == std::numeric_limits<TimeType>::min()) {
-      return -1;
-    }
-    return tLimits_[MAX] - tLimits_[MIN];
-  }
+  [[nodiscard]] inline TimeType firstTimestamp() const { return count_ == 0 ? 0 : tLimits_[MIN]; }
 
   /*!
-  \brief Calculate the midpoint time between the oldest and the newest event.
-  \return Midpoint time. Returns -1 if time limits are not properly set.
+  \brief Timestamp of the newest event integrated in the representation.
+  \return Timestamp, zero without events
   */
-  [[nodiscard]] inline TimeType midTime() const {
-    if(tLimits_[MIN] == std::numeric_limits<TimeType>::max() || tLimits_[MAX] == std::numeric_limits<TimeType>::min()) {
-      return -1;
-    }
-    return 0.5 * (tLimits_[MAX] + tLimits_[MIN]);
-  }
+  [[nodiscard]] inline TimeType lastTimestamp() const { return count_ == 0 ? 0 : tLimits_[MAX]; }
 
   /*!
   \brief Remove all events from the representation.

@@ -6,7 +6,7 @@
 #ifndef OPENEV_CONTAINERS_VECTOR_HPP
 #define OPENEV_CONTAINERS_VECTOR_HPP
 
-#include "openev/containers/abstract-container.hpp"
+#include "openev/core/stats.hpp"
 #include "openev/core/types.hpp"
 #include <opencv2/core/types.hpp>
 #include <vector>
@@ -20,7 +20,7 @@ namespace ev {
 Event vectors inherit all the properties from standard C++ vectors. Events in the vector are stored contiguously.
 */
 template <typename T>
-class Vector_ : public std::vector<Event_<T>>, public AbstractContainer_<Vector_<T>, T> {
+class Vector_ : public std::vector<Event_<T>>, public Stats_<Vector_<T>> {
   using std::vector<Event_<T>>::vector;
   using ResultType = TimeType;
 };

@@ -4,7 +4,7 @@
 #include "openev/containers/grid.hpp"
 #include "openev/containers/queue.hpp"
 #include "openev/containers/sliding_window.hpp"
-#include "openev/containers/stats.hpp"
+#include "openev/containers/stats_container.hpp"
 #include "openev/containers/vector.hpp"
 #include <array>
 #include <cmath>
@@ -22,19 +22,13 @@ protected:
     if constexpr(std::is_same_v<Container, ev::Vector> || std::is_same_v<Container, ev::CircularBuffer> || std::is_same_v<Container, ev::Deque> || std::is_same_v<Container, ev::SlidingWindow>) {
       container.resize(3);
     }
-    if constexpr(std::is_same_v<Container, ev::Queue>) {
-      container.push(ev::Event(34, 10, 1.2143, true));
-      container.push(ev::Event(45, 14, 3.2342, false));
-      container.push(ev::Event(87, 23, 5.3432, true));
-    } else {
-      container[0] = ev::Event(34, 10, 1.2143, true);
-      container[1] = ev::Event(45, 14, 3.2342, false);
-      container[2] = ev::Event(87, 23, 5.3432, true);
-    }
+    container[0] = ev::Event(34, 10, 1.2143, true);
+    container[1] = ev::Event(45, 14, 3.2342, false);
+    container[2] = ev::Event(87, 23, 5.3432, true);
   }
 };
 
-using ContainerTypes = ::testing::Types<ev::Array<3>, ev::Vector, ev::CircularBuffer, ev::Deque, ev::Queue, ev::SlidingWindow>;
+using ContainerTypes = ::testing::Types<ev::Array<3>, ev::Vector, ev::CircularBuffer, ev::Deque, ev::SlidingWindow>;
 TYPED_TEST_SUITE(ContainerTestFixture, ContainerTypes);
 
 TYPED_TEST(ContainerTestFixture, Duration) {
@@ -124,6 +118,17 @@ TEST(CircularBuffer, EmplaceBack) {
   buffer.emplace_back(30, 40, 2.0, false);
   EXPECT_EQ(buffer[0], ev::Event(10, 20, 1.0, true));
   EXPECT_EQ(buffer[1], ev::Event(30, 40, 2.0, false));
+}
+
+TEST(Queue, IsAPlainFifo) {
+  ev::Queue queue;
+  queue.push(ev::Event(10, 20, 1.0, true));
+  queue.emplace(30, 40, 2.0, false);
+  ASSERT_EQ(queue.size(), 2U);
+  EXPECT_EQ(queue.front(), ev::Event(10, 20, 1.0, true));
+  EXPECT_EQ(queue.back(), ev::Event(30, 40, 2.0, false));
+  queue.pop();
+  EXPECT_EQ(queue.front(), ev::Event(30, 40, 2.0, false));
 }
 
 class SlidingWindowTest : public ::testing::Test {
@@ -310,16 +315,6 @@ TEST(Entropy, FloatCoordinatesRoundToPixel) {
   EXPECT_DOUBLE_EQ(v.entropy(), 0.0);
 }
 
-TEST(Entropy, QueuePreserves) {
-  ev::Queue q;
-  for(int i = 0; i < 100; i++) {
-    q.emplace(i % 2, 0, i * 1e-3, true);
-  }
-  EXPECT_DOUBLE_EQ(q.entropy(), 1.0);
-  EXPECT_EQ(q.size(), 100U);
-  EXPECT_DOUBLE_EQ(q.entropy(), 1.0);
-}
-
 TEST(Entropy, SparseFallbackMatchesCompact) {
   ev::Vector compact;
   ev::Vector sparse;
@@ -348,32 +343,6 @@ TEST(Entropy, NegativeCoordinatesAreDistinctPixels) {
   EXPECT_DOUBLE_EQ(v.entropy(), 1.0);
 }
 
-TEST(Queue, StatisticsPreserveContents) {
-  ev::Queue q;
-  for(int i = 0; i < 100; i++) {
-    q.emplace(i % 40, i % 30, i * 1e-3, i % 2);
-  }
-
-  (void)q.duration();
-  (void)q.rate();
-  (void)q.density(cv::Size(40, 30));
-  (void)q.midTime();
-  (void)q.mean();
-  (void)q.meanPoint();
-  (void)q.meanTime();
-  (void)q.polarityRatio(ev::POSITIVE);
-  (void)q.boundingBox();
-  (void)q.covariance();
-  (void)q.activePixels();
-  (void)q.fillRatio(cv::Size(40, 30));
-  (void)q.peak();
-  (void)q.entropy();
-
-  EXPECT_EQ(q.size(), 100U);
-  EXPECT_EQ(q.front(), ev::Event(0, 0, 0.0, false));
-  EXPECT_EQ(q.back(), ev::Event(99 % 40, 99 % 30, 99e-3, true));
-}
-
 template <typename Grid>
 Grid makeGrid(const cv::Size sensor = cv::Size(640, 480), const cv::Size cells = cv::Size(4, 3)) {
   if constexpr(std::is_same_v<Grid, ev::Grid_<ev::CircularBuffer>>) {
@@ -391,7 +360,7 @@ protected:
   Grid grid = makeGrid<Grid>();
 };
 
-using GridTypes = ::testing::Types<ev::Grid_<ev::Vector>, ev::Grid_<ev::Deque>, ev::Grid_<ev::Queue>, ev::Grid_<ev::CircularBuffer>, ev::Grid_<ev::SlidingWindow>, ev::Grid_<ev::Stats>>;
+using GridTypes = ::testing::Types<ev::Grid_<ev::Vector>, ev::Grid_<ev::Deque>, ev::Grid_<ev::Queue>, ev::Grid_<ev::CircularBuffer>, ev::Grid_<ev::SlidingWindow>, ev::Grid_<ev::StatsContainer>>;
 TYPED_TEST_SUITE(GridTestFixture, GridTypes);
 
 TYPED_TEST(GridTestFixture, ShapeMatchesConstructor) {
@@ -566,9 +535,9 @@ TEST(Grid, PrototypeIsCopiedToEveryCell) {
   }
 }
 
-class StatsTest : public ::testing::Test {
+class StatsContainerTest : public ::testing::Test {
 protected:
-  ev::Stats stats;
+  ev::StatsContainer stats;
   ev::Vector vector;
 
   void SetUp() override {
@@ -584,12 +553,12 @@ protected:
   }
 };
 
-TEST_F(StatsTest, SizeMatchesInsertions) {
+TEST_F(StatsContainerTest, SizeMatchesInsertions) {
   EXPECT_EQ(stats.size(), 20000U);
   EXPECT_FALSE(stats.empty());
 }
 
-TEST_F(StatsTest, DurationRateDensityAndMidTimeMatchVector) {
+TEST_F(StatsContainerTest, DurationRateDensityAndMidTimeMatchVector) {
   EXPECT_DOUBLE_EQ(stats.duration(), vector.duration());
   EXPECT_DOUBLE_EQ(stats.rate(), vector.rate());
   EXPECT_DOUBLE_EQ(stats.density(cv::Size(640, 480)), vector.density(cv::Size(640, 480)));
@@ -597,7 +566,7 @@ TEST_F(StatsTest, DurationRateDensityAndMidTimeMatchVector) {
   EXPECT_DOUBLE_EQ(stats.midTime(), vector.midTime());
 }
 
-TEST_F(StatsTest, MeansAndPolarityRatioMatchVector) {
+TEST_F(StatsContainerTest, MeansAndPolarityRatioMatchVector) {
   const ev::Eventd a = stats.mean();
   const ev::Eventd b = vector.mean();
   EXPECT_NEAR(a.x, b.x, 1e-9);
@@ -614,11 +583,11 @@ TEST_F(StatsTest, MeansAndPolarityRatioMatchVector) {
   EXPECT_LT(stats.polarityRatio(ev::POSITIVE), 0.65);
 }
 
-TEST_F(StatsTest, EntropyMatchesVector) {
+TEST_F(StatsContainerTest, EntropyMatchesVector) {
   EXPECT_NEAR(stats.entropy(), vector.entropy(), 1e-9);
 }
 
-TEST_F(StatsTest, SpatialStatisticsMatchVector) {
+TEST_F(StatsContainerTest, SpatialStatisticsMatchVector) {
   EXPECT_EQ(stats.boundingBox(), vector.boundingBox());
   EXPECT_EQ(stats.boundingBox() & cv::Rect(0, 0, 640, 480), stats.boundingBox());
   EXPECT_EQ(stats.activePixels(), vector.activePixels());
@@ -630,7 +599,7 @@ TEST_F(StatsTest, SpatialStatisticsMatchVector) {
   EXPECT_DOUBLE_EQ(stats.fillRatio(cv::Size(640, 480)), static_cast<double>(stats.activePixels()) / 307200.0);
 }
 
-TEST_F(StatsTest, CovarianceMatchesVector) {
+TEST_F(StatsContainerTest, CovarianceMatchesVector) {
   const cv::Matx22d a = stats.covariance();
   const cv::Matx22d b = vector.covariance();
   EXPECT_NEAR(a(0, 0), b(0, 0), 1e-6);
@@ -638,7 +607,7 @@ TEST_F(StatsTest, CovarianceMatchesVector) {
   EXPECT_NEAR(a(0, 1), b(0, 1), 1e-6);
 }
 
-TEST_F(StatsTest, ClearForgetsEverything) {
+TEST_F(StatsContainerTest, ClearForgetsEverything) {
   stats.clear();
   EXPECT_TRUE(stats.empty());
   stats.push(ev::Event(5, 5, 1.0, true));
@@ -647,15 +616,15 @@ TEST_F(StatsTest, ClearForgetsEverything) {
   EXPECT_DOUBLE_EQ(stats.duration(), 1.0);
 }
 
-TEST(Stats, ZeroSpanRateIsInfinite) {
-  ev::Stats stats;
+TEST(StatsContainer, ZeroSpanRateIsInfinite) {
+  ev::StatsContainer stats;
   stats.push(ev::Event(1, 1, 5.0, true));
   EXPECT_DOUBLE_EQ(stats.duration(), 0.0);
   EXPECT_TRUE(std::isinf(stats.rate()));
 }
 
-TEST(Stats, EntropyOfKnownDistributions) {
-  ev::Stats stats;
+TEST(StatsContainer, EntropyOfKnownDistributions) {
+  ev::StatsContainer stats;
   for(int i = 0; i < 100; i++) {
     stats.push(ev::Event(i % 2, 0, i * 1e-3, true));
   }
@@ -667,8 +636,8 @@ TEST(Stats, EntropyOfKnownDistributions) {
   EXPECT_NEAR(stats.entropy(), 4.0, 1e-12);
 }
 
-TEST(Stats, FloatCoordinatesAreRounded) {
-  ev::Statsf stats;
+TEST(StatsContainer, FloatCoordinatesAreRounded) {
+  ev::StatsContainerf stats;
   ev::Vectorf vector;
   vector.emplace_back(0.4f, 0.4f, 1.0, true);
   vector.emplace_back(0.6f, 0.6f, 2.0, true);
@@ -683,8 +652,8 @@ TEST(Stats, FloatCoordinatesAreRounded) {
   EXPECT_EQ(stats.activePixels(), 2U);
 }
 
-TEST(Stats, WorksAsGridCell) {
-  ev::Grid_<ev::Stats> grid(cv::Size(640, 480), cv::Size(4, 3));
+TEST(StatsContainer, WorksAsGridCell) {
+  ev::Grid_<ev::StatsContainer> grid(cv::Size(640, 480), cv::Size(4, 3));
   EXPECT_TRUE(grid.insert(ev::Event(10, 10, 1.0, true)));
   EXPECT_TRUE(grid.insert(ev::Event(20, 20, 3.0, false)));
   EXPECT_TRUE(grid.insert(ev::Event(639, 479, 5.0, true)));
@@ -698,8 +667,8 @@ TEST(Stats, WorksAsGridCell) {
   EXPECT_TRUE(grid(0, 0).empty());
 }
 
-TEST(Stats, EntropyBeyondTheTabulatedCounts) {
-  ev::Stats stats;
+TEST(StatsContainer, EntropyBeyondTheTabulatedCounts) {
+  ev::StatsContainer stats;
   ev::Vector vector;
   for(int i = 0; i < 10000; i++) {
     const ev::Event e(i % 3 == 0 ? 1 : 0, 0, i * 1e-3, true);
@@ -709,15 +678,15 @@ TEST(Stats, EntropyBeyondTheTabulatedCounts) {
   EXPECT_NEAR(stats.entropy(), vector.entropy(), 1e-9);
 }
 
-TEST(Stats, FirstEventBoundsTheBox) {
-  ev::Stats stats;
+TEST(StatsContainer, FirstEventBoundsTheBox) {
+  ev::StatsContainer stats;
   stats.push(ev::Event(300, 200, 1.0, true));
   EXPECT_EQ(stats.boundingBox(), cv::Rect(300, 200, 1, 1));
   EXPECT_DOUBLE_EQ(stats.entropy(), 0.0);
 }
 
-TEST(Stats, BoxGrowsInEveryDirection) {
-  ev::Stats stats;
+TEST(StatsContainer, BoxGrowsInEveryDirection) {
+  ev::StatsContainer stats;
   ev::Vector vector;
   const std::array<ev::Event, 6> events{ev::Event(100, 100, 1.0, true), ev::Event(130, 100, 2.0, true), ev::Event(100, 140, 3.0, false), ev::Event(20, 100, 4.0, true), ev::Event(100, 5, 5.0, false), ev::Event(-40, -30, 6.0, true)};
   for(const ev::Event &e : events) {
@@ -730,8 +699,8 @@ TEST(Stats, BoxGrowsInEveryDirection) {
   EXPECT_NEAR(stats.meanPoint().x, vector.meanPoint().x, 1e-9);
 }
 
-TEST(Stats, GrowthKeepsTheCounts) {
-  ev::Stats stats;
+TEST(StatsContainer, GrowthKeepsTheCounts) {
+  ev::StatsContainer stats;
   ev::Vector vector;
   std::mt19937 rng(3);
   std::uniform_int_distribution<int> x(0, 639);
@@ -749,8 +718,8 @@ TEST(Stats, GrowthKeepsTheCounts) {
   EXPECT_NEAR(stats.entropy(), vector.entropy(), 1e-9);
 }
 
-TEST(Stats, ClearThenPushStartsAgain) {
-  ev::Stats stats;
+TEST(StatsContainer, ClearThenPushStartsAgain) {
+  ev::StatsContainer stats;
   stats.push(ev::Event(0, 0, 1.0, true));
   stats.push(ev::Event(639, 479, 2.0, true));
   stats.clear();
@@ -761,8 +730,8 @@ TEST(Stats, ClearThenPushStartsAgain) {
   EXPECT_DOUBLE_EQ(stats.entropy(), 0.0);
 }
 
-TEST(Stats, ActivePixelsCountsEachPixelOnce) {
-  ev::Stats stats;
+TEST(StatsContainer, ActivePixelsCountsEachPixelOnce) {
+  ev::StatsContainer stats;
   for(int i = 0; i < 100; i++) {
     stats.push(ev::Event(i % 4, (i / 4) % 4, i * 1e-3, true));
   }
@@ -776,7 +745,7 @@ TEST(Stats, ActivePixelsCountsEachPixelOnce) {
   EXPECT_DOUBLE_EQ(stats.covariance()(0, 0), 0.0);
 }
 
-TEST(Stats, HotPixelDominatesThePeak) {
+TEST(StatsContainer, HotPixelDominatesThePeak) {
   ev::Vector v;
   for(int i = 0; i < 50; i++) {
     v.emplace_back(i, i, i * 1e-3, true);
@@ -785,7 +754,7 @@ TEST(Stats, HotPixelDominatesThePeak) {
     v.emplace_back(7, 7, 1.0 + i * 1e-3, true);
   }
   EXPECT_EQ(v.peak(), 201U);
-  ev::Stats stats;
+  ev::StatsContainer stats;
   for(const ev::Event &e : v) {
     stats.push(e);
   }

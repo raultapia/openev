@@ -48,14 +48,7 @@ std::vector<ev::Event> makeTimelineEvents(const std::size_t count, const double 
 
 template <typename Container>
 void fillSequential(Container &container, const std::vector<ev::Event> &events) {
-  if constexpr(std::is_same_v<Container, ev::Queue>) {
-    while(!container.empty()) {
-      container.pop();
-    }
-    for(const auto &event : events) {
-      container.push(event);
-    }
-  } else if constexpr(std::is_same_v<Container, ev::Vector> || std::is_same_v<Container, ev::Deque>) {
+  if constexpr(std::is_same_v<Container, ev::Vector> || std::is_same_v<Container, ev::Deque>) {
     container.resize(events.size());
     for(std::size_t i = 0; i < events.size(); ++i) {
       container[i] = events[i];
@@ -235,9 +228,9 @@ void benchmarkGridCell(benchmark::State &state, const char *label) {
   state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
 }
 
-void benchmarkStatsInsert(benchmark::State &state, const char *label) {
+void benchmarkStatsContainerInsert(benchmark::State &state, const char *label) {
   const auto events = makeEvents(static_cast<std::size_t>(state.range(0)));
-  ev::Stats stats;
+  ev::StatsContainer stats;
 
   for(auto _ : state) {
     stats.clear();
@@ -254,9 +247,9 @@ void benchmarkStatsInsert(benchmark::State &state, const char *label) {
 }
 
 template <typename Fn>
-void benchmarkStatsQuery(benchmark::State &state, const char *label, Fn fn) {
+void benchmarkStatsContainerQuery(benchmark::State &state, const char *label, Fn fn) {
   const auto events = makeEvents(static_cast<std::size_t>(state.range(0)));
-  ev::Stats stats;
+  ev::StatsContainer stats;
   for(const auto &event : events) {
     stats.push(event);
   }
@@ -269,12 +262,12 @@ void benchmarkStatsQuery(benchmark::State &state, const char *label, Fn fn) {
   state.SetLabel(label);
 }
 
-void benchmarkStatsEntropy(benchmark::State &state, const char *label) {
-  benchmarkStatsQuery(state, label, [](const ev::Stats &stats) { return stats.entropy(); });
+void benchmarkStatsContainerEntropy(benchmark::State &state, const char *label) {
+  benchmarkStatsContainerQuery(state, label, [](const ev::StatsContainer &stats) { return stats.entropy(); });
 }
 
-void benchmarkStatsMean(benchmark::State &state, const char *label) {
-  benchmarkStatsQuery(state, label, [](const ev::Stats &stats) { return stats.mean(); });
+void benchmarkStatsContainerMean(benchmark::State &state, const char *label) {
+  benchmarkStatsContainerQuery(state, label, [](const ev::StatsContainer &stats) { return stats.mean(); });
 }
 
 template <typename Container>
@@ -400,62 +393,51 @@ void benchmarkArrayEntropy(benchmark::State &state, const char *label) {
 static void BM_VectorDuration(benchmark::State &state) { benchmarkDuration<ev::Vector>(state, "vector"); }
 static void BM_DequeDuration(benchmark::State &state) { benchmarkDuration<ev::Deque>(state, "deque"); }
 static void BM_CircularDuration(benchmark::State &state) { benchmarkDuration<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueDuration(benchmark::State &state) { benchmarkDuration<ev::Queue>(state, "queue"); }
 
 static void BM_VectorRate(benchmark::State &state) { benchmarkRate<ev::Vector>(state, "vector"); }
 static void BM_DequeRate(benchmark::State &state) { benchmarkRate<ev::Deque>(state, "deque"); }
 static void BM_CircularRate(benchmark::State &state) { benchmarkRate<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueRate(benchmark::State &state) { benchmarkRate<ev::Queue>(state, "queue"); }
 
 static void BM_VectorMean(benchmark::State &state) { benchmarkMean<ev::Vector>(state, "vector"); }
 static void BM_DequeMean(benchmark::State &state) { benchmarkMean<ev::Deque>(state, "deque"); }
 static void BM_CircularMean(benchmark::State &state) { benchmarkMean<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueMean(benchmark::State &state) { benchmarkMean<ev::Queue>(state, "queue"); }
 
 static void BM_VectorMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::Vector>(state, "vector"); }
 static void BM_DequeMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::Deque>(state, "deque"); }
 static void BM_CircularMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueMeanPoint(benchmark::State &state) { benchmarkMeanPoint<ev::Queue>(state, "queue"); }
 
 static void BM_VectorMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::Vector>(state, "vector"); }
 static void BM_DequeMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::Deque>(state, "deque"); }
 static void BM_CircularMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueMeanTime(benchmark::State &state) { benchmarkMeanTime<ev::Queue>(state, "queue"); }
 
 static void BM_VectorPolarityRatio(benchmark::State &state) { benchmarkPolarityRatio<ev::Vector>(state, "vector"); }
 static void BM_DequePolarityRatio(benchmark::State &state) { benchmarkPolarityRatio<ev::Deque>(state, "deque"); }
 static void BM_CircularPolarityRatio(benchmark::State &state) { benchmarkPolarityRatio<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueuePolarityRatio(benchmark::State &state) { benchmarkPolarityRatio<ev::Queue>(state, "queue"); }
 static void BM_SlidingWindowPolarityRatio(benchmark::State &state) { benchmarkPolarityRatio<ev::SlidingWindow>(state, "sliding_window"); }
 
 static void BM_VectorBoundingBox(benchmark::State &state) { benchmarkBoundingBox<ev::Vector>(state, "vector"); }
 static void BM_DequeBoundingBox(benchmark::State &state) { benchmarkBoundingBox<ev::Deque>(state, "deque"); }
 static void BM_CircularBoundingBox(benchmark::State &state) { benchmarkBoundingBox<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueBoundingBox(benchmark::State &state) { benchmarkBoundingBox<ev::Queue>(state, "queue"); }
 static void BM_SlidingWindowBoundingBox(benchmark::State &state) { benchmarkBoundingBox<ev::SlidingWindow>(state, "sliding_window"); }
 
 static void BM_VectorCovariance(benchmark::State &state) { benchmarkCovariance<ev::Vector>(state, "vector"); }
 static void BM_DequeCovariance(benchmark::State &state) { benchmarkCovariance<ev::Deque>(state, "deque"); }
 static void BM_CircularCovariance(benchmark::State &state) { benchmarkCovariance<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueCovariance(benchmark::State &state) { benchmarkCovariance<ev::Queue>(state, "queue"); }
 static void BM_SlidingWindowCovariance(benchmark::State &state) { benchmarkCovariance<ev::SlidingWindow>(state, "sliding_window"); }
 
 static void BM_VectorActivePixels(benchmark::State &state) { benchmarkActivePixels<ev::Vector>(state, "vector"); }
 static void BM_DequeActivePixels(benchmark::State &state) { benchmarkActivePixels<ev::Deque>(state, "deque"); }
 static void BM_CircularActivePixels(benchmark::State &state) { benchmarkActivePixels<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueActivePixels(benchmark::State &state) { benchmarkActivePixels<ev::Queue>(state, "queue"); }
 static void BM_SlidingWindowActivePixels(benchmark::State &state) { benchmarkActivePixels<ev::SlidingWindow>(state, "sliding_window"); }
 
 static void BM_VectorPeak(benchmark::State &state) { benchmarkPeak<ev::Vector>(state, "vector"); }
 static void BM_DequePeak(benchmark::State &state) { benchmarkPeak<ev::Deque>(state, "deque"); }
 static void BM_CircularPeak(benchmark::State &state) { benchmarkPeak<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueuePeak(benchmark::State &state) { benchmarkPeak<ev::Queue>(state, "queue"); }
 static void BM_SlidingWindowPeak(benchmark::State &state) { benchmarkPeak<ev::SlidingWindow>(state, "sliding_window"); }
 
 static void BM_VectorMidTime(benchmark::State &state) { benchmarkMidTime<ev::Vector>(state, "vector"); }
 static void BM_DequeMidTime(benchmark::State &state) { benchmarkMidTime<ev::Deque>(state, "deque"); }
 static void BM_CircularMidTime(benchmark::State &state) { benchmarkMidTime<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueMidTime(benchmark::State &state) { benchmarkMidTime<ev::Queue>(state, "queue"); }
 static void BM_SlidingWindowDuration(benchmark::State &state) { benchmarkDuration<ev::SlidingWindow>(state, "sliding_window"); }
 static void BM_SlidingWindowRate(benchmark::State &state) { benchmarkRate<ev::SlidingWindow>(state, "sliding_window"); }
 static void BM_SlidingWindowMean(benchmark::State &state) { benchmarkMean<ev::SlidingWindow>(state, "sliding_window"); }
@@ -466,7 +448,6 @@ static void BM_SlidingWindowMidTime(benchmark::State &state) { benchmarkMidTime<
 static void BM_VectorEntropy(benchmark::State &state) { benchmarkEntropy<ev::Vector>(state, "vector"); }
 static void BM_DequeEntropy(benchmark::State &state) { benchmarkEntropy<ev::Deque>(state, "deque"); }
 static void BM_CircularEntropy(benchmark::State &state) { benchmarkEntropy<ev::CircularBuffer>(state, "circular"); }
-static void BM_QueueEntropy(benchmark::State &state) { benchmarkEntropy<ev::Queue>(state, "queue"); }
 static void BM_SlidingWindowEntropy(benchmark::State &state) { benchmarkEntropy<ev::SlidingWindow>(state, "sliding_window"); }
 
 static void BM_Array1024Duration(benchmark::State &state) { benchmarkArrayDuration<ev::Array<1024>>(state, "array"); }
@@ -502,84 +483,72 @@ static void BM_GridVectorInsert(benchmark::State &state) { benchmarkGridInsert<e
 static void BM_GridDequeInsert(benchmark::State &state) { benchmarkGridInsert<ev::Deque>(state, "grid_deque"); }
 static void BM_GridCircularInsert(benchmark::State &state) { benchmarkGridInsert<ev::CircularBuffer>(state, "grid_circular"); }
 static void BM_GridQueueInsert(benchmark::State &state) { benchmarkGridInsert<ev::Queue>(state, "grid_queue"); }
-static void BM_GridStatsInsert(benchmark::State &state) { benchmarkGridInsert<ev::Stats>(state, "grid_stats"); }
+static void BM_GridStatsContainerInsert(benchmark::State &state) { benchmarkGridInsert<ev::StatsContainer>(state, "grid_stats_container"); }
 static void BM_GridSlidingWindowInsert(benchmark::State &state) { benchmarkGridInsert<ev::SlidingWindow>(state, "grid_sliding_window"); }
 static void BM_GridVectorCell(benchmark::State &state) { benchmarkGridCell<ev::Vector>(state, "grid_vector"); }
 
-static void BM_StatsInsert(benchmark::State &state) { benchmarkStatsInsert(state, "stats"); }
-static void BM_StatsEntropy(benchmark::State &state) { benchmarkStatsEntropy(state, "stats"); }
-static void BM_StatsMean(benchmark::State &state) { benchmarkStatsMean(state, "stats"); }
+static void BM_StatsContainerInsert(benchmark::State &state) { benchmarkStatsContainerInsert(state, "stats_container"); }
+static void BM_StatsContainerEntropy(benchmark::State &state) { benchmarkStatsContainerEntropy(state, "stats_container"); }
+static void BM_StatsContainerMean(benchmark::State &state) { benchmarkStatsContainerMean(state, "stats_container"); }
 
 BENCHMARK(BM_VectorDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowDuration)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowRate)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowMeanPoint)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowMeanTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorPolarityRatio)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequePolarityRatio)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularPolarityRatio)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueuePolarityRatio)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowPolarityRatio)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorBoundingBox)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeBoundingBox)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularBoundingBox)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueBoundingBox)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowBoundingBox)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorCovariance)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeCovariance)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularCovariance)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueCovariance)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowCovariance)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorActivePixels)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeActivePixels)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularActivePixels)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueActivePixels)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowActivePixels)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorPeak)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequePeak)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularPeak)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueuePeak)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowPeak)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowMidTime)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_VectorEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_DequeEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_CircularEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_QueueEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_SlidingWindowEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 
 BENCHMARK(BM_Array1024Duration)->Arg(1024);
@@ -616,9 +585,9 @@ BENCHMARK(BM_GridDequeInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 
 BENCHMARK(BM_GridCircularInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
 BENCHMARK(BM_GridQueueInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
 BENCHMARK(BM_GridSlidingWindowInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
-BENCHMARK(BM_GridStatsInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
+BENCHMARK(BM_GridStatsContainerInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
 BENCHMARK(BM_GridVectorCell)->Args({1 << 14, 4})->Args({1 << 18, 16});
-BENCHMARK(BM_StatsInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18)->UseManualTime();
-BENCHMARK(BM_StatsEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_StatsMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_StatsContainerInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18)->UseManualTime();
+BENCHMARK(BM_StatsContainerEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_StatsContainerMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 } // namespace

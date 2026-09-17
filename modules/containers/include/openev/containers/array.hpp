@@ -6,7 +6,7 @@
 #ifndef OPENEV_CONTAINERS_ARRAY_HPP
 #define OPENEV_CONTAINERS_ARRAY_HPP
 
-#include "openev/containers/abstract-container.hpp"
+#include "openev/core/stats.hpp"
 #include "openev/core/types.hpp"
 #include <array>
 #include <cstddef>
@@ -21,7 +21,7 @@ namespace ev {
 Event arrays inherit all the properties from standard C++ arrays. Events in the array are stored contiguously.
 */
 template <typename T, std::size_t N>
-class Array_ : public std::array<Event_<T>, N>, public AbstractContainer_<Array_<T, N>, T> {
+class Array_ : public std::array<Event_<T>, N>, public Stats_<Array_<T, N>> {
   static_assert(N > 0, "ev::Array_: the size must be greater than zero.");
   using std::array<Event_<T>, N>::array;
   using ResultType = TimeType;

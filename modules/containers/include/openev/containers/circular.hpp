@@ -6,7 +6,7 @@
 #ifndef OPENEV_CONTAINERS_CIRCULAR_HPP
 #define OPENEV_CONTAINERS_CIRCULAR_HPP
 
-#include "openev/containers/abstract-container.hpp"
+#include "openev/core/stats.hpp"
 #include "openev/core/types.hpp"
 #include <boost/circular_buffer.hpp>
 #include <opencv2/core/types.hpp>
@@ -21,7 +21,7 @@ namespace ev {
 Event circular buffers inherit all the properties from boost circular buffers. Circular buffers are fixed-size data structures in a circular fashion (i.e, the end of the buffer is reached, it wraps around to the beginning).
 */
 template <typename T>
-class CircularBuffer_ : public boost::circular_buffer<Event_<T>>, public AbstractContainer_<CircularBuffer_<T>, T> {
+class CircularBuffer_ : public boost::circular_buffer<Event_<T>>, public Stats_<CircularBuffer_<T>> {
   using boost::circular_buffer<Event_<T>>::circular_buffer;
   using ResultType = TimeType;
 
