@@ -12,7 +12,6 @@
 #include <cmath>
 #include <cstddef>
 #include <cstdint>
-#include <opencv2/core/base.hpp>
 #include <opencv2/core/matx.hpp>
 #include <opencv2/core/types.hpp>
 #include <type_traits>
@@ -72,9 +71,6 @@ public:
   */
   [[nodiscard]] inline ResultType rate() const {
     const ResultType span = duration();
-    if(span == 0) {
-      CV_Error(cv::Error::StsDivByZero, "ev::AbstractContainer_::rate: the events span no time.");
-    }
     return static_cast<ResultType>(self_().size()) / span;
   }
 
@@ -84,9 +80,6 @@ public:
   \return Events per square pixel
   */
   [[nodiscard]] inline ResultType density(const cv::Size size) const {
-    if(size.width <= 0 || size.height <= 0) {
-      CV_Error(cv::Error::StsBadArg, "ev::AbstractContainer_::density: the size must be positive.");
-    }
     return static_cast<ResultType>(self_().size()) / (static_cast<ResultType>(size.width) * static_cast<ResultType>(size.height));
   }
 
@@ -110,9 +103,6 @@ public:
   \return Fraction of active pixels, between 0 and 1
   */
   [[nodiscard]] inline ResultType fillRatio(const cv::Size size) const {
-    if(size.width <= 0 || size.height <= 0) {
-      CV_Error(cv::Error::StsBadArg, "ev::AbstractContainer_::fillRatio: the size must be positive.");
-    }
     return static_cast<ResultType>(activePixels()) / (static_cast<ResultType>(size.width) * static_cast<ResultType>(size.height));
   }
 
