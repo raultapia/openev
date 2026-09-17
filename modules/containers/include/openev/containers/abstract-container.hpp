@@ -277,7 +277,7 @@ protected:
 
   [[nodiscard]] inline static cv::Point pixel_(const Event_<T> &e) {
     if constexpr(std::is_floating_point_v<T>) {
-      return {static_cast<int>(std::lround(e.x)), static_cast<int>(std::lround(e.y))};
+      return {round_(e.x), round_(e.y)};
     } else {
       return {static_cast<int>(e.x), static_cast<int>(e.y)};
     }

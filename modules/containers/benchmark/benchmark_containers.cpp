@@ -2,6 +2,7 @@
 
 #include <benchmark/benchmark.h>
 
+#include <chrono>
 #include <cstddef>
 #include <cstdint>
 #include <random>
@@ -78,7 +79,7 @@ void fillSequential(Container &container, const std::vector<ev::Event> &events) 
 }
 
 template <typename Container, typename Fn>
-void benchmarkReadOnlyMetric(benchmark::State &state, const char *label, Fn fn) {
+void benchmarkReadOnlyMetric(benchmark::State &state, const char *label, Fn fn, const bool traverses = true) {
   const auto events = [](const std::size_t count) {
     if constexpr(std::is_same_v<Container, ev::SlidingWindow>) {
       return makeTimelineEvents(count);
@@ -100,11 +101,13 @@ void benchmarkReadOnlyMetric(benchmark::State &state, const char *label, Fn fn) 
   }
 
   state.SetLabel(label);
-  state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
+  if(traverses) {
+    state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
+  }
 }
 
 template <typename Container, typename Fn>
-void benchmarkArrayMetric(benchmark::State &state, const char *label, Fn fn) {
+void benchmarkArrayMetric(benchmark::State &state, const char *label, Fn fn, const bool traverses = true) {
   const auto events = makeEvents(static_cast<std::size_t>(state.range(0)));
   Container container;
   fillSequential(container, events);
@@ -115,7 +118,16 @@ void benchmarkArrayMetric(benchmark::State &state, const char *label, Fn fn) {
   }
 
   state.SetLabel(label);
-  state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
+  if(traverses) {
+    state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
+  }
+}
+
+template <typename Fn>
+void timeIteration(benchmark::State &state, Fn fn) {
+  const auto start = std::chrono::steady_clock::now();
+  fn();
+  state.SetIterationTime(std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count());
 }
 
 void benchmarkCircularEmplaceBack(benchmark::State &state, const char *label) {
@@ -123,13 +135,12 @@ void benchmarkCircularEmplaceBack(benchmark::State &state, const char *label) {
   ev::CircularBuffer container(events.size());
 
   for(auto _ : state) {
-    state.PauseTiming();
     container.clear();
-    state.ResumeTiming();
-
-    for(const auto &event : events) {
-      container.emplace_back(event.x, event.y, event.t, event.p);
-    }
+    timeIteration(state, [&container, &events] {
+      for(const auto &event : events) {
+        container.emplace_back(event.x, event.y, event.t, event.p);
+      }
+    });
     benchmark::ClobberMemory();
   }
 
@@ -142,13 +153,12 @@ void benchmarkCircularEmplaceFront(benchmark::State &state, const char *label) {
   ev::CircularBuffer container(events.size());
 
   for(auto _ : state) {
-    state.PauseTiming();
     container.clear();
-    state.ResumeTiming();
-
-    for(const auto &event : events) {
-      container.emplace_front(event.x, event.y, event.t, event.p);
-    }
+    timeIteration(state, [&container, &events] {
+      for(const auto &event : events) {
+        container.emplace_front(event.x, event.y, event.t, event.p);
+      }
+    });
     benchmark::ClobberMemory();
   }
 
@@ -161,13 +171,12 @@ void benchmarkSlidingWindowPush(benchmark::State &state, const char *label) {
   ev::SlidingWindow container(0.1);
 
   for(auto _ : state) {
-    state.PauseTiming();
     container.clear();
-    state.ResumeTiming();
-
-    for(const auto &event : events) {
-      container.push(event);
-    }
+    timeIteration(state, [&container, &events] {
+      for(const auto &event : events) {
+        container.push(event);
+      }
+    });
     benchmark::ClobberMemory();
   }
 
@@ -197,13 +206,12 @@ void benchmarkGridInsert(benchmark::State &state, const char *label) {
   auto grid = makeGrid<Container>(static_cast<int>(state.range(1)), events);
 
   for(auto _ : state) {
-    state.PauseTiming();
     grid.clear();
-    state.ResumeTiming();
-
-    for(const auto &event : events) {
-      benchmark::DoNotOptimize(grid.insert(event));
-    }
+    timeIteration(state, [&grid, &events] {
+      for(const auto &event : events) {
+        benchmark::DoNotOptimize(grid.insert(event));
+      }
+    });
     benchmark::ClobberMemory();
   }
 
@@ -232,13 +240,12 @@ void benchmarkStatsInsert(benchmark::State &state, const char *label) {
   ev::Stats stats;
 
   for(auto _ : state) {
-    state.PauseTiming();
     stats.clear();
-    state.ResumeTiming();
-
-    for(const auto &event : events) {
-      stats.push(event);
-    }
+    timeIteration(state, [&stats, &events] {
+      for(const auto &event : events) {
+        stats.push(event);
+      }
+    });
     benchmark::ClobberMemory();
   }
 
@@ -260,7 +267,6 @@ void benchmarkStatsQuery(benchmark::State &state, const char *label, Fn fn) {
   }
 
   state.SetLabel(label);
-  state.SetItemsProcessed(state.iterations() * static_cast<int64_t>(events.size()));
 }
 
 void benchmarkStatsEntropy(benchmark::State &state, const char *label) {
@@ -273,12 +279,12 @@ void benchmarkStatsMean(benchmark::State &state, const char *label) {
 
 template <typename Container>
 void benchmarkDuration(benchmark::State &state, const char *label) {
-  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.duration(); });
+  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.duration(); }, false);
 }
 
 template <typename Container>
 void benchmarkRate(benchmark::State &state, const char *label) {
-  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.rate(); });
+  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.rate(); }, false);
 }
 
 template <typename Container>
@@ -323,7 +329,7 @@ void benchmarkPeak(benchmark::State &state, const char *label) {
 
 template <typename Container>
 void benchmarkMidTime(benchmark::State &state, const char *label) {
-  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.midTime(); });
+  benchmarkReadOnlyMetric<Container>(state, label, [](const auto &container) { return container.midTime(); }, false);
 }
 
 template <typename Container>
@@ -333,12 +339,12 @@ void benchmarkEntropy(benchmark::State &state, const char *label) {
 
 template <typename Container>
 void benchmarkArrayDuration(benchmark::State &state, const char *label) {
-  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.duration(); });
+  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.duration(); }, false);
 }
 
 template <typename Container>
 void benchmarkArrayRate(benchmark::State &state, const char *label) {
-  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.rate(); });
+  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.rate(); }, false);
 }
 
 template <typename Container>
@@ -358,7 +364,32 @@ void benchmarkArrayMeanTime(benchmark::State &state, const char *label) {
 
 template <typename Container>
 void benchmarkArrayMidTime(benchmark::State &state, const char *label) {
-  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.midTime(); });
+  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.midTime(); }, false);
+}
+
+template <typename Container>
+void benchmarkArrayPolarityRatio(benchmark::State &state, const char *label) {
+  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.polarityRatio(ev::POSITIVE); });
+}
+
+template <typename Container>
+void benchmarkArrayBoundingBox(benchmark::State &state, const char *label) {
+  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.boundingBox(); });
+}
+
+template <typename Container>
+void benchmarkArrayCovariance(benchmark::State &state, const char *label) {
+  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.covariance(); });
+}
+
+template <typename Container>
+void benchmarkArrayActivePixels(benchmark::State &state, const char *label) {
+  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.activePixels(); });
+}
+
+template <typename Container>
+void benchmarkArrayPeak(benchmark::State &state, const char *label) {
+  benchmarkArrayMetric<Container>(state, label, [](const auto &container) { return container.peak(); });
 }
 
 template <typename Container>
@@ -450,6 +481,16 @@ static void BM_Array1024MeanTime(benchmark::State &state) { benchmarkArrayMeanTi
 static void BM_Array16384MeanTime(benchmark::State &state) { benchmarkArrayMeanTime<ev::Array<16384>>(state, "array"); }
 static void BM_Array1024MidTime(benchmark::State &state) { benchmarkArrayMidTime<ev::Array<1024>>(state, "array"); }
 static void BM_Array16384MidTime(benchmark::State &state) { benchmarkArrayMidTime<ev::Array<16384>>(state, "array"); }
+static void BM_Array1024PolarityRatio(benchmark::State &state) { benchmarkArrayPolarityRatio<ev::Array<1024>>(state, "array"); }
+static void BM_Array16384PolarityRatio(benchmark::State &state) { benchmarkArrayPolarityRatio<ev::Array<16384>>(state, "array"); }
+static void BM_Array1024BoundingBox(benchmark::State &state) { benchmarkArrayBoundingBox<ev::Array<1024>>(state, "array"); }
+static void BM_Array16384BoundingBox(benchmark::State &state) { benchmarkArrayBoundingBox<ev::Array<16384>>(state, "array"); }
+static void BM_Array1024Covariance(benchmark::State &state) { benchmarkArrayCovariance<ev::Array<1024>>(state, "array"); }
+static void BM_Array16384Covariance(benchmark::State &state) { benchmarkArrayCovariance<ev::Array<16384>>(state, "array"); }
+static void BM_Array1024ActivePixels(benchmark::State &state) { benchmarkArrayActivePixels<ev::Array<1024>>(state, "array"); }
+static void BM_Array16384ActivePixels(benchmark::State &state) { benchmarkArrayActivePixels<ev::Array<16384>>(state, "array"); }
+static void BM_Array1024Peak(benchmark::State &state) { benchmarkArrayPeak<ev::Array<1024>>(state, "array"); }
+static void BM_Array16384Peak(benchmark::State &state) { benchmarkArrayPeak<ev::Array<16384>>(state, "array"); }
 static void BM_Array1024Entropy(benchmark::State &state) { benchmarkArrayEntropy<ev::Array<1024>>(state, "array"); }
 static void BM_Array16384Entropy(benchmark::State &state) { benchmarkArrayEntropy<ev::Array<16384>>(state, "array"); }
 
@@ -461,6 +502,7 @@ static void BM_GridVectorInsert(benchmark::State &state) { benchmarkGridInsert<e
 static void BM_GridDequeInsert(benchmark::State &state) { benchmarkGridInsert<ev::Deque>(state, "grid_deque"); }
 static void BM_GridCircularInsert(benchmark::State &state) { benchmarkGridInsert<ev::CircularBuffer>(state, "grid_circular"); }
 static void BM_GridQueueInsert(benchmark::State &state) { benchmarkGridInsert<ev::Queue>(state, "grid_queue"); }
+static void BM_GridStatsInsert(benchmark::State &state) { benchmarkGridInsert<ev::Stats>(state, "grid_stats"); }
 static void BM_GridSlidingWindowInsert(benchmark::State &state) { benchmarkGridInsert<ev::SlidingWindow>(state, "grid_sliding_window"); }
 static void BM_GridVectorCell(benchmark::State &state) { benchmarkGridCell<ev::Vector>(state, "grid_vector"); }
 
@@ -552,20 +594,31 @@ BENCHMARK(BM_Array1024MeanTime)->Arg(1024);
 BENCHMARK(BM_Array16384MeanTime)->Arg(16384);
 BENCHMARK(BM_Array1024MidTime)->Arg(1024);
 BENCHMARK(BM_Array16384MidTime)->Arg(16384);
+BENCHMARK(BM_Array1024PolarityRatio)->Arg(1024);
+BENCHMARK(BM_Array16384PolarityRatio)->Arg(16384);
+BENCHMARK(BM_Array1024BoundingBox)->Arg(1024);
+BENCHMARK(BM_Array16384BoundingBox)->Arg(16384);
+BENCHMARK(BM_Array1024Covariance)->Arg(1024);
+BENCHMARK(BM_Array16384Covariance)->Arg(16384);
+BENCHMARK(BM_Array1024ActivePixels)->Arg(1024);
+BENCHMARK(BM_Array16384ActivePixels)->Arg(16384);
+BENCHMARK(BM_Array1024Peak)->Arg(1024);
+BENCHMARK(BM_Array16384Peak)->Arg(16384);
 BENCHMARK(BM_Array1024Entropy)->Arg(1024);
 BENCHMARK(BM_Array16384Entropy)->Arg(16384);
 
-BENCHMARK(BM_CircularEmplaceBack)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_CircularEmplaceFront)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
-BENCHMARK(BM_SlidingWindowPush)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_CircularEmplaceBack)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18)->UseManualTime();
+BENCHMARK(BM_CircularEmplaceFront)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18)->UseManualTime();
+BENCHMARK(BM_SlidingWindowPush)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18)->UseManualTime();
 
-BENCHMARK(BM_GridVectorInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
-BENCHMARK(BM_GridDequeInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
-BENCHMARK(BM_GridCircularInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
-BENCHMARK(BM_GridQueueInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
-BENCHMARK(BM_GridSlidingWindowInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16});
+BENCHMARK(BM_GridVectorInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
+BENCHMARK(BM_GridDequeInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
+BENCHMARK(BM_GridCircularInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
+BENCHMARK(BM_GridQueueInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
+BENCHMARK(BM_GridSlidingWindowInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
+BENCHMARK(BM_GridStatsInsert)->Args({1 << 14, 4})->Args({1 << 14, 16})->Args({1 << 18, 4})->Args({1 << 18, 16})->UseManualTime();
 BENCHMARK(BM_GridVectorCell)->Args({1 << 14, 4})->Args({1 << 18, 16});
-BENCHMARK(BM_StatsInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
+BENCHMARK(BM_StatsInsert)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18)->UseManualTime();
 BENCHMARK(BM_StatsEntropy)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 BENCHMARK(BM_StatsMean)->Arg(1 << 10)->Arg(1 << 14)->Arg(1 << 18);
 } // namespace
