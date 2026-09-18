@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['operator_20cv_3a_3apoint3_5f_3c_20u_20_3e_0',['Point3_&lt; U &gt;',['../classev_1_1Event__.html#a2dcebb5b85799611d185457ce5bc1844',1,'ev::Event_']]],
-  ['operator_20cv_3a_3apoint_5f_3c_20u_20_3e_1',['Point_&lt; U &gt;',['../classev_1_1Event__.html#aac5b5f290a4ddfbcd5355a4afafc0998',1,'ev::Event_']]],
-  ['operator_28_29_2',['operator()',['../classev_1_1Grid__.html#a5aa9d942e1c1d932cc7f2698637eb33d',1,'ev::Grid_::operator()(const int row, const int col)'],['../classev_1_1Grid__.html#a04914ddb1b28c4fa528738d52792b33a',1,'ev::Grid_::operator()(const int row, const int col) const'],['../classev_1_1Grid__.html#aef9c7aa674c102c4e58b7be6870b4235',1,'ev::Grid_::operator()(const cv::Point c)'],['../classev_1_1Grid__.html#ac77e393946644c50104550b1174651ea',1,'ev::Grid_::operator()(const cv::Point c) const'],['../classev_1_1BackgroundActivityFilter.html#a1b260f272eb4af389015c73992a7311f',1,'ev::BackgroundActivityFilter::operator()()'],['../classev_1_1RefractoryPeriodFilter.html#aaf24b852fa0596057523775f81b145cf',1,'ev::RefractoryPeriodFilter::operator()()']]],
-  ['operator_3c_3',['operator&lt;',['../classev_1_1Event__.html#a0e70bb583180d13b7de2c2340062e452',1,'ev::Event_']]],
-  ['operator_3d_4',['operator=',['../classev_1_1Event__.html#ac45f96a0247d571050d56a9731e6976d',1,'ev::Event_::operator=(const Event_&lt; T &gt; &amp;)=default'],['../classev_1_1Event__.html#a7b6ad73bcbb11e1ee8eff44942dffe8a',1,'ev::Event_::operator=(const Event_&lt; U &gt; &amp;e)'],['../classev_1_1Event__.html#aabb48b7452127593142a5be3883b4233',1,'ev::Event_::operator=(const cv::Point3_&lt; T &gt; &amp;p)'],['../classev_1_1Event__.html#a1d3c04b776897df465aca99c96b22bbb',1,'ev::Event_::operator=(const cv::Point_&lt; T &gt; &amp;p)'],['../classev_1_1Event__.html#a6ba6b9e56bb5fc6e475c952f0057059b',1,'ev::Event_::operator=(Event_&lt; T &gt; &amp;&amp;) noexcept=default']]],
-  ['operator_3d_3d_5',['operator==',['../classev_1_1Event__.html#a739ba6e2e35906778582a0f4d161f495',1,'ev::Event_::operator==(const Event_&lt; T &gt; &amp;e) const'],['../classev_1_1Event__.html#a8270105da74273108e0a2118f0e6b0c2',1,'ev::Event_::operator==(const cv::Point_&lt; T &gt; &amp;pt) const'],['../classev_1_1Event__.html#a2f5d0be0a33d45dec3a1e8e7c8a51f1d',1,'ev::Event_::operator==(const cv::Point3_&lt; T &gt; &amp;pt) const']]]
+  ['mean_0',['mean',['../classev_1_1Stats__.html#a43f93ce587ae022a6c262aefd266ff64',1,'ev::Stats_']]],
+  ['meanpoint_1',['meanPoint',['../classev_1_1Stats__.html#a3d3836c9e32ede17aa7b4d1b4b9eb6ec',1,'ev::Stats_']]],
+  ['meantime_2',['meanTime',['../classev_1_1Stats__.html#af1f296c6537e306452afb8d4ec5b4477',1,'ev::Stats_']]],
+  ['midtime_3',['midTime',['../classev_1_1Stats__.html#a0330971c1a1f695818e010bf80204cdf',1,'ev::Stats_']]]
 ];

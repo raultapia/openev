@@ -16,5 +16,10 @@ var searchData=
   ['slidingwindowd_13',['SlidingWindowd',['../sliding__window_8hpp.html#aa9f4843f33ab4497b06de774f2209911',1,'ev']]],
   ['slidingwindowf_14',['SlidingWindowf',['../sliding__window_8hpp.html#a2e111a3e94fe7b4131b9cc927d5dee3e',1,'ev']]],
   ['slidingwindowi_15',['SlidingWindowi',['../sliding__window_8hpp.html#ac6e809d6a5018c4d481678c17e655192',1,'ev']]],
-  ['slidingwindowl_16',['SlidingWindowl',['../sliding__window_8hpp.html#a73e09b853d57297a1242e2831131f682',1,'ev']]]
+  ['slidingwindowl_16',['SlidingWindowl',['../sliding__window_8hpp.html#a73e09b853d57297a1242e2831131f682',1,'ev']]],
+  ['statscontainer_17',['StatsContainer',['../stats__container_8hpp.html#aabf7031ad7026b25709b66b6517f6448',1,'ev']]],
+  ['statscontainerd_18',['StatsContainerd',['../stats__container_8hpp.html#a778483148bf34117d673b0520ea5e251',1,'ev']]],
+  ['statscontainerf_19',['StatsContainerf',['../stats__container_8hpp.html#ab5060d66c591ed641739b33119a9f8d8',1,'ev']]],
+  ['statscontaineri_20',['StatsContaineri',['../stats__container_8hpp.html#abdb7389090cb2fee1a96bad2c2394e4c',1,'ev']]],
+  ['statscontainerl_21',['StatsContainerl',['../stats__container_8hpp.html#a16b2f85ece8e5e9354aac2c1df29adbb',1,'ev']]]
 ];

@@ -1,19 +1,8 @@
 var searchData=
 [
-  ['plaintextreader_0',['PlainTextReader',['../classev_1_1PlainTextReader.html',1,'ev']]],
-  ['plaintextreadertest_1',['PlainTextReaderTest',['../classPlainTextReaderTest.html',1,'']]],
-  ['pointcloud_5f_2',['PointCloud_',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20cv_3a_3avec3b_20_3e_3',['PointCloud_&lt; cv::Vec3b &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20cv_3a_3avec3d_20_3e_4',['PointCloud_&lt; cv::Vec3d &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20cv_3a_3avec3f_20_3e_5',['PointCloud_&lt; cv::Vec3f &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20cv_3a_3avec3i_20_3e_6',['PointCloud_&lt; cv::Vec3i &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20cv_3a_3avec3s_20_3e_7',['PointCloud_&lt; cv::Vec3s &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20cv_3a_3avec3w_20_3e_8',['PointCloud_&lt; cv::Vec3w &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20double_20_3e_9',['PointCloud_&lt; double &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20float_20_3e_10',['PointCloud_&lt; float &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20int_20_3e_11',['PointCloud_&lt; int &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20short_20_3e_12',['PointCloud_&lt; short &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20uchar_20_3e_13',['PointCloud_&lt; uchar &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['pointcloud_5f_3c_20ushort_20_3e_14',['PointCloud_&lt; ushort &gt;',['../classev_1_1PointCloud__.html',1,'ev']]],
-  ['polarity_15',['Polarity',['../classev_1_1Mat_1_1Polarity.html',1,'ev::Mat']]]
+  ['mat_5f_0',['Mat_',['../classev_1_1Mat_1_1Mat__.html',1,'ev::Mat']]],
+  ['mat_5f_3c_20countertype_20_3e_1',['Mat_&lt; CounterType &gt;',['../classev_1_1Mat_1_1Mat__.html',1,'ev::Mat']]],
+  ['mat_5f_3c_20polaritytype_20_3e_2',['Mat_&lt; PolarityType &gt;',['../classev_1_1Mat_1_1Mat__.html',1,'ev::Mat']]],
+  ['mat_5f_3c_20tb_20_3e_3',['Mat_&lt; Tb &gt;',['../classev_1_1Mat_1_1Mat__.html',1,'ev::Mat']]],
+  ['mat_5f_3c_20timetype_20_3e_4',['Mat_&lt; TimeType &gt;',['../classev_1_1Mat_1_1Mat__.html',1,'ev::Mat']]]
 ];

@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('deque_8hpp_sou
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef OPENEV_CONTAINERS_DEQUE_HPP</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define OPENEV_CONTAINERS_DEQUE_HPP</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="abstract-container_8hpp.html">openev/containers/abstract-container.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="stats_8hpp.html">openev/core/stats.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="types_8hpp.html">openev/core/types.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;deque&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;opencv2/core/types.hpp&gt;</span></div>
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('deque_8hpp_sou
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
 <div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classev_1_1Deque__.html">   23</a></span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Deque__.html">Deque_</a> : <span class="keyword">public</span> std::deque&lt;Event_&lt;T&gt;&gt;, <span class="keyword">public</span> <a class="code hl_class" href="classev_1_1AbstractContainer__.html">AbstractContainer_</a>&lt;Deque_&lt;T&gt;, T&gt; {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classev_1_1Deque__.html">   23</a></span><span class="keyword">class </span><a class="code hl_class" href="classev_1_1Deque__.html">Deque_</a> : <span class="keyword">public</span> std::deque&lt;Event_&lt;T&gt;&gt;, <span class="keyword">public</span> <a class="code hl_class" href="classev_1_1Stats__.html">Stats_</a>&lt;Deque_&lt;T&gt;&gt; {</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keyword">using </span>std::deque&lt;<a class="code hl_class" href="classev_1_1Event__.html">Event_&lt;T&gt;</a>&gt;::deque;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">using </span>ResultType = TimeType;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>};</div>
@@ -148,15 +148,15 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('deque_8hpp_sou
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>} <span class="comment">// namespace ev</span></div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif </span><span class="comment">// OPENEV_CONTAINERS_DEQUE_HPP</span></div>
-<div class="ttc" id="aabstract-container_8hpp_html"><div class="ttname"><a href="abstract-container_8hpp.html">abstract-container.hpp</a></div><div class="ttdoc">Statistics shared by all the event containers.</div></div>
-<div class="ttc" id="aclassev_1_1AbstractContainer___html"><div class="ttname"><a href="classev_1_1AbstractContainer__.html">ev::AbstractContainer_</a></div><div class="ttdoc">This is an auxiliary class. This class cannot be instanced.</div><div class="ttdef"><b>Definition</b> abstract-container.hpp:52</div></div>
 <div class="ttc" id="aclassev_1_1Deque___html"><div class="ttname"><a href="classev_1_1Deque__.html">ev::Deque_</a></div><div class="ttdoc">This class extends std::deque to implement event deques. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> deque.hpp:23</div></div>
 <div class="ttc" id="aclassev_1_1Event___html"><div class="ttname"><a href="classev_1_1Event__.html">ev::Event_</a></div><div class="ttdoc">This class extends cv::Point_&lt;T&gt; for event data. For more information, please refer here.</div><div class="ttdef"><b>Definition</b> types.hpp:86</div></div>
+<div class="ttc" id="aclassev_1_1Stats___html"><div class="ttname"><a href="classev_1_1Stats__.html">ev::Stats_</a></div><div class="ttdoc">This is an auxiliary class. This class cannot be instanced.</div><div class="ttdef"><b>Definition</b> stats.hpp:51</div></div>
 <div class="ttc" id="adeque_8hpp_html_a4af4d4e467051ba64332233f05d2aead"><div class="ttname"><a href="deque_8hpp.html#a4af4d4e467051ba64332233f05d2aead">ev::Dequed</a></div><div class="ttdeci">Deque_&lt; double &gt; Dequed</div><div class="ttdef"><b>Definition</b> deque.hpp:30</div></div>
 <div class="ttc" id="adeque_8hpp_html_a7168805cd10c082a514978c7ac79d41b"><div class="ttname"><a href="deque_8hpp.html#a7168805cd10c082a514978c7ac79d41b">ev::Dequei</a></div><div class="ttdeci">Deque_&lt; int &gt; Dequei</div><div class="ttdef"><b>Definition</b> deque.hpp:27</div></div>
 <div class="ttc" id="adeque_8hpp_html_a75e234c95b8f5357d9f363e607419150"><div class="ttname"><a href="deque_8hpp.html#a75e234c95b8f5357d9f363e607419150">ev::Dequef</a></div><div class="ttdeci">Deque_&lt; float &gt; Dequef</div><div class="ttdef"><b>Definition</b> deque.hpp:29</div></div>
 <div class="ttc" id="adeque_8hpp_html_a91f08f4ba2d9118df8fdde8bbca42b6a"><div class="ttname"><a href="deque_8hpp.html#a91f08f4ba2d9118df8fdde8bbca42b6a">ev::Deque</a></div><div class="ttdeci">Dequei Deque</div><div class="ttdef"><b>Definition</b> deque.hpp:31</div></div>
 <div class="ttc" id="adeque_8hpp_html_a9aa152b5a7b054f1c2ade7bef1c1eaaa"><div class="ttname"><a href="deque_8hpp.html#a9aa152b5a7b054f1c2ade7bef1c1eaaa">ev::Dequel</a></div><div class="ttdeci">Deque_&lt; long &gt; Dequel</div><div class="ttdef"><b>Definition</b> deque.hpp:28</div></div>
+<div class="ttc" id="astats_8hpp_html"><div class="ttname"><a href="stats_8hpp.html">stats.hpp</a></div><div class="ttdoc">Statistics shared by everything that accounts for events.</div></div>
 <div class="ttc" id="atypes_8hpp_html"><div class="ttname"><a href="types_8hpp.html">types.hpp</a></div><div class="ttdoc">Basic event-based vision structures based on OpenCV components.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

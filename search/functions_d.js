@@ -1,25 +1,10 @@
 var searchData=
 [
-  ['sensorsize_0',['sensorSize',['../classev_1_1Grid__.html#a55c6d1cea54d635114447562b33b7422',1,'ev::Grid_']]],
-  ['setapsexposure_1',['setApsExposure',['../classev_1_1Davis.html#a02707127ffcd8b68dc0cf22cbe7fe355',1,'ev::Davis']]],
-  ['setapstimeinterval_2',['setApsTimeInterval',['../classev_1_1Davis.html#ad86fffda93f5304b98314aafc8e71fa2',1,'ev::Davis']]],
-  ['setbias_3',['setBias',['../classev_1_1Davis.html#a71e2394a373d4d8d2609b20626df84f7',1,'ev::Davis']]],
-  ['setcolor_4',['setColor',['../classev_1_1AbstractRepresentation__.html#a546a140885cbcae9a487ac05c3562807',1,'ev::AbstractRepresentation_::setColor(const bool polarity, const cv::viz::Color &amp;color)'],['../classev_1_1AbstractRepresentation__.html#a1aa864e834d79d8af0a0ce44d63fd1ab',1,'ev::AbstractRepresentation_::setColor(const cv::viz::Color &amp;color)']]],
-  ['setcolormap_5',['setColormap',['../classev_1_1AbstractRepresentation__.html#a6c04ab1aacaec2b1567760c3100ecd91',1,'ev::AbstractRepresentation_']]],
-  ['setcolors_6',['setColors',['../classev_1_1AbstractRepresentation__.html#a11fe09f62267349a78247a047c9a714a',1,'ev::AbstractRepresentation_']]],
-  ['setcontainerinterval_7',['setContainerInterval',['../classev_1_1AbstractCamera.html#abcca6fef8f11ccc6e5c9172fd28c0195',1,'ev::AbstractCamera']]],
-  ['setcontainersize_8',['setContainerSize',['../classev_1_1AbstractCamera.html#adcdc4480da4e3f7e8e9d36d505f7bc1e',1,'ev::AbstractCamera']]],
-  ['setdefectivepixels_9',['setDefectivePixels',['../classev_1_1AbstractCamera.html#a2cb47198181cbf56ad2aa8a0f3a12aaa',1,'ev::AbstractCamera']]],
-  ['setdt_10',['setDt',['../classev_1_1BackgroundActivityFilter.html#ac15ecfde6764be315517ba0a6bdb52f8',1,'ev::BackgroundActivityFilter::setDt()'],['../classev_1_1RefractoryPeriodFilter.html#a2d1a15d97360ca69eae52c20e8f65b1f',1,'ev::RefractoryPeriodFilter::setDt()']]],
-  ['setoutlierrejection_11',['setOutlierRejection',['../classev_1_1EventHistogram__.html#a7764ad1f34631bb1cd45840387e4a71e',1,'ev::EventHistogram_']]],
-  ['setroi_12',['setRoi',['../classev_1_1AbstractCamera.html#a18e265eab9b9e60c336eea6315c5445a',1,'ev::AbstractCamera::setRoi()'],['../classev_1_1Davis.html#abcb4d239d5a3eb6c21310838ed935340',1,'ev::Davis::setRoi()']]],
-  ['settimeoffset_13',['setTimeOffset',['../classev_1_1AbstractRepresentation__.html#ad04186804acb170ece2da3d625d4461b',1,'ev::AbstractRepresentation_']]],
-  ['setvalue_14',['setValue',['../classev_1_1AbstractRepresentation__.html#a965b12576ace99d7dcabc261ec1adf2e',1,'ev::AbstractRepresentation_::setValue(const bool polarity, const Type &amp;value)'],['../classev_1_1AbstractRepresentation__.html#ae5d5697792a2ad033a67b42ec63b3aea',1,'ev::AbstractRepresentation_::setValue(const Type &amp;value)']]],
-  ['setvalues_15',['setValues',['../classev_1_1AbstractRepresentation__.html#ac3c17c53eae945fa6ff350b913e920de',1,'ev::AbstractRepresentation_']]],
-  ['setwindow_16',['setWindow',['../classev_1_1SlidingWindow__.html#a8852cd5b340714a88e4785a32e1bed53',1,'ev::SlidingWindow_']]],
-  ['size_17',['size',['../classev_1_1Grid__.html#adfa866d9d40c315d43b1ce1f5a14a1ec',1,'ev::Grid_::size()'],['../classev_1_1Rect3__.html#a4e05b496eed825b98c3663cd65b074ee',1,'ev::Rect3_::size()'],['../structev_1_1Circ__.html#a4e90c2eea489692d68518fac79d0e0aa',1,'ev::Circ_::size()']]],
-  ['size3_5f_18',['Size3_',['../classev_1_1Size3__.html#acb64ddf35ed140da98a834cff02a0740',1,'ev::Size3_::Size3_()'],['../classev_1_1Size3__.html#a9022d8414c3ab5c7cbf5bea98e8f60d1',1,'ev::Size3_::Size3_(T w, T h, T l)']]],
-  ['slidingwindow_5f_19',['SlidingWindow_',['../classev_1_1SlidingWindow__.html#a5c48bdf890d58bda52c4982509e6e8be',1,'ev::SlidingWindow_']]],
-  ['start_20',['start',['../classev_1_1AbstractCamera.html#a4771dfb75858e7218f9c1ac1d3eb6b57',1,'ev::AbstractCamera::start()'],['../classev_1_1Davis.html#a702a3506b525d160bff45cf08e02c4a0',1,'ev::Davis::start()']]],
-  ['stop_21',['stop',['../classev_1_1AbstractCamera.html#ad53b72c2d823eb43d6770660eb8c5296',1,'ev::AbstractCamera']]]
+  ['rate_0',['rate',['../classev_1_1Stats__.html#a6428a7acfa0a271d1e44e4edaa8f916b',1,'ev::Stats_']]],
+  ['rect3_5f_1',['Rect3_',['../classev_1_1Rect3__.html#ad032da839930712403dffd07f602ecc5',1,'ev::Rect3_::Rect3_()'],['../classev_1_1Rect3__.html#a0496d8895ea1a40bcb6f5c43b187a6f1',1,'ev::Rect3_::Rect3_(const T x, const T y, const T t, const T w, const T h, const T l)'],['../classev_1_1Rect3__.html#a47ab3f2b243fbefeac90a4b95ff34552',1,'ev::Rect3_::Rect3_(const Rect2_&lt; T &gt; &amp;rect, const T t, const T l)'],['../classev_1_1Rect3__.html#a6f7c0fec6b9103e97d6e5ce336260e95',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt, const Size3_&lt; T &gt; sz)'],['../classev_1_1Rect3__.html#a6aaf7d688888a305be6d8f352c9274d2',1,'ev::Rect3_::Rect3_(const cv::Point3_&lt; T &gt; &amp;pt1, const cv::Point3_&lt; T &gt; &amp;pt2)']]],
+  ['refractoryperiodfilter_2',['RefractoryPeriodFilter',['../classev_1_1RefractoryPeriodFilter.html#a0cf052b17987a16b31fd75921c0b5880',1,'ev::RefractoryPeriodFilter']]],
+  ['release_3',['release',['../classev_1_1StampedMat.html#a9353c344b301d71aa7163bfafecbab6d',1,'ev::StampedMat']]],
+  ['render_4',['render',['../classev_1_1EventHistogram__.html#a42d57d6b67fe596a387dd49ca64b1e5a',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b',1,'ev::TimeSurface_::render()']]],
+  ['resetstats_5',['resetStats',['../classev_1_1Mat_1_1Mat__.html#aa03353b5a51b46d870bf33322fbbba85',1,'ev::Mat::Mat_']]],
+  ['rows_6',['rows',['../classev_1_1Grid__.html#aea4ea55eff13b7b762777128513ca812',1,'ev::Grid_']]]
 ];

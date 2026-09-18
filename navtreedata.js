@@ -26,18 +26,18 @@ var NAVTREE =
 [
   [ "OpenEV", "index.html", [
     [ "Classes", "annotated.html", [
-      [ "⚙️ Installation", "index.html#autotoc_md0", null ],
-      [ "🧩 Modules", "index.html#autotoc_md1", null ],
-      [ "🧪 Tests and benchmarks", "index.html#autotoc_md2", null ],
-      [ "📚 Documentation", "index.html#autotoc_md3", null ],
-      [ "🖥️ Usage", "index.html#autotoc_md4", null ],
-      [ "📝 License", "index.html#autotoc_md5", null ],
-      [ "📬 Contact", "index.html#autotoc_md6", null ],
+      [ "⚙️ Installation", "index.html#autotoc_md1", null ],
+      [ "🧩 Modules", "index.html#autotoc_md2", null ],
+      [ "🧪 Tests and benchmarks", "index.html#autotoc_md3", null ],
+      [ "📚 Documentation", "index.html#autotoc_md4", null ],
+      [ "🖥️ Usage", "index.html#autotoc_md5", null ],
+      [ "📝 License", "index.html#autotoc_md6", null ],
+      [ "📬 Contact", "index.html#autotoc_md7", null ],
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ],
@@ -54,7 +54,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "abstract-camera_8cpp.html",
-"dir_36de9b9f9608526ebe9bd8f902319d89.html"
+"classev_1_1efft.html"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

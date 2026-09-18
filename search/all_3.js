@@ -4,7 +4,7 @@ var searchData=
   ['davis_1',['Davis',['../classev_1_1Davis.html',1,'ev']]],
   ['davis_2ecpp_2',['davis.cpp',['../davis_8cpp.html',1,'']]],
   ['davis_2ehpp_3',['davis.hpp',['../davis_8hpp.html',1,'']]],
-  ['density_4',['density',['../classev_1_1AbstractContainer__.html#a779e7ec94addf15d535d7db0852b2cf0',1,'ev::AbstractContainer_']]],
+  ['density_4',['density',['../classev_1_1Stats__.html#a4c2aac53e2ef480685db5096ef8522ec',1,'ev::Stats_']]],
   ['depth_5',['depth',['../classev_1_1AugmentedEvent__.html#a1e90c7cb8ab2c415ea6e22b5de80fd3c',1,'ev::AugmentedEvent_']]],
   ['deque_6',['Deque',['../deque_8hpp.html#a91f08f4ba2d9118df8fdde8bbca42b6a',1,'ev']]],
   ['deque_2ehpp_7',['deque.hpp',['../deque_8hpp.html',1,'']]],
@@ -25,6 +25,6 @@ var searchData=
   ['distance_5fflag_5fspatiotemporal_22',['DISTANCE_FLAG_SPATIOTEMPORAL',['../types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa0916d2f8933467e2b1ce91dd82af2159',1,'ev']]],
   ['distance_5fflag_5ftemporal_23',['DISTANCE_FLAG_TEMPORAL',['../types_8hpp.html#a7a3cbf6385d956c723270812cebd164aa0d545312afd753ff0bacaef3bad8f319',1,'ev']]],
   ['distancetypes_24',['DistanceTypes',['../types_8hpp.html#a7a3cbf6385d956c723270812cebd164a',1,'ev']]],
-  ['documentation_25',['📚 Documentation',['../index.html#autotoc_md3',1,'']]],
-  ['duration_26',['duration',['../classev_1_1AbstractContainer__.html#aa4e39c7be1b3b6ed6c57db751b10823d',1,'ev::AbstractContainer_::duration()'],['../classev_1_1Mat_1_1Mat__.html#a9ed14c83123b7e557c533664b7f2c74b',1,'ev::Mat::Mat_::duration()'],['../classev_1_1AbstractRepresentation__.html#aa1cff0402764d1043e19dcbfe2eddc49',1,'ev::AbstractRepresentation_::duration()']]]
+  ['documentation_25',['📚 Documentation',['../index.html#autotoc_md4',1,'']]],
+  ['duration_26',['duration',['../classev_1_1Stats__.html#a2fe9e3a320fdc43b6ace1d4726c9ff07',1,'ev::Stats_']]]
 ];

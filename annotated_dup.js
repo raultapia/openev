@@ -10,7 +10,6 @@ var annotated_dup =
         [ "Counter", "classev_1_1Mat_1_1Counter.html", "classev_1_1Mat_1_1Counter" ]
       ] ],
       [ "AbstractCamera", "classev_1_1AbstractCamera.html", "classev_1_1AbstractCamera" ],
-      [ "AbstractContainer_", "classev_1_1AbstractContainer__.html", "classev_1_1AbstractContainer__" ],
       [ "AbstractReader_", "classev_1_1AbstractReader__.html", "classev_1_1AbstractReader__" ],
       [ "AbstractRepresentation_", "classev_1_1AbstractRepresentation__.html", "classev_1_1AbstractRepresentation__" ],
       [ "Array_", "classev_1_1Array__.html", null ],
@@ -36,16 +35,21 @@ var annotated_dup =
       [ "Size3_", "classev_1_1Size3__.html", "classev_1_1Size3__" ],
       [ "SlidingWindow_", "classev_1_1SlidingWindow__.html", "classev_1_1SlidingWindow__" ],
       [ "StampedMat", "classev_1_1StampedMat.html", "classev_1_1StampedMat" ],
+      [ "Stats_", "classev_1_1Stats__.html", "classev_1_1Stats__" ],
+      [ "StatsContainer_", "classev_1_1StatsContainer__.html", "classev_1_1StatsContainer__" ],
       [ "TimeSurface_", "classev_1_1TimeSurface__.html", "classev_1_1TimeSurface__" ],
       [ "UndistortMap", "classev_1_1UndistortMap.html", null ],
       [ "Vector_", "classev_1_1Vector__.html", null ],
       [ "xyz_t", "structev_1_1xyz__t.html", null ]
     ] ],
+    [ "Boxed", "classBoxed.html", null ],
     [ "caer_device_handle", "structcaer__device__handle.html", null ],
     [ "ContainerTestFixture", "classContainerTestFixture.html", null ],
-    [ "EmptyContainerTestFixture", "classEmptyContainerTestFixture.html", null ],
     [ "GridTestFixture", "classGridTestFixture.html", null ],
     [ "HDF5ReaderTest", "classHDF5ReaderTest.html", null ],
+    [ "Listed", "classListed.html", null ],
     [ "PlainTextReaderTest", "classPlainTextReaderTest.html", null ],
-    [ "SlidingWindowTest", "classSlidingWindowTest.html", null ]
+    [ "SlidingWindowTest", "classSlidingWindowTest.html", null ],
+    [ "StatsContainerTest", "classStatsContainerTest.html", null ],
+    [ "Timed", "classTimed.html", null ]
 ];

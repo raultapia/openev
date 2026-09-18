@@ -24,16 +24,16 @@ var searchData=
   ['circularbufferf_21',['CircularBufferf',['../circular_8hpp.html#a2177fa7266e809ebd4b9985811ad2cd0',1,'ev']]],
   ['circularbufferi_22',['CircularBufferi',['../circular_8hpp.html#a3e8f3efa8053d80fd57d37a15e38948d',1,'ev']]],
   ['circularbufferl_23',['CircularBufferl',['../circular_8hpp.html#a2c230919453eccc9d8db72633beaa19d',1,'ev']]],
-  ['clear_24',['clear',['../classev_1_1Grid__.html#ac0e580cd979d280d09cc7c9cc594b046',1,'ev::Grid_::clear()'],['../classev_1_1Mat_1_1Mat__.html#a9fef11595e8d28e1c8d18eda8b4ef30e',1,'ev::Mat::Mat_::clear()'],['../classev_1_1AbstractRepresentation__.html#a16486a8b4a053dc72407e303c35423a4',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#ace7de9413b56904c2f75183e15693c01',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background, const cv::Point &amp;origin={0, 0})']]],
+  ['clear_24',['clear',['../classev_1_1Grid__.html#ac0e580cd979d280d09cc7c9cc594b046',1,'ev::Grid_::clear()'],['../classev_1_1StatsContainer__.html#a900c7e719c878b38c93ad3e869036c4f',1,'ev::StatsContainer_::clear()'],['../classev_1_1Mat_1_1Mat__.html#a9fef11595e8d28e1c8d18eda8b4ef30e',1,'ev::Mat::Mat_::clear()'],['../classev_1_1AbstractRepresentation__.html#a16486a8b4a053dc72407e303c35423a4',1,'ev::AbstractRepresentation_::clear()'],['../classev_1_1AbstractRepresentation__.html#ace7de9413b56904c2f75183e15693c01',1,'ev::AbstractRepresentation_::clear(const cv::Mat &amp;background, const cv::Point &amp;origin={0, 0})']]],
   ['cols_25',['cols',['../classev_1_1Grid__.html#affab3298a7ab335976cfb3e6fa3c24ca',1,'ev::Grid_']]],
-  ['contact_26',['📬 Contact',['../index.html#autotoc_md6',1,'']]],
+  ['contact_26',['📬 Contact',['../index.html#autotoc_md7',1,'']]],
   ['containers_2ehpp_27',['containers.hpp',['../containers_8hpp.html',1,'']]],
   ['containertestfixture_28',['ContainerTestFixture',['../classContainerTestFixture.html',1,'']]],
   ['contains_29',['contains',['../classev_1_1Rect3__.html#a9ffa96877ee35795b9159f6982b27ff7',1,'ev::Rect3_::contains()'],['../structev_1_1Circ__.html#a6287aaef59e3f5f63c32c8ec920a65a1',1,'ev::Circ_::contains()'],['../classev_1_1PointCloud__.html#a4d2384e4c8a2a7972566ed2f32181acb',1,'ev::PointCloud_::contains()']]],
   ['copyto_30',['copyTo',['../classev_1_1StampedMat.html#a51d16a045cf746d77ea073ec94810e76',1,'ev::StampedMat']]],
   ['core_2ehpp_31',['core.hpp',['../core_8hpp.html',1,'']]],
-  ['count_32',['count',['../classev_1_1Mat_1_1Mat__.html#a4f73fe3a4cfb519fa6901e66f6f25581',1,'ev::Mat::Mat_::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
+  ['count_32',['count',['../classev_1_1Mat_1_1Mat__.html#ad6995bf27e6501b39d4becfd0790406e',1,'ev::Mat::Mat_::count()'],['../classev_1_1AbstractRepresentation__.html#a93119c056d90291f301d6aa7ba549a83',1,'ev::AbstractRepresentation_::count()']]],
   ['counter_33',['Counter',['../classev_1_1Mat_1_1Counter.html',1,'ev::Mat']]],
   ['counter_34',['counter',['../classev_1_1EventHistogram__.html#a7023954b751f89fa7466fd5036cedd3a',1,'ev::EventHistogram_']]],
-  ['covariance_35',['covariance',['../classev_1_1AbstractContainer__.html#a5df6b5500346a21c737efa6338168a48',1,'ev::AbstractContainer_']]]
+  ['covariance_35',['covariance',['../classev_1_1Stats__.html#afae05aebdd93ccaf259c0adcddc473f1',1,'ev::Stats_']]]
 ];
