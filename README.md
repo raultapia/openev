@@ -45,7 +45,7 @@ algorithms
 | `representations` | `core` | OpenCV, OpenCV viz |
 | `devices` | `core`, `containers` | OpenCV, libcaer |
 | `evproc` | `core`, `containers` | OpenCV |
-| `readers` | `core`, `containers` | OpenCV, HDF5, pthread |
+| `readers` | `core`, `containers` | OpenCV, Boost, HDF5, pthread |
 
 To leave a module out, set its option to `OFF`. The option name is the directory name in upper case.
 

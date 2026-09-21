@@ -18,9 +18,6 @@ namespace ev {
 /*!
 \brief This class extends AbstractReader_ to read event data from HDF5 files.
 
-Events are expected to be stored as four separate 1-D datasets (one per field).
-Any numeric storage type is accepted; values are converted on read.
-
 \code{.cpp}
 // Default paths match the common /events/{t,x,y,p} layout:
 ev::HDF5Reader reader("recording.h5");
@@ -39,10 +36,8 @@ public:
                       const std::string &t_path = "/events/t",
                       const std::string &x_path = "/events/x",
                       const std::string &y_path = "/events/y",
-                      const std::string &p_path = "/events/p",
-                      std::size_t buffer_size = 0,
-                      bool use_threading = false);
-  ~HDF5Reader() override = default;
+                      const std::string &p_path = "/events/p");
+  ~HDF5Reader() override;
 
   /*! \cond INTERNAL */
   HDF5Reader(const HDF5Reader &) = delete;
@@ -65,7 +60,8 @@ private:
   hsize_t buf_pos_{0};
   hsize_t buf_size_{0};
 
-  bool updateBuffer_() override;
+  std::size_t read_(Event *events, const std::size_t max) override;
+  void reset_() override;
 };
 
 } // namespace ev

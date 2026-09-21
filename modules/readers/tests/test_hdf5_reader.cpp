@@ -3,6 +3,7 @@
 #include <H5Cpp.h>
 #include <cstdio>
 #include <gtest/gtest.h>
+#include <opencv2/core.hpp>
 #include <string>
 #include <vector>
 
@@ -40,15 +41,16 @@ protected:
   void TearDown() override { std::remove(f_.c_str()); }
 };
 
-TEST_F(HDF5ReaderTest, DataReturnsQueueReference) {
-  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p", 1);
-  ev::Queue &q1 = reader.data();
-  ev::Queue &q2 = reader.data();
+TEST_F(HDF5ReaderTest, EventsReturnsTheSameQueue) {
+  ev::HDF5Reader reader(f_);
+  ev::ConcurrentQueue &q1 = reader.events(2);
+  ev::ConcurrentQueue &q2 = reader.events();
   EXPECT_EQ(&q1, &q2);
+  EXPECT_EQ(q1.size(), 2U);
 }
 
 TEST_F(HDF5ReaderTest, FirstEventCorrect) {
-  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p", 1);
+  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p");
   ev::Event e;
   ASSERT_TRUE(tryPull(reader, e));
   EXPECT_FLOAT_EQ(e.t, 1.0f);
@@ -58,13 +60,13 @@ TEST_F(HDF5ReaderTest, FirstEventCorrect) {
 }
 
 TEST_F(HDF5ReaderTest, DrainAllEvents) {
-  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p", 1);
+  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p");
   ev::Vector v = drainAll(reader);
   EXPECT_EQ(v.size(), 5U);
 }
 
 TEST_F(HDF5ReaderTest, DrainMatchesFileContent) {
-  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p", 1);
+  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p");
   ev::Vector v = drainAll(reader);
   ASSERT_EQ(v.size(), 5U);
   for(int i = 0; i < 5; i++) {
@@ -76,13 +78,13 @@ TEST_F(HDF5ReaderTest, DrainMatchesFileContent) {
 }
 
 TEST_F(HDF5ReaderTest, EmptyAfterEOF) {
-  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p", 1);
+  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p");
   drainAll(reader);
-  EXPECT_TRUE(reader.data().empty());
+  EXPECT_TRUE(reader.events(1).empty());
 }
 
 TEST_F(HDF5ReaderTest, PolarityAlternates) {
-  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p", 1);
+  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p");
   const bool expected[] = {true, false, true, false, true};
   ev::Event e;
   for(int i = 0; i < 5; i++) {
@@ -102,9 +104,54 @@ TEST_F(HDF5ReaderTest, LargeDatasetChunkBoundary) {
     p[i] = static_cast<int>(i % 2);
   }
   const std::string big = writeHDF5File(t, x, y, p);
-  ev::HDF5Reader reader(big, "/events/t", "/events/x", "/events/y", "/events/p", 1);
+  ev::HDF5Reader reader(big, "/events/t", "/events/x", "/events/y", "/events/p");
   ev::Vector v = drainAll(reader);
   std::remove(big.c_str());
   EXPECT_EQ(v.size(), N);
   EXPECT_FLOAT_EQ(v[4096].t, static_cast<float>(4096e-6));
+}
+
+TEST_F(HDF5ReaderTest, ResetRestartsFromTheFirstEvent) {
+  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p");
+  ev::Event e;
+  ASSERT_TRUE(tryPull(reader, e));
+  ASSERT_TRUE(tryPull(reader, e));
+  EXPECT_DOUBLE_EQ(e.t, 2.0);
+  reader.reset();
+  ASSERT_TRUE(tryPull(reader, e));
+  EXPECT_DOUBLE_EQ(e.t, 1.0);
+  EXPECT_EQ(drainAll(reader).size(), 4U);
+}
+
+TEST_F(HDF5ReaderTest, ResetAfterEndOfFile) {
+  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p");
+  EXPECT_EQ(drainAll(reader).size(), 5U);
+  reader.reset();
+  EXPECT_EQ(drainAll(reader).size(), 5U);
+}
+
+TEST_F(HDF5ReaderTest, TimeTransform) {
+  ev::HDF5Reader reader(f_, "/events/t", "/events/x", "/events/y", "/events/p");
+  reader.setTimeTransform(1.0, 1e6);
+  const ev::Vector v = drainAll(reader);
+  ASSERT_EQ(v.size(), 5U);
+  EXPECT_DOUBLE_EQ(v[0].t, 0.0);
+  EXPECT_DOUBLE_EQ(v[4].t, 4e6);
+}
+
+TEST_F(HDF5ReaderTest, PrefetchReadsTheSameEvents) {
+  ev::HDF5Reader reader(f_);
+  reader.prefetch(3);
+  const ev::Vector v = drainAll(reader);
+  ASSERT_EQ(v.size(), 5U);
+  EXPECT_DOUBLE_EQ(v[0].t, 1.0);
+  EXPECT_DOUBLE_EQ(v[4].t, 5.0);
+}
+
+TEST_F(HDF5ReaderTest, DestroyedWhilePrefetching) {
+  for(int i = 0; i < 50; i++) {
+    ev::HDF5Reader reader(f_);
+    reader.prefetch(2);
+  }
+  SUCCEED();
 }

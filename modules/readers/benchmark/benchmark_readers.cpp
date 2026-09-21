@@ -1,4 +1,4 @@
-#include "openev/containers/queue.hpp"
+#include "openev/containers/concurrent_queue.hpp"
 #include "openev/readers/hdf5-reader.hpp"
 #include "openev/readers/plain-text-reader.hpp"
 
@@ -50,13 +50,16 @@ static const std::string kFilePTXY = makeTempFile(kEventCount, ev::PlainTextRead
 static const std::string kFilePXYT = makeTempFile(kEventCount, ev::PlainTextReaderColumns::PXYT);
 static const std::string kFileComma = makeTempFile(kEventCount, ev::PlainTextReaderColumns::TXYP, ',');
 
-static bool pullOne(ev::PlainTextReader &reader, ev::Event &e) {
-  ev::Queue &q = reader.data();
-  if(q.empty()) {
+static bool pullOne(ev::PlainTextReader &reader, ev::Event &e, const std::size_t n = 1) {
+  ev::ConcurrentQueue *q = &reader.events();
+  if(q->empty()) {
+    q = &reader.events(n);
+  }
+  if(q->empty()) {
     return false;
   }
-  e = q.front();
-  q.pop();
+  e = q->front();
+  q->pop();
   return true;
 }
 
@@ -67,10 +70,10 @@ static void BM_PullSingle(benchmark::State &state) {
 
   for(auto _ : state) {
     state.PauseTiming();
-    ev::PlainTextReader reader(kFileTXYP, ev::PlainTextReaderColumns::TXYP, " ", buf);
+    ev::PlainTextReader reader(kFileTXYP, ev::PlainTextReaderColumns::TXYP);
     state.ResumeTiming();
 
-    while(pullOne(reader, e)) {
+    while(pullOne(reader, e, buf)) {
       benchmark::DoNotOptimize(e);
       ++count;
     }
@@ -87,13 +90,11 @@ static void BM_PullBatch(benchmark::State &state) {
 
   for(auto _ : state) {
     state.PauseTiming();
-    ev::PlainTextReader reader(kFileTXYP, ev::PlainTextReaderColumns::TXYP, " ", buf);
-    for(std::size_t i = 0; i < buf; ++i) {
-      reader.data();
-    }
+    ev::PlainTextReader reader(kFileTXYP, ev::PlainTextReaderColumns::TXYP);
+    (void)reader.events(buf);
     state.ResumeTiming();
 
-    while(pullOne(reader, e)) {
+    while(pullOne(reader, e, buf)) {
       benchmark::DoNotOptimize(e);
       ++count;
     }
@@ -110,7 +111,7 @@ static void BM_Format(benchmark::State &state, const std::string &file, const ch
 
   for(auto _ : state) {
     state.PauseTiming();
-    ev::PlainTextReader reader(file, Fmt, " ", 1);
+    ev::PlainTextReader reader(file, Fmt);
     state.ResumeTiming();
 
     while(pullOne(reader, e)) {
@@ -133,7 +134,7 @@ static void BM_SepSpace(benchmark::State &state) {
   int64_t count = 0;
   for(auto _ : state) {
     state.PauseTiming();
-    ev::PlainTextReader reader(kFileTXYP, ev::PlainTextReaderColumns::TXYP, " ", 1);
+    ev::PlainTextReader reader(kFileTXYP, ev::PlainTextReaderColumns::TXYP);
     state.ResumeTiming();
     while(pullOne(reader, e)) {
       benchmark::DoNotOptimize(e);
@@ -149,7 +150,7 @@ static void BM_SepComma(benchmark::State &state) {
   int64_t count = 0;
   for(auto _ : state) {
     state.PauseTiming();
-    ev::PlainTextReader reader(kFileComma, ev::PlainTextReaderColumns::TXYP, ",", 1);
+    ev::PlainTextReader reader(kFileComma, ev::PlainTextReaderColumns::TXYP, ",");
     state.ResumeTiming();
     while(pullOne(reader, e)) {
       benchmark::DoNotOptimize(e);
@@ -197,11 +198,16 @@ static std::string makeHDF5File(const std::size_t count) {
 
 static const std::string kFileHDF5 = makeHDF5File(kEventCount);
 
-static bool pullOneHDF5(ev::HDF5Reader &reader, ev::Event &e) {
-  ev::Queue &q = reader.data();
-  if(q.empty()) return false;
-  e = q.front();
-  q.pop();
+static bool pullOneHDF5(ev::HDF5Reader &reader, ev::Event &e, const std::size_t n = 1) {
+  ev::ConcurrentQueue *q = &reader.events();
+  if(q->empty()) {
+    q = &reader.events(n);
+  }
+  if(q->empty()) {
+    return false;
+  }
+  e = q->front();
+  q->pop();
   return true;
 }
 
@@ -212,10 +218,10 @@ static void BM_HDF5(benchmark::State &state) {
 
   for(auto _ : state) {
     state.PauseTiming();
-    ev::HDF5Reader reader(kFileHDF5, "/events/t", "/events/x", "/events/y", "/events/p", buf);
+    ev::HDF5Reader reader(kFileHDF5, "/events/t", "/events/x", "/events/y", "/events/p");
     state.ResumeTiming();
 
-    while(pullOneHDF5(reader, e)) {
+    while(pullOneHDF5(reader, e, buf)) {
       benchmark::DoNotOptimize(e);
       ++count;
     }

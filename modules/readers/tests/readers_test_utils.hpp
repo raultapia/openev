@@ -1,16 +1,19 @@
 #pragma once
 
-#include "openev/containers/queue.hpp"
+#include "openev/containers/concurrent_queue.hpp"
 #include "openev/containers/vector.hpp"
 #include "openev/readers/abstract-reader.hpp"
 
 static bool tryPull(ev::AbstractReader_ &reader, ev::Event &e) {
-  ev::Queue &q = reader.data();
-  if(q.empty()) {
+  ev::ConcurrentQueue *q = &reader.events();
+  if(q->empty()) {
+    q = &reader.events(1);
+  }
+  if(q->empty()) {
     return false;
   }
-  e = q.front();
-  q.pop();
+  e = q->front();
+  q->pop();
   return true;
 }
 

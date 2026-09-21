@@ -36,12 +36,10 @@ static bool delete_file(const std::string &filename) {
 int main(int /*argc*/, const char * /*argv*/[]) {
   create_file("test.txt");
 
-  ev::PlainTextReader reader("test.txt", ev::PlainTextReaderColumns::TXYP, " ", 1);
-  ev::Queue &q = reader.data();
-  while(!q.empty()) {
-    std::cout << q.front() << '\n';
-    q.pop();
-    reader.data();
+  ev::PlainTextReader reader("test.txt");
+  while(!reader.events(1).empty()) {
+    std::cout << reader.events().front() << '\n';
+    reader.events().pop();
   }
 
   delete_file("test.txt");

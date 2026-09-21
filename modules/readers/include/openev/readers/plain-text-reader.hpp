@@ -11,6 +11,7 @@
 #include <fstream>
 #include <stdint.h>
 #include <string>
+#include <vector>
 
 namespace ev {
 [[maybe_unused]] constexpr bool USING_PLAIN_TEXT_READER_HPP = true;
@@ -27,8 +28,8 @@ enum PlainTextReaderColumns : uint8_t {
 */
 class PlainTextReader : public AbstractReader_ {
 public:
-  explicit PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns = PlainTextReaderColumns::TXYP, const std::string &separator = " ", const std::size_t buffer_size = 0, const bool use_threading = false);
-  ~PlainTextReader();
+  explicit PlainTextReader(const std::string &filename, const PlainTextReaderColumns columns = PlainTextReaderColumns::TXYP, const std::string &separator = " ");
+  ~PlainTextReader() override;
 
   /*! \cond INTERNAL */
   PlainTextReader(const PlainTextReader &) = delete;
@@ -37,14 +38,23 @@ public:
   PlainTextReader &operator=(PlainTextReader &&) noexcept = delete;
   /*! \endcond */
 
+protected:
+  std::size_t read_(Event *events, const std::size_t max) override;
+  void reset_() override;
+
 private:
   std::fstream file_;
   PlainTextReaderColumns columns_;
   char sep_char_;       // non-zero when separator is a single non-space char
   std::string sep_str_; // non-empty when separator is multi-char
   std::string line_;    // reused across calls
+  std::vector<char> chunk_;
+  std::size_t pos_{0};
+  std::size_t end_{0};
+  bool exhausted_{false};
+  bool failed_{false};
 
-  bool updateBuffer_() override;
+  bool nextLine_(const char *&line, const char *&lineEnd);
 };
 
 } // namespace ev
