@@ -8,12 +8,10 @@
 
 #include "openev/representations/abstract-representation.hpp"
 #include <array>
-#include <iterator>
 #include <opencv2/core/hal/interface.h>
 #include <opencv2/core/matx.hpp>
 #include <opencv2/core/types.hpp>
 #include <opencv2/viz/viz3d.hpp>
-#include <string>
 #include <vector>
 
 namespace cv {
@@ -69,6 +67,14 @@ public:
   \param point_size Size of each point representing an event
   */
   void visualize(const int t, const double time_scale = 1.0, const double axis_size = 1.0, const double point_size = 2.0);
+
+  /*!
+  \brief Window the point cloud is shown in, to set the viewpoint or register callbacks.
+  \return Viz3d window
+  */
+  [[nodiscard]] inline cv::viz::Viz3d &window() {
+    return window_;
+  }
 
 private:
   std::array<std::vector<cv::Point3_<typename TypeHelper<T>::FloatingPointType>>, 2> points_;
