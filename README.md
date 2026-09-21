@@ -9,7 +9,9 @@ Extending OpenCV to event-based vision
 </p>
 <!-- \endinternal -->
 
-> **Disclaimer** _Hi there! This library is currently under construction. I will be releasing new features as soon as they are ready._
+![Created at](https://img.shields.io/github/created-at/raultapia/openev?label=created%20at)
+![Last commit](https://img.shields.io/github/last-commit/raultapia/openev)
+![License](https://img.shields.io/github/license/raultapia/openev)
 
 ## ⚙️ Installation
 
