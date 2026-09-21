@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.17.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OpenEV: modules/evproc/src/filtering.cpp File Reference</title>
+<title>OpenEV: Member List</title>
 <link rel="icon" href="icon.png" type="image/x-icon" />
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="codefolding.js"></script>
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </div>
 <script type="text/javascript">
-document.addEventListener('DOMContentLoaded',() => { initNavTree('filtering_8cpp.html','',''); });
+document.addEventListener('DOMContentLoaded',() => { initNavTree('classev_1_1HotPixelFilter.html','',''); });
 </script>
 <div id="container">
 <div id="doc-content">
@@ -125,33 +125,32 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('filtering_8cpp
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">filtering.cpp File Reference</div></div>
+  <div class="headertitle"><div class="title">ev::HotPixelFilter Member List</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implementation of BackgroundActivityFilter and RefractoryPeriodFilter.  
-<a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="filtering_8hpp_source.html">openev/evproc/filtering.hpp</a>&quot;</code><br />
-<code>#include &lt;cstddef&gt;</code><br />
-<code>#include &lt;limits&gt;</code><br />
-<code>#include &lt;opencv2/core/types.hpp&gt;</code><br />
-</div><a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implementation of BackgroundActivityFilter and RefractoryPeriodFilter. </p>
-<dl class="section author"><dt>Author</dt><dd>Raul Tapia </dd></dl>
-</div></div><!-- contents -->
+<p>This is the complete list of members for <a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a>, including all inherited members.</p>
+<table class="directory">
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>DEFAULT_FACTOR</b> (defined in <a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>DISABLED</b> (defined in <a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html#a62334bcea701ec2ceb58fba428e6ada4">HotPixelFilter</a>(const cv::Size &amp;size, ev::TimeType window, double factor=DEFAULT_FACTOR, std::size_t limit=DISABLED)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>HotPixelFilter</b>(const HotPixelFilter &amp;)=default (defined in <a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>HotPixelFilter</b>(HotPixelFilter &amp;&amp;) noexcept=default (defined in <a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html#aa3cd1889403988f88bcb26d6699227dd">mask</a>() const</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html#a5fcf8129ea6a5a871dfd7f4dc6267533">operator()</a>(const ev::Event &amp;e)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>operator=</b>(const HotPixelFilter &amp;)=default (defined in <a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>operator=</b>(HotPixelFilter &amp;&amp;) noexcept=default (defined in <a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html#a98d44e8d7e33adec899ae97f4da2911b">reset</a>()</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html#af1b25b6bffa7c792a5430b9f880d865f">setFactor</a>(const double factor)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html#a1bf27a03b958b04148dac66e47f7cf8b">setLimit</a>(const std::size_t limit)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html#ab98d9282a057c1b42515f179a565c93a">setWindow</a>(const ev::TimeType window)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>~HotPixelFilter</b>()=default (defined in <a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a>)</td><td class="entry"><a class="el" href="classev_1_1HotPixelFilter.html">ev::HotPixelFilter</a></td><td class="entry"></td></tr>
+</table></div><!-- contents -->
 </div><!-- doc-content -->
-<div id="page-nav" class="page-nav-panel">
-<div id="page-nav-resize-handle"></div>
-<div id="page-nav-tree">
-<div id="page-nav-contents">
-</div><!-- page-nav-contents -->
-</div><!-- page-nav-tree -->
-</div><!-- page-nav -->
 </div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>modules</b></li><li class="navelem"><b>evproc</b></li><li class="navelem"><b>src</b></li><li class="navelem"><a href="filtering_8cpp.html">filtering.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
   </ul>
 </div>

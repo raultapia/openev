@@ -26,6 +26,7 @@ var annotated_dup =
       [ "EventImage_", "classev_1_1EventImage__.html", null ],
       [ "Grid_", "classev_1_1Grid__.html", "classev_1_1Grid__" ],
       [ "HDF5Reader", "classev_1_1HDF5Reader.html", null ],
+      [ "HotPixelFilter", "classev_1_1HotPixelFilter.html", "classev_1_1HotPixelFilter" ],
       [ "Imu", "structev_1_1Imu.html", null ],
       [ "PlainTextReader", "classev_1_1PlainTextReader.html", null ],
       [ "PointCloud_", "classev_1_1PointCloud__.html", "classev_1_1PointCloud__" ],

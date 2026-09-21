@@ -5,5 +5,6 @@ var searchData=
   ['hdf5_2dreader_2ecpp_2',['hdf5-reader.cpp',['../hdf5-reader_8cpp.html',1,'']]],
   ['hdf5_2dreader_2ehpp_3',['hdf5-reader.hpp',['../hdf5-reader_8hpp.html',1,'']]],
   ['hdf5reader_4',['HDF5Reader',['../classev_1_1HDF5Reader.html',1,'ev']]],
-  ['hdf5readertest_5',['HDF5ReaderTest',['../classHDF5ReaderTest.html',1,'']]]
+  ['hdf5readertest_5',['HDF5ReaderTest',['../classHDF5ReaderTest.html',1,'']]],
+  ['hotpixelfilter_6',['HotPixelFilter',['../classev_1_1HotPixelFilter.html',1,'ev::HotPixelFilter'],['../classev_1_1HotPixelFilter.html#a62334bcea701ec2ceb58fba428e6ada4',1,'ev::HotPixelFilter::HotPixelFilter()']]]
 ];

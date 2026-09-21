@@ -46,6 +46,7 @@ var hierarchy =
       [ "ev::efft< N >", "classev_1_1efft.html", null ]
     ] ],
     [ "ev::Grid_&lt; Container &gt;", "classev_1_1Grid__.html", null ],
+    [ "ev::HotPixelFilter", "classev_1_1HotPixelFilter.html", null ],
     [ "ev::Imu", "structev_1_1Imu.html", null ],
     [ "cv::Mat", null, [
       [ "ev::StampedMat", "classev_1_1StampedMat.html", null ]
