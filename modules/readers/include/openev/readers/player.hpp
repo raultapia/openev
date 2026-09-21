@@ -93,6 +93,7 @@ public:
   void restart() {
     reader_.reset();
     playhead_ = 0;
+    anchored_ = false;
     frame_ = 0;
     sample_ = 0;
     finished_ = false;
@@ -108,7 +109,7 @@ public:
   }
 
   /*!
-  \brief Current position of the playback.
+  \brief Current position of the playback, which starts at the timestamp of the first event.
   \return Playhead in microseconds
   */
   [[nodiscard]] inline TimeType playhead() const {
@@ -157,6 +158,7 @@ private:
   bool paused_{false};
   bool loop_{true};
   bool finished_{false};
+  bool anchored_{false};
   double speed_{1.0};
   TimeType playhead_{0};
   std::size_t frame_{0};
@@ -181,6 +183,16 @@ protected:
   void advance_(const TimeType time, Queue &events, StampedMatQueue *frames, ImuQueue *imus) {
     if(finished_) {
       return;
+    }
+    if(!anchored_) {
+      ConcurrentQueue *first = &reader_.events();
+      if(first->empty()) {
+        first = &reader_.events(batch_());
+      }
+      if(!first->empty()) {
+        playhead_ = first->front().t;
+      }
+      anchored_ = true;
     }
     playhead_ += time;
 

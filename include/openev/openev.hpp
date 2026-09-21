@@ -21,6 +21,10 @@
 #include "openev/core.hpp"
 #endif // OE_IS_ENABLED_MODULE_CORE
 
+#if OE_IS_ENABLED_MODULE_DATASETS
+#include "openev/datasets.hpp"
+#endif // OE_IS_ENABLED_MODULE_DATASETS
+
 #if OE_IS_ENABLED_MODULE_DEVICES
 #include "openev/devices.hpp"
 #endif // OE_IS_ENABLED_MODULE_DEVICES

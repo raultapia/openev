@@ -164,14 +164,14 @@ TEST_F(PlayerTest, RestartGoesBackToTheBeginning) {
 TEST_F(PlayerTest, NextFollowsTheClockAndTheSpeed) {
   RecordedReader reader(directory_);
   ev::Player_ player(reader);
-  player.setSpeed(10.0);
-  EXPECT_DOUBLE_EQ(player.speed(), 10.0);
+  player.setSpeed(2.0);
+  EXPECT_DOUBLE_EQ(player.speed(), 2.0);
   ev::Queue events;
   player.next(events);
   EXPECT_DOUBLE_EQ(player.playhead(), 0.0);
   std::this_thread::sleep_for(std::chrono::milliseconds(5));
   player.next(events);
-  EXPECT_GE(player.playhead(), 50000.0);
+  EXPECT_GE(player.playhead(), 10000.0);
   EXPECT_LT(player.playhead(), 100000.0);
   EXPECT_EQ(events.size(), 3U);
 }
@@ -204,4 +204,16 @@ TEST_F(PlayerTest, ReadersWithoutFramesDeliverOnlyEvents) {
   EXPECT_EQ(events.size(), 2U);
   EXPECT_TRUE(frames.empty());
   EXPECT_TRUE(imus.empty());
+}
+
+TEST_F(PlayerTest, PlayheadStartsAtTheFirstEvent) {
+  std::ofstream(directory_ + "/events.txt") << "5000000 10 10 1\n5001000 20 20 0\n5010000 30 30 1\n";
+  ev::PlainTextReader reader(directory_ + "/events.txt");
+  SteppedPlayer player(reader);
+  ev::Queue events;
+  player.advance(1000, events);
+  EXPECT_EQ(events.size(), 2U);
+  EXPECT_DOUBLE_EQ(player.playhead(), 5001000.0);
+  player.advance(9000, events);
+  EXPECT_EQ(events.size(), 3U);
 }

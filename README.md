@@ -26,12 +26,12 @@ sudo make install
 
 ## 🧩 Modules
 
-OpenEV is modular. Every directory under [`modules`](https://github.com/raultapia/openev/tree/main/modules) is a module built as its own shared library, and all of them are built by default. Modules only depend on each other through headers, as shown below.
+OpenEV is modular. Every directory under [`modules`](https://github.com/raultapia/openev/tree/main/modules) is a module built as its own shared library, and all of them are built by default.
 
 ```
 core ──┬── containers ──┬── devices
        │                ├── evproc
-       │                └── readers
+       │                └── readers ── datasets
        └── representations
 
 algorithms
@@ -46,6 +46,7 @@ algorithms
 | `devices` | `core`, `containers` | OpenCV, libcaer |
 | `evproc` | `core`, `containers` | OpenCV |
 | `readers` | `core`, `containers` | OpenCV, Boost, HDF5, pthread |
+| `datasets` | `core`, `containers`, `readers` | OpenCV, libcurl, libzip |
 
 To leave a module out, set its option to `OFF`. The option name is the directory name in upper case.
 

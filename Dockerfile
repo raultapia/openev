@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:noble
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt -y update
 RUN apt -y upgrade
@@ -8,13 +8,15 @@ RUN apt -y install git
 RUN apt -y install software-properties-common
 
 # Dependencies
-RUN add-apt-repository ppa:inivation-ppa/inivation
+RUN add-apt-repository -y ppa:inivation-ppa/inivation
 RUN apt -y update
 RUN apt -y install libboost-all-dev
 RUN apt -y install libcaer-dev
+RUN apt -y install libcurl4-openssl-dev
 RUN apt -y install libeigen3-dev
 RUN apt -y install libhdf5-dev
 RUN apt -y install libopencv-dev
+RUN apt -y install libzip-dev
 
 # Build
 COPY . /openev
