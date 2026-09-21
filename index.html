@@ -141,10 +141,10 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <div class="line">sudo make install</div>
 </div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 🧩 Modules</h2>
-<p>OpenEV is modular. Every directory under <a href="https://github.com/raultapia/openev/tree/main/modules"><span class="tt">modules</span></a> is a module built as its own shared library, and all of them are built by default. Modules only depend on each other through headers, as shown below.</p>
+<p>OpenEV is modular. Every directory under <a href="https://github.com/raultapia/openev/tree/main/modules"><span class="tt">modules</span></a> is a module built as its own shared library, and all of them are built by default.</p>
 <div class="fragment"><div class="line">core ──┬── containers ──┬── devices</div>
 <div class="line">       │                ├── evproc</div>
-<div class="line">       │                └── readers</div>
+<div class="line">       │                └── readers ── datasets</div>
 <div class="line">       └── representations</div>
 <div class="line"> </div>
 <div class="line">algorithms</div>
@@ -164,7 +164,9 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><span class="tt">evproc</span>  </td><td class="markdownTableBodyNone"><span class="tt">core</span>, <span class="tt">containers</span>  </td><td class="markdownTableBodyNone">OpenCV  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><span class="tt">readers</span>  </td><td class="markdownTableBodyNone"><span class="tt">core</span>, <span class="tt">containers</span>  </td><td class="markdownTableBodyNone">OpenCV, HDF5, pthread  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">readers</span>  </td><td class="markdownTableBodyNone"><span class="tt">core</span>, <span class="tt">containers</span>  </td><td class="markdownTableBodyNone">OpenCV, Boost, HDF5, pthread  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">datasets</span>  </td><td class="markdownTableBodyNone"><span class="tt">core</span>, <span class="tt">containers</span>, <span class="tt">readers</span>  </td><td class="markdownTableBodyNone">OpenCV, libcurl, libzip  </td></tr>
 </table>
 <p>To leave a module out, set its option to <span class="tt">OFF</span>. The option name is the directory name in upper case.</p>
 <div class="fragment"><div class="line">cmake .. -DBUILD_MODULE_READERS=OFF</div>

@@ -1,0 +1,28 @@
+var classev_1_1AbstractDataset =
+[
+    [ "Progress", "classev_1_1AbstractDataset.html#a08ae1051541af9135bf8ceaaca368a0b", null ],
+    [ "cameraName", "classev_1_1AbstractDataset.html#a0d19b0813e2bacbad587fbdef26cb6c9", null ],
+    [ "close", "classev_1_1AbstractDataset.html#ac5b104766a812728316f4a8563695633", null ],
+    [ "directory", "classev_1_1AbstractDataset.html#a3926ddcb9aecb61c556a4f6caec137a8", null ],
+    [ "download", "classev_1_1AbstractDataset.html#a2c3194428d64bddbfd5b5f0bac6bc6a7", null ],
+    [ "error", "classev_1_1AbstractDataset.html#a0b80c9f15abe7af99c95628389f92f73", null ],
+    [ "events", "classev_1_1AbstractDataset.html#af3b3553f44a403abf5917b1699876472", null ],
+    [ "frames", "classev_1_1AbstractDataset.html#a2729cacf09f150a076450cd0330469c6", null ],
+    [ "getRoi", "classev_1_1AbstractDataset.html#a2efcc675e8114714281383c408fc0d94", null ],
+    [ "imu", "classev_1_1AbstractDataset.html#a95d84119f9d1365189907514dd6ae8c6", null ],
+    [ "isAvailable", "classev_1_1AbstractDataset.html#abc4dc0227dc6a25fb99e6e68981ce939", null ],
+    [ "isOpen", "classev_1_1AbstractDataset.html#a6a1bae16298294cd7fb8ec35eb9d670f", null ],
+    [ "name", "classev_1_1AbstractDataset.html#a47d5ffd963673939f3293bb8f0e3aa2e", null ],
+    [ "open", "classev_1_1AbstractDataset.html#a2fff29732415b8ada2c7baeb6af71dbc", null ],
+    [ "path", "classev_1_1AbstractDataset.html#a76bdde666137a265d03c57857103e521", null ],
+    [ "prefetch", "classev_1_1AbstractDataset.html#a2bb956066062dc11ff3c602715ad936b", null ],
+    [ "prefetchCapacity", "classev_1_1AbstractDataset.html#a8546efaf84e51dc520e39d6463268739", null ],
+    [ "reset", "classev_1_1AbstractDataset.html#ad056a3adb29fa263cde93a5f5e0df3b9", null ],
+    [ "sensorSize", "classev_1_1AbstractDataset.html#a125331fb9e8a1db410ac6bf6122f3a0a", null ],
+    [ "sequence", "classev_1_1AbstractDataset.html#adcab440711cba5bddd75d52d8992e043", null ],
+    [ "sequences", "classev_1_1AbstractDataset.html#a2048091838564a5f4ee72bcff197eb7b", null ],
+    [ "setDirectory", "classev_1_1AbstractDataset.html#a6a3ea80fbe09fa3ca1a01ba1559f29cf", null ],
+    [ "setRoi", "classev_1_1AbstractDataset.html#ad7b234f670ae7855b3c8ef499684cf6e", null ],
+    [ "shortname", "classev_1_1AbstractDataset.html#add6b5cfbaee0b1abd85ee974993d6fcd", null ],
+    [ "url", "classev_1_1AbstractDataset.html#a5c36a312a543f489478971b1c6668fd2", null ]
+];

@@ -1,6 +1,7 @@
 var examples =
 [
     [ "example-davis.cpp", "example-davis_8cpp-example.html", null ],
+    [ "example-event-camera-dataset.cpp", "example-event-camera-dataset_8cpp-example.html", null ],
     [ "example-event-histogram.cpp", "example-event-histogram_8cpp-example.html", null ],
     [ "example-event-image.cpp", "example-event-image_8cpp-example.html", null ],
     [ "example-event.cpp", "example-event_8cpp-example.html", null ],

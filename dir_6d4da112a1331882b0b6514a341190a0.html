@@ -170,6 +170,14 @@ Directories</h2></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><span class="tt">rate()</span>  </td><td class="markdownTableBodyCenter">✔️  </td><td class="markdownTableBodyCenter">✔️  </td><td class="markdownTableBodyCenter">✔️  </td></tr>
 </table>
+<p><b>Notes</b></p>
+<ul>
+<li><span class="tt">Queue</span> and <span class="tt">ConcurrentQueue</span> offer no stats, since they cannot be iterated.</li>
+<li><span class="tt">Grid</span> offers no stats of its own. Each cell offers those of the container it is made of.</li>
+<li>Matrices only account for the events passed to <span class="tt">updateStats()</span>, which <span class="tt">insert()</span> and <span class="tt">emplace()</span> never call.</li>
+<li>Representations account for the events inserted since the last <span class="tt">clear()</span>.</li>
+<li><span class="tt">StatsContainer</span> offers every stat without storing the events, so its events cannot be retrieved. </li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

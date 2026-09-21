@@ -3,9 +3,14 @@ var hierarchy =
     [ "ev::AbstractCamera", "classev_1_1AbstractCamera.html", [
       [ "ev::Davis", "classev_1_1Davis.html", null ]
     ] ],
+    [ "ev::AbstractDataset", "classev_1_1AbstractDataset.html", [
+      [ "ev::EventCameraDataset", "classev_1_1EventCameraDataset.html", null ]
+    ] ],
     [ "ev::AbstractReader_", "classev_1_1AbstractReader__.html", [
       [ "ev::HDF5Reader", "classev_1_1HDF5Reader.html", null ],
-      [ "ev::PlainTextReader", "classev_1_1PlainTextReader.html", null ]
+      [ "ev::PlainTextReader", "classev_1_1PlainTextReader.html", [
+        [ "RecordedReader", "classRecordedReader.html", null ]
+      ] ]
     ] ],
     [ "std::array", null, [
       [ "ev::Array_< int, N >", "classev_1_1Array__.html", null ],
@@ -45,6 +50,7 @@ var hierarchy =
     [ "eFFT", null, [
       [ "ev::efft< N >", "classev_1_1efft.html", null ]
     ] ],
+    [ "ev::FrameFile", "structev_1_1FrameFile.html", null ],
     [ "ev::Grid_&lt; Container &gt;", "classev_1_1Grid__.html", null ],
     [ "ev::HotPixelFilter", "classev_1_1HotPixelFilter.html", null ],
     [ "ev::Imu", "structev_1_1Imu.html", null ],
@@ -126,6 +132,10 @@ var hierarchy =
       ] ],
       [ "ev::UndistortMap", "classev_1_1UndistortMap.html", null ]
     ] ],
+    [ "ev::Player_&lt; Reader &gt;", "classev_1_1Player__.html", [
+      [ "SteppedPlayer< Reader >", "classSteppedPlayer.html", null ],
+      [ "SteppedPlayer< Reader >", "classSteppedPlayer.html", null ]
+    ] ],
     [ "cv::Point_", null, [
       [ "ev::Event_< int >", "classev_1_1Event__.html", [
         [ "ev::AugmentedEvent_< int >", "classev_1_1AugmentedEvent__.html", null ]
@@ -164,6 +174,13 @@ var hierarchy =
       [ "ev::Size3_< float >", "classev_1_1Size3__.html", null ],
       [ "ev::Size3_< double >", "classev_1_1Size3__.html", null ],
       [ "ev::Size3_< T >", "classev_1_1Size3__.html", null ]
+    ] ],
+    [ "boost::lockfree::spsc_queue", null, [
+      [ "ev::ConcurrentQueue_< int >", "classev_1_1ConcurrentQueue__.html", null ],
+      [ "ev::ConcurrentQueue_< long >", "classev_1_1ConcurrentQueue__.html", null ],
+      [ "ev::ConcurrentQueue_< float >", "classev_1_1ConcurrentQueue__.html", null ],
+      [ "ev::ConcurrentQueue_< double >", "classev_1_1ConcurrentQueue__.html", null ],
+      [ "ev::ConcurrentQueue_< T >", "classev_1_1ConcurrentQueue__.html", null ]
     ] ],
     [ "ev::Stats_&lt; Derived &gt;", "classev_1_1Stats__.html", [
       [ "ev::Array_< int, N >", "classev_1_1Array__.html", null ],
@@ -265,9 +282,11 @@ var hierarchy =
     ] ],
     [ "testing::Test", null, [
       [ "ContainerTestFixture< Container >", "classContainerTestFixture.html", null ],
+      [ "DatasetTest", "classDatasetTest.html", null ],
       [ "GridTestFixture< Grid >", "classGridTestFixture.html", null ],
       [ "HDF5ReaderTest", "classHDF5ReaderTest.html", null ],
       [ "PlainTextReaderTest", "classPlainTextReaderTest.html", null ],
+      [ "PlayerTest", "classPlayerTest.html", null ],
       [ "SlidingWindowTest", "classSlidingWindowTest.html", null ],
       [ "StatsContainerTest", "classStatsContainerTest.html", null ]
     ] ],

@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('classev_1_1Abs
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">ev::AbstractReader_ Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">ev::AbstractReader_ Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -141,71 +141,35 @@ Inheritance diagram for ev::AbstractReader_:</div>
   <map id="ev_3A_3AAbstractReader_5F_map" name="ev_3A_3AAbstractReader_5F_map">
 <area href="classev_1_1HDF5Reader.html" title="This class extends AbstractReader_ to read event data from HDF5 files." alt="ev::HDF5Reader" shape="rect" coords="0,56,127,80"/>
 <area href="classev_1_1PlainTextReader.html" title="This class extends AbstractReader_ to read dataset in plain text format." alt="ev::PlainTextReader" shape="rect" coords="137,56,264,80"/>
+<area href="classRecordedReader.html" alt="RecordedReader" shape="rect" coords="137,112,264,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a49c895c468629730172261f1d540651a" id="r_a49c895c468629730172261f1d540651a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a49c895c468629730172261f1d540651a">AbstractReader_</a> (const std::size_t buffer_size, const bool use_threading)</td></tr>
-<tr class="memdesc:a49c895c468629730172261f1d540651a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classev_1_1AbstractReader__.html" title="This is an auxiliary class. This class cannot be instanced.">AbstractReader_</a>.  <br /></td></tr>
-<tr class="memitem:af5be207b55edec3e9c95a0c51ecfe2a3" id="r_af5be207b55edec3e9c95a0c51ecfe2a3"><td class="memItemLeft"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#af5be207b55edec3e9c95a0c51ecfe2a3">data</a> ()</td></tr>
-<tr class="memdesc:af5be207b55edec3e9c95a0c51ecfe2a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the internal buffer (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a>) containing the data.  <br /></td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a416b70e558485214777ee5af1c6f4c7d" id="r_a416b70e558485214777ee5af1c6f4c7d"><td class="memItemLeft"><a id="a416b70e558485214777ee5af1c6f4c7d" name="a416b70e558485214777ee5af1c6f4c7d"></a>
-virtual bool&#160;</td><td class="memItemRight"><b>updateBuffer_</b> ()=0</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a36d9c15bba9177f0ed4ac99a23534d23" id="r_a36d9c15bba9177f0ed4ac99a23534d23"><td class="memItemLeft"><a id="a36d9c15bba9177f0ed4ac99a23534d23" name="a36d9c15bba9177f0ed4ac99a23534d23"></a>
-const std::size_t&#160;</td><td class="memItemRight"><b>bufferSize_</b></td></tr>
-<tr class="memitem:a2e37ad9c533ed5a09da91a48dcbf9247" id="r_a2e37ad9c533ed5a09da91a48dcbf9247"><td class="memItemLeft"><a id="a2e37ad9c533ed5a09da91a48dcbf9247" name="a2e37ad9c533ed5a09da91a48dcbf9247"></a>
-std::thread&#160;</td><td class="memItemRight"><b>thread_</b></td></tr>
-<tr class="memitem:abe4dcca56d186db3a9b9959dd9ea5f4c" id="r_abe4dcca56d186db3a9b9959dd9ea5f4c"><td class="memItemLeft"><a id="abe4dcca56d186db3a9b9959dd9ea5f4c" name="abe4dcca56d186db3a9b9959dd9ea5f4c"></a>
-<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a>&#160;</td><td class="memItemRight"><b>buffer_</b></td></tr>
-<tr class="memitem:ac0a0ab497944449abd066e6c5d4063a1" id="r_ac0a0ab497944449abd066e6c5d4063a1"><td class="memItemLeft"><a id="ac0a0ab497944449abd066e6c5d4063a1" name="ac0a0ab497944449abd066e6c5d4063a1"></a>
-std::mutex&#160;</td><td class="memItemRight"><b>bufferMutex_</b></td></tr>
-<tr class="memitem:a913e3294bb2a33597015c8238f5fd428" id="r_a913e3294bb2a33597015c8238f5fd428"><td class="memItemLeft"><a id="a913e3294bb2a33597015c8238f5fd428" name="a913e3294bb2a33597015c8238f5fd428"></a>
-std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight"><b>threadRunning_</b> {}</td></tr>
-<tr class="memitem:a973ce4152615bcdab7b30dc6526e10e2" id="r_a973ce4152615bcdab7b30dc6526e10e2"><td class="memItemLeft"><a id="a973ce4152615bcdab7b30dc6526e10e2" name="a973ce4152615bcdab7b30dc6526e10e2"></a>
-std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight"><b>eof_</b> {false}</td></tr>
+<tr class="memitem:a3cb7c64571594dc69615642f0f95aaf8" id="r_a3cb7c64571594dc69615642f0f95aaf8"><td class="memItemLeft"><a class="el" href="concurrent__queue_8hpp.html#a8b93021fa9ff0f4e2fe5d8df99e49a58">ConcurrentQueue</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a3cb7c64571594dc69615642f0f95aaf8">events</a> (const std::size_t n=0)</td></tr>
+<tr class="memdesc:a3cb7c64571594dc69615642f0f95aaf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read a given number of events, add them to the queue, and return it.  <br /></td></tr>
+<tr class="memitem:a9d528d75cf37f4e7d26ae5492388f912" id="r_a9d528d75cf37f4e7d26ae5492388f912"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a9d528d75cf37f4e7d26ae5492388f912">prefetch</a> (const std::size_t n)</td></tr>
+<tr class="memdesc:a9d528d75cf37f4e7d26ae5492388f912"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keep the queue at a given number of events from a background thread.  <br /></td></tr>
+<tr class="memitem:ab9551af3528702526ee7042b4c32b6e2" id="r_ab9551af3528702526ee7042b4c32b6e2"><td class="memItemLeft">std::size_t&#160;</td><td class="memItemRight"><a class="el" href="#ab9551af3528702526ee7042b4c32b6e2">prefetchCapacity</a> () const</td></tr>
+<tr class="memdesc:ab9551af3528702526ee7042b4c32b6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of events <a class="el" href="#a9d528d75cf37f4e7d26ae5492388f912" title="Keep the queue at a given number of events from a background thread.">prefetch()</a> keeps in the queue.  <br /></td></tr>
+<tr class="memitem:a29982bb0dde6ca0e1b43fc15e2dce769" id="r_a29982bb0dde6ca0e1b43fc15e2dce769"><td class="memItemLeft"><a id="a29982bb0dde6ca0e1b43fc15e2dce769" name="a29982bb0dde6ca0e1b43fc15e2dce769"></a>
+void&#160;</td><td class="memItemRight"><b>reset</b> ()</td></tr>
+<tr class="memdesc:a29982bb0dde6ca0e1b43fc15e2dce769"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go back to the beginning, discarding the events in the queue. <br /></td></tr>
+<tr class="memitem:a999bbf2ad64494b0cf0a2809fc9dbc2a" id="r_a999bbf2ad64494b0cf0a2809fc9dbc2a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a999bbf2ad64494b0cf0a2809fc9dbc2a">setTimeTransform</a> (const TimeType offset, const TimeType scale=1)</td></tr>
+<tr class="memdesc:a999bbf2ad64494b0cf0a2809fc9dbc2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transform the timestamp of every event read from now on as (t - offset) * scale.  <br /></td></tr>
+<tr class="memitem:a36972dd1ba1d7030482d072144a485e0" id="r_a36972dd1ba1d7030482d072144a485e0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a36972dd1ba1d7030482d072144a485e0">setRoi</a> (const cv::Rect &amp;roi)</td></tr>
+<tr class="memdesc:a36972dd1ba1d7030482d072144a485e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deliver only the events inside a region of interest. The events keep their coordinates.  <br /></td></tr>
+<tr class="memitem:a55de6b25bc13ad673898c632caf9c098" id="r_a55de6b25bc13ad673898c632caf9c098"><td class="memItemLeft">cv::Rect&#160;</td><td class="memItemRight"><a class="el" href="#a55de6b25bc13ad673898c632caf9c098">getRoi</a> () const</td></tr>
+<tr class="memdesc:a55de6b25bc13ad673898c632caf9c098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the region of interest.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an auxiliary class. This class cannot be instanced. </p>
-</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a49c895c468629730172261f1d540651a" name="a49c895c468629730172261f1d540651a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49c895c468629730172261f1d540651a">&#9670;&#160;</a></span>AbstractReader_()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ev::AbstractReader_::AbstractReader_ </td>
-          <td>(</td>
-          <td class="paramtype">const std::size_t</td>          <td class="paramname"><span class="paramname"><em>buffer_size</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool</td>          <td class="paramname"><span class="paramname"><em>use_threading</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Constructor for <a class="el" href="classev_1_1AbstractReader__.html" title="This is an auxiliary class. This class cannot be instanced.">AbstractReader_</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">buffer_size</td><td>The size of the buffer to be used by the reader. Zero keeps a single event in the buffer. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
-<a id="af5be207b55edec3e9c95a0c51ecfe2a3" name="af5be207b55edec3e9c95a0c51ecfe2a3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5be207b55edec3e9c95a0c51ecfe2a3">&#9670;&#160;</a></span>data()</h2>
+<p>A reader delivers its events through a queue: events(n) reads n events and adds them to the queue. With <a class="el" href="#a9d528d75cf37f4e7d26ae5492388f912" title="Keep the queue at a given number of events from a background thread.">prefetch()</a>, a background thread keeps the queue at a given number of events.</p>
+<dl class="section note"><dt>Note</dt><dd>The queue is safe between the thread of <a class="el" href="#a9d528d75cf37f4e7d26ae5492388f912" title="Keep the queue at a given number of events from a background thread.">prefetch()</a> and one thread using the reader. </dd></dl>
+</div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a3cb7c64571594dc69615642f0f95aaf8" name="a3cb7c64571594dc69615642f0f95aaf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cb7c64571594dc69615642f0f95aaf8">&#9670;&#160;</a></span>events()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -214,21 +178,168 @@ std::atomic&lt; bool &gt;&#160;</td><td class="memItemRight"><b>eof_</b> {false}
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> &amp; ev::AbstractReader_::data </td>
+          <td class="memname"><a class="el" href="concurrent__queue_8hpp.html#a8b93021fa9ff0f4e2fe5d8df99e49a58">ConcurrentQueue</a> &amp; ev::AbstractReader_::events </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">const std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span><span class="paramdefsep"> = </span><span class="paramdefval">0</span></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Returns a reference to the internal buffer (<a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a>) containing the data. </p>
-<dl class="section return"><dt>Returns</dt><dd>Reference to the internal <a class="el" href="queue_8hpp.html#a7e74ebcb99a3290b5bc2f2564f9a0966">Queue</a> buffer. </dd></dl>
+<p>Read a given number of events, add them to the queue, and return it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Number of events to add to the queue; none by default, which just returns the queue </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the queue. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>With <a class="el" href="#a9d528d75cf37f4e7d26ae5492388f912" title="Keep the queue at a given number of events from a background thread.">prefetch()</a>, the thread is who adds events, so this waits until the queue holds n events. </dd>
+<dd>
+With <a class="el" href="#a9d528d75cf37f4e7d26ae5492388f912" title="Keep the queue at a given number of events from a background thread.">prefetch()</a>, asking for more events than it keeps produces an exception. </dd></dl>
+
+</div>
+</div>
+<a id="a55de6b25bc13ad673898c632caf9c098" name="a55de6b25bc13ad673898c632caf9c098"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55de6b25bc13ad673898c632caf9c098">&#9670;&#160;</a></span>getRoi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">cv::Rect ev::AbstractReader_::getRoi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the region of interest. </p>
+<dl class="section return"><dt>Returns</dt><dd>Region of interest in pixels, empty if every event is delivered </dd></dl>
+
+</div>
+</div>
+<a id="a9d528d75cf37f4e7d26ae5492388f912" name="a9d528d75cf37f4e7d26ae5492388f912"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d528d75cf37f4e7d26ae5492388f912">&#9670;&#160;</a></span>prefetch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ev::AbstractReader_::prefetch </td>
+          <td>(</td>
+          <td class="paramtype">const std::size_t</td>          <td class="paramname"><span class="paramname"><em>n</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Keep the queue at a given number of events from a background thread. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Number of events to keep in the queue; zero stops the thread </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab9551af3528702526ee7042b4c32b6e2" name="ab9551af3528702526ee7042b4c32b6e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9551af3528702526ee7042b4c32b6e2">&#9670;&#160;</a></span>prefetchCapacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::size_t ev::AbstractReader_::prefetchCapacity </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Number of events <a class="el" href="#a9d528d75cf37f4e7d26ae5492388f912" title="Keep the queue at a given number of events from a background thread.">prefetch()</a> keeps in the queue. </p>
+<dl class="section return"><dt>Returns</dt><dd>Number of events, zero if there is no thread </dd></dl>
+
+</div>
+</div>
+<a id="a36972dd1ba1d7030482d072144a485e0" name="a36972dd1ba1d7030482d072144a485e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36972dd1ba1d7030482d072144a485e0">&#9670;&#160;</a></span>setRoi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ev::AbstractReader_::setRoi </td>
+          <td>(</td>
+          <td class="paramtype">const cv::Rect &amp;</td>          <td class="paramname"><span class="paramname"><em>roi</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deliver only the events inside a region of interest. The events keep their coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">roi</td><td>Region of interest in pixels; an empty region delivers every event </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Meant to be set before reading. Events already read are not affected. </dd></dl>
+
+</div>
+</div>
+<a id="a999bbf2ad64494b0cf0a2809fc9dbc2a" name="a999bbf2ad64494b0cf0a2809fc9dbc2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a999bbf2ad64494b0cf0a2809fc9dbc2a">&#9670;&#160;</a></span>setTimeTransform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ev::AbstractReader_::setTimeTransform </td>
+          <td>(</td>
+          <td class="paramtype">const TimeType</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TimeType</td>          <td class="paramname"><span class="paramname"><em>scale</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transform the timestamp of every event read from now on as (t - offset) * scale. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">offset</td><td>Time subtracted from the timestamps, in the units of the file </td></tr>
+    <tr><td class="paramname">scale</td><td>Factor applied afterwards, for instance 1e6 to deliver microseconds from a file in seconds </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Meant to be set before reading. </dd></dl>
 
 </div>
 </div>

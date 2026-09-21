@@ -133,6 +133,8 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('abstract-camer
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="queue_8hpp_source.html">openev/containers/queue.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="vector_8hpp_source.html">openev/containers/vector.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="frames_8hpp_source.html">openev/core/frames.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="imu_8hpp_source.html">openev/core/imu.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="types_8hpp_source.html">openev/core/types.hpp</a>&quot;</code><br />
 <code>#include &lt;atomic&gt;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
@@ -151,12 +153,6 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('abstract-camer
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:caer_5Fdevice_5Fhandle" id="r_caer_5Fdevice_5Fhandle"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structcaer__device__handle.html">caer_device_handle</a></td></tr>
-<tr class="memitem:ev_3A_3AStampedMat" id="r_ev_3A_3AStampedMat"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1StampedMat.html">ev::StampedMat</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class extends cv::Mat to include timestamp.  <a href="classev_1_1StampedMat.html#details">More...</a><br /></td></tr>
-<tr class="memitem:ev_3A_3Axyz_5Ft" id="r_ev_3A_3Axyz_5Ft"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structev_1_1xyz__t.html">ev::xyz_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This struct is used to store linear acceleration and angular velocity.  <a href="structev_1_1xyz__t.html#details">More...</a><br /></td></tr>
-<tr class="memitem:ev_3A_3AImu" id="r_ev_3A_3AImu"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="structev_1_1Imu.html">ev::Imu</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This struct is used to store IMU data from a DAVIS event camera.  <a href="structev_1_1Imu.html#details">More...</a><br /></td></tr>
 <tr class="memitem:ev_3A_3AAbstractCamera" id="r_ev_3A_3AAbstractCamera"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="classev_1_1AbstractCamera.html">ev::AbstractCamera</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is an auxiliary class. This class cannot be instanced.  <a href="classev_1_1AbstractCamera.html#details">More...</a><br /></td></tr>
 </table><table class="memberdecls">
@@ -164,14 +160,6 @@ Classes</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a190cf49740093e753fea419efd667782" id="r_a190cf49740093e753fea419efd667782"><td class="memItemLeft"><a id="a190cf49740093e753fea419efd667782" name="a190cf49740093e753fea419efd667782"></a>
 typedef struct <a class="el" href="structcaer__device__handle.html">caer_device_handle</a> *&#160;</td><td class="memItemRight"><b>caerDeviceHandle</b></td></tr>
-<tr class="memitem:ac8bcd10ca4ec4aad27e2ebf2f7120c3c" id="r_ac8bcd10ca4ec4aad27e2ebf2f7120c3c"><td class="memItemLeft"><a id="ac8bcd10ca4ec4aad27e2ebf2f7120c3c" name="ac8bcd10ca4ec4aad27e2ebf2f7120c3c"></a>
-using&#160;</td><td class="memItemRight"><b>ev::StampedMatVector</b> = std::vector&lt;<a class="el" href="classev_1_1StampedMat.html">StampedMat</a>&gt;</td></tr>
-<tr class="memitem:ae711b1609260c57543cba80989e96bf0" id="r_ae711b1609260c57543cba80989e96bf0"><td class="memItemLeft"><a id="ae711b1609260c57543cba80989e96bf0" name="ae711b1609260c57543cba80989e96bf0"></a>
-using&#160;</td><td class="memItemRight"><b>ev::StampedMatQueue</b> = std::queue&lt;<a class="el" href="classev_1_1StampedMat.html">StampedMat</a>&gt;</td></tr>
-<tr class="memitem:a50b98b10cafb18512dc9fc4c0a072cd4" id="r_a50b98b10cafb18512dc9fc4c0a072cd4"><td class="memItemLeft"><a id="a50b98b10cafb18512dc9fc4c0a072cd4" name="a50b98b10cafb18512dc9fc4c0a072cd4"></a>
-using&#160;</td><td class="memItemRight"><b>ev::ImuVector</b> = std::vector&lt;<a class="el" href="structev_1_1Imu.html">Imu</a>&gt;</td></tr>
-<tr class="memitem:a17f40f3226d32d200f443585834936bc" id="r_a17f40f3226d32d200f443585834936bc"><td class="memItemLeft"><a id="a17f40f3226d32d200f443585834936bc" name="a17f40f3226d32d200f443585834936bc"></a>
-using&#160;</td><td class="memItemRight"><b>ev::ImuQueue</b> = std::queue&lt;<a class="el" href="structev_1_1Imu.html">Imu</a>&gt;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>

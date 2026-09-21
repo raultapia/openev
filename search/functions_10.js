@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['visualize_0',['visualize',['../classev_1_1PointCloud__.html#a1ec133c13e39b21cf2e4958408938838',1,'ev::PointCloud_']]],
-  ['volume_1',['volume',['../classev_1_1Size3__.html#a8d16b018e520cba3d870741153c43c00',1,'ev::Size3_::volume()'],['../classev_1_1Rect3__.html#a5fba21f2e46bff7267492cddf3540519',1,'ev::Rect3_::volume()']]]
+  ['updatestats_0',['updateStats',['../classev_1_1Mat_1_1Mat__.html#ab56daeec1c46bfb8c074d44905cc504f',1,'ev::Mat::Mat_']]],
+  ['url_1',['url',['../classev_1_1AbstractDataset.html#a5c36a312a543f489478971b1c6668fd2',1,'ev::AbstractDataset::url()'],['../classev_1_1EventCameraDataset.html#a80b3bbda44c77e41d228857fb288b103',1,'ev::EventCameraDataset::url()']]]
 ];
