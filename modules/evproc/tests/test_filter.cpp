@@ -56,6 +56,20 @@ TEST(BackgroundActivityFilterTest, BorderPixelChecksOnlyValidNeighbors) {
   EXPECT_TRUE(filter(ev::Event(1, 0, 0.5f, true)));
 }
 
+TEST(BackgroundActivityFilterTest, WithoutResetEarlierEventsPass) {
+  ev::BackgroundActivityFilter filter({10, 10}, 1.0f);
+  (void)filter(ev::Event(5, 5, 100.0f, true));
+  EXPECT_TRUE(filter(ev::Event(6, 5, 0.0f, true)));
+}
+
+TEST(BackgroundActivityFilterTest, ResetForgetsNeighbors) {
+  ev::BackgroundActivityFilter filter({10, 10}, 1.0f);
+  (void)filter(ev::Event(5, 5, 100.0f, true));
+  filter.reset();
+  EXPECT_FALSE(filter(ev::Event(6, 5, 0.0f, true)));
+  EXPECT_TRUE(filter(ev::Event(5, 5, 0.5f, true)));
+}
+
 TEST(RefractoryPeriodFilterTest, FirstEventPasses) {
   ev::RefractoryPeriodFilter filter({10, 10}, 1.0f);
   EXPECT_TRUE(filter(ev::Event(5, 5, 0.0f, true)));
@@ -108,4 +122,18 @@ TEST(RefractoryPeriodFilterTest, SetDtChangesInhibition) {
   (void)filter(ev::Event(5, 5, 0.0f, true));
   filter.setDt(0.25f);
   EXPECT_TRUE(filter(ev::Event(5, 5, 0.5f, true)));
+}
+
+TEST(RefractoryPeriodFilterTest, WithoutResetEarlierEventsAreRejected) {
+  ev::RefractoryPeriodFilter filter({10, 10}, 1.0f);
+  (void)filter(ev::Event(5, 5, 100.0f, true));
+  EXPECT_FALSE(filter(ev::Event(5, 5, 0.0f, true)));
+}
+
+TEST(RefractoryPeriodFilterTest, ResetLiftsInhibition) {
+  ev::RefractoryPeriodFilter filter({10, 10}, 1.0f);
+  (void)filter(ev::Event(5, 5, 100.0f, true));
+  filter.reset();
+  EXPECT_TRUE(filter(ev::Event(5, 5, 0.0f, true)));
+  EXPECT_FALSE(filter(ev::Event(5, 5, 0.5f, true)));
 }

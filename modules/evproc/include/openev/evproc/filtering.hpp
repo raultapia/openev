@@ -47,6 +47,11 @@ public:
   }
 
   /*!
+  \brief Forget every recorded event.
+  */
+  void reset();
+
+  /*!
   Test and record a single event.
   \param e Event to evaluate
   \return True if the event passes (at least one neighbor fired within \p dt)
@@ -90,6 +95,11 @@ public:
   inline void setDt(const ev::TimeType dt) {
     dt_ = dt;
   }
+
+  /*!
+  \brief Forget every recorded event.
+  */
+  void reset();
 
   /*!
   Test and record a single event.

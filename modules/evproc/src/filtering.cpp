@@ -10,6 +10,10 @@
 ev::BackgroundActivityFilter::BackgroundActivityFilter(const cv::Size &size, const ev::TimeType dt, const int radius)
     : map_(size, std::numeric_limits<ev::TimeType>::lowest()), dt_{dt}, radius_{radius} {}
 
+void ev::BackgroundActivityFilter::reset() {
+  map_.setTo(std::numeric_limits<ev::TimeType>::lowest());
+}
+
 bool ev::BackgroundActivityFilter::operator()(const ev::Event &e) {
   const int x = e.x;
   const int y = e.y;
@@ -36,6 +40,10 @@ bool ev::BackgroundActivityFilter::operator()(const ev::Event &e) {
 
 ev::RefractoryPeriodFilter::RefractoryPeriodFilter(const cv::Size &size, const ev::TimeType dt)
     : map_(size, std::numeric_limits<ev::TimeType>::lowest()), dt_{dt} {}
+
+void ev::RefractoryPeriodFilter::reset() {
+  map_.setTo(std::numeric_limits<ev::TimeType>::lowest());
+}
 
 bool ev::RefractoryPeriodFilter::operator()(const ev::Event &e) {
   if(e.t - map_(e.y, e.x) < dt_) {
