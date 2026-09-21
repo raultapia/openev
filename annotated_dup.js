@@ -35,6 +35,7 @@ var annotated_dup =
       [ "RefractoryPeriodFilter", "classev_1_1RefractoryPeriodFilter.html", "classev_1_1RefractoryPeriodFilter" ],
       [ "Size3_", "classev_1_1Size3__.html", "classev_1_1Size3__" ],
       [ "SlidingWindow_", "classev_1_1SlidingWindow__.html", "classev_1_1SlidingWindow__" ],
+      [ "SpaceTime_", "classev_1_1SpaceTime__.html", "classev_1_1SpaceTime__" ],
       [ "StampedMat", "classev_1_1StampedMat.html", "classev_1_1StampedMat" ],
       [ "Stats_", "classev_1_1Stats__.html", "classev_1_1Stats__" ],
       [ "StatsContainer_", "classev_1_1StatsContainer__.html", "classev_1_1StatsContainer__" ],

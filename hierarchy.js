@@ -66,6 +66,7 @@ var hierarchy =
       [ "ev::EventImage_< cv::Vec3d >", "classev_1_1EventImage__.html", null ],
       [ "ev::EventImage_< T, RepresentationOptions::NONE, int >", "classev_1_1EventImage__.html", [
         [ "ev::EventHistogram_< T, Options, E >", "classev_1_1EventHistogram__.html", null ],
+        [ "ev::SpaceTime_< T, Options, E >", "classev_1_1SpaceTime__.html", null ],
         [ "ev::TimeSurface_< T, Options, E >", "classev_1_1TimeSurface__.html", null ]
       ] ],
       [ "ev::Mat::Mat_< Tb >", "classev_1_1Mat_1_1Mat__.html", [
@@ -94,6 +95,18 @@ var hierarchy =
         [ "ev::EventHistogram_< cv::Vec3f >", "classev_1_1EventHistogram__.html", null ],
         [ "ev::EventHistogram_< double >", "classev_1_1EventHistogram__.html", null ],
         [ "ev::EventHistogram_< cv::Vec3d >", "classev_1_1EventHistogram__.html", null ],
+        [ "ev::SpaceTime_< uchar >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< cv::Vec3b >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< short >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< cv::Vec3s >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< ushort >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< cv::Vec3w >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< int >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< cv::Vec3i >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< float >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< cv::Vec3f >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< double >", "classev_1_1SpaceTime__.html", null ],
+        [ "ev::SpaceTime_< cv::Vec3d >", "classev_1_1SpaceTime__.html", null ],
         [ "ev::TimeSurface_< uchar >", "classev_1_1TimeSurface__.html", null ],
         [ "ev::TimeSurface_< cv::Vec3b >", "classev_1_1TimeSurface__.html", null ],
         [ "ev::TimeSurface_< short >", "classev_1_1TimeSurface__.html", null ],
