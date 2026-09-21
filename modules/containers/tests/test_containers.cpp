@@ -3,12 +3,14 @@
 #include "openev/containers/deque.hpp"
 #include "openev/containers/grid.hpp"
 #include "openev/containers/queue.hpp"
+#include "openev/containers/concurrent_queue.hpp"
 #include "openev/containers/sliding_window.hpp"
 #include "openev/containers/stats_container.hpp"
 #include "openev/containers/vector.hpp"
 #include <array>
 #include <cmath>
 #include <gtest/gtest.h>
+#include <thread>
 #include <opencv2/opencv.hpp>
 #include <random>
 #include <type_traits>
@@ -761,4 +763,49 @@ TEST(StatsContainer, HotPixelDominatesThePeak) {
   EXPECT_EQ(stats.peak(), 201U);
   stats.clear();
   EXPECT_EQ(stats.peak(), 0U);
+}
+
+TEST(ConcurrentQueue, IsAFifoOfFixedCapacity) {
+  ev::ConcurrentQueue queue(3);
+  EXPECT_TRUE(queue.empty());
+  EXPECT_EQ(queue.capacity(), 3U);
+  EXPECT_TRUE(queue.push(ev::Event(1, 1, 1.0, true)));
+  EXPECT_TRUE(queue.push(ev::Event(2, 2, 2.0, false)));
+  EXPECT_TRUE(queue.push(ev::Event(3, 3, 3.0, true)));
+  EXPECT_TRUE(queue.full());
+  EXPECT_EQ(queue.size(), 3U);
+  EXPECT_FALSE(queue.push(ev::Event(4, 4, 4.0, true)));
+  EXPECT_EQ(queue.front().x, 1);
+  queue.pop();
+  EXPECT_EQ(queue.front().x, 2);
+  EXPECT_EQ(queue.size(), 2U);
+  EXPECT_TRUE(queue.push(ev::Event(4, 4, 4.0, true)));
+  queue.clear();
+  EXPECT_TRUE(queue.empty());
+}
+
+TEST(ConcurrentQueue, OneThreadPushesWhileAnotherPops) {
+  constexpr int TOTAL = 200000;
+  ev::ConcurrentQueue queue(64);
+  std::thread producer([&queue]() {
+    for(int i = 0; i < TOTAL; i++) {
+      while(!queue.push(ev::Event(i % 100, 0, static_cast<double>(i), true))) {
+        std::this_thread::yield();
+      }
+    }
+  });
+  int received = 0;
+  bool ordered = true;
+  while(received < TOTAL) {
+    if(queue.empty()) {
+      std::this_thread::yield();
+      continue;
+    }
+    ordered = ordered && queue.front().t == static_cast<double>(received);
+    queue.pop();
+    received++;
+  }
+  producer.join();
+  EXPECT_TRUE(ordered);
+  EXPECT_TRUE(queue.empty());
 }
