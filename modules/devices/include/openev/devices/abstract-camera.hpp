@@ -8,6 +8,8 @@
 
 #include "openev/containers/queue.hpp"
 #include "openev/containers/vector.hpp"
+#include "openev/core/frames.hpp"
+#include "openev/core/imu.hpp"
 #include "openev/core/types.hpp"
 #include <atomic>
 #include <cstddef>
@@ -35,95 +37,6 @@ constexpr double us(const T x) { return static_cast<double>(x) * 1e-6; }
 constexpr double EARTH_GRAVITY = 9.80665;
 constexpr double DEG2RAD = M_PI / 180.0;
 constexpr double SCALE_16B_8B = 1.0 / 256.0;
-
-/*!
-\brief This class extends cv::Mat to include timestamp.
-
-The following aliases are defined for convenience:
-\code{.cpp}
-using StampedMatVector = std::vector<StampedMat>;
-using StampedMatQueue = std::queue<StampedMat>;
-\endcode
-*/
-class StampedMat : public cv::Mat {
-public:
-  TimeType t{0};
-
-  using cv::Mat::copyTo;
-
-  /*!
-  \brief Copy image data and timestamp to another StampedMat.
-  \param dst Destination
-  */
-  void copyTo(StampedMat &dst) const {
-    cv::Mat::copyTo(dst);
-    dst.t = t;
-  }
-
-  /*!
-  \brief Release the image data and reset the timestamp.
-  */
-  void release() {
-    cv::Mat::release();
-    t = 0;
-  }
-};
-using StampedMatVector = std::vector<StampedMat>;
-using StampedMatQueue = std::queue<StampedMat>;
-
-/*!
-\brief This struct is used to store linear acceleration and angular velocity.
-*/
-struct xyz_t {
-  double x{0};
-  double y{0};
-  double z{0};
-
-  [[nodiscard]] bool empty() const {
-    return x == 0 && y == 0 && z == 0;
-  }
-
-  void release() {
-    x = y = z = 0;
-  }
-
-  friend std::ostream &operator<<(std::ostream &os, const xyz_t &xyz) {
-    os << "(" << xyz.x << ", " << xyz.y << ", " << xyz.z << ")";
-    return os;
-  }
-};
-
-/*!
-\brief This struct is used to store IMU data from a DAVIS event camera.
-
-The following aliases are defined for convenience:
-\code{.cpp}
-using ImuVector = std::vector<Imu>;
-using ImuQueue = std::queue<Imu>;
-\endcode
-*/
-struct Imu {
-  TimeType t{0};
-  xyz_t linear_acceleration;
-  xyz_t angular_velocity;
-
-  [[nodiscard]] bool empty() const {
-    return t == 0 && linear_acceleration.empty() && angular_velocity.empty();
-  }
-
-  void release() {
-    t = 0;
-    linear_acceleration.release();
-    angular_velocity.release();
-  }
-
-  friend std::ostream &operator<<(std::ostream &os, const Imu &imu) {
-    os << "t: " << imu.t << ", acc: " << imu.linear_acceleration << ", gyr: " << imu.angular_velocity;
-    return os;
-  }
-};
-using ImuVector = std::vector<Imu>;
-using ImuQueue = std::queue<Imu>;
 
 /*!
 \brief This is an auxiliary class. This class cannot be instanced.
