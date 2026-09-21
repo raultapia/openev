@@ -89,7 +89,8 @@ var NAVTREEINDEX0 =
 "classev_1_1BackgroundActivityFilter.html":[0,7,0,6],
 "classev_1_1BackgroundActivityFilter.html#a075360f5043d6dd394b59d32fc676ffd":[0,7,0,6,0],
 "classev_1_1BackgroundActivityFilter.html#a1b260f272eb4af389015c73992a7311f":[0,7,0,6,1],
-"classev_1_1BackgroundActivityFilter.html#ac15ecfde6764be315517ba0a6bdb52f8":[0,7,0,6,2],
+"classev_1_1BackgroundActivityFilter.html#ac15ecfde6764be315517ba0a6bdb52f8":[0,7,0,6,3],
+"classev_1_1BackgroundActivityFilter.html#ac41fbc5da2086fa9309aa43de491bd7b":[0,7,0,6,2],
 "classev_1_1CircularBuffer__.html":[0,7,0,9],
 "classev_1_1CircularBuffer__.html#a58a2e5a66249d2025628bc30c84f2b0c":[0,7,0,9,1],
 "classev_1_1CircularBuffer__.html#a6a6653624a6a5672067abbb55741cc76":[0,7,0,9,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b":[0,7,0,29,0],
 "classev_1_1TimeSurface__.html#a43957f1ac5e4b4cb64c2fda11a86d64d":[0,7,0,29,2],
 "classev_1_1TimeSurface__.html#a77fcfc6179d0b59ed84af4668e0a9b69":[0,7,0,29,1],
-"classev_1_1UndistortMap.html":[0,7,0,30],
-"classev_1_1Vector__.html":[0,7,0,31]
+"classev_1_1UndistortMap.html":[0,7,0,30]
 };

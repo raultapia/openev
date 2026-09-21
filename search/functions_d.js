@@ -5,6 +5,7 @@ var searchData=
   ['refractoryperiodfilter_2',['RefractoryPeriodFilter',['../classev_1_1RefractoryPeriodFilter.html#a0cf052b17987a16b31fd75921c0b5880',1,'ev::RefractoryPeriodFilter']]],
   ['release_3',['release',['../classev_1_1StampedMat.html#a9353c344b301d71aa7163bfafecbab6d',1,'ev::StampedMat']]],
   ['render_4',['render',['../classev_1_1EventHistogram__.html#a42d57d6b67fe596a387dd49ca64b1e5a',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b',1,'ev::TimeSurface_::render()']]],
-  ['resetstats_5',['resetStats',['../classev_1_1Mat_1_1Mat__.html#aa03353b5a51b46d870bf33322fbbba85',1,'ev::Mat::Mat_']]],
-  ['rows_6',['rows',['../classev_1_1Grid__.html#aea4ea55eff13b7b762777128513ca812',1,'ev::Grid_']]]
+  ['reset_5',['reset',['../classev_1_1BackgroundActivityFilter.html#ac41fbc5da2086fa9309aa43de491bd7b',1,'ev::BackgroundActivityFilter']]],
+  ['resetstats_6',['resetStats',['../classev_1_1Mat_1_1Mat__.html#aa03353b5a51b46d870bf33322fbbba85',1,'ev::Mat::Mat_']]],
+  ['rows_7',['rows',['../classev_1_1Grid__.html#aea4ea55eff13b7b762777128513ca812',1,'ev::Grid_']]]
 ];
