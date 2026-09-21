@@ -8,6 +8,8 @@
 
 #include "openev/core/matrices.hpp"
 #include "openev/core/types.hpp"
+#include <cstddef>
+#include <opencv2/core/mat.hpp>
 #include <opencv2/core/types.hpp>
 
 namespace ev {
@@ -112,6 +114,85 @@ public:
 private:
   ev::Mat::Time map_;
   ev::TimeType dt_;
+};
+
+/*!
+\brief Hot pixel filter for event noise removal.
+*/
+class HotPixelFilter {
+public:
+  static constexpr double DEFAULT_FACTOR = 10.0;
+  static constexpr std::size_t DISABLED = 0;
+
+  /*!
+  Constructor.
+  \param size Sensor resolution (width x height)
+  \param window Duration of the time windows over which events are counted
+  \param factor Number of times the mean count a pixel has to exceed to be marked as hot; 0 disables this criterion
+  \param limit Number of events per window a pixel has to exceed to be marked as hot; 0 disables this criterion
+  */
+  HotPixelFilter(const cv::Size &size, ev::TimeType window, double factor = DEFAULT_FACTOR, std::size_t limit = DISABLED);
+
+  ~HotPixelFilter() = default;
+  HotPixelFilter(const HotPixelFilter &) = default;
+  HotPixelFilter(HotPixelFilter &&) noexcept = default;
+  HotPixelFilter &operator=(const HotPixelFilter &) = default;
+  HotPixelFilter &operator=(HotPixelFilter &&) noexcept = default;
+
+  /*!
+  \brief Set the duration of the time windows.
+  \param window Duration of the time windows over which events are counted
+  */
+  inline void setWindow(const ev::TimeType window) {
+    window_ = window;
+  }
+
+  /*!
+  \brief Set the criterion relative to the mean count.
+  \param factor Number of times the mean count a pixel has to exceed to be marked as hot; 0 disables this criterion
+  */
+  inline void setFactor(const double factor) {
+    factor_ = factor;
+  }
+
+  /*!
+  \brief Set the absolute criterion.
+  \param limit Number of events per window a pixel has to exceed to be marked as hot; 0 disables this criterion
+  */
+  inline void setLimit(const std::size_t limit) {
+    limit_ = limit;
+  }
+
+  /*!
+  \brief Get the pixels marked as hot when the last window ended.
+  \return Mask with non-zero values on the hot pixels
+  */
+  [[nodiscard]] inline const cv::Mat_<uchar> &mask() const {
+    return mask_;
+  }
+
+  /*!
+  \brief Forget every recorded event and every hot pixel.
+  */
+  void reset();
+
+  /*!
+  Test and record a single event.
+  \param e Event to evaluate
+  \return True if the event passes (its pixel is not marked as hot)
+  */
+  [[nodiscard]] bool operator()(const ev::Event &e);
+
+private:
+  void evaluate_();
+
+  cv::Mat_<int> counts_;
+  cv::Mat_<uchar> mask_;
+  ev::TimeType window_;
+  double factor_;
+  std::size_t limit_;
+  ev::TimeType start_{0};
+  bool started_{false};
 };
 
 } // namespace ev
