@@ -196,8 +196,9 @@ var NAVTREEINDEX0 =
 "classev_1_1Rect3__.html#ad032da839930712403dffd07f602ecc5":[0,7,0,22,0],
 "classev_1_1Rect3__.html#af0e2cd626c409dcba3ef4edcdb7feab1":[0,7,0,22,9],
 "classev_1_1RefractoryPeriodFilter.html":[0,7,0,23],
+"classev_1_1RefractoryPeriodFilter.html#a0a0c7f0ae9d7af2b3bbe015acff49ce5":[0,7,0,23,2],
 "classev_1_1RefractoryPeriodFilter.html#a0cf052b17987a16b31fd75921c0b5880":[0,7,0,23,0],
-"classev_1_1RefractoryPeriodFilter.html#a2d1a15d97360ca69eae52c20e8f65b1f":[0,7,0,23,2],
+"classev_1_1RefractoryPeriodFilter.html#a2d1a15d97360ca69eae52c20e8f65b1f":[0,7,0,23,3],
 "classev_1_1RefractoryPeriodFilter.html#aaf24b852fa0596057523775f81b145cf":[0,7,0,23,1],
 "classev_1_1Size3__.html":[0,7,0,24],
 "classev_1_1Size3__.html#a70359507128f45da9d9f239a1ddb7a86":[0,7,0,24,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classev_1_1TimeSurface__.html":[0,7,0,29],
 "classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b":[0,7,0,29,0],
 "classev_1_1TimeSurface__.html#a43957f1ac5e4b4cb64c2fda11a86d64d":[0,7,0,29,2],
-"classev_1_1TimeSurface__.html#a77fcfc6179d0b59ed84af4668e0a9b69":[0,7,0,29,1],
-"classev_1_1UndistortMap.html":[0,7,0,30]
+"classev_1_1TimeSurface__.html#a77fcfc6179d0b59ed84af4668e0a9b69":[0,7,0,29,1]
 };

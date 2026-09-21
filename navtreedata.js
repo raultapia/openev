@@ -54,7 +54,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "abstract-camera_8cpp.html",
-"classev_1_1Vector__.html"
+"classev_1_1UndistortMap.html"
 ];
 
 const SYNCONMSG = 'click to disable panel synchronization';

@@ -23,7 +23,7 @@ var searchData=
   ['release_20',['release',['../classev_1_1StampedMat.html#a9353c344b301d71aa7163bfafecbab6d',1,'ev::StampedMat']]],
   ['render_21',['render',['../classev_1_1EventHistogram__.html#a42d57d6b67fe596a387dd49ca64b1e5a',1,'ev::EventHistogram_::render()'],['../classev_1_1TimeSurface__.html#a10b978c421656a538c7a24e6578f147b',1,'ev::TimeSurface_::render()']]],
   ['representations_2ehpp_22',['representations.hpp',['../representations_8hpp.html',1,'']]],
-  ['reset_23',['reset',['../classev_1_1BackgroundActivityFilter.html#ac41fbc5da2086fa9309aa43de491bd7b',1,'ev::BackgroundActivityFilter']]],
+  ['reset_23',['reset',['../classev_1_1BackgroundActivityFilter.html#ac41fbc5da2086fa9309aa43de491bd7b',1,'ev::BackgroundActivityFilter::reset()'],['../classev_1_1RefractoryPeriodFilter.html#a0a0c7f0ae9d7af2b3bbe015acff49ce5',1,'ev::RefractoryPeriodFilter::reset()']]],
   ['resetstats_24',['resetStats',['../classev_1_1Mat_1_1Mat__.html#aa03353b5a51b46d870bf33322fbbba85',1,'ev::Mat::Mat_']]],
   ['right_25',['RIGHT',['../types_8hpp.html#aadecfb0ae5329f7e7cfe2173f746ec4fa21507b40c80068eda19865706fdc2403',1,'ev']]],
   ['rows_26',['rows',['../classev_1_1Grid__.html#aea4ea55eff13b7b762777128513ca812',1,'ev::Grid_']]]
