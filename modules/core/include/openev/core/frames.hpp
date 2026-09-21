@@ -9,6 +9,7 @@
 #include "openev/core/types.hpp"
 #include <opencv2/core/mat.hpp>
 #include <queue>
+#include <string>
 #include <vector>
 
 namespace ev {
@@ -48,6 +49,20 @@ public:
 };
 using StampedMatVector = std::vector<StampedMat>;
 using StampedMatQueue = std::queue<StampedMat>;
+
+/*!
+\brief This struct is a frame kept as an image file, for the frames that are loaded only when needed.
+
+The following alias is defined for convenience:
+\code{.cpp}
+using FrameFileVector = std::vector<FrameFile>;
+\endcode
+*/
+struct FrameFile {
+  TimeType t{0};    /*!< Timestamp */
+  std::string path; /*!< Path of the image file */
+};
+using FrameFileVector = std::vector<FrameFile>;
 
 } // namespace ev
 
