@@ -1,7 +1,7 @@
 <!-- \internal -->
 <div align="center" style="margin-bottom: 10px;">
 <a href="https://github.com/raultapia/openev">
-<img src="https://github.com/raultapia/openev/blob/main/.github/assets/logo.png?raw=true" alt="openev">
+<img src="https://github.com/raultapia/openev/blob/main/.github/assets/logo.png?raw=true" alt="openev" width="200">
 </a>
 </div>
 <p align="center">
